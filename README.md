@@ -6,6 +6,12 @@
 
 Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href="https://github.com/DashLt">Dash</a>
 
+<p style="align:center;">
+  <a href="https://github.com/ImAiiR/QobuzDownloaderX">
+    <img src="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX1.png?raw=true" />
+  </a>
+</p>
+
 # About
 QobuzDownloaderX is a program for downloading music streams from the streaming platform <a href="https://qobuz.com/">Qobuz</a>.
 
