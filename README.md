@@ -1,8 +1,15 @@
 <p style="align:center;">
   <a href="https://github.com/ImAiiR/QobuzDownloaderX">
-    <img src="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/QobuzDownloaderX/Resources/qbdlx.png?raw=true" />
+    <img src="https://github.com/ImAiiR/QobuzDownloaderX/raw/master/QobuzDownloaderX/Resources/qbdlx.png?raw=true" />
   </a>
 </p>
+
+Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href="https://github.com/DashLt">Dash</a>
+
+## About
+QobuzDownloaderX is a program for downloading music streams from the streaming platform <a href="https://qobuz.com/">Qobuz</a>.
+
+You can not download anything with a free account.
 
 # Disclaimer & Legal
 I will not be responsible for how you use QBDLX (QobuzDownloaderX). 
