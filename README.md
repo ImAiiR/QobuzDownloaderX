@@ -1,4 +1,8 @@
-# QobuzDownloaderX
+<p style="align:center;">
+  <a href="https://github.com/ImAiiR/QobuzDownloaderX">
+    <img src="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/QobuzDownloaderX/Resources/qbdlx.png?raw=true" />
+  </a>
+</p>
 
 # Disclaimer & Legal
 I will not be responsible for how you use QBDLX (QobuzDownloaderX). 
