@@ -20,7 +20,7 @@ You can not download anything with a free account.
 # Disclaimer & Legal
 I will not be responsible for how you use QBDLX (QobuzDownloaderX). 
 
-This program does not include...
+This program DOES NOT include...
 - Code to bypass Qobuz's region restrictions.
 - Qobuz app IDs or secrets.
 
