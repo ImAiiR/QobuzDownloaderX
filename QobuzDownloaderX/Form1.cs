@@ -693,7 +693,7 @@ namespace QobuzDownloaderX
                             #endregion
 
                             #region Filename Number Padding
-                            // Set default padding length
+                            // Set default track number padding length
                             var paddingLength = 2;
 
                             // Prepare track number padding in filename.
@@ -706,14 +706,40 @@ namespace QobuzDownloaderX
                             {
                                 paddingLength = trackTotal.Length;
                             }
+
+                            // Set default disc number padding length
+                            var paddingDiscLength = 2;
+
+                            // Prepare disc number padding in filename.
+                            string paddingDiscLog = discTotal.Length.ToString();
+                            if (paddingDiscLog == "1")
+                            {
+                                paddingDiscLength = 1;
+                            }
+                            else
+                            {
+                                paddingDiscLength = discTotal.Length;
+                            }
                             #endregion
-                            
+
                             #region Create Directories
+                            // Create strings for disc folders
+                            string discFolder = null;
+                            string discFolderCreate = null;
+
+                            // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
+                            if (discTotal != "1")
+                            {
+                                discFolder = "CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+                                discFolderCreate = "\\CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+                            }
+
                             System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath);
                             System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]");
                             System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath);
+                            System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate);
 
-                            string discogPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath;
+                            string discogPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate;
                             #endregion
 
                             #region Availability Check (Streamable?)
@@ -784,7 +810,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -792,7 +818,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -828,7 +854,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -951,7 +977,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -1081,7 +1107,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -1202,7 +1228,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -1701,7 +1727,7 @@ namespace QobuzDownloaderX
                     #endregion
 
                     #region Filename Number Padding
-                    // Set default padding length
+                    // Set default track number padding length
                     var paddingLength = 2;
 
                     // Prepare track number padding in filename.
@@ -1714,14 +1740,42 @@ namespace QobuzDownloaderX
                     {
                         paddingLength = trackTotal.Length;
                     }
+
+                    // Set default disc number padding length
+                    var paddingDiscLength = 2;
+
+                    // Prepare disc number padding in filename.
+                    string paddingDiscLog = discTotal.Length.ToString();
+                    if (paddingDiscLog == "1")
+                    {
+                        paddingDiscLength = 1;
+                    }
+                    else
+                    {
+                        paddingDiscLength = discTotal.Length;
+                    }
                     #endregion
 
                     #region Create Directories
+                    // Create strings for disc folders
+                    string discFolder = null;
+                    string discFolderCreate = null;
+
+                    // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
+                    if (discTotal != "1")
+                    {
+                        discFolder = "CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+                        discFolderCreate = "\\CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+                    }
+
+                    // Create directories
                     System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath);
                     System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath);
                     System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath);
+                    System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + discFolderCreate);
 
-                    string albumPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath;
+                    // Set albumPath to the created directories.
+                    string albumPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + discFolderCreate;
                     #endregion
 
                     #region Availability Check (Streamable?)
@@ -1793,7 +1847,7 @@ namespace QobuzDownloaderX
                             if (versionName == null | versionName == "")
                             {
                                 // If there is NOT a version name.
-                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType))
+                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType))
                                 {
                                     await stream.CopyToAsync(output);
                                 }
@@ -1801,7 +1855,7 @@ namespace QobuzDownloaderX
                             else
                             {
                                 // If there is a version name.
-                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType))
+                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType))
                                 {
                                     await stream.CopyToAsync(output);
                                 }
@@ -1834,7 +1888,7 @@ namespace QobuzDownloaderX
                             if (versionName == null | versionName == "")
                             {
                                 // If there is NOT a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
                                 // For custom / troublesome tags.
                                 TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -1957,7 +2011,7 @@ namespace QobuzDownloaderX
                             else
                             {
                                 // If there is a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
                                 // For custom / troublesome tags.
                                 TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -2087,7 +2141,7 @@ namespace QobuzDownloaderX
                             if (versionName == null | versionName == "")
                             {
                                 // If there is NOT a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
                                 // For custom / troublesome tags.
                                 var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -2208,7 +2262,7 @@ namespace QobuzDownloaderX
                             else
                             {
                                 // If there is a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
                                 // For custom / troublesome tags.
                                 var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -2653,7 +2707,7 @@ namespace QobuzDownloaderX
             #endregion
 
             #region Filename Number Padding
-            // Set default padding length
+            // Set default track number padding length
             var paddingLength = 2;
 
             // Prepare track number padding in filename.
@@ -2666,14 +2720,42 @@ namespace QobuzDownloaderX
             {
                 paddingLength = trackTotal.Length;
             }
+
+            // Set default disc number padding length
+            var paddingDiscLength = 2;
+
+            // Prepare disc number padding in filename.
+            string paddingDiscLog = discTotal.Length.ToString();
+            if (paddingDiscLog == "1")
+            {
+                paddingDiscLength = 1;
+            }
+            else
+            {
+                paddingDiscLength = discTotal.Length;
+            }
             #endregion
 
             #region Create Directories
+            // Create strings for disc folders
+            string discFolder = null;
+            string discFolderCreate = null;
+
+            // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
+            if (discTotal != "1")
+            {
+                discFolder = "CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+                discFolderCreate = "\\CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+            }
+
+            // Create directories
             System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath);
             System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath);
             System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath);
+            System.IO.Directory.CreateDirectory(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + discFolderCreate);
 
-            string trackPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath;
+            // Set albumPath to the created directories.
+            string trackPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + discFolderCreate;
             #endregion
 
             #region Availability Check (Streamable?)
@@ -2747,7 +2829,7 @@ namespace QobuzDownloaderX
                     if (versionName == null | versionName == "")
                     {
                         // If there is NOT a version name.
-                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType))
+                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType))
                         {
                             await stream.CopyToAsync(output);
                         }
@@ -2755,7 +2837,7 @@ namespace QobuzDownloaderX
                     else
                     {
                         // If there is a version name.
-                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType))
+                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType))
                         {
                             await stream.CopyToAsync(output);
                         }
@@ -2788,7 +2870,7 @@ namespace QobuzDownloaderX
                     if (versionName == null | versionName == "")
                     {
                         // If there is NOT a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
                         // For custom / troublesome tags.
                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -2911,7 +2993,7 @@ namespace QobuzDownloaderX
                     else
                     {
                         // If there is a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
                         // For custom / troublesome tags.
                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -3041,7 +3123,7 @@ namespace QobuzDownloaderX
                     if (versionName == null | versionName == "")
                     {
                         // If there is NOT a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + audioFileType);
                         // For custom / troublesome tags.
                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -3162,7 +3244,7 @@ namespace QobuzDownloaderX
                     else
                     {
                         // If there is a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType);
                         // For custom / troublesome tags.
                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
