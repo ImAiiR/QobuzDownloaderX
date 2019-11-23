@@ -546,7 +546,7 @@ namespace QobuzDownloaderX
                             albumArtist = decodedAlbumArtist;
 
                             albumArtist = albumArtist.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                            var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // Display album artist in text box under cover art.
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
@@ -567,7 +567,7 @@ namespace QobuzDownloaderX
                             performerName = decodedPerformerName;
 
                             performerName = performerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                            var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // If name goes over 200 characters, limit it to 200
                             if (performerNamePath.Length > MaxLength)
@@ -600,7 +600,7 @@ namespace QobuzDownloaderX
                             albumName = decodedAlbumName;
 
                             albumName = albumName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                            var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // Display album name in text box under cover art.
                             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
@@ -622,7 +622,7 @@ namespace QobuzDownloaderX
                             trackName = decodedTrackName;
 
                             trackName = trackName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                            var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // If name goes over 200 characters, limit it to 200
                             if (trackNamePath.Length > MaxLength)
@@ -640,7 +640,7 @@ namespace QobuzDownloaderX
                             versionName = decodedVersionName;
 
                             versionName = versionName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                            var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // Genre tag
                             var genreLog = Regex.Match(trackRequest, "\"genre\":{\"id\":(?<notUsed>.*?),\"color\":\"(?<notUsed2>.*?)\",\"name\":\"(?<genreName>.*?)\",\\\"").Groups;
@@ -1554,7 +1554,7 @@ namespace QobuzDownloaderX
                     albumArtist = decodedAlbumArtist;
 
                     albumArtist = albumArtist.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                    var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                    var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                     // Display album artist in text box under cover art.
                     albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
@@ -1575,7 +1575,7 @@ namespace QobuzDownloaderX
                     performerName = decodedPerformerName;
 
                     performerName = performerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                    var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                    var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                     // If name goes over 200 characters, limit it to 200
                     if (performerNamePath.Length > MaxLength)
@@ -1608,7 +1608,7 @@ namespace QobuzDownloaderX
                     albumName = decodedAlbumName;
 
                     albumName = albumName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                    var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                    var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                     // Display album name in text box under cover art.
                     albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
@@ -1630,7 +1630,7 @@ namespace QobuzDownloaderX
                     trackName = decodedTrackName;
 
                     trackName = trackName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                    var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                    var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                     // If name goes over 200 characters, limit it to 200
                     if (trackNamePath.Length > MaxLength)
@@ -1648,7 +1648,7 @@ namespace QobuzDownloaderX
                     versionName = decodedVersionName;
 
                     versionName = versionName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                    var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+                    var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                     // Genre tag
                     var genreLog = Regex.Match(trackRequest, "\"genre\":{\"id\":(?<notUsed>.*?),\"color\":\"(?<notUsed2>.*?)\",\"name\":\"(?<genreName>.*?)\",\\\"").Groups;
@@ -2509,7 +2509,7 @@ namespace QobuzDownloaderX
             albumArtist = decodedAlbumArtist;
 
             albumArtist = albumArtist.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+            var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // Display album artist in text box under cover art.
             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
@@ -2530,7 +2530,7 @@ namespace QobuzDownloaderX
             performerName = decodedPerformerName;
 
             performerName = performerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+            var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // If name goes over 200 characters, limit it to 200
             if (performerNamePath.Length > MaxLength)
@@ -2563,7 +2563,7 @@ namespace QobuzDownloaderX
             albumName = decodedAlbumName;
 
             albumName = albumName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+            var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // Display album name in text box under cover art.
             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
@@ -2585,7 +2585,7 @@ namespace QobuzDownloaderX
             trackName = decodedTrackName;
 
             trackName = trackName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+            var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // If name goes over 200 characters, limit it to 200
             if (trackNamePath.Length > MaxLength)
@@ -2603,7 +2603,7 @@ namespace QobuzDownloaderX
             versionName = decodedVersionName;
 
             versionName = versionName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", ";").Replace("<", "[").Replace(">", "]").Replace("|", "-").Replace("?", "_").Replace("*", "-");
+            var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // Genre tag
             var genreLog = Regex.Match(trackRequest, "\"genre\":{\"id\":(?<notUsed>.*?),\"color\":\"(?<notUsed2>.*?)\",\"name\":\"(?<genreName>.*?)\",\\\"").Groups;
