@@ -33,6 +33,14 @@ namespace QobuzDownloaderX
             InitializeComponent();
         }
 
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         public string eMail { get; set; }
         public string appid { get; set; }
         public string password { get; set; }
@@ -197,21 +205,6 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void selectFolder_Click(object sender, EventArgs e)
-        {
-            Thread t = new Thread((ThreadStart)(() => {
-                // Open Folder Browser to select path & Save the selection
-                folderBrowserDialog.ShowDialog();
-                Settings.Default.savedFolder = folderBrowserDialog.SelectedPath;
-                Settings.Default.Save();
-            }));
-
-            // Run your code from a thread that joins the STA Thread
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
-            t.Join();
-        }
-
         private void createURL(object sender, EventArgs e)
         {
             // Create unix timestamp for "request_ts=" and hashing to make request signature.
@@ -277,6 +270,22 @@ namespace QobuzDownloaderX
             }
         }
 
+        #region Choosing / Opening folder
+        private void selectFolder_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread((ThreadStart)(() => {
+                // Open Folder Browser to select path & Save the selection
+                folderBrowserDialog.ShowDialog();
+                Settings.Default.savedFolder = folderBrowserDialog.SelectedPath;
+                Settings.Default.Save();
+            }));
+
+            // Run your code from a thread that joins the STA Thread
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+            t.Join();
+        }
+
         private void openFolderButton_Click(object sender, EventArgs e)
         {
             // Open selcted folder
@@ -296,6 +305,7 @@ namespace QobuzDownloaderX
                 Process.Start(@folderBrowserDialog.SelectedPath);
             }
         }
+        #endregion
 
         #region Getting Type of URL
         private void getLinkTypeBG_DoWork(object sender, DoWorkEventArgs e)
@@ -3387,17 +3397,17 @@ namespace QobuzDownloaderX
         #region Tagging Options
         private void tagsLabel_Click(object sender, EventArgs e)
         {
-            if (this.Height == 572)
+            if (this.Height == 533)
             {
                 //New Height
-                this.Height = 772;
-                tagsLabel.Text = "🠉 Choose which tags to save 🠉";
+                this.Height = 733;
+                tagsLabel.Text = "🠉 Choose which tags to save (click me) 🠉";
             }
-            else if (this.Height == 772)
+            else if (this.Height == 733)
             {
                 //New Height
-                this.Height = 572;
-                tagsLabel.Text = "🠋 Choose which tags to save 🠋";
+                this.Height = 533;
+                tagsLabel.Text = "🠋 Choose which tags to save (click me) 🠋";
             }
             
         }
@@ -3613,9 +3623,59 @@ namespace QobuzDownloaderX
         }
         #endregion
 
+        #region Form moving, closing, minimizing, etc.
+        private void exitLabel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void minimizeLabel_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void minimizeLabel_MouseHover(object sender, EventArgs e)
+        {
+            minimizeLabel.ForeColor = Color.FromArgb(0, 112, 239);
+        }
+
+        private void minimizeLabel_MouseLeave(object sender, EventArgs e)
+        {
+            minimizeLabel.ForeColor = Color.White;
+        }
+
+        private void exitLabel_MouseHover(object sender, EventArgs e)
+        {
+            exitLabel.ForeColor = Color.FromArgb(0, 112, 239);
+        }
+
+        private void exitLabel_MouseLeave(object sender, EventArgs e)
+        {
+            exitLabel.ForeColor = Color.White;
+        }
+
+        private void QobuzDownloaderX_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
         private void QobuzDownloaderX_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+        #endregion
     }
 }

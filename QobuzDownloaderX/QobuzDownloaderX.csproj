@@ -79,6 +79,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm-v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm-v2.Designer.cs">
+      <DependentUpon>LoginForm-v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="searchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm-v2.resx">
+      <DependentUpon>LoginForm-v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="searchForm.resx">
       <DependentUpon>searchForm.cs</DependentUpon>
@@ -147,6 +156,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-frame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\qbdlx-white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

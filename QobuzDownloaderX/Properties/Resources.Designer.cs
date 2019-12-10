@@ -63,6 +63,16 @@ namespace QobuzDownloaderX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap login_frame {
+            get {
+                object obj = ResourceManager.GetObject("login_frame", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap qbdlx {
             get {
                 object obj = ResourceManager.GetObject("qbdlx", resourceCulture);
@@ -77,6 +87,16 @@ namespace QobuzDownloaderX.Properties {
             get {
                 object obj = ResourceManager.GetObject("qbdlx_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap qbdlx_white {
+            get {
+                object obj = ResourceManager.GetObject("qbdlx_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
