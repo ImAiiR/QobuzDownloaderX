@@ -123,7 +123,7 @@ namespace QobuzDownloaderX
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 DialogResult dialogResult = MessageBox.Show("Connection to GitHub to check for an update has failed.\r\nWould you like to check for an update manually?\r\n\r\nYour current version is " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "QBDLX | GitHub Connection Failed", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)

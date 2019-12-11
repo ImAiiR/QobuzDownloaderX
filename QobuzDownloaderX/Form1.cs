@@ -506,7 +506,7 @@ namespace QobuzDownloaderX
                         foreach (Match mtrack in Regex.Matches(trackinput, trackIdspattern, trackoptions))
                         {
                             // Set default value for max length.
-                            const int MaxLength = 200;
+                            const int MaxLength = 100;
 
                             //output.Invoke(new Action(() => output.AppendText(string.Format("{0}\r\n", m.Groups["trackId"].Value))));
                             trackIdString = string.Format("{0}", mtrack.Groups["trackId"].Value);
@@ -1536,7 +1536,7 @@ namespace QobuzDownloaderX
                 foreach (Match m in Regex.Matches(input, trackIdspattern, options))
                 {
                     // Set default value for max length.
-                    const int MaxLength = 200;
+                    const int MaxLength = 100;
                     
                     // Grab matches for Track IDs
                     trackIdString = string.Format("{0}", m.Groups["trackId"].Value);
@@ -2464,7 +2464,7 @@ namespace QobuzDownloaderX
         {
             #region If URL has "track"
             // Set default value for max length.
-            const int MaxLength = 200;
+            const int MaxLength = 100;
 
             // Set "loc" as the selected path.
             String loc = folderBrowserDialog.SelectedPath;
@@ -2654,7 +2654,7 @@ namespace QobuzDownloaderX
             // If name goes over 200 characters, limit it to 200
             if (trackNamePath.Length > MaxLength)
             {
-                trackNamePath = trackNamePath.Substring(0, MaxLength);
+                trackNamePath = trackNamePath.Substring(0, MaxLength).ToString();
             }
 
             // Version Name tag
@@ -3382,6 +3382,7 @@ namespace QobuzDownloaderX
                 string error = downloadError.ToString();
                 output.Invoke(new Action(() => output.AppendText("Track Download ERROR. Information below.\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText(error)));
+                output.Invoke(new Action(() => output.AppendText("\r\nTrack name path = " + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")" + audioFileType)));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }

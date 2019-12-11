@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginFrm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.verNumLabel2 = new System.Windows.Forms.Label();
             this.exitLabel = new System.Windows.Forms.Label();
@@ -237,6 +238,7 @@
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginFrm";
             this.Text = "QobuzDLX | Login";
             this.Load += new System.EventHandler(this.LoginFrm_Load);
