@@ -2,6 +2,9 @@
   <a href="https://github.com/ImAiiR/QobuzDownloaderX">
     <img src="https://github.com/ImAiiR/QobuzDownloaderX/raw/master/QobuzDownloaderX/Resources/qbdlx.png?raw=true" />
   </a>
+  <a href="https://ko-fi.com/I3I41A5DY">
+    <img src="https://www.ko-fi.com/img/githubbutton_sm.svg" />
+  </a>
 </p>
 
 Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href="https://github.com/DashLt">Dash</a>
