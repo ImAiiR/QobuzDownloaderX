@@ -232,6 +232,7 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
 
             loginText.Text = "Logging in + obtaining app_secret...";
+            loginButton.Enabled = false;
             loginBG.RunWorkerAsync();
         }
 
@@ -441,6 +442,7 @@ namespace QobuzDownloaderX
                 loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Error Log saved"));
                 System.IO.File.WriteAllText(errorLog, error);
                 wr.Abort();
+                loginButton.Invoke(new Action(() => loginButton.Enabled = true));
                 return;
             }
 
@@ -505,6 +507,7 @@ namespace QobuzDownloaderX
                 loginText.Invoke(new Action(() => loginText.Text = "Couldn't obtain app_secret. Error Log saved"));
                 System.IO.File.WriteAllText(errorLog, bundleError);
                 bundleWR.Abort();
+                loginButton.Invoke(new Action(() => loginButton.Enabled = true));
                 return;
             }
 
@@ -515,6 +518,7 @@ namespace QobuzDownloaderX
 
         private void finishLogin(object sender, EventArgs e)
         {
+            loginButton.Invoke(new Action(() => loginButton.Enabled = true));
             // If info is legit, go to the main form.
             qbdlx.appid = appidTextbox.Text;
             qbdlx.eMail = emailTextbox.Text;
