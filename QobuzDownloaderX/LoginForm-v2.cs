@@ -46,6 +46,7 @@ namespace QobuzDownloaderX
         QobuzDownloaderX qbdlx = new QobuzDownloaderX();
 
         public string appSecret { get; set; }
+        public string appID { get; set; }
 
         string errorLog = Path.GetDirectoryName(Application.ExecutablePath) + "\\Latest_Error.log";
         string dllCheck = Path.GetDirectoryName(Application.ExecutablePath) + "\\taglib-sharp.dll";
@@ -160,20 +161,8 @@ namespace QobuzDownloaderX
             }
 
             // Set saved settings to correct places.
-            appidTextbox.Text = Settings.Default.savedAppID.ToString();
             emailTextbox.Text = Settings.Default.savedEmail.ToString();
             passwordTextbox.Text = Settings.Default.savedPassword.ToString();
-
-            if (appidTextbox.Text != "app_id")
-            {
-                appidTextbox.ForeColor = Color.FromArgb(186, 186, 186);
-            }
-
-            if (appidTextbox.Text == null | appidTextbox.Text == "")
-            {
-                appidTextbox.ForeColor = Color.FromArgb(88, 92, 102);
-                appidTextbox.Text = "app_id";
-            }
 
             if (emailTextbox.Text != "Email")
             {
@@ -203,13 +192,13 @@ namespace QobuzDownloaderX
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (appidTextbox.Text == "app_id" | appidTextbox.Text == null | appidTextbox.Text == "")
-            {
-                // If there's no app_id typed in.
-                loginText.Invoke(new Action(() => loginText.Text = "No app_id, please input app_id first."));
-                return;
-            }
-            else if (emailTextbox.Text == "Email" | emailTextbox.Text == null | emailTextbox.Text == "")
+            //if (appidTextbox.Text == "app_id" | appidTextbox.Text == null | appidTextbox.Text == "")
+            //{
+            //    // If there's no app_id typed in.
+            //    loginText.Invoke(new Action(() => loginText.Text = "No app_id, please input app_id first."));
+            //    return;
+            //}
+            if (emailTextbox.Text == "Email" | emailTextbox.Text == null | emailTextbox.Text == "")
             {
                 // If there's no email typed in.
                 loginText.Invoke(new Action(() => loginText.Text = "No email, please input email first."));
@@ -227,46 +216,45 @@ namespace QobuzDownloaderX
 
             // Save info locally to be used on next launch.
             Settings.Default.savedEmail = emailTextbox.Text;
-            Settings.Default.savedAppID = appidTextbox.Text;
             Settings.Default.savedPassword = passwordTextbox.Text;
             Settings.Default.Save();
 
-            loginText.Text = "Logging in + obtaining app_secret...";
+            loginText.Text = "Getting App ID and Secret...";
             loginButton.Enabled = false;
-            loginBG.RunWorkerAsync();
+            getSecretBG.RunWorkerAsync();
         }
 
         #region Textbox Focous & Text Change
 
-        #region app_id Textbox
-        private void appIdTextbox_Click(object sender, EventArgs e)
-        {
-            if (appidTextbox.Text == "app_id")
-            {
-                appidTextbox.Text = null;
-                appidTextbox.ForeColor = Color.FromArgb(186, 186, 186);
-            }
-        }
+        #region app_id Textbox (Removed)
+        //private void appIdTextbox_Click(object sender, EventArgs e)
+        //{
+        //    if (appidTextbox.Text == "app_id")
+        //    {
+        //        appidTextbox.Text = null;
+        //        appidTextbox.ForeColor = Color.FromArgb(186, 186, 186);
+        //    }
+        //}
 
-        private void panel2_Click(object sender, EventArgs e)
-        {
-            appidTextbox.Focus();
+        //private void panel2_Click(object sender, EventArgs e)
+        //{
+        //    appidTextbox.Focus();
 
-            if (appidTextbox.Text == "app_id")
-            {
-                appidTextbox.Text = null;
-                appidTextbox.ForeColor = Color.FromArgb(186, 186, 186);
-            }
-        }
+        //    if (appidTextbox.Text == "app_id")
+        //    {
+        //        appidTextbox.Text = null;
+        //        appidTextbox.ForeColor = Color.FromArgb(186, 186, 186);
+        //    }
+        //}
 
-        private void appIdTextbox_Leave(object sender, EventArgs e)
-        {
-            if (appidTextbox.Text == null | appidTextbox.Text == "")
-            {
-                appidTextbox.ForeColor = Color.FromArgb(88, 92, 102);
-                appidTextbox.Text = "app_id";
-            }
-        }
+        //private void appIdTextbox_Leave(object sender, EventArgs e)
+        //{
+        //    if (appidTextbox.Text == null | appidTextbox.Text == "")
+        //    {
+        //        appidTextbox.ForeColor = Color.FromArgb(88, 92, 102);
+        //        appidTextbox.Text = "app_id";
+        //    }
+        //}
         #endregion
 
         #region Email Textbox
@@ -339,6 +327,18 @@ namespace QobuzDownloaderX
 
         #endregion
 
+        private void visableCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (visableCheckbox.Checked == true)
+            {
+                passwordTextbox.UseSystemPasswordChar = true;
+            }
+            else
+            {
+                passwordTextbox.UseSystemPasswordChar = false;
+            }
+        }
+
         private void exitLabel_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -401,62 +401,12 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void loginBG_DoWork(object sender, DoWorkEventArgs e)
-        {
-            loginBG.WorkerSupportsCancellation = true;
-
-            // Create WebRequest to login using login information from input textboxes.
-            WebRequest wr = WebRequest.Create("https://www.qobuz.com/api.json/0.2/user/login?email=" + emailTextbox.Text + "&password=" + passwordTextbox.Text + "&app_id=" + appidTextbox.Text);
-
-            try
-            {
-                // Grab info to be displayed and used.
-                WebResponse ws = wr.GetResponse();
-                StreamReader sr = new StreamReader(ws.GetResponseStream());
-
-                string loginRequest = sr.ReadToEnd();
-                string text = loginRequest;
-
-                // Grab display name
-                var displayNameLog = Regex.Match(loginRequest, "\"display_name\":\"(?<displayName>.*?)\",\\\"").Groups;
-                var displayName = displayNameLog[1].Value;
-                qbdlx.displayName = displayName;
-
-                // Grab account type
-                var accountTypeLog = Regex.Match(loginRequest, "short_label\":\"(?<accountType>\\w+)").Groups;
-                var accountType = accountTypeLog[1].Value;
-                qbdlx.accountType = accountType;
-
-                // Grab authentication token
-                var userAuth = Regex.Match(loginRequest, "\"user_auth_token\":\"(?<userAuth>.*?)\\\"}").Groups;
-                var userAuthToken = userAuth[1].Value;
-
-                // Set user_auth_token
-                qbdlx.userAuth = userAuthToken;
-                loginText.Invoke(new Action(() => loginText.Text = "Login Successful! Getting app_secret..."));
-            }
-            catch (Exception ex)
-            {
-                // If connection to API fails, show error info.
-                string error = ex.ToString();
-                loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Error Log saved"));
-                System.IO.File.WriteAllText(errorLog, error);
-                wr.Abort();
-                loginButton.Invoke(new Action(() => loginButton.Enabled = true));
-                return;
-            }
-
-            wr.Abort();
-            getSecretBG.RunWorkerAsync();
-            loginBG.CancelAsync();
-        }
-
         private void getSecretBG_DoWork(object sender, DoWorkEventArgs e)
         {
             getSecretBG.WorkerSupportsCancellation = true;
 
             WebClient bundleURLClient = new WebClient();
-            string bundleHTML = bundleURLClient.DownloadString("https://play.qobuz.com/");
+            string bundleHTML = bundleURLClient.DownloadString("https://play.qobuz.com/login");
 
             // Grab link to bundle.js
             var bundleLog = Regex.Match(bundleHTML, "<script src=\"(?<bundleJS>\\/resources\\/\\d+\\.\\d+\\.\\d+-[a-z]\\d{3}\\/bundle\\.js)").Groups;
@@ -472,6 +422,10 @@ namespace QobuzDownloaderX
 
                 string getBundleRequest = bundleSR.ReadToEnd();
                 string text = getBundleRequest;
+
+                // Grab app_id from bundle.js
+                var bundleLog0 = Regex.Match(getBundleRequest, "\\):\\(n.qobuzapi={app_id:\"(?<appID>.*?)\",app_secret:").Groups;
+                appID = bundleLog0[1].Value;
 
                 // Grab "info" and "extras"
                 var bundleLog1 = Regex.Match(getBundleRequest, "{offset:\"(?<notUsed>.*?)\",name:\"Europe\\/Berlin\",info:\"(?<info>.*?)\",extras:\"(?<extras>.*?)\"}").Groups;
@@ -497,14 +451,14 @@ namespace QobuzDownloaderX
 
                 // Set app_secret
                 appSecret = Encoding.UTF8.GetString(step3Data);
-                loginText.Invoke(new Action(() => loginText.Text = "app_secret Obtained! Launching QBDLX..."));
+                loginText.Invoke(new Action(() => loginText.Text = "ID and Secret Obtained! Logging in.."));
                 System.Threading.Thread.Sleep(1000);
             }
             catch (Exception bundleEx)
             {
                 // If obtaining bundle.js info fails, show error info.
                 string bundleError = bundleEx.ToString();
-                loginText.Invoke(new Action(() => loginText.Text = "Couldn't obtain app_secret. Error Log saved"));
+                loginText.Invoke(new Action(() => loginText.Text = "Couldn't obtain app info. Error Log saved"));
                 System.IO.File.WriteAllText(errorLog, bundleError);
                 bundleWR.Abort();
                 loginButton.Invoke(new Action(() => loginButton.Enabled = true));
@@ -512,20 +466,80 @@ namespace QobuzDownloaderX
             }
 
             bundleWR.Abort();
-            finishLogin(sender, e);
+            loginBG.RunWorkerAsync();
             getSecretBG.CancelAsync();
+        }
+
+        private void loginBG_DoWork(object sender, DoWorkEventArgs e)
+        {
+            loginBG.WorkerSupportsCancellation = true;
+
+            // Create WebRequest to login using login information from input textboxes.
+            WebRequest wr = WebRequest.Create("https://www.qobuz.com/api.json/0.2/user/login?email=" + emailTextbox.Text + "&password=" + passwordTextbox.Text + "&app_id=" + appID);
+
+            try
+            {
+                // Grab info to be displayed and used.
+                WebResponse ws = wr.GetResponse();
+                StreamReader sr = new StreamReader(ws.GetResponseStream());
+
+                string loginRequest = sr.ReadToEnd();
+                string text = loginRequest;
+
+                // Grab display name
+                var displayNameLog = Regex.Match(loginRequest, "\"display_name\":\"(?<displayName>.*?)\",\\\"").Groups;
+                var displayName = displayNameLog[1].Value;
+                qbdlx.displayName = displayName;
+
+                // Grab account type
+                var accountTypeLog = Regex.Match(loginRequest, "short_label\":\"(?<accountType>\\w+)").Groups;
+                var accountType = accountTypeLog[1].Value;
+                qbdlx.accountType = accountType;
+
+                // Grab authentication token
+                var userAuth = Regex.Match(loginRequest, "\"user_auth_token\":\"(?<userAuth>.*?)\\\"}").Groups;
+                var userAuthToken = userAuth[1].Value;
+
+                // Grab profile image
+                var profilePic = Regex.Match(loginRequest, "avatar\\\":\\\"(?<profilePic>.*?)\",").Groups;
+                var profilePicURL = profilePic[1].Value.Replace(@"\", null).Replace("s=50", "s=20");
+                qbdlx.profilePic = profilePicURL;
+
+                // Set user_auth_token
+                qbdlx.userAuth = userAuthToken;
+                loginText.Invoke(new Action(() => loginText.Text = "Login Successful! Launching QBDLX..."));
+            }
+            catch (Exception ex)
+            {
+                // If connection to API fails, show error info.
+                string error = ex.ToString();
+                loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Error Log saved"));
+                System.IO.File.WriteAllText(errorLog, error);
+                wr.Abort();
+                loginButton.Invoke(new Action(() => loginButton.Enabled = true));
+                return;
+            }
+
+            wr.Abort();
+            finishLogin(sender, e);
+            loginBG.CancelAsync();
         }
 
         private void finishLogin(object sender, EventArgs e)
         {
             loginButton.Invoke(new Action(() => loginButton.Enabled = true));
             // If info is legit, go to the main form.
-            qbdlx.appid = appidTextbox.Text;
+            qbdlx.appid = appID;
             qbdlx.eMail = emailTextbox.Text;
             qbdlx.password = passwordTextbox.Text;
             qbdlx.appSecret = appSecret;
-            this.Invoke(new Action(() => this.Hide()));
-            Application.Run(qbdlx);
+
+            if (disableLogin.Checked != true)
+            {
+                this.Invoke(new Action(() => this.Hide()));
+                Application.Run(qbdlx);
+            }
+            
         }
     }
 }

@@ -49,7 +49,7 @@
             this.upcTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.albumArtPicBox = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.logoBox = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.totalTracksTextbox = new System.Windows.Forms.TextBox();
             this.totalTracksLabel = new System.Windows.Forms.Label();
@@ -94,8 +94,14 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.streamableCheckbox = new System.Windows.Forms.CheckBox();
+            this.secretTextbox = new System.Windows.Forms.TextBox();
+            this.displaySecretButton = new System.Windows.Forms.Button();
+            this.profilePictureBox = new System.Windows.Forms.PictureBox();
+            this.logoutLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // testURLBox
@@ -313,16 +319,17 @@
             this.albumArtPicBox.TabIndex = 39;
             this.albumArtPicBox.TabStop = false;
             // 
-            // pictureBox1
+            // logoBox
             // 
-            this.pictureBox1.Image = global::QobuzDownloaderX.Properties.Resources.qbdlx_white;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(207, 52);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.logoBox.Image = global::QobuzDownloaderX.Properties.Resources.qbdlx_white;
+            this.logoBox.Location = new System.Drawing.Point(12, 12);
+            this.logoBox.Name = "logoBox";
+            this.logoBox.Size = new System.Drawing.Size(207, 52);
+            this.logoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoBox.TabIndex = 36;
+            this.logoBox.TabStop = false;
+            this.logoBox.Click += new System.EventHandler(this.logoBox_Click);
+            this.logoBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // label6
             // 
@@ -842,12 +849,71 @@
             this.panel8.Size = new System.Drawing.Size(112, 1);
             this.panel8.TabIndex = 90;
             // 
+            // streamableCheckbox
+            // 
+            this.streamableCheckbox.AutoSize = true;
+            this.streamableCheckbox.Checked = true;
+            this.streamableCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.streamableCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.streamableCheckbox.Location = new System.Drawing.Point(243, 12);
+            this.streamableCheckbox.Name = "streamableCheckbox";
+            this.streamableCheckbox.Size = new System.Drawing.Size(113, 17);
+            this.streamableCheckbox.TabIndex = 91;
+            this.streamableCheckbox.Text = "Streamable Check";
+            this.streamableCheckbox.UseVisualStyleBackColor = true;
+            this.streamableCheckbox.Visible = false;
+            // 
+            // secretTextbox
+            // 
+            this.secretTextbox.Location = new System.Drawing.Point(352, 34);
+            this.secretTextbox.Name = "secretTextbox";
+            this.secretTextbox.Size = new System.Drawing.Size(209, 20);
+            this.secretTextbox.TabIndex = 92;
+            this.secretTextbox.Visible = false;
+            // 
+            // displaySecretButton
+            // 
+            this.displaySecretButton.Location = new System.Drawing.Point(243, 32);
+            this.displaySecretButton.Name = "displaySecretButton";
+            this.displaySecretButton.Size = new System.Drawing.Size(103, 23);
+            this.displaySecretButton.TabIndex = 93;
+            this.displaySecretButton.Text = "Display appSecret";
+            this.displaySecretButton.UseVisualStyleBackColor = true;
+            this.displaySecretButton.Visible = false;
+            this.displaySecretButton.Click += new System.EventHandler(this.displaySecretButton_Click);
+            // 
+            // profilePictureBox
+            // 
+            this.profilePictureBox.Location = new System.Drawing.Point(15, 501);
+            this.profilePictureBox.Name = "profilePictureBox";
+            this.profilePictureBox.Size = new System.Drawing.Size(20, 20);
+            this.profilePictureBox.TabIndex = 94;
+            this.profilePictureBox.TabStop = false;
+            // 
+            // logoutLabel
+            // 
+            this.logoutLabel.AutoSize = true;
+            this.logoutLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.logoutLabel.Location = new System.Drawing.Point(41, 506);
+            this.logoutLabel.Name = "logoutLabel";
+            this.logoutLabel.Size = new System.Drawing.Size(161, 13);
+            this.logoutLabel.TabIndex = 95;
+            this.logoutLabel.Text = "Logged in as %name%, Log out?";
+            this.logoutLabel.Click += new System.EventHandler(this.logoutLabel_Click);
+            this.logoutLabel.MouseLeave += new System.EventHandler(this.logoutLabel_MouseLeave);
+            this.logoutLabel.MouseHover += new System.EventHandler(this.logoutLabel_MouseHover);
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(938, 533);
+            this.Controls.Add(this.logoutLabel);
+            this.Controls.Add(this.profilePictureBox);
+            this.Controls.Add(this.displaySecretButton);
+            this.Controls.Add(this.secretTextbox);
+            this.Controls.Add(this.streamableCheckbox);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -899,7 +965,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.albumArtPicBox);
             this.Controls.Add(this.verNumLabel);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.logoBox);
             this.Controls.Add(this.imageURLTextbox);
             this.Controls.Add(this.downloadButton);
             this.Controls.Add(this.albumUrl);
@@ -917,7 +983,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.QobuzDownloaderX_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -933,7 +1000,7 @@
         private System.Windows.Forms.Button downloadButton;
         private System.Windows.Forms.TextBox albumUrl;
         private System.Windows.Forms.TextBox imageURLTextbox;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox logoBox;
         private System.Windows.Forms.Label verNumLabel;
         private System.Windows.Forms.PictureBox albumArtPicBox;
         private System.Windows.Forms.Label label1;
@@ -989,6 +1056,11 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.CheckBox streamableCheckbox;
+        private System.Windows.Forms.TextBox secretTextbox;
+        private System.Windows.Forms.Button displaySecretButton;
+        private System.Windows.Forms.PictureBox profilePictureBox;
+        private System.Windows.Forms.Label logoutLabel;
     }
 }
 

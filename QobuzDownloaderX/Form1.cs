@@ -45,6 +45,7 @@ namespace QobuzDownloaderX
         public string appid { get; set; }
         public string password { get; set; }
         public string userAuth { get; set; }
+        public string profilePic { get; set; }
         public string displayName { get; set; }
         public string accountType { get; set; }
         public string appSecret { get; set; }
@@ -52,6 +53,7 @@ namespace QobuzDownloaderX
         public string trackIdString { get; set; }
         public string formatIdString { get; set; }
         public string audioFileType { get; set; }
+        public int devClickEggThingValue { get; set; }
 
         searchForm searchF = new searchForm();
 
@@ -72,6 +74,11 @@ namespace QobuzDownloaderX
 
             // Set a placeholder image for Cover Art box.
             albumArtPicBox.ImageLocation = "https://static.qobuz.com/images/covers/01/00/2013072600001_150.jpg";
+            profilePictureBox.ImageLocation = profilePic;
+
+            // Change account info for logout button
+            string oldText = logoutLabel.Text;
+            logoutLabel.Text = oldText.Replace("%name%", displayName);
 
             #region Load Saved Settings
             // Set saved settings to correct places.
@@ -126,11 +133,15 @@ namespace QobuzDownloaderX
         private void debuggingEvents(object sender, EventArgs e)
         {
             #region Debug Events, For Testing
+
+            devClickEggThingValue = 0;
+
             // Show app_secret value.
             //output.Invoke(new Action(() => output.AppendText("\r\n\r\napp_secret = " + appSecret)));
 
             // Show format_id value.
             //output.Invoke(new Action(() => output.AppendText("\r\n\r\nformat_id = " + formatIdString)));
+
             #endregion
         }
 
@@ -210,6 +221,7 @@ namespace QobuzDownloaderX
             // Create unix timestamp for "request_ts=" and hashing to make request signature.
             Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             string time = unixTimestamp.ToString();
+
 
             // Generate the string that will be hashed using MD5 (utf-8). Example string - "trackgetFileUrlformat_id27intentstreamtrack_id6891469115724574501b4d2f1aca8d4c8ef4z07984c5aa6712" (example shows a fake app_secret)
             string md5HashMe = "trackgetFileUrlformat_id" + formatIdString + "intentstreamtrack_id" + trackIdString + time + appSecret;
@@ -759,9 +771,16 @@ namespace QobuzDownloaderX
 
                             if (streamCheck != "true")
                             {
-                                output.Invoke(new Action(() => output.AppendText("Track " + trackNumber + " \"" + trackName + "\" is not available for streaming. Skipping track...\r\n")));
-                                System.Threading.Thread.Sleep(800);
-                                continue;
+                                if (streamableCheckbox.Checked == true)
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("Track " + trackNumber + " \"" + trackName + "\" is not available for streaming. Skipping track...\r\n")));
+                                    System.Threading.Thread.Sleep(800);
+                                    continue;
+                                }
+                                else
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("\r\nTrack " + trackNumber + " \"" + trackName + "\" is not available for streaming. But stremable check is being ignored for debugging, or messed up releases. Attempting to download...\r\n")));
+                                }
                             }
                             #endregion
 
@@ -1807,9 +1826,16 @@ namespace QobuzDownloaderX
 
                     if (streamCheck != "true")
                     {
-                        output.Invoke(new Action(() => output.AppendText("Track " + trackNumber + " \"" + trackName + "\" is not available for streaming. Skipping track...\r\n")));
-                        System.Threading.Thread.Sleep(800);
-                        continue;
+                        if (streamableCheckbox.Checked == true)
+                        {
+                            output.Invoke(new Action(() => output.AppendText("Track " + trackNumber + " \"" + trackName + "\" is not available for streaming. Skipping track...\r\n")));
+                            System.Threading.Thread.Sleep(800);
+                            continue;
+                        }
+                        else
+                        {
+                            output.Invoke(new Action(() => output.AppendText("\r\nTrack " + trackNumber + " \"" + trackName + "\" is not available for streaming. But stremable check is being ignored for debugging, or messed up releases. Attempting to download...\r\n")));
+                        }
                     }
                     #endregion
 
@@ -2787,9 +2813,17 @@ namespace QobuzDownloaderX
 
             if (streamCheck != "true")
             {
-                output.Invoke(new Action(() => output.AppendText("Track is not available for streaming. Unable to download.\r\n")));
-                System.Threading.Thread.Sleep(800);
-                return;
+                if (streamableCheckbox.Checked == true)
+                {
+                    output.Invoke(new Action(() => output.AppendText("Track is not available for streaming. Unable to download.\r\n")));
+                    System.Threading.Thread.Sleep(800);
+                    downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
+                    return;
+                }
+                else
+                {
+                    output.Invoke(new Action(() => output.AppendText("Track is not available for streaming. But stremable check is being ignored for debugging, or messed up releases. Attempting to download...\r\n")));
+                }
             }
             #endregion
 
@@ -3690,5 +3724,45 @@ namespace QobuzDownloaderX
             Application.Exit();
         }
         #endregion
+
+        private void logoBox_Click(object sender, EventArgs e)
+        {
+            devClickEggThingValue = devClickEggThingValue + 1;
+
+            if (devClickEggThingValue >= 3)
+            {
+                streamableCheckbox.Visible = true;
+                displaySecretButton.Visible = true;
+                secretTextbox.Visible = true;
+            }
+            else
+            {
+                streamableCheckbox.Visible = false;
+                displaySecretButton.Visible = false;
+                secretTextbox.Visible = false;
+            }
+        }
+
+        private void displaySecretButton_Click(object sender, EventArgs e)
+        {
+            secretTextbox.Text = appSecret;
+        }
+
+        private void logoutLabel_MouseHover(object sender, EventArgs e)
+        {
+            logoutLabel.ForeColor = Color.FromArgb(0, 112, 239);
+        }
+
+        private void logoutLabel_MouseLeave(object sender, EventArgs e)
+        {
+            logoutLabel.ForeColor = Color.FromArgb(88, 92, 102);
+        }
+
+        private void logoutLabel_Click(object sender, EventArgs e)
+        {
+            // Could use some work, but this works.
+            Process.Start("QobuzDownloaderX.exe");
+            Application.Exit();
+        }
     }
 }
