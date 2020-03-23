@@ -268,6 +268,10 @@ namespace QobuzDownloaderX
                         output.Invoke(new Action(() => output.Text = String.Empty));
                         output.Invoke(new Action(() => output.AppendText("Failed to get streaming URL. Error information below.\r\n\r\n")));
                         output.Invoke(new Action(() => output.AppendText(getError)));
+                        mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                        flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                        flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                        flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                         downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                         return;
                     }
@@ -276,6 +280,10 @@ namespace QobuzDownloaderX
                 {
                     // If the hash can't be verified.
                     output.Invoke(new Action(() => output.AppendText("The hash can't be verified. Please retry.\r\n")));
+                    mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                    flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                    flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                    flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                     downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                     return;
                 }
@@ -306,6 +314,10 @@ namespace QobuzDownloaderX
                 // If there's no selected path.
                 MessageBox.Show("No path selected!", "ERROR",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -322,6 +334,10 @@ namespace QobuzDownloaderX
         #region Getting Type of URL
         private void getLinkTypeBG_DoWork(object sender, DoWorkEventArgs e)
         {
+            mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = false));
+            flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = false));
+            flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = false));
+            flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = false));
             downloadButton.Invoke(new Action(() => downloadButton.Enabled = false));
             // Check if there's no selected path.
             if (folderBrowserDialog.SelectedPath == null | folderBrowserDialog.SelectedPath == "")
@@ -329,6 +345,10 @@ namespace QobuzDownloaderX
                 // If there is NOT a saved path.
                 output.Invoke(new Action(() => output.Text = String.Empty));
                 output.Invoke(new Action(() => output.AppendText("No path has been set! Remember to Choose a Folder!\r\n")));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -353,11 +373,19 @@ namespace QobuzDownloaderX
             {
                 downloadDiscogBG.RunWorkerAsync();
             }
+            else if (linkType == "label")
+            {
+                downloadLabelBG.RunWorkerAsync();
+            }
             else if (linkType == "playlist")
             {
                 // Say what isn't available at the moment.
                 output.Invoke(new Action(() => output.Text = String.Empty));
                 output.Invoke(new Action(() => output.AppendText("Downloading playlists or artists is not available right now. Maybe in the future. Sorry.")));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -366,6 +394,10 @@ namespace QobuzDownloaderX
                 // Say what isn't available at the moment.
                 output.Invoke(new Action(() => output.Text = String.Empty));
                 output.Invoke(new Action(() => output.AppendText("URL not understood. Is there a typo?")));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -541,6 +573,10 @@ namespace QobuzDownloaderX
                                 output.Invoke(new Action(() => output.AppendText("ERROR: 404\r\n")));
                                 output.Invoke(new Action(() => output.AppendText("Error message is \"No result matching given argument\"\r\n")));
                                 output.Invoke(new Action(() => output.AppendText("This could mean either the link is invalid, or isn't available in the region you're downloading from (even if the account is in the correct region). If the latter is true, use a VPN for the region it's available in to download.")));
+                                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                                 return;
                             }
@@ -567,8 +603,8 @@ namespace QobuzDownloaderX
                             string decodedAlbumArtist = DecodeEncodedNonAsciiCharacters(unicodeAlbumArtist);
                             albumArtist = decodedAlbumArtist;
 
-                            albumArtist = albumArtist.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                            albumArtist = albumArtist.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\\\"", "-").Replace("\\\"", "-").Replace("\"", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // Display album artist in text box under cover art.
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
@@ -588,8 +624,8 @@ namespace QobuzDownloaderX
                             string decodedPerformerName = DecodeEncodedNonAsciiCharacters(unicodePerformerName);
                             performerName = decodedPerformerName;
 
-                            performerName = performerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                            performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // If name goes over 200 characters, limit it to 200
                             if (performerNamePath.Length > MaxLength)
@@ -610,7 +646,7 @@ namespace QobuzDownloaderX
                             string decodedComposerName = DecodeEncodedNonAsciiCharacters(unicodeComposerName);
                             composerName = decodedComposerName;
 
-                            composerName = composerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            composerName = composerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                             // Album Name tag
                             var albumNameLog = Regex.Match(trackRequest, "\"title\":\"(?<albumTitle>.*?)\",\\\"").Groups;
@@ -621,8 +657,8 @@ namespace QobuzDownloaderX
                             string decodedAlbumName = DecodeEncodedNonAsciiCharacters(unicodeAlbumName);
                             albumName = decodedAlbumName;
 
-                            albumName = albumName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                            albumName = albumName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var albumNamePath = albumName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // Display album name in text box under cover art.
                             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
@@ -643,8 +679,8 @@ namespace QobuzDownloaderX
                             string decodedTrackName = DecodeEncodedNonAsciiCharacters(unicodeTrackName);
                             trackName = decodedTrackName;
 
-                            trackName = trackName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                            trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // If name goes over 200 characters, limit it to 200
                             if (trackNamePath.Length > MaxLength)
@@ -661,8 +697,8 @@ namespace QobuzDownloaderX
                             string decodedVersionName = DecodeEncodedNonAsciiCharacters(unicodeVersionName);
                             versionName = decodedVersionName;
 
-                            versionName = versionName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                            var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                            versionName = versionName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var versionNamePath = versionName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                             // Genre tag
                             var genreLog = Regex.Match(trackRequest, "\"genre\":{\"id\":(?<notUsed>.*?),\"color\":\"(?<notUsed2>.*?)\",\"name\":\"(?<genreName>.*?)\",\\\"").Groups;
@@ -671,7 +707,7 @@ namespace QobuzDownloaderX
                             // For converting unicode characters to ASCII
                             string unicodeGenre = genre;
                             string decodedGenre = DecodeEncodedNonAsciiCharacters(unicodeGenre);
-                            genre = decodedGenre;
+                            genre = decodedGenre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                             // Release Date tag, grabs the available "stream" date
                             var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
@@ -689,7 +725,7 @@ namespace QobuzDownloaderX
                             string decodedCopyright = DecodeEncodedNonAsciiCharacters(unicodeCopyright);
                             copyright = decodedCopyright;
 
-                            copyright = copyright.Replace(@"\\", @"\").Replace(@"\/", @"/").Replace(@"\u2117", @"℗");
+                            copyright = copyright.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/").Replace(@"\u2117", @"℗");
 
                             // UPC tag
                             var upcLog = Regex.Match(trackRequest, "\"upc\":\"(?<upc>.*?)\",\\\"").Groups;
@@ -1412,6 +1448,10 @@ namespace QobuzDownloaderX
                                 output.Invoke(new Action(() => output.AppendText("Track Download ERROR. Information below.\r\n\r\n")));
                                 output.Invoke(new Action(() => output.AppendText(error)));
                                 output.Invoke(new Action(() => output.AppendText("\r\n\r\nIf some tracks aren't available for streaming on the album you're trying to download, try to manually download the available tracks individually.")));
+                                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                                 return;
                             }
@@ -1424,6 +1464,10 @@ namespace QobuzDownloaderX
                         // Say that downloading is completed.
                         output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
                         output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                        mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                        flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                        flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                        flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                         downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                     }
                     catch (Exception ex)
@@ -1432,6 +1476,10 @@ namespace QobuzDownloaderX
                         output.Invoke(new Action(() => output.Text = String.Empty));
                         output.Invoke(new Action(() => output.AppendText("Failed to download (First Phase). Error information below.\r\n\r\n")));
                         output.Invoke(new Action(() => output.AppendText(error)));
+                        mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                        flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                        flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                        flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                         downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                         return;
                     }
@@ -1444,6 +1492,1115 @@ namespace QobuzDownloaderX
                 output.Invoke(new Action(() => output.Text = String.Empty));
                 output.Invoke(new Action(() => output.AppendText("Artist Download ERROR. Information below.\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText(error)));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
+                downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
+                return;
+            }
+            #endregion
+        }
+
+        // For downloading "label" links [IN DEV]
+        private async void downloadLabelBG_DoWork(object sender, DoWorkEventArgs e)
+        {
+            #region If URL has "label"
+            string loc = folderBrowserDialog.SelectedPath;
+
+            trackIdString = albumId;
+
+            WebRequest artistwr = WebRequest.Create("https://www.qobuz.com/api.json/0.2/label/get?label_id=" + albumId + "&extra=albums%2Cfocus&offset=0&limit=999999999999&app_id=" + appid + "&user_auth_token=" + userAuth);
+
+            // Empty output, then say Starting Downloads.
+            output.Invoke(new Action(() => output.Text = String.Empty));
+            output.Invoke(new Action(() => output.AppendText("LABEL DOWNLOADS MAY HAVE SOME ERRORS, THIS IS A NEW FEATURE. IF YOU RUN INTO AN ISSUE, PLEASE REPORT IT ON GITHUB!\r\n")));
+            output.Invoke(new Action(() => output.AppendText("Grabbing Album IDs...\r\n\r\n")));
+
+            try
+            {
+                WebResponse artistws = artistwr.GetResponse();
+                StreamReader artistsr = new StreamReader(artistws.GetResponseStream());
+
+                string artistRequest = artistsr.ReadToEnd();
+
+                // Grab Label Name
+                var labelNameLog = Regex.Match(artistRequest, "\"name\":\"(?<label>.*?)\",").Groups;
+                var labelName = labelNameLog[1].Value;
+
+                labelName = labelName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+
+                // Grab all Track IDs listed on the API.
+                string artistAlbumIdspattern = "\"url\":\"(?:.*?)\",\"id\":\"(?<albumIds>.*?)\"";
+                string input = artistRequest;
+                RegexOptions options = RegexOptions.Multiline;
+
+                foreach (Match m in Regex.Matches(input, artistAlbumIdspattern, options))
+                {
+                    string albumIdDiscog = string.Format("{0}", m.Groups["albumIds"].Value);
+
+                    WebRequest wr = WebRequest.Create("https://www.qobuz.com/api.json/0.2/album/get?album_id=" + albumIdDiscog + "&app_id=" + appid + "&user_auth_token=" + userAuth);
+
+                    // Empty output, then say Starting Downloads.
+                    output.Invoke(new Action(() => output.Text = String.Empty));
+                    output.Invoke(new Action(() => output.AppendText("LABEL DOWNLOADS MAY HAVE SOME ERRORS, THIS IS A NEW FEATURE. IF YOU RUN INTO AN ISSUE, PLEASE REPORT IT ON GITHUB!\r\n")));
+                    output.Invoke(new Action(() => output.AppendText("Starting Downloads...\r\n\r\n")));
+
+                    try
+                    {
+                        // Set "loc" as the selected path.
+                        loc = folderBrowserDialog.SelectedPath;
+
+                        WebResponse ws = wr.GetResponse();
+                        StreamReader sr = new StreamReader(ws.GetResponseStream());
+
+                        string albumRequest = sr.ReadToEnd();
+
+                        string text = albumRequest;
+
+                        var tracksLog = Regex.Match(albumRequest, "tracks_count\":(?<numoftracks>\\d+)").Groups;
+                        var tracks = tracksLog[1].Value;
+
+                        // Album Name tag
+                        var labelDiscogAlbumLog = Regex.Match(albumRequest, "\"title\":\"(?<albumTitle>.*?)\",\\\"").Groups;
+                        var labelDiscogAlbum = labelDiscogAlbumLog[1].Value;
+
+                        // For converting unicode characters to ASCII
+                        string unicodeDiscogAlbum = labelDiscogAlbum;
+                        string decodedDiscogAlbum = DecodeEncodedNonAsciiCharacters(unicodeDiscogAlbum);
+                        labelDiscogAlbum = decodedDiscogAlbum;
+
+                        output.Invoke(new Action(() => output.AppendText("Downloading Album - " + labelDiscogAlbum + " ......\r\n\r\n")));
+
+                        #region Cover Art URL
+                        // Grab Cover Art URL
+                        var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"thumbnail\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
+                        var frontCover = frontCoverLog[1].Value;
+
+                        // Remove backslashes from the stream URL to have a proper URL.
+                        string imagepattern = @"(?<imageUrlFix>[^\\]+)";
+                        string imageinput = frontCover;
+                        RegexOptions imageoptions = RegexOptions.Multiline;
+
+                        imageURLTextbox.Invoke(new Action(() => imageURLTextbox.Text = String.Empty));
+
+                        foreach (Match mImg in Regex.Matches(imageinput, imagepattern, imageoptions))
+                        {
+                            imageURLTextbox.Invoke(new Action(() => imageURLTextbox.AppendText(string.Format("{0}", mImg.Value))));
+                        }
+
+                        string frontCoverImg = imageURLTextbox.Text;
+                        string frontCoverImgBox = frontCoverImg.Replace("_50.jpg", "_150.jpg");
+                        frontCoverImg = frontCoverImg.Replace("_50.jpg", "_max.jpg");
+
+                        albumArtPicBox.Invoke(new Action(() => albumArtPicBox.ImageLocation = frontCoverImgBox));
+
+                        imageURLTextbox.Invoke(new Action(() => imageURLTextbox.Text = Settings.Default.savedEmail));
+                        #endregion
+
+                        #region "Goodies" URL (Digital Booklets)
+                        // Look for "Goodies" (digital booklet)
+                        var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{\"id\":(?<notUsed>.*?),\"original_url\":\"(?<booklet>.*?)\",\\\"").Groups;
+                        var goodies = goodiesLog[2].Value;
+
+                        // Remove backslashes from the stream URL to have a proper URL.
+                        string bookpattern = @"(?<imageUrlFix>[^\\]+)";
+                        string bookinput = goodies;
+                        RegexOptions bookoptions = RegexOptions.Multiline;
+
+                        imageURLTextbox.Invoke(new Action(() => imageURLTextbox.Text = String.Empty));
+
+                        foreach (Match mBook in Regex.Matches(bookinput, bookpattern, bookoptions))
+                        {
+                            imageURLTextbox.Invoke(new Action(() => imageURLTextbox.AppendText(string.Format("{0}", mBook.Value))));
+                        }
+
+                        string goodiesPDF = imageURLTextbox.Text;
+
+                        imageURLTextbox.Invoke(new Action(() => imageURLTextbox.Text = Settings.Default.savedEmail));
+                        #endregion
+
+                        // Grab sample rate and bit depth for album.
+                        var qualityLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),(?:.*?)\"maximum_bit_depth\":(?<bitDepth>.*?),\"duration\"").Groups;
+                        var sampleRate = qualityLog[1].Value;
+                        var bitDepth = qualityLog[2].Value;
+                        var quality = "FLAC (" + bitDepth + "bit/" + sampleRate + "kHz)";
+                        var qualityPath = quality.Replace(@"\", "-").Replace(@"/", "-");
+
+                        if (formatIdString == "5")
+                        {
+                            quality = "MP3 320kbps CBR";
+                            qualityPath = "MP3";
+                        }
+                        else if (formatIdString == "6")
+                        {
+                            quality = "FLAC (16bit/44.1kHz)";
+                            qualityPath = "FLAC (16bit-44.1kHz)";
+                        }
+                        else if (formatIdString == "7")
+                        {
+                            if (quality == "FLAC (24bit/192kHz)")
+                            {
+                                quality = "FLAC (24bit/96kHz)";
+                                qualityPath = "FLAC (24bit-96kHz)";
+                            }
+                        }
+
+                        // Grab all Track IDs listed on the API.
+                        string trackIdspattern = "\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
+                        string trackinput = text;
+                        RegexOptions trackoptions = RegexOptions.Multiline;
+
+
+                        foreach (Match mtrack in Regex.Matches(trackinput, trackIdspattern, trackoptions))
+                        {
+                            // Set default value for max length.
+                            const int MaxLength = 36;
+
+                            //output.Invoke(new Action(() => output.AppendText(string.Format("{0}\r\n", m.Groups["trackId"].Value))));
+                            trackIdString = string.Format("{0}", mtrack.Groups["trackId"].Value);
+
+                            WebRequest trackwr = WebRequest.Create("https://www.qobuz.com/api.json/0.2/track/get?track_id=" + trackIdString + "&app_id=" + appid + "&user_auth_token=" + userAuth);
+
+                            WebResponse trackws = trackwr.GetResponse();
+                            StreamReader tracksr = new StreamReader(trackws.GetResponseStream());
+
+                            string trackRequest = tracksr.ReadToEnd();
+
+                            #region Availability Check (Valid Link?)
+                            // Check if available at all.
+                            var errorCheckLog = Regex.Match(trackRequest, "\"code\":404,\"message\":\"(?<error>.*?)\\\"").Groups;
+                            var errorCheck = errorCheckLog[1].Value;
+
+                            if (errorCheck == "No result matching given argument")
+                            {
+                                output.Invoke(new Action(() => output.Text = String.Empty));
+                                output.Invoke(new Action(() => output.AppendText("ERROR: 404\r\n")));
+                                output.Invoke(new Action(() => output.AppendText("Error message is \"No result matching given argument\"\r\n")));
+                                output.Invoke(new Action(() => output.AppendText("This could mean either the link is invalid, or isn't available in the region you're downloading from (even if the account is in the correct region). If the latter is true, use a VPN for the region it's available in to download.")));
+                                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
+                                downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
+                                return;
+                            }
+                            #endregion
+
+                            // Display album quality in quality textbox.
+                            qualityTextbox.Invoke(new Action(() => qualityTextbox.Text = quality));
+
+                            #region Get Information (Tags, Titles, etc.)
+                            // Track Number tag
+                            var trackNumberLog = Regex.Match(trackRequest, "\"track_number\":(?<trackNumber>[0-9]+)").Groups;
+                            var trackNumber = trackNumberLog[1].Value;
+
+                            // Disc Number tag
+                            var discNumberLog = Regex.Match(trackRequest, "\"media_number\":(?<discNumber>.*?),\\\"").Groups;
+                            var discNumber = discNumberLog[1].Value;
+
+                            // Album Artist tag
+                            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{\"picture\":(?<notUsed1>.*?),\"id\"(?<notUsed2>.*?),\"albums_count\":(?<notUsed3>.*?),\"name\":\"(?<albumArtist>.*?)\",\\\"").Groups;
+                            var albumArtist = albumArtistLog[4].Value;
+
+                            // For converting unicode characters to ASCII
+                            string unicodeAlbumArtist = albumArtist;
+                            string decodedAlbumArtist = DecodeEncodedNonAsciiCharacters(unicodeAlbumArtist);
+                            albumArtist = decodedAlbumArtist;
+
+                            albumArtist = albumArtist.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var albumArtistPath = albumArtist.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+
+                            // Display album artist in text box under cover art.
+                            albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
+
+                            // If name goes over 200 characters, limit it to 200
+                            if (albumArtistPath.Length > MaxLength)
+                            {
+                                albumArtistPath = albumArtistPath.Substring(0, MaxLength);
+                            }
+
+                            // Track Artist tag
+                            var performerNameLog = Regex.Match(trackRequest, "\"performer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<trackArtist>.*?)\"},\\\"").Groups;
+                            var performerName = performerNameLog[2].Value;
+
+                            // For converting unicode characters to ASCII
+                            string unicodePerformerName = performerName;
+                            string decodedPerformerName = DecodeEncodedNonAsciiCharacters(unicodePerformerName);
+                            performerName = decodedPerformerName;
+
+                            performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+
+                            // If name goes over 200 characters, limit it to 200
+                            if (performerNamePath.Length > MaxLength)
+                            {
+                                performerNamePath = performerNamePath.Substring(0, MaxLength);
+                            }
+
+                            // Track Composer tag
+                            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\"},\\\"").Groups;
+                            var composerName = composerNameLog[2].Value;
+
+                            // Track Explicitness 
+                            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<composer>.*?),").Groups;
+                            var advisory = advisoryLog[1].Value;
+
+                            // For converting unicode characters to ASCII
+                            string unicodeComposerName = composerName;
+                            string decodedComposerName = DecodeEncodedNonAsciiCharacters(unicodeComposerName);
+                            composerName = decodedComposerName;
+
+                            composerName = composerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+
+                            // Album Name tag
+                            var albumNameLog = Regex.Match(trackRequest, "\"title\":\"(?<albumTitle>.*?)\",\\\"").Groups;
+                            var albumName = albumNameLog[1].Value;
+
+                            // For converting unicode characters to ASCII
+                            string unicodeAlbumName = albumName;
+                            string decodedAlbumName = DecodeEncodedNonAsciiCharacters(unicodeAlbumName);
+                            albumName = decodedAlbumName;
+
+                            albumName = albumName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var albumNamePath = albumName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+
+                            // Display album name in text box under cover art.
+                            albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
+
+                            // If name goes over 200 characters, limit it to 200
+                            if (albumNamePath.Length > MaxLength)
+                            {
+                                albumNamePath = albumNamePath.Substring(0, MaxLength);
+                            }
+
+                            // Track Name tag
+                            var trackNameLog = Regex.Match(trackRequest, "\"version\":(?<notUsed1>.*?),\"id\":(?<notUsed2>.*?),\"maximum_bit_depth\":(?<notUsed3>.*?),\"title\":\"(?<trackName>.*?)\",\\\"").Groups;
+                            var trackName = trackNameLog[4].Value;
+                            trackName = trackName.Trim(); // Remove spaces from end of track name
+
+                            // For converting unicode characters to ASCII
+                            string unicodeTrackName = trackName;
+                            string decodedTrackName = DecodeEncodedNonAsciiCharacters(unicodeTrackName);
+                            trackName = decodedTrackName;
+
+                            trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+
+                            // If name goes over 200 characters, limit it to 200
+                            if (trackNamePath.Length > MaxLength)
+                            {
+                                trackNamePath = trackNamePath.Substring(0, MaxLength);
+                            }
+
+                            // Version Name tag
+                            var versionNameLog = Regex.Match(trackRequest, "\"version\":\"(?<version>.*?)\",\\\"").Groups;
+                            var versionName = versionNameLog[1].Value;
+
+                            // For converting unicode characters to ASCII
+                            string unicodeVersionName = versionName;
+                            string decodedVersionName = DecodeEncodedNonAsciiCharacters(unicodeVersionName);
+                            versionName = decodedVersionName;
+
+                            versionName = versionName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                            var versionNamePath = versionName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+
+                            // Genre tag
+                            var genreLog = Regex.Match(trackRequest, "\"genre\":{\"id\":(?<notUsed>.*?),\"color\":\"(?<notUsed2>.*?)\",\"name\":\"(?<genreName>.*?)\",\\\"").Groups;
+                            var genre = genreLog[3].Value;
+
+                            // For converting unicode characters to ASCII
+                            string unicodeGenre = genre;
+                            string decodedGenre = DecodeEncodedNonAsciiCharacters(unicodeGenre);
+                            genre = decodedGenre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+
+                            // Release Date tag, grabs the available "stream" date
+                            var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
+                            var releaseDate = releaseDateLog[1].Value;
+
+                            // Display release date in text box under cover art.
+                            releaseDateTextBox.Invoke(new Action(() => releaseDateTextBox.Text = releaseDate));
+
+                            // Copyright tag
+                            var copyrightLog = Regex.Match(trackRequest, "\"copyright\":\"(?<notUsed>.*?)\"copyright\":\"(?<copyrigh>.*?)\\\"").Groups;
+                            var copyright = copyrightLog[2].Value;
+
+                            // For converting unicode characters to ASCII
+                            string unicodeCopyright = copyright;
+                            string decodedCopyright = DecodeEncodedNonAsciiCharacters(unicodeCopyright);
+                            copyright = decodedCopyright;
+
+                            copyright = copyright.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/").Replace(@"\u2117", @"℗");
+
+                            // UPC tag
+                            var upcLog = Regex.Match(trackRequest, "\"upc\":\"(?<upc>.*?)\",\\\"").Groups;
+                            var upc = upcLog[1].Value;
+
+                            // Display UPC in text box under cover art.
+                            upcTextBox.Invoke(new Action(() => upcTextBox.Text = upc));
+
+                            // ISRC tag
+                            var isrcLog = Regex.Match(trackRequest, "\"isrc\":\"(?<isrc>.*?)\",\\\"").Groups;
+                            var isrc = isrcLog[1].Value;
+
+                            // Total Tracks tag
+                            var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+)").Groups;
+                            var trackTotal = trackTotalLog[1].Value;
+
+                            // Display Total Tracks in text box under cover art.
+                            totalTracksTextbox.Invoke(new Action(() => totalTracksTextbox.Text = trackTotal));
+
+                            // Total Discs tag
+                            var discTotalLog = Regex.Match(trackRequest, "\"media_count\":(?<discTotal>[0-9]+)").Groups;
+                            var discTotal = discTotalLog[1].Value;
+                            #endregion
+
+                            #region Filename Number Padding
+                            // Set default track number padding length
+                            var paddingLength = 2;
+
+                            // Prepare track number padding in filename.
+                            string paddingLog = trackTotal.Length.ToString();
+                            if (paddingLog == "1")
+                            {
+                                paddingLength = 2;
+                            }
+                            else
+                            {
+                                paddingLength = trackTotal.Length;
+                            }
+
+                            // Set default disc number padding length
+                            var paddingDiscLength = 2;
+
+                            // Prepare disc number padding in filename.
+                            string paddingDiscLog = discTotal.Length.ToString();
+                            if (paddingDiscLog == "1")
+                            {
+                                paddingDiscLength = 1;
+                            }
+                            else
+                            {
+                                paddingDiscLength = discTotal.Length;
+                            }
+                            #endregion
+
+                            #region Create Directories
+                            // Create strings for disc folders
+                            string discFolder = null;
+                            string discFolderCreate = null;
+
+                            // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
+                            if (discTotal != "1")
+                            {
+                                discFolder = "CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+                                discFolderCreate = "\\CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
+                            }
+
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath);
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]");
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath);
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate);
+
+                            string discogPath = loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate;
+                            #endregion
+
+                            #region Availability Check (Streamable?)
+                            // Check if available for streaming.
+                            var streamCheckLog = Regex.Match(trackRequest, "\"track_number\":(?<notUsed>.*?)\"streamable\":(?<streamCheck>.*?),\"").Groups;
+                            var streamCheck = streamCheckLog[2].Value;
+
+                            if (streamCheck != "true")
+                            {
+                                if (streamableCheckbox.Checked == true)
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("Track " + trackNumber + " \"" + trackName + "\" is not available for streaming. Skipping track...\r\n")));
+                                    System.Threading.Thread.Sleep(800);
+                                    continue;
+                                }
+                                else
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("\r\nTrack " + trackNumber + " \"" + trackName + "\" is not available for streaming. But stremable check is being ignored for debugging, or messed up releases. Attempting to download...\r\n")));
+                                }
+                            }
+                            #endregion
+
+                            #region Check if File Exists
+                            // Check if there is a version name.
+                            if (versionName == null | versionName == "")
+                            {
+                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + "\" already exists. Skipping.\r\n")));
+                                    System.Threading.Thread.Sleep(800);
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + " (" + versionName + ")" + "\" already exists. Skipping.\r\n")));
+                                    System.Threading.Thread.Sleep(800);
+                                    continue;
+                                }
+                            }
+                            #endregion
+
+                            // Close web request and create streaming URL.
+                            trackwr.Abort();
+                            createURL(sender, e);
+
+                            try
+                            {
+                                #region Downloading
+                                // Check if there is a version name.
+                                if (versionName == null | versionName == "")
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.PadLeft(paddingLength, '0') + " - " + trackName + " ......")));
+                                }
+                                else
+                                {
+                                    output.Invoke(new Action(() => output.AppendText("Downloading - " + trackNumber.PadLeft(paddingLength, '0') + " - " + trackName + " (" + versionName + ")" + " ......")));
+                                }
+                                // Being download process.
+                                var client = new HttpClient();
+                                // Run through TLS to allow secure connection.
+                                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
+                                // Set "range" header to nearly unlimited.
+                                client.DefaultRequestHeaders.Range = new RangeHeaderValue(0, 999999999999);
+                                // Set user-agent to Firefox.
+                                client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+                                // Set referer URL to album ID.
+                                client.DefaultRequestHeaders.Add("Referer", "https://play.qobuz.com/album/" + albumIdDiscog);
+                                // Download the URL in the "Streamed URL" Textbox (Will most likely be replaced).
+                                using (var stream = await client.GetStreamAsync(testURLBox.Text))
+
+                                    // Save single track in selected path.
+                                    if (versionNamePath == null | versionNamePath == "")
+                                    {
+                                        // If there is NOT a version name.
+                                        using (var output = System.IO.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                        {
+                                            await stream.CopyToAsync(output);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // If there is a version name.
+                                        using (var output = System.IO.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                        {
+                                            await stream.CopyToAsync(output);
+                                        }
+                                    }
+                                #endregion
+
+                                #region Cover Art Saving
+                                if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg"))
+                                {
+                                    // Skip, don't re-download.
+                                }
+                                else
+                                {
+                                    if (imageCheckbox.Checked == true)
+                                    {
+                                        // Save cover art to selected path (Currently happens every time a track is downloaded).
+                                        using (WebClient imgClient = new WebClient())
+                                        {
+                                            // Download max quality Cover Art to "Cover.jpg" file in chosen path. 
+                                            imgClient.DownloadFile(new Uri(frontCoverImg), loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg");
+                                        }
+                                    }
+                                }
+                                #endregion
+
+                                #region Tagging
+                                // Check if audio file type is FLAC or MP3
+                                if (audioFileType == ".mp3")
+                                {
+                                    #region MP3 Tagging (Needs Work)
+                                    // Select the downloaded file to prepare for tagging.
+                                    // Check if there's a version name or not
+                                    if (versionName == null | versionName == "")
+                                    {
+                                        // If there is NOT a version name.
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        // For custom / troublesome tags.
+                                        TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
+
+
+                                        // Saving cover art to file(s)
+                                        if (imageCheckbox.Checked == true)
+                                        {
+                                            // Define cover art to use for MP3 file(s)
+                                            TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                                            pic.TextEncoding = TagLib.StringType.Latin1;
+                                            pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                                            pic.Type = TagLib.PictureType.FrontCover;
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg");
+
+                                            // Save cover art to MP3 file.
+                                            tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                                            tfile.Save();
+                                        }
+
+                                        // Track Title tag
+                                        if (trackTitleCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Title = trackName;
+                                        }
+
+                                        // Album Title tag
+                                        if (albumCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Album = albumName;
+                                        }
+
+                                        // Album Artits tag
+                                        if (albumArtistCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.AlbumArtists = new string[] { albumArtist };
+                                        }
+
+                                        // Track Artist tag
+                                        if (artistCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Performers = new string[] { performerName };
+                                        }
+
+                                        // Composer tag
+                                        if (composerCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Composers = new string[] { composerName };
+                                        }
+
+                                        // Release Date tag
+                                        if (releaseCheckbox.Checked == true)
+                                        {
+                                            releaseDate = releaseDate.Substring(0, 4);
+                                            tfile.Tag.Year = UInt32.Parse(releaseDate);
+                                        }
+
+                                        // Genre tag
+                                        if (genreCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Genres = new string[] { genre };
+                                        }
+
+                                        // Track Number tag
+                                        if (trackNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Track = UInt32.Parse(trackNumber);
+                                        }
+
+                                        // Disc Number tag
+                                        if (discNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Disc = UInt32.Parse(discNumber);
+                                        }
+
+                                        // Total Discs tag
+                                        if (discTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.DiscCount = UInt32.Parse(discTotal);
+                                        }
+
+                                        // Total Tracks tag
+                                        if (trackTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.TrackCount = UInt32.Parse(trackTotal);
+                                        }
+
+                                        // Comment tag
+                                        if (commentCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Comment = commentTextbox.Text;
+                                        }
+
+                                        // Copyright tag
+                                        if (copyrightCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Copyright = copyright;
+                                        }
+                                        // UPC tag
+                                        if (upcCheckbox.Checked == true)
+                                        {
+                                            // Not available on MP3 at the moment
+                                        }
+
+                                        // ISRC tag
+                                        if (isrcCheckbox.Checked == true)
+                                        {
+                                            TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                            tag.SetTextFrame("TSRC", isrc);
+                                        }
+
+                                        // Explicit tag
+                                        if (explicitCheckbox.Checked == true)
+                                        {
+                                            // Not available on MP3 at the moment
+                                        }
+
+                                        // Save all selected tags to file
+                                        tfile.Save();
+                                    }
+                                    else
+                                    {
+                                        // If there is a version name.
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        // For custom / troublesome tags.
+                                        TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
+
+
+                                        // Saving cover art to file(s)
+                                        if (imageCheckbox.Checked == true)
+                                        {
+                                            // Define cover art to use for FLAC file(s)
+                                            TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                                            pic.TextEncoding = TagLib.StringType.Latin1;
+                                            pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                                            pic.Type = TagLib.PictureType.FrontCover;
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg");
+
+                                            // Save cover art to FLAC file.
+                                            tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                                            tfile.Save();
+                                        }
+
+                                        // Track Title tag
+                                        if (trackTitleCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Title = trackName + " (" + versionName + ")";
+                                        }
+
+                                        // Album Title tag
+                                        if (albumCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Album = albumName;
+                                        }
+
+                                        // Album Artits tag
+                                        if (albumArtistCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.AlbumArtists = new string[] { albumArtist };
+                                        }
+
+                                        // Track Artist tag
+                                        if (artistCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Performers = new string[] { performerName };
+                                        }
+
+                                        // Composer tag
+                                        if (composerCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Composers = new string[] { composerName };
+                                        }
+
+                                        // Release Date tag
+                                        if (releaseCheckbox.Checked == true)
+                                        {
+                                            releaseDate = releaseDate.Substring(0, 4);
+                                            tfile.Tag.Year = UInt32.Parse(releaseDate);
+                                        }
+
+                                        // Genre tag
+                                        if (genreCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Genres = new string[] { genre };
+                                        }
+
+                                        // Track Number tag
+                                        if (trackNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Track = UInt32.Parse(trackNumber);
+                                        }
+
+                                        // Disc Number tag
+                                        if (discNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Disc = UInt32.Parse(discNumber);
+                                        }
+
+                                        // Total Discs tag
+                                        if (discTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.DiscCount = UInt32.Parse(discTotal);
+                                        }
+
+                                        // Total Tracks tag
+                                        if (trackTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.TrackCount = UInt32.Parse(trackTotal);
+                                        }
+
+                                        // Comment tag
+                                        if (commentCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Comment = commentTextbox.Text;
+                                        }
+
+                                        // Copyright tag
+                                        if (copyrightCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Copyright = copyright;
+                                        }
+                                        // UPC tag
+                                        if (upcCheckbox.Checked == true)
+                                        {
+                                            // Not available on MP3 at the moment
+                                        }
+
+                                        // ISRC tag
+                                        if (isrcCheckbox.Checked == true)
+                                        {
+                                            TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                            tag.SetTextFrame("TSRC", isrc);
+                                        }
+
+                                        // Explicit tag
+                                        if (explicitCheckbox.Checked == true)
+                                        {
+                                            // Not available on MP3 at the moment
+                                        }
+
+                                        // Save all selected tags to file
+                                        tfile.Save();
+                                    }
+                                    #endregion
+                                }
+                                else
+                                {
+                                    #region FLAC Tagging
+                                    // Select the downloaded file to prepare for tagging.
+                                    // Check if there's a version name or not
+                                    if (versionName == null | versionName == "")
+                                    {
+                                        // If there is NOT a version name.
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        // For custom / troublesome tags.
+                                        var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
+
+
+                                        // Saving cover art to file(s)
+                                        if (imageCheckbox.Checked == true)
+                                        {
+                                            // Define cover art to use for FLAC file(s)
+                                            TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                                            pic.TextEncoding = TagLib.StringType.Latin1;
+                                            pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                                            pic.Type = TagLib.PictureType.FrontCover;
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg");
+
+                                            // Save cover art to FLAC file.
+                                            tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                                            tfile.Save();
+                                        }
+
+                                        // Track Title tag
+                                        if (trackTitleCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Title = trackName;
+                                        }
+
+                                        // Album Title tag
+                                        if (albumCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Album = albumName;
+                                        }
+
+                                        // Album Artits tag
+                                        if (albumArtistCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("ALBUMARTIST", new string[] { albumArtist });
+                                        }
+
+                                        // Track Artist tag
+                                        if (artistCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("ARTIST", new string[] { performerName });
+                                        }
+
+                                        // Composer tag
+                                        if (composerCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("COMPOSER", new string[] { composerName });
+                                        }
+
+                                        // Release Date tag
+                                        if (releaseCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("YEAR", new string[] { releaseDate });
+                                        }
+
+                                        // Genre tag
+                                        if (genreCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("GENRE", new string[] { genre });
+                                        }
+
+                                        // Track Number tag
+                                        if (trackNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Track = UInt32.Parse(trackNumber);
+                                        }
+
+                                        // Disc Number tag
+                                        if (discNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Disc = UInt32.Parse(discNumber);
+                                        }
+
+                                        // Total Discs tag
+                                        if (discTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.DiscCount = UInt32.Parse(discTotal);
+                                        }
+
+                                        // Total Tracks tag
+                                        if (trackTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.TrackCount = UInt32.Parse(trackTotal);
+                                        }
+
+                                        // Comment tag
+                                        if (commentCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("COMMENT", new string[] { commentTextbox.Text });
+                                        }
+
+                                        // Copyright tag
+                                        if (copyrightCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("COPYRIGHT", new string[] { copyright });
+                                        }
+                                        // UPC tag
+                                        if (upcCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("UPC", new string[] { upc });
+                                        }
+
+                                        // ISRC tag
+                                        if (isrcCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("ISRC", new string[] { isrc });
+                                        }
+
+                                        // Explicit tag
+                                        if (explicitCheckbox.Checked == true)
+                                        {
+                                            if (advisory == "false") { custom.SetField("ITUNESADVISORY", new string[] { "0" }); } else { custom.SetField("ITUNESADVISORY", new string[] { "1" }); }
+                                        }
+
+                                        // Save all selected tags to file
+                                        tfile.Save();
+                                    }
+                                    else
+                                    {
+                                        // If there is a version name.
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        // For custom / troublesome tags.
+                                        var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
+
+
+                                        // Saving cover art to file(s)
+                                        if (imageCheckbox.Checked == true)
+                                        {
+                                            // Define cover art to use for FLAC file(s)
+                                            TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                                            pic.TextEncoding = TagLib.StringType.Latin1;
+                                            pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                                            pic.Type = TagLib.PictureType.FrontCover;
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg");
+
+                                            // Save cover art to FLAC file.
+                                            tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                                            tfile.Save();
+                                        }
+
+                                        // Track Title tag
+                                        if (trackTitleCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Title = trackName + " (" + versionName + ")";
+                                        }
+
+                                        // Album Title tag
+                                        if (albumCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Album = albumName;
+                                        }
+
+                                        // Album Artits tag
+                                        if (albumArtistCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("ALBUMARTIST", new string[] { albumArtist });
+                                        }
+
+                                        // Track Artist tag
+                                        if (artistCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("ARTIST", new string[] { performerName });
+                                        }
+
+                                        // Composer tag
+                                        if (composerCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("COMPOSER", new string[] { composerName });
+                                        }
+
+                                        // Release Date tag
+                                        if (releaseCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("YEAR", new string[] { releaseDate });
+                                        }
+
+                                        // Genre tag
+                                        if (genreCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("GENRE", new string[] { genre });
+                                        }
+
+                                        // Track Number tag
+                                        if (trackNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Track = UInt32.Parse(trackNumber);
+                                        }
+
+                                        // Disc Number tag
+                                        if (discNumberCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.Disc = UInt32.Parse(discNumber);
+                                        }
+
+                                        // Total Discs tag
+                                        if (discTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.DiscCount = UInt32.Parse(discTotal);
+                                        }
+
+                                        // Total Tracks tag
+                                        if (trackTotalCheckbox.Checked == true)
+                                        {
+                                            tfile.Tag.TrackCount = UInt32.Parse(trackTotal);
+                                        }
+
+                                        // Comment tag
+                                        if (commentCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("COMMENT", new string[] { commentTextbox.Text });
+                                        }
+
+                                        // Copyright tag
+                                        if (copyrightCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("COPYRIGHT", new string[] { copyright });
+                                        }
+                                        // UPC tag
+                                        if (upcCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("UPC", new string[] { upc });
+                                        }
+
+                                        // ISRC tag
+                                        if (isrcCheckbox.Checked == true)
+                                        {
+                                            custom.SetField("ISRC", new string[] { isrc });
+                                        }
+
+                                        // Explicit tag
+                                        if (explicitCheckbox.Checked == true)
+                                        {
+                                            if (advisory == "false") { custom.SetField("ITUNESADVISORY", new string[] { "0" }); } else { custom.SetField("ITUNESADVISORY", new string[] { "1" }); }
+                                        }
+
+                                        // Save all selected tags to file
+                                        tfile.Save();
+                                    }
+                                    #endregion
+                                }
+                                #endregion
+
+                                #region Digital Booklet
+                                // If a booklet was found, save it.
+                                if (goodiesPDF == null | goodiesPDF == "")
+                                {
+                                    // No need to download something that doesn't exist.
+                                }
+                                else
+                                {
+                                    if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Digital Booklet.pdf"))
+                                    {
+                                        // Skip, don't re-download.
+                                    }
+                                    else
+                                    {
+                                        // Save digital booklet to selected path
+                                        output.Invoke(new Action(() => output.AppendText("\r\nGoodies found, downloading...")));
+                                        using (WebClient bookClient = new WebClient())
+                                        {
+                                            // Download max quality Cover Art to "Cover.jpg" file in chosen path. 
+                                            bookClient.DownloadFile(new Uri(goodiesPDF), loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Digital Booklet.pdf");
+                                        }
+                                    }
+                                }
+                                #endregion
+                            }
+                            catch (Exception downloadError)
+                            {
+                                // If there is an issue trying to, or during the download, show error info.
+                                string error = downloadError.ToString();
+                                output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
+                                output.Invoke(new Action(() => output.AppendText("Track Download ERROR. Information below.\r\n\r\n")));
+                                output.Invoke(new Action(() => output.AppendText(error)));
+                                output.Invoke(new Action(() => output.AppendText("\r\n\r\nIf some tracks aren't available for streaming on the album you're trying to download, try to manually download the available tracks individually.")));
+                                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
+                                downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
+                                return;
+                            }
+
+                            // Say when a track is done downloading, then wait for the next track / end.
+                            output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n")));
+                            System.Threading.Thread.Sleep(800);
+                        }
+
+                        // Say that downloading is completed.
+                        output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
+                        output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                        mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                        flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                        flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                        flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
+                        downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
+                    }
+                    catch (Exception ex)
+                    {
+                        string error = ex.ToString();
+                        output.Invoke(new Action(() => output.Text = String.Empty));
+                        output.Invoke(new Action(() => output.AppendText("Failed to download (First Phase). Error information below.\r\n\r\n")));
+                        output.Invoke(new Action(() => output.AppendText(error)));
+                        mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                        flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                        flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                        flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
+                        downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
+                        return;
+                    }
+                }
+            }
+            catch (Exception downloadError)
+            {
+                // If there is an issue trying to, or during the download, show error info.
+                string error = downloadError.ToString();
+                output.Invoke(new Action(() => output.Text = String.Empty));
+                output.Invoke(new Action(() => output.AppendText("Label Download ERROR. Information below.\r\n\r\n")));
+                output.Invoke(new Action(() => output.AppendText(error)));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -1578,6 +2735,10 @@ namespace QobuzDownloaderX
                         output.Invoke(new Action(() => output.AppendText("ERROR: 404\r\n")));
                         output.Invoke(new Action(() => output.AppendText("Error message is \"No result matching given argument\"\r\n")));
                         output.Invoke(new Action(() => output.AppendText("This could mean either the link is invalid, or isn't available in the region you're downloading from (even if the account is in the correct region). If the latter is true, use a VPN for the region it's available in to download.")));
+                        mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                        flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                        flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                        flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                         downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                         return;
                     }
@@ -1609,8 +2770,8 @@ namespace QobuzDownloaderX
                         albumArtist = decodedAlbumArtist;
 
                         // Replace double slashes & path unfriendly characters
-                        albumArtist = albumArtist.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                        var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                        albumArtist = albumArtist.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                        var albumArtistPath = albumArtist.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                         // Display album artist in text box under cover art.
                         albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
@@ -1631,8 +2792,8 @@ namespace QobuzDownloaderX
                         performerName = decodedPerformerName;
 
                         // Replace double slashes & path unfriendly characters
-                        performerName = performerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                        var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                        performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                        var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                         // If name goes over 200 characters, limit it to 200
                         if (performerNamePath.Length > MaxLength)
@@ -1654,7 +2815,7 @@ namespace QobuzDownloaderX
                         composerName = decodedComposerName;
 
                         // Replace double slashes
-                        composerName = composerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
+                        composerName = composerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                     // Album Name tag
                     var albumNameLog = Regex.Match(trackRequest, "\"title\":\"(?<albumTitle>.*?)\",\\\"").Groups;
@@ -1666,8 +2827,8 @@ namespace QobuzDownloaderX
                         albumName = decodedAlbumName;
 
                         // Replace double slashes & path unfriendly characters
-                        albumName = albumName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                        var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                        albumName = albumName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                        var albumNamePath = albumName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                         // Display album name in text box under cover art.
                         albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
@@ -1689,8 +2850,8 @@ namespace QobuzDownloaderX
                         trackName = decodedTrackName;
 
                         // Replace double slashes & path unfriendly characters
-                        trackName = trackName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                        var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                        trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                        var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
                         // If name goes over 200 characters, limit it to 200
                         if (trackNamePath.Length > MaxLength)
@@ -1708,8 +2869,8 @@ namespace QobuzDownloaderX
                         versionName = decodedVersionName;
 
                         // Replace double slashes & path unfriendly characters
-                        versionName = versionName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-                        var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+                        versionName = versionName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                        var versionNamePath = versionName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
                         
                         //// If name goes over 200 characters, limit it to 200
                         //if (trackNamePath.Length + versionNamePath.Length > MaxLength)
@@ -1724,7 +2885,7 @@ namespace QobuzDownloaderX
                         // For converting unicode characters to ASCII
                         string unicodeGenre = genre;
                         string decodedGenre = DecodeEncodedNonAsciiCharacters(unicodeGenre);
-                        genre = decodedGenre;
+                        genre = decodedGenre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                     // Release Date tag, grabs the available "stream" date
                     var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
@@ -1742,7 +2903,7 @@ namespace QobuzDownloaderX
                         string decodedCopyright = DecodeEncodedNonAsciiCharacters(unicodeCopyright);
                         copyright = decodedCopyright;
 
-                        copyright = copyright.Replace(@"\\", @"\").Replace(@"\/", @"/").Replace(@"\u2117", @"℗");
+                        copyright = copyright.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/").Replace(@"\u2117", @"℗");
 
                     // UPC tag
                     var upcLog = Regex.Match(trackRequest, "\"upc\":\"(?<upc>.*?)\",\\\"").Groups;
@@ -2471,6 +3632,10 @@ namespace QobuzDownloaderX
                         output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
                         output.Invoke(new Action(() => output.AppendText("Track Download ERROR. Information below.\r\n\r\n")));
                         output.Invoke(new Action(() => output.AppendText(error)));
+                        mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                        flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                        flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                        flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                         downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                         return;
                     }
@@ -2483,6 +3648,10 @@ namespace QobuzDownloaderX
                 // Say that downloading is completed.
                 output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText("Downloading job completed! All downloaded files will be located in your chosen path.")));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
             }
             catch (Exception ex)
@@ -2491,6 +3660,10 @@ namespace QobuzDownloaderX
                 output.Invoke(new Action(() => output.Text = String.Empty));
                 output.Invoke(new Action(() => output.AppendText("Failed to download (First Phase). Error information below.\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText(error)));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -2584,6 +3757,10 @@ namespace QobuzDownloaderX
                 output.Invoke(new Action(() => output.AppendText("ERROR: 404\r\n")));
                 output.Invoke(new Action(() => output.AppendText("Error message is \"No result matching given argument\"\r\n")));
                 output.Invoke(new Action(() => output.AppendText("This could mean either the link is invalid, or isn't available in the region you're downloading from (even if the account is in the correct region). If the latter is true, use a VPN for the region it's available in to download.")));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -2610,8 +3787,8 @@ namespace QobuzDownloaderX
             string decodedAlbumArtist = DecodeEncodedNonAsciiCharacters(unicodeAlbumArtist);
             albumArtist = decodedAlbumArtist;
 
-            albumArtist = albumArtist.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var albumArtistPath = albumArtist.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+            albumArtist = albumArtist.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+            var albumArtistPath = albumArtist.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // Display album artist in text box under cover art.
             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
@@ -2631,8 +3808,8 @@ namespace QobuzDownloaderX
             string decodedPerformerName = DecodeEncodedNonAsciiCharacters(unicodePerformerName);
             performerName = decodedPerformerName;
 
-            performerName = performerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var performerNamePath = performerName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+            performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+            var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // If name goes over 200 characters, limit it to 200
             if (performerNamePath.Length > MaxLength)
@@ -2653,7 +3830,7 @@ namespace QobuzDownloaderX
             string decodedComposerName = DecodeEncodedNonAsciiCharacters(unicodeComposerName);
             composerName = decodedComposerName;
 
-            composerName = composerName.Replace(@"\\", @"\").Replace(@"\/", @"/");
+            composerName = composerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
             // Album Name tag
             var albumNameLog = Regex.Match(trackRequest, "\"title\":\"(?<albumTitle>.*?)\",\\\"").Groups;
@@ -2664,8 +3841,8 @@ namespace QobuzDownloaderX
             string decodedAlbumName = DecodeEncodedNonAsciiCharacters(unicodeAlbumName);
             albumName = decodedAlbumName;
 
-            albumName = albumName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var albumNamePath = albumName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+            albumName = albumName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+            var albumNamePath = albumName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // Display album name in text box under cover art.
             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
@@ -2686,8 +3863,8 @@ namespace QobuzDownloaderX
             string decodedTrackName = DecodeEncodedNonAsciiCharacters(unicodeTrackName);
             trackName = decodedTrackName;
 
-            trackName = trackName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var trackNamePath = trackName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+            trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+            var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // If name goes over 200 characters, limit it to 200
             if (trackNamePath.Length > MaxLength)
@@ -2704,8 +3881,8 @@ namespace QobuzDownloaderX
             string decodedVersionName = DecodeEncodedNonAsciiCharacters(unicodeVersionName);
             versionName = decodedVersionName;
 
-            versionName = versionName.Replace(@"\\", @"\").Replace(@"\/", @"/");
-            var versionNamePath = versionName.Replace(@"\", "-").Replace(@"/", "-").Replace("\"", "''").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
+            versionName = versionName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+            var versionNamePath = versionName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
             // Genre tag
             var genreLog = Regex.Match(trackRequest, "\"genre\":{\"id\":(?<notUsed>.*?),\"color\":\"(?<notUsed2>.*?)\",\"name\":\"(?<genreName>.*?)\",\\\"").Groups;
@@ -2714,7 +3891,9 @@ namespace QobuzDownloaderX
             // For converting unicode characters to ASCII
             string unicodeGenre = genre;
             string decodedGenre = DecodeEncodedNonAsciiCharacters(unicodeGenre);
-            genre = decodedGenre;
+            genre = decodedGenre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+
+            genre = genre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
             // Release Date tag, grabs the available "stream" date
             var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
@@ -2732,7 +3911,7 @@ namespace QobuzDownloaderX
             string decodedCopyright = DecodeEncodedNonAsciiCharacters(unicodeCopyright);
             copyright = decodedCopyright;
 
-            copyright = copyright.Replace(@"\\", @"\").Replace(@"\/", @"/").Replace(@"\u2117", @"℗");
+            copyright = copyright.Replace("\\/", @"/").Replace(@"\/", @"/").Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/").Replace(@"\u2117", @"℗");
 
             // UPC tag
             var upcLog = Regex.Match(trackRequest, "\"upc\":\"(?<upc>.*?)\",\\\"").Groups;
@@ -2817,6 +3996,10 @@ namespace QobuzDownloaderX
                 {
                     output.Invoke(new Action(() => output.AppendText("Track is not available for streaming. Unable to download.\r\n")));
                     System.Threading.Thread.Sleep(800);
+                    mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                    flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                    flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                    flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                     downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                     return;
                 }
@@ -2835,6 +4018,10 @@ namespace QobuzDownloaderX
                 {
                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + "\" already exists. Skipping.\r\n")));
                     System.Threading.Thread.Sleep(800);
+                    mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                    flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                    flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                    flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                     downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                     return;
                 }
@@ -2845,6 +4032,10 @@ namespace QobuzDownloaderX
                 {
                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + " (" + versionName + ")" + "\" already exists. Skipping.\r\n")));
                     System.Threading.Thread.Sleep(800);
+                    mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                    flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                    flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                    flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                     downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                     return;
                 }
@@ -3429,6 +4620,10 @@ namespace QobuzDownloaderX
                 output.Invoke(new Action(() => output.AppendText("\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText("Track Download ERROR. Information below.\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText(error)));
+                mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+                flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+                flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+                flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
                 downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
                 return;
             }
@@ -3436,6 +4631,10 @@ namespace QobuzDownloaderX
             // Say that downloading is completed.
             output.Invoke(new Action(() => output.AppendText("Track Download Done!\r\n\r\n")));
             output.Invoke(new Action(() => output.AppendText("File will be located in your selected path.")));
+            mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
+            flacLowCheckbox.Invoke(new Action(() => flacLowCheckbox.Visible = true));
+            flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = true));
+            flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = true));
             downloadButton.Invoke(new Action(() => downloadButton.Enabled = true));
             #endregion
         }
@@ -3734,12 +4933,14 @@ namespace QobuzDownloaderX
                 streamableCheckbox.Visible = true;
                 displaySecretButton.Visible = true;
                 secretTextbox.Visible = true;
+                hiddenTextPanel.Visible = true;
             }
             else
             {
                 streamableCheckbox.Visible = false;
                 displaySecretButton.Visible = false;
                 secretTextbox.Visible = false;
+                hiddenTextPanel.Visible = false;
             }
         }
 

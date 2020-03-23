@@ -99,6 +99,8 @@
             this.displaySecretButton = new System.Windows.Forms.Button();
             this.profilePictureBox = new System.Windows.Forms.PictureBox();
             this.logoutLabel = new System.Windows.Forms.Label();
+            this.downloadLabelBG = new System.ComponentModel.BackgroundWorker();
+            this.hiddenTextPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -337,9 +339,9 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
             this.label6.Location = new System.Drawing.Point(12, 70);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 13);
+            this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 49;
-            this.label6.Text = "Qobuz Album / Track Link";
+            this.label6.Text = "Qobuz Link";
             // 
             // totalTracksTextbox
             // 
@@ -865,20 +867,29 @@
             // 
             // secretTextbox
             // 
-            this.secretTextbox.Location = new System.Drawing.Point(352, 34);
+            this.secretTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.secretTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.secretTextbox.ForeColor = System.Drawing.Color.White;
+            this.secretTextbox.Location = new System.Drawing.Point(352, 35);
+            this.secretTextbox.Multiline = true;
             this.secretTextbox.Name = "secretTextbox";
+            this.secretTextbox.ReadOnly = true;
             this.secretTextbox.Size = new System.Drawing.Size(209, 20);
             this.secretTextbox.TabIndex = 92;
             this.secretTextbox.Visible = false;
             // 
             // displaySecretButton
             // 
+            this.displaySecretButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
+            this.displaySecretButton.FlatAppearance.BorderSize = 0;
+            this.displaySecretButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.displaySecretButton.ForeColor = System.Drawing.Color.White;
             this.displaySecretButton.Location = new System.Drawing.Point(243, 32);
             this.displaySecretButton.Name = "displaySecretButton";
             this.displaySecretButton.Size = new System.Drawing.Size(103, 23);
             this.displaySecretButton.TabIndex = 93;
             this.displaySecretButton.Text = "Display appSecret";
-            this.displaySecretButton.UseVisualStyleBackColor = true;
+            this.displaySecretButton.UseVisualStyleBackColor = false;
             this.displaySecretButton.Visible = false;
             this.displaySecretButton.Click += new System.EventHandler(this.displaySecretButton_Click);
             // 
@@ -903,12 +914,26 @@
             this.logoutLabel.MouseLeave += new System.EventHandler(this.logoutLabel_MouseLeave);
             this.logoutLabel.MouseHover += new System.EventHandler(this.logoutLabel_MouseHover);
             // 
+            // downloadLabelBG
+            // 
+            this.downloadLabelBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadLabelBG_DoWork);
+            // 
+            // hiddenTextPanel
+            // 
+            this.hiddenTextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.hiddenTextPanel.Location = new System.Drawing.Point(352, 55);
+            this.hiddenTextPanel.Name = "hiddenTextPanel";
+            this.hiddenTextPanel.Size = new System.Drawing.Size(209, 1);
+            this.hiddenTextPanel.TabIndex = 87;
+            this.hiddenTextPanel.Visible = false;
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(938, 533);
+            this.Controls.Add(this.hiddenTextPanel);
             this.Controls.Add(this.logoutLabel);
             this.Controls.Add(this.profilePictureBox);
             this.Controls.Add(this.displaySecretButton);
@@ -1061,6 +1086,8 @@
         private System.Windows.Forms.Button displaySecretButton;
         private System.Windows.Forms.PictureBox profilePictureBox;
         private System.Windows.Forms.Label logoutLabel;
+        private System.ComponentModel.BackgroundWorker downloadLabelBG;
+        private System.Windows.Forms.Panel hiddenTextPanel;
     }
 }
 
