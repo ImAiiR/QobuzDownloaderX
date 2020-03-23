@@ -145,6 +145,18 @@ namespace QobuzDownloaderX
             #endregion
         }
 
+        // Set DateTime for new date formatting.
+        System.DateTime dateTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+
+        public string DateConvertion(string Input)
+        {
+            var date = DateTime.ParseExact(Input, "M/d/yyyy hh:mm:ss tt",
+                                            CultureInfo.InvariantCulture);
+
+            return date.ToString("yyyy-MM-dd");
+        }
+
+
         static string DecodeEncodedNonAsciiCharacters(string value)
         {
             return Regex.Replace(
@@ -710,8 +722,11 @@ namespace QobuzDownloaderX
                             genre = decodedGenre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                             // Release Date tag, grabs the available "stream" date
-                            var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
-                            var releaseDate = releaseDateLog[1].Value;
+                            //var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
+                            var releaseDateLog = Regex.Match(trackRequest, ",\"released_at\":(?<releaseDate>.*?),").Groups;
+                            long dateLong = long.Parse(releaseDateLog[1].Value);
+                            var releaseDate = dateTime.AddSeconds(dateLong).ToString();
+                            releaseDate = DateConvertion(releaseDate);
 
                             // Display release date in text box under cover art.
                             releaseDateTextBox.Invoke(new Action(() => releaseDateTextBox.Text = releaseDate));
@@ -1815,8 +1830,11 @@ namespace QobuzDownloaderX
                             genre = decodedGenre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                             // Release Date tag, grabs the available "stream" date
-                            var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
-                            var releaseDate = releaseDateLog[1].Value;
+                            //var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
+                            var releaseDateLog = Regex.Match(trackRequest, ",\"released_at\":(?<releaseDate>.*?),").Groups;
+                            long dateLong = long.Parse(releaseDateLog[1].Value);
+                            var releaseDate = dateTime.AddSeconds(dateLong).ToString();
+                            releaseDate = DateConvertion(releaseDate);
 
                             // Display release date in text box under cover art.
                             releaseDateTextBox.Invoke(new Action(() => releaseDateTextBox.Text = releaseDate));
@@ -2888,11 +2906,14 @@ namespace QobuzDownloaderX
                         genre = decodedGenre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                     // Release Date tag, grabs the available "stream" date
-                    var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
-                    var releaseDate = releaseDateLog[1].Value;
+                    //var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
+                    var releaseDateLog = Regex.Match(trackRequest, ",\"released_at\":(?<releaseDate>.*?),").Groups;
+                    long dateLong = long.Parse(releaseDateLog[1].Value);
+                    var releaseDate = dateTime.AddSeconds(dateLong).ToString();
+                    releaseDate = DateConvertion(releaseDate);
 
-                        // Display release date in text box under cover art.
-                        releaseDateTextBox.Invoke(new Action(() => releaseDateTextBox.Text = releaseDate));
+                    // Display release date in text box under cover art.
+                    releaseDateTextBox.Invoke(new Action(() => releaseDateTextBox.Text = releaseDate));
 
                     // Copyright tag
                     var copyrightLog = Regex.Match(trackRequest, "\"copyright\":\"(?<notUsed>.*?)\"copyright\":\"(?<copyrigh>.*?)\\\"").Groups;
@@ -3657,7 +3678,7 @@ namespace QobuzDownloaderX
             catch (Exception ex)
             {
                 string error = ex.ToString();
-                output.Invoke(new Action(() => output.Text = String.Empty));
+                //output.Invoke(new Action(() => output.Text = String.Empty));
                 output.Invoke(new Action(() => output.AppendText("Failed to download (First Phase). Error information below.\r\n\r\n")));
                 output.Invoke(new Action(() => output.AppendText(error)));
                 mp3Checkbox.Invoke(new Action(() => mp3Checkbox.Visible = true));
@@ -3896,8 +3917,11 @@ namespace QobuzDownloaderX
             genre = genre.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
             // Release Date tag, grabs the available "stream" date
-            var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
-            var releaseDate = releaseDateLog[1].Value;
+            //var releaseDateLog = Regex.Match(trackRequest, "\"release_date_stream\":\"(?<releaseDate>.*?)\",\\\"").Groups;
+            var releaseDateLog = Regex.Match(trackRequest, ",\"released_at\":(?<releaseDate>.*?),").Groups;
+            long dateLong = long.Parse(releaseDateLog[1].Value);
+            var releaseDate = dateTime.AddSeconds(dateLong).ToString();
+            releaseDate = DateConvertion(releaseDate);
 
             // Display release date in text box under cover art.
             releaseDateTextBox.Invoke(new Action(() => releaseDateTextBox.Text = releaseDate));
