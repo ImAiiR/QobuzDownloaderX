@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginFrm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.disableLogin = new System.Windows.Forms.CheckBox();
             this.verNumLabel2 = new System.Windows.Forms.Label();
             this.exitLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -43,7 +44,6 @@
             this.getSecretBG = new System.ComponentModel.BackgroundWorker();
             this.loginBG = new System.ComponentModel.BackgroundWorker();
             this.visableCheckbox = new System.Windows.Forms.CheckBox();
-            this.disableLogin = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +53,7 @@
             this.panel1.BackgroundImage = global::QobuzDownloaderX.Properties.Resources.login_frame;
             this.panel1.Controls.Add(this.disableLogin);
             this.panel1.Controls.Add(this.verNumLabel2);
+            this.panel1.Controls.Add(this.md5Button);
             this.panel1.Controls.Add(this.exitLabel);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -61,6 +62,18 @@
             this.panel1.Size = new System.Drawing.Size(282, 175);
             this.panel1.TabIndex = 0;
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // disableLogin
+            // 
+            this.disableLogin.AutoSize = true;
+            this.disableLogin.ForeColor = System.Drawing.Color.Transparent;
+            this.disableLogin.Location = new System.Drawing.Point(12, 155);
+            this.disableLogin.Name = "disableLogin";
+            this.disableLogin.Size = new System.Drawing.Size(90, 17);
+            this.disableLogin.TabIndex = 34;
+            this.disableLogin.Text = "Disable Login";
+            this.disableLogin.UseVisualStyleBackColor = true;
+            this.disableLogin.Visible = false;
             // 
             // verNumLabel2
             // 
@@ -167,16 +180,18 @@
             // md5Button
             // 
             this.md5Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
+            this.md5Button.Enabled = false;
             this.md5Button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.md5Button.FlatAppearance.BorderSize = 2;
             this.md5Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.md5Button.ForeColor = System.Drawing.Color.White;
-            this.md5Button.Location = new System.Drawing.Point(227, 250);
+            this.md5Button.Location = new System.Drawing.Point(227, 122);
             this.md5Button.Name = "md5Button";
             this.md5Button.Size = new System.Drawing.Size(43, 27);
             this.md5Button.TabIndex = 9;
             this.md5Button.Text = "MD5";
             this.md5Button.UseVisualStyleBackColor = false;
+            this.md5Button.Visible = false;
             this.md5Button.Click += new System.EventHandler(this.md5Button_Click);
             // 
             // loginText
@@ -201,24 +216,12 @@
             // visableCheckbox
             // 
             this.visableCheckbox.AutoSize = true;
-            this.visableCheckbox.Location = new System.Drawing.Point(206, 257);
+            this.visableCheckbox.Location = new System.Drawing.Point(255, 256);
             this.visableCheckbox.Name = "visableCheckbox";
             this.visableCheckbox.Size = new System.Drawing.Size(15, 14);
             this.visableCheckbox.TabIndex = 31;
             this.visableCheckbox.UseVisualStyleBackColor = true;
             this.visableCheckbox.CheckedChanged += new System.EventHandler(this.visableCheckbox_CheckedChanged);
-            // 
-            // disableLogin
-            // 
-            this.disableLogin.AutoSize = true;
-            this.disableLogin.ForeColor = System.Drawing.Color.Transparent;
-            this.disableLogin.Location = new System.Drawing.Point(12, 155);
-            this.disableLogin.Name = "disableLogin";
-            this.disableLogin.Size = new System.Drawing.Size(90, 17);
-            this.disableLogin.TabIndex = 34;
-            this.disableLogin.Text = "Disable Login";
-            this.disableLogin.UseVisualStyleBackColor = true;
-            this.disableLogin.Visible = false;
             // 
             // LoginFrm
             // 
@@ -228,7 +231,6 @@
             this.ClientSize = new System.Drawing.Size(282, 377);
             this.Controls.Add(this.visableCheckbox);
             this.Controls.Add(this.loginText);
-            this.Controls.Add(this.md5Button);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.passwordTextbox);

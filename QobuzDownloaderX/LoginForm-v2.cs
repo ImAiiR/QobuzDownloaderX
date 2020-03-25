@@ -192,12 +192,6 @@ namespace QobuzDownloaderX
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            //if (appidTextbox.Text == "app_id" | appidTextbox.Text == null | appidTextbox.Text == "")
-            //{
-            //    // If there's no app_id typed in.
-            //    loginText.Invoke(new Action(() => loginText.Text = "No app_id, please input app_id first."));
-            //    return;
-            //}
             if (emailTextbox.Text == "Email" | emailTextbox.Text == null | emailTextbox.Text == "")
             {
                 // If there's no email typed in.
@@ -205,13 +199,37 @@ namespace QobuzDownloaderX
                 return;
             }
 
-            var passMD5CheckLog = Regex.Match(passwordTextbox.Text, "(?<md5Test>^[0-9a-f]{32}$)").Groups;
+            if (passwordTextbox.Text == "Password")
+            {
+                // If there's no password typed in.
+                loginText.Invoke(new Action(() => loginText.Text = "No password typed, please input password first."));
+                return;
+            }
+
+            string plainTextPW = passwordTextbox.Text;
+
+            var passMD5CheckLog = Regex.Match(plainTextPW, "(?<md5Test>^[0-9a-f]{32}$)").Groups;
             var passMD5Check = passMD5CheckLog[1].Value;
 
             if (passMD5Check == null | passMD5Check == "")
             {
-                loginText.Text = "Password not MD5! Hit \"MD5\" before logging in!";
-                return;
+                // Generate the MD5 hash using the string created above.
+                using (MD5 md5PassHash = MD5.Create())
+                {
+                    string hashedPW = GetMd5Hash(md5PassHash, plainTextPW);
+
+                    if (VerifyMd5Hash(md5PassHash, plainTextPW, hashedPW))
+                    {
+                        // If the MD5 hash is verified, proceed to get the streaming URL.
+                        passwordTextbox.Text = hashedPW;
+                    }
+                    else
+                    {
+                        // If the hash can't be verified.
+                        loginText.Invoke(new Action(() => loginText.Text = "Hashing failed. Please retry."));
+                        return;
+                    }
+                }
             }
 
             // Save info locally to be used on next launch.
@@ -373,32 +391,32 @@ namespace QobuzDownloaderX
 
         private void md5Button_Click(object sender, EventArgs e)
         {
-            if (passwordTextbox.Text == "Password")
-            {
-                // If there's no password typed in.
-                loginText.Invoke(new Action(() => loginText.Text = "No password typed, please input password first."));
-                return;
-            }
+            //if (passwordTextbox.Text == "Password")
+            //{
+            //    // If there's no password typed in.
+            //    loginText.Invoke(new Action(() => loginText.Text = "No password typed, please input password first."));
+            //    return;
+            //}
 
-            string plainTextPW = passwordTextbox.Text;
+            //string plainTextPW = passwordTextbox.Text;
 
-            // Generate the MD5 hash using the string created above.
-            using (MD5 md5PassHash = MD5.Create())
-            {
-                string hashedPW = GetMd5Hash(md5PassHash, plainTextPW);
+            //// Generate the MD5 hash using the string created above.
+            //using (MD5 md5PassHash = MD5.Create())
+            //{
+            //    string hashedPW = GetMd5Hash(md5PassHash, plainTextPW);
 
-                if (VerifyMd5Hash(md5PassHash, plainTextPW, hashedPW))
-                {
-                    // If the MD5 hash is verified, proceed to get the streaming URL.
-                    passwordTextbox.Text = hashedPW;
-                }
-                else
-                {
-                    // If the hash can't be verified.
-                    loginText.Invoke(new Action(() => loginText.Text = "Hashing failed. Please retry."));
-                    return;
-                }
-            }
+            //    if (VerifyMd5Hash(md5PassHash, plainTextPW, hashedPW))
+            //    {
+            //        // If the MD5 hash is verified, proceed to get the streaming URL.
+            //        passwordTextbox.Text = hashedPW;
+            //    }
+            //    else
+            //    {
+            //        // If the hash can't be verified.
+            //        loginText.Invoke(new Action(() => loginText.Text = "Hashing failed. Please retry."));
+            //        return;
+            //    }
+            //}
         }
 
         private void getSecretBG_DoWork(object sender, DoWorkEventArgs e)
@@ -485,6 +503,11 @@ namespace QobuzDownloaderX
 
                 string loginRequest = sr.ReadToEnd();
                 string text = loginRequest;
+
+                // Grab user_id
+                var userIDLog = Regex.Match(loginRequest, "{\"user\":{\"id\":(?<userID>.*?),\"publicId").Groups;
+                var userID = userIDLog[1].Value;
+                qbdlx.userID = userID;
 
                 // Grab display name
                 var displayNameLog = Regex.Match(loginRequest, "\"display_name\":\"(?<displayName>.*?)\",\\\"").Groups;

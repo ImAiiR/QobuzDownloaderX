@@ -101,6 +101,8 @@
             this.logoutLabel = new System.Windows.Forms.Label();
             this.downloadLabelBG = new System.ComponentModel.BackgroundWorker();
             this.hiddenTextPanel = new System.Windows.Forms.Panel();
+            this.downloadFaveAlbumsBG = new System.ComponentModel.BackgroundWorker();
+            this.downloadFaveArtistsBG = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -927,6 +929,14 @@
             this.hiddenTextPanel.TabIndex = 87;
             this.hiddenTextPanel.Visible = false;
             // 
+            // downloadFaveAlbumsBG
+            // 
+            this.downloadFaveAlbumsBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadFaveAlbumsBG_DoWork);
+            // 
+            // downloadFaveArtistsBG
+            // 
+            this.downloadFaveArtistsBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadFaveArtistsBG_DoWork);
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1088,6 +1098,8 @@
         private System.Windows.Forms.Label logoutLabel;
         private System.ComponentModel.BackgroundWorker downloadLabelBG;
         private System.Windows.Forms.Panel hiddenTextPanel;
+        private System.ComponentModel.BackgroundWorker downloadFaveAlbumsBG;
+        private System.ComponentModel.BackgroundWorker downloadFaveArtistsBG;
     }
 }
 
