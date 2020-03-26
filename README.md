@@ -2,10 +2,11 @@
   <a href="https://github.com/ImAiiR/QobuzDownloaderX">
     <img src="https://github.com/ImAiiR/QobuzDownloaderX/raw/master/QobuzDownloaderX/Resources/qbdlx.png?raw=true" />
   </a>
-  <a href="https://ko-fi.com/I3I41A5DY">
-    <img src="https://www.ko-fi.com/img/githubbutton_sm.svg" />
-  </a>
 </p>
+
+
+<center><a href="https://www.buymeacoffee.com/ImAiiR" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-red.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a></center>
+
 
 Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href="https://github.com/DashLt">Dash</a>
 
