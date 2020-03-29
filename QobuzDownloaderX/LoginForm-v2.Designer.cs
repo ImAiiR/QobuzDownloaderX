@@ -32,18 +32,23 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.disableLogin = new System.Windows.Forms.CheckBox();
             this.verNumLabel2 = new System.Windows.Forms.Label();
+            this.md5Button = new System.Windows.Forms.Button();
             this.exitLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.userAuthTokenTextbox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.emailTextbox = new System.Windows.Forms.TextBox();
             this.passwordTextbox = new System.Windows.Forms.TextBox();
-            this.md5Button = new System.Windows.Forms.Button();
             this.loginText = new System.Windows.Forms.Label();
             this.getSecretBG = new System.ComponentModel.BackgroundWorker();
             this.loginBG = new System.ComponentModel.BackgroundWorker();
             this.visableCheckbox = new System.Windows.Forms.CheckBox();
+            this.altLoginLabel = new System.Windows.Forms.Label();
+            this.altLoginTutLabel = new System.Windows.Forms.Label();
+            this.userIdTextbox = new System.Windows.Forms.TextBox();
+            this.altLoginBG = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -88,6 +93,23 @@
             this.verNumLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.verNumLabel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.verNumLabel2_MouseMove);
             // 
+            // md5Button
+            // 
+            this.md5Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
+            this.md5Button.Enabled = false;
+            this.md5Button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.md5Button.FlatAppearance.BorderSize = 2;
+            this.md5Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.md5Button.ForeColor = System.Drawing.Color.White;
+            this.md5Button.Location = new System.Drawing.Point(227, 122);
+            this.md5Button.Name = "md5Button";
+            this.md5Button.Size = new System.Drawing.Size(43, 27);
+            this.md5Button.TabIndex = 9;
+            this.md5Button.Text = "MD5";
+            this.md5Button.UseVisualStyleBackColor = false;
+            this.md5Button.Visible = false;
+            this.md5Button.Click += new System.EventHandler(this.md5Button_Click);
+            // 
             // exitLabel
             // 
             this.exitLabel.AutoSize = true;
@@ -114,6 +136,22 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
+            // userAuthTokenTextbox
+            // 
+            this.userAuthTokenTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.userAuthTokenTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.userAuthTokenTextbox.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userAuthTokenTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.userAuthTokenTextbox.Location = new System.Drawing.Point(12, 255);
+            this.userAuthTokenTextbox.Multiline = true;
+            this.userAuthTokenTextbox.Name = "userAuthTokenTextbox";
+            this.userAuthTokenTextbox.Size = new System.Drawing.Size(237, 23);
+            this.userAuthTokenTextbox.TabIndex = 35;
+            this.userAuthTokenTextbox.Text = "user_auth_token";
+            this.userAuthTokenTextbox.Visible = false;
+            this.userAuthTokenTextbox.Click += new System.EventHandler(this.userAuthTokenTextbox_Click);
+            this.userAuthTokenTextbox.Leave += new System.EventHandler(this.userAuthTokenTextbox_Leave);
+            // 
             // loginButton
             // 
             this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
@@ -136,7 +174,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(258, 1);
             this.panel3.TabIndex = 2;
-            this.panel3.Click += new System.EventHandler(this.panel3_Click);
             // 
             // panel4
             // 
@@ -145,7 +182,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(258, 1);
             this.panel4.TabIndex = 2;
-            this.panel4.Click += new System.EventHandler(this.panel4_Click);
             // 
             // emailTextbox
             // 
@@ -171,34 +207,17 @@
             this.passwordTextbox.Location = new System.Drawing.Point(12, 255);
             this.passwordTextbox.Multiline = true;
             this.passwordTextbox.Name = "passwordTextbox";
-            this.passwordTextbox.Size = new System.Drawing.Size(209, 23);
+            this.passwordTextbox.Size = new System.Drawing.Size(237, 23);
             this.passwordTextbox.TabIndex = 8;
             this.passwordTextbox.Text = "Password";
             this.passwordTextbox.Click += new System.EventHandler(this.passwordTextbox_Click);
             this.passwordTextbox.Leave += new System.EventHandler(this.passwordTextbox_Leave);
             // 
-            // md5Button
-            // 
-            this.md5Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
-            this.md5Button.Enabled = false;
-            this.md5Button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.md5Button.FlatAppearance.BorderSize = 2;
-            this.md5Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.md5Button.ForeColor = System.Drawing.Color.White;
-            this.md5Button.Location = new System.Drawing.Point(227, 122);
-            this.md5Button.Name = "md5Button";
-            this.md5Button.Size = new System.Drawing.Size(43, 27);
-            this.md5Button.TabIndex = 9;
-            this.md5Button.Text = "MD5";
-            this.md5Button.UseVisualStyleBackColor = false;
-            this.md5Button.Visible = false;
-            this.md5Button.Click += new System.EventHandler(this.md5Button_Click);
-            // 
             // loginText
             // 
             this.loginText.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.loginText.Location = new System.Drawing.Point(12, 333);
+            this.loginText.Location = new System.Drawing.Point(12, 349);
             this.loginText.Name = "loginText";
             this.loginText.Size = new System.Drawing.Size(258, 23);
             this.loginText.TabIndex = 30;
@@ -223,12 +242,58 @@
             this.visableCheckbox.UseVisualStyleBackColor = true;
             this.visableCheckbox.CheckedChanged += new System.EventHandler(this.visableCheckbox_CheckedChanged);
             // 
+            // altLoginLabel
+            // 
+            this.altLoginLabel.Font = new System.Drawing.Font("Trebuchet MS", 8.25F);
+            this.altLoginLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.altLoginLabel.Location = new System.Drawing.Point(12, 326);
+            this.altLoginLabel.Name = "altLoginLabel";
+            this.altLoginLabel.Size = new System.Drawing.Size(258, 20);
+            this.altLoginLabel.TabIndex = 32;
+            this.altLoginLabel.Text = "Can\'t login? Click here";
+            this.altLoginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.altLoginLabel.Click += new System.EventHandler(this.altLoginLabel_Click);
+            // 
+            // altLoginTutLabel
+            // 
+            this.altLoginTutLabel.AutoSize = true;
+            this.altLoginTutLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.altLoginTutLabel.Location = new System.Drawing.Point(77, 180);
+            this.altLoginTutLabel.Name = "altLoginTutLabel";
+            this.altLoginTutLabel.Size = new System.Drawing.Size(128, 13);
+            this.altLoginTutLabel.TabIndex = 33;
+            this.altLoginTutLabel.Text = "Click Here for Instructions";
+            this.altLoginTutLabel.Visible = false;
+            this.altLoginTutLabel.Click += new System.EventHandler(this.altLoginTutLabel_Click);
+            // 
+            // userIdTextbox
+            // 
+            this.userIdTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.userIdTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.userIdTextbox.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userIdTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.userIdTextbox.Location = new System.Drawing.Point(12, 199);
+            this.userIdTextbox.Multiline = true;
+            this.userIdTextbox.Name = "userIdTextbox";
+            this.userIdTextbox.Size = new System.Drawing.Size(258, 23);
+            this.userIdTextbox.TabIndex = 9;
+            this.userIdTextbox.Text = "user_id";
+            this.userIdTextbox.Visible = false;
+            this.userIdTextbox.Click += new System.EventHandler(this.userIdTextbox_Click);
+            this.userIdTextbox.Leave += new System.EventHandler(this.userIdTextbox_Leave);
+            // 
+            // altLoginBG
+            // 
+            this.altLoginBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.altLoginBG_DoWork);
+            // 
             // LoginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(282, 377);
+            this.ClientSize = new System.Drawing.Size(282, 392);
+            this.Controls.Add(this.altLoginTutLabel);
+            this.Controls.Add(this.altLoginLabel);
             this.Controls.Add(this.visableCheckbox);
             this.Controls.Add(this.loginText);
             this.Controls.Add(this.panel4);
@@ -237,6 +302,8 @@
             this.Controls.Add(this.emailTextbox);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.userIdTextbox);
+            this.Controls.Add(this.userAuthTokenTextbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginFrm";
@@ -267,5 +334,10 @@
         private System.Windows.Forms.Label verNumLabel2;
         private System.Windows.Forms.CheckBox visableCheckbox;
         private System.Windows.Forms.CheckBox disableLogin;
+        private System.Windows.Forms.TextBox userAuthTokenTextbox;
+        private System.Windows.Forms.Label altLoginLabel;
+        private System.Windows.Forms.Label altLoginTutLabel;
+        private System.Windows.Forms.TextBox userIdTextbox;
+        private System.ComponentModel.BackgroundWorker altLoginBG;
     }
 }

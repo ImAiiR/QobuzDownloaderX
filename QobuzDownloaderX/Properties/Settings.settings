@@ -92,5 +92,14 @@
     <Setting Name="audioType" Type="System.String" Scope="User">
       <Value Profile="(Default)">.flac</Value>
     </Setting>
+    <Setting Name="savedUserID" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="savedUserAuthToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="savedAltLoginValue" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -382,5 +382,41 @@ namespace QobuzDownloaderX.Properties {
                 this["audioType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string savedUserID {
+            get {
+                return ((string)(this["savedUserID"]));
+            }
+            set {
+                this["savedUserID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string savedUserAuthToken {
+            get {
+                return ((string)(this["savedUserAuthToken"]));
+            }
+            set {
+                this["savedUserAuthToken"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string savedAltLoginValue {
+            get {
+                return ((string)(this["savedAltLoginValue"]));
+            }
+            set {
+                this["savedAltLoginValue"] = value;
+            }
+        }
     }
 }

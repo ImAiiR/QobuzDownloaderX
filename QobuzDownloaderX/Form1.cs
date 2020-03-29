@@ -65,7 +65,17 @@ namespace QobuzDownloaderX
             // Welcome the user after successful login.
             output.Invoke(new Action(() => output.Text = String.Empty));
             output.Invoke(new Action(() => output.AppendText("Welcome " + displayName + "!\r\n")));
-            output.Invoke(new Action(() => output.AppendText("Qobuz Account Type - " + accountType + "\r\n\r\n")));
+
+            // Show account type if user logged in normally.
+            if (accountType == null | accountType == "")
+            {
+                output.Invoke(new Action(() => output.AppendText("\r\n"))); 
+            }
+            else
+            {
+                output.Invoke(new Action(() => output.AppendText("Qobuz Account Type - " + accountType + "\r\n\r\n")));
+            }
+            
             output.Invoke(new Action(() => output.AppendText("Your user_auth_token has been set for this session!")));
 
             // Get and display version number.
@@ -354,6 +364,7 @@ namespace QobuzDownloaderX
             flacMidCheckbox.Invoke(new Action(() => flacMidCheckbox.Visible = false));
             flacHighCheckbox.Invoke(new Action(() => flacHighCheckbox.Visible = false));
             downloadButton.Invoke(new Action(() => downloadButton.Enabled = false));
+
             // Check if there's no selected path.
             if (folderBrowserDialog.SelectedPath == null | folderBrowserDialog.SelectedPath == "")
             {
