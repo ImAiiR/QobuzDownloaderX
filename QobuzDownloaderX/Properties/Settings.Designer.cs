@@ -418,5 +418,17 @@ namespace QobuzDownloaderX.Properties {
                 this["savedAltLoginValue"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int savedArtSize {
+            get {
+                return ((int)(this["savedArtSize"]));
+            }
+            set {
+                this["savedArtSize"] = value;
+            }
+        }
     }
 }

@@ -103,6 +103,8 @@
             this.hiddenTextPanel = new System.Windows.Forms.Panel();
             this.downloadFaveAlbumsBG = new System.ComponentModel.BackgroundWorker();
             this.downloadFaveArtistsBG = new System.ComponentModel.BackgroundWorker();
+            this.artSizeSelect = new System.Windows.Forms.ComboBox();
+            this.artSizeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -937,12 +939,41 @@
             // 
             this.downloadFaveArtistsBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadFaveArtistsBG_DoWork);
             // 
+            // artSizeSelect
+            // 
+            this.artSizeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.artSizeSelect.FormattingEnabled = true;
+            this.artSizeSelect.Items.AddRange(new object[] {
+            "max",
+            "600",
+            "300",
+            "150",
+            "100",
+            "50"});
+            this.artSizeSelect.Location = new System.Drawing.Point(634, 538);
+            this.artSizeSelect.Name = "artSizeSelect";
+            this.artSizeSelect.Size = new System.Drawing.Size(121, 21);
+            this.artSizeSelect.TabIndex = 96;
+            this.artSizeSelect.SelectedIndexChanged += new System.EventHandler(this.artSizeSelect_SelectedIndexChanged);
+            // 
+            // artSizeLabel
+            // 
+            this.artSizeLabel.AutoSize = true;
+            this.artSizeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.artSizeLabel.Location = new System.Drawing.Point(530, 541);
+            this.artSizeLabel.Name = "artSizeLabel";
+            this.artSizeLabel.Size = new System.Drawing.Size(246, 13);
+            this.artSizeLabel.TabIndex = 97;
+            this.artSizeLabel.Text = "Embedded Art Size:                                             px";
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(938, 533);
+            this.ClientSize = new System.Drawing.Size(938, 733);
+            this.Controls.Add(this.artSizeSelect);
+            this.Controls.Add(this.artSizeLabel);
             this.Controls.Add(this.hiddenTextPanel);
             this.Controls.Add(this.logoutLabel);
             this.Controls.Add(this.profilePictureBox);
@@ -1100,6 +1131,8 @@
         private System.Windows.Forms.Panel hiddenTextPanel;
         private System.ComponentModel.BackgroundWorker downloadFaveAlbumsBG;
         private System.ComponentModel.BackgroundWorker downloadFaveArtistsBG;
+        private System.Windows.Forms.ComboBox artSizeSelect;
+        private System.Windows.Forms.Label artSizeLabel;
     }
 }
 
