@@ -60,7 +60,7 @@ namespace QobuzDownloaderX
             string searchRequest = searchsr.ReadToEnd();
 
             // Remove backslashes from the stream URL to have a proper URL.
-            string resultpattern = "\"maximum_sampling_rate\":(?<sampleRate>.*?),(?:.*?)\",\"id\":\"(?<albumID>.*?)\",\"maximum_bit_depth\":(?<bitDepth>.*?),(?:.*?)\"title\":\"(?<albumTitle>.*?)\",\"(?:.*?)\"artist\":(?:.*?)\"name\":\"(?<albumArtist>.*?)\"";
+            string resultpattern = "\"maximum_bit_depth\":(?<bitDepth>.*?),(?:.*?),\"artist\":(?:.*?)\"name\":\"(?<albumArtist>.*?)\",(?:.*?)\"title\":\"(?<albumTitle>.*?)\"(?:.*?),\"maximum_channel_count\":(?:.*?),\"id\":\"(?<albumID>.*?)\",\"maximum_sampling_rate\":(?<sampleRate>.*?),\"";
             string resultinput = searchRequest;
             RegexOptions resultoptions = RegexOptions.Multiline;
 

@@ -482,7 +482,7 @@ namespace QobuzDownloaderX
                 string artistRequest = artistsr.ReadToEnd();
 
                 // Grab all Track IDs listed on the API.
-                string artistAlbumIdspattern = "\"url\":\"(?:.*?)\",\"id\":\"(?<albumIds>.*?)\"";
+                string artistAlbumIdspattern = ",\"maximum_channel_count\":(?<notUsed>.*?),\"id\":\"(?<albumIds>.*?)\",";
                 string input = artistRequest;
                 RegexOptions options = RegexOptions.Multiline;
 
@@ -531,7 +531,7 @@ namespace QobuzDownloaderX
 
                         #region Cover Art URL
                         // Grab Cover Art URL
-                        var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"thumbnail\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
+                        var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"large\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
                         var frontCover = frontCoverLog[1].Value;
 
                         // Remove backslashes from the stream URL to have a proper URL.
@@ -547,8 +547,8 @@ namespace QobuzDownloaderX
                         }
 
                         string frontCoverImg = imageURLTextbox.Text;
-                        string frontCoverImgBox = frontCoverImg.Replace("_50.jpg", "_150.jpg");
-                        frontCoverImg = frontCoverImg.Replace("_50.jpg", "_max.jpg");
+                        string frontCoverImgBox = frontCoverImg.Replace("_600.jpg", "_150.jpg");
+                        frontCoverImg = frontCoverImg.Replace("_600.jpg", "_max.jpg");
 
                         albumArtPicBox.Invoke(new Action(() => albumArtPicBox.ImageLocation = frontCoverImgBox));
 
@@ -579,8 +579,12 @@ namespace QobuzDownloaderX
 
                         // Grab sample rate and bit depth for album.
                         var qualityLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),(?:.*?)\"maximum_bit_depth\":(?<bitDepth>.*?),\"duration\"").Groups;
-                        var sampleRate = qualityLog[1].Value;
-                        var bitDepth = qualityLog[2].Value;
+
+                        var bitDepthLog = Regex.Match(albumRequest, "\"maximum_bit_depth\":(?<bitDepth>.*?),").Groups;
+                        var sampleRateLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),").Groups;
+
+                        var bitDepth = bitDepthLog[1].Value;
+                        var sampleRate = sampleRateLog[1].Value;
                         var quality = "FLAC (" + bitDepth + "bit/" + sampleRate + "kHz)";
                         var qualityPath = quality.Replace(@"\", "-").Replace(@"/", "-");
 
@@ -657,8 +661,8 @@ namespace QobuzDownloaderX
                             var discNumber = discNumberLog[1].Value;
 
                             // Album Artist tag
-                            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{\"picture\":(?<notUsed1>.*?),\"id\"(?<notUsed2>.*?),\"albums_count\":(?<notUsed3>.*?),\"name\":\"(?<albumArtist>.*?)\",\\\"").Groups;
-                            var albumArtist = albumArtistLog[4].Value;
+                            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{(?<notUsed>.*?)\"name\":\"(?<albumArtist>.*?)\",").Groups;
+                            var albumArtist = albumArtistLog[2].Value;
 
                             // For converting unicode characters to ASCII
                             string unicodeAlbumArtist = albumArtist;
@@ -696,11 +700,11 @@ namespace QobuzDownloaderX
                             }
 
                             // Track Composer tag
-                            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\"},\\\"").Groups;
+                            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
                             var composerName = composerNameLog[2].Value;
 
                             // Track Explicitness 
-                            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<composer>.*?),").Groups;
+                            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<advisory>.*?),").Groups;
                             var advisory = advisoryLog[1].Value;
 
                             // For converting unicode characters to ASCII
@@ -732,8 +736,8 @@ namespace QobuzDownloaderX
                             }
 
                             // Track Name tag
-                            var trackNameLog = Regex.Match(trackRequest, "\"version\":(?<notUsed1>.*?),\"id\":(?<notUsed2>.*?),\"maximum_bit_depth\":(?<notUsed3>.*?),\"title\":\"(?<trackName>.*?)\",\\\"").Groups;
-                            var trackName = trackNameLog[4].Value;
+                            var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
+                            var trackName = trackNameLog[2].Value;
                             trackName = trackName.Trim(); // Remove spaces from end of track name
 
                             // For converting unicode characters to ASCII
@@ -1608,7 +1612,7 @@ namespace QobuzDownloaderX
                 labelName = labelName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
 
                 // Grab all Track IDs listed on the API.
-                string artistAlbumIdspattern = "\"url\":\"(?:.*?)\",\"id\":\"(?<albumIds>.*?)\"";
+                string artistAlbumIdspattern = ",\"maximum_channel_count\":(?<notUsed>.*?),\"id\":\"(?<albumIds>.*?)\",";
                 string input = artistRequest;
                 RegexOptions options = RegexOptions.Multiline;
 
@@ -1658,7 +1662,7 @@ namespace QobuzDownloaderX
 
                         #region Cover Art URL
                         // Grab Cover Art URL
-                        var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"thumbnail\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
+                        var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"large\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
                         var frontCover = frontCoverLog[1].Value;
 
                         // Remove backslashes from the stream URL to have a proper URL.
@@ -1674,8 +1678,8 @@ namespace QobuzDownloaderX
                         }
 
                         string frontCoverImg = imageURLTextbox.Text;
-                        string frontCoverImgBox = frontCoverImg.Replace("_50.jpg", "_150.jpg");
-                        frontCoverImg = frontCoverImg.Replace("_50.jpg", "_max.jpg");
+                        string frontCoverImgBox = frontCoverImg.Replace("_600.jpg", "_150.jpg");
+                        frontCoverImg = frontCoverImg.Replace("_600.jpg", "_max.jpg");
 
                         albumArtPicBox.Invoke(new Action(() => albumArtPicBox.ImageLocation = frontCoverImgBox));
 
@@ -1706,8 +1710,12 @@ namespace QobuzDownloaderX
 
                         // Grab sample rate and bit depth for album.
                         var qualityLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),(?:.*?)\"maximum_bit_depth\":(?<bitDepth>.*?),\"duration\"").Groups;
-                        var sampleRate = qualityLog[1].Value;
-                        var bitDepth = qualityLog[2].Value;
+
+                        var bitDepthLog = Regex.Match(albumRequest, "\"maximum_bit_depth\":(?<bitDepth>.*?),").Groups;
+                        var sampleRateLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),").Groups;
+
+                        var bitDepth = bitDepthLog[1].Value;
+                        var sampleRate = sampleRateLog[1].Value;
                         var quality = "FLAC (" + bitDepth + "bit/" + sampleRate + "kHz)";
                         var qualityPath = quality.Replace(@"\", "-").Replace(@"/", "-");
 
@@ -1784,8 +1792,8 @@ namespace QobuzDownloaderX
                             var discNumber = discNumberLog[1].Value;
 
                             // Album Artist tag
-                            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{\"picture\":(?<notUsed1>.*?),\"id\"(?<notUsed2>.*?),\"albums_count\":(?<notUsed3>.*?),\"name\":\"(?<albumArtist>.*?)\",\\\"").Groups;
-                            var albumArtist = albumArtistLog[4].Value;
+                            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{(?<notUsed>.*?)\"name\":\"(?<albumArtist>.*?)\",").Groups;
+                            var albumArtist = albumArtistLog[2].Value;
 
                             // For converting unicode characters to ASCII
                             string unicodeAlbumArtist = albumArtist;
@@ -1823,11 +1831,11 @@ namespace QobuzDownloaderX
                             }
 
                             // Track Composer tag
-                            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\"},\\\"").Groups;
+                            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
                             var composerName = composerNameLog[2].Value;
 
                             // Track Explicitness 
-                            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<composer>.*?),").Groups;
+                            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<advisory>.*?),").Groups;
                             var advisory = advisoryLog[1].Value;
 
                             // For converting unicode characters to ASCII
@@ -1859,8 +1867,8 @@ namespace QobuzDownloaderX
                             }
 
                             // Track Name tag
-                            var trackNameLog = Regex.Match(trackRequest, "\"version\":(?<notUsed1>.*?),\"id\":(?<notUsed2>.*?),\"maximum_bit_depth\":(?<notUsed3>.*?),\"title\":\"(?<trackName>.*?)\",\\\"").Groups;
-                            var trackName = trackNameLog[4].Value;
+                            var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
+                            var trackName = trackNameLog[2].Value;
                             trackName = trackName.Trim(); // Remove spaces from end of track name
 
                             // For converting unicode characters to ASCII
@@ -2733,7 +2741,7 @@ namespace QobuzDownloaderX
                 string artistRequest = artistsr.ReadToEnd();
 
                 // Grab all Track IDs listed on the API.
-                string artistAlbumIdspattern = "\"url\":\"(?:.*?)\",\"id\":\"(?<albumIds>.*?)\"";
+                string artistAlbumIdspattern = ",\"maximum_channel_count\":(?<notUsed>.*?),\"id\":\"(?<albumIds>.*?)\",";
                 string input = artistRequest;
                 RegexOptions options = RegexOptions.Multiline;
 
@@ -2783,7 +2791,7 @@ namespace QobuzDownloaderX
 
                         #region Cover Art URL
                         // Grab Cover Art URL
-                        var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"thumbnail\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
+                        var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"large\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
                         var frontCover = frontCoverLog[1].Value;
 
                         // Remove backslashes from the stream URL to have a proper URL.
@@ -2799,8 +2807,8 @@ namespace QobuzDownloaderX
                         }
 
                         string frontCoverImg = imageURLTextbox.Text;
-                        string frontCoverImgBox = frontCoverImg.Replace("_50.jpg", "_150.jpg");
-                        frontCoverImg = frontCoverImg.Replace("_50.jpg", "_max.jpg");
+                        string frontCoverImgBox = frontCoverImg.Replace("_600.jpg", "_150.jpg");
+                        frontCoverImg = frontCoverImg.Replace("_600.jpg", "_max.jpg");
 
                         albumArtPicBox.Invoke(new Action(() => albumArtPicBox.ImageLocation = frontCoverImgBox));
 
@@ -2831,8 +2839,12 @@ namespace QobuzDownloaderX
 
                         // Grab sample rate and bit depth for album.
                         var qualityLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),(?:.*?)\"maximum_bit_depth\":(?<bitDepth>.*?),\"duration\"").Groups;
-                        var sampleRate = qualityLog[1].Value;
-                        var bitDepth = qualityLog[2].Value;
+
+                        var bitDepthLog = Regex.Match(albumRequest, "\"maximum_bit_depth\":(?<bitDepth>.*?),").Groups;
+                        var sampleRateLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),").Groups;
+
+                        var bitDepth = bitDepthLog[1].Value;
+                        var sampleRate = sampleRateLog[1].Value;
                         var quality = "FLAC (" + bitDepth + "bit/" + sampleRate + "kHz)";
                         var qualityPath = quality.Replace(@"\", "-").Replace(@"/", "-");
 
@@ -2909,8 +2921,8 @@ namespace QobuzDownloaderX
                             var discNumber = discNumberLog[1].Value;
 
                             // Album Artist tag
-                            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{\"picture\":(?<notUsed1>.*?),\"id\"(?<notUsed2>.*?),\"albums_count\":(?<notUsed3>.*?),\"name\":\"(?<albumArtist>.*?)\",\\\"").Groups;
-                            var albumArtist = albumArtistLog[4].Value;
+                            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{(?<notUsed>.*?)\"name\":\"(?<albumArtist>.*?)\",").Groups;
+                            var albumArtist = albumArtistLog[2].Value;
 
                             // For converting unicode characters to ASCII
                             string unicodeAlbumArtist = albumArtist;
@@ -2948,11 +2960,11 @@ namespace QobuzDownloaderX
                             }
 
                             // Track Composer tag
-                            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\"},\\\"").Groups;
+                            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
                             var composerName = composerNameLog[2].Value;
 
                             // Track Explicitness 
-                            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<composer>.*?),").Groups;
+                            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<advisory>.*?),").Groups;
                             var advisory = advisoryLog[1].Value;
 
                             // For converting unicode characters to ASCII
@@ -2984,8 +2996,8 @@ namespace QobuzDownloaderX
                             }
 
                             // Track Name tag
-                            var trackNameLog = Regex.Match(trackRequest, "\"version\":(?<notUsed1>.*?),\"id\":(?<notUsed2>.*?),\"maximum_bit_depth\":(?<notUsed3>.*?),\"title\":\"(?<trackName>.*?)\",\\\"").Groups;
-                            var trackName = trackNameLog[4].Value;
+                            var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
+                            var trackName = trackNameLog[2].Value;
                             trackName = trackName.Trim(); // Remove spaces from end of track name
 
                             // For converting unicode characters to ASCII
@@ -3863,7 +3875,7 @@ namespace QobuzDownloaderX
 
                 #region Cover Art URL
                 // Grab Cover Art URL
-                var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"thumbnail\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
+                var frontCoverLog = Regex.Match(albumRequest, "\"image\":{\"large\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
                 var frontCover = frontCoverLog[1].Value;
 
                 // Remove backslashes from the stream URL to have a proper URL.
@@ -3879,8 +3891,8 @@ namespace QobuzDownloaderX
                 }
 
                 string frontCoverImg = imageURLTextbox.Text;
-                string frontCoverImgBox = frontCoverImg.Replace("_50.jpg", "_150.jpg");
-                frontCoverImg = frontCoverImg.Replace("_50.jpg", "_max.jpg");
+                string frontCoverImgBox = frontCoverImg.Replace("_600.jpg", "_150.jpg");
+                frontCoverImg = frontCoverImg.Replace("_600.jpg", "_max.jpg");
 
                 albumArtPicBox.Invoke(new Action(() => albumArtPicBox.ImageLocation = frontCoverImgBox));
 
@@ -3911,8 +3923,12 @@ namespace QobuzDownloaderX
 
                 // Grab sample rate and bit depth for album.
                 var qualityLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),(?:.*?)\"maximum_bit_depth\":(?<bitDepth>.*?),\"duration\"").Groups;
-                var sampleRate = qualityLog[1].Value;
-                var bitDepth = qualityLog[2].Value;
+
+                var bitDepthLog = Regex.Match(albumRequest, "\"maximum_bit_depth\":(?<bitDepth>.*?),").Groups;
+                var sampleRateLog = Regex.Match(albumRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),").Groups;
+
+                var bitDepth = bitDepthLog[1].Value;
+                var sampleRate = sampleRateLog[1].Value;
                 var quality = "FLAC (" + bitDepth + "bit/" + sampleRate + "kHz)";
                 var qualityPath = quality.Replace(@"\", "-").Replace(@"/", "-");
 
@@ -3993,8 +4009,8 @@ namespace QobuzDownloaderX
                     var discNumber = discNumberLog[1].Value;
 
                     // Album Artist tag
-                    var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{\"picture\":(?<notUsed1>.*?),\"id\"(?<notUsed2>.*?),\"albums_count\":(?<notUsed3>.*?),\"name\":\"(?<albumArtist>.*?)\",\\\"").Groups;
-                    var albumArtist = albumArtistLog[4].Value;
+                    var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{(?<notUsed>.*?)\"name\":\"(?<albumArtist>.*?)\",").Groups;
+                    var albumArtist = albumArtistLog[2].Value;
 
                         // For converting unicode characters to ASCII
                         string unicodeAlbumArtist = albumArtist;
@@ -4034,11 +4050,11 @@ namespace QobuzDownloaderX
                         }
 
                     // Track Composer tag
-                    var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\"},\\\"").Groups;
+                    var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
                     var composerName = composerNameLog[2].Value;
 
                     // Track Explicitness 
-                    var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<composer>.*?),").Groups;
+                    var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<advisory>.*?),").Groups;
                     var advisory = advisoryLog[1].Value;
 
                         // For converting unicode characters to ASCII
@@ -4072,8 +4088,8 @@ namespace QobuzDownloaderX
                         }
 
                     // Track Name tag
-                    var trackNameLog = Regex.Match(trackRequest, "\"version\":(?<notUsed1>.*?),\"id\":(?<notUsed2>.*?),\"maximum_bit_depth\":(?<notUsed3>.*?),\"title\":\"(?<trackName>.*?)\",\\\"").Groups;
-                    var trackName = trackNameLog[4].Value;
+                    var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
+                    var trackName = trackNameLog[2].Value;
                     trackName = trackName.Trim(); // Remove spaces from end of track name
 
                         // For converting unicode characters to ASCII
@@ -4944,8 +4960,12 @@ namespace QobuzDownloaderX
 
             // Grab sample rate and bit depth for album track is from.
             var qualityLog = Regex.Match(trackRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),(?:.*?)\"maximum_bit_depth\":(?<bitDepth>.*?),\"duration\"").Groups;
-            var sampleRate = qualityLog[1].Value;
-            var bitDepth = qualityLog[2].Value;
+            
+            var bitDepthLog = Regex.Match(trackRequest, "\"maximum_bit_depth\":(?<bitDepth>.*?),").Groups;
+            var sampleRateLog = Regex.Match(trackRequest, "\"maximum_sampling_rate\":(?<sampleRate>.*?),").Groups;
+            
+            var bitDepth = bitDepthLog[1].Value;
+            var sampleRate = sampleRateLog[1].Value;
             var quality = "FLAC (" + bitDepth + "bit/" + sampleRate + "kHz)";
             var qualityPath = quality.Replace(@"\", "-").Replace(@"/", "-");
 
@@ -4970,7 +4990,7 @@ namespace QobuzDownloaderX
 
             #region Cover Art URL
             // Grab Cover Art URL
-            var frontCoverLog = Regex.Match(trackRequest, "\"image\":{\"thumbnail\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
+            var frontCoverLog = Regex.Match(trackRequest, "\"image\":{\"large\":\"(?<frontCover>[A-Za-z0-9:().,\\\\\\/._\\-']+)").Groups;
             var frontCover = frontCoverLog[1].Value;
 
             // Remove backslashes from the stream URL to have a proper URL.
@@ -4986,8 +5006,8 @@ namespace QobuzDownloaderX
             }
 
             string frontCoverImg = imageURLTextbox.Text;
-            string frontCoverImgBox = frontCoverImg.Replace("_50.jpg", "_150.jpg");
-            frontCoverImg = frontCoverImg.Replace("_50.jpg", "_max.jpg");
+            string frontCoverImgBox = frontCoverImg.Replace("_600.jpg", "_150.jpg");
+            frontCoverImg = frontCoverImg.Replace("_600.jpg", "_max.jpg");
 
             albumArtPicBox.Invoke(new Action(() => albumArtPicBox.ImageLocation = frontCoverImgBox));
 
@@ -5027,8 +5047,8 @@ namespace QobuzDownloaderX
             var discNumber = discNumberLog[1].Value;
 
             // Album Artist tag
-            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{\"picture\":(?<notUsed1>.*?),\"id\"(?<notUsed2>.*?),\"albums_count\":(?<notUsed3>.*?),\"name\":\"(?<albumArtist>.*?)\",\\\"").Groups;
-            var albumArtist = albumArtistLog[4].Value;
+            var albumArtistLog = Regex.Match(trackRequest, "\"artist\":{(?<notUsed>.*?)\"name\":\"(?<albumArtist>.*?)\",").Groups;
+            var albumArtist = albumArtistLog[2].Value;
 
             // For converting unicode characters to ASCII
             string unicodeAlbumArtist = albumArtist;
@@ -5066,11 +5086,11 @@ namespace QobuzDownloaderX
             }
 
             // Track Composer tag
-            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\"},\\\"").Groups;
+            var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
             var composerName = composerNameLog[2].Value;
 
             // Track Explicitness 
-            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<composer>.*?),").Groups;
+            var advisoryLog = Regex.Match(trackRequest, "\"performers\":(?:.*?)\"parental_warning\":(?<advisory>.*?),").Groups;
             var advisory = advisoryLog[1].Value;
 
             // For converting unicode characters to ASCII
@@ -5102,8 +5122,8 @@ namespace QobuzDownloaderX
             }
 
             // Track Name tag
-            var trackNameLog = Regex.Match(trackRequest, "\"version\":(?<notUsed1>.*?),\"id\":(?<notUsed2>.*?),\"maximum_bit_depth\":(?<notUsed3>.*?),\"title\":\"(?<trackName>.*?)\",\\\"").Groups;
-            var trackName = trackNameLog[4].Value;
+            var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
+            var trackName = trackNameLog[2].Value;
             trackName = trackName.Trim(); // Remove spaces from end of track name
 
             // For converting unicode characters to ASCII
@@ -5176,8 +5196,9 @@ namespace QobuzDownloaderX
             var isrc = isrcLog[1].Value;
 
             // Total Tracks tag
-            var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+)").Groups;
+            var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+),").Groups;
             var trackTotal = trackTotalLog[1].Value;
+            totalTracksTextbox.Invoke(new Action(() => totalTracksTextbox.Text = trackTotal));
 
             // Total Discs tag
             var discTotalLog = Regex.Match(trackRequest, "\"media_count\":(?<discTotal>[0-9]+)").Groups;
