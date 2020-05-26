@@ -557,7 +557,7 @@ namespace QobuzDownloaderX
 
                         #region "Goodies" URL (Digital Booklets)
                         // Look for "Goodies" (digital booklet)
-                        var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{\"id\":(?<notUsed>.*?),\"original_url\":\"(?<booklet>.*?)\",\\\"").Groups;
+                        var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{(?<notUsed>.*?),\"url\":\"(?<booklet>.*?)\",").Groups;
                         var goodies = goodiesLog[2].Value;
 
                         // Remove backslashes from the stream URL to have a proper URL.
@@ -1688,7 +1688,7 @@ namespace QobuzDownloaderX
 
                         #region "Goodies" URL (Digital Booklets)
                         // Look for "Goodies" (digital booklet)
-                        var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{\"id\":(?<notUsed>.*?),\"original_url\":\"(?<booklet>.*?)\",\\\"").Groups;
+                        var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{(?<notUsed>.*?),\"url\":\"(?<booklet>.*?)\",").Groups;
                         var goodies = goodiesLog[2].Value;
 
                         // Remove backslashes from the stream URL to have a proper URL.
@@ -2817,7 +2817,7 @@ namespace QobuzDownloaderX
 
                         #region "Goodies" URL (Digital Booklets)
                         // Look for "Goodies" (digital booklet)
-                        var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{\"id\":(?<notUsed>.*?),\"original_url\":\"(?<booklet>.*?)\",\\\"").Groups;
+                        var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{(?<notUsed>.*?),\"url\":\"(?<booklet>.*?)\",").Groups;
                         var goodies = goodiesLog[2].Value;
 
                         // Remove backslashes from the stream URL to have a proper URL.
@@ -3901,7 +3901,7 @@ namespace QobuzDownloaderX
 
                 #region "Goodies" URL (Digital Booklets)
                 // Look for "Goodies" (digital booklet)
-                var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{\"id\":(?<notUsed>.*?),\"original_url\":\"(?<booklet>.*?)\",\\\"").Groups;
+                var goodiesLog = Regex.Match(albumRequest, "\"goodies\":\\[{(?<notUsed>.*?),\"url\":\"(?<booklet>.*?)\",").Groups;
                 var goodies = goodiesLog[2].Value;
 
                 // Remove backslashes from the stream URL to have a proper URL.
