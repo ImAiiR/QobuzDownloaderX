@@ -430,5 +430,17 @@ namespace QobuzDownloaderX.Properties {
                 this["savedArtSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool typeTag {
+            get {
+                return ((bool)(this["typeTag"]));
+            }
+            set {
+                this["typeTag"] = value;
+            }
+        }
     }
 }

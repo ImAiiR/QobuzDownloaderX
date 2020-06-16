@@ -56,6 +56,8 @@ namespace QobuzDownloaderX
         public string audioFileType { get; set; }
         public string trackRequest { get; set; }
         public string artSize { get; set; }
+        public string finalTrackNamePath { get; set; }
+        public string finalTrackNameVersionPath { get; set; }
         public int MaxLength { get; set; }
         public int devClickEggThingValue { get; set; }
 
@@ -63,6 +65,8 @@ namespace QobuzDownloaderX
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MaxLength = 36;
+
             // Set main form size on launch and bring to center.
             this.Height = 533;
             this.CenterToScreen();
@@ -112,6 +116,7 @@ namespace QobuzDownloaderX
             discTotalCheckbox.Checked = Settings.Default.totalDiscsTag;
             genreCheckbox.Checked = Settings.Default.genreTag;
             isrcCheckbox.Checked = Settings.Default.isrcTag;
+            typeCheckbox.Checked = Settings.Default.typeTag;
             explicitCheckbox.Checked = Settings.Default.explicitTag;
             trackTitleCheckbox.Checked = Settings.Default.trackTitleTag;
             trackNumberCheckbox.Checked = Settings.Default.trackTag;
@@ -615,9 +620,6 @@ namespace QobuzDownloaderX
 
                         foreach (Match mtrack in Regex.Matches(trackinput, trackIdspattern, trackoptions))
                         {
-                            // Set default value for max length.
-                            const int MaxLength = 36;
-
                             //output.Invoke(new Action(() => output.AppendText(string.Format("{0}\r\n", m.Groups["trackId"].Value))));
                             trackIdString = string.Format("{0}", mtrack.Groups["trackId"].Value);
 
@@ -675,12 +677,6 @@ namespace QobuzDownloaderX
                             // Display album artist in text box under cover art.
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            // If name goes over 200 characters, limit it to 200
-                            if (albumArtistPath.Length > MaxLength)
-                            {
-                                albumArtistPath = albumArtistPath.Substring(0, MaxLength);
-                            }
-
                             // Track Artist tag
                             var performerNameLog = Regex.Match(trackRequest, "\"performer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<trackArtist>.*?)\"},\\\"").Groups;
                             var performerName = performerNameLog[2].Value;
@@ -692,12 +688,6 @@ namespace QobuzDownloaderX
 
                             performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                             var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-                            // If name goes over 200 characters, limit it to 200
-                            if (performerNamePath.Length > MaxLength)
-                            {
-                                performerNamePath = performerNamePath.Substring(0, MaxLength);
-                            }
 
                             // Track Composer tag
                             var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
@@ -729,12 +719,6 @@ namespace QobuzDownloaderX
                             // Display album name in text box under cover art.
                             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
 
-                            // If name goes over 200 characters, limit it to 200
-                            if (albumNamePath.Length > MaxLength)
-                            {
-                                albumNamePath = albumNamePath.Substring(0, MaxLength);
-                            }
-
                             // Track Name tag
                             var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
                             var trackName = trackNameLog[2].Value;
@@ -747,12 +731,6 @@ namespace QobuzDownloaderX
 
                             trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                             var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-                            // If name goes over 200 characters, limit it to 200
-                            if (trackNamePath.Length > MaxLength)
-                            {
-                                trackNamePath = trackNamePath.Substring(0, MaxLength);
-                            }
 
                             // Version Name tag
                             var versionNameLog = Regex.Match(trackRequest, "\"version\":\"(?<version>.*?)\",\\\"").Groups;
@@ -804,6 +782,10 @@ namespace QobuzDownloaderX
                             var isrcLog = Regex.Match(trackRequest, "\"isrc\":\"(?<isrc>.*?)\",\\\"").Groups;
                             var isrc = isrcLog[1].Value;
 
+                            // Release Type tag
+                            var typeLog = Regex.Match(trackRequest, "\"release_type\":\"(?<releaseType>.*?)\",\"").Groups;
+                            var type = typeLog[1].Value.ToUpper();
+
                             // Total Tracks tag
                             var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+)").Groups;
                             var trackTotal = trackTotalLog[1].Value;
@@ -814,6 +796,24 @@ namespace QobuzDownloaderX
                             // Total Discs tag
                             var discTotalLog = Regex.Match(trackRequest, "\"media_count\":(?<discTotal>[0-9]+)").Groups;
                             var discTotal = discTotalLog[1].Value;
+                            #endregion
+
+                            #region Create Shortened Strings
+                            // If name goes over 36 characters, limit it to 36
+                            if (albumArtistPath.Length > MaxLength)
+                            {
+                                albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (performerNamePath.Length > MaxLength)
+                            {
+                                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (albumNamePath.Length > MaxLength)
+                            {
+                                albumNamePath = albumNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
                             #endregion
 
                             #region Filename Number Padding
@@ -866,6 +866,33 @@ namespace QobuzDownloaderX
                             string discogPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate;
                             #endregion
 
+                            #region Create Shortened Strings (Again)
+                            // Create final shortened track file names to avoid errors with file names being too long.
+                            if (versionName == null | versionName == "")
+                            {
+                                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Length > MaxLength)
+                                {
+                                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Substring(0, MaxLength).TrimEnd();
+                                }
+                                else
+                                {
+                                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).TrimEnd();
+                                }
+
+                            }
+                            else
+                            {
+                                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Length > MaxLength)
+                                {
+                                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Substring(0, MaxLength).TrimEnd();
+                                }
+                                else
+                                {
+                                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").TrimEnd();
+                                }
+                            }
+                            #endregion
+
                             #region Availability Check (Streamable?)
                             // Check if available for streaming.
                             var streamCheckLog = Regex.Match(trackRequest, "\"track_number\":(?<notUsed>.*?)\"streamable\":(?<streamCheck>.*?),\"").Groups;
@@ -890,7 +917,7 @@ namespace QobuzDownloaderX
                             // Check if there is a version name.
                             if (versionName == null | versionName == "")
                             {
-                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                if (System.IO.File.Exists(discogPath + "\\" + finalTrackNamePath + audioFileType))
                                 {
                                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + "\" already exists. Skipping.\r\n")));
                                     System.Threading.Thread.Sleep(400);
@@ -899,7 +926,7 @@ namespace QobuzDownloaderX
                             }
                             else
                             {
-                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                if (System.IO.File.Exists(discogPath + "\\" + finalTrackNameVersionPath + audioFileType))
                                 {
                                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + " (" + versionName + ")" + "\" already exists. Skipping.\r\n")));
                                     System.Threading.Thread.Sleep(400);
@@ -941,7 +968,7 @@ namespace QobuzDownloaderX
                                     if (versionNamePath == null | versionNamePath == "")
                                     {
                                         // If there is NOT a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -949,7 +976,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -994,7 +1021,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -1105,6 +1132,16 @@ namespace QobuzDownloaderX
                                             tag.SetTextFrame("TSRC", isrc);
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                                tag.SetTextFrame("TMED", type);
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -1117,7 +1154,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -1228,6 +1265,16 @@ namespace QobuzDownloaderX
                                             tag.SetTextFrame("TSRC", isrc);
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                                tag.SetTextFrame("TMED", type);
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -1247,7 +1294,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -1356,6 +1403,15 @@ namespace QobuzDownloaderX
                                             custom.SetField("ISRC", new string[] { isrc });
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                custom.SetField("MEDIATYPE", new string[] { type });
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -1368,7 +1424,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -1475,6 +1531,15 @@ namespace QobuzDownloaderX
                                         if (isrcCheckbox.Checked == true)
                                         {
                                             custom.SetField("ISRC", new string[] { isrc });
+                                        }
+
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                custom.SetField("MEDIATYPE", new string[] { type });
+                                            }
                                         }
 
                                         // Explicit tag
@@ -1610,6 +1675,7 @@ namespace QobuzDownloaderX
                 var labelName = labelNameLog[1].Value;
 
                 labelName = labelName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
+                var labelNamePath = labelName;
 
                 // Grab all Track IDs listed on the API.
                 string artistAlbumIdspattern = ",\"maximum_channel_count\":(?<notUsed>.*?),\"id\":\"(?<albumIds>.*?)\",";
@@ -1746,9 +1812,6 @@ namespace QobuzDownloaderX
 
                         foreach (Match mtrack in Regex.Matches(trackinput, trackIdspattern, trackoptions))
                         {
-                            // Set default value for max length.
-                            const int MaxLength = 36;
-
                             //output.Invoke(new Action(() => output.AppendText(string.Format("{0}\r\n", m.Groups["trackId"].Value))));
                             trackIdString = string.Format("{0}", mtrack.Groups["trackId"].Value);
 
@@ -1806,12 +1869,6 @@ namespace QobuzDownloaderX
                             // Display album artist in text box under cover art.
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            // If name goes over 200 characters, limit it to 200
-                            if (albumArtistPath.Length > MaxLength)
-                            {
-                                albumArtistPath = albumArtistPath.Substring(0, MaxLength);
-                            }
-
                             // Track Artist tag
                             var performerNameLog = Regex.Match(trackRequest, "\"performer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<trackArtist>.*?)\"},\\\"").Groups;
                             var performerName = performerNameLog[2].Value;
@@ -1823,12 +1880,6 @@ namespace QobuzDownloaderX
 
                             performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                             var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-                            // If name goes over 200 characters, limit it to 200
-                            if (performerNamePath.Length > MaxLength)
-                            {
-                                performerNamePath = performerNamePath.Substring(0, MaxLength);
-                            }
 
                             // Track Composer tag
                             var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
@@ -1860,12 +1911,6 @@ namespace QobuzDownloaderX
                             // Display album name in text box under cover art.
                             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
 
-                            // If name goes over 200 characters, limit it to 200
-                            if (albumNamePath.Length > MaxLength)
-                            {
-                                albumNamePath = albumNamePath.Substring(0, MaxLength);
-                            }
-
                             // Track Name tag
                             var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
                             var trackName = trackNameLog[2].Value;
@@ -1878,12 +1923,6 @@ namespace QobuzDownloaderX
 
                             trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                             var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-                            // If name goes over 200 characters, limit it to 200
-                            if (trackNamePath.Length > MaxLength)
-                            {
-                                trackNamePath = trackNamePath.Substring(0, MaxLength);
-                            }
 
                             // Version Name tag
                             var versionNameLog = Regex.Match(trackRequest, "\"version\":\"(?<version>.*?)\",\\\"").Groups;
@@ -1935,6 +1974,10 @@ namespace QobuzDownloaderX
                             var isrcLog = Regex.Match(trackRequest, "\"isrc\":\"(?<isrc>.*?)\",\\\"").Groups;
                             var isrc = isrcLog[1].Value;
 
+                            // Release Type tag
+                            var typeLog = Regex.Match(trackRequest, "\"release_type\":\"(?<releaseType>.*?)\",\"").Groups;
+                            var type = typeLog[1].Value.ToUpper();
+
                             // Total Tracks tag
                             var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+)").Groups;
                             var trackTotal = trackTotalLog[1].Value;
@@ -1945,6 +1988,34 @@ namespace QobuzDownloaderX
                             // Total Discs tag
                             var discTotalLog = Regex.Match(trackRequest, "\"media_count\":(?<discTotal>[0-9]+)").Groups;
                             var discTotal = discTotalLog[1].Value;
+                            #endregion
+
+                            #region Create Shortened Strings
+                            // If name goes over 36 characters, limit it to 36
+                            if (albumArtistPath.Length > MaxLength)
+                            {
+                                albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (performerNamePath.Length > MaxLength)
+                            {
+                                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (albumNamePath.Length > MaxLength)
+                            {
+                                albumNamePath = albumNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (albumNamePath.Length > MaxLength)
+                            {
+                                albumNamePath = albumNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (labelNamePath.Length > MaxLength)
+                            {
+                                labelNamePath = labelNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
                             #endregion
 
                             #region Filename Number Padding
@@ -1989,12 +2060,39 @@ namespace QobuzDownloaderX
                                 discFolderCreate = "\\CD " + discNumber.PadLeft(paddingDiscLength, '0') + "\\";
                             }
 
-                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath);
-                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]");
-                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath);
-                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate);
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath);
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]");
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath);
+                            System.IO.Directory.CreateDirectory(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate);
 
                             string discogPath = loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate;
+                            #endregion
+
+                            #region Create Shortened Strings (Again)
+                            // Create final shortened track file names to avoid errors with file names being too long.
+                            if (versionName == null | versionName == "")
+                            {
+                                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Length > MaxLength)
+                                {
+                                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Substring(0, MaxLength).TrimEnd();
+                                }
+                                else
+                                {
+                                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).TrimEnd();
+                                }
+
+                            }
+                            else
+                            {
+                                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Length > MaxLength)
+                                {
+                                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Substring(0, MaxLength).TrimEnd();
+                                }
+                                else
+                                {
+                                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").TrimEnd();
+                                }
+                            }
                             #endregion
 
                             #region Availability Check (Streamable?)
@@ -2021,7 +2119,7 @@ namespace QobuzDownloaderX
                             // Check if there is a version name.
                             if (versionName == null | versionName == "")
                             {
-                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                if (System.IO.File.Exists(discogPath + "\\" + finalTrackNamePath + audioFileType))
                                 {
                                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + "\" already exists. Skipping.\r\n")));
                                     System.Threading.Thread.Sleep(400);
@@ -2030,7 +2128,7 @@ namespace QobuzDownloaderX
                             }
                             else
                             {
-                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                if (System.IO.File.Exists(discogPath + "\\" + finalTrackNameVersionPath + audioFileType))
                                 {
                                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + " (" + versionName + ")" + "\" already exists. Skipping.\r\n")));
                                     System.Threading.Thread.Sleep(400);
@@ -2072,7 +2170,7 @@ namespace QobuzDownloaderX
                                     if (versionNamePath == null | versionNamePath == "")
                                     {
                                         // If there is NOT a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -2080,7 +2178,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -2088,14 +2186,14 @@ namespace QobuzDownloaderX
                                 #endregion
 
                                 #region Cover Art Saving
-                                if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg"))
+                                if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg"))
                                 {
                                     // Skip, don't re-download.
 
                                     // Download selected cover art size for tagging files (Currently happens every time a track is downloaded).
                                     using (WebClient imgClient = new WebClient())
                                     {
-                                        imgClient.DownloadFile(new Uri(frontCoverImg.Replace("_max", "_" + artSize)), loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
+                                        imgClient.DownloadFile(new Uri(frontCoverImg.Replace("_max", "_" + artSize)), loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
                                     }
                                 }
                                 else
@@ -2106,10 +2204,10 @@ namespace QobuzDownloaderX
                                         using (WebClient imgClient = new WebClient())
                                         {
                                             // Download max quality Cover Art to "Cover.jpg" file in chosen path. 
-                                            imgClient.DownloadFile(new Uri(frontCoverImg), loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg");
+                                            imgClient.DownloadFile(new Uri(frontCoverImg), loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Cover.jpg");
 
                                             // Download selected cover art size for tagging files (Currently happens every time a track is downloaded).
-                                            imgClient.DownloadFile(new Uri(frontCoverImg.Replace("_max", "_" + artSize)), loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
+                                            imgClient.DownloadFile(new Uri(frontCoverImg.Replace("_max", "_" + artSize)), loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
                                         }
                                     }
                                 }
@@ -2125,7 +2223,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -2138,7 +2236,7 @@ namespace QobuzDownloaderX
                                             pic.TextEncoding = TagLib.StringType.Latin1;
                                             pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
                                             pic.Type = TagLib.PictureType.FrontCover;
-                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
 
                                             // Save cover art to MP3 file.
                                             tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
@@ -2236,6 +2334,16 @@ namespace QobuzDownloaderX
                                             tag.SetTextFrame("TSRC", isrc);
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                                tag.SetTextFrame("TMED", type);
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -2248,7 +2356,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -2261,7 +2369,7 @@ namespace QobuzDownloaderX
                                             pic.TextEncoding = TagLib.StringType.Latin1;
                                             pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
                                             pic.Type = TagLib.PictureType.FrontCover;
-                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
 
                                             // Save cover art to FLAC file.
                                             tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
@@ -2359,6 +2467,16 @@ namespace QobuzDownloaderX
                                             tag.SetTextFrame("TSRC", isrc);
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                                tag.SetTextFrame("TMED", type);
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -2378,7 +2496,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -2391,7 +2509,7 @@ namespace QobuzDownloaderX
                                             pic.TextEncoding = TagLib.StringType.Latin1;
                                             pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
                                             pic.Type = TagLib.PictureType.FrontCover;
-                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
 
                                             // Save cover art to FLAC file.
                                             tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
@@ -2487,6 +2605,15 @@ namespace QobuzDownloaderX
                                             custom.SetField("ISRC", new string[] { isrc });
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                custom.SetField("MEDIATYPE", new string[] { type });
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -2499,7 +2626,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -2512,7 +2639,7 @@ namespace QobuzDownloaderX
                                             pic.TextEncoding = TagLib.StringType.Latin1;
                                             pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
                                             pic.Type = TagLib.PictureType.FrontCover;
-                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
+                                            pic.Data = TagLib.ByteVector.FromPath(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
 
                                             // Save cover art to FLAC file.
                                             tfile.Tag.Pictures = new TagLib.IPicture[1] { pic };
@@ -2608,6 +2735,15 @@ namespace QobuzDownloaderX
                                             custom.SetField("ISRC", new string[] { isrc });
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                custom.SetField("MEDIATYPE", new string[] { type });
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -2629,7 +2765,7 @@ namespace QobuzDownloaderX
                                 }
                                 else
                                 {
-                                    if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Digital Booklet.pdf"))
+                                    if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Digital Booklet.pdf"))
                                     {
                                         // Skip, don't re-download.
                                     }
@@ -2640,7 +2776,7 @@ namespace QobuzDownloaderX
                                         using (WebClient bookClient = new WebClient())
                                         {
                                             // Download max quality Cover Art to "Cover.jpg" file in chosen path. 
-                                            bookClient.DownloadFile(new Uri(goodiesPDF), loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Digital Booklet.pdf");
+                                            bookClient.DownloadFile(new Uri(goodiesPDF), loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + "Digital Booklet.pdf");
                                         }
                                     }
                                 }
@@ -2663,9 +2799,9 @@ namespace QobuzDownloaderX
                             }
 
                             // Delete image file used for tagging
-                            if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg"))
+                            if (System.IO.File.Exists(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg"))
                             {
-                                System.IO.File.Delete(loc + "\\" + "- Labels" + "\\" + labelName + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
+                                System.IO.File.Delete(loc + "\\" + "- Labels" + "\\" + labelNamePath + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + artSize + ".jpg");
                             }
 
                             // Say when a track is done downloading, then wait for the next track / end.
@@ -2935,12 +3071,6 @@ namespace QobuzDownloaderX
                             // Display album artist in text box under cover art.
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            // If name goes over 200 characters, limit it to 200
-                            if (albumArtistPath.Length > MaxLength)
-                            {
-                                albumArtistPath = albumArtistPath.Substring(0, MaxLength);
-                            }
-
                             // Track Artist tag
                             var performerNameLog = Regex.Match(trackRequest, "\"performer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<trackArtist>.*?)\"},\\\"").Groups;
                             var performerName = performerNameLog[2].Value;
@@ -2952,12 +3082,6 @@ namespace QobuzDownloaderX
 
                             performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                             var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-                            // If name goes over 200 characters, limit it to 200
-                            if (performerNamePath.Length > MaxLength)
-                            {
-                                performerNamePath = performerNamePath.Substring(0, MaxLength);
-                            }
 
                             // Track Composer tag
                             var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
@@ -2989,12 +3113,6 @@ namespace QobuzDownloaderX
                             // Display album name in text box under cover art.
                             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
 
-                            // If name goes over 200 characters, limit it to 200
-                            if (albumNamePath.Length > MaxLength)
-                            {
-                                albumNamePath = albumNamePath.Substring(0, MaxLength);
-                            }
-
                             // Track Name tag
                             var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
                             var trackName = trackNameLog[2].Value;
@@ -3007,12 +3125,6 @@ namespace QobuzDownloaderX
 
                             trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                             var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-                            // If name goes over 200 characters, limit it to 200
-                            if (trackNamePath.Length > MaxLength)
-                            {
-                                trackNamePath = trackNamePath.Substring(0, MaxLength);
-                            }
 
                             // Version Name tag
                             var versionNameLog = Regex.Match(trackRequest, "\"version\":\"(?<version>.*?)\",\\\"").Groups;
@@ -3064,6 +3176,10 @@ namespace QobuzDownloaderX
                             var isrcLog = Regex.Match(trackRequest, "\"isrc\":\"(?<isrc>.*?)\",\\\"").Groups;
                             var isrc = isrcLog[1].Value;
 
+                            // Release Type tag
+                            var typeLog = Regex.Match(trackRequest, "\"release_type\":\"(?<releaseType>.*?)\",\"").Groups;
+                            var type = typeLog[1].Value.ToUpper();
+
                             // Total Tracks tag
                             var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+)").Groups;
                             var trackTotal = trackTotalLog[1].Value;
@@ -3074,6 +3190,24 @@ namespace QobuzDownloaderX
                             // Total Discs tag
                             var discTotalLog = Regex.Match(trackRequest, "\"media_count\":(?<discTotal>[0-9]+)").Groups;
                             var discTotal = discTotalLog[1].Value;
+                            #endregion
+
+                            #region Create Shortened Strings
+                            // If name goes over 36 characters, limit it to 36
+                            if (albumArtistPath.Length > MaxLength)
+                            {
+                                albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (performerNamePath.Length > MaxLength)
+                            {
+                                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
+
+                            if (albumNamePath.Length > MaxLength)
+                            {
+                                albumNamePath = albumNamePath.Substring(0, MaxLength).TrimEnd();
+                            }
                             #endregion
 
                             #region Filename Number Padding
@@ -3126,6 +3260,33 @@ namespace QobuzDownloaderX
                             string discogPath = loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + discFolderCreate;
                             #endregion
 
+                            #region Create Shortened Strings (Again)
+                            // Create final shortened track file names to avoid errors with file names being too long.
+                            if (versionName == null | versionName == "")
+                            {
+                                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Length > MaxLength)
+                                {
+                                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Substring(0, MaxLength).TrimEnd();
+                                }
+                                else
+                                {
+                                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).TrimEnd();
+                                }
+
+                            }
+                            else
+                            {
+                                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Length > MaxLength)
+                                {
+                                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Substring(0, MaxLength).TrimEnd();
+                                }
+                                else
+                                {
+                                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").TrimEnd();
+                                }
+                            }
+                            #endregion
+
                             #region Availability Check (Streamable?)
                             // Check if available for streaming.
                             var streamCheckLog = Regex.Match(trackRequest, "\"track_number\":(?<notUsed>.*?)\"streamable\":(?<streamCheck>.*?),\"").Groups;
@@ -3150,7 +3311,7 @@ namespace QobuzDownloaderX
                             // Check if there is a version name.
                             if (versionName == null | versionName == "")
                             {
-                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                if (System.IO.File.Exists(discogPath + "\\" + finalTrackNamePath + audioFileType))
                                 {
                                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + "\" already exists. Skipping.\r\n")));
                                     System.Threading.Thread.Sleep(400);
@@ -3159,7 +3320,7 @@ namespace QobuzDownloaderX
                             }
                             else
                             {
-                                if (System.IO.File.Exists(discogPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                if (System.IO.File.Exists(discogPath + "\\" + finalTrackNameVersionPath + audioFileType))
                                 {
                                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + " (" + versionName + ")" + "\" already exists. Skipping.\r\n")));
                                     System.Threading.Thread.Sleep(400);
@@ -3201,7 +3362,7 @@ namespace QobuzDownloaderX
                                     if (versionNamePath == null | versionNamePath == "")
                                     {
                                         // If there is NOT a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -3209,7 +3370,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        using (var output = System.IO.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                        using (var output = System.IO.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType))
                                         {
                                             await stream.CopyToAsync(output);
                                         }
@@ -3254,7 +3415,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -3365,6 +3526,16 @@ namespace QobuzDownloaderX
                                             tag.SetTextFrame("TSRC", isrc);
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                                tag.SetTextFrame("TMED", type);
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -3377,7 +3548,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                         // For custom / troublesome tags.
                                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -3488,6 +3659,16 @@ namespace QobuzDownloaderX
                                             tag.SetTextFrame("TSRC", isrc);
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                                tag.SetTextFrame("TMED", type);
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -3507,7 +3688,7 @@ namespace QobuzDownloaderX
                                     if (versionName == null | versionName == "")
                                     {
                                         // If there is NOT a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -3616,6 +3797,15 @@ namespace QobuzDownloaderX
                                             custom.SetField("ISRC", new string[] { isrc });
                                         }
 
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                custom.SetField("MEDIATYPE", new string[] { type });
+                                            }
+                                        }
+
                                         // Explicit tag
                                         if (explicitCheckbox.Checked == true)
                                         {
@@ -3628,7 +3818,7 @@ namespace QobuzDownloaderX
                                     else
                                     {
                                         // If there is a version name.
-                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                        var tfile = TagLib.File.Create(loc + "\\" + "- Favorites" + "\\" + albumArtistPath + "\\" + albumNamePath + " [" + albumIdDiscog + "]" + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                         // For custom / troublesome tags.
                                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -3735,6 +3925,15 @@ namespace QobuzDownloaderX
                                         if (isrcCheckbox.Checked == true)
                                         {
                                             custom.SetField("ISRC", new string[] { isrc });
+                                        }
+
+                                        // Release Type tag
+                                        if (type != null)
+                                        {
+                                            if (typeCheckbox.Checked == true)
+                                            {
+                                                custom.SetField("MEDIATYPE", new string[] { type });
+                                            }
                                         }
 
                                         // Explicit tag
@@ -3959,9 +4158,6 @@ namespace QobuzDownloaderX
 
                 foreach (Match m in Regex.Matches(input, trackIdspattern, options))
                 {
-                    // Set default value for max length.
-                    const int MaxLength = 36;
-                    
                     // Grab matches for Track IDs
                     trackIdString = string.Format("{0}", m.Groups["trackId"].Value);
 
@@ -4024,12 +4220,6 @@ namespace QobuzDownloaderX
                         // Display album artist in text box under cover art.
                         albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                        // If name goes over 200 characters, limit it to 200
-                        if (albumArtistPath.Length > MaxLength)
-                        {
-                            albumArtistPath = albumArtistPath.Substring(0, MaxLength);
-                        }
-
                     // Track Artist tag
                     var performerNameLog = Regex.Match(trackRequest, "\"performer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<trackArtist>.*?)\"},\\\"").Groups;
                     var performerName = performerNameLog[2].Value;
@@ -4042,12 +4232,6 @@ namespace QobuzDownloaderX
                         // Replace double slashes & path unfriendly characters
                         performerName = performerName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                         var performerNamePath = performerName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-                        // If name goes over 200 characters, limit it to 200
-                        if (performerNamePath.Length > MaxLength)
-                        {
-                            performerNamePath = performerNamePath.Substring(0, MaxLength);
-                        }
 
                     // Track Composer tag
                     var composerNameLog = Regex.Match(trackRequest, "\"composer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<composer>.*?)\",").Groups;
@@ -4081,12 +4265,6 @@ namespace QobuzDownloaderX
                         // Display album name in text box under cover art.
                         albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
 
-                        // If name goes over 200 characters, limit it to 200
-                        if (albumNamePath.Length > MaxLength)
-                        {
-                            albumNamePath = albumNamePath.Substring(0, MaxLength);
-                        }
-
                     // Track Name tag
                     var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
                     var trackName = trackNameLog[2].Value;
@@ -4101,12 +4279,6 @@ namespace QobuzDownloaderX
                         trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                         var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
 
-                        // If name goes over 200 characters, limit it to 200
-                        if (trackNamePath.Length > MaxLength)
-                        {
-                            trackNamePath = trackNamePath.Substring(0, MaxLength);
-                        }
-
                     // Version Name tag
                     var versionNameLog = Regex.Match(trackRequest, "\"version\":\"(?<version>.*?)\",\\\"").Groups;
                     var versionName = versionNameLog[1].Value;
@@ -4119,12 +4291,6 @@ namespace QobuzDownloaderX
                         // Replace double slashes & path unfriendly characters
                         versionName = versionName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
                         var versionNamePath = versionName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-                        
-                        //// If name goes over 200 characters, limit it to 200
-                        //if (trackNamePath.Length + versionNamePath.Length > MaxLength)
-                        //{
-                        //    versionNamePath = null;
-                        //}
 
                     // Genre tag
                     var genreLog = Regex.Match(trackRequest, "\"genre\":{\"id\":(?<notUsed>.*?),\"color\":\"(?<notUsed2>.*?)\",\"name\":\"(?<genreName>.*?)\",\\\"").Groups;
@@ -4164,6 +4330,10 @@ namespace QobuzDownloaderX
                     var isrcLog = Regex.Match(trackRequest, "\"isrc\":\"(?<isrc>.*?)\",\\\"").Groups;
                     var isrc = isrcLog[1].Value;
 
+                    // Release Type tag
+                    var typeLog = Regex.Match(trackRequest, "\"release_type\":\"(?<releaseType>.*?)\",\"").Groups;
+                    var type = typeLog[1].Value.ToUpper();
+
                     // Total Tracks tag
                     var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+)").Groups;
                     var trackTotal = trackTotalLog[1].Value;
@@ -4174,6 +4344,24 @@ namespace QobuzDownloaderX
                     // Total Discs tag
                     var discTotalLog = Regex.Match(trackRequest, "\"media_count\":(?<discTotal>[0-9]+)").Groups;
                     var discTotal = discTotalLog[1].Value;
+                    #endregion
+
+                    #region Create Shortened Strings
+                    // If name goes over 36 characters, limit it to 36
+                    if (albumArtistPath.Length > MaxLength)
+                    {
+                        albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
+                    }
+
+                    if (performerNamePath.Length > MaxLength)
+                    {
+                        performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                    }
+
+                    if (albumNamePath.Length > MaxLength)
+                    {
+                        albumNamePath = albumNamePath.Substring(0, MaxLength).TrimEnd();
+                    }
                     #endregion
 
                     #region Filename Number Padding
@@ -4228,6 +4416,33 @@ namespace QobuzDownloaderX
                     string albumPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + discFolderCreate;
                     #endregion
 
+                    #region Create Shortened Strings (Again)
+                    // Create final shortened track file names to avoid errors with file names being too long.
+                    if (versionName == null | versionName == "")
+                    {
+                        if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Length > MaxLength)
+                        {
+                            finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Substring(0, MaxLength).TrimEnd();
+                        }
+                        else
+                        {
+                            finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).TrimEnd();
+                        }
+                            
+                    }
+                    else
+                    {
+                        if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Length > MaxLength)
+                        {
+                            finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Substring(0, MaxLength).TrimEnd();
+                        }
+                        else
+                        {
+                            finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").TrimEnd();
+                        }
+                    }
+                    #endregion
+
                     #region Availability Check (Streamable?)
                     // Check if available for streaming.
                     var streamCheckLog = Regex.Match(trackRequest, "\"track_number\":(?<notUsed>.*?)\"streamable\":(?<streamCheck>.*?),\"").Groups;
@@ -4252,7 +4467,7 @@ namespace QobuzDownloaderX
                     // Check if there is a version name.
                     if (versionName == null | versionName == "")
                     {
-                        if (System.IO.File.Exists(albumPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                        if (System.IO.File.Exists(albumPath + "\\" + finalTrackNamePath + audioFileType))
                         {
                             output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + "\" already exists. Skipping.\r\n")));
                             System.Threading.Thread.Sleep(400);
@@ -4261,7 +4476,7 @@ namespace QobuzDownloaderX
                     }
                     else
                     {
-                        if (System.IO.File.Exists(albumPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                        if (System.IO.File.Exists(albumPath + "\\" + finalTrackNameVersionPath + audioFileType))
                         {
                             output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + " (" + versionName + ")" + "\" already exists. Skipping.\r\n")));
                             System.Threading.Thread.Sleep(400);
@@ -4304,7 +4519,7 @@ namespace QobuzDownloaderX
                             if (versionNamePath == null | versionNamePath == "")
                             {
                                 // If there is NOT a version name.
-                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType))
                                 {
                                     await stream.CopyToAsync(output);
                                 }
@@ -4312,7 +4527,7 @@ namespace QobuzDownloaderX
                             else
                             {
                                 // If there is a version name.
-                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                                using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType))
                                 {
                                     await stream.CopyToAsync(output);
                                 }
@@ -4355,7 +4570,7 @@ namespace QobuzDownloaderX
                             if (versionName == null | versionName == "")
                             {
                                 // If there is NOT a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                 // For custom / troublesome tags.
                                 TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -4466,6 +4681,16 @@ namespace QobuzDownloaderX
                                     tag.SetTextFrame("TSRC", isrc);
                                 }
 
+                                // Release Type tag
+                                if (type != null)
+                                {
+                                    if (typeCheckbox.Checked == true)
+                                    {
+                                        TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                        tag.SetTextFrame("TMED", type);
+                                    }
+                                }
+
                                 // Explicit tag
                                 if (explicitCheckbox.Checked == true)
                                 {
@@ -4478,7 +4703,7 @@ namespace QobuzDownloaderX
                             else
                             {
                                 // If there is a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                 // For custom / troublesome tags.
                                 TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -4589,6 +4814,16 @@ namespace QobuzDownloaderX
                                     tag.SetTextFrame("TSRC", isrc);
                                 }
 
+                                // Release Type tag
+                                if (type != null)
+                                {
+                                    if (typeCheckbox.Checked == true)
+                                    {
+                                        TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                        tag.SetTextFrame("TMED", type);
+                                    }
+                                }
+
                                 // Explicit tag
                                 if (explicitCheckbox.Checked == true)
                                 {
@@ -4608,7 +4843,7 @@ namespace QobuzDownloaderX
                             if (versionName == null | versionName == "")
                             {
                                 // If there is NOT a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                                 // For custom / troublesome tags.
                                 var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -4717,6 +4952,15 @@ namespace QobuzDownloaderX
                                     custom.SetField("ISRC", new string[] { isrc });
                                 }
 
+                                // Release Type tag
+                                if (type != null)
+                                {
+                                    if (typeCheckbox.Checked == true)
+                                    {
+                                        custom.SetField("MEDIATYPE", new string[] { type });
+                                    }
+                                }
+
                                 // Explicit tag
                                 if (explicitCheckbox.Checked == true)
                                 {
@@ -4729,7 +4973,7 @@ namespace QobuzDownloaderX
                             else
                             {
                                 // If there is a version name.
-                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                                var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                                 // For custom / troublesome tags.
                                 var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -4838,6 +5082,15 @@ namespace QobuzDownloaderX
                                     custom.SetField("ISRC", new string[] { isrc });
                                 }
 
+                                // Release Type tag
+                                if (type != null)
+                                {
+                                    if (typeCheckbox.Checked == true)
+                                    {
+                                        custom.SetField("MEDIATYPE", new string[] { type });
+                                    }
+                                }
+
                                 // Explicit tag
                                 if (explicitCheckbox.Checked == true)
                                 {
@@ -4938,9 +5191,6 @@ namespace QobuzDownloaderX
         private async void downloadTrackBG_DoWork(object sender, DoWorkEventArgs e)
         {
             #region If URL has "track"
-            // Set default value for max length.
-            const int MaxLength = 36;
-
             // Set "loc" as the selected path.
             String loc = folderBrowserDialog.SelectedPath;
 
@@ -5061,12 +5311,6 @@ namespace QobuzDownloaderX
             // Display album artist in text box under cover art.
             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-            // If name goes over 200 characters, limit it to 200
-            if (albumArtistPath.Length > MaxLength)
-            {
-                albumArtistPath = albumArtistPath.Substring(0, MaxLength);
-            }
-
             // Track Artist tag
             var performerNameLog = Regex.Match(trackRequest, "\"performer\":{\"id\":(?<notUsed>.*?),\"name\":\"(?<trackArtist>.*?)\"},\\\"").Groups;
             var performerName = performerNameLog[2].Value;
@@ -5115,12 +5359,6 @@ namespace QobuzDownloaderX
             // Display album name in text box under cover art.
             albumTextBox.Invoke(new Action(() => albumTextBox.Text = albumName));
 
-            // If name goes over 200 characters, limit it to 200
-            if (albumNamePath.Length > MaxLength)
-            {
-                albumNamePath = albumNamePath.Substring(0, MaxLength);
-            }
-
             // Track Name tag
             var trackNameLog = Regex.Match(trackRequest, "\"isrc\":\"(?<notUsed>.*?)\",\"title\":\"(?<trackName>.*?)\",\"").Groups;
             var trackName = trackNameLog[2].Value;
@@ -5133,12 +5371,6 @@ namespace QobuzDownloaderX
 
             trackName = trackName.Replace("\\\"", "\"").Replace(@"\\/", @"/").Replace(@"\\", @"\").Replace(@"\/", @"/");
             var trackNamePath = trackName.Replace("\\\"", "-").Replace("\"", "-").Replace(@"\", "-").Replace(@"/", "-").Replace(":", "-").Replace("<", "-").Replace(">", "-").Replace("|", "-").Replace("?", "-").Replace("*", "-");
-
-            // If name goes over 200 characters, limit it to 200
-            if (trackNamePath.Length > MaxLength)
-            {
-                trackNamePath = trackNamePath.Substring(0, MaxLength).ToString();
-            }
 
             // Version Name tag
             var versionNameLog = Regex.Match(trackRequest, "\"version\":\"(?<version>.*?)\",\\\"").Groups;
@@ -5195,6 +5427,10 @@ namespace QobuzDownloaderX
             var isrcLog = Regex.Match(trackRequest, "\"isrc\":\"(?<isrc>.*?)\",\\\"").Groups;
             var isrc = isrcLog[1].Value;
 
+            // Release Type tag
+            var typeLog = Regex.Match(trackRequest, "\"release_type\":\"(?<releaseType>.*?)\",\"").Groups;
+            var type = typeLog[1].Value.ToUpper();
+
             // Total Tracks tag
             var trackTotalLog = Regex.Match(trackRequest, "\"tracks_count\":(?<trackCount>[0-9]+),").Groups;
             var trackTotal = trackTotalLog[1].Value;
@@ -5235,6 +5471,24 @@ namespace QobuzDownloaderX
             }
             #endregion
 
+            #region Create Shortened Strings
+            // If name goes over 36 characters, limit it to 36
+            if (albumArtistPath.Length > MaxLength)
+            {
+                albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
+            }
+
+            if (performerNamePath.Length > MaxLength)
+            {
+                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+            }
+
+            if (albumNamePath.Length > MaxLength)
+            {
+                albumNamePath = albumNamePath.Substring(0, MaxLength).TrimEnd();
+            }
+            #endregion
+
             #region Create Directories
             // Create strings for disc folders
             string discFolder = null;
@@ -5255,6 +5509,33 @@ namespace QobuzDownloaderX
 
             // Set albumPath to the created directories.
             string trackPath = loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + discFolderCreate;
+            #endregion
+
+            #region Create Shortened Strings (Again)
+            // Create final shortened track file names to avoid errors with file names being too long.
+            if (versionName == null | versionName == "")
+            {
+                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Length > MaxLength)
+                {
+                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).Substring(0, MaxLength).TrimEnd();
+                }
+                else
+                {
+                    finalTrackNamePath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath).TrimEnd();
+                }
+
+            }
+            else
+            {
+                if ((trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Length > MaxLength)
+                {
+                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").Substring(0, MaxLength).TrimEnd();
+                }
+                else
+                {
+                    finalTrackNameVersionPath = (trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath + " (" + versionNamePath + ")").TrimEnd();
+                }
+            }
             #endregion
 
             #region Availability Check (Streamable?)
@@ -5286,7 +5567,7 @@ namespace QobuzDownloaderX
             // Check if there is a version name.
             if (versionName == null | versionName == "")
             {
-                if (System.IO.File.Exists(trackPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                if (System.IO.File.Exists(trackPath + "\\" + finalTrackNamePath + audioFileType))
                 {
                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + "\" already exists. Skipping.\r\n")));
                     System.Threading.Thread.Sleep(400);
@@ -5300,7 +5581,7 @@ namespace QobuzDownloaderX
             }
             else
             {
-                if (System.IO.File.Exists(trackPath + "\\" + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                if (System.IO.File.Exists(trackPath + "\\" + finalTrackNameVersionPath + audioFileType))
                 {
                     output.Invoke(new Action(() => output.AppendText("File for \"" + trackNumber.PadLeft(paddingLength, '0') + " " + trackName + " (" + versionName + ")" + "\" already exists. Skipping.\r\n")));
                     System.Threading.Thread.Sleep(400);
@@ -5348,7 +5629,7 @@ namespace QobuzDownloaderX
                     if (versionNamePath == null | versionNamePath == "")
                     {
                         // If there is NOT a version name.
-                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType))
+                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType))
                         {
                             await stream.CopyToAsync(output);
                         }
@@ -5356,7 +5637,7 @@ namespace QobuzDownloaderX
                     else
                     {
                         // If there is a version name.
-                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType))
+                        using (var output = System.IO.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType))
                         {
                             await stream.CopyToAsync(output);
                         }
@@ -5398,7 +5679,7 @@ namespace QobuzDownloaderX
                     if (versionName == null | versionName == "")
                     {
                         // If there is NOT a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                         // For custom / troublesome tags.
                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -5509,6 +5790,16 @@ namespace QobuzDownloaderX
                             tag.SetTextFrame("TSRC", isrc);
                         }
 
+                        // Release Type tag
+                        if (type != null)
+                        {
+                            if (typeCheckbox.Checked == true)
+                            {
+                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                tag.SetTextFrame("TMED", type);
+                            }
+                        }
+
                         // Explicit tag
                         if (explicitCheckbox.Checked == true)
                         {
@@ -5521,7 +5812,7 @@ namespace QobuzDownloaderX
                     else
                     {
                         // If there is a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                         // For custom / troublesome tags.
                         TagLib.Id3v2.Tag t = (TagLib.Id3v2.Tag)tfile.GetTag(TagLib.TagTypes.Id3v2);
 
@@ -5632,6 +5923,16 @@ namespace QobuzDownloaderX
                             tag.SetTextFrame("TSRC", isrc);
                         }
 
+                        // Release Type tag
+                        if (type != null)
+                        {
+                            if (typeCheckbox.Checked == true)
+                            {
+                                TagLib.Id3v2.Tag tag = (TagLib.Id3v2.Tag)tfile.GetTag(TagTypes.Id3v2, true);
+                                tag.SetTextFrame("TMED", type);
+                            }
+                        }
+
                         // Explicit tag
                         if (explicitCheckbox.Checked == true)
                         {
@@ -5651,7 +5952,7 @@ namespace QobuzDownloaderX
                     if (versionName == null | versionName == "")
                     {
                         // If there is NOT a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNamePath + audioFileType);
                         // For custom / troublesome tags.
                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -5760,6 +6061,15 @@ namespace QobuzDownloaderX
                             custom.SetField("ISRC", new string[] { isrc });
                         }
 
+                        // Release Type tag
+                        if (type != null)
+                        {
+                            if (typeCheckbox.Checked == true)
+                            {
+                                custom.SetField("MEDIATYPE", new string[] { type });
+                            }
+                        }
+
                         // Explicit tag
                         if (explicitCheckbox.Checked == true)
                         {
@@ -5772,7 +6082,7 @@ namespace QobuzDownloaderX
                     else
                     {
                         // If there is a version name.
-                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + trackNumber.PadLeft(paddingLength, '0') + " " + trackNamePath.Trim() + " (" + versionNamePath + ")" + audioFileType);
+                        var tfile = TagLib.File.Create(loc + "\\" + albumArtistPath + "\\" + albumNamePath + "\\" + qualityPath + "\\" + discFolder + finalTrackNameVersionPath + audioFileType);
                         // For custom / troublesome tags.
                         var custom = (TagLib.Ogg.XiphComment)tfile.GetTag(TagLib.TagTypes.Xiph);
 
@@ -5879,6 +6189,15 @@ namespace QobuzDownloaderX
                         if (isrcCheckbox.Checked == true)
                         {
                             custom.SetField("ISRC", new string[] { isrc });
+                        }
+
+                        // Release Type tag
+                        if (type != null)
+                        {
+                            if (typeCheckbox.Checked == true)
+                            {
+                                custom.SetField("MEDIATYPE", new string[] { type });
+                            }
                         }
 
                         // Explicit tag
@@ -6020,6 +6339,12 @@ namespace QobuzDownloaderX
         private void isrcCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.isrcTag = isrcCheckbox.Checked;
+            Settings.Default.Save();
+        }
+
+        private void typeCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.typeTag = typeCheckbox.Checked;
             Settings.Default.Save();
         }
 

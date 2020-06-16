@@ -105,6 +105,7 @@
             this.downloadFaveArtistsBG = new System.ComponentModel.BackgroundWorker();
             this.artSizeSelect = new System.Windows.Forms.ComboBox();
             this.artSizeLabel = new System.Windows.Forms.Label();
+            this.typeCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -966,12 +967,28 @@
             this.artSizeLabel.TabIndex = 97;
             this.artSizeLabel.Text = "Embedded Art Size:                                             px";
             // 
+            // typeCheckbox
+            // 
+            this.typeCheckbox.AutoSize = true;
+            this.typeCheckbox.Checked = true;
+            this.typeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.typeCheckbox.FlatAppearance.BorderSize = 0;
+            this.typeCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.typeCheckbox.Location = new System.Drawing.Point(533, 563);
+            this.typeCheckbox.Name = "typeCheckbox";
+            this.typeCheckbox.Size = new System.Drawing.Size(92, 17);
+            this.typeCheckbox.TabIndex = 98;
+            this.typeCheckbox.Text = "Release Type";
+            this.typeCheckbox.UseVisualStyleBackColor = true;
+            this.typeCheckbox.CheckedChanged += new System.EventHandler(this.typeCheckbox_CheckedChanged);
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(938, 733);
+            this.Controls.Add(this.typeCheckbox);
             this.Controls.Add(this.artSizeSelect);
             this.Controls.Add(this.artSizeLabel);
             this.Controls.Add(this.hiddenTextPanel);
@@ -1133,6 +1150,7 @@
         private System.ComponentModel.BackgroundWorker downloadFaveArtistsBG;
         private System.Windows.Forms.ComboBox artSizeSelect;
         private System.Windows.Forms.Label artSizeLabel;
+        private System.Windows.Forms.CheckBox typeCheckbox;
     }
 }
 

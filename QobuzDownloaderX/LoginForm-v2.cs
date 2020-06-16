@@ -99,11 +99,17 @@ namespace QobuzDownloaderX
                 WebClient versionURLClient = new WebClient();
                 // Run through TLS to allow secure connection.
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-                string versionHTML = versionURLClient.DownloadString("https://github.com/ImAiiR/QobuzDownloaderX/releases");
+                // Set user-agent to Firefox.
+                versionURLClient.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+                string versionHTML = versionURLClient.DownloadString("https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest");
 
-                // Grab link to bundle.js
-                var versionLog = Regex.Match(versionHTML, "<span class=\"css-truncate-target\" style=\"max-width: 125px\">(?<latestVersion>.*?)<\\/span>").Groups;
+                // Grab latest version number
+                var versionLog = Regex.Match(versionHTML, "\"tag_name\": \"(?<latestVersion>.*?)\",").Groups;
                 var version = versionLog[1].Value;
+
+                // Grab changelog
+                var changesLog = Regex.Match(versionHTML, "\"body\": \"(?<changeLog>.*?)\"").Groups;
+                var changes = changesLog[1].Value;
 
                 string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 string newVersion = version;
@@ -114,7 +120,7 @@ namespace QobuzDownloaderX
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - "+ newVersion + "\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - "+ newVersion + "\r\n\r\nChangelog Below\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
                         // If "Yes" is clicked, open GitHub page and close QBDLX.
