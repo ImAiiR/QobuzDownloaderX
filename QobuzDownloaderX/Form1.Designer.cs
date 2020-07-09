@@ -106,6 +106,7 @@
             this.artSizeSelect = new System.Windows.Forms.ComboBox();
             this.artSizeLabel = new System.Windows.Forms.Label();
             this.typeCheckbox = new System.Windows.Forms.CheckBox();
+            this.aboutLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -982,12 +983,29 @@
             this.typeCheckbox.UseVisualStyleBackColor = true;
             this.typeCheckbox.CheckedChanged += new System.EventHandler(this.typeCheckbox_CheckedChanged);
             // 
+            // aboutLabel
+            // 
+            this.aboutLabel.AutoSize = true;
+            this.aboutLabel.BackColor = System.Drawing.Color.Transparent;
+            this.aboutLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aboutLabel.ForeColor = System.Drawing.Color.White;
+            this.aboutLabel.Location = new System.Drawing.Point(866, 8);
+            this.aboutLabel.Name = "aboutLabel";
+            this.aboutLabel.Size = new System.Drawing.Size(15, 23);
+            this.aboutLabel.TabIndex = 99;
+            this.aboutLabel.Text = "i";
+            this.aboutLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.aboutLabel.Click += new System.EventHandler(this.aboutLabel_Click);
+            this.aboutLabel.MouseLeave += new System.EventHandler(this.aboutLabel_MouseLeave);
+            this.aboutLabel.MouseHover += new System.EventHandler(this.aboutLabel_MouseHover);
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(938, 733);
+            this.Controls.Add(this.aboutLabel);
             this.Controls.Add(this.typeCheckbox);
             this.Controls.Add(this.artSizeSelect);
             this.Controls.Add(this.artSizeLabel);
@@ -1151,6 +1169,7 @@
         private System.Windows.Forms.ComboBox artSizeSelect;
         private System.Windows.Forms.Label artSizeLabel;
         private System.Windows.Forms.CheckBox typeCheckbox;
+        private System.Windows.Forms.Label aboutLabel;
     }
 }
 

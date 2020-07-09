@@ -49,6 +49,7 @@
             this.altLoginTutLabel = new System.Windows.Forms.Label();
             this.userIdTextbox = new System.Windows.Forms.TextBox();
             this.altLoginBG = new System.ComponentModel.BackgroundWorker();
+            this.aboutLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             // panel1
             // 
             this.panel1.BackgroundImage = global::QobuzDownloaderX.Properties.Resources.login_frame;
+            this.panel1.Controls.Add(this.aboutLabel);
             this.panel1.Controls.Add(this.disableLogin);
             this.panel1.Controls.Add(this.verNumLabel2);
             this.panel1.Controls.Add(this.md5Button);
@@ -286,6 +288,20 @@
             // 
             this.altLoginBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.altLoginBG_DoWork);
             // 
+            // aboutLabel
+            // 
+            this.aboutLabel.AutoSize = true;
+            this.aboutLabel.BackColor = System.Drawing.Color.Transparent;
+            this.aboutLabel.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aboutLabel.ForeColor = System.Drawing.Color.Black;
+            this.aboutLabel.Location = new System.Drawing.Point(241, 0);
+            this.aboutLabel.Name = "aboutLabel";
+            this.aboutLabel.Size = new System.Drawing.Size(15, 23);
+            this.aboutLabel.TabIndex = 35;
+            this.aboutLabel.Text = "i";
+            this.aboutLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.aboutLabel.Click += new System.EventHandler(this.aboutLabel_Click);
+            // 
             // LoginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,5 +355,6 @@
         private System.Windows.Forms.Label altLoginTutLabel;
         private System.Windows.Forms.TextBox userIdTextbox;
         private System.ComponentModel.BackgroundWorker altLoginBG;
+        private System.Windows.Forms.Label aboutLabel;
     }
 }

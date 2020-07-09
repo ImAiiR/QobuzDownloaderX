@@ -19,6 +19,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Drawing.Imaging;
 using TagLib.Flac;
+using Newtonsoft.Json.Linq;
 using QobuzDownloaderX;
 
 namespace QobuzDownloaderX
@@ -44,6 +45,7 @@ namespace QobuzDownloaderX
         }
 
         QobuzDownloaderX qbdlx = new QobuzDownloaderX();
+        AboutForm about = new AboutForm();
 
         public string appSecret { get; set; }
         public string appID { get; set; }
@@ -92,62 +94,8 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void LoginFrm_Load(object sender, EventArgs e)
+        private async void LoginFrm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                WebClient versionURLClient = new WebClient();
-                // Run through TLS to allow secure connection.
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-                // Set user-agent to Firefox.
-                versionURLClient.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
-                string versionHTML = versionURLClient.DownloadString("https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest");
-
-                // Grab latest version number
-                var versionLog = Regex.Match(versionHTML, "\"tag_name\": \"(?<latestVersion>.*?)\",").Groups;
-                var version = versionLog[1].Value;
-
-                // Grab changelog
-                var changesLog = Regex.Match(versionHTML, "\"body\": \"(?<changeLog>.*?)\"").Groups;
-                var changes = changesLog[1].Value;
-
-                string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                string newVersion = version;
-
-                if (currentVersion.Contains(newVersion))
-                {
-                    // Do nothing. All is good.
-                }
-                else
-                {
-                    DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - "+ newVersion + "\r\n\r\nChangelog Below\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        // If "Yes" is clicked, open GitHub page and close QBDLX.
-                        Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
-                        Application.Exit();
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        // Ignore the update until next open.
-                    }
-                }
-            }
-            catch
-            {
-                DialogResult dialogResult = MessageBox.Show("Connection to GitHub to check for an update has failed.\r\nWould you like to check for an update manually?\r\n\r\nYour current version is " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "QBDLX | GitHub Connection Failed", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    // If "Yes" is clicked, open GitHub page and close QBDLX.
-                    Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
-                    Application.Exit();
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    // Ignore the update until next open.
-                }
-            }
-
             // Get and display version number.
             verNumLabel2.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -255,6 +203,65 @@ namespace QobuzDownloaderX
                 userAuthTokenTextbox.UseSystemPasswordChar = true;
                 userAuthTokenTextbox.Text = "user_auth_token";
             }
+
+            try
+            {
+                // Create HttpClient to grab version number from Github
+                var versionURLClient = new HttpClient();
+                // Run through TLS to allow secure connection.
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                // Set user-agent to Firefox.
+                versionURLClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+
+                // Grab response from Github to get Track IDs from Album response.
+                var versionURL = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
+                var versionURLResponse = await versionURLClient.GetAsync(versionURL);
+                string versionURLResponseString = versionURLResponse.Content.ReadAsStringAsync().Result;
+
+                // Grab metadata from API JSON response
+                JObject joVersionResponse = JObject.Parse(versionURLResponseString);
+
+                // Grab latest version number
+                string version = (string)joVersionResponse["tag_name"];
+                // Grab changelog
+                string changes = (string)joVersionResponse["body"];
+
+                string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                string newVersion = version;
+
+                if (currentVersion.Contains(newVersion))
+                {
+                    // Do nothing. All is good.
+                }
+                else
+                {
+                    DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - " + newVersion + "\r\n\r\nChangelog Below\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        // If "Yes" is clicked, open GitHub page and close QBDLX.
+                        Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
+                        Application.Exit();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        // Ignore the update until next open.
+                    }
+                }
+            }
+            catch
+            {
+                DialogResult dialogResult = MessageBox.Show("Connection to GitHub to check for an update has failed.\r\nWould you like to check for an update manually?\r\n\r\nYour current version is " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "QBDLX | GitHub Connection Failed", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // If "Yes" is clicked, open GitHub page and close QBDLX.
+                    Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
+                    Application.Exit();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Ignore the update until next open.
+                }
+            }
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -262,93 +269,99 @@ namespace QobuzDownloaderX
             // Hide alt login label until job is finished or failed
             altLoginLabel.Visible = false;
 
-            // If logging in normally (email & password)
-            if (altLoginValue == "0")
+            switch (altLoginValue)
             {
-                #region Normal Login
-                if (emailTextbox.Text == "Email" | emailTextbox.Text == null | emailTextbox.Text == "")
-                {
-                    // If there's no email typed in.
-                    loginText.Invoke(new Action(() => loginText.Text = "No email, please input email first."));
-                    return;
-                }
+                // If logging in normally (email & password)
+                case "0":
+                    #region Normal Login
 
-                if (passwordTextbox.Text == "Password")
-                {
-                    // If there's no password typed in.
-                    loginText.Invoke(new Action(() => loginText.Text = "No password typed, please input password first."));
-                    return;
-                }
-
-                string plainTextPW = passwordTextbox.Text;
-
-                var passMD5CheckLog = Regex.Match(plainTextPW, "(?<md5Test>^[0-9a-f]{32}$)").Groups;
-                var passMD5Check = passMD5CheckLog[1].Value;
-
-                if (passMD5Check == null | passMD5Check == "")
-                {
-                    // Generate the MD5 hash using the string created above.
-                    using (MD5 md5PassHash = MD5.Create())
+                    #region Check if textboxes are valid
+                    if (emailTextbox.Text == "Email" | emailTextbox.Text == null | emailTextbox.Text == "")
                     {
-                        string hashedPW = GetMd5Hash(md5PassHash, plainTextPW);
+                        // If there's no email typed in.
+                        loginText.Invoke(new Action(() => loginText.Text = "No email, please input email first."));
+                        return;
+                    }
 
-                        if (VerifyMd5Hash(md5PassHash, plainTextPW, hashedPW))
+                    if (passwordTextbox.Text == "Password")
+                    {
+                        // If there's no password typed in.
+                        loginText.Invoke(new Action(() => loginText.Text = "No password typed, please input password first."));
+                        return;
+                    }
+                    #endregion
+
+                    string plainTextPW = passwordTextbox.Text;
+
+                    var passMD5CheckLog = Regex.Match(plainTextPW, "(?<md5Test>^[0-9a-f]{32}$)").Groups;
+                    var passMD5Check = passMD5CheckLog[1].Value;
+
+                    if (passMD5Check == null | passMD5Check == "")
+                    {
+                        // Generate the MD5 hash using the string created above.
+                        using (MD5 md5PassHash = MD5.Create())
                         {
-                            // If the MD5 hash is verified, proceed to get the streaming URL.
-                            passwordTextbox.Text = hashedPW;
-                        }
-                        else
-                        {
-                            // If the hash can't be verified.
-                            loginText.Invoke(new Action(() => loginText.Text = "Hashing failed. Please retry."));
-                            return;
+                            string hashedPW = GetMd5Hash(md5PassHash, plainTextPW);
+
+                            if (VerifyMd5Hash(md5PassHash, plainTextPW, hashedPW))
+                            {
+                                // If the MD5 hash is verified, proceed to get the streaming URL.
+                                passwordTextbox.Text = hashedPW;
+                            }
+                            else
+                            {
+                                // If the hash can't be verified.
+                                loginText.Invoke(new Action(() => loginText.Text = "Hashing failed. Please retry."));
+                                return;
+                            }
                         }
                     }
-                }
 
-                // Save info locally to be used on next launch.
-                Settings.Default.savedEmail = emailTextbox.Text;
-                Settings.Default.savedPassword = passwordTextbox.Text;
-                Settings.Default.savedAltLoginValue = altLoginValue;
-                Settings.Default.Save();
+                    // Save info locally to be used on next launch.
+                    Settings.Default.savedEmail = emailTextbox.Text;
+                    Settings.Default.savedPassword = passwordTextbox.Text;
+                    Settings.Default.savedAltLoginValue = altLoginValue;
+                    Settings.Default.Save();
 
-                loginText.Text = "Getting App ID and Secret...";
-                loginButton.Enabled = false;
-                getSecretBG.RunWorkerAsync();
-                #endregion
-            }
-            // If logging in the alternate way (user_id & user_auth_token)
-            else
-            {
-                #region Alt Login
-                if (userIdTextbox.Text == "user_id" | userIdTextbox.Text == null | userIdTextbox.Text == "")
-                {
-                    // If there's no email typed in.
-                    loginText.Invoke(new Action(() => loginText.Text = "No user_id, please input user_id first."));
-                    return;
-                }
+                    loginText.Text = "Getting App ID and Secret...";
+                    loginButton.Enabled = false;
+                    getSecretBG.RunWorkerAsync();
+                    #endregion
+                    break;
+                default:
+                    #region Alt Login
 
-                if (userAuthTokenTextbox.Text == "user_auth_token")
-                {
-                    // If there's no password typed in.
-                    loginText.Invoke(new Action(() => loginText.Text = "No user_auth_token typed, please input user_auth_token first."));
-                    return;
-                }
+                    #region Check if textboxes are valid
+                    if (userIdTextbox.Text == "user_id" | userIdTextbox.Text == null | userIdTextbox.Text == "")
+                    {
+                        // If there's no email typed in.
+                        loginText.Invoke(new Action(() => loginText.Text = "No user_id, please input user_id first."));
+                        return;
+                    }
 
-                // Set user_id & user_auth_token to login.
-                userID = userIdTextbox.Text;
-                userAuthToken = userAuthTokenTextbox.Text;
+                    if (userAuthTokenTextbox.Text == "user_auth_token")
+                    {
+                        // If there's no password typed in.
+                        loginText.Invoke(new Action(() => loginText.Text = "No user_auth_token typed, please input user_auth_token first."));
+                        return;
+                    }
+                    #endregion
 
-                // Save info locally to be used on next launch.
-                Settings.Default.savedUserID = userIdTextbox.Text;
-                Settings.Default.savedUserAuthToken = userAuthTokenTextbox.Text;
-                Settings.Default.savedAltLoginValue = altLoginValue;
-                Settings.Default.Save();
+                    // Set user_id & user_auth_token to login.
+                    userID = userIdTextbox.Text;
+                    userAuthToken = userAuthTokenTextbox.Text;
 
-                loginText.Text = "Getting App ID and Secret...";
-                loginButton.Enabled = false;
-                getSecretBG.RunWorkerAsync();
-                #endregion
+                    // Save info locally to be used on next launch.
+                    Settings.Default.savedUserID = userIdTextbox.Text;
+                    Settings.Default.savedUserAuthToken = userAuthTokenTextbox.Text;
+                    Settings.Default.savedAltLoginValue = altLoginValue;
+                    Settings.Default.Save();
+
+                    loginText.Text = "Getting App ID and Secret...";
+                    loginButton.Enabled = false;
+                    getSecretBG.RunWorkerAsync();
+                    #endregion
+                    break;
             }
         }
 
@@ -430,48 +443,67 @@ namespace QobuzDownloaderX
             getSecretBG.CancelAsync();
         }
 
-        private void loginBG_DoWork(object sender, DoWorkEventArgs e)
+        private async void loginBG_DoWork(object sender, DoWorkEventArgs e)
         {
             loginBG.WorkerSupportsCancellation = true;
 
-            // Create WebRequest to login using login information from input textboxes.
-            WebRequest wr = WebRequest.Create("https://www.qobuz.com/api.json/0.2/user/login?email=" + emailTextbox.Text + "&password=" + passwordTextbox.Text + "&app_id=" + appID);
+            // Create HttpClient to grab Track ID
+            var loginClient = new HttpClient();
+            // Run through TLS to allow secure connection.
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            // Set user-agent to Firefox.
+            loginClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+
+            // Grab response from Rhapsody to get Track IDs from Album response.
+            var loginUrl = "https://www.qobuz.com/api.json/0.2/user/login?email=" + emailTextbox.Text + "&password=" + passwordTextbox.Text + "&app_id=" + appID;
+            var loginResponse = await loginClient.GetAsync(loginUrl);
+            string loginResponseString = loginResponse.Content.ReadAsStringAsync().Result;
+
+            // Grab metadata from API JSON response
+            JObject joLoginResponse = JObject.Parse(loginResponseString);
 
             try
             {
-                // Grab info to be displayed and used.
-                WebResponse ws = wr.GetResponse();
-                StreamReader sr = new StreamReader(ws.GetResponseStream());
-
-                string loginRequest = sr.ReadToEnd();
-                string text = loginRequest;
-
                 // Grab user_id
-                var userIDLog = Regex.Match(loginRequest, "{\"user\":{\"id\":(?<userID>.*?),\"publicId").Groups;
-                var userID = userIDLog[1].Value;
+                string userID = (string)joLoginResponse["user"]["id"];
                 qbdlx.userID = userID;
 
                 // Grab display name
-                var displayNameLog = Regex.Match(loginRequest, "\"display_name\":\"(?<displayName>.*?)\",\\\"").Groups;
-                var displayName = displayNameLog[1].Value;
+                string displayName = (string)joLoginResponse["user"]["display_name"];
                 qbdlx.displayName = displayName;
 
                 // Grab account type
-                var accountTypeLog = Regex.Match(loginRequest, "short_label\":\"(?<accountType>\\w+)").Groups;
-                var accountType = accountTypeLog[1].Value;
-                qbdlx.accountType = accountType;
+                try
+                {
+                    string accountType = (string)joLoginResponse["user"]["credential"]["parameters"]["short_label"];
+
+                    // Check if accountType returns null or not
+                    switch (accountType)
+                    {
+                        case null:
+                            qbdlx.accountType = null;
+                            break;
+                        default:
+                            qbdlx.accountType = accountType;
+                            break;
+                    }
+                }
+                catch
+                {
+                    // Free account, still able to login but won't be able to download anything.
+                    qbdlx.accountType = null;
+                }
 
                 // Grab authentication token
-                var userAuth = Regex.Match(loginRequest, "\"user_auth_token\":\"(?<userAuth>.*?)\\\"}").Groups;
-                var userAuthToken = userAuth[1].Value;
+                string userAuthToken = (string)joLoginResponse["user_auth_token"];
+                qbdlx.userAuth = userAuthToken;
 
                 // Grab profile image
-                var profilePic = Regex.Match(loginRequest, "avatar\\\":\\\"(?<profilePic>.*?)\",").Groups;
-                var profilePicURL = profilePic[1].Value.Replace(@"\", null).Replace("s=50", "s=20");
+                string profilePic = (string)joLoginResponse["user"]["avatar"];
+                string profilePicURL = profilePic.Replace(@"\", null).Replace("s=50", "s=20");
                 qbdlx.profilePic = profilePicURL;
 
                 // Set user_auth_token
-                qbdlx.userAuth = userAuthToken;
                 loginText.Invoke(new Action(() => loginText.Text = "Login Successful! Launching QBDLX..."));
             }
             catch (Exception ex)
@@ -480,33 +512,36 @@ namespace QobuzDownloaderX
                 string error = ex.ToString();
                 loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Error Log saved"));
                 System.IO.File.WriteAllText(errorLog, error);
-                wr.Abort();
                 loginButton.Invoke(new Action(() => loginButton.Enabled = true));
                 altLoginLabel.Invoke(new Action(() => altLoginLabel.Visible = true));
                 return;
             }
-
-            wr.Abort();
+            
             finishLogin(sender, e);
             loginBG.CancelAsync();
         }
 
-        private void altLoginBG_DoWork(object sender, DoWorkEventArgs e)
+        private async void altLoginBG_DoWork(object sender, DoWorkEventArgs e)
         {
             altLoginBG.WorkerSupportsCancellation = true;
 
-            // Create WebRequest to login using login information from input textboxes.
-            WebRequest wr = WebRequest.Create("http://www.qobuz.com/api.json/0.2/user/get?user_id=" + userID + "&user_auth_token=" + userAuthToken + "&app_id=" + appID);
+            // Create HttpClient to grab Track ID
+            var altLoginClient = new HttpClient();
+            // Run through TLS to allow secure connection.
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            // Set user-agent to Firefox.
+            altLoginClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+
+            // Grab response from Rhapsody to get Track IDs from Album response.
+            var altLoginUrl = "http://www.qobuz.com/api.json/0.2/user/get?user_id=" + userID + "&user_auth_token=" + userAuthToken + "&app_id=" + appID;
+            var altLoginResponse = await altLoginClient.GetAsync(altLoginUrl);
+            string altLoginResponseString = altLoginResponse.Content.ReadAsStringAsync().Result;
+
+            // Grab metadata from API JSON response
+            JObject joAltLoginResponse = JObject.Parse(altLoginResponseString);
 
             try
             {
-                // Grab info to be displayed and used.
-                WebResponse ws = wr.GetResponse();
-                StreamReader sr = new StreamReader(ws.GetResponseStream());
-
-                string loginRequest = sr.ReadToEnd();
-                string text = loginRequest;
-
                 // Use user_id that was used by the user
                 qbdlx.userID = userID;
 
@@ -514,18 +549,34 @@ namespace QobuzDownloaderX
                 qbdlx.userAuth = userAuthToken;
 
                 // Grab display name
-                var displayNameLog = Regex.Match(loginRequest, "\"display_name\":\"(?<displayName>.*?)\",\\\"").Groups;
-                var displayName = displayNameLog[1].Value;
+                string displayName = (string)joAltLoginResponse["display_name"];
                 qbdlx.displayName = displayName;
 
                 // Grab account type
-                var accountTypeLog = Regex.Match(loginRequest, "short_label\":\"(?<accountType>\\w+)").Groups;
-                var accountType = accountTypeLog[1].Value;
-                qbdlx.accountType = accountType;
+                try
+                {
+                    string accountType = (string)joAltLoginResponse["subscription"]["offer"];
+
+                    // Check if accountType returns null or not
+                    switch (accountType)
+                    {
+                        case null:
+                            qbdlx.accountType = null;
+                            break;
+                        default:
+                            qbdlx.accountType = accountType;
+                            break;
+                    }
+                }
+                catch
+                {
+                    // Free account, still able to login but won't be able to download anything.
+                    qbdlx.accountType = null;
+                }
 
                 // Grab profile image
-                var profilePic = Regex.Match(loginRequest, "avatar\\\":\\\"(?<profilePic>.*?)\\\"}").Groups;
-                var profilePicURL = profilePic[1].Value.Replace(@"\", null).Replace("s=50", "s=20");
+                string profilePic = (string)joAltLoginResponse["avatar"];
+                var profilePicURL = profilePic.Replace(@"\", null).Replace("s=50", "s=20");
                 qbdlx.profilePic = profilePicURL;
                 
                 loginText.Invoke(new Action(() => loginText.Text = "Login Successful! Launching QBDLX..."));
@@ -536,13 +587,11 @@ namespace QobuzDownloaderX
                 string error = ex.ToString();
                 loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Error Log saved"));
                 System.IO.File.WriteAllText(errorLog, error);
-                wr.Abort();
                 loginButton.Invoke(new Action(() => loginButton.Enabled = true));
                 altLoginLabel.Invoke(new Action(() => altLoginLabel.Visible = true));
                 return;
             }
-
-            wr.Abort();
+            
             finishLogin(sender, e);
             altLoginBG.CancelAsync();
         }
@@ -804,6 +853,11 @@ namespace QobuzDownloaderX
         private void altLoginTutLabel_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/wiki/Logging-In-(The-Alternate-Way)");
+        }
+
+        private void aboutLabel_Click(object sender, EventArgs e)
+        {
+            about.Show();
         }
     }
 }
