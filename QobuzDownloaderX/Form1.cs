@@ -110,8 +110,6 @@ namespace QobuzDownloaderX
         public int trackNumber { get; set; }
         public int trackTotal { get; set; }
 
-        public string discFolder { get; set; }
-
         searchForm searchF = new searchForm();
 
         private void Form1_Load(object sender, EventArgs e)
@@ -820,13 +818,11 @@ namespace QobuzDownloaderX
                             #region Create Directories
                             // Create strings for disc folders
                             string discFolder = null;
-                            string discFolderCreate = null;
 
                             // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
-                            if (discTotal != 1)
+                            if (discTotal > 1)
                             {
-                                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
-                                discFolderCreate = "\\CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
+                                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0');
                             }
 
                             // Create directories
@@ -1620,13 +1616,11 @@ namespace QobuzDownloaderX
                             #region Create Directories
                             // Create strings for disc folders
                             string discFolder = null;
-                            string discFolderCreate = null;
 
                             // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
-                            if (discTotal != 1)
+                            if (discTotal > 1)
                             {
-                                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
-                                discFolderCreate = "\\CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
+                                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0');
                             }
 
                             // Create directories
@@ -2421,13 +2415,11 @@ namespace QobuzDownloaderX
                             #region Create Directories
                             // Create strings for disc folders
                             string discFolder = null;
-                            string discFolderCreate = null;
 
                             // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
-                            if (discTotal != 1)
+                            if (discTotal > 1)
                             {
-                                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
-                                discFolderCreate = "\\CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
+                                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0');
                             }
 
                             // Create directories
@@ -3189,13 +3181,11 @@ namespace QobuzDownloaderX
                     #region Create Directories
                     // Create strings for disc folders
                     string discFolder = null;
-                    string discFolderCreate = null;
 
                     // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
-                    if (discTotal != 1)
+                    if (discTotal > 1)
                     {
-                        discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
-                        discFolderCreate = "\\CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
+                        discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0');
                     }
 
                     // Create directories
@@ -3904,13 +3894,11 @@ namespace QobuzDownloaderX
             #region Create Directories
             // Create strings for disc folders
             string discFolder = null;
-            string discFolderCreate = null;
 
             // If more than 1 disc, create folders for discs. Otherwise, strings will remain null.
-            if (discTotal != 1)
+            if (discTotal > 1)
             {
-                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
-                discFolderCreate = "\\CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0') + "\\";
+                discFolder = "CD " + discNumber.ToString().PadLeft(paddingDiscLength, '0');
             }
 
             // Create directories

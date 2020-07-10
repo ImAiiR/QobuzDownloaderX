@@ -53,8 +53,8 @@ namespace QobuzDownloaderX
         public string userAuthToken { get; set; }
         public string altLoginValue { get; set; }
 
-        string errorLog = Path.GetDirectoryName(Application.ExecutablePath) + "\\Latest_Error.log";
-        string dllCheck = Path.GetDirectoryName(Application.ExecutablePath) + "\\taglib-sharp.dll";
+        string errorLog = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Latest_Error.log");
+        string dllCheck = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "taglib-sharp.dll");
 
         static string GetMd5Hash(MD5 md5Hash, string input)
         {
