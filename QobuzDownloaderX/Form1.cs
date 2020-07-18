@@ -672,7 +672,7 @@ namespace QobuzDownloaderX
                             albumArtistPath = GetSafeFilename(albumArtist);
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(albumArtist);
+                            performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
                             performerNamePath = GetSafeFilename(performerName);
 
                             try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
@@ -1470,7 +1470,7 @@ namespace QobuzDownloaderX
                             albumArtistPath = GetSafeFilename(albumArtist);
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(albumArtist);
+                            performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
                             performerNamePath = GetSafeFilename(performerName);
 
                             try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
@@ -3035,7 +3035,7 @@ namespace QobuzDownloaderX
                     albumArtistPath = GetSafeFilename(albumArtist);
                     albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                    performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(albumArtist);
+                    performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
                     performerNamePath = GetSafeFilename(performerName);
 
                     try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
@@ -3748,7 +3748,7 @@ namespace QobuzDownloaderX
             albumArtistPath = GetSafeFilename(albumArtist);
             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-            performerName = (string)joResponse2["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(albumArtist);
+            performerName = (string)joResponse2["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
             performerNamePath = GetSafeFilename(performerName);
 
             try { composerName = (string)joResponse2["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
