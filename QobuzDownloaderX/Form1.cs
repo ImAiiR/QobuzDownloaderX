@@ -232,22 +232,27 @@ namespace QobuzDownloaderX
 
         //    return date.ToString("yyyy-MM-dd");
         //}
-
-
+        
         static string DecodeEncodedNonAsciiCharacters(string value)
         {
-            return Regex.Replace(
+            if (value != null)
+            {
+                return Regex.Replace(
                 value,
                 @"\\u(?<Value>[a-zA-Z0-9]{4})",
                 m =>
                 {
                     return ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString();
                 });
+            }
+            else
+            {
+                return null;
+            }
         }
 
         static string GetMd5Hash(MD5 md5Hash, string input)
         {
-
             // Convert the input string to a byte array and compute the hash.
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
@@ -672,8 +677,12 @@ namespace QobuzDownloaderX
                             albumArtistPath = GetSafeFilename(albumArtist);
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
-                            performerNamePath = GetSafeFilename(performerName);
+                            try
+                            {
+                                performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
+                                performerNamePath = GetSafeFilename(performerName);
+                            }
+                            catch { performerName = null; performerNamePath = null; /*Set to null and Ignore if fails*/ }
 
                             try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
 
@@ -804,9 +813,12 @@ namespace QobuzDownloaderX
                                 albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
                             }
 
-                            if (performerNamePath.Length > MaxLength)
+                            if (performerName != null)
                             {
-                                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                                if (performerNamePath.Length > MaxLength)
+                                {
+                                    performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                                }
                             }
 
                             if (albumNamePath.Length > MaxLength)
@@ -1470,8 +1482,12 @@ namespace QobuzDownloaderX
                             albumArtistPath = GetSafeFilename(albumArtist);
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
-                            performerNamePath = GetSafeFilename(performerName);
+                            try
+                            {
+                                performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
+                                performerNamePath = GetSafeFilename(performerName);
+                            }
+                            catch { performerName = null; performerNamePath = null; /*Set to null and Ignore if fails*/ }
 
                             try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
 
@@ -1602,9 +1618,12 @@ namespace QobuzDownloaderX
                                 albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
                             }
 
-                            if (performerNamePath.Length > MaxLength)
+                            if (performerName != null)
                             {
-                                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                                if (performerNamePath.Length > MaxLength)
+                                {
+                                    performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                                }
                             }
 
                             if (albumNamePath.Length > MaxLength)
@@ -2269,8 +2288,12 @@ namespace QobuzDownloaderX
                             albumArtistPath = GetSafeFilename(albumArtist);
                             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                            performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(albumArtist);
-                            performerNamePath = GetSafeFilename(performerName);
+                            try
+                            {
+                                performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
+                                performerNamePath = GetSafeFilename(performerName);
+                            }
+                            catch { performerName = null; performerNamePath = null; /*Set to null and Ignore if fails*/ }
 
                             try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
 
@@ -2401,9 +2424,12 @@ namespace QobuzDownloaderX
                                 albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
                             }
 
-                            if (performerNamePath.Length > MaxLength)
+                            if (performerName != null)
                             {
-                                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                                if (performerNamePath.Length > MaxLength)
+                                {
+                                    performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                                }
                             }
 
                             if (albumNamePath.Length > MaxLength)
@@ -3035,10 +3061,14 @@ namespace QobuzDownloaderX
                     albumArtistPath = GetSafeFilename(albumArtist);
                     albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-                    performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
-                    performerNamePath = GetSafeFilename(performerName);
+                    try
+                    {
+                        performerName = (string)joTrackResponse["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
+                        performerNamePath = GetSafeFilename(performerName);
+                    }
+                    catch { performerName = null; performerNamePath = null; /*Set to null and Ignore if fails*/ }
 
-                    try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
+                    try { composerName = (string)joTrackResponse["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { composerName = null; /*Set to null and Ignore if fails*/ }
 
                     advisory = (string)joTrackResponse["parental_warning"];
 
@@ -3167,9 +3197,12 @@ namespace QobuzDownloaderX
                         albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
                     }
 
-                    if (performerNamePath.Length > MaxLength)
+                    if (performerName != null)
                     {
-                        performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                        if (performerNamePath.Length > MaxLength)
+                        {
+                            performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                        }
                     }
 
                     if (albumNamePath.Length > MaxLength)
@@ -3748,10 +3781,14 @@ namespace QobuzDownloaderX
             albumArtistPath = GetSafeFilename(albumArtist);
             albumArtistTextBox.Invoke(new Action(() => albumArtistTextBox.Text = albumArtist));
 
-            performerName = (string)joResponse2["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
-            performerNamePath = GetSafeFilename(performerName);
+            try
+            {
+                performerName = (string)joResponse2["performer"]["name"]; performerName = DecodeEncodedNonAsciiCharacters(performerName);
+                performerNamePath = GetSafeFilename(performerName);
+            }
+            catch { performerName = null; performerNamePath = null; /*Set to null and Ignore if fails*/ }
 
-            try { composerName = (string)joResponse2["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { /*Ignore if fails*/ }
+            try { composerName = (string)joResponse2["composer"]["name"]; composerName = DecodeEncodedNonAsciiCharacters(composerName); } catch { composerName = null; /*Set to null and Ignore if fails*/ }
 
             advisory = (string)joResponse2["parental_warning"];
 
@@ -3880,9 +3917,12 @@ namespace QobuzDownloaderX
                 albumArtistPath = albumArtistPath.Substring(0, MaxLength).TrimEnd();
             }
 
-            if (performerNamePath.Length > MaxLength)
+            if (performerName != null)
             {
-                performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                if (performerNamePath.Length > MaxLength)
+                {
+                    performerNamePath = performerNamePath.Substring(0, MaxLength).TrimEnd();
+                }
             }
 
             if (albumNamePath.Length > MaxLength)
