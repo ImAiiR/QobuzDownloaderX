@@ -645,7 +645,7 @@ namespace QobuzDownloaderX
                         #endregion
 
                         // Grab all Track IDs listed on the API.
-                        string trackIDsPattern = "\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
+                        string trackIDsPattern = "\"isrc\":\"(?:.*?)\"(?:.*?)\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
                         string trackIDsInput = albumIDResponseString;
                         RegexOptions trackIDsOptions = RegexOptions.Multiline;
 
@@ -1450,7 +1450,7 @@ namespace QobuzDownloaderX
                         #endregion
 
                         // Grab all Track IDs listed on the API.
-                        string trackIDsPattern = "\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
+                        string trackIDsPattern = "\"isrc\":\"(?:.*?)\"(?:.*?)\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
                         string trackIDsInput = albumIDResponseString;
                         RegexOptions trackIDsOptions = RegexOptions.Multiline;
 
@@ -2256,7 +2256,7 @@ namespace QobuzDownloaderX
                         #endregion
 
                         // Grab all Track IDs listed on the API.
-                        string trackIDsPattern = "\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
+                        string trackIDsPattern = "\"isrc\":\"(?:.*?)\"(?:.*?)\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
                         string trackIDsInput = albumIDResponseString;
                         RegexOptions trackIDsOptions = RegexOptions.Multiline;
 
@@ -3030,7 +3030,7 @@ namespace QobuzDownloaderX
                 #endregion
 
                 // Grab all Track IDs listed on the API.
-                string trackIDsPattern = "\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
+                string trackIDsPattern = "\"isrc\":\"(?:.*?)\"(?:.*?)\"version\":(?:.*?),\"id\":(?<trackId>.*?),";
                 string trackIDsInput = albumIDResponseString;
                 RegexOptions trackIDsOptions = RegexOptions.Multiline;
 
