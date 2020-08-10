@@ -447,16 +447,27 @@ namespace QobuzDownloaderX
         {
             loginBG.WorkerSupportsCancellation = true;
 
-            // Create HttpClient to grab Track ID
+            // Create HttpClient for logging in using Napster / Rhapsody API. 
             var loginClient = new HttpClient();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12; //Make connection secure
+            loginClient.DefaultRequestHeaders.Add("Authorization", "Basic WlRKbE9XTmhaR1V0TnpsbVpTMDBaR1UyTFRrd1lqTXRaRGsxT0RSbE1Ea3dPRE01Ok1UUmpaVFZqTTJFdE9HVmxaaTAwT1RVM0xXRm1Oamt0TlRsbE9ERmhObVl5TnpJNQ=="); //This value is from logging in to the Napster Android app.
+
+            
+
+            // Create HttpClient to grab Track ID
+            var loginClient2 = new HttpClient();
             // Run through TLS to allow secure connection.
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             // Set user-agent to Firefox.
             loginClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
 
+            var loginURL = "https://www.qobuz.com/api.json/0.2/user/login"; //Set base URL
+            var parameters = new Dictionary<string, string> { { "username", emailTextbox.Text }, { "email", emailTextbox.Text }, { "password", passwordTextbox.Text }, { "extra", "partner" }, { "app_id", appID } }; //Set email & password parameters
+            var encodedContent = new FormUrlEncodedContent(parameters); //Add parameters as encoded content to login
+
             // Grab response from Rhapsody to get Track IDs from Album response.
             var loginUrl = "https://www.qobuz.com/api.json/0.2/user/login?email=" + emailTextbox.Text + "&password=" + passwordTextbox.Text + "&app_id=" + appID;
-            var loginResponse = await loginClient.GetAsync(loginUrl);
+            var loginResponse = await loginClient.PostAsync(loginURL, encodedContent);
             string loginResponseString = loginResponse.Content.ReadAsStringAsync().Result;
 
             // Grab metadata from API JSON response
