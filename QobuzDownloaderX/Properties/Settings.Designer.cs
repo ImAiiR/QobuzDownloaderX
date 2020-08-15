@@ -442,5 +442,17 @@ namespace QobuzDownloaderX.Properties {
                 this["typeTag"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("36")]
+        public int savedMaxLength {
+            get {
+                return ((int)(this["savedMaxLength"]));
+            }
+            set {
+                this["savedMaxLength"] = value;
+            }
+        }
     }
 }

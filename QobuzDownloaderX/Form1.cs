@@ -61,6 +61,7 @@ namespace QobuzDownloaderX
         public string finalTrackNameVersionPath { get; set; }
         public int MaxLength { get; set; }
         public int devClickEggThingValue { get; set; }
+        public int debugMode { get; set; }
 
         // Important strings
         public string loc { get; set; }
@@ -114,8 +115,6 @@ namespace QobuzDownloaderX
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MaxLength = 36;
-
             // Set main form size on launch and bring to center.
             this.Height = 533;
             this.CenterToScreen();
@@ -183,7 +182,10 @@ namespace QobuzDownloaderX
             formatIdString = Settings.Default.qualityFormat;
             audioFileType = Settings.Default.audioType;
             artSizeSelect.SelectedIndex = Settings.Default.savedArtSize;
+            MaxLength = Settings.Default.savedMaxLength;
+
             artSize = artSizeSelect.Text;
+            maxLengthTextbox.Text = MaxLength.ToString();
             #endregion
 
             // Check if there's no selected path saved.
@@ -212,6 +214,16 @@ namespace QobuzDownloaderX
             #region Debug Events, For Testing
 
             devClickEggThingValue = 0;
+
+            // Debug mode for things that are only for testing, or shouldn't be on public releases. At the moment, does nothing.
+            if (!Debugger.IsAttached)
+            {
+                debugMode = 0;
+            }
+            else
+            {
+                debugMode = 1;
+            }
 
             // Show app_secret value.
             //output.Invoke(new Action(() => output.AppendText("\r\n\r\napp_secret = " + appSecret)));
@@ -672,6 +684,9 @@ namespace QobuzDownloaderX
                             JObject joTrackResponse = JObject.Parse(trackIDResponseString);
 
                             #region Get Information (Tags, Titles, etc.)
+                            // Reset troublesome strings (strings that stick around if new value is null)
+                            composerName = null;
+
                             // Grab tag strings
                             albumArtist = (string)joTrackResponse["album"]["artist"]["name"]; albumArtist = DecodeEncodedNonAsciiCharacters(albumArtist);
                             albumArtistPath = GetSafeFilename(albumArtist);
@@ -1477,6 +1492,9 @@ namespace QobuzDownloaderX
                             JObject joTrackResponse = JObject.Parse(trackIDResponseString);
 
                             #region Get Information (Tags, Titles, etc.)
+                            // Reset troublesome strings (strings that stick around if new value is null)
+                            composerName = null;
+
                             // Grab tag strings
                             albumArtist = (string)joTrackResponse["album"]["artist"]["name"]; albumArtist = DecodeEncodedNonAsciiCharacters(albumArtist);
                             albumArtistPath = GetSafeFilename(albumArtist);
@@ -2283,6 +2301,9 @@ namespace QobuzDownloaderX
                             JObject joTrackResponse = JObject.Parse(trackIDResponseString);
 
                             #region Get Information (Tags, Titles, etc.)
+                            // Reset troublesome strings (strings that stick around if new value is null)
+                            composerName = null;
+
                             // Grab tag strings
                             albumArtist = (string)joTrackResponse["album"]["artist"]["name"]; albumArtist = DecodeEncodedNonAsciiCharacters(albumArtist);
                             albumArtistPath = GetSafeFilename(albumArtist);
@@ -3056,6 +3077,9 @@ namespace QobuzDownloaderX
                     JObject joTrackResponse = JObject.Parse(trackIDResponseString);
 
                     #region Get Information (Tags, Titles, etc.)
+                    // Reset troublesome strings (strings that stick around if new value is null)
+                    composerName = null;
+
                     // Grab tag strings
                     albumArtist = (string)joTrackResponse["album"]["artist"]["name"]; albumArtist = DecodeEncodedNonAsciiCharacters(albumArtist);
                     albumArtistPath = GetSafeFilename(albumArtist);
@@ -3776,6 +3800,9 @@ namespace QobuzDownloaderX
             #endregion
 
             #region Get Information (Tags, Titles, etc.)
+            // Reset troublesome strings (strings that stick around if new value is null)
+            composerName = null;
+
             // Grab tag strings
             albumArtist = (string)joResponse2["album"]["artist"]["name"]; albumArtist = DecodeEncodedNonAsciiCharacters(albumArtist);
             albumArtistPath = GetSafeFilename(albumArtist);
@@ -4497,6 +4524,41 @@ namespace QobuzDownloaderX
             Settings.Default.commentText = commentTextbox.Text;
             Settings.Default.Save();
         }
+
+        private void artSizeSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Set artSize to selected value, and save selected option to settings.
+            artSize = artSizeSelect.Text;
+            Settings.Default.savedArtSize = artSizeSelect.SelectedIndex;
+            Settings.Default.Save();
+        }
+
+        private void maxLengthTextbox_TextChanged(object sender, EventArgs e)
+        {
+            if (maxLengthTextbox.Text != null)
+            {
+                try
+                {
+                    if (Convert.ToInt32(maxLengthTextbox.Text) > 110)
+                    {
+                        maxLengthTextbox.Text = "110";
+                    }
+                    Settings.Default.savedMaxLength = Convert.ToInt32(maxLengthTextbox.Text);
+                    Settings.Default.Save();
+
+                    MaxLength = Convert.ToInt32(maxLengthTextbox.Text);
+                }
+                catch (Exception ex)
+                {
+                    MaxLength = 36;
+                }
+            }
+            else
+            {
+                MaxLength = 36;
+            }
+            
+        }
         #endregion
 
         #region Quality Options
@@ -4678,6 +4740,8 @@ namespace QobuzDownloaderX
             if (devClickEggThingValue >= 3)
             {
                 streamableCheckbox.Visible = true;
+                enableBtnsButton.Visible = true;
+                hideDebugButton.Visible = true;
                 displaySecretButton.Visible = true;
                 secretTextbox.Visible = true;
                 hiddenTextPanel.Visible = true;
@@ -4688,7 +4752,21 @@ namespace QobuzDownloaderX
                 displaySecretButton.Visible = false;
                 secretTextbox.Visible = false;
                 hiddenTextPanel.Visible = false;
+                enableBtnsButton.Visible = false;
+                hideDebugButton.Visible = false;
             }
+        }
+
+        private void hideDebugButton_Click(object sender, EventArgs e)
+        {
+            streamableCheckbox.Visible = false;
+            displaySecretButton.Visible = false;
+            secretTextbox.Visible = false;
+            hiddenTextPanel.Visible = false;
+            enableBtnsButton.Visible = false;
+            hideDebugButton.Visible = false;
+
+            devClickEggThingValue = 0;
         }
 
         private void displaySecretButton_Click(object sender, EventArgs e)
@@ -4713,18 +4791,15 @@ namespace QobuzDownloaderX
             Application.Exit();
         }
 
-        private void artSizeSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Set artSize to selected value, and save selected option to settings.
-            artSize = artSizeSelect.Text;
-            Settings.Default.savedArtSize = artSizeSelect.SelectedIndex;
-            Settings.Default.Save();
-        }
-
         // For converting illegal filename characters to an underscore.
         public string GetSafeFilename(string filename)
         {
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
+        }
+
+        private void enableBtnsButton_Click(object sender, EventArgs e)
+        {
+            enableBoxes(sender, e);
         }
     }
 }

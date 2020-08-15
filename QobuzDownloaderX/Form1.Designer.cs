@@ -107,6 +107,12 @@
             this.artSizeLabel = new System.Windows.Forms.Label();
             this.typeCheckbox = new System.Windows.Forms.CheckBox();
             this.aboutLabel = new System.Windows.Forms.Label();
+            this.enableBtnsButton = new System.Windows.Forms.Button();
+            this.hideDebugButton = new System.Windows.Forms.Button();
+            this.maxLengthLabel = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.maxLengthTextbox = new System.Windows.Forms.TextBox();
+            this.maxLengthWarnLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -755,7 +761,7 @@
             // 
             this.mp3WarnLabel.AutoSize = true;
             this.mp3WarnLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.mp3WarnLabel.Location = new System.Drawing.Point(744, 711);
+            this.mp3WarnLabel.Location = new System.Drawing.Point(744, 697);
             this.mp3WarnLabel.Name = "mp3WarnLabel";
             this.mp3WarnLabel.Size = new System.Drawing.Size(182, 13);
             this.mp3WarnLabel.TabIndex = 85;
@@ -863,7 +869,7 @@
             this.streamableCheckbox.Checked = true;
             this.streamableCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.streamableCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.streamableCheckbox.Location = new System.Drawing.Point(243, 12);
+            this.streamableCheckbox.Location = new System.Drawing.Point(243, 41);
             this.streamableCheckbox.Name = "streamableCheckbox";
             this.streamableCheckbox.Size = new System.Drawing.Size(113, 17);
             this.streamableCheckbox.TabIndex = 91;
@@ -876,13 +882,14 @@
             this.secretTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.secretTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.secretTextbox.ForeColor = System.Drawing.Color.White;
-            this.secretTextbox.Location = new System.Drawing.Point(352, 35);
+            this.secretTextbox.Location = new System.Drawing.Point(412, 15);
             this.secretTextbox.Multiline = true;
             this.secretTextbox.Name = "secretTextbox";
             this.secretTextbox.ReadOnly = true;
-            this.secretTextbox.Size = new System.Drawing.Size(209, 20);
+            this.secretTextbox.Size = new System.Drawing.Size(179, 20);
             this.secretTextbox.TabIndex = 92;
             this.secretTextbox.Visible = false;
+            this.secretTextbox.WordWrap = false;
             // 
             // displaySecretButton
             // 
@@ -890,7 +897,7 @@
             this.displaySecretButton.FlatAppearance.BorderSize = 0;
             this.displaySecretButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.displaySecretButton.ForeColor = System.Drawing.Color.White;
-            this.displaySecretButton.Location = new System.Drawing.Point(243, 32);
+            this.displaySecretButton.Location = new System.Drawing.Point(303, 12);
             this.displaySecretButton.Name = "displaySecretButton";
             this.displaySecretButton.Size = new System.Drawing.Size(103, 23);
             this.displaySecretButton.TabIndex = 93;
@@ -927,9 +934,9 @@
             // hiddenTextPanel
             // 
             this.hiddenTextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.hiddenTextPanel.Location = new System.Drawing.Point(352, 55);
+            this.hiddenTextPanel.Location = new System.Drawing.Point(412, 36);
             this.hiddenTextPanel.Name = "hiddenTextPanel";
-            this.hiddenTextPanel.Size = new System.Drawing.Size(209, 1);
+            this.hiddenTextPanel.Size = new System.Drawing.Size(179, 1);
             this.hiddenTextPanel.TabIndex = 87;
             this.hiddenTextPanel.Visible = false;
             // 
@@ -954,7 +961,7 @@
             "50"});
             this.artSizeSelect.Location = new System.Drawing.Point(634, 538);
             this.artSizeSelect.Name = "artSizeSelect";
-            this.artSizeSelect.Size = new System.Drawing.Size(121, 21);
+            this.artSizeSelect.Size = new System.Drawing.Size(87, 21);
             this.artSizeSelect.TabIndex = 96;
             this.artSizeSelect.SelectedIndexChanged += new System.EventHandler(this.artSizeSelect_SelectedIndexChanged);
             // 
@@ -964,9 +971,9 @@
             this.artSizeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
             this.artSizeLabel.Location = new System.Drawing.Point(530, 541);
             this.artSizeLabel.Name = "artSizeLabel";
-            this.artSizeLabel.Size = new System.Drawing.Size(246, 13);
+            this.artSizeLabel.Size = new System.Drawing.Size(210, 13);
             this.artSizeLabel.TabIndex = 97;
-            this.artSizeLabel.Text = "Embedded Art Size:                                             px";
+            this.artSizeLabel.Text = "Embedded Art Size:                                 px";
             // 
             // typeCheckbox
             // 
@@ -975,7 +982,7 @@
             this.typeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.typeCheckbox.FlatAppearance.BorderSize = 0;
             this.typeCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.typeCheckbox.Location = new System.Drawing.Point(533, 563);
+            this.typeCheckbox.Location = new System.Drawing.Point(533, 676);
             this.typeCheckbox.Name = "typeCheckbox";
             this.typeCheckbox.Size = new System.Drawing.Size(92, 17);
             this.typeCheckbox.TabIndex = 98;
@@ -999,12 +1006,88 @@
             this.aboutLabel.MouseLeave += new System.EventHandler(this.aboutLabel_MouseLeave);
             this.aboutLabel.MouseHover += new System.EventHandler(this.aboutLabel_MouseHover);
             // 
+            // enableBtnsButton
+            // 
+            this.enableBtnsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
+            this.enableBtnsButton.FlatAppearance.BorderSize = 0;
+            this.enableBtnsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.enableBtnsButton.ForeColor = System.Drawing.Color.White;
+            this.enableBtnsButton.Location = new System.Drawing.Point(597, 28);
+            this.enableBtnsButton.Name = "enableBtnsButton";
+            this.enableBtnsButton.Size = new System.Drawing.Size(120, 23);
+            this.enableBtnsButton.TabIndex = 100;
+            this.enableBtnsButton.Text = "Re-Enable Buttons";
+            this.enableBtnsButton.UseVisualStyleBackColor = false;
+            this.enableBtnsButton.Visible = false;
+            this.enableBtnsButton.Click += new System.EventHandler(this.enableBtnsButton_Click);
+            // 
+            // hideDebugButton
+            // 
+            this.hideDebugButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(112)))), ((int)(((byte)(239)))));
+            this.hideDebugButton.FlatAppearance.BorderSize = 0;
+            this.hideDebugButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hideDebugButton.ForeColor = System.Drawing.Color.White;
+            this.hideDebugButton.Location = new System.Drawing.Point(243, 12);
+            this.hideDebugButton.Name = "hideDebugButton";
+            this.hideDebugButton.Size = new System.Drawing.Size(54, 23);
+            this.hideDebugButton.TabIndex = 101;
+            this.hideDebugButton.Text = "Hide";
+            this.hideDebugButton.UseVisualStyleBackColor = false;
+            this.hideDebugButton.Visible = false;
+            this.hideDebugButton.Click += new System.EventHandler(this.hideDebugButton_Click);
+            // 
+            // maxLengthLabel
+            // 
+            this.maxLengthLabel.AutoSize = true;
+            this.maxLengthLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.maxLengthLabel.Location = new System.Drawing.Point(530, 567);
+            this.maxLengthLabel.Name = "maxLengthLabel";
+            this.maxLengthLabel.Size = new System.Drawing.Size(121, 13);
+            this.maxLengthLabel.TabIndex = 102;
+            this.maxLengthLabel.Text = "Max File Name Length**";
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.panel9.Location = new System.Drawing.Point(653, 586);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(68, 1);
+            this.panel9.TabIndex = 92;
+            // 
+            // maxLengthTextbox
+            // 
+            this.maxLengthTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.maxLengthTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.maxLengthTextbox.ForeColor = System.Drawing.Color.White;
+            this.maxLengthTextbox.Location = new System.Drawing.Point(653, 567);
+            this.maxLengthTextbox.Multiline = true;
+            this.maxLengthTextbox.Name = "maxLengthTextbox";
+            this.maxLengthTextbox.Size = new System.Drawing.Size(68, 17);
+            this.maxLengthTextbox.TabIndex = 91;
+            this.maxLengthTextbox.TextChanged += new System.EventHandler(this.maxLengthTextbox_TextChanged);
+            // 
+            // maxLengthWarnLabel
+            // 
+            this.maxLengthWarnLabel.AutoSize = true;
+            this.maxLengthWarnLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.maxLengthWarnLabel.Location = new System.Drawing.Point(819, 711);
+            this.maxLengthWarnLabel.Name = "maxLengthWarnLabel";
+            this.maxLengthWarnLabel.Size = new System.Drawing.Size(107, 13);
+            this.maxLengthWarnLabel.TabIndex = 103;
+            this.maxLengthWarnLabel.Text = "** = Max value is 110";
+            // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(938, 733);
+            this.Controls.Add(this.maxLengthWarnLabel);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.maxLengthTextbox);
+            this.Controls.Add(this.maxLengthLabel);
+            this.Controls.Add(this.hideDebugButton);
+            this.Controls.Add(this.enableBtnsButton);
             this.Controls.Add(this.aboutLabel);
             this.Controls.Add(this.typeCheckbox);
             this.Controls.Add(this.artSizeSelect);
@@ -1170,6 +1253,12 @@
         private System.Windows.Forms.Label artSizeLabel;
         private System.Windows.Forms.CheckBox typeCheckbox;
         private System.Windows.Forms.Label aboutLabel;
+        private System.Windows.Forms.Button enableBtnsButton;
+        private System.Windows.Forms.Button hideDebugButton;
+        private System.Windows.Forms.Label maxLengthLabel;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.TextBox maxLengthTextbox;
+        private System.Windows.Forms.Label maxLengthWarnLabel;
     }
 }
 
