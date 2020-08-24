@@ -454,5 +454,29 @@ namespace QobuzDownloaderX.Properties {
                 this["savedMaxLength"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int savedFilenameTemplate {
+            get {
+                return ((int)(this["savedFilenameTemplate"]));
+            }
+            set {
+                this["savedFilenameTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string savedFilenameTemplateString {
+            get {
+                return ((string)(this["savedFilenameTemplateString"]));
+            }
+            set {
+                this["savedFilenameTemplateString"] = value;
+            }
+        }
     }
 }

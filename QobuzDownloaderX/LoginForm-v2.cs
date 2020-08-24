@@ -370,6 +370,7 @@ namespace QobuzDownloaderX
             getSecretBG.WorkerSupportsCancellation = true;
 
             WebClient bundleURLClient = new WebClient();
+            bundleURLClient.Proxy = null;
             string bundleHTML = bundleURLClient.DownloadString("https://play.qobuz.com/login");
 
             // Grab link to bundle.js
@@ -451,8 +452,6 @@ namespace QobuzDownloaderX
             var loginClient = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12; //Make connection secure
             loginClient.DefaultRequestHeaders.Add("Authorization", "Basic WlRKbE9XTmhaR1V0TnpsbVpTMDBaR1UyTFRrd1lqTXRaRGsxT0RSbE1Ea3dPRE01Ok1UUmpaVFZqTTJFdE9HVmxaaTAwT1RVM0xXRm1Oamt0TlRsbE9ERmhObVl5TnpJNQ=="); //This value is from logging in to the Napster Android app.
-
-            
 
             // Create HttpClient to grab Track ID
             var loginClient2 = new HttpClient();

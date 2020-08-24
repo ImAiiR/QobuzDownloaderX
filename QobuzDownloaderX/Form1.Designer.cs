@@ -113,6 +113,12 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.maxLengthTextbox = new System.Windows.Forms.TextBox();
             this.maxLengthWarnLabel = new System.Windows.Forms.Label();
+            this.customFormatPanel = new System.Windows.Forms.Panel();
+            this.customFormatIDTextbox = new System.Windows.Forms.TextBox();
+            this.formatIDLabel = new System.Windows.Forms.Label();
+            this.filenameTempSelect = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.downloadPlaylistBG = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.albumArtPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
@@ -449,7 +455,7 @@
             this.albumArtistCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.albumArtistCheckbox.FlatAppearance.BorderSize = 0;
             this.albumArtistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.albumArtistCheckbox.Location = new System.Drawing.Point(325, 563);
+            this.albumArtistCheckbox.Location = new System.Drawing.Point(12, 540);
             this.albumArtistCheckbox.Name = "albumArtistCheckbox";
             this.albumArtistCheckbox.Size = new System.Drawing.Size(81, 17);
             this.albumArtistCheckbox.TabIndex = 62;
@@ -464,7 +470,7 @@
             this.artistCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.artistCheckbox.FlatAppearance.BorderSize = 0;
             this.artistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.artistCheckbox.Location = new System.Drawing.Point(325, 609);
+            this.artistCheckbox.Location = new System.Drawing.Point(183, 540);
             this.artistCheckbox.Name = "artistCheckbox";
             this.artistCheckbox.Size = new System.Drawing.Size(80, 17);
             this.artistCheckbox.TabIndex = 63;
@@ -479,7 +485,7 @@
             this.trackTitleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.trackTitleCheckbox.FlatAppearance.BorderSize = 0;
             this.trackTitleCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.trackTitleCheckbox.Location = new System.Drawing.Point(325, 586);
+            this.trackTitleCheckbox.Location = new System.Drawing.Point(269, 540);
             this.trackTitleCheckbox.Name = "trackTitleCheckbox";
             this.trackTitleCheckbox.Size = new System.Drawing.Size(77, 17);
             this.trackTitleCheckbox.TabIndex = 64;
@@ -494,7 +500,7 @@
             this.trackNumberCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.trackNumberCheckbox.FlatAppearance.BorderSize = 0;
             this.trackNumberCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.trackNumberCheckbox.Location = new System.Drawing.Point(325, 632);
+            this.trackNumberCheckbox.Location = new System.Drawing.Point(104, 568);
             this.trackNumberCheckbox.Name = "trackNumberCheckbox";
             this.trackNumberCheckbox.Size = new System.Drawing.Size(94, 17);
             this.trackNumberCheckbox.TabIndex = 65;
@@ -509,7 +515,7 @@
             this.trackTotalCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.trackTotalCheckbox.FlatAppearance.BorderSize = 0;
             this.trackTotalCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.trackTotalCheckbox.Location = new System.Drawing.Point(325, 655);
+            this.trackTotalCheckbox.Location = new System.Drawing.Point(12, 568);
             this.trackTotalCheckbox.Name = "trackTotalCheckbox";
             this.trackTotalCheckbox.Size = new System.Drawing.Size(86, 17);
             this.trackTotalCheckbox.TabIndex = 66;
@@ -524,7 +530,7 @@
             this.discNumberCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.discNumberCheckbox.FlatAppearance.BorderSize = 0;
             this.discNumberCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.discNumberCheckbox.Location = new System.Drawing.Point(325, 676);
+            this.discNumberCheckbox.Location = new System.Drawing.Point(289, 568);
             this.discNumberCheckbox.Name = "discNumberCheckbox";
             this.discNumberCheckbox.Size = new System.Drawing.Size(87, 17);
             this.discNumberCheckbox.TabIndex = 67;
@@ -539,7 +545,7 @@
             this.discTotalCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.discTotalCheckbox.FlatAppearance.BorderSize = 0;
             this.discTotalCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.discTotalCheckbox.Location = new System.Drawing.Point(325, 699);
+            this.discTotalCheckbox.Location = new System.Drawing.Point(204, 568);
             this.discTotalCheckbox.Name = "discTotalCheckbox";
             this.discTotalCheckbox.Size = new System.Drawing.Size(79, 17);
             this.discTotalCheckbox.TabIndex = 68;
@@ -554,7 +560,7 @@
             this.albumCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.albumCheckbox.FlatAppearance.BorderSize = 0;
             this.albumCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.albumCheckbox.Location = new System.Drawing.Point(325, 540);
+            this.albumCheckbox.Location = new System.Drawing.Point(99, 540);
             this.albumCheckbox.Name = "albumCheckbox";
             this.albumCheckbox.Size = new System.Drawing.Size(78, 17);
             this.albumCheckbox.TabIndex = 69;
@@ -569,7 +575,7 @@
             this.explicitCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.explicitCheckbox.FlatAppearance.BorderSize = 0;
             this.explicitCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.explicitCheckbox.Location = new System.Drawing.Point(425, 678);
+            this.explicitCheckbox.Location = new System.Drawing.Point(458, 568);
             this.explicitCheckbox.Name = "explicitCheckbox";
             this.explicitCheckbox.Size = new System.Drawing.Size(106, 17);
             this.explicitCheckbox.TabIndex = 76;
@@ -584,7 +590,7 @@
             this.upcCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.upcCheckbox.FlatAppearance.BorderSize = 0;
             this.upcCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.upcCheckbox.Location = new System.Drawing.Point(425, 655);
+            this.upcCheckbox.Location = new System.Drawing.Point(763, 540);
             this.upcCheckbox.Name = "upcCheckbox";
             this.upcCheckbox.Size = new System.Drawing.Size(52, 17);
             this.upcCheckbox.TabIndex = 75;
@@ -599,7 +605,7 @@
             this.isrcCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.isrcCheckbox.FlatAppearance.BorderSize = 0;
             this.isrcCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.isrcCheckbox.Location = new System.Drawing.Point(425, 632);
+            this.isrcCheckbox.Location = new System.Drawing.Point(821, 540);
             this.isrcCheckbox.Name = "isrcCheckbox";
             this.isrcCheckbox.Size = new System.Drawing.Size(51, 17);
             this.isrcCheckbox.TabIndex = 74;
@@ -614,7 +620,7 @@
             this.copyrightCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.copyrightCheckbox.FlatAppearance.BorderSize = 0;
             this.copyrightCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.copyrightCheckbox.Location = new System.Drawing.Point(425, 609);
+            this.copyrightCheckbox.Location = new System.Drawing.Point(687, 540);
             this.copyrightCheckbox.Name = "copyrightCheckbox";
             this.copyrightCheckbox.Size = new System.Drawing.Size(70, 17);
             this.copyrightCheckbox.TabIndex = 73;
@@ -629,7 +635,7 @@
             this.composerCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.composerCheckbox.FlatAppearance.BorderSize = 0;
             this.composerCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.composerCheckbox.Location = new System.Drawing.Point(425, 586);
+            this.composerCheckbox.Location = new System.Drawing.Point(608, 540);
             this.composerCheckbox.Name = "composerCheckbox";
             this.composerCheckbox.Size = new System.Drawing.Size(73, 17);
             this.composerCheckbox.TabIndex = 72;
@@ -644,7 +650,7 @@
             this.genreCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.genreCheckbox.FlatAppearance.BorderSize = 0;
             this.genreCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.genreCheckbox.Location = new System.Drawing.Point(425, 563);
+            this.genreCheckbox.Location = new System.Drawing.Point(547, 540);
             this.genreCheckbox.Name = "genreCheckbox";
             this.genreCheckbox.Size = new System.Drawing.Size(55, 17);
             this.genreCheckbox.TabIndex = 71;
@@ -659,7 +665,7 @@
             this.releaseCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.releaseCheckbox.FlatAppearance.BorderSize = 0;
             this.releaseCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.releaseCheckbox.Location = new System.Drawing.Point(425, 540);
+            this.releaseCheckbox.Location = new System.Drawing.Point(450, 540);
             this.releaseCheckbox.Name = "releaseCheckbox";
             this.releaseCheckbox.Size = new System.Drawing.Size(91, 17);
             this.releaseCheckbox.TabIndex = 70;
@@ -672,7 +678,7 @@
             this.commentCheckbox.AutoSize = true;
             this.commentCheckbox.FlatAppearance.BorderSize = 0;
             this.commentCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.commentCheckbox.Location = new System.Drawing.Point(533, 699);
+            this.commentCheckbox.Location = new System.Drawing.Point(570, 568);
             this.commentCheckbox.Name = "commentCheckbox";
             this.commentCheckbox.Size = new System.Drawing.Size(70, 17);
             this.commentCheckbox.TabIndex = 78;
@@ -685,7 +691,7 @@
             this.commentTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.commentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.commentTextbox.ForeColor = System.Drawing.Color.White;
-            this.commentTextbox.Location = new System.Drawing.Point(609, 697);
+            this.commentTextbox.Location = new System.Drawing.Point(646, 566);
             this.commentTextbox.Multiline = true;
             this.commentTextbox.Name = "commentTextbox";
             this.commentTextbox.Size = new System.Drawing.Size(112, 17);
@@ -699,7 +705,7 @@
             this.imageCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.imageCheckbox.FlatAppearance.BorderSize = 0;
             this.imageCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.imageCheckbox.Location = new System.Drawing.Point(425, 699);
+            this.imageCheckbox.Location = new System.Drawing.Point(382, 568);
             this.imageCheckbox.Name = "imageCheckbox";
             this.imageCheckbox.Size = new System.Drawing.Size(70, 17);
             this.imageCheckbox.TabIndex = 80;
@@ -761,7 +767,7 @@
             // 
             this.mp3WarnLabel.AutoSize = true;
             this.mp3WarnLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.mp3WarnLabel.Location = new System.Drawing.Point(744, 697);
+            this.mp3WarnLabel.Location = new System.Drawing.Point(744, 596);
             this.mp3WarnLabel.Name = "mp3WarnLabel";
             this.mp3WarnLabel.Size = new System.Drawing.Size(182, 13);
             this.mp3WarnLabel.TabIndex = 85;
@@ -858,7 +864,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.panel8.Location = new System.Drawing.Point(609, 716);
+            this.panel8.Location = new System.Drawing.Point(646, 585);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(112, 1);
             this.panel8.TabIndex = 90;
@@ -959,7 +965,7 @@
             "150",
             "100",
             "50"});
-            this.artSizeSelect.Location = new System.Drawing.Point(634, 538);
+            this.artSizeSelect.Location = new System.Drawing.Point(113, 593);
             this.artSizeSelect.Name = "artSizeSelect";
             this.artSizeSelect.Size = new System.Drawing.Size(87, 21);
             this.artSizeSelect.TabIndex = 96;
@@ -969,11 +975,11 @@
             // 
             this.artSizeLabel.AutoSize = true;
             this.artSizeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.artSizeLabel.Location = new System.Drawing.Point(530, 541);
+            this.artSizeLabel.Location = new System.Drawing.Point(12, 596);
             this.artSizeLabel.Name = "artSizeLabel";
-            this.artSizeLabel.Size = new System.Drawing.Size(210, 13);
+            this.artSizeLabel.Size = new System.Drawing.Size(207, 13);
             this.artSizeLabel.TabIndex = 97;
-            this.artSizeLabel.Text = "Embedded Art Size:                                 px";
+            this.artSizeLabel.Text = "Embedded Art Size:                                px";
             // 
             // typeCheckbox
             // 
@@ -982,7 +988,7 @@
             this.typeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.typeCheckbox.FlatAppearance.BorderSize = 0;
             this.typeCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.typeCheckbox.Location = new System.Drawing.Point(533, 676);
+            this.typeCheckbox.Location = new System.Drawing.Point(352, 540);
             this.typeCheckbox.Name = "typeCheckbox";
             this.typeCheckbox.Size = new System.Drawing.Size(92, 17);
             this.typeCheckbox.TabIndex = 98;
@@ -1040,7 +1046,7 @@
             // 
             this.maxLengthLabel.AutoSize = true;
             this.maxLengthLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.maxLengthLabel.Location = new System.Drawing.Point(530, 567);
+            this.maxLengthLabel.Location = new System.Drawing.Point(444, 596);
             this.maxLengthLabel.Name = "maxLengthLabel";
             this.maxLengthLabel.Size = new System.Drawing.Size(121, 13);
             this.maxLengthLabel.TabIndex = 102;
@@ -1049,7 +1055,7 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.panel9.Location = new System.Drawing.Point(653, 586);
+            this.panel9.Location = new System.Drawing.Point(567, 610);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(68, 1);
             this.panel9.TabIndex = 92;
@@ -1059,7 +1065,7 @@
             this.maxLengthTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.maxLengthTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.maxLengthTextbox.ForeColor = System.Drawing.Color.White;
-            this.maxLengthTextbox.Location = new System.Drawing.Point(653, 567);
+            this.maxLengthTextbox.Location = new System.Drawing.Point(567, 596);
             this.maxLengthTextbox.Multiline = true;
             this.maxLengthTextbox.Name = "maxLengthTextbox";
             this.maxLengthTextbox.Size = new System.Drawing.Size(68, 17);
@@ -1070,18 +1076,84 @@
             // 
             this.maxLengthWarnLabel.AutoSize = true;
             this.maxLengthWarnLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
-            this.maxLengthWarnLabel.Location = new System.Drawing.Point(819, 711);
+            this.maxLengthWarnLabel.Location = new System.Drawing.Point(819, 610);
             this.maxLengthWarnLabel.Name = "maxLengthWarnLabel";
             this.maxLengthWarnLabel.Size = new System.Drawing.Size(107, 13);
             this.maxLengthWarnLabel.TabIndex = 103;
             this.maxLengthWarnLabel.Text = "** = Max value is 110";
+            // 
+            // customFormatPanel
+            // 
+            this.customFormatPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.customFormatPanel.Location = new System.Drawing.Point(572, 60);
+            this.customFormatPanel.Name = "customFormatPanel";
+            this.customFormatPanel.Size = new System.Drawing.Size(19, 1);
+            this.customFormatPanel.TabIndex = 104;
+            this.customFormatPanel.Visible = false;
+            // 
+            // customFormatIDTextbox
+            // 
+            this.customFormatIDTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.customFormatIDTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.customFormatIDTextbox.ForeColor = System.Drawing.Color.White;
+            this.customFormatIDTextbox.Location = new System.Drawing.Point(572, 42);
+            this.customFormatIDTextbox.Multiline = true;
+            this.customFormatIDTextbox.Name = "customFormatIDTextbox";
+            this.customFormatIDTextbox.Size = new System.Drawing.Size(19, 20);
+            this.customFormatIDTextbox.TabIndex = 105;
+            this.customFormatIDTextbox.Visible = false;
+            this.customFormatIDTextbox.WordWrap = false;
+            this.customFormatIDTextbox.TextChanged += new System.EventHandler(this.customFormatIDTextbox_TextChanged);
+            // 
+            // formatIDLabel
+            // 
+            this.formatIDLabel.AutoSize = true;
+            this.formatIDLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.formatIDLabel.Location = new System.Drawing.Point(513, 42);
+            this.formatIDLabel.Name = "formatIDLabel";
+            this.formatIDLabel.Size = new System.Drawing.Size(53, 13);
+            this.formatIDLabel.TabIndex = 106;
+            this.formatIDLabel.Text = "Format ID";
+            this.formatIDLabel.Visible = false;
+            // 
+            // filenameTempSelect
+            // 
+            this.filenameTempSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filenameTempSelect.FormattingEnabled = true;
+            this.filenameTempSelect.Items.AddRange(new object[] {
+            "00 Trackname",
+            "00 - Trackname"});
+            this.filenameTempSelect.Location = new System.Drawing.Point(325, 593);
+            this.filenameTempSelect.Name = "filenameTempSelect";
+            this.filenameTempSelect.Size = new System.Drawing.Size(108, 21);
+            this.filenameTempSelect.TabIndex = 107;
+            this.filenameTempSelect.SelectedIndexChanged += new System.EventHandler(this.filenameTempSelect_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(92)))), ((int)(((byte)(102)))));
+            this.label7.Location = new System.Drawing.Point(225, 596);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(99, 13);
+            this.label7.TabIndex = 108;
+            this.label7.Text = "Filename Template:";
+            // 
+            // downloadPlaylistBG
+            // 
+            this.downloadPlaylistBG.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadPlaylistBG_DoWork);
             // 
             // QobuzDownloaderX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(938, 733);
+            this.ClientSize = new System.Drawing.Size(938, 632);
+            this.Controls.Add(this.filenameTempSelect);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.formatIDLabel);
+            this.Controls.Add(this.customFormatPanel);
+            this.Controls.Add(this.customFormatIDTextbox);
             this.Controls.Add(this.maxLengthWarnLabel);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.maxLengthTextbox);
@@ -1259,6 +1331,12 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.TextBox maxLengthTextbox;
         private System.Windows.Forms.Label maxLengthWarnLabel;
+        private System.Windows.Forms.Panel customFormatPanel;
+        private System.Windows.Forms.TextBox customFormatIDTextbox;
+        private System.Windows.Forms.Label formatIDLabel;
+        private System.Windows.Forms.ComboBox filenameTempSelect;
+        private System.Windows.Forms.Label label7;
+        private System.ComponentModel.BackgroundWorker downloadPlaylistBG;
     }
 }
 
