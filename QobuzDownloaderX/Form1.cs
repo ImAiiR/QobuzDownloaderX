@@ -4376,6 +4376,12 @@ namespace QobuzDownloaderX
                         output.Invoke(new Action(() => output.AppendText("Goodies found, downloading...")));
                         using (WebClient bookClient = new WebClient())
                         {
+	                        string path = Path.Combine(loc, albumArtistPath, albumNamePath, qualityPath);
+	                        if (!Directory.Exists(path))
+	                        {
+		                        Directory.CreateDirectory(path);
+	                        }
+
                             // Download max quality Cover Art to "Cover.jpg" file in chosen path. 
                             bookClient.DownloadFile(new Uri(goodiesPDF), goodiesPath);
                         }
