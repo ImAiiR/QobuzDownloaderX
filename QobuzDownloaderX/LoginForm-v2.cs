@@ -398,7 +398,7 @@ namespace QobuzDownloaderX
                 var bundleExtras = bundleLog1[3].Value;
 
                 // Grab "seed"
-                var bundleLog2 = Regex.Match(getBundleRequest, "window.utimezone.paris\\):h.initialSeed\\(\"(?<seed>.*?)\",window.utimezone.berlin\\)").Groups;
+                var bundleLog2 = Regex.Match(getBundleRequest, "window.utimezone.algier\\):f.initialSeed\\(\"(?<seed>.*?)\",window.utimezone.berlin\\)").Groups;
                 var bundleSeed = bundleLog2[1].Value;
 
                 // Step 1 of getting the app_secret
