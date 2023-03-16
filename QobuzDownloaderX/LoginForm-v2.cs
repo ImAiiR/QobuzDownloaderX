@@ -389,16 +389,16 @@ namespace QobuzDownloaderX
                 string text = getBundleRequest;
 
                 // Grab app_id from bundle.js
-                var bundleLog0 = Regex.Match(getBundleRequest, "\\):\\(n.qobuzapi={app_id:\"(?<appID>.*?)\",app_secret:").Groups;
+                var bundleLog0 = Regex.Match(getBundleRequest, "production:{api\\:{appId:\"(?<appID>.*?)\",appSecret:").Groups;
                 appID = bundleLog0[1].Value;
 
                 // Grab "info" and "extras"
-                var bundleLog1 = Regex.Match(getBundleRequest, "{offset:\"(?<notUsed>.*?)\",name:\"Europe\\/Berlin\",info:\"(?<info>.*?)\",extras:\"(?<extras>.*?)\"}").Groups;
-                var bundleInfo = bundleLog1[2].Value;
-                var bundleExtras = bundleLog1[3].Value;
+                var bundleLog1 = Regex.Match(getBundleRequest, "name:\"[A-Za-z\\/]+\\/Berlin\",info:\"(?<info>[\\w=]+)\",extras:\"(?<extras>[\\w=]+)\"").Groups;
+                var bundleInfo = bundleLog1[1].Value;
+                var bundleExtras = bundleLog1[2].Value;
 
                 // Grab "seed"
-                var bundleLog2 = Regex.Match(getBundleRequest, "window.utimezone.algier\\):f.initialSeed\\(\"(?<seed>.*?)\",window.utimezone.berlin\\)").Groups;
+                var bundleLog2 = Regex.Match(getBundleRequest, "[a-z]\\.initialSeed\\(\"(?<seed>[\\w=]+)\",window\\.utimezone\\.berlin\\)").Groups;
                 var bundleSeed = bundleLog2[1].Value;
 
                 // Step 1 of getting the app_secret
