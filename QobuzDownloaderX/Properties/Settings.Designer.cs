@@ -409,10 +409,10 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string savedAltLoginValue {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool savedAltLoginValue {
             get {
-                return ((string)(this["savedAltLoginValue"]));
+                return ((bool)(this["savedAltLoginValue"]));
             }
             set {
                 this["savedAltLoginValue"] = value;
@@ -421,13 +421,13 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int savedArtSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int savedEmbeddedArtSize {
             get {
-                return ((int)(this["savedArtSize"]));
+                return ((int)(this["savedEmbeddedArtSize"]));
             }
             set {
-                this["savedArtSize"] = value;
+                this["savedEmbeddedArtSize"] = value;
             }
         }
         
@@ -476,6 +476,126 @@ namespace QobuzDownloaderX.Properties {
             }
             set {
                 this["savedFilenameTemplateString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string savedSecret {
+            get {
+                return ((string)(this["savedSecret"]));
+            }
+            set {
+                this["savedSecret"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%TrackNumber% %TrackTitle%")]
+        public string savedTrackTemplate {
+            get {
+                return ((string)(this["savedTrackTemplate"]));
+            }
+            set {
+                this["savedTrackTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%AlbumTitle%")]
+        public string savedAlbumTemplate {
+            get {
+                return ((string)(this["savedAlbumTemplate"]));
+            }
+            set {
+                this["savedAlbumTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%ArtistName%")]
+        public string savedArtistTemplate {
+            get {
+                return ((string)(this["savedArtistTemplate"]));
+            }
+            set {
+                this["savedArtistTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%PlaylistTitle%")]
+        public string savedPlaylistTemplate {
+            get {
+                return ((string)(this["savedPlaylistTemplate"]));
+            }
+            set {
+                this["savedPlaylistTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("- Favorites")]
+        public string savedFavoritesTemplate {
+            get {
+                return ((string)(this["savedFavoritesTemplate"]));
+            }
+            set {
+                this["savedFavoritesTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int savedSavedArtSize {
+            get {
+                return ((int)(this["savedSavedArtSize"]));
+            }
+            set {
+                this["savedSavedArtSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool labelTag {
+            get {
+                return ((bool)(this["labelTag"]));
+            }
+            set {
+                this["labelTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool streamableCheck {
+            get {
+                return ((bool)(this["streamableCheck"]));
+            }
+            set {
+                this["streamableCheck"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool fixMD5s {
+            get {
+                return ((bool)(this["fixMD5s"]));
+            }
+            set {
+                this["fixMD5s"] = value;
             }
         }
     }

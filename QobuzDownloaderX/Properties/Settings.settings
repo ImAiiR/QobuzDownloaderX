@@ -98,11 +98,11 @@
     <Setting Name="savedUserAuthToken" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="savedAltLoginValue" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="savedAltLoginValue" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="savedArtSize" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="savedEmbeddedArtSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="typeTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -114,7 +114,37 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="savedFilenameTemplateString" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> </Value>
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="savedSecret" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="savedTrackTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%TrackNumber% %TrackTitle%</Value>
+    </Setting>
+    <Setting Name="savedAlbumTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%AlbumTitle%</Value>
+    </Setting>
+    <Setting Name="savedArtistTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%ArtistName%</Value>
+    </Setting>
+    <Setting Name="savedPlaylistTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%PlaylistTitle%</Value>
+    </Setting>
+    <Setting Name="savedFavoritesTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">- Favorites</Value>
+    </Setting>
+    <Setting Name="savedSavedArtSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="labelTag" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="streamableCheck" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="fixMD5s" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

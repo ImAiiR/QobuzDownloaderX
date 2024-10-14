@@ -43,7 +43,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::QobuzDownloaderX.Properties.Resources.login_frame;
+            this.panel1.BackgroundImage = null;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.exitLabel);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -84,7 +84,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::QobuzDownloaderX.Properties.Resources.qbdlx_white;
+            this.pictureBox1.Image = null;
             this.pictureBox1.Location = new System.Drawing.Point(53, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(258, 64);

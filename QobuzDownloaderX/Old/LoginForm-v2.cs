@@ -20,6 +20,7 @@ using System.Net.Http.Headers;
 using System.Drawing.Imaging;
 using TagLib.Flac;
 using Newtonsoft.Json.Linq;
+using QopenAPI;
 using QobuzDownloaderX;
 
 namespace QobuzDownloaderX
@@ -46,12 +47,17 @@ namespace QobuzDownloaderX
 
         QobuzDownloaderX qbdlx = new QobuzDownloaderX();
         AboutForm about = new AboutForm();
+        Service service = new Service();
+        User user;
+        AppID appIdLog;
+        AppSecret appSecretLog;
 
         public string appSecret { get; set; }
         public string appID { get; set; }
         public string userID { get; set; }
         public string userAuthToken { get; set; }
         public string altLoginValue { get; set; }
+        public string useSaved { get; set; }
 
         string errorLog = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Latest_Error.log");
         string dllCheck = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "taglib-sharp.dll");
@@ -123,7 +129,22 @@ namespace QobuzDownloaderX
             userIdTextbox.Text = Settings.Default.savedUserID.ToString();
             userAuthTokenTextbox.Text = Settings.Default.savedUserAuthToken.ToString();
             altLoginValue = Settings.Default.savedAltLoginValue.ToString();
+            if (Settings.Default.savedAppID.ToString() != null | Settings.Default.savedAppID.ToString() != "" | Settings.Default.savedAppID.ToString() != " " | Settings.Default.savedSecret.ToString() != null | Settings.Default.savedSecret.ToString() != "" | Settings.Default.savedSecret.ToString() != " ")
+            {
+                appID = Settings.Default.savedAppID.ToString();
+                appSecret = Settings.Default.savedSecret.ToString();
+            }
 
+            // Set string to check if using saved ID & Secret
+            if (appSecret == null | appSecret == "" | appSecret == " ")
+            {
+                useSaved = "0";
+            }
+            else
+            {
+                useSaved = "1";
+            }
+            
             // Set alt login mode & label text based on saved value
             if (altLoginValue == "0")
             {
@@ -320,12 +341,23 @@ namespace QobuzDownloaderX
                     // Save info locally to be used on next launch.
                     Settings.Default.savedEmail = emailTextbox.Text;
                     Settings.Default.savedPassword = passwordTextbox.Text;
-                    Settings.Default.savedAltLoginValue = altLoginValue;
+                    //Settings.Default.savedAltLoginValue = altLoginValue;
                     Settings.Default.Save();
 
-                    loginText.Text = "Getting App ID and Secret...";
-                    loginButton.Enabled = false;
-                    getSecretBG.RunWorkerAsync();
+                    if (useSaved == "1")
+                    {
+                        loginText.Text = "Using saved App ID and Secret...";
+                        System.Threading.Thread.Sleep(500);
+                        loginText.Text = "Logging in...";
+                        loginButton.Enabled = false;
+                        loginBG.RunWorkerAsync();
+                    }
+                    else
+                    {
+                        loginText.Text = "Getting App ID and Secret...";
+                        loginButton.Enabled = false;
+                        getSecretBG.RunWorkerAsync();
+                    }
                     #endregion
                     break;
                 default:
@@ -354,12 +386,24 @@ namespace QobuzDownloaderX
                     // Save info locally to be used on next launch.
                     Settings.Default.savedUserID = userIdTextbox.Text;
                     Settings.Default.savedUserAuthToken = userAuthTokenTextbox.Text;
-                    Settings.Default.savedAltLoginValue = altLoginValue;
+                    //Settings.Default.savedAltLoginValue = altLoginValue;
                     Settings.Default.Save();
 
-                    loginText.Text = "Getting App ID and Secret...";
-                    loginButton.Enabled = false;
-                    getSecretBG.RunWorkerAsync();
+                    if (Settings.Default.savedSecret != null)
+                    {
+                        loginText.Text = "Using saved App ID and Secret...";
+                        System.Threading.Thread.Sleep(100);
+                        loginText.Text = "Logging in...";
+                        System.Threading.Thread.Sleep(100);
+                        loginButton.Enabled = false;
+                        altLoginBG.RunWorkerAsync();
+                    }
+                    else
+                    {
+                        loginText.Text = "Getting App ID and Secret...";
+                        loginButton.Enabled = false;
+                        getSecretBG.RunWorkerAsync();
+                    }
                     #endregion
                     break;
             }
@@ -389,6 +433,7 @@ namespace QobuzDownloaderX
                 string text = getBundleRequest;
 
                 // Grab app_id from bundle.js
+
                 var bundleLog0 = Regex.Match(getBundleRequest, "production:{api\\:{appId:\"(?<appID>.*?)\",appSecret:").Groups;
                 appID = bundleLog0[1].Value;
 
@@ -416,6 +461,18 @@ namespace QobuzDownloaderX
 
                 // Set app_secret
                 appSecret = Encoding.UTF8.GetString(step3Data);
+
+                appIdLog = service.GetAppID();
+                appID = appIdLog.App_ID;
+                Settings.Default.savedAppID = appID;
+
+                // Grab app_secret from bundle.js
+                user = service.Login(appID, emailTextbox.Text, passwordTextbox.Text, null);
+                appSecretLog = service.GetAppSecret(appID, user.UserAuthToken);
+                appSecret = appSecretLog.App_Secret;
+                Settings.Default.savedSecret = appSecret;
+
+
                 loginText.Invoke(new Action(() => loginText.Text = "ID and Secret Obtained! Logging in.."));
                 System.Threading.Thread.Sleep(1000);
             }
@@ -515,19 +572,30 @@ namespace QobuzDownloaderX
 
                 // Set user_auth_token
                 loginText.Invoke(new Action(() => loginText.Text = "Login Successful! Launching QBDLX..."));
+                finishLogin(sender, e);
             }
             catch (Exception ex)
             {
-                // If connection to API fails, show error info.
-                string error = ex.ToString();
-                loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Error Log saved"));
-                System.IO.File.WriteAllText(errorLog, error);
-                loginButton.Invoke(new Action(() => loginButton.Enabled = true));
-                altLoginLabel.Invoke(new Action(() => altLoginLabel.Visible = true));
-                return;
+                if (useSaved == "1")
+                {
+                    // If connection to API fails, show error info.
+                    string error = ex.ToString();
+                    useSaved = "0";
+                    loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Getting new values..."));
+                    System.IO.File.WriteAllText(errorLog, error);
+                    getSecretBG.RunWorkerAsync();
+                }
+                else
+                {
+                    // If connection to API fails, show error info.
+                    string error = ex.ToString();
+                    loginText.Invoke(new Action(() => loginText.Text = "Login Failed. Error Log saved"));
+                    System.IO.File.WriteAllText(errorLog, error);
+                    loginButton.Invoke(new Action(() => loginButton.Enabled = true));
+                    altLoginLabel.Invoke(new Action(() => altLoginLabel.Visible = true));
+                    return;
+                }
             }
-            
-            finishLogin(sender, e);
             loginBG.CancelAsync();
         }
 

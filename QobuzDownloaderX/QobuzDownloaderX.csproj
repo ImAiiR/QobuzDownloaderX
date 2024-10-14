@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QobuzDownloaderX</RootNamespace>
     <AssemblyName>QobuzDownloaderX</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\qbdlx_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\QBDLX-Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -59,6 +59,9 @@
     <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <HintPath>..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Qo%28penAPI%29, Version=0.0.2.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QopenAPI.0.0.2.7\lib\net452\Qo(penAPI).dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -75,54 +78,71 @@
       <HintPath>..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ZetaLongPaths, Version=1.0.17.0, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZetaLongPaths.1.0.17\lib\net452-full\ZetaLongPaths.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Download\DownloadTrack.cs" />
+    <Compile Include="Download\DownloadAlbum.cs" />
+    <Compile Include="Download\DownloadFile.cs" />
+    <Compile Include="Download\FixMD5.cs" />
+    <Compile Include="Download\GetInfo.cs" />
+    <Compile Include="Download\PaddingNumbers.cs" />
+    <Compile Include="Download\RenameTemplates.cs" />
+    <Compile Include="Download\TagFile.cs" />
+    <Compile Include="Old\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Old\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="Old\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    <Compile Include="Old\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm-v2.cs">
+    <Compile Include="Old\LoginForm-v2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm-v2.Designer.cs">
+    <Compile Include="Old\LoginForm-v2.Designer.cs">
       <DependentUpon>LoginForm-v2.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchForm.cs">
+    <Compile Include="Old\searchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchForm.Designer.cs">
+    <Compile Include="Old\searchForm.Designer.cs">
       <DependentUpon>searchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="LoginForm\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="LoginForm\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="qbdlxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="qbdlxForm.Designer.cs">
+      <DependentUpon>qbdlxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Old\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.resx">
+    <EmbeddedResource Include="Old\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm-v2.resx">
+    <EmbeddedResource Include="Old\LoginForm-v2.resx">
       <DependentUpon>LoginForm-v2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchForm.resx">
+    <EmbeddedResource Include="Old\searchForm.resx">
       <DependentUpon>searchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="LoginForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -135,6 +155,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="qbdlxForm.resx">
+      <DependentUpon>qbdlxForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -145,18 +168,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\qbdlx_new.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\qbdlx.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\qbdlx_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Untitled-1.png" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">
@@ -171,10 +188,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\login-frame.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\qbdlx-white.png" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\password.png" />
+    <None Include="Resources\email.png" />
+    <None Include="Resources\QBDLX-Icon.ico" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\log_out.png" />
+    <None Include="Resources\QBDLX-Icon.png" />
+    <Content Include="Resources\qbdlx_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

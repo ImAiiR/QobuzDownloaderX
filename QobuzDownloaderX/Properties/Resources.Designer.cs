@@ -63,9 +63,9 @@ namespace QobuzDownloaderX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap login_frame {
+        internal static System.Drawing.Bitmap email {
             get {
-                object obj = ResourceManager.GetObject("login_frame", resourceCulture);
+                object obj = ResourceManager.GetObject("email", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,39 @@ namespace QobuzDownloaderX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap qbdlx {
+        internal static System.Drawing.Bitmap info {
             get {
-                object obj = ResourceManager.GetObject("qbdlx", resourceCulture);
+                object obj = ResourceManager.GetObject("info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap log_out {
+            get {
+                object obj = ResourceManager.GetObject("log_out", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logout {
+            get {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap password {
+            get {
+                object obj = ResourceManager.GetObject("password", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +113,9 @@ namespace QobuzDownloaderX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon qbdlx_icon {
+        internal static System.Drawing.Icon QBDLX_Icon1 {
             get {
-                object obj = ResourceManager.GetObject("qbdlx_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("QBDLX_Icon1", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -93,9 +123,19 @@ namespace QobuzDownloaderX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap qbdlx_white {
+        internal static System.Drawing.Bitmap qbdlx_new {
             get {
-                object obj = ResourceManager.GetObject("qbdlx_white", resourceCulture);
+                object obj = ResourceManager.GetObject("qbdlx_new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings {
+            get {
+                object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

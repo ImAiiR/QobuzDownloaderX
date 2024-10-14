@@ -180,6 +180,7 @@ BundleArtifacts/
 !*.[Cc]ache/
 
 # Others
+Old/
 ClientBin/
 [Ss]tyle[Cc]op.*
 ~$*
