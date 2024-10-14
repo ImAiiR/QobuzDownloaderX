@@ -9,8 +9,8 @@
 Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href="https://github.com/DashLt">Dash</a>
 
 <p style="align:center;">
-  <a href="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX3.png?raw=true">
-    <img src="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX3.png?raw=true" />
+  <a href="https://raw.githubusercontent.com/ImAiiR/QobuzDownloaderX/refs/heads/master/-assets/QBDLX3.png">
+    <img src="https://raw.githubusercontent.com/ImAiiR/QobuzDownloaderX/refs/heads/master/-assets/QBDLX3.png" />
   </a>
 </p>
 
