@@ -1,6 +1,6 @@
 <p style="align:center;">
   <a href="https://github.com/ImAiiR/QobuzDownloaderX">
-    <img src="https://github.com/ImAiiR/QobuzDownloaderX/raw/master/QobuzDownloaderX/Resources/qbdlx.png?raw=true" />
+    <img src="https://github.com/ImAiiR/QobuzDownloaderX/raw/master/QobuzDownloaderX/-assets/New-QBDLX.png?raw=true" />
   </a>
 </p>
 <center><a href="https://www.buymeacoffee.com/ImAiiR" target="_blank"><img src="https://i.imgur.com/H2hMOg6.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a></center>
@@ -9,14 +9,14 @@
 Inspired by Qo-DL by <a href="https://github.com/Sorrow446">Sorrow</a> & <a href="https://github.com/DashLt">Dash</a>
 
 <p style="align:center;">
-  <a href="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX2.png?raw=true">
-    <img src="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX2.png?raw=true" />
+  <a href="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX3.png?raw=true">
+    <img src="https://github.com/ImAiiR/QobuzDownloaderX/blob/master/-assets/QBDLX3.png?raw=true" />
   </a>
 </p>
 
 Telegram Group Chat - <a href="https://t.me/QbdLX">@QbdLX</a><br />
 Telegram Updates Channel - <a href="https://t.me/QobuzDownloaderX">@QobuzDownloaderX</a><br />
-I'm rarely active on Telegram, but these are official.
+I'm never really active on Telegram, but these are the official channels.
 
 # About
 QobuzDownloaderX is a program for downloading music streams from the streaming platform <a href="https://qobuz.com/">Qobuz</a>.
