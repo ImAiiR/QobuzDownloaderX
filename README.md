@@ -1,6 +1,6 @@
 <p style="align:center;">
   <a href="https://github.com/ImAiiR/QobuzDownloaderX">
-    <img src="https://github.com/ImAiiR/QobuzDownloaderX/refs/heads/master/-assets/New-QBDLX.png" />
+    <img src="https://raw.githubusercontent.com/ImAiiR/QobuzDownloaderX/refs/heads/master/-assets/New-QBDLX.png" />
   </a>
 </p>
 <center><a href="https://www.buymeacoffee.com/ImAiiR" target="_blank"><img src="https://i.imgur.com/H2hMOg6.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a></center>
