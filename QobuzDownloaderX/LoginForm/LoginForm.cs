@@ -99,12 +99,14 @@ namespace QobuzDownloaderX
                 Properties.Settings.Default.UpgradeRequired = false;
                 Properties.Settings.Default.Save();
             }
-            
+
             // Set saved settings to correct places.
             username = Settings.Default.savedEmail.ToString();
             password = Settings.Default.savedPassword.ToString();
             emailTextbox.Text = username;
             passwordTextbox.Text = password;
+            appidTextbox.Text = Settings.Default.savedAppID.ToString();
+            appSecretTextbox.Text = Settings.Default.savedSecret.ToString();
 
             string emailPlaceholder = "e-mail";
             string passwordPlaceholder = "password";
@@ -333,42 +335,96 @@ namespace QobuzDownloaderX
                 loginText.Invoke(new Action(() => loginText.Text = "logging in..."));
                 loginButton.Invoke(new Action(() => loginButton.Enabled = false));
 
-                // Grab app_id & login
-                app_id = QoService.GetAppID().App_ID;
-
-                if (Settings.Default.savedAltLoginValue == false)
+                if (appidTextbox.Text == null | appidTextbox.Text == "" | appSecretTextbox.Text == null | appSecretTextbox.Text == "")
                 {
-                    QoUser = QoService.Login(app_id, username, password, null);
+                    // Grab app_id & login
+                    app_id = QoService.GetAppID().App_ID;
+
+                    if (Settings.Default.savedAltLoginValue == false)
+                    {
+                        QoUser = QoService.Login(app_id, username, password, null);
+                    }
+                    else
+                    {
+                        QoUser = QoService.Login(app_id, null, null, password);
+                    }
+
+                    user_auth_token = QoUser.UserAuthToken;
+                    user_id = QoUser.UserInfo.Id.ToString();
+                    user_display_name = QoUser.UserInfo.DisplayName;
+
+
+                    // Grab user details & send to QBDLX
+                    qbdlx.user_id = user_id;
+                    qbdlx.user_display_name = user_display_name;
+                    try { qbdlx.user_label = QoUser.UserInfo.Credential.Parameters.ShortLabel; } catch { }
+
+                    // Grab profile image
+                    try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { }
+
+                    // Set app_secret
+                    app_secret = QoService.GetAppSecret(app_id, user_auth_token).App_Secret;
+
+                    // Re-enable login button, and send app_id & app_secret to QBDLX
+                    loginButton.Invoke(new Action(() => loginButton.Enabled = true));
+                    qbdlx.app_id = app_id;
+                    qbdlx.app_secret = app_secret;
+                    qbdlx.user_auth_token = user_auth_token;
+                    qbdlx.user_display_name = user_display_name;
+                    qbdlx.user_id = user_id;
+                    qbdlx.QoUser = QoUser;
+
+                    // Save App ID and Secret to use later on
+                    loginText.Invoke(new Action(() => appidTextbox.Text = app_id));
+                    loginText.Invoke(new Action(() => appSecretTextbox.Text = app_secret));
+                    Settings.Default.savedAppID = app_id;
+                    Settings.Default.savedSecret = app_secret;
                 }
                 else
                 {
-                    QoUser = QoService.Login(app_id, null, null, password);
+                    // Use user-provided app_id & login
+                    app_id = appidTextbox.Text;
+
+                    if (Settings.Default.savedAltLoginValue == false)
+                    {
+                        QoUser = QoService.Login(app_id, username, password, null);
+                    }
+                    else
+                    {
+                        QoUser = QoService.Login(app_id, null, null, password);
+                    }
+
+                    user_auth_token = QoUser.UserAuthToken;
+                    user_id = QoUser.UserInfo.Id.ToString();
+                    user_display_name = QoUser.UserInfo.DisplayName;
+
+
+                    // Grab user details & send to QBDLX
+                    qbdlx.user_id = user_id;
+                    qbdlx.user_display_name = user_display_name;
+                    try { qbdlx.user_label = QoUser.UserInfo.Credential.Parameters.ShortLabel; } catch { }
+
+                    // Grab profile image
+                    try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { }
+
+                    // Set user-provided app_secret
+                    app_secret = appSecretTextbox.Text;
+
+                    // Re-enable login button, and send app_id & app_secret to QBDLX
+                    loginButton.Invoke(new Action(() => loginButton.Enabled = true));
+                    qbdlx.app_id = app_id;
+                    qbdlx.app_secret = app_secret;
+                    qbdlx.user_auth_token = user_auth_token;
+                    qbdlx.user_display_name = user_display_name;
+                    qbdlx.user_id = user_id;
+                    qbdlx.QoUser = QoUser;
+
+                    // Save App ID and Secret to use later on
+                    loginText.Invoke(new Action(() => appidTextbox.Text = app_id));
+                    loginText.Invoke(new Action(() => appSecretTextbox.Text = app_secret));
+                    Settings.Default.savedAppID = app_id;
+                    Settings.Default.savedSecret = app_secret;
                 }
-
-                user_auth_token = QoUser.UserAuthToken;
-                user_id = QoUser.UserInfo.Id.ToString();
-                user_display_name = QoUser.UserInfo.DisplayName;
-
-
-                // Grab user details & send to QBDLX
-                qbdlx.user_id = user_id;
-                qbdlx.user_display_name = user_display_name;
-                try { qbdlx.user_label = QoUser.UserInfo.Credential.Parameters.ShortLabel; } catch { }
-
-                // Grab profile image
-                try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { }
-
-                // Set app_secret
-                app_secret = QoService.GetAppSecret(app_id, user_auth_token).App_Secret;
-
-                // Re-enable login button, and send app_id & app_secret to QBDLX
-                loginButton.Invoke(new Action(() => loginButton.Enabled = true));
-                qbdlx.app_id = app_id;
-                qbdlx.app_secret = app_secret;
-                qbdlx.user_auth_token = user_auth_token;
-                qbdlx.user_display_name = user_display_name;
-                qbdlx.user_id = user_id;
-                qbdlx.QoUser = QoUser;
 
                 // Hide this window & open QBDLX
                 this.Invoke(new Action(() => this.Hide()));
@@ -385,9 +441,11 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void resetPasswordLabel_Click(object sender, EventArgs e)
+        private void cusotmLabel_Click(object sender, EventArgs e)
         {
-            resetBackground.RunWorkerAsync();
+            customPanel.Location = new Point(12, 82);
+            customPanel.Enabled = true;
+            customPanel.Visible = true;
         }
 
         private void resetBackground_DoWork(object sender, DoWorkEventArgs e)
@@ -500,14 +558,22 @@ namespace QobuzDownloaderX
             altLoginLabel.ForeColor = Color.FromArgb(100, 100, 100);
         }
 
-        private void resetPasswordLabel_MouseEnter(object sender, EventArgs e)
+        private void cusotmLabel_MouseEnter(object sender, EventArgs e)
         {
-            resetPasswordLabel.ForeColor = Color.FromArgb(140, 140, 140);
+            customLabel.ForeColor = Color.FromArgb(140, 140, 140);
         }
 
-        private void resetPasswordLabel_MouseLeave(object sender, EventArgs e)
+        private void cusotmLabel_MouseLeave(object sender, EventArgs e)
         {
-            resetPasswordLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            customLabel.ForeColor = Color.FromArgb(100, 100, 100);
+        }
+
+        private void customSaveButton_Click(object sender, EventArgs e)
+        {
+            Settings.Default.savedAppID = appidTextbox.Text;
+            Settings.Default.savedSecret = appSecretTextbox.Text;
+            customPanel.Enabled = false;
+            customPanel.Visible = false;
         }
     }
 }

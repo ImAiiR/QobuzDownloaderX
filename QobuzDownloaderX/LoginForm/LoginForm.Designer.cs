@@ -41,7 +41,7 @@
             this.visableCheckbox = new System.Windows.Forms.CheckBox();
             this.loginText = new System.Windows.Forms.Label();
             this.loginBackground = new System.ComponentModel.BackgroundWorker();
-            this.resetPasswordLabel = new System.Windows.Forms.Label();
+            this.customLabel = new System.Windows.Forms.Label();
             this.resetBackground = new System.ComponentModel.BackgroundWorker();
             this.exitButton = new System.Windows.Forms.Button();
             this.altLoginLabel = new System.Windows.Forms.Label();
@@ -49,10 +49,18 @@
             this.aboutTextbox = new System.Windows.Forms.TextBox();
             this.aboutPanel = new System.Windows.Forms.Panel();
             this.closeAboutButton = new System.Windows.Forms.Button();
+            this.customPanel = new System.Windows.Forms.Panel();
+            this.appSecretTextbox = new System.Windows.Forms.TextBox();
+            this.appidTextbox = new System.Windows.Forms.TextBox();
+            this.customSaveButton = new System.Windows.Forms.Button();
+            this.customInfoTextbox = new System.Windows.Forms.TextBox();
+            this.appidLabel = new System.Windows.Forms.Label();
+            this.appSecretLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.qbdlxPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIcon)).BeginInit();
             this.aboutPanel.SuspendLayout();
+            this.customPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // qbdlxPictureBox
@@ -189,23 +197,21 @@
             // 
             this.loginBackground.DoWork += new System.ComponentModel.DoWorkEventHandler(this.loginBackground_DoWork);
             // 
-            // resetPasswordLabel
+            // customLabel
             // 
-            this.resetPasswordLabel.AutoSize = true;
-            this.resetPasswordLabel.BackColor = System.Drawing.Color.Transparent;
-            this.resetPasswordLabel.Enabled = false;
-            this.resetPasswordLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetPasswordLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.resetPasswordLabel.Location = new System.Drawing.Point(97, 333);
-            this.resetPasswordLabel.Name = "resetPasswordLabel";
-            this.resetPasswordLabel.Size = new System.Drawing.Size(99, 13);
-            this.resetPasswordLabel.TabIndex = 36;
-            this.resetPasswordLabel.Text = "RESET PASSWORD";
-            this.resetPasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.resetPasswordLabel.Visible = false;
-            this.resetPasswordLabel.Click += new System.EventHandler(this.resetPasswordLabel_Click);
-            this.resetPasswordLabel.MouseEnter += new System.EventHandler(this.resetPasswordLabel_MouseEnter);
-            this.resetPasswordLabel.MouseLeave += new System.EventHandler(this.resetPasswordLabel_MouseLeave);
+            this.customLabel.AutoSize = true;
+            this.customLabel.BackColor = System.Drawing.Color.Transparent;
+            this.customLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.customLabel.Location = new System.Drawing.Point(65, 333);
+            this.customLabel.Name = "customLabel";
+            this.customLabel.Size = new System.Drawing.Size(162, 13);
+            this.customLabel.TabIndex = 36;
+            this.customLabel.Text = "USE CUSTOM APP ID + SECRET";
+            this.customLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.customLabel.Click += new System.EventHandler(this.cusotmLabel_Click);
+            this.customLabel.MouseEnter += new System.EventHandler(this.cusotmLabel_MouseEnter);
+            this.customLabel.MouseLeave += new System.EventHandler(this.cusotmLabel_MouseLeave);
             // 
             // resetBackground
             // 
@@ -284,7 +290,7 @@
             this.aboutPanel.Controls.Add(this.closeAboutButton);
             this.aboutPanel.Controls.Add(this.aboutTextbox);
             this.aboutPanel.Enabled = false;
-            this.aboutPanel.Location = new System.Drawing.Point(15, 371);
+            this.aboutPanel.Location = new System.Drawing.Point(189, 296);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(268, 297);
             this.aboutPanel.TabIndex = 42;
@@ -300,13 +306,106 @@
             this.closeAboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeAboutButton.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeAboutButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.closeAboutButton.Location = new System.Drawing.Point(64, 253);
+            this.closeAboutButton.Location = new System.Drawing.Point(69, 253);
             this.closeAboutButton.Name = "closeAboutButton";
             this.closeAboutButton.Size = new System.Drawing.Size(131, 32);
             this.closeAboutButton.TabIndex = 42;
             this.closeAboutButton.Text = "CLOSE";
             this.closeAboutButton.UseVisualStyleBackColor = false;
             this.closeAboutButton.Click += new System.EventHandler(this.closeAboutButton_Click);
+            // 
+            // customPanel
+            // 
+            this.customPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.customPanel.Controls.Add(this.appSecretLabel);
+            this.customPanel.Controls.Add(this.appidLabel);
+            this.customPanel.Controls.Add(this.customInfoTextbox);
+            this.customPanel.Controls.Add(this.customSaveButton);
+            this.customPanel.Controls.Add(this.appSecretTextbox);
+            this.customPanel.Controls.Add(this.appidTextbox);
+            this.customPanel.Enabled = false;
+            this.customPanel.Location = new System.Drawing.Point(189, 82);
+            this.customPanel.Name = "customPanel";
+            this.customPanel.Size = new System.Drawing.Size(268, 170);
+            this.customPanel.TabIndex = 43;
+            this.customPanel.Visible = false;
+            // 
+            // appSecretTextbox
+            // 
+            this.appSecretTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.appSecretTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.appSecretTextbox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appSecretTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
+            this.appSecretTextbox.Location = new System.Drawing.Point(22, 75);
+            this.appSecretTextbox.Name = "appSecretTextbox";
+            this.appSecretTextbox.Size = new System.Drawing.Size(225, 20);
+            this.appSecretTextbox.TabIndex = 36;
+            // 
+            // appidTextbox
+            // 
+            this.appidTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.appidTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.appidTextbox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appidTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
+            this.appidTextbox.Location = new System.Drawing.Point(22, 27);
+            this.appidTextbox.Name = "appidTextbox";
+            this.appidTextbox.Size = new System.Drawing.Size(225, 20);
+            this.appidTextbox.TabIndex = 37;
+            // 
+            // customSaveButton
+            // 
+            this.customSaveButton.BackColor = System.Drawing.Color.Transparent;
+            this.customSaveButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(130)))), ((int)(((byte)(147)))));
+            this.customSaveButton.FlatAppearance.BorderSize = 2;
+            this.customSaveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.customSaveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.customSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customSaveButton.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customSaveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.customSaveButton.Location = new System.Drawing.Point(69, 100);
+            this.customSaveButton.Name = "customSaveButton";
+            this.customSaveButton.Size = new System.Drawing.Size(131, 32);
+            this.customSaveButton.TabIndex = 43;
+            this.customSaveButton.Text = "SAVE";
+            this.customSaveButton.UseVisualStyleBackColor = false;
+            this.customSaveButton.Click += new System.EventHandler(this.customSaveButton_Click);
+            // 
+            // customInfoTextbox
+            // 
+            this.customInfoTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.customInfoTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.customInfoTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.customInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.customInfoTextbox.Location = new System.Drawing.Point(3, 135);
+            this.customInfoTextbox.Multiline = true;
+            this.customInfoTextbox.Name = "customInfoTextbox";
+            this.customInfoTextbox.ReadOnly = true;
+            this.customInfoTextbox.Size = new System.Drawing.Size(268, 39);
+            this.customInfoTextbox.TabIndex = 44;
+            this.customInfoTextbox.Text = "Leave values blank if you would like to automatically grab the values!";
+            this.customInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // appidLabel
+            // 
+            this.appidLabel.AutoSize = true;
+            this.appidLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F);
+            this.appidLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.appidLabel.Location = new System.Drawing.Point(18, 4);
+            this.appidLabel.Name = "appidLabel";
+            this.appidLabel.Size = new System.Drawing.Size(56, 20);
+            this.appidLabel.TabIndex = 45;
+            this.appidLabel.Text = "App ID";
+            // 
+            // appSecretLabel
+            // 
+            this.appSecretLabel.AutoSize = true;
+            this.appSecretLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F);
+            this.appSecretLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.appSecretLabel.Location = new System.Drawing.Point(18, 52);
+            this.appSecretLabel.Name = "appSecretLabel";
+            this.appSecretLabel.Size = new System.Drawing.Size(82, 20);
+            this.appSecretLabel.TabIndex = 46;
+            this.appSecretLabel.Text = "App Secret";
             // 
             // LoginForm
             // 
@@ -315,21 +414,22 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(292, 388);
             this.Controls.Add(this.aboutPanel);
+            this.Controls.Add(this.customPanel);
             this.Controls.Add(this.aboutButton);
             this.Controls.Add(this.altLoginLabel);
             this.Controls.Add(this.loginText);
             this.Controls.Add(this.visableCheckbox);
-            this.Controls.Add(this.resetPasswordLabel);
+            this.Controls.Add(this.customLabel);
             this.Controls.Add(this.emailPanel);
             this.Controls.Add(this.passwordTextbox);
             this.Controls.Add(this.emailTextbox);
-            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.passwordIcon);
             this.Controls.Add(this.emailIcon);
             this.Controls.Add(this.versionNumber);
             this.Controls.Add(this.qbdlxPictureBox);
+            this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -342,6 +442,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.passwordIcon)).EndInit();
             this.aboutPanel.ResumeLayout(false);
             this.aboutPanel.PerformLayout();
+            this.customPanel.ResumeLayout(false);
+            this.customPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,7 +462,7 @@
         private System.Windows.Forms.CheckBox visableCheckbox;
         private System.Windows.Forms.Label loginText;
         private System.ComponentModel.BackgroundWorker loginBackground;
-        private System.Windows.Forms.Label resetPasswordLabel;
+        private System.Windows.Forms.Label customLabel;
         private System.ComponentModel.BackgroundWorker resetBackground;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Label altLoginLabel;
@@ -368,5 +470,12 @@
         private System.Windows.Forms.TextBox aboutTextbox;
         private System.Windows.Forms.Panel aboutPanel;
         private System.Windows.Forms.Button closeAboutButton;
+        private System.Windows.Forms.Panel customPanel;
+        private System.Windows.Forms.TextBox customInfoTextbox;
+        private System.Windows.Forms.Button customSaveButton;
+        private System.Windows.Forms.TextBox appSecretTextbox;
+        private System.Windows.Forms.TextBox appidTextbox;
+        private System.Windows.Forms.Label appSecretLabel;
+        private System.Windows.Forms.Label appidLabel;
     }
 }
