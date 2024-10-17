@@ -57,6 +57,10 @@ namespace QobuzDownloaderX
         AppID QoAppID;
         AppSecret QoAppSecret;
 
+        public string currentVersion { get; set; }
+        public string newVersion { get; set; }
+        public string changes { get; set; }
+
         public string username { get; set; }
         public string password { get; set; }
         public string user_auth_token { get; set; }
@@ -110,11 +114,9 @@ namespace QobuzDownloaderX
 
             string emailPlaceholder = "e-mail";
             string passwordPlaceholder = "password";
-            //resetPasswordLabel.Visible = true;
 
             if (Settings.Default.savedAltLoginValue == true)
             {
-                //resetPasswordLabel.Visible = false;
                 emailPlaceholder = "id";
                 passwordPlaceholder = "token";
 
@@ -133,7 +135,7 @@ namespace QobuzDownloaderX
             }
             if (emailTextbox.Text == null | emailTextbox.Text == "" | emailTextbox.Text == "\r\n")
             {
-                emailTextbox.ForeColor = Color.FromArgb(88, 92, 102);
+                emailTextbox.ForeColor = Color.FromArgb(50, 50, 50);
                 emailTextbox.Text = emailPlaceholder;
             }
 
@@ -146,7 +148,7 @@ namespace QobuzDownloaderX
             if (passwordTextbox.Text == null | passwordTextbox.Text == "" | passwordTextbox.Text == "\r\n")
             {
                 passwordTextbox.PasswordChar = '\0';
-                passwordTextbox.ForeColor = Color.FromArgb(88, 92, 102);
+                passwordTextbox.ForeColor = Color.FromArgb(50, 50, 50);
                 passwordTextbox.Text = passwordPlaceholder;
             }
 
@@ -170,10 +172,10 @@ namespace QobuzDownloaderX
                 // Grab latest version number
                 string version = (string)joVersionResponse["tag_name"];
                 // Grab changelog
-                string changes = (string)joVersionResponse["body"];
+                changes = (string)joVersionResponse["body"];
 
-                string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                string newVersion = version;
+                currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                newVersion = version;
 
                 if (currentVersion.Contains(newVersion))
                 {
@@ -181,17 +183,8 @@ namespace QobuzDownloaderX
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - " + newVersion + "\r\n\r\nChangelog Below\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        // If "Yes" is clicked, open GitHub page and close QBDLX.
-                        Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
-                        Application.Exit();
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        // Ignore the update until next open.
-                    }
+                    updateButton.Enabled = true;
+                    updateButton.Visible = true;
                 }
             }
             catch
@@ -229,7 +222,7 @@ namespace QobuzDownloaderX
             if (emailTextbox.Text == null | emailTextbox.Text == "")
             {
                 emailTextbox.ForeColor = Color.FromArgb(50, 50, 50);
-                if (Settings.Default.savedAltLoginValue.ToString() == "0")
+                if (Settings.Default.savedAltLoginValue == false)
                 {
                     emailTextbox.Text = "e-mail";
                 }
@@ -257,7 +250,7 @@ namespace QobuzDownloaderX
             {
                 passwordTextbox.PasswordChar = '\0';
                 passwordTextbox.ForeColor = Color.FromArgb(50, 50, 50);
-                if (Settings.Default.savedAltLoginValue.ToString() == "0")
+                if (Settings.Default.savedAltLoginValue == false)
                 {
                     passwordTextbox.Text = "password";
                 }
@@ -304,9 +297,12 @@ namespace QobuzDownloaderX
             #region Check if textboxes are valid
             if (emailTextbox.Text == "e-mail" | emailTextbox.Text == null | emailTextbox.Text == "id" | emailTextbox.Text == "")
             {
-                // If there's no email typed in.
-                loginText.Invoke(new Action(() => loginText.Text = "no e-mail or id, please input email first"));
-                return;
+                // If there's no email typed in. Ignore if using token to login.
+                if (altLoginLabel.Text.Contains("PASSWORD") == false)
+                {
+                    loginText.Invoke(new Action(() => loginText.Text = "no e-mail or id, please input email first"));
+                    return;
+                }
             }
 
             if (passwordTextbox.Text == "password" | passwordTextbox.Text == "token")
@@ -370,8 +366,6 @@ namespace QobuzDownloaderX
                     qbdlx.app_id = app_id;
                     qbdlx.app_secret = app_secret;
                     qbdlx.user_auth_token = user_auth_token;
-                    qbdlx.user_display_name = user_display_name;
-                    qbdlx.user_id = user_id;
                     qbdlx.QoUser = QoUser;
 
                     // Save App ID and Secret to use later on
@@ -415,8 +409,6 @@ namespace QobuzDownloaderX
                     qbdlx.app_id = app_id;
                     qbdlx.app_secret = app_secret;
                     qbdlx.user_auth_token = user_auth_token;
-                    qbdlx.user_display_name = user_display_name;
-                    qbdlx.user_id = user_id;
                     qbdlx.QoUser = QoUser;
 
                     // Save App ID and Secret to use later on
@@ -499,7 +491,6 @@ namespace QobuzDownloaderX
             if (altLoginLabel.Text.Contains("TOKEN"))
             {
                 Settings.Default.savedAltLoginValue = true;
-                //resetPasswordLabel.Visible = false;
                 altLoginLabel.Text = "LOGIN WITH E-MAIL AND PASSWORD";
                 altLoginLabel.Location = new Point(48, 306);
 
@@ -507,15 +498,12 @@ namespace QobuzDownloaderX
                 emailPanel.Visible = false;
                 emailTextbox.Visible = false;
 
-                if (passwordTextbox.Text == "password")
-                {
-                    passwordTextbox.Text = "token";
-                }
+                passwordTextbox.Text = null;
+                passwordTextbox_Leave(this, new EventArgs());
             }
             else
             {
                 Settings.Default.savedAltLoginValue = false;
-                //resetPasswordLabel.Visible = true;
                 altLoginLabel.Text = "LOGIN WITH TOKEN";
                 altLoginLabel.Location = new Point(93, 306);
 
@@ -523,15 +511,13 @@ namespace QobuzDownloaderX
                 emailPanel.Visible = true;
                 emailTextbox.Visible = true;
 
-                if (passwordTextbox.Text == "token")
-                {
-                    passwordTextbox.Text = "password";
-                }
+                passwordTextbox.Text = null;
+                passwordTextbox_Leave(this, new EventArgs());
+                emailTextbox.Text = null;
+                emailTextbox_Leave(this, new EventArgs());
             }
             
-            // Save info locally to be used on next launch.
-            Settings.Default.savedEmail = username;
-            Settings.Default.savedPassword = password;
+            // Save choice locally to be used on next launch.
             Settings.Default.Save();
         }
 
@@ -574,6 +560,21 @@ namespace QobuzDownloaderX
             Settings.Default.savedSecret = appSecretTextbox.Text;
             customPanel.Enabled = false;
             customPanel.Visible = false;
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - " + newVersion + "\r\n\r\nChangelog Below\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                // If "Yes" is clicked, open GitHub page and close QBDLX.
+                Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
+                Application.Exit();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                // Ignore the update until next open.
+            }
         }
     }
 }

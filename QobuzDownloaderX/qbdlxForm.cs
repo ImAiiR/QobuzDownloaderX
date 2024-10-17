@@ -175,7 +175,12 @@ namespace QobuzDownloaderX
             welcomeLabel.Text = welcomeLabel.Text.Replace("{username}", user_display_name);
 
             // Set user info in settings panel
-            userInfoTextbox.Text = userInfoTextbox.Text.Replace("{user_id}", QoUser.UserInfo.Id.ToString()).Replace("{user_email}", QoUser.UserInfo.Email).Replace("{user_country}", QoUser.UserInfo.Country).Replace("{user_subscription}", QoUser.UserInfo.Subscription.Offer).Replace("{user_subscription_expiration}", QoUser.UserInfo.Subscription.EndDate);
+            userInfoTextbox.Text = userInfoTextbox.Text
+                .Replace("{user_id}", QoUser.UserInfo.Id.ToString())
+                .Replace("{user_email}", QoUser.UserInfo.Email)
+                .Replace("{user_country}", QoUser.UserInfo.Country)
+                .Replace("{user_subscription}", QoUser.UserInfo.Subscription.Offer)
+                .Replace("{user_subscription_expiration}", QoUser.UserInfo.Subscription.EndDate);
 
 
             downloadOutput.Text = "Welcome " + user_display_name + "!";

@@ -50,12 +50,13 @@
             this.aboutPanel = new System.Windows.Forms.Panel();
             this.closeAboutButton = new System.Windows.Forms.Button();
             this.customPanel = new System.Windows.Forms.Panel();
+            this.appSecretLabel = new System.Windows.Forms.Label();
+            this.appidLabel = new System.Windows.Forms.Label();
+            this.customInfoTextbox = new System.Windows.Forms.TextBox();
+            this.customSaveButton = new System.Windows.Forms.Button();
             this.appSecretTextbox = new System.Windows.Forms.TextBox();
             this.appidTextbox = new System.Windows.Forms.TextBox();
-            this.customSaveButton = new System.Windows.Forms.Button();
-            this.customInfoTextbox = new System.Windows.Forms.TextBox();
-            this.appidLabel = new System.Windows.Forms.Label();
-            this.appSecretLabel = new System.Windows.Forms.Label();
+            this.updateButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.qbdlxPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIcon)).BeginInit();
@@ -330,6 +331,61 @@
             this.customPanel.TabIndex = 43;
             this.customPanel.Visible = false;
             // 
+            // appSecretLabel
+            // 
+            this.appSecretLabel.AutoSize = true;
+            this.appSecretLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F);
+            this.appSecretLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.appSecretLabel.Location = new System.Drawing.Point(18, 52);
+            this.appSecretLabel.Name = "appSecretLabel";
+            this.appSecretLabel.Size = new System.Drawing.Size(82, 20);
+            this.appSecretLabel.TabIndex = 46;
+            this.appSecretLabel.Text = "App Secret";
+            // 
+            // appidLabel
+            // 
+            this.appidLabel.AutoSize = true;
+            this.appidLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F);
+            this.appidLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.appidLabel.Location = new System.Drawing.Point(18, 4);
+            this.appidLabel.Name = "appidLabel";
+            this.appidLabel.Size = new System.Drawing.Size(56, 20);
+            this.appidLabel.TabIndex = 45;
+            this.appidLabel.Text = "App ID";
+            // 
+            // customInfoTextbox
+            // 
+            this.customInfoTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.customInfoTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.customInfoTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.customInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.customInfoTextbox.Location = new System.Drawing.Point(3, 135);
+            this.customInfoTextbox.Multiline = true;
+            this.customInfoTextbox.Name = "customInfoTextbox";
+            this.customInfoTextbox.ReadOnly = true;
+            this.customInfoTextbox.Size = new System.Drawing.Size(268, 39);
+            this.customInfoTextbox.TabIndex = 44;
+            this.customInfoTextbox.Text = "Leave values blank if you would like to automatically grab the values!";
+            this.customInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // customSaveButton
+            // 
+            this.customSaveButton.BackColor = System.Drawing.Color.Transparent;
+            this.customSaveButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(130)))), ((int)(((byte)(147)))));
+            this.customSaveButton.FlatAppearance.BorderSize = 2;
+            this.customSaveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
+            this.customSaveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.customSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customSaveButton.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customSaveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.customSaveButton.Location = new System.Drawing.Point(69, 100);
+            this.customSaveButton.Name = "customSaveButton";
+            this.customSaveButton.Size = new System.Drawing.Size(131, 32);
+            this.customSaveButton.TabIndex = 43;
+            this.customSaveButton.Text = "SAVE";
+            this.customSaveButton.UseVisualStyleBackColor = false;
+            this.customSaveButton.Click += new System.EventHandler(this.customSaveButton_Click);
+            // 
             // appSecretTextbox
             // 
             this.appSecretTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
@@ -352,60 +408,23 @@
             this.appidTextbox.Size = new System.Drawing.Size(225, 20);
             this.appidTextbox.TabIndex = 37;
             // 
-            // customSaveButton
+            // updateButton
             // 
-            this.customSaveButton.BackColor = System.Drawing.Color.Transparent;
-            this.customSaveButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(130)))), ((int)(((byte)(147)))));
-            this.customSaveButton.FlatAppearance.BorderSize = 2;
-            this.customSaveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
-            this.customSaveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.customSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.customSaveButton.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customSaveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.customSaveButton.Location = new System.Drawing.Point(69, 100);
-            this.customSaveButton.Name = "customSaveButton";
-            this.customSaveButton.Size = new System.Drawing.Size(131, 32);
-            this.customSaveButton.TabIndex = 43;
-            this.customSaveButton.Text = "SAVE";
-            this.customSaveButton.UseVisualStyleBackColor = false;
-            this.customSaveButton.Click += new System.EventHandler(this.customSaveButton_Click);
-            // 
-            // customInfoTextbox
-            // 
-            this.customInfoTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.customInfoTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customInfoTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.customInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.customInfoTextbox.Location = new System.Drawing.Point(3, 135);
-            this.customInfoTextbox.Multiline = true;
-            this.customInfoTextbox.Name = "customInfoTextbox";
-            this.customInfoTextbox.ReadOnly = true;
-            this.customInfoTextbox.Size = new System.Drawing.Size(268, 39);
-            this.customInfoTextbox.TabIndex = 44;
-            this.customInfoTextbox.Text = "Leave values blank if you would like to automatically grab the values!";
-            this.customInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // appidLabel
-            // 
-            this.appidLabel.AutoSize = true;
-            this.appidLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F);
-            this.appidLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.appidLabel.Location = new System.Drawing.Point(18, 4);
-            this.appidLabel.Name = "appidLabel";
-            this.appidLabel.Size = new System.Drawing.Size(56, 20);
-            this.appidLabel.TabIndex = 45;
-            this.appidLabel.Text = "App ID";
-            // 
-            // appSecretLabel
-            // 
-            this.appSecretLabel.AutoSize = true;
-            this.appSecretLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F);
-            this.appSecretLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.appSecretLabel.Location = new System.Drawing.Point(18, 52);
-            this.appSecretLabel.Name = "appSecretLabel";
-            this.appSecretLabel.Size = new System.Drawing.Size(82, 20);
-            this.appSecretLabel.TabIndex = 46;
-            this.appSecretLabel.Text = "App Secret";
+            this.updateButton.BackColor = System.Drawing.Color.Transparent;
+            this.updateButton.Enabled = false;
+            this.updateButton.FlatAppearance.BorderSize = 0;
+            this.updateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.updateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.updateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.updateButton.ForeColor = System.Drawing.Color.Transparent;
+            this.updateButton.Image = global::QobuzDownloaderX.Properties.Resources.alert;
+            this.updateButton.Location = new System.Drawing.Point(12, 333);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(40, 44);
+            this.updateButton.TabIndex = 44;
+            this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Visible = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // LoginForm
             // 
@@ -414,6 +433,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(292, 388);
             this.Controls.Add(this.aboutPanel);
+            this.Controls.Add(this.updateButton);
             this.Controls.Add(this.customPanel);
             this.Controls.Add(this.aboutButton);
             this.Controls.Add(this.altLoginLabel);
@@ -477,5 +497,6 @@
         private System.Windows.Forms.TextBox appidTextbox;
         private System.Windows.Forms.Label appSecretLabel;
         private System.Windows.Forms.Label appidLabel;
+        private System.Windows.Forms.Button updateButton;
     }
 }
