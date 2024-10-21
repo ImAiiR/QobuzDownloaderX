@@ -51,16 +51,16 @@ namespace QobuzDownloaderX
         {
             try
             {
-                // Grab album info with auth
+                // Grab artist info with auth
                 outputText = null;
-                Console.WriteLine("Getting Artist Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting artist Info...");
                 QoArtist = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token);
                 return QoArtist;
             }
             catch (Exception getArtistInfoEx)
             {
                 updateDownloadOutput("\r\n" + getArtistInfoEx.ToString());
-                Console.WriteLine(getArtistInfoEx);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to get artist info, error below:\r\n" + getArtistInfoEx);
                 return null;
             }
         }
@@ -69,16 +69,16 @@ namespace QobuzDownloaderX
         {
             try
             {
-                // Grab album info with auth
+                // Grab label info with auth
                 outputText = null;
-                Console.WriteLine("Getting Label Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting label Info...");
                 QoLabel = QoService.LabelGetWithAuth(app_id, label_id, "albums", 500, 0, user_auth_token);
                 return QoLabel;
             }
             catch (Exception getLabelInfoEx)
             {
                 updateDownloadOutput("\r\n" + getLabelInfoEx.ToString());
-                Console.WriteLine(getLabelInfoEx);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to get label info, error below:\r\n" + getLabelInfoEx);
                 return null;
             }
         }
@@ -87,16 +87,16 @@ namespace QobuzDownloaderX
         {
             try
             {
-                // Grab album info with auth
+                // Grab favorites info with auth
                 outputText = null;
-                Console.WriteLine("Getting Favorites Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting favorites Info...");
                 QoFavorites = QoService.FavoriteGetUserFavoritesWithAuth(app_id, user_id, type, 500, 0, user_auth_token);
                 return QoFavorites;
             }
             catch (Exception getFavoritesInfoEx)
             {
                 updateDownloadOutput("\r\n" + getFavoritesInfoEx.ToString());
-                Console.WriteLine(getFavoritesInfoEx);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to get favorites info, error below:\r\n" + getFavoritesInfoEx);
                 return null;
             }
         }
@@ -105,9 +105,9 @@ namespace QobuzDownloaderX
         {
             try
             {
-                // Grab album info with auth
+                // Grab track info with auth
                 outputText = null;
-                Console.WriteLine("Getting Track Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting track Info...");
                 QoItem = QoService.TrackGetWithAuth(app_id, track_id, user_auth_token);
                 string album_id = QoItem.Album.Id;
                 QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
@@ -116,7 +116,7 @@ namespace QobuzDownloaderX
             catch (Exception getTrackInfoLabelsEx)
             {
                 updateDownloadOutput("\r\n" + getTrackInfoLabelsEx.ToString());
-                Console.WriteLine(getTrackInfoLabelsEx);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to get track info, error below:\r\n" + getTrackInfoLabelsEx);
                 return null;
             }
         }
@@ -127,14 +127,14 @@ namespace QobuzDownloaderX
             {
                 // Grab album info with auth
                 outputText = null;
-                Console.WriteLine("Getting Album Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting album Info...");
                 QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
                 return QoAlbum;
             }
             catch (Exception getAlbumInfoLabelsEx)
             {
                 updateDownloadOutput("\r\n" + getAlbumInfoLabelsEx.ToString());
-                Console.WriteLine(getAlbumInfoLabelsEx);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to get album info, error below:\r\n" + getAlbumInfoLabelsEx);
                 return null;
             }
         }
@@ -143,16 +143,16 @@ namespace QobuzDownloaderX
         {
             try
             {
-                // Grab album info with auth
+                // Grab playlist info with auth
                 outputText = null;
-                Console.WriteLine("Getting Playlist Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting playlist Info...");
                 QoPlaylist = QoService.PlaylistGetWithAuth(app_id, playlist_id, "tracks", 500, 0, user_auth_token);
                 return QoPlaylist;
             }
             catch (Exception getPlaylistInfoLabelsEx)
             {
                 updateDownloadOutput("\r\n" + getPlaylistInfoLabelsEx.ToString());
-                Console.WriteLine(getPlaylistInfoLabelsEx);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to get playlist info, error below:\r\n" + getPlaylistInfoLabelsEx);
                 return null;
             }
         }

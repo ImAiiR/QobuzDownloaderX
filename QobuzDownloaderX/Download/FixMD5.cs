@@ -17,16 +17,14 @@ namespace QobuzDownloaderX.Download
 
         public void fixMD5(string filePath, string flacEXEPath)
         {
-            Console.WriteLine("Attempting to fix unset MD5...");
+            qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5...");
             driveLetter = filePath.Substring(0, 2);
-            Console.WriteLine("Drive letter - " + driveLetter);
-            Console.WriteLine("File Path - " + filePath);
-            Console.WriteLine("FLAC exe Path - " + flacEXEPath);
             cmdText = "/C echo Fixing unset MD5s... & \"" + flacEXEPath + "\" -f8 \"" + filePath + "\"";
-            Console.WriteLine("Commands - " + cmdText);
+            qbdlxForm._qbdlxForm.logger.Debug("Commands - " + cmdText);
 
             try
             {
+                qbdlxForm._qbdlxForm.logger.Debug("Running cmd to run ffmpeg command to fix MD5");
                 Process cmd = new Process();
                 cmd.StartInfo.FileName = "cmd.exe";
                 cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -34,12 +32,12 @@ namespace QobuzDownloaderX.Download
                 cmd.Start();
                 cmd.WaitForExit();
                 outputResult = "COMPLETE";
+                qbdlxForm._qbdlxForm.logger.Debug("MD5 has been fixed for file!");
             }
             catch (Exception fixMD5ex)
             {
                 outputResult = "Failed";
-                Console.WriteLine("Failed to fix MD5s");
-                Console.WriteLine(fixMD5ex);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to fix MD5s, error below:\r\n" + fixMD5ex);
             }
         }
     }

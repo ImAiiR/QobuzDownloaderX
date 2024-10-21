@@ -30,12 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(qbdlxForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.searchButton = new System.Windows.Forms.Button();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.settingsButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.aboutButton = new System.Windows.Forms.Button();
             this.downloaderButton = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.logoPanel = new System.Windows.Forms.Panel();
             this.versionNumber = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.downloaderPanel = new System.Windows.Forms.Panel();
@@ -127,8 +128,17 @@
             this.flacLowLabel2 = new System.Windows.Forms.Label();
             this.flacMidLabel2 = new System.Windows.Forms.Label();
             this.flacHighLabel2 = new System.Windows.Forms.Label();
+            this.movingLabel = new System.Windows.Forms.Label();
+            this.searchPanel = new System.Windows.Forms.Panel();
+            this.searchResultsPanel = new System.Windows.Forms.Panel();
+            this.searchResultsTablePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.searchAlbumsButton = new System.Windows.Forms.Button();
+            this.searchTracksButton = new System.Windows.Forms.Button();
+            this.searchTextbox = new System.Windows.Forms.TextBox();
+            this.searchLabel = new System.Windows.Forms.Label();
+            this.searchingLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.downloaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumPictureBox)).BeginInit();
@@ -136,22 +146,44 @@
             this.aboutPanel.SuspendLayout();
             this.extraSettingsPanel.SuspendLayout();
             this.qualitySelectPanel.SuspendLayout();
+            this.searchPanel.SuspendLayout();
+            this.searchResultsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.panel1.Controls.Add(this.searchButton);
             this.panel1.Controls.Add(this.welcomeLabel);
             this.panel1.Controls.Add(this.settingsButton);
             this.panel1.Controls.Add(this.logoutButton);
             this.panel1.Controls.Add(this.aboutButton);
             this.panel1.Controls.Add(this.downloaderButton);
-            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.logoPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(180, 577);
             this.panel1.TabIndex = 0;
+            // 
+            // searchButton
+            // 
+            this.searchButton.FlatAppearance.BorderSize = 0;
+            this.searchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchButton.Image = global::QobuzDownloaderX.Properties.Resources.search;
+            this.searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.searchButton.Location = new System.Drawing.Point(0, 166);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(180, 66);
+            this.searchButton.TabIndex = 33;
+            this.searchButton.Text = "SEARCH";
+            this.searchButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // welcomeLabel
             // 
@@ -212,7 +244,7 @@
             this.aboutButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.aboutButton.Image = global::QobuzDownloaderX.Properties.Resources.info;
             this.aboutButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.aboutButton.Location = new System.Drawing.Point(0, 166);
+            this.aboutButton.Location = new System.Drawing.Point(0, 232);
             this.aboutButton.Name = "aboutButton";
             this.aboutButton.Size = new System.Drawing.Size(180, 66);
             this.aboutButton.TabIndex = 1;
@@ -240,15 +272,16 @@
             this.downloaderButton.UseVisualStyleBackColor = true;
             this.downloaderButton.Click += new System.EventHandler(this.downloaderButton_Click);
             // 
-            // panel2
+            // logoPanel
             // 
-            this.panel2.Controls.Add(this.versionNumber);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(180, 100);
-            this.panel2.TabIndex = 0;
+            this.logoPanel.Controls.Add(this.versionNumber);
+            this.logoPanel.Controls.Add(this.pictureBox1);
+            this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoPanel.Location = new System.Drawing.Point(0, 0);
+            this.logoPanel.Name = "logoPanel";
+            this.logoPanel.Size = new System.Drawing.Size(180, 100);
+            this.logoPanel.TabIndex = 0;
+            this.logoPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.logoPanel_MouseMove);
             // 
             // versionNumber
             // 
@@ -271,6 +304,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // downloaderPanel
             // 
@@ -285,7 +319,7 @@
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextbox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(153, 108);
+            this.downloaderPanel.Location = new System.Drawing.Point(444, 480);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 1;
@@ -429,9 +463,11 @@
             this.downloadLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadLabel.Location = new System.Drawing.Point(13, 10);
             this.downloadLabel.Name = "downloadLabel";
-            this.downloadLabel.Size = new System.Drawing.Size(139, 25);
+            this.downloadLabel.Size = new System.Drawing.Size(579, 25);
             this.downloadLabel.TabIndex = 0;
-            this.downloadLabel.Text = "DOWNLOADER";
+            this.downloadLabel.Text = "DOWNLOADER                                                                       " +
+    "                 ";
+            this.downloadLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.downloadLabel_MouseMove);
             // 
             // settingsPanel
             // 
@@ -465,7 +501,7 @@
             this.settingsPanel.Controls.Add(this.selectFolderButton);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(272, 503);
+            this.settingsPanel.Location = new System.Drawing.Point(524, 442);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 1;
@@ -854,9 +890,11 @@
             this.settingsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.settingsLabel.Location = new System.Drawing.Point(13, 10);
             this.settingsLabel.Name = "settingsLabel";
-            this.settingsLabel.Size = new System.Drawing.Size(94, 25);
+            this.settingsLabel.Size = new System.Drawing.Size(554, 25);
             this.settingsLabel.TabIndex = 1;
-            this.settingsLabel.Text = "SETTINGS";
+            this.settingsLabel.Text = "SETTINGS                                                                         " +
+    "                   ";
+            this.settingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.settingsLabel_MouseMove);
             // 
             // userInfoTextbox
             // 
@@ -926,7 +964,7 @@
             this.aboutPanel.Controls.Add(this.userInfoTextbox);
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(747, 132);
+            this.aboutPanel.Location = new System.Drawing.Point(356, 526);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
             this.aboutPanel.TabIndex = 1;
@@ -938,9 +976,11 @@
             this.aboutLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.aboutLabel.Location = new System.Drawing.Point(13, 10);
             this.aboutLabel.Name = "aboutLabel";
-            this.aboutLabel.Size = new System.Drawing.Size(72, 25);
+            this.aboutLabel.Size = new System.Drawing.Size(552, 25);
             this.aboutLabel.TabIndex = 1;
-            this.aboutLabel.Text = "ABOUT";
+            this.aboutLabel.Text = "ABOUT                                                                            " +
+    "                    ";
+            this.aboutLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.aboutLabel_MouseMove);
             // 
             // extraSettingsPanel
             // 
@@ -973,7 +1013,7 @@
             this.extraSettingsPanel.Controls.Add(this.albumArtistCheckbox);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(622, 73);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(594, 403);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 3;
@@ -1381,9 +1421,11 @@
             this.extraSettingsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.extraSettingsLabel.Location = new System.Drawing.Point(13, 10);
             this.extraSettingsLabel.Name = "extraSettingsLabel";
-            this.extraSettingsLabel.Size = new System.Drawing.Size(206, 25);
+            this.extraSettingsLabel.Size = new System.Drawing.Size(551, 25);
             this.extraSettingsLabel.TabIndex = 1;
-            this.extraSettingsLabel.Text = "ADDITIONAL SETTINGS";
+            this.extraSettingsLabel.Text = "ADDITIONAL SETTINGS                                                              " +
+    "       ";
+            this.extraSettingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.extraSettingsLabel_MouseMove);
             // 
             // qualitySelectButton
             // 
@@ -1520,21 +1562,152 @@
             this.flacHighLabel2.Text = "FLAC (24/192)";
             this.flacHighLabel2.Click += new System.EventHandler(this.flacHighLabel2_Click);
             // 
+            // movingLabel
+            // 
+            this.movingLabel.AutoSize = true;
+            this.movingLabel.BackColor = System.Drawing.Color.Transparent;
+            this.movingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.movingLabel.Location = new System.Drawing.Point(179, 1);
+            this.movingLabel.Name = "movingLabel";
+            this.movingLabel.Size = new System.Drawing.Size(565, 13);
+            this.movingLabel.TabIndex = 6;
+            this.movingLabel.Text = "=================================================================================" +
+    "============";
+            this.movingLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movingLabel_MouseMove);
+            // 
+            // searchPanel
+            // 
+            this.searchPanel.Controls.Add(this.searchResultsPanel);
+            this.searchPanel.Controls.Add(this.searchAlbumsButton);
+            this.searchPanel.Controls.Add(this.searchTracksButton);
+            this.searchPanel.Controls.Add(this.searchTextbox);
+            this.searchPanel.Controls.Add(this.searchLabel);
+            this.searchPanel.Controls.Add(this.searchingLabel);
+            this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchPanel.Location = new System.Drawing.Point(689, 353);
+            this.searchPanel.Name = "searchPanel";
+            this.searchPanel.Size = new System.Drawing.Size(771, 577);
+            this.searchPanel.TabIndex = 29;
+            this.searchPanel.Visible = false;
+            // 
+            // searchResultsPanel
+            // 
+            this.searchResultsPanel.AutoScroll = true;
+            this.searchResultsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.searchResultsPanel.Controls.Add(this.searchResultsTablePanel);
+            this.searchResultsPanel.Location = new System.Drawing.Point(18, 83);
+            this.searchResultsPanel.Name = "searchResultsPanel";
+            this.searchResultsPanel.Size = new System.Drawing.Size(733, 482);
+            this.searchResultsPanel.TabIndex = 10;
+            // 
+            // searchResultsTablePanel
+            // 
+            this.searchResultsTablePanel.ColumnCount = 4;
+            this.searchResultsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.searchResultsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.searchResultsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.searchResultsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 687F));
+            this.searchResultsTablePanel.Location = new System.Drawing.Point(3, 3);
+            this.searchResultsTablePanel.Name = "searchResultsTablePanel";
+            this.searchResultsTablePanel.RowCount = 1;
+            this.searchResultsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.searchResultsTablePanel.Size = new System.Drawing.Size(710, 476);
+            this.searchResultsTablePanel.TabIndex = 0;
+            // 
+            // searchAlbumsButton
+            // 
+            this.searchAlbumsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.searchAlbumsButton.FlatAppearance.BorderSize = 0;
+            this.searchAlbumsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.searchAlbumsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.searchAlbumsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchAlbumsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchAlbumsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchAlbumsButton.Location = new System.Drawing.Point(581, 46);
+            this.searchAlbumsButton.Name = "searchAlbumsButton";
+            this.searchAlbumsButton.Size = new System.Drawing.Size(82, 31);
+            this.searchAlbumsButton.TabIndex = 9;
+            this.searchAlbumsButton.Text = "RELEASES";
+            this.searchAlbumsButton.UseVisualStyleBackColor = false;
+            this.searchAlbumsButton.Click += new System.EventHandler(this.searchAlbumsButton_Click);
+            // 
+            // searchTracksButton
+            // 
+            this.searchTracksButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.searchTracksButton.FlatAppearance.BorderSize = 0;
+            this.searchTracksButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.searchTracksButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.searchTracksButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchTracksButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTracksButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchTracksButton.Location = new System.Drawing.Point(669, 46);
+            this.searchTracksButton.Name = "searchTracksButton";
+            this.searchTracksButton.Size = new System.Drawing.Size(82, 31);
+            this.searchTracksButton.TabIndex = 8;
+            this.searchTracksButton.Text = "TRACKS";
+            this.searchTracksButton.UseVisualStyleBackColor = false;
+            this.searchTracksButton.Click += new System.EventHandler(this.searchTracksButton_Click);
+            // 
+            // searchTextbox
+            // 
+            this.searchTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.searchTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.searchTextbox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchTextbox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.searchTextbox.Location = new System.Drawing.Point(18, 48);
+            this.searchTextbox.Multiline = true;
+            this.searchTextbox.Name = "searchTextbox";
+            this.searchTextbox.Size = new System.Drawing.Size(557, 27);
+            this.searchTextbox.TabIndex = 7;
+            this.searchTextbox.Text = "Input your search...";
+            this.searchTextbox.WordWrap = false;
+            this.searchTextbox.Click += new System.EventHandler(this.searchTextbox_Click);
+            this.searchTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyDown);
+            this.searchTextbox.Leave += new System.EventHandler(this.searchTextbox_Leave);
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchLabel.Location = new System.Drawing.Point(13, 10);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(550, 25);
+            this.searchLabel.TabIndex = 1;
+            this.searchLabel.Text = "SEARCH                                                                           " +
+    "                   ";
+            this.searchLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.searchLabel_MouseMove);
+            // 
+            // searchingLabel
+            // 
+            this.searchingLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchingLabel.Location = new System.Drawing.Point(581, 49);
+            this.searchingLabel.Name = "searchingLabel";
+            this.searchingLabel.Size = new System.Drawing.Size(170, 25);
+            this.searchingLabel.TabIndex = 11;
+            this.searchingLabel.Text = "Searching...";
+            this.searchingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.searchingLabel.Visible = false;
+            // 
             // qbdlxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(951, 577);
+            this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.qualitySelectPanel);
             this.Controls.Add(this.qualitySelectButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
-            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.aboutPanel);
+            this.Controls.Add(this.settingsPanel);
+            this.Controls.Add(this.extraSettingsPanel);
+            this.Controls.Add(this.searchPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";
@@ -1542,7 +1715,7 @@
             this.Text = "qbdlxForm";
             this.Load += new System.EventHandler(this.qbdlxForm_Load);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.logoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.downloaderPanel.ResumeLayout(false);
             this.downloaderPanel.PerformLayout();
@@ -1555,14 +1728,18 @@
             this.extraSettingsPanel.PerformLayout();
             this.qualitySelectPanel.ResumeLayout(false);
             this.qualitySelectPanel.PerformLayout();
+            this.searchPanel.ResumeLayout(false);
+            this.searchPanel.PerformLayout();
+            this.searchResultsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel logoPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button downloaderButton;
         private System.Windows.Forms.Button settingsButton;
@@ -1578,7 +1755,6 @@
         private System.Windows.Forms.Label aboutLabel;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Label welcomeLabel;
-        private System.Windows.Forms.TextBox inputTextbox;
         private System.Windows.Forms.PictureBox albumPictureBox;
         private System.Windows.Forms.Label dateSlotLabel;
         private System.Windows.Forms.Label albumSlotLabel;
@@ -1657,7 +1833,18 @@
         public System.Windows.Forms.CheckBox streamableCheckbox;
         public System.Windows.Forms.TextBox templatesListTextbox;
         private System.Windows.Forms.Label templatesListLabel;
-        private System.Windows.Forms.Button downloadButton;
         public System.Windows.Forms.CheckBox fixMD5sCheckbox;
+        private System.Windows.Forms.Label movingLabel;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Panel searchPanel;
+        private System.Windows.Forms.Label searchLabel;
+        private System.Windows.Forms.Button searchTracksButton;
+        private System.Windows.Forms.TextBox searchTextbox;
+        private System.Windows.Forms.Button searchAlbumsButton;
+        private System.Windows.Forms.Panel searchResultsPanel;
+        public System.Windows.Forms.TableLayoutPanel searchResultsTablePanel;
+        private System.Windows.Forms.Label searchingLabel;
+        public System.Windows.Forms.TextBox inputTextbox;
+        public System.Windows.Forms.Button downloadButton;
     }
 }

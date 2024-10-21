@@ -16,11 +16,22 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.Threading;
 using QobuzDownloaderX.Properties;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using QobuzDownloaderX.Download;
 
 namespace QobuzDownloaderX
 {
     public partial class qbdlxForm : Form
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -37,14 +48,19 @@ namespace QobuzDownloaderX
         public Artist QoArtist = new Artist();
         public Album QoAlbum = new Album();
         public Item QoItem = new Item();
+        public SearchAlbumResult QoAlbumSearch = new SearchAlbumResult();
+        public SearchTrackResult QoTrackSearch = new SearchTrackResult();
         public Favorites QoFavorites = new Favorites();
         public Playlist QoPlaylist = new Playlist();
         public QopenAPI.Label QoLabel = new QopenAPI.Label();
-        public Stream QoStream = new Stream();
+        public QopenAPI.Stream QoStream = new QopenAPI.Stream();
 
         public bool downloadPanelActive = false;
         public bool aboutPanelActive = false;
         public bool settingsPanelActive = false;
+
+        //Create logger for this form
+        public Logger logger { get; set; }
 
         public string downloadLocation { get; set; }
         public string artistTemplate { get; set; }
@@ -68,12 +84,20 @@ namespace QobuzDownloaderX
         public string embeddedArtSize { get; set; }
         public string savedArtSize { get; set; }
 
+        public string latestWebResponse { get; set; }
+
         GetInfo getInfo = new GetInfo();
         DownloadAlbum downloadAlbum = new DownloadAlbum();
         DownloadTrack downloadTrack = new DownloadTrack();
+        SearchPanelHelper searchPanelHelper = new SearchPanelHelper();
 
         public qbdlxForm()
         {
+            // Create new log file
+            Directory.CreateDirectory("logs");
+            logger = new Logger("logs\\qbdlxForm_log-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
+            logger.Debug("Logger started, QBDLX form initialized!");
+
             InitializeComponent();
             _qbdlxForm = this;
         }
@@ -82,11 +106,13 @@ namespace QobuzDownloaderX
 
         public void update(string text)
         {
+            logger.Debug("Updating text with: " + text);
             downloadOutput.Invoke(new Action(() => downloadOutput.Text = text));
         }
 
         public void updateTemplates()
         {
+            logger.Debug("Updating templates");
             artistTemplate = artistTemplateTextbox.Text;
             albumTemplate = albumTemplateTextbox.Text;
             trackTemplate = trackTemplateTextbox.Text;
@@ -96,11 +122,15 @@ namespace QobuzDownloaderX
 
         private void qbdlxForm_Load(object sender, EventArgs e)
         {
+            logger.Debug("QBDLX form loaded!");
+
             // Round corners of form
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
             // Set saved settings to correct places.
             folderBrowser.SelectedPath = Settings.Default.savedFolder.ToString();
+            logger.Info("Saved download path: " + folderBrowser.SelectedPath);
+            logger.Debug("Setting saved download path to downloadLocation");
             downloadLocation = folderBrowser.SelectedPath;
             if (downloadLocation == null | downloadLocation == "")
             {
@@ -160,6 +190,7 @@ namespace QobuzDownloaderX
             aboutPanel.Location = new Point(179, 0);
             settingsPanel.Location = new Point(179, 0);
             extraSettingsPanel.Location = new Point(179, 0);
+            searchPanel.Location = new Point(179, 0);
 
             // Get and display version number.
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -171,16 +202,30 @@ namespace QobuzDownloaderX
             downloadPanelActive = true;
             downloaderButton.BackColor = Color.FromArgb(18, 18, 18);
 
+            logger.Info("User diplay name: " + user_display_name);
+            logger.Info("User ID: " + user_id);
+            try { logger.Info("User e-amil: " + QoUser.UserInfo.Email); } catch (Exception ex) { logger.Error("Failed to get user e-mail, Error below:\r\n" + ex.ToString()); }
+            try { logger.Info("User country: " + QoUser.UserInfo.Country); } catch (Exception ex) { logger.Error("Failed to get user country, Error below:\r\n" + ex.ToString()); }
+            try { logger.Info("User subscription: " + QoUser.UserInfo.Subscription.Offer); } catch (Exception ex) { logger.Error("Failed to get user subscription, Error below:\r\n" + ex.ToString()); }
+            try { logger.Info("User subscription end date: " + QoUser.UserInfo.Subscription.EndDate); } catch (Exception ex) { logger.Error("Failed to get user subscription end date, Error below:\r\n" + ex.ToString()); }
+
             // Set display_name to welcomeLabel
             welcomeLabel.Text = welcomeLabel.Text.Replace("{username}", user_display_name);
 
-            // Set user info in settings panel
-            userInfoTextbox.Text = userInfoTextbox.Text
-                .Replace("{user_id}", QoUser.UserInfo.Id.ToString())
+            // Set user info in about panel
+            try
+            {
+                userInfoTextbox.Text = userInfoTextbox.Text
+                .Replace("{user_id}", user_id)
                 .Replace("{user_email}", QoUser.UserInfo.Email)
                 .Replace("{user_country}", QoUser.UserInfo.Country)
                 .Replace("{user_subscription}", QoUser.UserInfo.Subscription.Offer)
                 .Replace("{user_subscription_expiration}", QoUser.UserInfo.Subscription.EndDate);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Failed to get user info for about section, continuing.");
+            }
 
 
             downloadOutput.Text = "Welcome " + user_display_name + "!";
@@ -208,12 +253,22 @@ namespace QobuzDownloaderX
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            logger.Debug("Exiting");
+            System.Windows.Forms.Application.Exit();
         }
 
         private void minimizeButton_Click(object sender, EventArgs e)
         {
+            logger.Debug("Minimizing");
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void searchTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Enter))
+            {
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void inputTextbox_KeyDown(object sender, KeyEventArgs e)
@@ -225,13 +280,19 @@ namespace QobuzDownloaderX
             }
         }
 
-        private async void getLinkType()
+        private void downloadButton_Click(object sender, EventArgs e)
+        {
+            getLinkType();
+        }
+
+        public async void getLinkType()
         {
             downloadOutput.Focus();
             // Check if there's no selected path.
             if (downloadLocation == null | downloadLocation == "" | downloadLocation == "no folder selected")
             {
                 // If there is NOT a saved path.
+                logger.Warning("No path has been set! Remember to Choose a Folder!");
                 downloadOutput.Invoke(new Action(() => downloadOutput.Text = String.Empty));
                 downloadOutput.Invoke(new Action(() => downloadOutput.AppendText("No path has been set! Remember to Choose a Folder!\r\n")));
                 return;
@@ -477,6 +538,24 @@ namespace QobuzDownloaderX
             }
         }
 
+        private void searchTextbox_Click(object sender, EventArgs e)
+        {
+            if (searchTextbox.Text == "Input your search...")
+            {
+                searchTextbox.Text = null;
+                searchTextbox.ForeColor = Color.FromArgb(200, 200, 200);
+            }
+        }
+
+        private void searchTextbox_Leave(object sender, EventArgs e)
+        {
+            if (searchTextbox.Text == null | searchTextbox.Text == "")
+            {
+                searchTextbox.ForeColor = Color.FromArgb(60, 60, 60);
+                searchTextbox.Text = "Input your search...";
+            }
+        }
+
         private void openFolderButton_Click(object sender, EventArgs e)
         {
             // Open selcted folder
@@ -534,6 +613,7 @@ namespace QobuzDownloaderX
 
             if (flacHighButton.Checked == true)
             {
+                logger.Debug("Setting format ID to 27");
                 format_id = "27";
                 audio_format = ".flac";
                 flacHighButton2.Checked = true;
@@ -549,6 +629,7 @@ namespace QobuzDownloaderX
 
             if (flacHighButton2.Checked == true)
             {
+                logger.Debug("Setting format ID to 27");
                 format_id = "27";
                 audio_format = ".flac";
                 flacHighButton.Checked = true;
@@ -564,6 +645,7 @@ namespace QobuzDownloaderX
 
             if (flacMidButton.Checked == true)
             {
+                logger.Debug("Setting format ID to 7");
                 format_id = "7";
                 audio_format = ".flac";
                 flacMidButton2.Checked = true;
@@ -579,6 +661,7 @@ namespace QobuzDownloaderX
 
             if (flacMidButton2.Checked == true)
             {
+                logger.Debug("Setting format ID to 7");
                 format_id = "7";
                 audio_format = ".flac";
                 flacMidButton.Checked = true;
@@ -594,6 +677,7 @@ namespace QobuzDownloaderX
 
             if (flacLowButton.Checked == true)
             {
+                logger.Debug("Setting format ID to 6");
                 format_id = "6";
                 audio_format = ".flac";
                 flacLowButton2.Checked = true;
@@ -609,6 +693,7 @@ namespace QobuzDownloaderX
 
             if (flacLowButton2.Checked == true)
             {
+                logger.Debug("Setting format ID to 6");
                 format_id = "6";
                 audio_format = ".flac";
                 flacLowButton.Checked = true;
@@ -624,6 +709,7 @@ namespace QobuzDownloaderX
 
             if (mp3Button.Checked == true)
             {
+                logger.Debug("Setting format ID to 5");
                 format_id = "5";
                 audio_format = ".mp3";
                 mp3Button2.Checked = true;
@@ -639,6 +725,7 @@ namespace QobuzDownloaderX
 
             if (mp3Button2.Checked == true)
             {
+                logger.Debug("Setting format ID to 5");
                 format_id = "5";
                 audio_format = ".mp3";
                 mp3Button.Checked = true;
@@ -818,15 +905,18 @@ namespace QobuzDownloaderX
         #region Navigation Buttons
         private void logoutButton_Click(object sender, EventArgs e)
         {
+            logger.Debug("Restarting program to logout");
             // Could use some work, but this works.
             Process.Start("QobuzDownloaderX.exe");
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void aboutButton_Click(object sender, EventArgs e)
         {
-            // Make other panels invisable, make about panel visable
+            logger.Debug("Opening about panel");
+            // Make other panels invisable, make about panel visible
             downloaderPanel.Visible = false;
+            searchPanel.Visible = false;
             settingsPanel.Visible = false;
             extraSettingsPanel.Visible = false;
             aboutPanel.Visible = true;
@@ -839,13 +929,16 @@ namespace QobuzDownloaderX
             // Change button colors
             downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
             settingsButton.BackColor = Color.FromArgb(13, 13, 13);
+            searchButton.BackColor = Color.FromArgb(13, 13, 13);
             aboutButton.BackColor = Color.FromArgb(18, 18, 18);
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            // Make other panels invisable, make settings panel visable
+            logger.Debug("Opening settings panel");
+            // Make other panels invisable, make settings panel visible
             downloaderPanel.Visible = false;
+            searchPanel.Visible = false;
             aboutPanel.Visible = false;
             settingsPanel.Visible = true;
 
@@ -858,13 +951,16 @@ namespace QobuzDownloaderX
             // Change button colors
             downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
             aboutButton.BackColor = Color.FromArgb(13, 13, 13);
+            searchButton.BackColor = Color.FromArgb(13, 13, 13);
             settingsButton.BackColor = Color.FromArgb(18, 18, 18);
         }
 
-        private void downloaderButton_Click(object sender, EventArgs e)
+        public void downloaderButton_Click(object sender, EventArgs e)
         {
-            // Make other panels invisable, make settings panel visable
+            logger.Debug("Opening download panel");
+            // Make other panels invisable, make settings panel visible
             aboutPanel.Visible = false;
+            searchPanel.Visible = false;
             settingsPanel.Visible = false;
             extraSettingsPanel.Visible = false;
             downloaderPanel.Visible = true;
@@ -877,13 +973,38 @@ namespace QobuzDownloaderX
             // Change button colors
             aboutButton.BackColor = Color.FromArgb(13, 13, 13);
             settingsButton.BackColor = Color.FromArgb(13, 13, 13);
+            searchButton.BackColor = Color.FromArgb(13, 13, 13);
             downloaderButton.BackColor = Color.FromArgb(18, 18, 18);
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            logger.Debug("Opening search panel");
+            // Make other panels invisable, make settings panel visible
+            aboutPanel.Visible = false;
+            settingsPanel.Visible = false;
+            extraSettingsPanel.Visible = false;
+            downloaderPanel.Visible = false;
+            searchPanel.Visible = true;
+
+            // Make this the active panel
+            aboutPanelActive = false;
+            settingsPanelActive = false;
+            downloadPanelActive = true;
+
+            // Change button colors
+            aboutButton.BackColor = Color.FromArgb(13, 13, 13);
+            settingsButton.BackColor = Color.FromArgb(13, 13, 13);
+            downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
+            searchButton.BackColor = Color.FromArgb(18, 18, 18);
         }
 
         private void additionalSettingsButton_Click(object sender, EventArgs e)
         {
-            // Make other panels invisable, make settings panel visable
+            logger.Debug("Opening extra settings panel");
+            // Make other panels invisable, make settings panel visible
             aboutPanel.Visible = false;
+            searchPanel.Visible = false;
             downloaderPanel.Visible = false;
             settingsPanel.Visible = false;
             extraSettingsPanel.Visible = true;
@@ -896,13 +1017,16 @@ namespace QobuzDownloaderX
             // Change button colors
             aboutButton.BackColor = Color.FromArgb(13, 13, 13);
             downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
+            searchButton.BackColor = Color.FromArgb(13, 13, 13);
             settingsButton.BackColor = Color.FromArgb(18, 18, 18);
         }
 
         private void closeAdditionalButton_Click(object sender, EventArgs e)
         {
-            // Make other panels invisable, make settings panel visable
+            logger.Debug("Closing extra settings panel");
+            // Make other panels invisable, make settings panel visible
             aboutPanel.Visible = false;
+            searchPanel.Visible = false;
             downloaderPanel.Visible = false;
             extraSettingsPanel.Visible = false;
             settingsPanel.Visible = true;
@@ -915,6 +1039,7 @@ namespace QobuzDownloaderX
             // Change button colors
             aboutButton.BackColor = Color.FromArgb(13, 13, 13);
             downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
+            searchButton.BackColor = Color.FromArgb(13, 13, 13);
             settingsButton.BackColor = Color.FromArgb(18, 18, 18);
         }
 
@@ -938,9 +1063,206 @@ namespace QobuzDownloaderX
             downloadOutput.ScrollToCaret();
         }
 
-        private void downloadButton_Click(object sender, EventArgs e)
+        #region Window Moving
+
+        // For moving form with click and drag
+        private void logoPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            getLinkType();
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void movingLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void downloadLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void settingsLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void extraSettingsLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void aboutLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void searchLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        #endregion
+
+        private void searchAlbumsButton_Click(object sender, EventArgs e)
+        {
+            logger.Debug("Hiding search buttons");
+            searchAlbumsButton.Visible = false;
+            searchTracksButton.Visible = false;
+            searchingLabel.Visible = true;
+            searchResultsPanel.Hide();
+
+            string searchQuery = searchTextbox.Text;
+
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                logger.Debug("Search query was null, canceling");
+                searchResultsPanel.Show();
+                searchAlbumsButton.Visible = true;
+                searchTracksButton.Visible = true;
+                searchingLabel.Visible = false;
+                return;
+            }
+
+            try
+            {
+                logger.Debug("Search for releases started");
+                QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
+                searchPanelHelper.PopulateTableAlbums(this, QoAlbumSearch);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error occured during searchAlbumsButton_Click, error below:\r\n" + ex);
+                searchResultsPanel.Show();
+                searchAlbumsButton.Visible = true;
+                searchTracksButton.Visible = true;
+                searchingLabel.Visible = false;
+                return;
+            }
+            logger.Debug("Search completed!");
+            searchResultsPanel.Show();
+            searchAlbumsButton.Visible = true;
+            searchTracksButton.Visible = true;
+            searchingLabel.Visible = false;
+            return;
+        }
+
+        private void searchTracksButton_Click(object sender, EventArgs e)
+        {
+            logger.Debug("Hiding search buttons");
+            searchAlbumsButton.Visible = false;
+            searchTracksButton.Visible = false;
+            searchingLabel.Visible = true;
+            searchResultsPanel.Hide();
+
+            string searchQuery = searchTextbox.Text;
+
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                logger.Debug("Search query was null, canceling");
+                searchResultsPanel.Show();
+                searchAlbumsButton.Visible = true;
+                searchTracksButton.Visible = true;
+                searchingLabel.Visible = false;
+                return;
+            }
+
+            try
+            {
+                logger.Debug("Search for tracks started");
+                QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
+                searchPanelHelper.PopulateTableTracks(this, QoTrackSearch);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Error occured during searchTracksButton_Click, error below:\r\n" + ex);
+                searchResultsPanel.Show();
+                searchAlbumsButton.Visible = true;
+                searchTracksButton.Visible = true;
+                searchingLabel.Visible = false;
+                return;
+            }
+            logger.Debug("Search completed!");
+            searchResultsPanel.Show();
+            searchAlbumsButton.Visible = true;
+            searchTracksButton.Visible = true;
+            searchingLabel.Visible = false;
+            return;
+        }
+    }
+    public class Logger
+    {
+        private readonly string _filePath;
+
+        public Logger(string filePath)
+        {
+            _filePath = filePath;
+        }
+
+        public void Log(string message, string level)
+        {
+            var logMessage = $"[{DateTime.Now}] [{level}] {message}";
+
+            using (var writer = File.AppendText(_filePath))
+            {
+                writer.WriteLine(logMessage);
+            }
+        }
+
+        public void Debug(string message)
+        {
+            Log(message, "DEBUG");
+        }
+
+        public void Info(string message)
+        {
+            Log(message, "INFO");
+        }
+
+        public void Warning(string message)
+        {
+            Log(message, "WARNING");
+        }
+
+        public void Error(string message)
+        {
+            Log(message, "ERROR");
         }
     }
 }

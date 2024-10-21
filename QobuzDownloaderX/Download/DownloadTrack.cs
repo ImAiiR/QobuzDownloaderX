@@ -165,7 +165,7 @@ namespace QobuzDownloaderX
                 {
                     downloadPath = downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
 
-                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { Console.WriteLine("Failed to Download Cover Art"); }
+                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
 
                     string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, null);
 

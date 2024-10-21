@@ -20,6 +20,8 @@ namespace QobuzDownloaderX
 
         public string renameTemplates(string template, int paddedTrackLength, int paddedDiscLength, string fileFormat, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
         {
+            qbdlxForm._qbdlxForm.logger.Debug("Renaming user template - " + template);
+
             // Keep backslashes to be used to make new folders
             if (template.Contains(Path.DirectorySeparatorChar))
             {
@@ -105,7 +107,7 @@ namespace QobuzDownloaderX
                 }
             }
 
-
+            qbdlxForm._qbdlxForm.logger.Debug("Template output - " + template.Replace("{backslash}", @"\").Replace("{forwardslash}", @"/"));
             return template.Replace("{backslash}", @"\").Replace("{forwardslash}", @"/");
         }
     }

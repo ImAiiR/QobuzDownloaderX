@@ -22,6 +22,7 @@ namespace QobuzDownloaderX
 
                 if (tempPath.Contains(".flac"))
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("FLAC detected, setting FLAC specific tags");
                     if (Settings.Default.yearTag == true) { customTagsFLAC.SetField("DATE", QoAlbum.ReleaseDateOriginal); } // Release Date (FLAC)
                     if (Settings.Default.isrcTag == true) { customTagsFLAC.SetField("ISRC", QoItem.ISRC); } // ISRC (FLAC)
                     if (Settings.Default.typeTag == true) { customTagsFLAC.SetField("MEDIATYPE", QoAlbum.ProductType.ToUpper()); } // Type of release (FLAC)
@@ -31,6 +32,7 @@ namespace QobuzDownloaderX
                 }
                 else
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("Non-FLAC detected, setting MP3 specific tags");
                     TagLib.Id3v2.Tag mp3Tag = (TagLib.Id3v2.Tag)file.GetTag(TagTypes.Id3v2, true);
 
                     UserTextInformationFrame barcodeFrame = UserTextInformationFrame.Get(mp3Tag, "BARCODE", true);
@@ -44,14 +46,14 @@ namespace QobuzDownloaderX
                     if (Settings.Default.labelTag == true) { mp3Tag.SetTextFrame("TPUB", QoAlbum.Label.Name); } // Record Label (MP3)
                     if (Settings.Default.typeTag == true) { mp3Tag.SetTextFrame("TMED", QoAlbum.ProductType.ToUpper()); } // Type of release (MP3)
                 }
-
+                qbdlxForm._qbdlxForm.logger.Debug("Writing all other tags");
                 if (Settings.Default.trackTitleTag == true) { file.Tag.Title = QoItem.Title; } // Track Title
                 if (Settings.Default.artistTag == true) { file.Tag.Performers = new[] { QoItem.Performer.Name }; } // Track Artist
                 if (Settings.Default.albumArtistTag == true) { if (QoAlbum.Artist.Name != null) { file.Tag.AlbumArtists = new[] { QoAlbum.Artist.Name }; } } // Album Artist
                 if (Settings.Default.genreTag == true) { file.Tag.Genres = new[] { QoAlbum.Genre.Name }; } // Genre
                 if (Settings.Default.albumTag == true) { if (QoAlbum.Version == null) { file.Tag.Album = QoAlbum.Title; } else { file.Tag.Album = QoAlbum.Title.TrimEnd() + " (" + QoAlbum.Version + ")"; } } // Album Title
                 if (Settings.Default.trackTitleTag == true) { if (QoItem.Version == null) { file.Tag.Title = QoItem.Title; } else { file.Tag.Title = QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")"; } } // Track Title
-                if (Settings.Default.composerTag == true) { try { file.Tag.Composers = new[] { QoItem.Composer.Name }; } catch { } } // Track Composer
+                if (Settings.Default.composerTag == true) { try { file.Tag.Composers = new[] { QoItem.Composer.Name }; } catch { qbdlxForm._qbdlxForm.logger.Warning("Failed to write track composer, usually means it wasn't available"); } } // Track Composer
                 if (Settings.Default.trackTag == true) { file.Tag.Track = (uint)QoItem.TrackNumber; } // Track Number
                 if (Settings.Default.totalTracksTag == true) { file.Tag.TrackCount = (uint)(QoAlbum.TracksCount); } // Total Tracks
                 if (Settings.Default.discTag == true) { file.Tag.Disc = (uint)QoItem.MediaNumber; } // Disc Number
@@ -62,6 +64,7 @@ namespace QobuzDownloaderX
                 {
                     try
                     {
+                        qbdlxForm._qbdlxForm.logger.Debug("Attempting to embed artwork");
                         // Define cover art to use for file(s)
                         TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
                         pic.TextEncoding = TagLib.StringType.Latin1;
@@ -71,12 +74,16 @@ namespace QobuzDownloaderX
 
                         // Save cover art to file.
                         file.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                        qbdlxForm._qbdlxForm.logger.Debug("Artwork embed complete");
                     }
-                    catch { }
+                    catch { 
+                        qbdlxForm._qbdlxForm.logger.Error("Unable to write embedded artwork"); 
+                    }
                 }
 
                 // Save All Tags
                 file.Save();
+                qbdlxForm._qbdlxForm.logger.Debug("File tagging completed!");
             }
         }
     }

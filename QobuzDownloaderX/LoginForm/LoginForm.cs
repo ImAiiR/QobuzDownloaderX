@@ -61,6 +61,9 @@ namespace QobuzDownloaderX
         public string newVersion { get; set; }
         public string changes { get; set; }
 
+        // Create logger for this form
+        public Logger logger { get; set; }
+
         public string username { get; set; }
         public string password { get; set; }
         public string user_auth_token { get; set; }
@@ -70,6 +73,8 @@ namespace QobuzDownloaderX
         public string user_id { get; set; }
         public string user_display_name { get; set; }
         public string user_label { get; set; }
+
+        public string latestWebResponse { get; set; }
 
         public LoginForm()
         {
@@ -81,15 +86,22 @@ namespace QobuzDownloaderX
 
         private async void LoginForm_Load(object sender, EventArgs e)
         {
+            // Create new log file
+            Directory.CreateDirectory("logs");
+            logger = new Logger("logs\\loginForm_log-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
+            logger.Debug("Logger started, login form loaded!");
+
             // Round corners of form
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
             // Get and display version number.
+            logger.Info("QobuzDownlaoderX | Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             aboutTextbox.Text = aboutTextbox.Text.Replace("%version%", Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
             if (!System.IO.File.Exists(dllCheck))
             {
+                logger.Error("taglib-sharp.dll is missing from folder. Exiting.");
                 MessageBox.Show("taglib-sharp.dll missing from folder!\r\nPlease Make sure the DLL is in the same folder as QobuzDownloaderX.exe!", "ERROR",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
@@ -111,6 +123,10 @@ namespace QobuzDownloaderX
             passwordTextbox.Text = password;
             appidTextbox.Text = Settings.Default.savedAppID.ToString();
             appSecretTextbox.Text = Settings.Default.savedSecret.ToString();
+
+            logger.Info("Currently saved username: " + username);
+            logger.Info("Currently saved app ID: " + Settings.Default.savedAppID.ToString());
+            logger.Info("Currently saved app secret: " + Settings.Default.savedSecret.ToString());
 
             string emailPlaceholder = "e-mail";
             string passwordPlaceholder = "password";
@@ -156,21 +172,25 @@ namespace QobuzDownloaderX
             {
                 // Create HttpClient to grab version number from Github
                 var versionURLClient = new HttpClient();
+                logger.Debug("versionURLClient initialized");
                 // Run through TLS to allow secure connection.
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
                 // Set user-agent to Firefox.
                 versionURLClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
 
-                // Grab response from Github to get Track IDs from Album response.
+                // Grab response from Github to get version number.
+                logger.Debug("Starting request for latest GitHub version");
                 var versionURL = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
                 var versionURLResponse = await versionURLClient.GetAsync(versionURL);
                 string versionURLResponseString = versionURLResponse.Content.ReadAsStringAsync().Result;
+                latestWebResponse = versionURLResponseString;
 
                 // Grab metadata from API JSON response
                 JObject joVersionResponse = JObject.Parse(versionURLResponseString);
 
                 // Grab latest version number
                 string version = (string)joVersionResponse["tag_name"];
+                logger.Debug("Recieved version: " + version);
                 // Grab changelog
                 changes = (string)joVersionResponse["body"];
 
@@ -180,15 +200,19 @@ namespace QobuzDownloaderX
                 if (currentVersion.Contains(newVersion))
                 {
                     // Do nothing. All is good.
+                    logger.Debug("Current version and new version match!");
                 }
                 else
                 {
+                    logger.Warning("Current version and new version do not match!");
+                    logger.Debug("Enabling update button");
                     updateButton.Enabled = true;
                     updateButton.Visible = true;
                 }
             }
             catch
             {
+                logger.Error("Connection to GitHub failed, unable to grab latest version.");
                 DialogResult dialogResult = MessageBox.Show("Connection to GitHub to check for an update has failed.\r\nWould you like to check for an update manually?\r\n\r\nYour current version is " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "QBDLX | GitHub Connection Failed", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
@@ -205,6 +229,7 @@ namespace QobuzDownloaderX
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            logger.Debug("Exiting.");
             Application.Exit();
         }
 
@@ -294,10 +319,12 @@ namespace QobuzDownloaderX
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            logger.Debug("Logging in...");
             #region Check if textboxes are valid
             if (emailTextbox.Text == "e-mail" | emailTextbox.Text == null | emailTextbox.Text == "id" | emailTextbox.Text == "")
             {
                 // If there's no email typed in. Ignore if using token to login.
+                logger.Warning("emailTextbox does not contain proper values for logging in.");
                 if (altLoginLabel.Text.Contains("PASSWORD") == false)
                 {
                     loginText.Invoke(new Action(() => loginText.Text = "no e-mail or id, please input email first"));
@@ -308,6 +335,7 @@ namespace QobuzDownloaderX
             if (passwordTextbox.Text == "password" | passwordTextbox.Text == "token")
             {
                 // If there's no password typed in.
+                logger.Warning("passwordTextbox does not contain proper values for logging in.");
                 loginText.Invoke(new Action(() => loginText.Text = "no password or token typed, please input password first"));
                 return;
             }
@@ -321,6 +349,7 @@ namespace QobuzDownloaderX
             Settings.Default.savedPassword = password;
             Settings.Default.Save();
 
+            logger.Debug("Starting loginBackground...");
             loginBackground.RunWorkerAsync();
         }
 
@@ -333,15 +362,19 @@ namespace QobuzDownloaderX
 
                 if (appidTextbox.Text == null | appidTextbox.Text == "" | appSecretTextbox.Text == null | appSecretTextbox.Text == "")
                 {
+                    logger.Debug("No saved/custom app ID given, will get a new ID from Qobuz");
                     // Grab app_id & login
                     app_id = QoService.GetAppID().App_ID;
+                    logger.Info("App ID: " + app_id);
 
                     if (Settings.Default.savedAltLoginValue == false)
                     {
+                        logger.Debug("Logging in with e-mail and password");
                         QoUser = QoService.Login(app_id, username, password, null);
                     }
                     else
                     {
+                        logger.Debug("Logging in with token");
                         QoUser = QoService.Login(app_id, null, null, password);
                     }
 
@@ -349,17 +382,22 @@ namespace QobuzDownloaderX
                     user_id = QoUser.UserInfo.Id.ToString();
                     user_display_name = QoUser.UserInfo.DisplayName;
 
+                    logger.Info("User ID: " + user_id);
+                    logger.Info("User display name: " + user_display_name);
+
 
                     // Grab user details & send to QBDLX
+                    logger.Debug("Sending values to main form");
                     qbdlx.user_id = user_id;
                     qbdlx.user_display_name = user_display_name;
-                    try { qbdlx.user_label = QoUser.UserInfo.Credential.Parameters.ShortLabel; } catch { }
+                    try { qbdlx.user_label = QoUser.UserInfo.Credential.Parameters.ShortLabel; } catch { logger.Warning("Attempt to grab user's short label from API has failed. Continuing."); }
 
                     // Grab profile image
-                    try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { }
+                    try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { logger.Warning("Attempt to grab user's avatar from API has failed. Continuing."); }
 
                     // Set app_secret
                     app_secret = QoService.GetAppSecret(app_id, user_auth_token).App_Secret;
+                    logger.Info("App secret: " + app_secret);
 
                     // Re-enable login button, and send app_id & app_secret to QBDLX
                     loginButton.Invoke(new Action(() => loginButton.Enabled = true));
@@ -376,15 +414,19 @@ namespace QobuzDownloaderX
                 }
                 else
                 {
+                    logger.Debug("Using saved/custom app ID and secret");
                     // Use user-provided app_id & login
                     app_id = appidTextbox.Text;
+                    logger.Info("App ID: " + app_id);
 
                     if (Settings.Default.savedAltLoginValue == false)
                     {
+                        logger.Debug("Logging in with e-mail and password");
                         QoUser = QoService.Login(app_id, username, password, null);
                     }
                     else
                     {
+                        logger.Debug("Logging in with token");
                         QoUser = QoService.Login(app_id, null, null, password);
                     }
 
@@ -392,17 +434,22 @@ namespace QobuzDownloaderX
                     user_id = QoUser.UserInfo.Id.ToString();
                     user_display_name = QoUser.UserInfo.DisplayName;
 
+                    logger.Info("User ID: " + user_id);
+                    logger.Info("User display name: " + user_display_name);
+
 
                     // Grab user details & send to QBDLX
+                    logger.Debug("Sending values to main form");
                     qbdlx.user_id = user_id;
                     qbdlx.user_display_name = user_display_name;
-                    try { qbdlx.user_label = QoUser.UserInfo.Credential.Parameters.ShortLabel; } catch { }
+                    try { qbdlx.user_label = QoUser.UserInfo.Credential.Parameters.ShortLabel; } catch { logger.Warning("Attempt to grab user's short label from API has failed. Continuing."); }
 
                     // Grab profile image
-                    try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { }
+                    try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { logger.Warning("Attempt to grab user's avatar from API has failed. Continuing."); }
 
                     // Set user-provided app_secret
                     app_secret = appSecretTextbox.Text;
+                    logger.Info("App secret: " + app_secret);
 
                     // Re-enable login button, and send app_id & app_secret to QBDLX
                     loginButton.Invoke(new Action(() => loginButton.Enabled = true));
@@ -419,6 +466,7 @@ namespace QobuzDownloaderX
                 }
 
                 // Hide this window & open QBDLX
+                logger.Debug("Login successful! Hiding this form, and launching main form.");
                 this.Invoke(new Action(() => this.Hide()));
                 Application.Run(qbdlx);
             }
@@ -426,6 +474,8 @@ namespace QobuzDownloaderX
             {
                 // If obtaining bundle.js info fails, show error info.
                 string loginError = loginException.ToString();
+                logger.Error("Login failed, error listed below.");
+                logger.Error("Error:\r\n" + loginException);
                 loginText.Invoke(new Action(() => loginText.Text = "login failed, error log saved"));
                 System.IO.File.WriteAllText(errorLog, loginError);
                 loginButton.Invoke(new Action(() => loginButton.Enabled = true));
@@ -435,6 +485,7 @@ namespace QobuzDownloaderX
 
         private void cusotmLabel_Click(object sender, EventArgs e)
         {
+            logger.Debug("Opening custom app ID and secret panel");
             customPanel.Location = new Point(12, 82);
             customPanel.Enabled = true;
             customPanel.Visible = true;
@@ -490,6 +541,7 @@ namespace QobuzDownloaderX
         {
             if (altLoginLabel.Text.Contains("TOKEN"))
             {
+                logger.Debug("Swapping login method to token");
                 Settings.Default.savedAltLoginValue = true;
                 altLoginLabel.Text = "LOGIN WITH E-MAIL AND PASSWORD";
                 altLoginLabel.Location = new Point(48, 306);
@@ -503,6 +555,7 @@ namespace QobuzDownloaderX
             }
             else
             {
+                logger.Debug("Swapping login method to e-mail and password");
                 Settings.Default.savedAltLoginValue = false;
                 altLoginLabel.Text = "LOGIN WITH TOKEN";
                 altLoginLabel.Location = new Point(93, 306);
@@ -523,6 +576,7 @@ namespace QobuzDownloaderX
 
         private void aboutButton_Click(object sender, EventArgs e)
         {
+            logger.Debug("Opening about panel");
             aboutPanel.Location = new Point(12, 82);
             aboutPanel.Enabled = true;
             aboutPanel.Visible = true;
@@ -530,8 +584,19 @@ namespace QobuzDownloaderX
 
         private void closeAboutButton_Click(object sender, EventArgs e)
         {
+            logger.Debug("Hiding about panel");
             aboutPanel.Enabled = false;
             aboutPanel.Visible = false;
+        }
+
+        private void customSaveButton_Click(object sender, EventArgs e)
+        {
+            logger.Debug("Saving custom app ID and secret...");
+            Settings.Default.savedAppID = appidTextbox.Text;
+            Settings.Default.savedSecret = appSecretTextbox.Text;
+            logger.Debug("Custom app ID and secret saved! Hiding custom values panel");
+            customPanel.Enabled = false;
+            customPanel.Visible = false;
         }
 
         private void altLoginLabel_MouseEnter(object sender, EventArgs e)
@@ -554,26 +619,41 @@ namespace QobuzDownloaderX
             customLabel.ForeColor = Color.FromArgb(100, 100, 100);
         }
 
-        private void customSaveButton_Click(object sender, EventArgs e)
-        {
-            Settings.Default.savedAppID = appidTextbox.Text;
-            Settings.Default.savedSecret = appSecretTextbox.Text;
-            customPanel.Enabled = false;
-            customPanel.Visible = false;
-        }
-
         private void updateButton_Click(object sender, EventArgs e)
         {
+            logger.Debug("Opening update information dialog");
             DialogResult dialogResult = MessageBox.Show("New version of QBDLX is available!\r\n\r\nInstalled version - " + currentVersion + "\r\nLatest version - " + newVersion + "\r\n\r\nChangelog Below\r\n==============\r\n" + changes.Replace("\\r\\n", "\r\n") + "\r\n==============\r\n\r\nWould you like to update?", "QBDLX | Update Available", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 // If "Yes" is clicked, open GitHub page and close QBDLX.
+                logger.Debug("Opening GitHub page for latest update");
                 Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
+                logger.Debug("Exiting");
                 Application.Exit();
             }
             else if (dialogResult == DialogResult.No)
             {
-                // Ignore the update until next open.
+                // Ignore the update
+                logger.Info("Update ignored");
+            }
+        }
+
+        // For moving form with click and drag
+        private void qbdlxPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void topPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
     }

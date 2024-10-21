@@ -32,14 +32,16 @@ namespace QobuzDownloaderX
         {
             if (QoPlaylist == null)
             {
+                qbdlxForm._qbdlxForm.logger.Debug("Using non-playlist path");
                 artistTemplateConverted = renameTemplates.renameTemplates(artistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
                 albumTemplateConverted = renameTemplates.renameTemplates(albumTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
                 downloadPath = Path.Combine(downloadLocation, artistTemplateConverted, albumTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
-
+                
                 return downloadPath;
             }
             else
             {
+                qbdlxForm._qbdlxForm.logger.Debug("Using playlist path");
                 playlistTemplateConverted = renameTemplates.renameTemplates(playlistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, null, null, QoPlaylist);
                 downloadPath = Path.Combine(downloadLocation, playlistTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
 
@@ -49,23 +51,26 @@ namespace QobuzDownloaderX
 
         public void downloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem)
         {
+            qbdlxForm._qbdlxForm.logger.Debug("Writing temp file to qbdlx-temp/qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
             // Create a temp directory inside the exe location, to download files to.
-            string tempFile = Path.Combine(@"qbdlx-temp", "qbdlx_downloading" + audio_format);
+            string tempFile = Path.Combine(@"qbdlx-temp", "qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
             Directory.CreateDirectory(@"qbdlx-temp");
 
             using (var client = new WebClient())
             {
                 // Set path for downloaded artwork.
                 artworkPath = downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg";
+                qbdlxForm._qbdlxForm.logger.Debug("Artwork path: " + artworkPath);
 
                 // Use secure connection
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
                 // Download to the temp directory that was made, and tag the file
-                Console.WriteLine("Downloading");
+                qbdlxForm._qbdlxForm.logger.Debug("Downloading to temp file...");
                 Console.WriteLine(filePath);
                 if (QoAlbum.MediaCount > 1)
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
                     Directory.CreateDirectory(Path.GetDirectoryName(downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0') + Path.DirectorySeparatorChar));
                 }
                 else
@@ -83,9 +88,11 @@ namespace QobuzDownloaderX
                     }
                 }
 
+                qbdlxForm._qbdlxForm.logger.Debug("Starting file metadata tagging");
                 TagFile.WriteToFile(tempFile, artworkPath, QoAlbum, QoItem);
 
                 // Move the file with the full name (Zeta Long Paths to avoid MAX_PATH error)
+                qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
                 ZetaLongPaths.ZlpIOHelper.MoveFile(tempFile, filePath);
             }
         }
@@ -98,15 +105,17 @@ namespace QobuzDownloaderX
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
                 // Download cover art (600x600) to the download path
-                Console.WriteLine("Downloading Cover Art");
+                qbdlxForm._qbdlxForm.logger.Debug("Downloading Cover Art");
                 Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
 
                 if (File.Exists(downloadPath + @"Cover.jpg") == false)
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("Saved artwork Cover.jpg not found, downloading");
                     try { client.DownloadFile(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize), downloadPath + @"Cover.jpg"); } catch { Console.WriteLine("Failed to Download Cover Art"); }
                 }
                 if (File.Exists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg") == false)
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("Saved artwork for embedding not found, downloading");
                     try { client.DownloadFile(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize), downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"); } catch { Console.WriteLine("Failed to Download Cover Art"); }
                 }
             }
@@ -119,8 +128,7 @@ namespace QobuzDownloaderX
                 // Use secure connection
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
-                // Download cover art (600x600) to the download path
-                Console.WriteLine("Downloading Goody");
+                // Download goody to the download path
                 Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
                 client.DownloadFile(QoGoody.Url, downloadPath + QoAlbum.Title + " (" + QoGoody.Id + @").pdf");
             }

@@ -30,7 +30,7 @@ namespace QobuzDownloaderX
         public Album QoAlbum = new Album();
         public Item QoItem = new Item();
         public QopenAPI.Stream QoStream = new QopenAPI.Stream();
-        
+
         public int paddedTrackLength { get; set; }
         public int paddedDiscLength { get; set; }
 
@@ -45,27 +45,34 @@ namespace QobuzDownloaderX
 
         public Item getTrackInfoLabels(string app_id, string track_id, string user_auth_token)
         {
+            qbdlxForm._qbdlxForm.logger.Debug("Grabbing track info...");
             try
             {
                 // Grab album info with auth
                 getInfo.outputText = null;
                 getInfo.updateDownloadOutput("Getting Track Info...");
                 QoItem = QoService.TrackGetWithAuth(app_id, track_id, user_auth_token);
+                qbdlxForm._qbdlxForm.logger.Debug("Grabbed QoItem");
                 string album_id = QoItem.Album.Id;
+                qbdlxForm._qbdlxForm.logger.Info("Album ID: " + album_id);
                 QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
+                qbdlxForm._qbdlxForm.logger.Debug("Grabbed QoAlbum");
                 return QoItem;
             }
-            catch (Exception getAlbumInfoLabelsEx)
+            catch (Exception getTrackInfoLabelsEx)
             {
-                getInfo.updateDownloadOutput("\r\n" + getAlbumInfoLabelsEx.ToString());
-                Console.WriteLine(getAlbumInfoLabelsEx);
+                qbdlxForm._qbdlxForm.logger.Error("Error occured during getTrackInfoLabels, error below:\r\n" + getTrackInfoLabelsEx);
+                getInfo.updateDownloadOutput("\r\n" + getTrackInfoLabelsEx.ToString());
+                Console.WriteLine(getTrackInfoLabelsEx);
                 return null;
             }
         }
 
         public void downloadAlbum(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
         {
+            qbdlxForm._qbdlxForm.logger.Debug("Starting album download (downloadAlbum)");
             // Clear output text from DownloadTrack to avoid text from previous downloads sticking around.
+            qbdlxForm._qbdlxForm.logger.Debug("Clearing output text");
             downloadTrack.clearOutputText();
             getInfo.outputText = null;
 
@@ -73,11 +80,15 @@ namespace QobuzDownloaderX
             {
                 if (Settings.Default.streamableCheck == true)
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("Steamable tag is set to false on Qobuz, and streamable check is enabled, skipping download");
                     getInfo.updateDownloadOutput("Release is not available for streaming.");
                     getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
                     return;
                 }
-                else { }
+                else
+                {
+                    qbdlxForm._qbdlxForm.logger.Debug("Steamable tag is set to false on Qobuz, but streamable check is disabled, attempting download");
+                }
             }
 
             try
@@ -86,12 +97,16 @@ namespace QobuzDownloaderX
                 paddedDiscLength = padNumber.padTracks(QoAlbum);
 
                 downloadPath = downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, null, null);
+                qbdlxForm._qbdlxForm.logger.Debug("Download path: " + downloadPath);
 
                 try
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("Downloading artwork...");
                     downloadFile.downloadArtwork(downloadPath, QoAlbum);
+                    qbdlxForm._qbdlxForm.logger.Debug("Artwork download complete");
                 }
-                catch {
+                catch (Exception artworkEx) {
+                    qbdlxForm._qbdlxForm.logger.Error("Artwork download failed, error below:\r\n" + artworkEx);
                     Console.WriteLine("Unable to download artwork");
                 }
 
@@ -100,47 +115,55 @@ namespace QobuzDownloaderX
                 {
                     try
                     {
+                        qbdlxForm._qbdlxForm.logger.Debug("Downloading track...");
                         downloadTrack.downloadTrack(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoService.TrackGetWithAuth(app_id, item.Id.ToString(), user_auth_token));
+                        qbdlxForm._qbdlxForm.logger.Debug("Track download complete");
                     }
-                    catch (Exception downloadAlbumEx)
+                    catch (Exception downloadTrackEx)
                     {
-                        getInfo.updateDownloadOutput("\r\n" + downloadAlbumEx);
-                        Console.WriteLine(downloadAlbumEx);
+                        qbdlxForm._qbdlxForm.logger.Error("Track download failed, error below:\r\n" + downloadTrackEx);
+                        getInfo.updateDownloadOutput("\r\n" + downloadTrackEx);
+                        Console.WriteLine(downloadTrackEx);
                         return;
                     }
                 }
 
-                // Delete image used for embedded artwork
+                // Delete image used for embedding artwork
                 try
                 {
+                    qbdlxForm._qbdlxForm.logger.Debug("Deleting artwork used for embedding");
                     System.IO.File.Delete(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg");
                 }
                 catch
                 {
-                    Console.WriteLine("Unable to delete artwork");
+                    qbdlxForm._qbdlxForm.logger.Warning("Unable to delete artwork used for embedding");
                 }
 
                 try
                 {
                     foreach (var goody in QoAlbum.Goodies)
                     {
+                        qbdlxForm._qbdlxForm.logger.Debug("Goodies found, attempting to download...");
                         getInfo.updateDownloadOutput("Goodies found, attempting to download...");
                         if (goody.Url == null)
                         {
+                            qbdlxForm._qbdlxForm.logger.Warning("No URL found for the goody, skipping");
                             Console.WriteLine("No goody URL, skipping");
                             getInfo.updateDownloadOutput(" No download URL found, skipping" + "\r\n");
                         }
                         else
                         {
+                            qbdlxForm._qbdlxForm.logger.Debug("Downloading goody...");
                             Console.WriteLine("Downloading goody");
                             downloadFile.downloadGoody(downloadPath, QoAlbum, goody);
+                            qbdlxForm._qbdlxForm.logger.Debug("Goody download complete");
                             getInfo.updateDownloadOutput(" DONE" + "\r\n");
                         }
                     }
                 }
                 catch
                 {
-
+                    qbdlxForm._qbdlxForm.logger.Warning("No goodies found, or goodies failed to download");
                 }
 
                 //if (Settings.Default.fixMD5s == true)
@@ -154,9 +177,11 @@ namespace QobuzDownloaderX
 
                 // Say the downloading is finished when it's completed.
                 getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                qbdlxForm._qbdlxForm.logger.Debug("All downloads completed!");
                 getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
 
                 // JAM.S Post Template Export, not really useful for normal users.
+                qbdlxForm._qbdlxForm.logger.Debug("Writing a post template to post_template.txt");
                 var templateDate = DateTime.Parse(QoAlbum.ReleaseDateOriginal).ToString("MMMM d, yyyy");
                 File.WriteAllText("post_template.txt", String.Empty);
                 using (StreamWriter sw = File.AppendText("post_template.txt"))
@@ -188,16 +213,19 @@ namespace QobuzDownloaderX
                     sw.WriteLine("[spoiler=" + QoAlbum.Label.Name + " / " + QoAlbum.UPC + " / WEB]");
                     sw.WriteLine("[format=FLAC / Lossless (24bit/??kHz) / WEB]");
                     sw.WriteLine("Uploaded by [USER=2]@AiiR[/USER]");
+                    sw.WriteLine("");
                     sw.WriteLine("DOWNLOAD");
                     sw.WriteLine("REPLACE THIS WITH URL");
                     sw.WriteLine("[/format]");
                     sw.WriteLine("[format=FLAC / Lossless / WEB]");
                     sw.WriteLine("Uploaded by [USER=2]@AiiR[/USER]");
+                    sw.WriteLine("");
                     sw.WriteLine("DOWNLOAD");
                     sw.WriteLine("REPLACE THIS WITH URL");
                     sw.WriteLine("[/format]");
                     sw.WriteLine("[format=MP3 / 320 / WEB]");
                     sw.WriteLine("Uploaded by [USER=2]@AiiR[/USER]");
+                    sw.WriteLine("");
                     sw.WriteLine("DOWNLOAD");
                     sw.WriteLine("REPLACE THIS WITH URL");
                     sw.WriteLine("[/format]");
@@ -211,6 +239,7 @@ namespace QobuzDownloaderX
             }
             catch (Exception downloadAlbumEx)
             {
+                qbdlxForm._qbdlxForm.logger.Error("Error occured during downloadAlbum, error below:\r\n" + downloadAlbumEx);
                 Console.WriteLine(downloadAlbumEx);
                 return;
             }

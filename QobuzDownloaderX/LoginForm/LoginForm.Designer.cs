@@ -57,6 +57,7 @@
             this.appSecretTextbox = new System.Windows.Forms.TextBox();
             this.appidTextbox = new System.Windows.Forms.TextBox();
             this.updateButton = new System.Windows.Forms.Button();
+            this.topPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.qbdlxPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIcon)).BeginInit();
@@ -74,6 +75,7 @@
             this.qbdlxPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.qbdlxPictureBox.TabIndex = 28;
             this.qbdlxPictureBox.TabStop = false;
+            this.qbdlxPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.qbdlxPictureBox_MouseMove);
             // 
             // versionNumber
             // 
@@ -426,6 +428,14 @@
             this.updateButton.Visible = false;
             this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
+            // topPanel
+            // 
+            this.topPanel.Location = new System.Drawing.Point(-1, 0);
+            this.topPanel.Name = "topPanel";
+            this.topPanel.Size = new System.Drawing.Size(301, 18);
+            this.topPanel.TabIndex = 45;
+            this.topPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseMove);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,6 +460,7 @@
             this.Controls.Add(this.versionNumber);
             this.Controls.Add(this.qbdlxPictureBox);
             this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.topPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -498,5 +509,6 @@
         private System.Windows.Forms.Label appSecretLabel;
         private System.Windows.Forms.Label appidLabel;
         private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Panel topPanel;
     }
 }
