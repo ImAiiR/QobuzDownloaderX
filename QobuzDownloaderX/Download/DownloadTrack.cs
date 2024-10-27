@@ -39,7 +39,7 @@ namespace QobuzDownloaderX
             getInfo.outputText = null;
         }
 
-        public void downloadIndividualTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
+        public async Task downloadIndividualTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
         {
             getInfo.outputText = null;
 
@@ -66,11 +66,18 @@ namespace QobuzDownloaderX
                         else { }
                     }
 
-                    downloadPath = downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
-
-                    downloadFile.downloadArtwork(downloadPath, QoAlbum);
+                    downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
 
                     string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, null);
+                    
+                    if (trackTemplateConverted.Contains(@"\"))
+                    {
+                        downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
+                        trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
+                        Console.WriteLine(downloadPath);
+                    }
+
+                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
 
                     if (QoAlbum.MediaCount > 1)
                     {
@@ -106,16 +113,7 @@ namespace QobuzDownloaderX
                     {
                         getInfo.updateDownloadOutput("Downloading - " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")" + "...");
                     }
-                    downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
-
-                    //if(Settings.Default.fixMD5s == true)
-                    //{
-                    //    if (audio_format.Contains("flac") == true)
-                    //    {
-                    //        getInfo.updateDownloadOutput("\r\nAttempting to fix unset MD5s...");
-                    //        fixMD5.fixMD5(downloadPath, null, "flac");
-                    //    }
-                    //}
+                    await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
 
                     // Say DONE when finished downloading.
                     getInfo.updateDownloadOutput(" DONE" + "\r\n");
@@ -144,7 +142,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public void downloadTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem)
+        public async Task downloadTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem)
         {
             try
             {
@@ -163,11 +161,18 @@ namespace QobuzDownloaderX
 
                 try
                 {
-                    downloadPath = downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
-
-                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
+                    downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
 
                     string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, null);
+
+                    if (trackTemplateConverted.Contains(@"\"))
+                    {
+                        downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
+                        trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
+                        Console.WriteLine(downloadPath);
+                    }
+
+                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
 
                     if (QoAlbum.MediaCount > 1)
                     {
@@ -200,7 +205,7 @@ namespace QobuzDownloaderX
                     {
                         getInfo.updateDownloadOutput("Downloading - " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")" + "...");
                     }
-                    downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
+                    await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
 
                     // Say DONE when finished downloading.
                     getInfo.updateDownloadOutput(" DONE" + "\r\n");
@@ -220,7 +225,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public void downloadPlaylistTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
+        public async Task downloadPlaylistTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
         {
             try
             {
@@ -239,9 +244,16 @@ namespace QobuzDownloaderX
 
                 try
                 {
-                    downloadPath = downloadFile.createPath(downloadLocation, null, null, trackTemplate, playlistTemplate, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, QoPlaylist);
+                    downloadPath = await downloadFile.createPath(downloadLocation, null, null, trackTemplate, playlistTemplate, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, QoPlaylist);
 
                     string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, QoPlaylist);
+
+                    if (trackTemplateConverted.Contains(@"\")) 
+                    { 
+                        downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
+                        trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
+                        Console.WriteLine(downloadPath);
+                    }
 
                     filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
 
@@ -269,7 +281,7 @@ namespace QobuzDownloaderX
                     {
                         getInfo.updateDownloadOutput("Downloading - " + QoItem.Position.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")" + "...");
                     }
-                    downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
+                    await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
 
                     // Say DONE when finished downloading.
                     getInfo.updateDownloadOutput(" DONE" + "\r\n");

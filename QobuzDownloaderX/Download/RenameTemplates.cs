@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using QobuzDownloaderX;
 using QopenAPI;
+using System.Text.RegularExpressions;
 
 namespace QobuzDownloaderX
 {
@@ -39,9 +40,50 @@ namespace QobuzDownloaderX
                 if (QoItem.Version == null) { template = GetSafeFilename(template.Replace("%TrackTitle%", QoItem.Title)); } else { template = GetSafeFilename(template.Replace("%TrackTitle%", QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")")); }
                 template = GetSafeFilename(template.Replace("%TrackNumber%", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0')));
                 template = GetSafeFilename(template.Replace("%ISRC%", QoItem.ISRC.ToString()));
+                if (QoItem.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%TrackPA%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%TrackPA%", "Clean")); }
+                if (QoItem.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%TrackPAifEx%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%TrackPAifEx%", "")); }
+                if (QoItem.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%TrackPAifCl%", "")); } else { template = GetSafeFilename(template.Replace("%TrackPAifCl%", "Clean")); }
+                if (QoItem.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%TrackPAEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%TrackPAEnclosed%", "(Clean)")); }
+                if (QoItem.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%TrackPAifExEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%TrackPAifExEnclosed%", "")); }
+                if (QoItem.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%TrackPAifClEnclosed%", "")); } else { template = GetSafeFilename(template.Replace("%TrackPAifClEnclosed%", "(Clean)")); }
 
+                // Track Format Templates
+                template = GetSafeFilename(template.Replace("%TrackFormat%", fileFormat.ToUpper().TrimStart('.')));
+
+                if (qbdlxForm._qbdlxForm.format_id == "5" || qbdlxForm._qbdlxForm.format_id == "6")
+                {
+                    template = GetSafeFilename(template.Replace("%TrackFormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.')));
+                }
+                else if (qbdlxForm._qbdlxForm.format_id == "7" || qbdlxForm._qbdlxForm.format_id == "27")
+                {
+                    if (QoItem.MaximumBitDepth == 16)
+                    {
+                        template = GetSafeFilename(template.Replace("%TrackFormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.')));
+                    }
+                    else if (QoItem.MaximumSamplingRate < 192)
+                    {
+                        if (QoItem.MaximumSamplingRate < 96)
+                        {
+                            template = GetSafeFilename(template.Replace("%TrackFormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.') + " (" + QoItem.MaximumBitDepth.ToString() + "bit-" + QoItem.MaximumSamplingRate.ToString() + "kHz)"));
+                        }
+                        else if (QoItem.MaximumSamplingRate > 96 && QoItem.MaximumSamplingRate < 192)
+                        {
+                            if (qbdlxForm._qbdlxForm.format_id == "7" && QoItem.MaximumSamplingRate == 176.4) { template = GetSafeFilename(template.Replace("%TrackFormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.') + " (24bit-88.2kHz)")); }
+                            else if (qbdlxForm._qbdlxForm.format_id == "7") { template = GetSafeFilename(template.Replace("%TrackFormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.') + " (24bit-96kHz)")); }
+                            else { template = GetSafeFilename(template.Replace("%TrackFormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.') + " (" + QoItem.MaximumBitDepth.ToString() + "bit-" + QoItem.MaximumSamplingRate.ToString() + "kHz)")); }
+                        }
+                        else
+                        {
+                            template = GetSafeFilename(template.Replace("%TrackFormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.') + " (24bit-96kHz)"));
+                        }
+                    }
+                    else
+                    {
+                        template = GetSafeFilename(template.Replace("%FormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.') + " (24bit-192kHz)"));
+                    }
+                }
             }
-
+            
             // Album Templates
             if (QoAlbum != null)
             {
@@ -50,14 +92,32 @@ namespace QobuzDownloaderX
                 template = GetSafeFilename(template.Replace("%AlbumGenre%", QoAlbum.Genre.Name));
                 try { template = GetSafeFilename(template.Replace("%AlbumComposer%", QoAlbum.Composer.Name)); } catch { }
                 if (QoAlbum.Version == null) { template = GetSafeFilename(template.Replace("%AlbumTitle%", GetSafeFilename(QoAlbum.Title))); } else { template = GetSafeFilename(template.Replace("%AlbumTitle%", GetSafeFilename(QoAlbum.Title).TrimEnd() + " (" + QoAlbum.Version + ")")); }
-                template = GetSafeFilename(template.Replace("%Label%", QoAlbum.Label.Name));
+                template = GetSafeFilename(template.Replace("%Label%", Regex.Replace(QoAlbum.Label.Name, @"\s+", " "))); // Qobuz sometimes has multiple spaces in place of where a single space should be when it comes to Labels
                 template = GetSafeFilename(template.Replace("%Copyright%", QoAlbum.Copyright));
                 template = GetSafeFilename(template.Replace("%UPC%", QoAlbum.UPC));
                 template = GetSafeFilename(template.Replace("%ReleaseDate%", QoAlbum.ReleaseDateOriginal));
                 template = GetSafeFilename(template.Replace("%Year%", UInt32.Parse(QoAlbum.ReleaseDateOriginal.Substring(0, 4)).ToString()));
                 template = GetSafeFilename(template.Replace("%ReleaseType%", char.ToUpper(QoAlbum.ProductType.First()) + QoAlbum.ProductType.Substring(1).ToLower()));
-                template = GetSafeFilename(template.Replace("%ArtistName%", QoAlbum.Artist.Name));
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPA%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%AlbumPA%", "Clean")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifEx%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifEx%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifCl%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifCl%", "Clean")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed%", "(Clean)")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed%", "(Clean)")); }
                 template = GetSafeFilename(template.Replace("%Format%", fileFormat.ToUpper().TrimStart('.')));
+
+                // For albums with multiple main artists listed
+                if (QoAlbum.Artists.Count > 1)
+                {
+                    var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
+                    string allButLastArtist = string.Join(", ", mainArtists.Take(QoAlbum.Artists.Count - 1).Select(a => a.Name));
+                    string lastArtist = mainArtists.Last().Name;
+                    template = GetSafeFilename(template.Replace("%ArtistName%", allButLastArtist + " & " + lastArtist));
+                }
+                else
+                {
+                    template = GetSafeFilename(template.Replace("%ArtistName%", QoAlbum.Artist.Name));
+                }
             }
 
             // Playlist Templates
@@ -69,6 +129,7 @@ namespace QobuzDownloaderX
                 template = GetSafeFilename(template.Replace("%FormatWithHiResQuality%", fileFormat.ToUpper().TrimStart('.')));
             }
 
+            // Release Format Templates
             if (QoPlaylist == null)
             {
                 template = GetSafeFilename(template.Replace("%Format%", fileFormat.ToUpper().TrimStart('.')));

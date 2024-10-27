@@ -51,11 +51,8 @@ namespace QobuzDownloaderX
         }
 
         qbdlxForm qbdlx = new qbdlxForm();
-        AboutForm about = new AboutForm();
         Service QoService = new Service();
         User QoUser;
-        AppID QoAppID;
-        AppSecret QoAppSecret;
 
         public string currentVersion { get; set; }
         public string newVersion { get; set; }

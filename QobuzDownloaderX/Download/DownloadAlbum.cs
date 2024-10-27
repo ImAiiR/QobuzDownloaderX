@@ -10,6 +10,7 @@ using System.Net;
 using System.IO;
 using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.Download;
+using System.Text.RegularExpressions;
 
 namespace QobuzDownloaderX
 {
@@ -68,7 +69,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public void downloadAlbum(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
+        public async Task downloadAlbum(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Starting album download (downloadAlbum)");
             // Clear output text from DownloadTrack to avoid text from previous downloads sticking around.
@@ -80,14 +81,14 @@ namespace QobuzDownloaderX
             {
                 if (Settings.Default.streamableCheck == true)
                 {
-                    qbdlxForm._qbdlxForm.logger.Debug("Steamable tag is set to false on Qobuz, and streamable check is enabled, skipping download");
+                    qbdlxForm._qbdlxForm.logger.Debug("Streamable tag is set to false on Qobuz, and streamable check is enabled, skipping download");
                     getInfo.updateDownloadOutput("Release is not available for streaming.");
                     getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
                     return;
                 }
                 else
                 {
-                    qbdlxForm._qbdlxForm.logger.Debug("Steamable tag is set to false on Qobuz, but streamable check is disabled, attempting download");
+                    qbdlxForm._qbdlxForm.logger.Debug("Streamable tag is set to false on Qobuz, but streamable check is disabled, attempting download");
                 }
             }
 
@@ -96,7 +97,7 @@ namespace QobuzDownloaderX
                 paddedTrackLength = padNumber.padTracks(QoAlbum);
                 paddedDiscLength = padNumber.padTracks(QoAlbum);
 
-                downloadPath = downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, null, null);
+                downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, null, null);
                 qbdlxForm._qbdlxForm.logger.Debug("Download path: " + downloadPath);
 
                 try
@@ -116,7 +117,7 @@ namespace QobuzDownloaderX
                     try
                     {
                         qbdlxForm._qbdlxForm.logger.Debug("Downloading track...");
-                        downloadTrack.downloadTrack(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoService.TrackGetWithAuth(app_id, item.Id.ToString(), user_auth_token));
+                        await downloadTrack.downloadTrack(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoService.TrackGetWithAuth(app_id, item.Id.ToString(), user_auth_token));
                         qbdlxForm._qbdlxForm.logger.Debug("Track download complete");
                     }
                     catch (Exception downloadTrackEx)
@@ -210,13 +211,16 @@ namespace QobuzDownloaderX
                     sw.WriteLine("");
                     sw.WriteLine("[b]DOWNLOADS[/b]");
                     sw.WriteLine("-----------------------------------");
-                    sw.WriteLine("[spoiler=" + QoAlbum.Label.Name + " / " + QoAlbum.UPC + " / WEB]");
-                    sw.WriteLine("[format=FLAC / Lossless (24bit/??kHz) / WEB]");
-                    sw.WriteLine("Uploaded by [USER=2]@AiiR[/USER]");
-                    sw.WriteLine("");
-                    sw.WriteLine("DOWNLOAD");
-                    sw.WriteLine("REPLACE THIS WITH URL");
-                    sw.WriteLine("[/format]");
+                    if (QoAlbum.MaximumBitDepth > 16)
+                    {
+                        sw.WriteLine("[spoiler=" + Regex.Replace(QoAlbum.Label.Name, @"\s+", " ") + " / " + QoAlbum.UPC + " / WEB]");
+                        sw.WriteLine("[format=FLAC / Lossless (" + QoAlbum.MaximumBitDepth.ToString() + "bit/" + QoAlbum.MaximumSamplingRate.ToString() + "kHz) / WEB]");
+                        sw.WriteLine("Uploaded by [USER=2]@AiiR[/USER]");
+                        sw.WriteLine("");
+                        sw.WriteLine("DOWNLOAD");
+                        sw.WriteLine("REPLACE THIS WITH URL");
+                        sw.WriteLine("[/format]");
+                    }
                     sw.WriteLine("[format=FLAC / Lossless / WEB]");
                     sw.WriteLine("Uploaded by [USER=2]@AiiR[/USER]");
                     sw.WriteLine("");

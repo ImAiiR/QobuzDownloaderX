@@ -19,6 +19,7 @@ using QobuzDownloaderX.Properties;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using QobuzDownloaderX.Download;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
@@ -106,7 +107,6 @@ namespace QobuzDownloaderX
 
         public void update(string text)
         {
-            logger.Debug("Updating text with: " + text);
             downloadOutput.Invoke(new Action(() => downloadOutput.Text = text));
         }
 
@@ -163,6 +163,7 @@ namespace QobuzDownloaderX
 
             // Saved Tagging Settings
             streamableCheckbox.Checked = Settings.Default.streamableCheck;
+            downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
             albumTitleCheckbox.Checked = Settings.Default.albumTag;
             albumArtistCheckbox.Checked = Settings.Default.albumArtistTag;
             trackArtistCheckbox.Checked = Settings.Default.artistTag;
@@ -206,12 +207,22 @@ namespace QobuzDownloaderX
             logger.Info("User ID: " + user_id);
             try { logger.Info("User e-amil: " + QoUser.UserInfo.Email); } catch (Exception ex) { logger.Error("Failed to get user e-mail, Error below:\r\n" + ex.ToString()); }
             try { logger.Info("User country: " + QoUser.UserInfo.Country); } catch (Exception ex) { logger.Error("Failed to get user country, Error below:\r\n" + ex.ToString()); }
-            try { logger.Info("User subscription: " + QoUser.UserInfo.Subscription.Offer); } catch (Exception ex) { logger.Error("Failed to get user subscription, Error below:\r\n" + ex.ToString()); }
+            try { logger.Info("User subscription: " + QoUser.UserInfo.Credential.label); } catch (Exception ex) { logger.Error("Failed to get user subscription, Error below:\r\n" + ex.ToString()); }
             try { logger.Info("User subscription end date: " + QoUser.UserInfo.Subscription.EndDate); } catch (Exception ex) { logger.Error("Failed to get user subscription end date, Error below:\r\n" + ex.ToString()); }
 
             // Set display_name to welcomeLabel
             welcomeLabel.Text = welcomeLabel.Text.Replace("{username}", user_display_name);
+            string endDate = "";
 
+            if (QoUser?.UserInfo?.Subscription?.EndDate != null)
+            {
+                endDate = QoUser.UserInfo.Subscription.EndDate;
+            }
+            else
+            {
+                logger.Warning("No subscription end date found, usually means the account is a family account!");
+                endDate = "N/A - Family account";
+            }
             // Set user info in about panel
             try
             {
@@ -219,12 +230,12 @@ namespace QobuzDownloaderX
                 .Replace("{user_id}", user_id)
                 .Replace("{user_email}", QoUser.UserInfo.Email)
                 .Replace("{user_country}", QoUser.UserInfo.Country)
-                .Replace("{user_subscription}", QoUser.UserInfo.Subscription.Offer)
-                .Replace("{user_subscription_expiration}", QoUser.UserInfo.Subscription.EndDate);
+                .Replace("{user_subscription}", QoUser.UserInfo.Credential.label.ToString())
+                .Replace("{user_subscription_expiration}", endDate);
             }
             catch (Exception ex)
             {
-                logger.Error("Failed to get user info for about section, continuing.");
+                logger.Error("Failed to get user info for about section, continuing, error below:\r\n" + ex);
             }
 
 
@@ -288,6 +299,8 @@ namespace QobuzDownloaderX
         public async void getLinkType()
         {
             downloadOutput.Focus();
+            progressLabel.Invoke(new Action(() => progressLabel.Text = "Checking link..."));
+
             // Check if there's no selected path.
             if (downloadLocation == null | downloadLocation == "" | downloadLocation == "no folder selected")
             {
@@ -295,6 +308,7 @@ namespace QobuzDownloaderX
                 logger.Warning("No path has been set! Remember to Choose a Folder!");
                 downloadOutput.Invoke(new Action(() => downloadOutput.Text = String.Empty));
                 downloadOutput.Invoke(new Action(() => downloadOutput.AppendText("No path has been set! Remember to Choose a Folder!\r\n")));
+                progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
                 return;
             }
 
@@ -316,10 +330,6 @@ namespace QobuzDownloaderX
                 {
                     albumLink = "https://play.qobuz.com/artist/" + qobuzStoreLinkId;
                 }
-                else
-                {
-                    albumLink = albumLink;
-                }
             }
 
             var qobuzLinkIdGrab = Regex.Match(albumLink, @"https:\/\/(?:.*?).qobuz.com\/(?<type>.*?)\/(?<id>.*?)$").Groups;
@@ -340,16 +350,17 @@ namespace QobuzDownloaderX
                     if (QoAlbum == null)
                     {
                         getInfo.updateDownloadOutput("Qobuz API error. Maybe release isn't available in this account region?");
+                        progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
                         break;
                     }
-                    updateAlbumInfoLabels(QoAlbum);
+                    await updateAlbumInfoLabels(QoAlbum);
                     await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                     break;
                 case "track":
                     await Task.Run(() => getInfo.getTrackInfoLabels(app_id, qobuz_id, user_auth_token));
                     QoItem = getInfo.QoItem;
                     QoAlbum = getInfo.QoAlbum;
-                    updateAlbumInfoLabels(QoAlbum);
+                    await updateAlbumInfoLabels(QoAlbum);
                     await Task.Run(() => downloadTrack.downloadIndividualTrack(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                     break;
                 case "playlist":
@@ -374,6 +385,7 @@ namespace QobuzDownloaderX
                     // Say the downloading is finished when it's completed.
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
                     break;
                 case "artist":
                     await Task.Run(() => getInfo.getArtistInfo(app_id, qobuz_id, user_auth_token));
@@ -385,7 +397,7 @@ namespace QobuzDownloaderX
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
-                            updateAlbumInfoLabels(QoAlbum);
+                            await updateAlbumInfoLabels(QoAlbum);
                             await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                         }
                         catch
@@ -404,7 +416,7 @@ namespace QobuzDownloaderX
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
-                            updateAlbumInfoLabels(QoAlbum);
+                            await updateAlbumInfoLabels(QoAlbum);
                             await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                         }
                         catch
@@ -425,7 +437,7 @@ namespace QobuzDownloaderX
                                 string album_id = item.Id.ToString();
                                 await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                 QoAlbum = getInfo.QoAlbum;
-                                updateAlbumInfoLabels(QoAlbum);
+                                await updateAlbumInfoLabels(QoAlbum);
                                 await Task.Run(() => downloadAlbum.downloadAlbum(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                             }
                             catch
@@ -446,7 +458,7 @@ namespace QobuzDownloaderX
                                 await Task.Run(() => getInfo.getTrackInfoLabels(app_id, track_id, user_auth_token));
                                 QoItem = getInfo.QoItem;
                                 QoAlbum = getInfo.QoAlbum;
-                                updateAlbumInfoLabels(QoAlbum);
+                                await updateAlbumInfoLabels(QoAlbum);
                                 await Task.Run(() => downloadTrack.downloadIndividualTrack(app_id, track_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                             }
                             catch
@@ -473,7 +485,7 @@ namespace QobuzDownloaderX
                                         string album_id = artistItem.Id.ToString();
                                         await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                         QoAlbum = getInfo.QoAlbum;
-                                        updateAlbumInfoLabels(QoAlbum);
+                                        await updateAlbumInfoLabels(QoAlbum);
                                         await Task.Run(() => downloadAlbum.downloadAlbum(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                                     }
                                     catch
@@ -493,6 +505,7 @@ namespace QobuzDownloaderX
                         // Say what isn't available at the moment.
                         downloadOutput.Invoke(new Action(() => downloadOutput.Text = String.Empty));
                         downloadOutput.Invoke(new Action(() => downloadOutput.AppendText("Not implemented yet or the URL is not understood. Is there a typo?")));
+                        progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
                         return;
                     }
                     break;
@@ -500,13 +513,26 @@ namespace QobuzDownloaderX
                     // Say what isn't available at the moment.
                     downloadOutput.Invoke(new Action(() => downloadOutput.Text = String.Empty));
                     downloadOutput.Invoke(new Action(() => downloadOutput.AppendText("Not implemented yet or the URL is not understood. Is there a typo?")));
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
                     return;
             }
         }
 
-        public void updateAlbumInfoLabels(Album QoAlbum)
+        public async Task updateAlbumInfoLabels(Album QoAlbum)
         {
-            artistLabel.Text = QoAlbum.Artist.Name.Replace(@"&", @"&&");
+            // For albums with multiple main artists listed
+            if (QoAlbum.Artists.Count > 1)
+            {
+                var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
+                string allButLastArtist = string.Join(", ", mainArtists.Take(QoAlbum.Artists.Count - 1).Select(a => a.Name));
+                string lastArtist = mainArtists.Last().Name;
+                artistLabel.Text = allButLastArtist + " && " + lastArtist;
+            }
+            else
+            {
+                artistLabel.Text = QoAlbum.Artist.Name.Replace(@"&", @"&&");
+            }
+
             if (QoAlbum.Version == null) { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&"); } else { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&").TrimEnd() + " (" + QoAlbum.Version + ")"; }
             dateLabel.Text = QoAlbum.ReleaseDateOriginal;
             try { albumPictureBox.ImageLocation = QoAlbum.Image.Small; } catch { }
@@ -1051,6 +1077,12 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void downloadSpeedCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.showDownloadSpeed = downloadSpeedCheckbox.Checked;
+            Settings.Default.Save();
+        }
+
         private void fixMD5sCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.fixMD5s = fixMD5sCheckbox.Checked;
@@ -1140,7 +1172,7 @@ namespace QobuzDownloaderX
 
         #endregion
 
-        private void searchAlbumsButton_Click(object sender, EventArgs e)
+        private async void searchAlbumsButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Hiding search buttons");
             searchAlbumsButton.Visible = false;
@@ -1150,7 +1182,7 @@ namespace QobuzDownloaderX
 
             string searchQuery = searchTextbox.Text;
 
-            if (string.IsNullOrEmpty(searchQuery))
+            if (string.IsNullOrEmpty(searchQuery) | searchQuery == "Input your search...")
             {
                 logger.Debug("Search query was null, canceling");
                 searchResultsPanel.Show();
@@ -1163,8 +1195,7 @@ namespace QobuzDownloaderX
             try
             {
                 logger.Debug("Search for releases started");
-                QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
-                searchPanelHelper.PopulateTableAlbums(this, QoAlbumSearch);
+                await Task.Run(() => searchPanelHelper.SearchInitiate("releases", app_id, searchQuery, user_auth_token));
             }
             catch (Exception ex)
             {
@@ -1183,7 +1214,7 @@ namespace QobuzDownloaderX
             return;
         }
 
-        private void searchTracksButton_Click(object sender, EventArgs e)
+        private async void searchTracksButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Hiding search buttons");
             searchAlbumsButton.Visible = false;
@@ -1193,7 +1224,7 @@ namespace QobuzDownloaderX
 
             string searchQuery = searchTextbox.Text;
 
-            if (string.IsNullOrEmpty(searchQuery))
+            if (string.IsNullOrEmpty(searchQuery) | searchQuery == "Input your search...")
             {
                 logger.Debug("Search query was null, canceling");
                 searchResultsPanel.Show();
@@ -1206,8 +1237,7 @@ namespace QobuzDownloaderX
             try
             {
                 logger.Debug("Search for tracks started");
-                QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
-                searchPanelHelper.PopulateTableTracks(this, QoTrackSearch);
+                await Task.Run(() => searchPanelHelper.SearchInitiate("tracks", app_id, searchQuery, user_auth_token));
             }
             catch (Exception ex)
             {
@@ -1239,9 +1269,18 @@ namespace QobuzDownloaderX
         {
             var logMessage = $"[{DateTime.Now}] [{level}] {message}";
 
-            using (var writer = File.AppendText(_filePath))
+            try
             {
-                writer.WriteLine(logMessage);
+                using (var writer = File.AppendText(_filePath))
+                {
+                    writer.WriteLine(logMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Somehow, the log failed to write, lol");
+                Console.WriteLine(logMessage);
+                Console.WriteLine(ex);
             }
         }
 

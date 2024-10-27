@@ -40,6 +40,7 @@
             this.versionNumber = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.downloaderPanel = new System.Windows.Forms.Panel();
+            this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.dateSlotLabel = new System.Windows.Forms.Label();
             this.albumSlotLabel = new System.Windows.Forms.Label();
@@ -90,6 +91,7 @@
             this.aboutLabel = new System.Windows.Forms.Label();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.extraSettingsPanel = new System.Windows.Forms.Panel();
+            this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -308,6 +310,7 @@
             // 
             // downloaderPanel
             // 
+            this.downloaderPanel.Controls.Add(this.progressLabel);
             this.downloaderPanel.Controls.Add(this.downloadButton);
             this.downloaderPanel.Controls.Add(this.dateSlotLabel);
             this.downloaderPanel.Controls.Add(this.albumSlotLabel);
@@ -319,10 +322,22 @@
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextbox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(444, 480);
+            this.downloaderPanel.Location = new System.Drawing.Point(447, 496);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 1;
+            // 
+            // progressLabel
+            // 
+            this.progressLabel.AutoSize = true;
+            this.progressLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.progressLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.progressLabel.Location = new System.Drawing.Point(17, 553);
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.progressLabel.Size = new System.Drawing.Size(130, 19);
+            this.progressLabel.TabIndex = 7;
+            this.progressLabel.Text = "No download active";
             // 
             // downloadButton
             // 
@@ -422,7 +437,7 @@
             this.downloadOutput.Name = "downloadOutput";
             this.downloadOutput.ReadOnly = true;
             this.downloadOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.downloadOutput.Size = new System.Drawing.Size(730, 313);
+            this.downloadOutput.Size = new System.Drawing.Size(730, 300);
             this.downloadOutput.TabIndex = 4;
             this.downloadOutput.Text = "Test String";
             this.downloadOutput.TextChanged += new System.EventHandler(this.downloadOutput_TextChanged);
@@ -501,7 +516,7 @@
             this.settingsPanel.Controls.Add(this.selectFolderButton);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(524, 442);
+            this.settingsPanel.Location = new System.Drawing.Point(507, 463);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 1;
@@ -529,9 +544,11 @@
             this.templatesListTextbox.Name = "templatesListTextbox";
             this.templatesListTextbox.ReadOnly = true;
             this.templatesListTextbox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.templatesListTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.templatesListTextbox.Size = new System.Drawing.Size(595, 67);
             this.templatesListTextbox.TabIndex = 27;
             this.templatesListTextbox.Text = resources.GetString("templatesListTextbox.Text");
+            this.templatesListTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // additionalSettingsButton
             // 
@@ -984,6 +1001,7 @@
             // 
             // extraSettingsPanel
             // 
+            this.extraSettingsPanel.Controls.Add(this.downloadSpeedCheckbox);
             this.extraSettingsPanel.Controls.Add(this.fixMD5sCheckbox);
             this.extraSettingsPanel.Controls.Add(this.streamableCheckbox);
             this.extraSettingsPanel.Controls.Add(this.label5);
@@ -1013,11 +1031,24 @@
             this.extraSettingsPanel.Controls.Add(this.albumArtistCheckbox);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(594, 403);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(595, 400);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 3;
             this.extraSettingsPanel.Visible = false;
+            // 
+            // downloadSpeedCheckbox
+            // 
+            this.downloadSpeedCheckbox.AutoSize = true;
+            this.downloadSpeedCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadSpeedCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(314, 336);
+            this.downloadSpeedCheckbox.Name = "downloadSpeedCheckbox";
+            this.downloadSpeedCheckbox.Size = new System.Drawing.Size(142, 17);
+            this.downloadSpeedCheckbox.TabIndex = 29;
+            this.downloadSpeedCheckbox.Text = "Print Download Speed";
+            this.downloadSpeedCheckbox.UseVisualStyleBackColor = true;
+            this.downloadSpeedCheckbox.CheckedChanged += new System.EventHandler(this.downloadSpeedCheckbox_CheckedChanged);
             // 
             // fixMD5sCheckbox
             // 
@@ -1584,7 +1615,7 @@
             this.searchPanel.Controls.Add(this.searchLabel);
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(689, 353);
+            this.searchPanel.Location = new System.Drawing.Point(703, 362);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 29;
@@ -1846,5 +1877,7 @@
         private System.Windows.Forms.Label searchingLabel;
         public System.Windows.Forms.TextBox inputTextbox;
         public System.Windows.Forms.Button downloadButton;
+        public System.Windows.Forms.CheckBox downloadSpeedCheckbox;
+        public System.Windows.Forms.Label progressLabel;
     }
 }

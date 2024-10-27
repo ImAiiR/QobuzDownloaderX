@@ -10,6 +10,8 @@ using QobuzDownloaderX;
 using QopenAPI;
 using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.Download;
+using static System.Net.Mime.MediaTypeNames;
+using System.Text.RegularExpressions;
 
 namespace QobuzDownloaderX
 {
@@ -28,30 +30,34 @@ namespace QobuzDownloaderX
         public string downloadPath { get; set; }
         public string artworkPath { get; set; }
 
-        public string createPath(string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, string favoritesTemplate, int paddedTrackLength, int paddedDiscLength, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
+        public async Task<string> createPath(string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, string favoritesTemplate, int paddedTrackLength, int paddedDiscLength, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
         {
-            if (QoPlaylist == null)
+            return await Task.Run(() =>
             {
-                qbdlxForm._qbdlxForm.logger.Debug("Using non-playlist path");
-                artistTemplateConverted = renameTemplates.renameTemplates(artistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
-                albumTemplateConverted = renameTemplates.renameTemplates(albumTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
-                downloadPath = Path.Combine(downloadLocation, artistTemplateConverted, albumTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
-                
+                string downloadPath;
+                if (QoPlaylist == null)
+                {
+                    qbdlxForm._qbdlxForm.logger.Debug("Using non-playlist path");
+                    string artistTemplateConverted = renameTemplates.renameTemplates(artistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
+                    string albumTemplateConverted = renameTemplates.renameTemplates(albumTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
+                    downloadPath = Path.Combine(downloadLocation, artistTemplateConverted, albumTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
+                    downloadPath = Regex.Replace(downloadPath, @"\s+", " "); // Remove double spaces
+                }
+                else
+                {
+                    qbdlxForm._qbdlxForm.logger.Debug("Using playlist path");
+                    string playlistTemplateConverted = renameTemplates.renameTemplates(playlistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, null, null, QoPlaylist);
+                    downloadPath = Path.Combine(downloadLocation, playlistTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
+                    downloadPath = Regex.Replace(downloadPath, @"\s+", " "); // Remove double spaces
+                }
                 return downloadPath;
-            }
-            else
-            {
-                qbdlxForm._qbdlxForm.logger.Debug("Using playlist path");
-                playlistTemplateConverted = renameTemplates.renameTemplates(playlistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, null, null, QoPlaylist);
-                downloadPath = Path.Combine(downloadLocation, playlistTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
-
-                return downloadPath;
-            }
+            });
         }
 
-        public void downloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem)
+        public async Task downloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Writing temp file to qbdlx-temp/qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
+
             // Create a temp directory inside the exe location, to download files to.
             string tempFile = Path.Combine(@"qbdlx-temp", "qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
             Directory.CreateDirectory(@"qbdlx-temp");
@@ -64,10 +70,75 @@ namespace QobuzDownloaderX
 
                 // Use secure connection
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                
+                // Create a TaskCompletionSource to handle asynchronous waiting
+                var tcs = new TaskCompletionSource<bool>();
+                
+                // Fields to track previous progress and time for speed calculation
+                long previousBytesReceived = 0;
+                DateTime lastUpdateTime = DateTime.Now;
 
-                // Download to the temp directory that was made, and tag the file
+                // Subscribe to progress changed event
+                client.DownloadProgressChanged += (sender, e) =>
+                {
+                    int progressPercentage = e.ProgressPercentage;
+                    long bytesReceived = e.BytesReceived;
+                    long totalBytesToReceive = e.TotalBytesToReceive;
+
+                    if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked)
+                    {
+                        // Calculate download speed in bytes per second
+                        DateTime currentTime = DateTime.Now;
+                        double timeDiff = (currentTime - lastUpdateTime).TotalSeconds;
+
+                        if (timeDiff > 0)
+                        {
+                            long bytesDiff = bytesReceived - previousBytesReceived;
+                            double speed = bytesDiff / timeDiff; // bytes per second
+                            string speedText = speed > 1024 * 1024
+                                ? $"{speed / (1024 * 1024):F2} MB/s"
+                                : $"{speed / 1024:F2} KB/s";
+
+                            qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = "Download progress - " + progressPercentage + "% [" + speedText + "]"; }));
+                        }
+                    }
+                    else
+                    {
+                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = "Download progress - " + progressPercentage + "%"; }));
+                    }
+                };
+
+                // Handle completion of the download
+                client.DownloadFileCompleted += (sender, e) =>
+                {
+                    if (e.Error != null)
+                    {
+                        qbdlxForm._qbdlxForm.logger.Error("Download failed: " + e.Error.Message);
+                        tcs.SetException(e.Error);
+                        return;
+                    }
+
+                    qbdlxForm._qbdlxForm.logger.Debug("Download complete.");
+
+                    if (Settings.Default.fixMD5s && audio_format.Contains("flac"))
+                    {
+                        qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5s...");
+                        fixMD5.fixMD5(tempFile, "flac");
+                    }
+
+                    qbdlxForm._qbdlxForm.logger.Debug("Starting file metadata tagging");
+                    TagFile.WriteToFile(tempFile, artworkPath, QoAlbum, QoItem);
+
+                    // Move the file with the full name (Zeta Long Paths to avoid MAX_PATH error)
+                    qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
+                    ZetaLongPaths.ZlpIOHelper.MoveFile(tempFile, filePath);
+                    
+                    // Signal the TaskCompletionSource that the task is complete
+                    tcs.SetResult(true);
+                };
+                
+                // Start the asynchronous download
                 qbdlxForm._qbdlxForm.logger.Debug("Downloading to temp file...");
-                Console.WriteLine(filePath);
                 if (QoAlbum.MediaCount > 1)
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
@@ -77,23 +148,11 @@ namespace QobuzDownloaderX
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
                 }
-                client.DownloadFile(streamUrl, tempFile);
 
-                if (Settings.Default.fixMD5s == true)
-                {
-                    if (audio_format.Contains("flac") == true)
-                    {
-                        //getInfo.updateDownloadOutput("\r\nAttempting to fix unset MD5s...");
-                        fixMD5.fixMD5(tempFile, "flac");
-                    }
-                }
+                client.DownloadFileAsync(new Uri(streamUrl), tempFile);
 
-                qbdlxForm._qbdlxForm.logger.Debug("Starting file metadata tagging");
-                TagFile.WriteToFile(tempFile, artworkPath, QoAlbum, QoItem);
-
-                // Move the file with the full name (Zeta Long Paths to avoid MAX_PATH error)
-                qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
-                ZetaLongPaths.ZlpIOHelper.MoveFile(tempFile, filePath);
+                // Await the TaskCompletionSource to wait until download completes
+                await tcs.Task;
             }
         }
 
@@ -130,7 +189,7 @@ namespace QobuzDownloaderX
 
                 // Download goody to the download path
                 Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
-                client.DownloadFile(QoGoody.Url, downloadPath + QoAlbum.Title + " (" + QoGoody.Id + @").pdf");
+                client.DownloadFile(QoGoody.Url, downloadPath + renameTemplates.GetSafeFilename(QoAlbum.Title) + " (" + QoGoody.Id + @").pdf");
             }
         }
     }
