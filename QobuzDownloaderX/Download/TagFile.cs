@@ -30,6 +30,7 @@ namespace QobuzDownloaderX
                     if (Settings.Default.upcTag == true) { customTagsFLAC.SetField("BARCODE", QoAlbum.UPC); } // UPC / Barcode (FLAC)
                     if (Settings.Default.labelTag == true) { customTagsFLAC.SetField("LABEL", Regex.Replace(QoAlbum.Label.Name, @"\s+", " ")); } // Record Label (FLAC) [Removing any chance of double spaces]
                     if (Settings.Default.explicitTag == true) { if (QoItem.ParentalWarning == true) { customTagsFLAC.SetField("ITUNESADVISORY", "1"); } else { customTagsFLAC.SetField("ITUNESADVISORY", "0"); } } // Parental Advisory (FLAC)
+                    if (Settings.Default.commentTag == true && Settings.Default.commentText != string.Empty) { customTagsFLAC.SetField("COMMENT", new string[] { Settings.Default.commentText.Replace("%description%", "%Description%").Replace("%Description%", QoAlbum.Description).Replace("<br/>", System.Environment.NewLine).Replace("<br />", System.Environment.NewLine) }); } // Comment (FLAC)
                 }
                 else
                 {
@@ -46,10 +47,11 @@ namespace QobuzDownloaderX
                     if (Settings.Default.isrcTag == true) { mp3Tag.SetTextFrame("TSRC", QoItem.ISRC); } // ISRC (MP3)
                     if (Settings.Default.labelTag == true) { mp3Tag.SetTextFrame("TPUB", Regex.Replace(QoAlbum.Label.Name, @"\s+", " ")); } // Record Label (MP3) [Removing any chance of double spaces]
                     if (Settings.Default.typeTag == true) { mp3Tag.SetTextFrame("TMED", QoAlbum.ProductType.ToUpper()); } // Type of release (MP3)
+                    if (Settings.Default.commentTag == true && Settings.Default.commentText != string.Empty) { file.Tag.Comment = Settings.Default.commentText.Replace("%description%", "%Description%").Replace("%Description%", QoAlbum.Description).Replace("<br/>", System.Environment.NewLine).Replace("<br />", System.Environment.NewLine); } // Comment (MP3)
                 }
                 qbdlxForm._qbdlxForm.logger.Debug("Writing all other tags");
                 if (Settings.Default.trackTitleTag == true) { file.Tag.Title = QoItem.Title; } // Track Title
-                if (Settings.Default.artistTag == true) { file.Tag.Performers = new[] { QoItem.Performer.Name }; } // Track Artist
+                if (Settings.Default.artistTag == true) { file.Tag.Performers = new[] { QoItem?.Performer?.Name }; } // Track Artist
                 if (Settings.Default.genreTag == true) { file.Tag.Genres = new[] { QoAlbum.Genre.Name }; } // Genre
                 if (Settings.Default.albumTag == true) { if (QoAlbum.Version == null) { file.Tag.Album = QoAlbum.Title; } else { file.Tag.Album = QoAlbum.Title.TrimEnd() + " (" + QoAlbum.Version + ")"; } } // Album Title
                 if (Settings.Default.trackTitleTag == true) { if (QoItem.Version == null) { file.Tag.Title = QoItem.Title; } else { file.Tag.Title = QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")"; } } // Track Title
@@ -64,9 +66,17 @@ namespace QobuzDownloaderX
                 if (QoAlbum.Artists.Count > 1)
                 {
                     var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
-                    string allButLastArtist = string.Join(", ", mainArtists.Take(QoAlbum.Artists.Count - 1).Select(a => a.Name));
+                    string allButLastArtist = string.Join(", ", mainArtists.Take(mainArtists.Count - 1).Select(a => a.Name));
                     string lastArtist = mainArtists.Last().Name;
-                    if (Settings.Default.albumArtistTag == true) { if (QoAlbum.Artist.Name != null) { file.Tag.AlbumArtists = new[] { allButLastArtist + " & " + lastArtist }; } }
+
+                    if (mainArtists.Count > 1)
+                    {
+                        if (Settings.Default.albumArtistTag == true) { if (QoAlbum.Artist.Name != null) { file.Tag.AlbumArtists = new[] { allButLastArtist + " & " + lastArtist }; } }
+                    }
+                    else
+                    {
+                        if (Settings.Default.albumArtistTag == true) { if (QoAlbum.Artist.Name != null) { file.Tag.AlbumArtists = new[] { lastArtist }; } }
+                    }
                 }
                 else
                 {

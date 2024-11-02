@@ -358,13 +358,17 @@
   </data>
   <data name="templatesListTextbox.Text" xml:space="preserve">
     <value>=== RELEASE SPECIFIC ===
-%AlbumID%, %AlbumURL%, %AlbumGenre%, %AlbumComposer%, %AlbumTitle%, %AlbumTitle%, %Label%, %Copyright%, %UPC%, %ReleaseDate%, %Year%, %ReleaseType%, %ArtistName%, %Format%, %FormatWithHiResQuality%, %AlbumPA%, %AlbumPAifEx%, %AlbumPAifCl%, %AlbumPAEnclosed%, %AlbumPAifExEnclosed%, %AlbumPAifClEnclosed%
-
-=== PLAYLIST SPECIFIC ===
-%PlaylistID%, %PlaylistTitle%, %Format%, %FormatWithHiResQuality%
+%AlbumID%, %AlbumURL%, %AlbumGenre%, %AlbumComposer%, %AlbumTitle%, %AlbumTitle%, %Label%, %Copyright%, %UPC%, %ReleaseDate%, %Year%, %ReleaseType%, %ArtistName%, %Format%, %FormatWithQuality%, %FormatWithHiResQuality%
+// Parental warning templates //
+%AlbumPA%, %AlbumPAShort%, %AlbumPAifEx%, %AlbumPAifExShort%, %AlbumPAifCl%, %AlbumPAifClShort%, %AlbumPAEnclosed%, %AlbumPAEnclosed[]%, %AlbumPAEnclosedShort%, %AlbumPAEnclosedShort[]%, %AlbumPAifExEnclosed%, %AlbumPAifExEnclosed[]%, %AlbumPAifExEnclosedShort%, %AlbumPAifExEnclosedShort[]%, %AlbumPAifClEnclosed%, %AlbumPAifClEnclosed[]%, %AlbumPAifClEnclosedShort%, %AlbumPAifClEnclosedShort[]%
 
 === TRACK SPECIFIC ===
-%TrackArtist%, %TrackComposer%, %TrackID%, %TrackNumber%, %TrackTitle%, %ISRC%, %TrackFormat%, %TrackFormatWithHiResQuality%, %TrackPA%, %TrackPAifEx%, %TrackPAifCl%, %TrackPAEnclosed%, %TrackPAifExEnclosed%, %TrackPAifClEnclosed%</value>
+%TrackArtist%, %TrackComposer%, %TrackID%, %TrackNumber%, %TrackTitle%, %ISRC%, %TrackFormat%, %TrackFormatWithHiResQuality%, %TrackFormatWithQuality%
+// Parental warning templates //
+%TrackPA%, %TrackPAShort%, %TrackPAifEx%, %TrackPAifExShort%, %TrackPAifCl%, %TrackPAifClShort%, %TrackPAEnclosed%, %TrackPAEnclosed[]%, %TrackPAEnclosedShort%, %TrackPAEnclosedShort[]%, %TrackPAifExEnclosed%, %TrackPAifExEnclosed[]%, %TrackPAifExEnclosedShort%, %TrackPAifExEnclosedShort[]%, %TrackPAifClEnclosed%, %TrackPAifClEnclosed[]%, %TrackPAifClEnclosedShort%, %TrackPAifClEnclosedShort[]%
+
+=== PLAYLIST SPECIFIC ===
+%PlaylistID%, %PlaylistTitle%, %Format%, %FormatWithHiResQuality%, %FormatWithQuality%</value>
   </data>
   <metadata name="folderBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

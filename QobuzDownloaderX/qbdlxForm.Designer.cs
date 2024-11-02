@@ -56,14 +56,6 @@
             this.templatesListLabel = new System.Windows.Forms.Label();
             this.templatesListTextbox = new System.Windows.Forms.TextBox();
             this.additionalSettingsButton = new System.Windows.Forms.Button();
-            this.mp3Button = new System.Windows.Forms.RadioButton();
-            this.flacLowButton = new System.Windows.Forms.RadioButton();
-            this.flacMidButton = new System.Windows.Forms.RadioButton();
-            this.flacHighButton = new System.Windows.Forms.RadioButton();
-            this.mp3Label = new System.Windows.Forms.Label();
-            this.flacLowLabel = new System.Windows.Forms.Label();
-            this.flacMidLabel = new System.Windows.Forms.Label();
-            this.flacHighLabel = new System.Windows.Forms.Label();
             this.trackTemplateTextbox = new System.Windows.Forms.TextBox();
             this.trackTemplateLabel = new System.Windows.Forms.Label();
             this.playlistTemplateTextbox = new System.Windows.Forms.TextBox();
@@ -72,7 +64,6 @@
             this.favoritesTemplateTextbox = new System.Windows.Forms.TextBox();
             this.albumTemplateTextbox = new System.Windows.Forms.TextBox();
             this.downloadFolderTextbox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.artistTemplateLabel = new System.Windows.Forms.Label();
             this.favoritesTemplateLabel = new System.Windows.Forms.Label();
             this.albumTemplateLabel = new System.Windows.Forms.Label();
@@ -91,6 +82,9 @@
             this.aboutLabel = new System.Windows.Forms.Label();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.extraSettingsPanel = new System.Windows.Forms.Panel();
+            this.commentCheckbox = new System.Windows.Forms.CheckBox();
+            this.commentTextbox = new System.Windows.Forms.TextBox();
+            this.commentLabel = new System.Windows.Forms.Label();
             this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
@@ -489,14 +483,6 @@
             this.settingsPanel.Controls.Add(this.templatesListLabel);
             this.settingsPanel.Controls.Add(this.templatesListTextbox);
             this.settingsPanel.Controls.Add(this.additionalSettingsButton);
-            this.settingsPanel.Controls.Add(this.mp3Button);
-            this.settingsPanel.Controls.Add(this.flacLowButton);
-            this.settingsPanel.Controls.Add(this.flacMidButton);
-            this.settingsPanel.Controls.Add(this.flacHighButton);
-            this.settingsPanel.Controls.Add(this.mp3Label);
-            this.settingsPanel.Controls.Add(this.flacLowLabel);
-            this.settingsPanel.Controls.Add(this.flacMidLabel);
-            this.settingsPanel.Controls.Add(this.flacHighLabel);
             this.settingsPanel.Controls.Add(this.trackTemplateTextbox);
             this.settingsPanel.Controls.Add(this.trackTemplateLabel);
             this.settingsPanel.Controls.Add(this.playlistTemplateTextbox);
@@ -505,7 +491,6 @@
             this.settingsPanel.Controls.Add(this.favoritesTemplateTextbox);
             this.settingsPanel.Controls.Add(this.albumTemplateTextbox);
             this.settingsPanel.Controls.Add(this.downloadFolderTextbox);
-            this.settingsPanel.Controls.Add(this.label1);
             this.settingsPanel.Controls.Add(this.artistTemplateLabel);
             this.settingsPanel.Controls.Add(this.favoritesTemplateLabel);
             this.settingsPanel.Controls.Add(this.albumTemplateLabel);
@@ -516,7 +501,7 @@
             this.settingsPanel.Controls.Add(this.selectFolderButton);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(507, 463);
+            this.settingsPanel.Location = new System.Drawing.Point(531, 449);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 1;
@@ -525,7 +510,7 @@
             // 
             this.templatesListLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.templatesListLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.templatesListLabel.Location = new System.Drawing.Point(0, 422);
+            this.templatesListLabel.Location = new System.Drawing.Point(0, 384);
             this.templatesListLabel.Name = "templatesListLabel";
             this.templatesListLabel.Size = new System.Drawing.Size(771, 25);
             this.templatesListLabel.TabIndex = 28;
@@ -539,13 +524,13 @@
             this.templatesListTextbox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.templatesListTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.templatesListTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.templatesListTextbox.Location = new System.Drawing.Point(96, 450);
+            this.templatesListTextbox.Location = new System.Drawing.Point(96, 416);
             this.templatesListTextbox.Multiline = true;
             this.templatesListTextbox.Name = "templatesListTextbox";
             this.templatesListTextbox.ReadOnly = true;
             this.templatesListTextbox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.templatesListTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.templatesListTextbox.Size = new System.Drawing.Size(595, 67);
+            this.templatesListTextbox.Size = new System.Drawing.Size(595, 101);
             this.templatesListTextbox.TabIndex = 27;
             this.templatesListTextbox.Text = resources.GetString("templatesListTextbox.Text");
             this.templatesListTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -566,106 +551,6 @@
             this.additionalSettingsButton.Text = "Additional Settings";
             this.additionalSettingsButton.UseVisualStyleBackColor = false;
             this.additionalSettingsButton.Click += new System.EventHandler(this.additionalSettingsButton_Click);
-            // 
-            // mp3Button
-            // 
-            this.mp3Button.AutoSize = true;
-            this.mp3Button.FlatAppearance.BorderSize = 0;
-            this.mp3Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mp3Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.mp3Button.Location = new System.Drawing.Point(622, 395);
-            this.mp3Button.Name = "mp3Button";
-            this.mp3Button.Size = new System.Drawing.Size(13, 12);
-            this.mp3Button.TabIndex = 5;
-            this.mp3Button.UseVisualStyleBackColor = true;
-            this.mp3Button.CheckedChanged += new System.EventHandler(this.mp3Button_CheckedChanged);
-            // 
-            // flacLowButton
-            // 
-            this.flacLowButton.AutoSize = true;
-            this.flacLowButton.FlatAppearance.BorderSize = 0;
-            this.flacLowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flacLowButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.flacLowButton.Location = new System.Drawing.Point(490, 395);
-            this.flacLowButton.Name = "flacLowButton";
-            this.flacLowButton.Size = new System.Drawing.Size(13, 12);
-            this.flacLowButton.TabIndex = 5;
-            this.flacLowButton.UseVisualStyleBackColor = true;
-            this.flacLowButton.CheckedChanged += new System.EventHandler(this.flacLowButton_CheckedChanged);
-            // 
-            // flacMidButton
-            // 
-            this.flacMidButton.AutoSize = true;
-            this.flacMidButton.FlatAppearance.BorderSize = 0;
-            this.flacMidButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flacMidButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.flacMidButton.Location = new System.Drawing.Point(368, 395);
-            this.flacMidButton.Name = "flacMidButton";
-            this.flacMidButton.Size = new System.Drawing.Size(13, 12);
-            this.flacMidButton.TabIndex = 5;
-            this.flacMidButton.UseVisualStyleBackColor = true;
-            this.flacMidButton.CheckedChanged += new System.EventHandler(this.flacMidButton_CheckedChanged);
-            // 
-            // flacHighButton
-            // 
-            this.flacHighButton.AutoSize = true;
-            this.flacHighButton.FlatAppearance.BorderSize = 0;
-            this.flacHighButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.flacHighButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.flacHighButton.Location = new System.Drawing.Point(248, 395);
-            this.flacHighButton.Name = "flacHighButton";
-            this.flacHighButton.Size = new System.Drawing.Size(13, 12);
-            this.flacHighButton.TabIndex = 5;
-            this.flacHighButton.UseVisualStyleBackColor = true;
-            this.flacHighButton.CheckedChanged += new System.EventHandler(this.flacHighButton_CheckedChanged);
-            // 
-            // mp3Label
-            // 
-            this.mp3Label.AutoSize = true;
-            this.mp3Label.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mp3Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.mp3Label.Location = new System.Drawing.Point(641, 395);
-            this.mp3Label.Name = "mp3Label";
-            this.mp3Label.Size = new System.Drawing.Size(50, 13);
-            this.mp3Label.TabIndex = 4;
-            this.mp3Label.Text = "MP3 320";
-            this.mp3Label.Click += new System.EventHandler(this.mp3Label_Click);
-            // 
-            // flacLowLabel
-            // 
-            this.flacLowLabel.AutoSize = true;
-            this.flacLowLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flacLowLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.flacLowLabel.Location = new System.Drawing.Point(509, 395);
-            this.flacLowLabel.Name = "flacLowLabel";
-            this.flacLowLabel.Size = new System.Drawing.Size(78, 13);
-            this.flacLowLabel.TabIndex = 4;
-            this.flacLowLabel.Text = "FLAC (16/44.1)";
-            this.flacLowLabel.Click += new System.EventHandler(this.flacLowLabel_Click);
-            // 
-            // flacMidLabel
-            // 
-            this.flacMidLabel.AutoSize = true;
-            this.flacMidLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flacMidLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.flacMidLabel.Location = new System.Drawing.Point(387, 395);
-            this.flacMidLabel.Name = "flacMidLabel";
-            this.flacMidLabel.Size = new System.Drawing.Size(69, 13);
-            this.flacMidLabel.TabIndex = 4;
-            this.flacMidLabel.Text = "FLAC (24/96)";
-            this.flacMidLabel.Click += new System.EventHandler(this.flacMidLabel_Click);
-            // 
-            // flacHighLabel
-            // 
-            this.flacHighLabel.AutoSize = true;
-            this.flacHighLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flacHighLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.flacHighLabel.Location = new System.Drawing.Point(264, 395);
-            this.flacHighLabel.Name = "flacHighLabel";
-            this.flacHighLabel.Size = new System.Drawing.Size(75, 13);
-            this.flacHighLabel.TabIndex = 4;
-            this.flacHighLabel.Text = "FLAC (24/192)";
-            this.flacHighLabel.Click += new System.EventHandler(this.flacHighLabel_Click);
             // 
             // trackTemplateTextbox
             // 
@@ -771,17 +656,6 @@
             this.downloadFolderTextbox.Size = new System.Drawing.Size(443, 21);
             this.downloadFolderTextbox.TabIndex = 2;
             this.downloadFolderTextbox.Text = "no folder selected";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label1.Location = new System.Drawing.Point(0, 387);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(242, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "QUALITY";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // artistTemplateLabel
             // 
@@ -1001,6 +875,9 @@
             // 
             // extraSettingsPanel
             // 
+            this.extraSettingsPanel.Controls.Add(this.commentCheckbox);
+            this.extraSettingsPanel.Controls.Add(this.commentTextbox);
+            this.extraSettingsPanel.Controls.Add(this.commentLabel);
             this.extraSettingsPanel.Controls.Add(this.downloadSpeedCheckbox);
             this.extraSettingsPanel.Controls.Add(this.fixMD5sCheckbox);
             this.extraSettingsPanel.Controls.Add(this.streamableCheckbox);
@@ -1031,18 +908,56 @@
             this.extraSettingsPanel.Controls.Add(this.albumArtistCheckbox);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(595, 400);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(595, 411);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 3;
             this.extraSettingsPanel.Visible = false;
+            // 
+            // commentCheckbox
+            // 
+            this.commentCheckbox.AutoSize = true;
+            this.commentCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commentCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.commentCheckbox.Location = new System.Drawing.Point(327, 157);
+            this.commentCheckbox.Name = "commentCheckbox";
+            this.commentCheckbox.Size = new System.Drawing.Size(117, 17);
+            this.commentCheckbox.TabIndex = 32;
+            this.commentCheckbox.Text = "Custom Comment";
+            this.commentCheckbox.UseVisualStyleBackColor = true;
+            this.commentCheckbox.CheckedChanged += new System.EventHandler(this.commentCheckbox_CheckedChanged);
+            // 
+            // commentTextbox
+            // 
+            this.commentTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.commentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.commentTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commentTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.commentTextbox.Location = new System.Drawing.Point(288, 185);
+            this.commentTextbox.Multiline = true;
+            this.commentTextbox.Name = "commentTextbox";
+            this.commentTextbox.Size = new System.Drawing.Size(276, 21);
+            this.commentTextbox.TabIndex = 31;
+            this.commentTextbox.WordWrap = false;
+            this.commentTextbox.TextChanged += new System.EventHandler(this.commentTextbox_TextChanged);
+            // 
+            // commentLabel
+            // 
+            this.commentLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commentLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.commentLabel.Location = new System.Drawing.Point(40, 182);
+            this.commentLabel.Name = "commentLabel";
+            this.commentLabel.Size = new System.Drawing.Size(242, 25);
+            this.commentLabel.TabIndex = 30;
+            this.commentLabel.Text = "CUSTOM COMMENT";
+            this.commentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // downloadSpeedCheckbox
             // 
             this.downloadSpeedCheckbox.AutoSize = true;
             this.downloadSpeedCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadSpeedCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(314, 336);
+            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(314, 400);
             this.downloadSpeedCheckbox.Name = "downloadSpeedCheckbox";
             this.downloadSpeedCheckbox.Size = new System.Drawing.Size(142, 17);
             this.downloadSpeedCheckbox.TabIndex = 29;
@@ -1057,7 +972,7 @@
             this.fixMD5sCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fixMD5sCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fixMD5sCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.fixMD5sCheckbox.Location = new System.Drawing.Point(230, 308);
+            this.fixMD5sCheckbox.Location = new System.Drawing.Point(230, 372);
             this.fixMD5sCheckbox.Name = "fixMD5sCheckbox";
             this.fixMD5sCheckbox.Size = new System.Drawing.Size(311, 17);
             this.fixMD5sCheckbox.TabIndex = 28;
@@ -1072,7 +987,7 @@
             this.streamableCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.streamableCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.streamableCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.streamableCheckbox.Location = new System.Drawing.Point(327, 280);
+            this.streamableCheckbox.Location = new System.Drawing.Point(327, 344);
             this.streamableCheckbox.Name = "streamableCheckbox";
             this.streamableCheckbox.Size = new System.Drawing.Size(117, 17);
             this.streamableCheckbox.TabIndex = 27;
@@ -1084,7 +999,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label5.Location = new System.Drawing.Point(0, 238);
+            this.label5.Location = new System.Drawing.Point(0, 302);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(771, 25);
             this.label5.TabIndex = 26;
@@ -1112,7 +1027,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label4.Location = new System.Drawing.Point(282, 192);
+            this.label4.Location = new System.Drawing.Point(282, 256);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 13);
             this.label4.TabIndex = 24;
@@ -1130,7 +1045,7 @@
             "150",
             "100",
             "50"});
-            this.savedArtSizeSelect.Location = new System.Drawing.Point(392, 189);
+            this.savedArtSizeSelect.Location = new System.Drawing.Point(392, 253);
             this.savedArtSizeSelect.Name = "savedArtSizeSelect";
             this.savedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
             this.savedArtSizeSelect.TabIndex = 23;
@@ -1151,7 +1066,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label2.Location = new System.Drawing.Point(257, 160);
+            this.label2.Location = new System.Drawing.Point(257, 224);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 13);
             this.label2.TabIndex = 21;
@@ -1169,7 +1084,7 @@
             "150",
             "100",
             "50"});
-            this.embeddedArtSizeSelect.Location = new System.Drawing.Point(392, 157);
+            this.embeddedArtSizeSelect.Location = new System.Drawing.Point(392, 221);
             this.embeddedArtSizeSelect.Name = "embeddedArtSizeSelect";
             this.embeddedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
             this.embeddedArtSizeSelect.TabIndex = 20;
@@ -1814,15 +1729,6 @@
         private System.Windows.Forms.Label favoritesTemplateLabel;
         private System.Windows.Forms.TextBox artistTemplateTextbox;
         private System.Windows.Forms.Label artistTemplateLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label mp3Label;
-        private System.Windows.Forms.Label flacLowLabel;
-        private System.Windows.Forms.Label flacMidLabel;
-        private System.Windows.Forms.Label flacHighLabel;
-        private System.Windows.Forms.RadioButton mp3Button;
-        private System.Windows.Forms.RadioButton flacLowButton;
-        private System.Windows.Forms.RadioButton flacMidButton;
-        private System.Windows.Forms.RadioButton flacHighButton;
         private System.Windows.Forms.Panel extraSettingsPanel;
         private System.Windows.Forms.Label extraSettingsLabel;
         private System.Windows.Forms.CheckBox albumArtistCheckbox;
@@ -1879,5 +1785,8 @@
         public System.Windows.Forms.Button downloadButton;
         public System.Windows.Forms.CheckBox downloadSpeedCheckbox;
         public System.Windows.Forms.Label progressLabel;
+        private System.Windows.Forms.CheckBox commentCheckbox;
+        private System.Windows.Forms.TextBox commentTextbox;
+        private System.Windows.Forms.Label commentLabel;
     }
 }

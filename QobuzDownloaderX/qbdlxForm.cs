@@ -150,13 +150,9 @@ namespace QobuzDownloaderX
             updateTemplates();
 
             // Saved Quality Selection
-            mp3Button.Checked = Settings.Default.quality1;
             mp3Button2.Checked = Settings.Default.quality1;
-            flacLowButton.Checked = Settings.Default.quality2;
             flacLowButton2.Checked = Settings.Default.quality2;
-            flacMidButton.Checked = Settings.Default.quality3;
             flacMidButton2.Checked = Settings.Default.quality3;
-            flacHighButton.Checked = Settings.Default.quality4;
             flacHighButton2.Checked = Settings.Default.quality4;
             format_id = Settings.Default.qualityFormat;
             audio_format = Settings.Default.audioType;
@@ -184,7 +180,6 @@ namespace QobuzDownloaderX
             coverArtCheckbox.Checked = Settings.Default.imageTag;
             embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize; embeddedArtSize = embeddedArtSizeSelect.Text;
             savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize; savedArtSize = savedArtSizeSelect.Text;
-
 
             // Move all panels to correct spot
             downloaderPanel.Location = new Point(179, 0);
@@ -524,9 +519,17 @@ namespace QobuzDownloaderX
             if (QoAlbum.Artists.Count > 1)
             {
                 var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
-                string allButLastArtist = string.Join(", ", mainArtists.Take(QoAlbum.Artists.Count - 1).Select(a => a.Name));
+                string allButLastArtist = string.Join(", ", mainArtists.Take(mainArtists.Count - 1).Select(a => a.Name));
                 string lastArtist = mainArtists.Last().Name;
-                artistLabel.Text = allButLastArtist + " && " + lastArtist;
+
+                if (mainArtists.Count > 1)
+                {
+                    artistLabel.Text = allButLastArtist + " && " + lastArtist;
+                }
+                else
+                {
+                    artistLabel.Text = lastArtist;
+                }
             }
             else
             {
@@ -632,21 +635,6 @@ namespace QobuzDownloaderX
         }
 
         #region Quality Selection
-        private void flacHighButton_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.quality4 = flacHighButton.Checked;
-            Settings.Default.Save();
-
-            if (flacHighButton.Checked == true)
-            {
-                logger.Debug("Setting format ID to 27");
-                format_id = "27";
-                audio_format = ".flac";
-                flacHighButton2.Checked = true;
-                Settings.Default.qualityFormat = format_id;
-                Settings.Default.audioType = audio_format;
-            }
-        }
 
         private void flacHighButton2_CheckedChanged(object sender, EventArgs e)
         {
@@ -658,23 +646,6 @@ namespace QobuzDownloaderX
                 logger.Debug("Setting format ID to 27");
                 format_id = "27";
                 audio_format = ".flac";
-                flacHighButton.Checked = true;
-                Settings.Default.qualityFormat = format_id;
-                Settings.Default.audioType = audio_format;
-            }
-        }
-
-        private void flacMidButton_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.quality3 = flacMidButton.Checked;
-            Settings.Default.Save();
-
-            if (flacMidButton.Checked == true)
-            {
-                logger.Debug("Setting format ID to 7");
-                format_id = "7";
-                audio_format = ".flac";
-                flacMidButton2.Checked = true;
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
             }
@@ -690,23 +661,6 @@ namespace QobuzDownloaderX
                 logger.Debug("Setting format ID to 7");
                 format_id = "7";
                 audio_format = ".flac";
-                flacMidButton.Checked = true;
-                Settings.Default.qualityFormat = format_id;
-                Settings.Default.audioType = audio_format;
-            }
-        }
-
-        private void flacLowButton_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.quality2 = flacLowButton.Checked;
-            Settings.Default.Save();
-
-            if (flacLowButton.Checked == true)
-            {
-                logger.Debug("Setting format ID to 6");
-                format_id = "6";
-                audio_format = ".flac";
-                flacLowButton2.Checked = true;
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
             }
@@ -722,23 +676,6 @@ namespace QobuzDownloaderX
                 logger.Debug("Setting format ID to 6");
                 format_id = "6";
                 audio_format = ".flac";
-                flacLowButton.Checked = true;
-                Settings.Default.qualityFormat = format_id;
-                Settings.Default.audioType = audio_format;
-            }
-        }
-
-        private void mp3Button_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.quality1 = mp3Button.Checked;
-            Settings.Default.Save();
-
-            if (mp3Button.Checked == true)
-            {
-                logger.Debug("Setting format ID to 5");
-                format_id = "5";
-                audio_format = ".mp3";
-                mp3Button2.Checked = true;
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
             }
@@ -754,15 +691,9 @@ namespace QobuzDownloaderX
                 logger.Debug("Setting format ID to 5");
                 format_id = "5";
                 audio_format = ".mp3";
-                mp3Button.Checked = true;
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
             }
-        }
-
-        private void flacHighLabel_Click(object sender, EventArgs e)
-        {
-            flacHighButton.Checked = true;
         }
 
         private void flacHighLabel2_Click(object sender, EventArgs e)
@@ -770,29 +701,14 @@ namespace QobuzDownloaderX
             flacHighButton2.Checked = true;
         }
 
-        private void flacMidLabel_Click(object sender, EventArgs e)
-        {
-            flacMidButton.Checked = true;
-        }
-
         private void flacMidLabel2_Click(object sender, EventArgs e)
         {
             flacMidButton2.Checked = true;
         }
 
-        private void flacLowLabel_Click(object sender, EventArgs e)
-        {
-            flacLowButton.Checked = true;
-        }
-
         private void flacLowLabel2_Click(object sender, EventArgs e)
         {
             flacLowButton2.Checked = true;
-        }
-
-        private void mp3Label_Click(object sender, EventArgs e)
-        {
-            mp3Button.Checked = true;
         }
 
         private void mp3Label2_Click(object sender, EventArgs e)
@@ -908,6 +824,18 @@ namespace QobuzDownloaderX
         private void coverArtCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.imageTag = coverArtCheckbox.Checked;
+            Settings.Default.Save();
+        }
+        
+        private void commentCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.commentTag = commentCheckbox.Checked;
+            Settings.Default.Save();
+        }
+
+        private void commentTextbox_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.commentText = commentTextbox.Text;
             Settings.Default.Save();
         }
 
