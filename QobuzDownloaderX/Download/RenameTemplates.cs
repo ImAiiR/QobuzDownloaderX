@@ -62,6 +62,8 @@ namespace QobuzDownloaderX
                 if (QoItem.Version == null) { template = GetSafeFilename(template.Replace("%TrackTitle%", QoItem.Title)); } else { template = GetSafeFilename(template.Replace("%TrackTitle%", QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")")); }
                 template = GetSafeFilename(template.Replace("%TrackNumber%", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0')));
                 template = GetSafeFilename(template.Replace("%ISRC%", QoItem.ISRC.ToString()));
+                template = GetSafeFilename(template.Replace("%TrackBitDepth%", QoItem.MaximumBitDepth.ToString()));
+                template = GetSafeFilename(template.Replace("%TrackSampleRate%", QoItem.MaximumSamplingRate.ToString()));
 
                 // Track Format Templates
                 template = GetSafeFilename(template.Replace("%TrackFormat%", fileFormat.ToUpper().TrimStart('.')));
@@ -112,26 +114,6 @@ namespace QobuzDownloaderX
             }
 
             // Album Templates
-            /* Parental warning tags */
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPA%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%AlbumPA%", "Clean")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAShort%", "E")); } else { template = GetSafeFilename(template.Replace("%AlbumPAShort%", "C")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifEx%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifEx%", "")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExShort%", "E")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExShort%", "")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifCl%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifCl%", "Clean")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClShort%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClShort%", "C")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed%", "(Clean)")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed[]%", "[Explicit]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed[]%", "[Clean]")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort%", "(E)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort%", "(C)")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort[]%", "[E]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort[]%", "[C]")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed%", "")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed[]%", "[Explicit]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed[]%", "")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort%", "(E)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort%", "")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort[]%", "[E]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort[]%", "")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed%", "(Clean)")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed[]%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed[]%", "[Clean]")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort%", "(C)")); }
-            if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort[]%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort[]%", "[C]")); }
-
             if (QoAlbum != null)
             {
                 template = GetSafeFilename(template.Replace("%AlbumID%", QoAlbum.Id.ToString()));
@@ -145,7 +127,8 @@ namespace QobuzDownloaderX
                 template = GetSafeFilename(template.Replace("%ReleaseDate%", QoAlbum.ReleaseDateOriginal));
                 template = GetSafeFilename(template.Replace("%Year%", UInt32.Parse(QoAlbum.ReleaseDateOriginal.Substring(0, 4)).ToString()));
                 template = GetSafeFilename(template.Replace("%ReleaseType%", char.ToUpper(QoAlbum.ProductType.First()) + QoAlbum.ProductType.Substring(1).ToLower()));
-
+                template = GetSafeFilename(template.Replace("%BitDepth%", QoAlbum.MaximumBitDepth.ToString()));
+                template = GetSafeFilename(template.Replace("%SampleRate%", QoAlbum.MaximumSamplingRate.ToString()));
                 template = GetSafeFilename(template.Replace("%Format%", fileFormat.ToUpper().TrimStart('.')));
 
                 // For albums with multiple main artists listed
@@ -170,6 +153,27 @@ namespace QobuzDownloaderX
                 {
                     template = GetSafeFilename(template.Replace("%ArtistName%", QoAlbum.Artist.Name));
                 }
+
+                /* Parental warning tags */
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPA%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%AlbumPA%", "Clean")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAShort%", "E")); } else { template = GetSafeFilename(template.Replace("%AlbumPAShort%", "C")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifEx%", "Explicit")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifEx%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExShort%", "E")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExShort%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifCl%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifCl%", "Clean")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClShort%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClShort%", "C")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed%", "(Clean)")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed[]%", "[Explicit]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosed[]%", "[Clean]")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort%", "(E)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort%", "(C)")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort[]%", "[E]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAEnclosedShort[]%", "[C]")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed%", "(Explicit)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed[]%", "[Explicit]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosed[]%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort%", "(E)")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort[]%", "[E]")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifExEnclosedShort[]%", "")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed%", "(Clean)")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed[]%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosed[]%", "[Clean]")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort%", "(C)")); }
+                if (QoAlbum.ParentalWarning == true) { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort[]%", "")); } else { template = GetSafeFilename(template.Replace("%AlbumPAifClEnclosedShort[]%", "[C]")); }
+
             }
 
             // Playlist Templates

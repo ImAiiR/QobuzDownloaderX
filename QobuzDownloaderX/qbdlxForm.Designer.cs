@@ -501,7 +501,7 @@
             this.settingsPanel.Controls.Add(this.selectFolderButton);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(531, 449);
+            this.settingsPanel.Location = new System.Drawing.Point(204, 52);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 1;
@@ -908,7 +908,7 @@
             this.extraSettingsPanel.Controls.Add(this.albumArtistCheckbox);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(595, 411);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(627, 411);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 3;

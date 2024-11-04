@@ -178,6 +178,8 @@ namespace QobuzDownloaderX
             upcCheckbox.Checked = Settings.Default.upcTag;
             releaseDateCheckbox.Checked = Settings.Default.yearTag;
             coverArtCheckbox.Checked = Settings.Default.imageTag;
+            commentCheckbox.Checked = Settings.Default.commentTag;
+            commentTextbox.Text = Settings.Default.commentText;
             embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize; embeddedArtSize = embeddedArtSizeSelect.Text;
             savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize; savedArtSize = savedArtSizeSelect.Text;
 
