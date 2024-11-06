@@ -211,9 +211,9 @@ namespace QobuzDownloaderX
                     sw.WriteLine("");
                     sw.WriteLine("[b]DOWNLOADS[/b]");
                     sw.WriteLine("-----------------------------------");
+                    sw.WriteLine("[spoiler=" + Regex.Replace(QoAlbum.Label.Name, @"\s+", " ") + " / " + QoAlbum.UPC + " / WEB]");
                     if (QoAlbum.MaximumBitDepth > 16)
                     {
-                        sw.WriteLine("[spoiler=" + Regex.Replace(QoAlbum.Label.Name, @"\s+", " ") + " / " + QoAlbum.UPC + " / WEB]");
                         sw.WriteLine("[format=FLAC / Lossless (" + QoAlbum.MaximumBitDepth.ToString() + "bit/" + QoAlbum.MaximumSamplingRate.ToString() + "kHz) / WEB]");
                         sw.WriteLine("Uploaded by [USER=2]@AiiR[/USER]");
                         sw.WriteLine("");

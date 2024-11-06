@@ -90,7 +90,7 @@ namespace QobuzDownloaderX.Download
                     /*artistName.MaximumSize = new Size(0, 0);*/ // Word-wrap if needed
                     artistName.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     artistName.Anchor = AnchorStyles.None; // Center within the cell
-                    artistName.ForeColor = Color.FromArgb(147, 147, 147); // Set text color
+                    artistName.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
                     artistName.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(artistName, 1, rowIndex);
 
@@ -103,7 +103,7 @@ namespace QobuzDownloaderX.Download
                     /*albumTitle.MaximumSize = new Size(0, 0);*/ // Allow word-wrap
                     albumTitle.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     albumTitle.Anchor = AnchorStyles.None; // Center within the cell
-                    albumTitle.ForeColor = Color.FromArgb(147, 147, 147); // Set text color
+                    albumTitle.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
                     albumTitle.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(albumTitle, 2, rowIndex);
 
@@ -118,11 +118,11 @@ namespace QobuzDownloaderX.Download
                     // Set text color
                     if (qualityLabel.Text.Contains("24bit"))
                     {
-                        qualityLabel.ForeColor = Color.FromArgb(253, 202, 28);
+                        qualityLabel.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HiResLabelText);
                     }
                     else
                     {
-                        qualityLabel.ForeColor = Color.FromArgb(147, 147, 147);
+                        qualityLabel.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); ;
                     }
 
                     qualityLabel.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
@@ -131,13 +131,13 @@ namespace QobuzDownloaderX.Download
                     // Add Button for selecting album ID
                     Button selectButton = new Button();
                     selectButton.Text = "GET";
-                    selectButton.ForeColor = Color.FromArgb(147, 147, 147); // Set button text color
-                    selectButton.BackColor = Color.FromArgb(13, 13, 13); // Set button background color
+                    selectButton.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText); // Set button text color
+                    selectButton.BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground); // Set button background color
                     selectButton.Font = new Font("Nirmala UI", 8F, FontStyle.Regular); // Set font size and style
                     selectButton.FlatStyle = FlatStyle.Flat; // Set FlatStyle to Flat
                     selectButton.FlatAppearance.BorderSize = 0;  // Set border size
-                    selectButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(18, 18, 18); // Set background color when hovering
-                    selectButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(25, 25, 25); // Set background color when clicked
+                    selectButton.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HighlightedButtonBackground); // Set background color when hovering
+                    selectButton.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ClickedButtonBackground); // Set background color when clicked
                     string albumLink = "https://play.qobuz.com/album/" + album.Id.ToString(); // Store the album link
                     selectButton.Click += (sender, e) => SendURL(mainForm, albumLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
@@ -189,7 +189,7 @@ namespace QobuzDownloaderX.Download
                     /*artistName.MaximumSize = new Size(0, 0);*/ // Word-wrap if needed
                     artistName.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     artistName.Anchor = AnchorStyles.None; // Center within the cell
-                    artistName.ForeColor = Color.FromArgb(147, 147, 147); // Set text color
+                    artistName.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
                     artistName.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(artistName, 1, rowIndex);
 
@@ -202,7 +202,7 @@ namespace QobuzDownloaderX.Download
                     /*trackTitle.MaximumSize = new Size(0, 0);*/ // Allow word-wrap
                     trackTitle.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     trackTitle.Anchor = AnchorStyles.None; // Center within the cell
-                    trackTitle.ForeColor = Color.FromArgb(147, 147, 147); // Set text color
+                    trackTitle.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
                     trackTitle.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(trackTitle, 2, rowIndex);
 
@@ -217,11 +217,11 @@ namespace QobuzDownloaderX.Download
                     // Set text color
                     if (qualityLabel.Text.Contains("24bit"))
                     {
-                        qualityLabel.ForeColor = Color.FromArgb(253, 202, 28);
+                        qualityLabel.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HiResLabelText);
                     }
                     else
                     {
-                        qualityLabel.ForeColor = Color.FromArgb(147, 147, 147);
+                        qualityLabel.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText);
                     }
 
                     qualityLabel.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
@@ -230,13 +230,13 @@ namespace QobuzDownloaderX.Download
                     // Add Button for selecting album ID
                     Button selectButton = new Button();
                     selectButton.Text = "GET";
-                    selectButton.ForeColor = Color.FromArgb(147, 147, 147); // Set button text color
-                    selectButton.BackColor = Color.FromArgb(13, 13, 13); // Set button background color
+                    selectButton.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText); // Set button text color
+                    selectButton.BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground); // Set button background color
                     selectButton.Font = new Font("Nirmala UI", 8F, FontStyle.Regular); // Set font size and style
                     selectButton.FlatStyle = FlatStyle.Flat; // Set FlatStyle to Flat
                     selectButton.FlatAppearance.BorderSize = 0;  // Set border size
-                    selectButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(18, 18, 18); // Set background color when hovering
-                    selectButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(25, 25, 25); // Set background color when clicked
+                    selectButton.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HighlightedButtonBackground); // Set background color when hovering
+                    selectButton.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ClickedButtonBackground); // Set background color when clicked
                     string trackLink = "https://open.qobuz.com/track/" + track.Id.ToString(); // Store the track link
                     selectButton.Click += (sender, e) => SendURL(mainForm, trackLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button

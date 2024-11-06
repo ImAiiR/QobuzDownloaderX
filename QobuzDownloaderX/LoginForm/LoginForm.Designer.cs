@@ -34,7 +34,7 @@
             this.emailIcon = new System.Windows.Forms.PictureBox();
             this.emailPanel = new System.Windows.Forms.Panel();
             this.passwordIcon = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.passwordPanel = new System.Windows.Forms.Panel();
             this.loginButton = new System.Windows.Forms.Button();
             this.emailTextbox = new System.Windows.Forms.TextBox();
             this.passwordTextbox = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@
             this.altLoginLabel = new System.Windows.Forms.Label();
             this.aboutButton = new System.Windows.Forms.Button();
             this.aboutTextbox = new System.Windows.Forms.TextBox();
-            this.aboutPanel = new System.Windows.Forms.Panel();
+            this.loginAboutPanel = new System.Windows.Forms.Panel();
             this.closeAboutButton = new System.Windows.Forms.Button();
             this.customPanel = new System.Windows.Forms.Panel();
             this.appSecretLabel = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.qbdlxPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIcon)).BeginInit();
-            this.aboutPanel.SuspendLayout();
+            this.loginAboutPanel.SuspendLayout();
             this.customPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,13 +116,13 @@
             this.passwordIcon.TabIndex = 32;
             this.passwordIcon.TabStop = false;
             // 
-            // panel1
+            // passwordPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.panel1.Location = new System.Drawing.Point(12, 179);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(268, 1);
-            this.panel1.TabIndex = 33;
+            this.passwordPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.passwordPanel.Location = new System.Drawing.Point(12, 179);
+            this.passwordPanel.Name = "passwordPanel";
+            this.passwordPanel.Size = new System.Drawing.Size(268, 1);
+            this.passwordPanel.TabIndex = 33;
             // 
             // loginButton
             // 
@@ -287,17 +287,17 @@
             this.aboutTextbox.Text = resources.GetString("aboutTextbox.Text");
             this.aboutTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // aboutPanel
+            // loginAboutPanel
             // 
-            this.aboutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.aboutPanel.Controls.Add(this.closeAboutButton);
-            this.aboutPanel.Controls.Add(this.aboutTextbox);
-            this.aboutPanel.Enabled = false;
-            this.aboutPanel.Location = new System.Drawing.Point(189, 296);
-            this.aboutPanel.Name = "aboutPanel";
-            this.aboutPanel.Size = new System.Drawing.Size(268, 297);
-            this.aboutPanel.TabIndex = 42;
-            this.aboutPanel.Visible = false;
+            this.loginAboutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.loginAboutPanel.Controls.Add(this.closeAboutButton);
+            this.loginAboutPanel.Controls.Add(this.aboutTextbox);
+            this.loginAboutPanel.Enabled = false;
+            this.loginAboutPanel.Location = new System.Drawing.Point(189, 296);
+            this.loginAboutPanel.Name = "loginAboutPanel";
+            this.loginAboutPanel.Size = new System.Drawing.Size(268, 297);
+            this.loginAboutPanel.TabIndex = 42;
+            this.loginAboutPanel.Visible = false;
             // 
             // closeAboutButton
             // 
@@ -442,7 +442,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(292, 388);
-            this.Controls.Add(this.aboutPanel);
+            this.Controls.Add(this.loginAboutPanel);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.customPanel);
             this.Controls.Add(this.aboutButton);
@@ -454,7 +454,7 @@
             this.Controls.Add(this.passwordTextbox);
             this.Controls.Add(this.emailTextbox);
             this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.passwordPanel);
             this.Controls.Add(this.passwordIcon);
             this.Controls.Add(this.emailIcon);
             this.Controls.Add(this.versionNumber);
@@ -471,8 +471,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.qbdlxPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIcon)).EndInit();
-            this.aboutPanel.ResumeLayout(false);
-            this.aboutPanel.PerformLayout();
+            this.loginAboutPanel.ResumeLayout(false);
+            this.loginAboutPanel.PerformLayout();
             this.customPanel.ResumeLayout(false);
             this.customPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -486,7 +486,7 @@
         private System.Windows.Forms.PictureBox emailIcon;
         private System.Windows.Forms.Panel emailPanel;
         private System.Windows.Forms.PictureBox passwordIcon;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel passwordPanel;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.TextBox emailTextbox;
         private System.Windows.Forms.TextBox passwordTextbox;
@@ -499,7 +499,7 @@
         private System.Windows.Forms.Label altLoginLabel;
         private System.Windows.Forms.Button aboutButton;
         private System.Windows.Forms.TextBox aboutTextbox;
-        private System.Windows.Forms.Panel aboutPanel;
+        private System.Windows.Forms.Panel loginAboutPanel;
         private System.Windows.Forms.Button closeAboutButton;
         private System.Windows.Forms.Panel customPanel;
         private System.Windows.Forms.TextBox customInfoTextbox;

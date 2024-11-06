@@ -20,6 +20,7 @@ using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using QobuzDownloaderX.Download;
 using ZetaLongPaths;
+using System.Globalization;
 
 namespace QobuzDownloaderX
 {
@@ -84,6 +85,8 @@ namespace QobuzDownloaderX
 
         public string embeddedArtSize { get; set; }
         public string savedArtSize { get; set; }
+        public string themeName { get; set; }
+        public Theme theme { get; set; }
 
         public string latestWebResponse { get; set; }
 
@@ -104,6 +107,7 @@ namespace QobuzDownloaderX
         }
 
         public static qbdlxForm _qbdlxForm;
+        public readonly Theming _themeManager = new Theming();
 
         public void update(string text)
         {
@@ -120,44 +124,28 @@ namespace QobuzDownloaderX
             favoritesTemplate = favoritesTemplateTextbox.Text;
         }
 
-        private void qbdlxForm_Load(object sender, EventArgs e)
+        private void LoadSavedTemplates()
         {
-            logger.Debug("QBDLX form loaded!");
-
-            // Round corners of form
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-
-            // Set saved settings to correct places.
-            folderBrowser.SelectedPath = Settings.Default.savedFolder.ToString();
-            logger.Info("Saved download path: " + folderBrowser.SelectedPath);
-            logger.Debug("Setting saved download path to downloadLocation");
-            downloadLocation = folderBrowser.SelectedPath;
-            if (downloadLocation == null | downloadLocation == "")
-            {
-                downloadFolderTextbox.Text = "no folder selected";
-            }
-            else
-            {
-                downloadFolderTextbox.Text = downloadLocation;
-            }
-            
-            // Saved Templates
             artistTemplateTextbox.Text = Settings.Default.savedArtistTemplate;
             albumTemplateTextbox.Text = Settings.Default.savedAlbumTemplate;
             trackTemplateTextbox.Text = Settings.Default.savedTrackTemplate;
             playlistTemplateTextbox.Text = Settings.Default.savedPlaylistTemplate;
             favoritesTemplateTextbox.Text = Settings.Default.savedFavoritesTemplate;
             updateTemplates();
+        }
 
-            // Saved Quality Selection
+        private void LoadQualitySettings()
+        {
             mp3Button2.Checked = Settings.Default.quality1;
             flacLowButton2.Checked = Settings.Default.quality2;
             flacMidButton2.Checked = Settings.Default.quality3;
             flacHighButton2.Checked = Settings.Default.quality4;
             format_id = Settings.Default.qualityFormat;
             audio_format = Settings.Default.audioType;
+        }
 
-            // Saved Tagging Settings
+        private void LoadTaggingSettings()
+        {
             streamableCheckbox.Checked = Settings.Default.streamableCheck;
             downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
             albumTitleCheckbox.Checked = Settings.Default.albumTag;
@@ -180,71 +168,87 @@ namespace QobuzDownloaderX
             coverArtCheckbox.Checked = Settings.Default.imageTag;
             commentCheckbox.Checked = Settings.Default.commentTag;
             commentTextbox.Text = Settings.Default.commentText;
-            embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize; embeddedArtSize = embeddedArtSizeSelect.Text;
-            savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize; savedArtSize = savedArtSizeSelect.Text;
+            embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize;
+            savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
+        }
 
-            // Move all panels to correct spot
-            downloaderPanel.Location = new Point(179, 0);
-            aboutPanel.Location = new Point(179, 0);
-            settingsPanel.Location = new Point(179, 0);
-            extraSettingsPanel.Location = new Point(179, 0);
-            searchPanel.Location = new Point(179, 0);
+        private void SetDownloadPath()
+        {
+            downloadLocation = Settings.Default.savedFolder;
+            downloadFolderTextbox.Text = !string.IsNullOrEmpty(downloadLocation) ? downloadLocation : "no folder selected";
+            folderBrowser.SelectedPath = downloadLocation;
+            logger.Info("Saved download path: " + folderBrowser.SelectedPath);
+        }
 
-            // Get and display version number.
-            versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        private void InitializePanels()
+        {
+            // Set all panels to specific point
+            var panelPosition = new Point(179, 0);
+            downloaderPanel.Location = panelPosition;
+            aboutPanel.Location = panelPosition;
+            settingsPanel.Location = panelPosition;
+            extraSettingsPanel.Location = panelPosition;
+            searchPanel.Location = panelPosition;
 
             // Startup with downloadPanel active and visable, all others not visable
             downloaderPanel.Visible = true;
             aboutPanel.Visible = false;
             settingsPanel.Visible = false;
             downloadPanelActive = true;
-            downloaderButton.BackColor = Color.FromArgb(18, 18, 18);
+            downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
+        }
+        private void InitializeTheme()
+        {
+            // Populate theme options in settings
+            _themeManager.PopulateThemeOptions(this);
 
-            logger.Info("User diplay name: " + user_display_name);
-            logger.Info("User ID: " + user_id);
-            try { logger.Info("User e-amil: " + QoUser.UserInfo.Email); } catch (Exception ex) { logger.Error("Failed to get user e-mail, Error below:\r\n" + ex.ToString()); }
-            try { logger.Info("User country: " + QoUser.UserInfo.Country); } catch (Exception ex) { logger.Error("Failed to get user country, Error below:\r\n" + ex.ToString()); }
-            try { logger.Info("User subscription: " + QoUser.UserInfo.Credential.label); } catch (Exception ex) { logger.Error("Failed to get user subscription, Error below:\r\n" + ex.ToString()); }
-            try { logger.Info("User subscription end date: " + QoUser.UserInfo.Subscription.EndDate); } catch (Exception ex) { logger.Error("Failed to get user subscription end date, Error below:\r\n" + ex.ToString()); }
+            // Set and load theme
+            themeName = Settings.Default.currentTheme;
+            if (!string.IsNullOrEmpty(themeName)) { themeComboBox.SelectedItem = themeName; }
+            theme = _themeManager._currentTheme;
+        }
 
+        private void qbdlxForm_Load(object sender, EventArgs e)
+        {
+            logger.Debug("QBDLX form loaded!");
+
+            // Round corners of form
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+            // Load settings / download location / theme / panels
+            SetDownloadPath();
+            LoadSavedTemplates();
+            LoadQualitySettings();
+            LoadTaggingSettings();
+            InitializeTheme();
+            InitializePanels();
+
+            // Get and display version number.
+            versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            
             // Set display_name to welcomeLabel
             welcomeLabel.Text = welcomeLabel.Text.Replace("{username}", user_display_name);
-            string endDate = "";
 
-            if (QoUser?.UserInfo?.Subscription?.EndDate != null)
-            {
-                endDate = QoUser.UserInfo.Subscription.EndDate;
-            }
-            else
-            {
-                logger.Warning("No subscription end date found, usually means the account is a family account!");
-                endDate = "N/A - Family account";
-            }
-            // Set user info in about panel
-            try
-            {
-                userInfoTextbox.Text = userInfoTextbox.Text
-                .Replace("{user_id}", user_id)
-                .Replace("{user_email}", QoUser.UserInfo.Email)
-                .Replace("{user_country}", QoUser.UserInfo.Country)
-                .Replace("{user_subscription}", QoUser.UserInfo.Credential.label.ToString())
-                .Replace("{user_subscription_expiration}", endDate);
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Failed to get user info for about section, continuing, error below:\r\n" + ex);
-            }
-
-
+            // Get user account + subscription information for about panel
             downloadOutput.Text = "Welcome " + user_display_name + "!";
-            if (QoUser.UserInfo.Credential.label == null)
-            {
-                downloadOutput.AppendText("\r\n\r\nYOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!");
-            }
-            else
-            {
-                downloadOutput.AppendText("\r\n\r\n" + "Download Path" + "\r\n" + folderBrowser.SelectedPath);
-            }
+
+            TextInfo textInfo = CultureInfo.InvariantCulture.TextInfo;
+            var endDate = QoUser?.UserInfo?.Subscription?.EndDate ?? "N/A - Family account";
+            var subscription = !string.IsNullOrEmpty(QoUser?.UserInfo?.Credential?.label?.ToString())
+                ? textInfo.ToTitleCase(QoUser?.UserInfo?.Credential?.label?.ToString().ToLower().Replace("-", " ")).Replace("Hifi", "HiFi")
+                : "N/A - Expired";
+
+            userInfoTextbox.Text = userInfoTextbox.Text
+                .Replace("{user_id}", user_id)
+                .Replace("{user_email}", QoUser?.UserInfo?.Email)
+                .Replace("{user_country}", QoUser?.UserInfo?.Country)
+                .Replace("{user_subscription}", subscription)
+                .Replace("{user_subscription_expiration}", endDate);
+
+
+            downloadOutput.AppendText(QoUser.UserInfo.Credential.label == null
+                ? $"\r\n\r\nYOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!\r\n\r\nDownload Path\r\n{folderBrowser.SelectedPath}"
+                : $"\r\n\r\nDownload Path\r\n{folderBrowser.SelectedPath}");
         }
 
         private void qualitySelectButton_Click(object sender, EventArgs e)
@@ -551,40 +555,44 @@ namespace QobuzDownloaderX
             try { albumPictureBox.ImageLocation = QoPlaylist.Images300[0]; } catch { }
         }
 
+        private void SetPlaceholder(TextBox textBox, string placeholderText, bool isFocused)
+        {
+            if (isFocused)
+            {
+                if (textBox.Text == placeholderText)
+                {
+                    textBox.Text = null;
+                    textBox.ForeColor = ColorTranslator.FromHtml(theme.TextBoxText);
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.ForeColor = ColorTranslator.FromHtml(theme.PlaceholderTextBoxText);
+                    textBox.Text = placeholderText;
+                }
+            }
+        }
+
         private void inputTextbox_Click(object sender, EventArgs e)
         {
-            if (inputTextbox.Text == "Paste a Qobuz URL...")
-            {
-                inputTextbox.Text = null;
-                inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
-            }
+            SetPlaceholder(inputTextbox, "Paste a Qobuz URL...", true);
         }
 
         private void inputTextbox_Leave(object sender, EventArgs e)
         {
-            if (inputTextbox.Text == null | inputTextbox.Text == "")
-            {
-                inputTextbox.ForeColor = Color.FromArgb(60, 60, 60);
-                inputTextbox.Text = "Paste a Qobuz URL...";
-            }
+            SetPlaceholder(inputTextbox, "Paste a Qobuz URL...", false);
         }
 
         private void searchTextbox_Click(object sender, EventArgs e)
         {
-            if (searchTextbox.Text == "Input your search...")
-            {
-                searchTextbox.Text = null;
-                searchTextbox.ForeColor = Color.FromArgb(200, 200, 200);
-            }
+            SetPlaceholder(searchTextbox, "Input your search...", true);
         }
 
         private void searchTextbox_Leave(object sender, EventArgs e)
         {
-            if (searchTextbox.Text == null | searchTextbox.Text == "")
-            {
-                searchTextbox.ForeColor = Color.FromArgb(60, 60, 60);
-                searchTextbox.Text = "Input your search...";
-            }
+            SetPlaceholder(searchTextbox, "Input your search...", false);
         }
 
         private void openFolderButton_Click(object sender, EventArgs e)
@@ -856,6 +864,18 @@ namespace QobuzDownloaderX
             Settings.Default.savedSavedArtSize = savedArtSizeSelect.SelectedIndex;
             Settings.Default.Save();
         }
+
+        private void themeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Save the selected theme name to settings
+            string selectedTheme = themeComboBox.SelectedItem.ToString();
+            Settings.Default.currentTheme = selectedTheme; // Assuming you have this property in settings
+            Settings.Default.Save();
+
+            // Load and apply the selected theme
+            _themeManager.LoadTheme(selectedTheme);
+            _themeManager.ApplyTheme(this);
+        }
         #endregion
 
         #region Navigation Buttons
@@ -883,10 +903,10 @@ namespace QobuzDownloaderX
             aboutPanelActive = true;
 
             // Change button colors
-            downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
-            settingsButton.BackColor = Color.FromArgb(13, 13, 13);
-            searchButton.BackColor = Color.FromArgb(13, 13, 13);
-            aboutButton.BackColor = Color.FromArgb(18, 18, 18);
+            downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            settingsButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            searchButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            aboutButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
@@ -905,10 +925,10 @@ namespace QobuzDownloaderX
             settingsPanelActive = true;
 
             // Change button colors
-            downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
-            aboutButton.BackColor = Color.FromArgb(13, 13, 13);
-            searchButton.BackColor = Color.FromArgb(13, 13, 13);
-            settingsButton.BackColor = Color.FromArgb(18, 18, 18);
+            downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            aboutButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            searchButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            settingsButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
         }
 
         public void downloaderButton_Click(object sender, EventArgs e)
@@ -927,10 +947,10 @@ namespace QobuzDownloaderX
             downloadPanelActive = true;
 
             // Change button colors
-            aboutButton.BackColor = Color.FromArgb(13, 13, 13);
-            settingsButton.BackColor = Color.FromArgb(13, 13, 13);
-            searchButton.BackColor = Color.FromArgb(13, 13, 13);
-            downloaderButton.BackColor = Color.FromArgb(18, 18, 18);
+            aboutButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            settingsButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            searchButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -949,10 +969,10 @@ namespace QobuzDownloaderX
             downloadPanelActive = true;
 
             // Change button colors
-            aboutButton.BackColor = Color.FromArgb(13, 13, 13);
-            settingsButton.BackColor = Color.FromArgb(13, 13, 13);
-            downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
-            searchButton.BackColor = Color.FromArgb(18, 18, 18);
+            aboutButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            settingsButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            searchButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
         }
 
         private void additionalSettingsButton_Click(object sender, EventArgs e)
@@ -971,10 +991,10 @@ namespace QobuzDownloaderX
             settingsPanelActive = true;
 
             // Change button colors
-            aboutButton.BackColor = Color.FromArgb(13, 13, 13);
-            downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
-            searchButton.BackColor = Color.FromArgb(13, 13, 13);
-            settingsButton.BackColor = Color.FromArgb(18, 18, 18);
+            aboutButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            searchButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            settingsButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
         }
 
         private void closeAdditionalButton_Click(object sender, EventArgs e)
@@ -993,10 +1013,10 @@ namespace QobuzDownloaderX
             settingsPanelActive = true;
 
             // Change button colors
-            aboutButton.BackColor = Color.FromArgb(13, 13, 13);
-            downloaderButton.BackColor = Color.FromArgb(13, 13, 13);
-            searchButton.BackColor = Color.FromArgb(13, 13, 13);
-            settingsButton.BackColor = Color.FromArgb(18, 18, 18);
+            aboutButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            searchButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.ButtonBackground);
+            settingsButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
         }
 
         #endregion

@@ -131,6 +131,7 @@
       <DependentUpon>qbdlxForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Theming.cs" />
     <EmbeddedResource Include="Old\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

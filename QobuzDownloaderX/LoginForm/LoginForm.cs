@@ -50,6 +50,7 @@ namespace QobuzDownloaderX
             Application.Exit();
         }
 
+        private readonly Theming _themeManager = new Theming();
         qbdlxForm qbdlx = new qbdlxForm();
         Service QoService = new Service();
         User QoUser;
@@ -106,6 +107,10 @@ namespace QobuzDownloaderX
             // Bring to center of screen.
             CenterToScreen();
 
+            // Set and load theme
+            _themeManager.LoadTheme(Settings.Default.currentTheme);
+            _themeManager.ApplyTheme(this);
+
             if (Properties.Settings.Default.UpgradeRequired)
             {
                 Properties.Settings.Default.Upgrade();
@@ -144,11 +149,11 @@ namespace QobuzDownloaderX
             // Set values for email textbox.
             if (emailTextbox.Text != "e-mail" | emailTextbox.Text != "id")
             {
-                emailTextbox.ForeColor = Color.FromArgb(186, 186, 186);
+                emailTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.TextBoxText);
             }
             if (emailTextbox.Text == null | emailTextbox.Text == "" | emailTextbox.Text == "\r\n")
             {
-                emailTextbox.ForeColor = Color.FromArgb(50, 50, 50);
+                emailTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.PlaceholderTextBoxText);
                 emailTextbox.Text = emailPlaceholder;
             }
 
@@ -156,12 +161,12 @@ namespace QobuzDownloaderX
             if (passwordTextbox.Text != "password" | passwordTextbox.Text != "token")
             {
                 passwordTextbox.PasswordChar = '*';
-                passwordTextbox.ForeColor = Color.FromArgb(186, 186, 186);
+                passwordTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.TextBoxText);
             }
             if (passwordTextbox.Text == null | passwordTextbox.Text == "" | passwordTextbox.Text == "\r\n")
             {
                 passwordTextbox.PasswordChar = '\0';
-                passwordTextbox.ForeColor = Color.FromArgb(50, 50, 50);
+                passwordTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.PlaceholderTextBoxText);
                 passwordTextbox.Text = passwordPlaceholder;
             }
 
@@ -235,7 +240,7 @@ namespace QobuzDownloaderX
             if (emailTextbox.Text == "e-mail" | emailTextbox.Text == "id")
             {
                 emailTextbox.Text = null;
-                emailTextbox.ForeColor = Color.FromArgb(186, 186, 186);
+                emailTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.TextBoxText);
             }
         }
 
@@ -243,7 +248,7 @@ namespace QobuzDownloaderX
         {
             if (emailTextbox.Text == null | emailTextbox.Text == "")
             {
-                emailTextbox.ForeColor = Color.FromArgb(50, 50, 50);
+                emailTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.PlaceholderTextBoxText);
                 if (Settings.Default.savedAltLoginValue == false)
                 {
                     emailTextbox.Text = "e-mail";
@@ -262,7 +267,7 @@ namespace QobuzDownloaderX
                 passwordTextbox.Text = null;
                 passwordTextbox.PasswordChar = '*';
                 passwordTextbox.UseSystemPasswordChar = false;
-                passwordTextbox.ForeColor = Color.FromArgb(186, 186, 186);
+                passwordTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.TextBoxText);
             }
         }
 
@@ -271,7 +276,7 @@ namespace QobuzDownloaderX
             if (passwordTextbox.Text == null | passwordTextbox.Text == "")
             {
                 passwordTextbox.PasswordChar = '\0';
-                passwordTextbox.ForeColor = Color.FromArgb(50, 50, 50);
+                passwordTextbox.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.PlaceholderTextBoxText);
                 if (Settings.Default.savedAltLoginValue == false)
                 {
                     passwordTextbox.Text = "password";
@@ -574,16 +579,16 @@ namespace QobuzDownloaderX
         private void aboutButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Opening about panel");
-            aboutPanel.Location = new Point(12, 82);
-            aboutPanel.Enabled = true;
-            aboutPanel.Visible = true;
+            loginAboutPanel.Location = new Point(12, 82);
+            loginAboutPanel.Enabled = true;
+            loginAboutPanel.Visible = true;
         }
 
         private void closeAboutButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Hiding about panel");
-            aboutPanel.Enabled = false;
-            aboutPanel.Visible = false;
+            loginAboutPanel.Enabled = false;
+            loginAboutPanel.Visible = false;
         }
 
         private void customSaveButton_Click(object sender, EventArgs e)
@@ -598,22 +603,22 @@ namespace QobuzDownloaderX
 
         private void altLoginLabel_MouseEnter(object sender, EventArgs e)
         {
-            altLoginLabel.ForeColor = Color.FromArgb(140, 140, 140);
+            altLoginLabel.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.PlaceholderTextBoxText);
         }
 
         private void altLoginLabel_MouseLeave(object sender, EventArgs e)
         {
-            altLoginLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            altLoginLabel.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.LabelText);
         }
 
         private void cusotmLabel_MouseEnter(object sender, EventArgs e)
         {
-            customLabel.ForeColor = Color.FromArgb(140, 140, 140);
+            customLabel.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.PlaceholderTextBoxText);
         }
 
         private void cusotmLabel_MouseLeave(object sender, EventArgs e)
         {
-            customLabel.ForeColor = Color.FromArgb(100, 100, 100);
+            customLabel.ForeColor = ColorTranslator.FromHtml(_themeManager._currentTheme.LabelText);
         }
 
         private void updateButton_Click(object sender, EventArgs e)

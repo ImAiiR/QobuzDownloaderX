@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(qbdlxForm));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.navigationPanel = new System.Windows.Forms.Panel();
             this.searchButton = new System.Windows.Forms.Button();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.settingsButton = new System.Windows.Forms.Button();
@@ -38,7 +38,7 @@
             this.downloaderButton = new System.Windows.Forms.Button();
             this.logoPanel = new System.Windows.Forms.Panel();
             this.versionNumber = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.downloaderPanel = new System.Windows.Forms.Panel();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
@@ -82,9 +82,11 @@
             this.aboutLabel = new System.Windows.Forms.Label();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.extraSettingsPanel = new System.Windows.Forms.Panel();
+            this.themeLabel = new System.Windows.Forms.Label();
+            this.themeComboBox = new System.Windows.Forms.ComboBox();
+            this.themeSectionLabel = new System.Windows.Forms.Label();
             this.commentCheckbox = new System.Windows.Forms.CheckBox();
             this.commentTextbox = new System.Windows.Forms.TextBox();
-            this.commentLabel = new System.Windows.Forms.Label();
             this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
@@ -133,9 +135,9 @@
             this.searchTextbox = new System.Windows.Forms.TextBox();
             this.searchLabel = new System.Windows.Forms.Label();
             this.searchingLabel = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.downloaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumPictureBox)).BeginInit();
             this.settingsPanel.SuspendLayout();
@@ -146,21 +148,21 @@
             this.searchResultsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // navigationPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.panel1.Controls.Add(this.searchButton);
-            this.panel1.Controls.Add(this.welcomeLabel);
-            this.panel1.Controls.Add(this.settingsButton);
-            this.panel1.Controls.Add(this.logoutButton);
-            this.panel1.Controls.Add(this.aboutButton);
-            this.panel1.Controls.Add(this.downloaderButton);
-            this.panel1.Controls.Add(this.logoPanel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(180, 577);
-            this.panel1.TabIndex = 0;
+            this.navigationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.navigationPanel.Controls.Add(this.searchButton);
+            this.navigationPanel.Controls.Add(this.welcomeLabel);
+            this.navigationPanel.Controls.Add(this.settingsButton);
+            this.navigationPanel.Controls.Add(this.logoutButton);
+            this.navigationPanel.Controls.Add(this.aboutButton);
+            this.navigationPanel.Controls.Add(this.downloaderButton);
+            this.navigationPanel.Controls.Add(this.logoPanel);
+            this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.navigationPanel.Location = new System.Drawing.Point(0, 0);
+            this.navigationPanel.Name = "navigationPanel";
+            this.navigationPanel.Size = new System.Drawing.Size(180, 577);
+            this.navigationPanel.TabIndex = 0;
             // 
             // searchButton
             // 
@@ -271,7 +273,7 @@
             // logoPanel
             // 
             this.logoPanel.Controls.Add(this.versionNumber);
-            this.logoPanel.Controls.Add(this.pictureBox1);
+            this.logoPanel.Controls.Add(this.logoPictureBox);
             this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.logoPanel.Location = new System.Drawing.Point(0, 0);
             this.logoPanel.Name = "logoPanel";
@@ -290,17 +292,17 @@
             this.versionNumber.Text = "#.#.#.#";
             this.versionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox1
+            // logoPictureBox
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.pictureBox1.Image = global::QobuzDownloaderX.Properties.Resources.qbdlx_new;
-            this.pictureBox1.Location = new System.Drawing.Point(9, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(161, 94);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.logoPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.logoPictureBox.Image = global::QobuzDownloaderX.Properties.Resources.qbdlx_new;
+            this.logoPictureBox.Location = new System.Drawing.Point(9, 3);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(161, 94);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPictureBox.TabIndex = 0;
+            this.logoPictureBox.TabStop = false;
+            this.logoPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // downloaderPanel
             // 
@@ -316,7 +318,7 @@
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextbox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(447, 496);
+            this.downloaderPanel.Location = new System.Drawing.Point(476, 477);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 1;
@@ -426,21 +428,20 @@
             this.downloadOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.downloadOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadOutput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadOutput.Location = new System.Drawing.Point(21, 252);
+            this.downloadOutput.Location = new System.Drawing.Point(18, 252);
             this.downloadOutput.Multiline = true;
             this.downloadOutput.Name = "downloadOutput";
             this.downloadOutput.ReadOnly = true;
             this.downloadOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.downloadOutput.Size = new System.Drawing.Size(730, 300);
+            this.downloadOutput.Size = new System.Drawing.Size(733, 300);
             this.downloadOutput.TabIndex = 4;
             this.downloadOutput.Text = "Test String";
             this.downloadOutput.TextChanged += new System.EventHandler(this.downloadOutput_TextChanged);
             // 
             // albumPictureBox
             // 
-            this.albumPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.albumPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("albumPictureBox.Image")));
-            this.albumPictureBox.Location = new System.Drawing.Point(21, 81);
+            this.albumPictureBox.Location = new System.Drawing.Point(18, 83);
             this.albumPictureBox.Name = "albumPictureBox";
             this.albumPictureBox.Size = new System.Drawing.Size(160, 160);
             this.albumPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -501,7 +502,7 @@
             this.settingsPanel.Controls.Add(this.selectFolderButton);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(204, 52);
+            this.settingsPanel.Location = new System.Drawing.Point(543, 439);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 1;
@@ -823,7 +824,7 @@
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.exitButton.Location = new System.Drawing.Point(912, 0);
+            this.exitButton.Location = new System.Drawing.Point(914, 0);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(37, 30);
             this.exitButton.TabIndex = 1;
@@ -841,7 +842,7 @@
             this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizeButton.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimizeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.minimizeButton.Location = new System.Drawing.Point(878, 0);
+            this.minimizeButton.Location = new System.Drawing.Point(880, 0);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(37, 30);
             this.minimizeButton.TabIndex = 1;
@@ -855,7 +856,7 @@
             this.aboutPanel.Controls.Add(this.userInfoTextbox);
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(356, 526);
+            this.aboutPanel.Location = new System.Drawing.Point(394, 525);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
             this.aboutPanel.TabIndex = 1;
@@ -875,9 +876,11 @@
             // 
             // extraSettingsPanel
             // 
+            this.extraSettingsPanel.Controls.Add(this.themeLabel);
+            this.extraSettingsPanel.Controls.Add(this.themeComboBox);
+            this.extraSettingsPanel.Controls.Add(this.themeSectionLabel);
             this.extraSettingsPanel.Controls.Add(this.commentCheckbox);
             this.extraSettingsPanel.Controls.Add(this.commentTextbox);
-            this.extraSettingsPanel.Controls.Add(this.commentLabel);
             this.extraSettingsPanel.Controls.Add(this.downloadSpeedCheckbox);
             this.extraSettingsPanel.Controls.Add(this.fixMD5sCheckbox);
             this.extraSettingsPanel.Controls.Add(this.streamableCheckbox);
@@ -908,18 +911,49 @@
             this.extraSettingsPanel.Controls.Add(this.albumArtistCheckbox);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(627, 411);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(626, 391);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 3;
             this.extraSettingsPanel.Visible = false;
+            // 
+            // themeLabel
+            // 
+            this.themeLabel.AutoSize = true;
+            this.themeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.themeLabel.Location = new System.Drawing.Point(281, 453);
+            this.themeLabel.Name = "themeLabel";
+            this.themeLabel.Size = new System.Drawing.Size(82, 13);
+            this.themeLabel.TabIndex = 35;
+            this.themeLabel.Text = "Current Theme";
+            // 
+            // themeComboBox
+            // 
+            this.themeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.themeComboBox.FormattingEnabled = true;
+            this.themeComboBox.Location = new System.Drawing.Point(369, 450);
+            this.themeComboBox.Name = "themeComboBox";
+            this.themeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.themeComboBox.TabIndex = 34;
+            this.themeComboBox.SelectedIndexChanged += new System.EventHandler(this.themeComboBox_SelectedIndexChanged);
+            // 
+            // themeSectionLabel
+            // 
+            this.themeSectionLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.themeSectionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.themeSectionLabel.Location = new System.Drawing.Point(0, 412);
+            this.themeSectionLabel.Name = "themeSectionLabel";
+            this.themeSectionLabel.Size = new System.Drawing.Size(771, 25);
+            this.themeSectionLabel.TabIndex = 33;
+            this.themeSectionLabel.Text = "THEMING OPTIONS";
+            this.themeSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // commentCheckbox
             // 
             this.commentCheckbox.AutoSize = true;
             this.commentCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.commentCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.commentCheckbox.Location = new System.Drawing.Point(327, 157);
+            this.commentCheckbox.Location = new System.Drawing.Point(186, 157);
             this.commentCheckbox.Name = "commentCheckbox";
             this.commentCheckbox.Size = new System.Drawing.Size(117, 17);
             this.commentCheckbox.TabIndex = 32;
@@ -933,7 +967,7 @@
             this.commentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.commentTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.commentTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.commentTextbox.Location = new System.Drawing.Point(288, 185);
+            this.commentTextbox.Location = new System.Drawing.Point(309, 155);
             this.commentTextbox.Multiline = true;
             this.commentTextbox.Name = "commentTextbox";
             this.commentTextbox.Size = new System.Drawing.Size(276, 21);
@@ -941,23 +975,12 @@
             this.commentTextbox.WordWrap = false;
             this.commentTextbox.TextChanged += new System.EventHandler(this.commentTextbox_TextChanged);
             // 
-            // commentLabel
-            // 
-            this.commentLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.commentLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.commentLabel.Location = new System.Drawing.Point(40, 182);
-            this.commentLabel.Name = "commentLabel";
-            this.commentLabel.Size = new System.Drawing.Size(242, 25);
-            this.commentLabel.TabIndex = 30;
-            this.commentLabel.Text = "CUSTOM COMMENT";
-            this.commentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // downloadSpeedCheckbox
             // 
             this.downloadSpeedCheckbox.AutoSize = true;
             this.downloadSpeedCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadSpeedCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(314, 400);
+            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(314, 372);
             this.downloadSpeedCheckbox.Name = "downloadSpeedCheckbox";
             this.downloadSpeedCheckbox.Size = new System.Drawing.Size(142, 17);
             this.downloadSpeedCheckbox.TabIndex = 29;
@@ -972,7 +995,7 @@
             this.fixMD5sCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fixMD5sCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fixMD5sCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.fixMD5sCheckbox.Location = new System.Drawing.Point(230, 372);
+            this.fixMD5sCheckbox.Location = new System.Drawing.Point(230, 344);
             this.fixMD5sCheckbox.Name = "fixMD5sCheckbox";
             this.fixMD5sCheckbox.Size = new System.Drawing.Size(311, 17);
             this.fixMD5sCheckbox.TabIndex = 28;
@@ -987,7 +1010,7 @@
             this.streamableCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.streamableCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.streamableCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.streamableCheckbox.Location = new System.Drawing.Point(327, 344);
+            this.streamableCheckbox.Location = new System.Drawing.Point(327, 316);
             this.streamableCheckbox.Name = "streamableCheckbox";
             this.streamableCheckbox.Size = new System.Drawing.Size(117, 17);
             this.streamableCheckbox.TabIndex = 27;
@@ -999,7 +1022,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label5.Location = new System.Drawing.Point(0, 302);
+            this.label5.Location = new System.Drawing.Point(0, 274);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(771, 25);
             this.label5.TabIndex = 26;
@@ -1027,7 +1050,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label4.Location = new System.Drawing.Point(282, 256);
+            this.label4.Location = new System.Drawing.Point(270, 228);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 13);
             this.label4.TabIndex = 24;
@@ -1045,7 +1068,7 @@
             "150",
             "100",
             "50"});
-            this.savedArtSizeSelect.Location = new System.Drawing.Point(392, 253);
+            this.savedArtSizeSelect.Location = new System.Drawing.Point(380, 225);
             this.savedArtSizeSelect.Name = "savedArtSizeSelect";
             this.savedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
             this.savedArtSizeSelect.TabIndex = 23;
@@ -1066,7 +1089,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label2.Location = new System.Drawing.Point(257, 224);
+            this.label2.Location = new System.Drawing.Point(257, 196);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 13);
             this.label2.TabIndex = 21;
@@ -1084,7 +1107,7 @@
             "150",
             "100",
             "50"});
-            this.embeddedArtSizeSelect.Location = new System.Drawing.Point(392, 221);
+            this.embeddedArtSizeSelect.Location = new System.Drawing.Point(392, 193);
             this.embeddedArtSizeSelect.Name = "embeddedArtSizeSelect";
             this.embeddedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
             this.embeddedArtSizeSelect.TabIndex = 20;
@@ -1382,7 +1405,7 @@
             this.qualitySelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.qualitySelectButton.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qualitySelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.qualitySelectButton.Location = new System.Drawing.Point(747, -1);
+            this.qualitySelectButton.Location = new System.Drawing.Point(749, -1);
             this.qualitySelectButton.Name = "qualitySelectButton";
             this.qualitySelectButton.Size = new System.Drawing.Size(132, 31);
             this.qualitySelectButton.TabIndex = 4;
@@ -1402,7 +1425,7 @@
             this.qualitySelectPanel.Controls.Add(this.flacLowLabel2);
             this.qualitySelectPanel.Controls.Add(this.flacMidLabel2);
             this.qualitySelectPanel.Controls.Add(this.flacHighLabel2);
-            this.qualitySelectPanel.Location = new System.Drawing.Point(728, 30);
+            this.qualitySelectPanel.Location = new System.Drawing.Point(730, 30);
             this.qualitySelectPanel.Name = "qualitySelectPanel";
             this.qualitySelectPanel.Size = new System.Drawing.Size(168, 87);
             this.qualitySelectPanel.TabIndex = 5;
@@ -1513,7 +1536,7 @@
             this.movingLabel.AutoSize = true;
             this.movingLabel.BackColor = System.Drawing.Color.Transparent;
             this.movingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.movingLabel.Location = new System.Drawing.Point(179, 1);
+            this.movingLabel.Location = new System.Drawing.Point(181, 1);
             this.movingLabel.Name = "movingLabel";
             this.movingLabel.Size = new System.Drawing.Size(565, 13);
             this.movingLabel.TabIndex = 6;
@@ -1530,7 +1553,7 @@
             this.searchPanel.Controls.Add(this.searchLabel);
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(703, 362);
+            this.searchPanel.Location = new System.Drawing.Point(688, 353);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 29;
@@ -1648,7 +1671,7 @@
             this.Controls.Add(this.qualitySelectButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.aboutPanel);
             this.Controls.Add(this.settingsPanel);
@@ -1660,9 +1683,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "qbdlxForm";
             this.Load += new System.EventHandler(this.qbdlxForm_Load);
-            this.panel1.ResumeLayout(false);
+            this.navigationPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.downloaderPanel.ResumeLayout(false);
             this.downloaderPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumPictureBox)).EndInit();
@@ -1684,9 +1707,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel navigationPanel;
         private System.Windows.Forms.Panel logoPanel;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.Button downloaderButton;
         private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.Button aboutButton;
@@ -1787,6 +1810,8 @@
         public System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.CheckBox commentCheckbox;
         private System.Windows.Forms.TextBox commentTextbox;
-        private System.Windows.Forms.Label commentLabel;
+        private System.Windows.Forms.Label themeSectionLabel;
+        private System.Windows.Forms.Label themeLabel;
+        public System.Windows.Forms.ComboBox themeComboBox;
     }
 }
