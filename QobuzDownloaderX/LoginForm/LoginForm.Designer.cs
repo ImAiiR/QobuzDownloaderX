@@ -138,7 +138,7 @@
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(268, 48);
             this.loginButton.TabIndex = 34;
-            this.loginButton.Text = "LOG IN";
+            this.loginButton.Text = "LOGIN";
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
@@ -202,23 +202,18 @@
             // 
             // customLabel
             // 
-            this.customLabel.AutoSize = true;
             this.customLabel.BackColor = System.Drawing.Color.Transparent;
             this.customLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.customLabel.Location = new System.Drawing.Point(65, 333);
+            this.customLabel.Location = new System.Drawing.Point(12, 333);
             this.customLabel.Name = "customLabel";
-            this.customLabel.Size = new System.Drawing.Size(162, 13);
+            this.customLabel.Size = new System.Drawing.Size(268, 13);
             this.customLabel.TabIndex = 36;
             this.customLabel.Text = "USE CUSTOM APP ID + SECRET";
             this.customLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.customLabel.Click += new System.EventHandler(this.cusotmLabel_Click);
             this.customLabel.MouseEnter += new System.EventHandler(this.cusotmLabel_MouseEnter);
             this.customLabel.MouseLeave += new System.EventHandler(this.cusotmLabel_MouseLeave);
-            // 
-            // resetBackground
-            // 
-            this.resetBackground.DoWork += new System.ComponentModel.DoWorkEventHandler(this.resetBackground_DoWork);
             // 
             // exitButton
             // 
@@ -240,13 +235,12 @@
             // 
             // altLoginLabel
             // 
-            this.altLoginLabel.AutoSize = true;
             this.altLoginLabel.BackColor = System.Drawing.Color.Transparent;
             this.altLoginLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.altLoginLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.altLoginLabel.Location = new System.Drawing.Point(93, 306);
+            this.altLoginLabel.Location = new System.Drawing.Point(15, 306);
             this.altLoginLabel.Name = "altLoginLabel";
-            this.altLoginLabel.Size = new System.Drawing.Size(107, 13);
+            this.altLoginLabel.Size = new System.Drawing.Size(265, 13);
             this.altLoginLabel.TabIndex = 39;
             this.altLoginLabel.Text = "LOGIN WITH TOKEN";
             this.altLoginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -327,7 +321,7 @@
             this.customPanel.Controls.Add(this.appSecretTextbox);
             this.customPanel.Controls.Add(this.appidTextbox);
             this.customPanel.Enabled = false;
-            this.customPanel.Location = new System.Drawing.Point(189, 82);
+            this.customPanel.Location = new System.Drawing.Point(189, 100);
             this.customPanel.Name = "customPanel";
             this.customPanel.Size = new System.Drawing.Size(268, 170);
             this.customPanel.TabIndex = 43;

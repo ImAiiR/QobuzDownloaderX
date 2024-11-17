@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using QobuzDownloaderX;
 using QopenAPI;
-using System.Net;
 using System.IO;
-using System.Diagnostics;
 using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.Download;
 
@@ -26,7 +19,6 @@ namespace QobuzDownloaderX
 
         public string downloadPath { get; set; }
         public string filePath { get; set; }
-        public string fileName { get; set; }
 
         PaddingNumbers padNumber = new PaddingNumbers();
         DownloadFile downloadFile = new DownloadFile();
@@ -34,218 +26,140 @@ namespace QobuzDownloaderX
         GetInfo getInfo = new GetInfo();
         FixMD5 fixMD5 = new FixMD5();
 
-        public void clearOutputText()
+        public void clearOutputText() => getInfo.outputText = null;
+
+        private bool VerifyStreamable(Item QoItem, int paddedTrackLength)
         {
-            getInfo.outputText = null;
+            if (QoItem.Streamable || !Settings.Default.streamableCheck) return true;
+
+            getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputTrNotStream.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n");
+            return false;
         }
 
-        public async Task downloadIndividualTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
+        private bool CheckForExistingFile(string filePath, int paddedTrackLength, Item QoItem)
         {
-            getInfo.outputText = null;
-
-            try
+            if (File.Exists(filePath))
             {
-                paddedTrackLength = padNumber.padTracks(QoAlbum);
-                paddedDiscLength = padNumber.padDiscs(QoAlbum);
-
-                try
-                {
-                    // Get track info with auth
-                    QoItem = QoService.TrackGetWithAuth(app_id, album_id, user_auth_token);
-
-                    if (QoItem.Streamable == false)
-                    {
-                        if (Settings.Default.streamableCheck == true)
-                        {
-                            getInfo.updateDownloadOutput("Track " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " is not available for streaming. Skipping.\r\n");
-
-                            // Say the downloading is finished as no downloads happened.
-                            getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
-                            return;
-                        }
-                        else { }
-                    }
-
-                    downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
-
-                    string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, null);
-                    
-                    if (trackTemplateConverted.Contains(@"\"))
-                    {
-                        downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
-                        trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
-                        Console.WriteLine(downloadPath);
-                    }
-
-                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
-
-                    if (QoAlbum.MediaCount > 1)
-                    {
-                        filePath = downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddedDiscLength, '0') + Path.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
-                    }
-                    else
-                    {
-                        filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
-                    }
-                    
-
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        getInfo.updateDownloadOutput("File for track " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " already exists, skipping.\r\n");
-                        System.Threading.Thread.Sleep(100);
-
-                        // Say the downloading is finished as no downloads happened.
-                        getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
-                        return;
-                    }
-
-                    // Get stream URL
-                    Console.WriteLine("Getting Stream Link");
-                    QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
-                    string streamURL = QoStream.StreamURL;
-
-                    // Send file to DownloadFile.cs to download from stream URL.
-                    if (QoItem.Version == null)
-                    {
-                        getInfo.updateDownloadOutput("Downloading - " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title + "...");
-                    }
-                    else
-                    {
-                        getInfo.updateDownloadOutput("Downloading - " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")" + "...");
-                    }
-                    await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
-
-                    // Say DONE when finished downloading.
-                    getInfo.updateDownloadOutput(" DONE" + "\r\n");
-
-                    // Delete image used for embedded artwork
-                    if (System.IO.File.Exists(downloadFile.artworkPath))
-                    {
-                        System.IO.File.Delete(downloadFile.artworkPath);
-                    }
-                }
-                catch (Exception downloadAlbumEx)
-                {
-                    getInfo.updateDownloadOutput("\r\n\r\n" + downloadAlbumEx + "\r\n\r\n");
-                    Console.WriteLine(downloadAlbumEx);
-                    return;
-                }
-
-                // Say the downloading is finished when it's completed.
-                getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
-
+                getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputFileExists.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n");
+                return true;
             }
-            catch (Exception downloadAlbumEx)
+            return false;
+        }
+
+        private void CleanupArtwork(string downloadPath)
+        {
+            string artworkPath = downloadFile.artworkPath;
+            if (File.Exists(artworkPath))
             {
-                Console.WriteLine(downloadAlbumEx);
-                return;
+                File.Delete(artworkPath);
             }
         }
 
-        public async Task downloadTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem)
+        private void CreatePadding(Album QoAlbum, Playlist QoPlaylist)
         {
-            try
-            {
-                paddedTrackLength = padNumber.padTracks(QoAlbum);
-                paddedDiscLength = padNumber.padDiscs(QoAlbum);
-                
-                if (QoItem.Streamable == false)
-                {
-                    if (Settings.Default.streamableCheck == true)
-                    {
-                        getInfo.updateDownloadOutput("Track " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " is not available for streaming. Skipping.\r\n");
-                        return;
-                    }
-                    else { }
-                }
-
-                try
-                {
-                    downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
-
-                    string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, null);
-
-                    if (trackTemplateConverted.Contains(@"\"))
-                    {
-                        downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
-                        trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
-                        Console.WriteLine(downloadPath);
-                    }
-
-                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
-
-                    if (QoAlbum.MediaCount > 1)
-                    {
-                        filePath = downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddedDiscLength, '0') + Path.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
-                    }
-                    else
-                    {
-                        filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
-                    }
-
-
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        getInfo.updateDownloadOutput("File for track " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " already exists, skipping.\r\n");
-                        System.Threading.Thread.Sleep(100);
-                        return;
-                    }
-
-                    // Get stream URL
-                    Console.WriteLine("Getting Stream Link");
-                    QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
-                    string streamURL = QoStream.StreamURL;
-
-                    // Send file to DownloadFile.cs to download from stream URL.
-                    if (QoItem.Version == null)
-                    {
-                        getInfo.updateDownloadOutput("Downloading - " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title + "...");
-                    }
-                    else
-                    {
-                        getInfo.updateDownloadOutput("Downloading - " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")" + "...");
-                    }
-                    await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
-
-                    // Say DONE when finished downloading.
-                    getInfo.updateDownloadOutput(" DONE" + "\r\n");
-                }
-                catch (Exception downloadAlbumEx)
-                {
-                    getInfo.updateDownloadOutput("\r\n\r\n" + downloadAlbumEx + "\r\n\r\n");
-                    Console.WriteLine(downloadAlbumEx);
-                    return;
-                }
-
-            }
-            catch (Exception downloadAlbumEx)
-            {
-                Console.WriteLine(downloadAlbumEx);
-                return;
-            }
-        }
-
-        public async Task downloadPlaylistTrack(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
-        {
-            try
+            if (QoPlaylist != null)
             {
                 paddedTrackLength = padNumber.padPlaylistTracks(QoPlaylist);
                 paddedDiscLength = 2;
+            }
+            else
+            {
+                paddedTrackLength = padNumber.padTracks(QoAlbum);
+                paddedDiscLength = padNumber.padDiscs(QoAlbum);
+            }
+        }
 
-                if (QoItem.Streamable == false)
-                {
-                    if (Settings.Default.streamableCheck == true)
-                    {
-                        getInfo.updateDownloadOutput("Track " + QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0') + " is not available for streaming. Skipping.\r\n");
-                        return;
-                    }
-                    else { }
-                }
+        private async Task DownloadAndSaveTrack(string app_id, string format_id, string user_auth_token, string app_secret, Album QoAlbum, Item QoItem, Playlist QoPlaylist, string downloadPath, string filePath, string audio_format, int paddedTrackLength)
+        {
+            var QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
+            string streamURL = QoStream.StreamURL;
+
+            // Display download status (depending on track number or playlist position number)
+            var trackName = QoItem.Version == null ? QoItem.Title : $"{QoItem.Title.Trim()} ({QoItem.Version})";
+            if (QoPlaylist == null) { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0')} {trackName}..."); }
+            else { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.Position.ToString().PadLeft(paddedTrackLength, '0')} {trackName}..."); }
+
+            // Download stream
+            await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
+            getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
+        }
+
+        public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem)
+        {
+            // Empty output on main form if individual track download
+            if (downloadType == "track") { getInfo.outputText = null; }
+            
+            try
+            {
+                // Create padding for tracks and possible multi-volume releases
+                CreatePadding(QoAlbum, null);
 
                 try
                 {
-                    downloadPath = await downloadFile.createPath(downloadLocation, null, null, trackTemplate, playlistTemplate, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, QoPlaylist);
+                    // Get track info with auth if not there already
+                    if (QoItem == null) { QoItem = QoService.TrackGetWithAuth(app_id, album_id, user_auth_token); }
 
+                    // Verify Streamable
+                    if (!VerifyStreamable(QoItem, paddedTrackLength)) return;
+
+                    // Setting up download and file path
+                    downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
+                    string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, null);
+
+                    if (trackTemplateConverted.Contains(@"\"))
+                    {
+                        downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
+                        trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
+                        Console.WriteLine(downloadPath);
+                    }
+
+                    // Create subfolders for multi-volume releases
+                    if (QoAlbum.MediaCount > 1)
+                    {
+                        filePath = downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddedDiscLength, '0') + Path.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
+                    }
+                    else
+                    {
+                        filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
+                    }
+
+                    // Download cover art
+                    try { await downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
+
+                    // Check for Existing File
+                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
+
+                    // Download and Save Track
+                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, null, downloadPath, filePath, audio_format, paddedTrackLength);
+                }
+                catch (Exception downloadAlbumEx)
+                {
+                    getInfo.updateDownloadOutput("\r\n\r\n" + downloadAlbumEx + "\r\n\r\n");
+                    Console.WriteLine(downloadAlbumEx);
+                    return;
+                }
+            }
+            catch (Exception downloadAlbumEx)
+            {
+                Console.WriteLine(downloadAlbumEx);
+                return;
+            }
+        }
+
+        public async Task DownloadPlaylistTrackAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
+        {
+            try
+            {
+                // Create padding for tracks
+                CreatePadding(null, QoPlaylist);
+
+                // Verify Streamable
+                if (!VerifyStreamable(QoItem, paddedTrackLength)) return;
+
+                try
+                {
+                    // Setting up download and file path
+                    downloadPath = await downloadFile.createPath(downloadLocation, null, null, trackTemplate, playlistTemplate, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, QoPlaylist);
                     string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, QoPlaylist);
 
                     if (trackTemplateConverted.Contains(@"\")) 
@@ -257,40 +171,17 @@ namespace QobuzDownloaderX
 
                     filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
 
+                    // Check for Existing File
+                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
 
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        getInfo.updateDownloadOutput("File for track " + QoItem.Position.ToString().PadLeft(paddedTrackLength, '0') + " already exists, skipping.\r\n");
-                        System.Threading.Thread.Sleep(100);
-                        return;
-                    }
+                    // Download cover art
+                    try { await downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { Console.WriteLine("Failed to Download Cover Art"); }
 
-                    try { downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { Console.WriteLine("Failed to Download Cover Art"); }
-
-                    // Get stream URL
-                    Console.WriteLine("Getting Stream Link");
-                    QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
-                    string streamURL = QoStream.StreamURL;
-
-                    // Send file to DownloadFile.cs to download from stream URL.
-                    if (QoItem.Version == null)
-                    {
-                        getInfo.updateDownloadOutput("Downloading - " + QoItem.Position.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title + "...");
-                    }
-                    else
-                    {
-                        getInfo.updateDownloadOutput("Downloading - " + QoItem.Position.ToString().PadLeft(paddedTrackLength, '0') + " " + QoItem.Title.TrimEnd() + " (" + QoItem.Version + ")" + "...");
-                    }
-                    await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
-
-                    // Say DONE when finished downloading.
-                    getInfo.updateDownloadOutput(" DONE" + "\r\n");
+                    // Download and Save Track
+                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength);
 
                     // Delete image used for embedded artwork
-                    if (System.IO.File.Exists(downloadFile.artworkPath))
-                    {
-                        System.IO.File.Delete(downloadFile.artworkPath);
-                    }
+                    CleanupArtwork(downloadPath);
                 }
                 catch (Exception downloadAlbumEx)
                 {

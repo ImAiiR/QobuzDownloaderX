@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using QobuzDownloaderX;
 using QopenAPI;
 
 namespace QobuzDownloaderX
@@ -11,7 +6,6 @@ namespace QobuzDownloaderX
     class PaddingNumbers
     {
         public Album QoAlbum = new Album();
-
 
         public int padTracks(Album QoAlbum)
         {

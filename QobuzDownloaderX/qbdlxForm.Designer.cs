@@ -42,12 +42,9 @@
             this.downloaderPanel = new System.Windows.Forms.Panel();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
-            this.dateSlotLabel = new System.Windows.Forms.Label();
-            this.albumSlotLabel = new System.Windows.Forms.Label();
-            this.dateLabel = new System.Windows.Forms.Label();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.albumLabel = new System.Windows.Forms.Label();
             this.artistLabel = new System.Windows.Forms.Label();
-            this.artistSlotLabel = new System.Windows.Forms.Label();
             this.downloadOutput = new System.Windows.Forms.TextBox();
             this.albumPictureBox = new System.Windows.Forms.PictureBox();
             this.inputTextbox = new System.Windows.Forms.TextBox();
@@ -82,6 +79,28 @@
             this.aboutLabel = new System.Windows.Forms.Label();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.extraSettingsPanel = new System.Windows.Forms.Panel();
+            this.commentLabel = new System.Windows.Forms.Label();
+            this.taggingOptionsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.albumArtistCheckbox = new System.Windows.Forms.CheckBox();
+            this.albumTitleCheckbox = new System.Windows.Forms.CheckBox();
+            this.trackArtistCheckbox = new System.Windows.Forms.CheckBox();
+            this.trackTitleCheckbox = new System.Windows.Forms.CheckBox();
+            this.releaseDateCheckbox = new System.Windows.Forms.CheckBox();
+            this.releaseTypeCheckbox = new System.Windows.Forms.CheckBox();
+            this.genreCheckbox = new System.Windows.Forms.CheckBox();
+            this.trackNumberCheckbox = new System.Windows.Forms.CheckBox();
+            this.trackTotalCheckbox = new System.Windows.Forms.CheckBox();
+            this.discNumberCheckbox = new System.Windows.Forms.CheckBox();
+            this.discTotalCheckbox = new System.Windows.Forms.CheckBox();
+            this.composerCheckbox = new System.Windows.Forms.CheckBox();
+            this.explicitCheckbox = new System.Windows.Forms.CheckBox();
+            this.coverArtCheckbox = new System.Windows.Forms.CheckBox();
+            this.copyrightCheckbox = new System.Windows.Forms.CheckBox();
+            this.labelCheckbox = new System.Windows.Forms.CheckBox();
+            this.upcCheckbox = new System.Windows.Forms.CheckBox();
+            this.isrcCheckbox = new System.Windows.Forms.CheckBox();
+            this.languageLabel = new System.Windows.Forms.Label();
+            this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.themeLabel = new System.Windows.Forms.Label();
             this.themeComboBox = new System.Windows.Forms.ComboBox();
             this.themeSectionLabel = new System.Windows.Forms.Label();
@@ -90,31 +109,13 @@
             this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.advancedOptionsLabel = new System.Windows.Forms.Label();
             this.closeAdditionalButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.savedArtLabel = new System.Windows.Forms.Label();
             this.savedArtSizeSelect = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.taggingOptionsLabel = new System.Windows.Forms.Label();
+            this.embeddedArtLabel = new System.Windows.Forms.Label();
             this.embeddedArtSizeSelect = new System.Windows.Forms.ComboBox();
-            this.explicitCheckbox = new System.Windows.Forms.CheckBox();
-            this.coverArtCheckbox = new System.Windows.Forms.CheckBox();
-            this.discTotalCheckbox = new System.Windows.Forms.CheckBox();
-            this.discNumberCheckbox = new System.Windows.Forms.CheckBox();
-            this.trackNumberCheckbox = new System.Windows.Forms.CheckBox();
-            this.trackTotalCheckbox = new System.Windows.Forms.CheckBox();
-            this.isrcCheckbox = new System.Windows.Forms.CheckBox();
-            this.upcCheckbox = new System.Windows.Forms.CheckBox();
-            this.labelCheckbox = new System.Windows.Forms.CheckBox();
-            this.copyrightCheckbox = new System.Windows.Forms.CheckBox();
-            this.composerCheckbox = new System.Windows.Forms.CheckBox();
-            this.genreCheckbox = new System.Windows.Forms.CheckBox();
-            this.releaseDateCheckbox = new System.Windows.Forms.CheckBox();
-            this.releaseTypeCheckbox = new System.Windows.Forms.CheckBox();
-            this.trackArtistCheckbox = new System.Windows.Forms.CheckBox();
-            this.trackTitleCheckbox = new System.Windows.Forms.CheckBox();
-            this.albumTitleCheckbox = new System.Windows.Forms.CheckBox();
-            this.albumArtistCheckbox = new System.Windows.Forms.CheckBox();
             this.extraSettingsLabel = new System.Windows.Forms.Label();
             this.qualitySelectButton = new System.Windows.Forms.Button();
             this.qualitySelectPanel = new System.Windows.Forms.Panel();
@@ -143,6 +144,7 @@
             this.settingsPanel.SuspendLayout();
             this.aboutPanel.SuspendLayout();
             this.extraSettingsPanel.SuspendLayout();
+            this.taggingOptionsPanel.SuspendLayout();
             this.qualitySelectPanel.SuspendLayout();
             this.searchPanel.SuspendLayout();
             this.searchResultsPanel.SuspendLayout();
@@ -285,9 +287,9 @@
             // 
             this.versionNumber.BackColor = System.Drawing.Color.Transparent;
             this.versionNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.versionNumber.Location = new System.Drawing.Point(92, 79);
+            this.versionNumber.Location = new System.Drawing.Point(119, 79);
             this.versionNumber.Name = "versionNumber";
-            this.versionNumber.Size = new System.Drawing.Size(85, 18);
+            this.versionNumber.Size = new System.Drawing.Size(58, 18);
             this.versionNumber.TabIndex = 32;
             this.versionNumber.Text = "#.#.#.#";
             this.versionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -308,17 +310,14 @@
             // 
             this.downloaderPanel.Controls.Add(this.progressLabel);
             this.downloaderPanel.Controls.Add(this.downloadButton);
-            this.downloaderPanel.Controls.Add(this.dateSlotLabel);
-            this.downloaderPanel.Controls.Add(this.albumSlotLabel);
-            this.downloaderPanel.Controls.Add(this.dateLabel);
+            this.downloaderPanel.Controls.Add(this.infoLabel);
             this.downloaderPanel.Controls.Add(this.albumLabel);
             this.downloaderPanel.Controls.Add(this.artistLabel);
-            this.downloaderPanel.Controls.Add(this.artistSlotLabel);
             this.downloaderPanel.Controls.Add(this.downloadOutput);
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextbox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(476, 477);
+            this.downloaderPanel.Location = new System.Drawing.Point(520, 493);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 1;
@@ -328,7 +327,7 @@
             this.progressLabel.AutoSize = true;
             this.progressLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.progressLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.progressLabel.Location = new System.Drawing.Point(17, 553);
+            this.progressLabel.Location = new System.Drawing.Point(14, 553);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.progressLabel.Size = new System.Drawing.Size(130, 19);
@@ -352,74 +351,41 @@
             this.downloadButton.UseVisualStyleBackColor = false;
             this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
-            // dateSlotLabel
+            // infoLabel
             // 
-            this.dateSlotLabel.AutoSize = true;
-            this.dateSlotLabel.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateSlotLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.dateSlotLabel.Location = new System.Drawing.Point(217, 193);
-            this.dateSlotLabel.Name = "dateSlotLabel";
-            this.dateSlotLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateSlotLabel.Size = new System.Drawing.Size(71, 30);
-            this.dateSlotLabel.TabIndex = 5;
-            this.dateSlotLabel.Text = "Date -";
-            // 
-            // albumSlotLabel
-            // 
-            this.albumSlotLabel.AutoSize = true;
-            this.albumSlotLabel.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumSlotLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.albumSlotLabel.Location = new System.Drawing.Point(200, 148);
-            this.albumSlotLabel.Name = "albumSlotLabel";
-            this.albumSlotLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.albumSlotLabel.Size = new System.Drawing.Size(88, 30);
-            this.albumSlotLabel.TabIndex = 5;
-            this.albumSlotLabel.Text = "Album -";
-            // 
-            // dateLabel
-            // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.dateLabel.Location = new System.Drawing.Point(289, 193);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateLabel.Size = new System.Drawing.Size(0, 30);
-            this.dateLabel.TabIndex = 5;
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.infoLabel.Location = new System.Drawing.Point(186, 222);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.infoLabel.Size = new System.Drawing.Size(261, 21);
+            this.infoLabel.TabIndex = 5;
+            this.infoLabel.Text = "Released xxxx-xx-xx • xx Tracks • UPC";
             // 
             // albumLabel
             // 
             this.albumLabel.AutoSize = true;
-            this.albumLabel.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.albumLabel.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.albumLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.albumLabel.Location = new System.Drawing.Point(289, 148);
+            this.albumLabel.Location = new System.Drawing.Point(184, 169);
             this.albumLabel.Name = "albumLabel";
             this.albumLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.albumLabel.Size = new System.Drawing.Size(0, 30);
+            this.albumLabel.Size = new System.Drawing.Size(305, 32);
             this.albumLabel.TabIndex = 5;
+            this.albumLabel.Text = "Placeholder Album Name";
             // 
             // artistLabel
             // 
             this.artistLabel.AutoSize = true;
-            this.artistLabel.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.artistLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.artistLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.artistLabel.Location = new System.Drawing.Point(289, 103);
+            this.artistLabel.Location = new System.Drawing.Point(186, 201);
             this.artistLabel.Name = "artistLabel";
             this.artistLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.artistLabel.Size = new System.Drawing.Size(0, 30);
+            this.artistLabel.Size = new System.Drawing.Size(175, 21);
             this.artistLabel.TabIndex = 5;
-            // 
-            // artistSlotLabel
-            // 
-            this.artistSlotLabel.AutoSize = true;
-            this.artistSlotLabel.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.artistSlotLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.artistSlotLabel.Location = new System.Drawing.Point(211, 103);
-            this.artistSlotLabel.Name = "artistSlotLabel";
-            this.artistSlotLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.artistSlotLabel.Size = new System.Drawing.Size(77, 30);
-            this.artistSlotLabel.TabIndex = 5;
-            this.artistSlotLabel.Text = "Artist -";
+            this.artistLabel.Text = "Placeholder Artist Name";
             // 
             // downloadOutput
             // 
@@ -473,10 +439,10 @@
             this.downloadLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadLabel.Location = new System.Drawing.Point(13, 10);
             this.downloadLabel.Name = "downloadLabel";
-            this.downloadLabel.Size = new System.Drawing.Size(579, 25);
+            this.downloadLabel.Size = new System.Drawing.Size(639, 25);
             this.downloadLabel.TabIndex = 0;
             this.downloadLabel.Text = "DOWNLOADER                                                                       " +
-    "                 ";
+    "                             ";
             this.downloadLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.downloadLabel_MouseMove);
             // 
             // settingsPanel
@@ -502,7 +468,7 @@
             this.settingsPanel.Controls.Add(this.selectFolderButton);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(543, 439);
+            this.settingsPanel.Location = new System.Drawing.Point(574, 452);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 1;
@@ -856,7 +822,7 @@
             this.aboutPanel.Controls.Add(this.userInfoTextbox);
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(394, 525);
+            this.aboutPanel.Location = new System.Drawing.Point(787, 339);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
             this.aboutPanel.TabIndex = 1;
@@ -876,6 +842,10 @@
             // 
             // extraSettingsPanel
             // 
+            this.extraSettingsPanel.Controls.Add(this.commentLabel);
+            this.extraSettingsPanel.Controls.Add(this.taggingOptionsPanel);
+            this.extraSettingsPanel.Controls.Add(this.languageLabel);
+            this.extraSettingsPanel.Controls.Add(this.languageComboBox);
             this.extraSettingsPanel.Controls.Add(this.themeLabel);
             this.extraSettingsPanel.Controls.Add(this.themeComboBox);
             this.extraSettingsPanel.Controls.Add(this.themeSectionLabel);
@@ -884,48 +854,356 @@
             this.extraSettingsPanel.Controls.Add(this.downloadSpeedCheckbox);
             this.extraSettingsPanel.Controls.Add(this.fixMD5sCheckbox);
             this.extraSettingsPanel.Controls.Add(this.streamableCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.label5);
+            this.extraSettingsPanel.Controls.Add(this.advancedOptionsLabel);
             this.extraSettingsPanel.Controls.Add(this.closeAdditionalButton);
-            this.extraSettingsPanel.Controls.Add(this.label4);
+            this.extraSettingsPanel.Controls.Add(this.savedArtLabel);
             this.extraSettingsPanel.Controls.Add(this.savedArtSizeSelect);
-            this.extraSettingsPanel.Controls.Add(this.label3);
-            this.extraSettingsPanel.Controls.Add(this.label2);
+            this.extraSettingsPanel.Controls.Add(this.taggingOptionsLabel);
+            this.extraSettingsPanel.Controls.Add(this.embeddedArtLabel);
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
-            this.extraSettingsPanel.Controls.Add(this.explicitCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.coverArtCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.discTotalCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.discNumberCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.trackNumberCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.trackTotalCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.isrcCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.upcCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.labelCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.copyrightCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.composerCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.genreCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.releaseDateCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.releaseTypeCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.trackArtistCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.trackTitleCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.albumTitleCheckbox);
-            this.extraSettingsPanel.Controls.Add(this.albumArtistCheckbox);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(626, 391);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(213, 30);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 3;
             this.extraSettingsPanel.Visible = false;
             // 
+            // commentLabel
+            // 
+            this.commentLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.commentLabel.Location = new System.Drawing.Point(24, 164);
+            this.commentLabel.Name = "commentLabel";
+            this.commentLabel.Size = new System.Drawing.Size(722, 16);
+            this.commentLabel.TabIndex = 39;
+            this.commentLabel.Text = "Custom Comment";
+            this.commentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // taggingOptionsPanel
+            // 
+            this.taggingOptionsPanel.Controls.Add(this.albumArtistCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.albumTitleCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.trackArtistCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.trackTitleCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.releaseDateCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.releaseTypeCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.genreCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.trackNumberCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.trackTotalCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.discNumberCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.discTotalCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.composerCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.explicitCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.coverArtCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.copyrightCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.labelCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.upcCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.isrcCheckbox);
+            this.taggingOptionsPanel.Location = new System.Drawing.Point(79, 63);
+            this.taggingOptionsPanel.Name = "taggingOptionsPanel";
+            this.taggingOptionsPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.taggingOptionsPanel.Size = new System.Drawing.Size(647, 98);
+            this.taggingOptionsPanel.TabIndex = 38;
+            // 
+            // albumArtistCheckbox
+            // 
+            this.albumArtistCheckbox.AutoSize = true;
+            this.albumArtistCheckbox.Checked = true;
+            this.albumArtistCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.albumArtistCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.albumArtistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.albumArtistCheckbox.Location = new System.Drawing.Point(3, 3);
+            this.albumArtistCheckbox.Name = "albumArtistCheckbox";
+            this.albumArtistCheckbox.Size = new System.Drawing.Size(89, 17);
+            this.albumArtistCheckbox.TabIndex = 2;
+            this.albumArtistCheckbox.Text = "Album Artist";
+            this.albumArtistCheckbox.UseVisualStyleBackColor = true;
+            this.albumArtistCheckbox.CheckedChanged += new System.EventHandler(this.albumArtistCheckbox_CheckedChanged);
+            // 
+            // albumTitleCheckbox
+            // 
+            this.albumTitleCheckbox.AutoSize = true;
+            this.albumTitleCheckbox.Checked = true;
+            this.albumTitleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.albumTitleCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.albumTitleCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.albumTitleCheckbox.Location = new System.Drawing.Point(98, 3);
+            this.albumTitleCheckbox.Name = "albumTitleCheckbox";
+            this.albumTitleCheckbox.Size = new System.Drawing.Size(83, 17);
+            this.albumTitleCheckbox.TabIndex = 3;
+            this.albumTitleCheckbox.Text = "Album Title";
+            this.albumTitleCheckbox.UseVisualStyleBackColor = true;
+            this.albumTitleCheckbox.CheckedChanged += new System.EventHandler(this.albumTitleCheckbox_CheckedChanged);
+            // 
+            // trackArtistCheckbox
+            // 
+            this.trackArtistCheckbox.AutoSize = true;
+            this.trackArtistCheckbox.Checked = true;
+            this.trackArtistCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.trackArtistCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackArtistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.trackArtistCheckbox.Location = new System.Drawing.Point(187, 3);
+            this.trackArtistCheckbox.Name = "trackArtistCheckbox";
+            this.trackArtistCheckbox.Size = new System.Drawing.Size(81, 17);
+            this.trackArtistCheckbox.TabIndex = 5;
+            this.trackArtistCheckbox.Text = "Track Artist";
+            this.trackArtistCheckbox.UseVisualStyleBackColor = true;
+            this.trackArtistCheckbox.CheckedChanged += new System.EventHandler(this.trackArtistCheckbox_CheckedChanged);
+            // 
+            // trackTitleCheckbox
+            // 
+            this.trackTitleCheckbox.AutoSize = true;
+            this.trackTitleCheckbox.Checked = true;
+            this.trackTitleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.trackTitleCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackTitleCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.trackTitleCheckbox.Location = new System.Drawing.Point(274, 3);
+            this.trackTitleCheckbox.Name = "trackTitleCheckbox";
+            this.trackTitleCheckbox.Size = new System.Drawing.Size(75, 17);
+            this.trackTitleCheckbox.TabIndex = 4;
+            this.trackTitleCheckbox.Text = "Track Title";
+            this.trackTitleCheckbox.UseVisualStyleBackColor = true;
+            this.trackTitleCheckbox.CheckedChanged += new System.EventHandler(this.trackTitleCheckbox_CheckedChanged);
+            // 
+            // releaseDateCheckbox
+            // 
+            this.releaseDateCheckbox.AutoSize = true;
+            this.releaseDateCheckbox.Checked = true;
+            this.releaseDateCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.releaseDateCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.releaseDateCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.releaseDateCheckbox.Location = new System.Drawing.Point(355, 3);
+            this.releaseDateCheckbox.Name = "releaseDateCheckbox";
+            this.releaseDateCheckbox.Size = new System.Drawing.Size(92, 17);
+            this.releaseDateCheckbox.TabIndex = 7;
+            this.releaseDateCheckbox.Text = "Release Date";
+            this.releaseDateCheckbox.UseVisualStyleBackColor = true;
+            this.releaseDateCheckbox.CheckedChanged += new System.EventHandler(this.releaseDateCheckbox_CheckedChanged);
+            // 
+            // releaseTypeCheckbox
+            // 
+            this.releaseTypeCheckbox.AutoSize = true;
+            this.releaseTypeCheckbox.Checked = true;
+            this.releaseTypeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.releaseTypeCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.releaseTypeCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.releaseTypeCheckbox.Location = new System.Drawing.Point(453, 3);
+            this.releaseTypeCheckbox.Name = "releaseTypeCheckbox";
+            this.releaseTypeCheckbox.Size = new System.Drawing.Size(90, 17);
+            this.releaseTypeCheckbox.TabIndex = 6;
+            this.releaseTypeCheckbox.Text = "Release Type";
+            this.releaseTypeCheckbox.UseVisualStyleBackColor = true;
+            this.releaseTypeCheckbox.CheckedChanged += new System.EventHandler(this.releaseTypeCheckbox_CheckedChanged);
+            // 
+            // genreCheckbox
+            // 
+            this.genreCheckbox.AutoSize = true;
+            this.genreCheckbox.Checked = true;
+            this.genreCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.genreCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.genreCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.genreCheckbox.Location = new System.Drawing.Point(549, 3);
+            this.genreCheckbox.Name = "genreCheckbox";
+            this.genreCheckbox.Size = new System.Drawing.Size(57, 17);
+            this.genreCheckbox.TabIndex = 8;
+            this.genreCheckbox.Text = "Genre";
+            this.genreCheckbox.UseVisualStyleBackColor = true;
+            this.genreCheckbox.CheckedChanged += new System.EventHandler(this.genreCheckbox_CheckedChanged);
+            // 
+            // trackNumberCheckbox
+            // 
+            this.trackNumberCheckbox.AutoSize = true;
+            this.trackNumberCheckbox.Checked = true;
+            this.trackNumberCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.trackNumberCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackNumberCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.trackNumberCheckbox.Location = new System.Drawing.Point(3, 26);
+            this.trackNumberCheckbox.Name = "trackNumberCheckbox";
+            this.trackNumberCheckbox.Size = new System.Drawing.Size(95, 17);
+            this.trackNumberCheckbox.TabIndex = 15;
+            this.trackNumberCheckbox.Text = "Track Number";
+            this.trackNumberCheckbox.UseVisualStyleBackColor = true;
+            this.trackNumberCheckbox.CheckedChanged += new System.EventHandler(this.trackNumberCheckbox_CheckedChanged);
+            // 
+            // trackTotalCheckbox
+            // 
+            this.trackTotalCheckbox.AutoSize = true;
+            this.trackTotalCheckbox.Checked = true;
+            this.trackTotalCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.trackTotalCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackTotalCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.trackTotalCheckbox.Location = new System.Drawing.Point(104, 26);
+            this.trackTotalCheckbox.Name = "trackTotalCheckbox";
+            this.trackTotalCheckbox.Size = new System.Drawing.Size(83, 17);
+            this.trackTotalCheckbox.TabIndex = 14;
+            this.trackTotalCheckbox.Text = "Total Tracks";
+            this.trackTotalCheckbox.UseVisualStyleBackColor = true;
+            this.trackTotalCheckbox.CheckedChanged += new System.EventHandler(this.trackTotalCheckbox_CheckedChanged);
+            // 
+            // discNumberCheckbox
+            // 
+            this.discNumberCheckbox.AutoSize = true;
+            this.discNumberCheckbox.Checked = true;
+            this.discNumberCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.discNumberCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discNumberCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.discNumberCheckbox.Location = new System.Drawing.Point(193, 26);
+            this.discNumberCheckbox.Name = "discNumberCheckbox";
+            this.discNumberCheckbox.Size = new System.Drawing.Size(91, 17);
+            this.discNumberCheckbox.TabIndex = 16;
+            this.discNumberCheckbox.Text = "Disc Number";
+            this.discNumberCheckbox.UseVisualStyleBackColor = true;
+            this.discNumberCheckbox.CheckedChanged += new System.EventHandler(this.discNumberCheckbox_CheckedChanged);
+            // 
+            // discTotalCheckbox
+            // 
+            this.discTotalCheckbox.AutoSize = true;
+            this.discTotalCheckbox.Checked = true;
+            this.discTotalCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.discTotalCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discTotalCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.discTotalCheckbox.Location = new System.Drawing.Point(290, 26);
+            this.discTotalCheckbox.Name = "discTotalCheckbox";
+            this.discTotalCheckbox.Size = new System.Drawing.Size(79, 17);
+            this.discTotalCheckbox.TabIndex = 17;
+            this.discTotalCheckbox.Text = "Total Discs";
+            this.discTotalCheckbox.UseVisualStyleBackColor = true;
+            this.discTotalCheckbox.CheckedChanged += new System.EventHandler(this.discTotalCheckbox_CheckedChanged);
+            // 
+            // composerCheckbox
+            // 
+            this.composerCheckbox.AutoSize = true;
+            this.composerCheckbox.Checked = true;
+            this.composerCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.composerCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.composerCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.composerCheckbox.Location = new System.Drawing.Point(375, 26);
+            this.composerCheckbox.Name = "composerCheckbox";
+            this.composerCheckbox.Size = new System.Drawing.Size(78, 17);
+            this.composerCheckbox.TabIndex = 9;
+            this.composerCheckbox.Text = "Composer";
+            this.composerCheckbox.UseVisualStyleBackColor = true;
+            this.composerCheckbox.CheckedChanged += new System.EventHandler(this.composerCheckbox_CheckedChanged);
+            // 
+            // explicitCheckbox
+            // 
+            this.explicitCheckbox.AutoSize = true;
+            this.explicitCheckbox.Checked = true;
+            this.explicitCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.explicitCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.explicitCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.explicitCheckbox.Location = new System.Drawing.Point(459, 26);
+            this.explicitCheckbox.Name = "explicitCheckbox";
+            this.explicitCheckbox.Size = new System.Drawing.Size(108, 17);
+            this.explicitCheckbox.TabIndex = 19;
+            this.explicitCheckbox.Text = "Explicit Advisory";
+            this.explicitCheckbox.UseVisualStyleBackColor = true;
+            this.explicitCheckbox.CheckedChanged += new System.EventHandler(this.explicitCheckbox_CheckedChanged);
+            // 
+            // coverArtCheckbox
+            // 
+            this.coverArtCheckbox.AutoSize = true;
+            this.coverArtCheckbox.Checked = true;
+            this.coverArtCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.coverArtCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coverArtCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.coverArtCheckbox.Location = new System.Drawing.Point(3, 49);
+            this.coverArtCheckbox.Name = "coverArtCheckbox";
+            this.coverArtCheckbox.Size = new System.Drawing.Size(73, 17);
+            this.coverArtCheckbox.TabIndex = 18;
+            this.coverArtCheckbox.Text = "Cover Art";
+            this.coverArtCheckbox.UseVisualStyleBackColor = true;
+            this.coverArtCheckbox.CheckedChanged += new System.EventHandler(this.coverArtCheckbox_CheckedChanged);
+            // 
+            // copyrightCheckbox
+            // 
+            this.copyrightCheckbox.AutoSize = true;
+            this.copyrightCheckbox.Checked = true;
+            this.copyrightCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.copyrightCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.copyrightCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.copyrightCheckbox.Location = new System.Drawing.Point(82, 49);
+            this.copyrightCheckbox.Name = "copyrightCheckbox";
+            this.copyrightCheckbox.Size = new System.Drawing.Size(77, 17);
+            this.copyrightCheckbox.TabIndex = 10;
+            this.copyrightCheckbox.Text = "Copyright";
+            this.copyrightCheckbox.UseVisualStyleBackColor = true;
+            this.copyrightCheckbox.CheckedChanged += new System.EventHandler(this.copyrightCheckbox_CheckedChanged);
+            // 
+            // labelCheckbox
+            // 
+            this.labelCheckbox.AutoSize = true;
+            this.labelCheckbox.Checked = true;
+            this.labelCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.labelCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.labelCheckbox.Location = new System.Drawing.Point(165, 49);
+            this.labelCheckbox.Name = "labelCheckbox";
+            this.labelCheckbox.Size = new System.Drawing.Size(53, 17);
+            this.labelCheckbox.TabIndex = 11;
+            this.labelCheckbox.Text = "Label";
+            this.labelCheckbox.UseVisualStyleBackColor = true;
+            this.labelCheckbox.CheckedChanged += new System.EventHandler(this.labelCheckbox_CheckedChanged);
+            // 
+            // upcCheckbox
+            // 
+            this.upcCheckbox.AutoSize = true;
+            this.upcCheckbox.Checked = true;
+            this.upcCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.upcCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upcCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.upcCheckbox.Location = new System.Drawing.Point(224, 49);
+            this.upcCheckbox.Name = "upcCheckbox";
+            this.upcCheckbox.Size = new System.Drawing.Size(99, 17);
+            this.upcCheckbox.TabIndex = 12;
+            this.upcCheckbox.Text = "UPC / Barcode";
+            this.upcCheckbox.UseVisualStyleBackColor = true;
+            this.upcCheckbox.CheckedChanged += new System.EventHandler(this.upcCheckbox_CheckedChanged);
+            // 
+            // isrcCheckbox
+            // 
+            this.isrcCheckbox.AutoSize = true;
+            this.isrcCheckbox.Checked = true;
+            this.isrcCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.isrcCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isrcCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.isrcCheckbox.Location = new System.Drawing.Point(329, 49);
+            this.isrcCheckbox.Name = "isrcCheckbox";
+            this.isrcCheckbox.Size = new System.Drawing.Size(49, 17);
+            this.isrcCheckbox.TabIndex = 13;
+            this.isrcCheckbox.Text = "ISRC";
+            this.isrcCheckbox.UseVisualStyleBackColor = true;
+            this.isrcCheckbox.CheckedChanged += new System.EventHandler(this.isrcCheckbox_CheckedChanged);
+            // 
+            // languageLabel
+            // 
+            this.languageLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.languageLabel.Location = new System.Drawing.Point(18, 490);
+            this.languageLabel.Name = "languageLabel";
+            this.languageLabel.Size = new System.Drawing.Size(345, 13);
+            this.languageLabel.TabIndex = 37;
+            this.languageLabel.Text = "Current Language";
+            this.languageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // languageComboBox
+            // 
+            this.languageComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.languageComboBox.FormattingEnabled = true;
+            this.languageComboBox.Location = new System.Drawing.Point(369, 487);
+            this.languageComboBox.Name = "languageComboBox";
+            this.languageComboBox.Size = new System.Drawing.Size(121, 21);
+            this.languageComboBox.TabIndex = 36;
+            this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.languageComboBox_SelectedIndexChanged);
+            // 
             // themeLabel
             // 
-            this.themeLabel.AutoSize = true;
             this.themeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.themeLabel.Location = new System.Drawing.Point(281, 453);
+            this.themeLabel.Location = new System.Drawing.Point(18, 453);
             this.themeLabel.Name = "themeLabel";
-            this.themeLabel.Size = new System.Drawing.Size(82, 13);
+            this.themeLabel.Size = new System.Drawing.Size(345, 13);
             this.themeLabel.TabIndex = 35;
             this.themeLabel.Text = "Current Theme";
+            this.themeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // themeComboBox
             // 
@@ -951,13 +1229,14 @@
             // commentCheckbox
             // 
             this.commentCheckbox.AutoSize = true;
+            this.commentCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.commentCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.commentCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.commentCheckbox.Location = new System.Drawing.Point(186, 157);
+            this.commentCheckbox.Location = new System.Drawing.Point(237, 183);
             this.commentCheckbox.Name = "commentCheckbox";
-            this.commentCheckbox.Size = new System.Drawing.Size(117, 17);
+            this.commentCheckbox.Size = new System.Drawing.Size(15, 14);
             this.commentCheckbox.TabIndex = 32;
-            this.commentCheckbox.Text = "Custom Comment";
+            this.commentCheckbox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.commentCheckbox.UseVisualStyleBackColor = true;
             this.commentCheckbox.CheckedChanged += new System.EventHandler(this.commentCheckbox_CheckedChanged);
             // 
@@ -967,7 +1246,7 @@
             this.commentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.commentTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.commentTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.commentTextbox.Location = new System.Drawing.Point(309, 155);
+            this.commentTextbox.Location = new System.Drawing.Point(258, 180);
             this.commentTextbox.Multiline = true;
             this.commentTextbox.Name = "commentTextbox";
             this.commentTextbox.Size = new System.Drawing.Size(276, 21);
@@ -980,7 +1259,7 @@
             this.downloadSpeedCheckbox.AutoSize = true;
             this.downloadSpeedCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadSpeedCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(314, 372);
+            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(314, 382);
             this.downloadSpeedCheckbox.Name = "downloadSpeedCheckbox";
             this.downloadSpeedCheckbox.Size = new System.Drawing.Size(142, 17);
             this.downloadSpeedCheckbox.TabIndex = 29;
@@ -995,7 +1274,7 @@
             this.fixMD5sCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fixMD5sCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fixMD5sCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.fixMD5sCheckbox.Location = new System.Drawing.Point(230, 344);
+            this.fixMD5sCheckbox.Location = new System.Drawing.Point(230, 354);
             this.fixMD5sCheckbox.Name = "fixMD5sCheckbox";
             this.fixMD5sCheckbox.Size = new System.Drawing.Size(311, 17);
             this.fixMD5sCheckbox.TabIndex = 28;
@@ -1010,7 +1289,7 @@
             this.streamableCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.streamableCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.streamableCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.streamableCheckbox.Location = new System.Drawing.Point(327, 316);
+            this.streamableCheckbox.Location = new System.Drawing.Point(327, 326);
             this.streamableCheckbox.Name = "streamableCheckbox";
             this.streamableCheckbox.Size = new System.Drawing.Size(117, 17);
             this.streamableCheckbox.TabIndex = 27;
@@ -1018,16 +1297,16 @@
             this.streamableCheckbox.UseVisualStyleBackColor = true;
             this.streamableCheckbox.CheckedChanged += new System.EventHandler(this.streamableCheckbox_CheckedChanged);
             // 
-            // label5
+            // advancedOptionsLabel
             // 
-            this.label5.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label5.Location = new System.Drawing.Point(0, 274);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(771, 25);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "ADVANCED OPTIONS";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.advancedOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.advancedOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.advancedOptionsLabel.Location = new System.Drawing.Point(0, 284);
+            this.advancedOptionsLabel.Name = "advancedOptionsLabel";
+            this.advancedOptionsLabel.Size = new System.Drawing.Size(771, 25);
+            this.advancedOptionsLabel.TabIndex = 26;
+            this.advancedOptionsLabel.Text = "ADVANCED OPTIONS";
+            this.advancedOptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // closeAdditionalButton
             // 
@@ -1046,15 +1325,15 @@
             this.closeAdditionalButton.UseVisualStyleBackColor = false;
             this.closeAdditionalButton.Click += new System.EventHandler(this.closeAdditionalButton_Click);
             // 
-            // label4
+            // savedArtLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label4.Location = new System.Drawing.Point(270, 228);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Saved Artwork Size";
+            this.savedArtLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.savedArtLabel.Location = new System.Drawing.Point(18, 253);
+            this.savedArtLabel.Name = "savedArtLabel";
+            this.savedArtLabel.Size = new System.Drawing.Size(356, 13);
+            this.savedArtLabel.TabIndex = 24;
+            this.savedArtLabel.Text = "Saved Artwork Size";
+            this.savedArtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // savedArtSizeSelect
             // 
@@ -1068,32 +1347,32 @@
             "150",
             "100",
             "50"});
-            this.savedArtSizeSelect.Location = new System.Drawing.Point(380, 225);
+            this.savedArtSizeSelect.Location = new System.Drawing.Point(380, 250);
             this.savedArtSizeSelect.Name = "savedArtSizeSelect";
             this.savedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
             this.savedArtSizeSelect.TabIndex = 23;
             this.savedArtSizeSelect.SelectedIndexChanged += new System.EventHandler(this.savedArtSizeSelect_SelectedIndexChanged);
             // 
-            // label3
+            // taggingOptionsLabel
             // 
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label3.Location = new System.Drawing.Point(0, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(771, 25);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "TAGGING OPTIONS";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.taggingOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.taggingOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.taggingOptionsLabel.Location = new System.Drawing.Point(0, 35);
+            this.taggingOptionsLabel.Name = "taggingOptionsLabel";
+            this.taggingOptionsLabel.Size = new System.Drawing.Size(771, 25);
+            this.taggingOptionsLabel.TabIndex = 22;
+            this.taggingOptionsLabel.Text = "TAGGING OPTIONS";
+            this.taggingOptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // embeddedArtLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.label2.Location = new System.Drawing.Point(257, 196);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 13);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Embedded Artwork Size";
+            this.embeddedArtLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.embeddedArtLabel.Location = new System.Drawing.Point(18, 221);
+            this.embeddedArtLabel.Name = "embeddedArtLabel";
+            this.embeddedArtLabel.Size = new System.Drawing.Size(368, 13);
+            this.embeddedArtLabel.TabIndex = 21;
+            this.embeddedArtLabel.Text = "Embedded Artwork Size";
+            this.embeddedArtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // embeddedArtSizeSelect
             // 
@@ -1107,281 +1386,11 @@
             "150",
             "100",
             "50"});
-            this.embeddedArtSizeSelect.Location = new System.Drawing.Point(392, 193);
+            this.embeddedArtSizeSelect.Location = new System.Drawing.Point(392, 218);
             this.embeddedArtSizeSelect.Name = "embeddedArtSizeSelect";
             this.embeddedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
             this.embeddedArtSizeSelect.TabIndex = 20;
             this.embeddedArtSizeSelect.SelectedIndexChanged += new System.EventHandler(this.embeddedArtSizeSelect_SelectedIndexChanged);
-            // 
-            // explicitCheckbox
-            // 
-            this.explicitCheckbox.AutoSize = true;
-            this.explicitCheckbox.Checked = true;
-            this.explicitCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.explicitCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.explicitCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.explicitCheckbox.Location = new System.Drawing.Point(520, 101);
-            this.explicitCheckbox.Name = "explicitCheckbox";
-            this.explicitCheckbox.Size = new System.Drawing.Size(108, 17);
-            this.explicitCheckbox.TabIndex = 19;
-            this.explicitCheckbox.Text = "Explicit Advisory";
-            this.explicitCheckbox.UseVisualStyleBackColor = true;
-            this.explicitCheckbox.CheckedChanged += new System.EventHandler(this.explicitCheckbox_CheckedChanged);
-            // 
-            // coverArtCheckbox
-            // 
-            this.coverArtCheckbox.AutoSize = true;
-            this.coverArtCheckbox.Checked = true;
-            this.coverArtCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.coverArtCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.coverArtCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.coverArtCheckbox.Location = new System.Drawing.Point(634, 101);
-            this.coverArtCheckbox.Name = "coverArtCheckbox";
-            this.coverArtCheckbox.Size = new System.Drawing.Size(73, 17);
-            this.coverArtCheckbox.TabIndex = 18;
-            this.coverArtCheckbox.Text = "Cover Art";
-            this.coverArtCheckbox.UseVisualStyleBackColor = true;
-            this.coverArtCheckbox.CheckedChanged += new System.EventHandler(this.coverArtCheckbox_CheckedChanged);
-            // 
-            // discTotalCheckbox
-            // 
-            this.discTotalCheckbox.AutoSize = true;
-            this.discTotalCheckbox.Checked = true;
-            this.discTotalCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.discTotalCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discTotalCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.discTotalCheckbox.Location = new System.Drawing.Point(351, 101);
-            this.discTotalCheckbox.Name = "discTotalCheckbox";
-            this.discTotalCheckbox.Size = new System.Drawing.Size(79, 17);
-            this.discTotalCheckbox.TabIndex = 17;
-            this.discTotalCheckbox.Text = "Total Discs";
-            this.discTotalCheckbox.UseVisualStyleBackColor = true;
-            this.discTotalCheckbox.CheckedChanged += new System.EventHandler(this.discTotalCheckbox_CheckedChanged);
-            // 
-            // discNumberCheckbox
-            // 
-            this.discNumberCheckbox.AutoSize = true;
-            this.discNumberCheckbox.Checked = true;
-            this.discNumberCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.discNumberCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discNumberCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.discNumberCheckbox.Location = new System.Drawing.Point(254, 101);
-            this.discNumberCheckbox.Name = "discNumberCheckbox";
-            this.discNumberCheckbox.Size = new System.Drawing.Size(91, 17);
-            this.discNumberCheckbox.TabIndex = 16;
-            this.discNumberCheckbox.Text = "Disc Number";
-            this.discNumberCheckbox.UseVisualStyleBackColor = true;
-            this.discNumberCheckbox.CheckedChanged += new System.EventHandler(this.discNumberCheckbox_CheckedChanged);
-            // 
-            // trackNumberCheckbox
-            // 
-            this.trackNumberCheckbox.AutoSize = true;
-            this.trackNumberCheckbox.Checked = true;
-            this.trackNumberCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.trackNumberCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trackNumberCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.trackNumberCheckbox.Location = new System.Drawing.Point(64, 101);
-            this.trackNumberCheckbox.Name = "trackNumberCheckbox";
-            this.trackNumberCheckbox.Size = new System.Drawing.Size(95, 17);
-            this.trackNumberCheckbox.TabIndex = 15;
-            this.trackNumberCheckbox.Text = "Track Number";
-            this.trackNumberCheckbox.UseVisualStyleBackColor = true;
-            this.trackNumberCheckbox.CheckedChanged += new System.EventHandler(this.trackNumberCheckbox_CheckedChanged);
-            // 
-            // trackTotalCheckbox
-            // 
-            this.trackTotalCheckbox.AutoSize = true;
-            this.trackTotalCheckbox.Checked = true;
-            this.trackTotalCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.trackTotalCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trackTotalCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.trackTotalCheckbox.Location = new System.Drawing.Point(165, 101);
-            this.trackTotalCheckbox.Name = "trackTotalCheckbox";
-            this.trackTotalCheckbox.Size = new System.Drawing.Size(83, 17);
-            this.trackTotalCheckbox.TabIndex = 14;
-            this.trackTotalCheckbox.Text = "Total Tracks";
-            this.trackTotalCheckbox.UseVisualStyleBackColor = true;
-            this.trackTotalCheckbox.CheckedChanged += new System.EventHandler(this.trackTotalCheckbox_CheckedChanged);
-            // 
-            // isrcCheckbox
-            // 
-            this.isrcCheckbox.AutoSize = true;
-            this.isrcCheckbox.Checked = true;
-            this.isrcCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.isrcCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.isrcCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.isrcCheckbox.Location = new System.Drawing.Point(484, 129);
-            this.isrcCheckbox.Name = "isrcCheckbox";
-            this.isrcCheckbox.Size = new System.Drawing.Size(49, 17);
-            this.isrcCheckbox.TabIndex = 13;
-            this.isrcCheckbox.Text = "ISRC";
-            this.isrcCheckbox.UseVisualStyleBackColor = true;
-            this.isrcCheckbox.CheckedChanged += new System.EventHandler(this.isrcCheckbox_CheckedChanged);
-            // 
-            // upcCheckbox
-            // 
-            this.upcCheckbox.AutoSize = true;
-            this.upcCheckbox.Checked = true;
-            this.upcCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.upcCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.upcCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.upcCheckbox.Location = new System.Drawing.Point(379, 129);
-            this.upcCheckbox.Name = "upcCheckbox";
-            this.upcCheckbox.Size = new System.Drawing.Size(99, 17);
-            this.upcCheckbox.TabIndex = 12;
-            this.upcCheckbox.Text = "UPC / Barcode";
-            this.upcCheckbox.UseVisualStyleBackColor = true;
-            this.upcCheckbox.CheckedChanged += new System.EventHandler(this.upcCheckbox_CheckedChanged);
-            // 
-            // labelCheckbox
-            // 
-            this.labelCheckbox.AutoSize = true;
-            this.labelCheckbox.Checked = true;
-            this.labelCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.labelCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.labelCheckbox.Location = new System.Drawing.Point(320, 129);
-            this.labelCheckbox.Name = "labelCheckbox";
-            this.labelCheckbox.Size = new System.Drawing.Size(53, 17);
-            this.labelCheckbox.TabIndex = 11;
-            this.labelCheckbox.Text = "Label";
-            this.labelCheckbox.UseVisualStyleBackColor = true;
-            this.labelCheckbox.CheckedChanged += new System.EventHandler(this.labelCheckbox_CheckedChanged);
-            // 
-            // copyrightCheckbox
-            // 
-            this.copyrightCheckbox.AutoSize = true;
-            this.copyrightCheckbox.Checked = true;
-            this.copyrightCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.copyrightCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copyrightCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.copyrightCheckbox.Location = new System.Drawing.Point(237, 129);
-            this.copyrightCheckbox.Name = "copyrightCheckbox";
-            this.copyrightCheckbox.Size = new System.Drawing.Size(77, 17);
-            this.copyrightCheckbox.TabIndex = 10;
-            this.copyrightCheckbox.Text = "Copyright";
-            this.copyrightCheckbox.UseVisualStyleBackColor = true;
-            this.copyrightCheckbox.CheckedChanged += new System.EventHandler(this.copyrightCheckbox_CheckedChanged);
-            // 
-            // composerCheckbox
-            // 
-            this.composerCheckbox.AutoSize = true;
-            this.composerCheckbox.Checked = true;
-            this.composerCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.composerCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.composerCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.composerCheckbox.Location = new System.Drawing.Point(436, 101);
-            this.composerCheckbox.Name = "composerCheckbox";
-            this.composerCheckbox.Size = new System.Drawing.Size(78, 17);
-            this.composerCheckbox.TabIndex = 9;
-            this.composerCheckbox.Text = "Composer";
-            this.composerCheckbox.UseVisualStyleBackColor = true;
-            this.composerCheckbox.CheckedChanged += new System.EventHandler(this.composerCheckbox_CheckedChanged);
-            // 
-            // genreCheckbox
-            // 
-            this.genreCheckbox.AutoSize = true;
-            this.genreCheckbox.Checked = true;
-            this.genreCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.genreCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.genreCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.genreCheckbox.Location = new System.Drawing.Point(630, 73);
-            this.genreCheckbox.Name = "genreCheckbox";
-            this.genreCheckbox.Size = new System.Drawing.Size(57, 17);
-            this.genreCheckbox.TabIndex = 8;
-            this.genreCheckbox.Text = "Genre";
-            this.genreCheckbox.UseVisualStyleBackColor = true;
-            this.genreCheckbox.CheckedChanged += new System.EventHandler(this.genreCheckbox_CheckedChanged);
-            // 
-            // releaseDateCheckbox
-            // 
-            this.releaseDateCheckbox.AutoSize = true;
-            this.releaseDateCheckbox.Checked = true;
-            this.releaseDateCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.releaseDateCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.releaseDateCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.releaseDateCheckbox.Location = new System.Drawing.Point(435, 73);
-            this.releaseDateCheckbox.Name = "releaseDateCheckbox";
-            this.releaseDateCheckbox.Size = new System.Drawing.Size(92, 17);
-            this.releaseDateCheckbox.TabIndex = 7;
-            this.releaseDateCheckbox.Text = "Release Date";
-            this.releaseDateCheckbox.UseVisualStyleBackColor = true;
-            this.releaseDateCheckbox.CheckedChanged += new System.EventHandler(this.releaseDateCheckbox_CheckedChanged);
-            // 
-            // releaseTypeCheckbox
-            // 
-            this.releaseTypeCheckbox.AutoSize = true;
-            this.releaseTypeCheckbox.Checked = true;
-            this.releaseTypeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.releaseTypeCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.releaseTypeCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.releaseTypeCheckbox.Location = new System.Drawing.Point(533, 73);
-            this.releaseTypeCheckbox.Name = "releaseTypeCheckbox";
-            this.releaseTypeCheckbox.Size = new System.Drawing.Size(90, 17);
-            this.releaseTypeCheckbox.TabIndex = 6;
-            this.releaseTypeCheckbox.Text = "Release Type";
-            this.releaseTypeCheckbox.UseVisualStyleBackColor = true;
-            this.releaseTypeCheckbox.CheckedChanged += new System.EventHandler(this.releaseTypeCheckbox_CheckedChanged);
-            // 
-            // trackArtistCheckbox
-            // 
-            this.trackArtistCheckbox.AutoSize = true;
-            this.trackArtistCheckbox.Checked = true;
-            this.trackArtistCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.trackArtistCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trackArtistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.trackArtistCheckbox.Location = new System.Drawing.Point(267, 73);
-            this.trackArtistCheckbox.Name = "trackArtistCheckbox";
-            this.trackArtistCheckbox.Size = new System.Drawing.Size(81, 17);
-            this.trackArtistCheckbox.TabIndex = 5;
-            this.trackArtistCheckbox.Text = "Track Artist";
-            this.trackArtistCheckbox.UseVisualStyleBackColor = true;
-            this.trackArtistCheckbox.CheckedChanged += new System.EventHandler(this.trackArtistCheckbox_CheckedChanged);
-            // 
-            // trackTitleCheckbox
-            // 
-            this.trackTitleCheckbox.AutoSize = true;
-            this.trackTitleCheckbox.Checked = true;
-            this.trackTitleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.trackTitleCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trackTitleCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.trackTitleCheckbox.Location = new System.Drawing.Point(354, 73);
-            this.trackTitleCheckbox.Name = "trackTitleCheckbox";
-            this.trackTitleCheckbox.Size = new System.Drawing.Size(75, 17);
-            this.trackTitleCheckbox.TabIndex = 4;
-            this.trackTitleCheckbox.Text = "Track Title";
-            this.trackTitleCheckbox.UseVisualStyleBackColor = true;
-            this.trackTitleCheckbox.CheckedChanged += new System.EventHandler(this.trackTitleCheckbox_CheckedChanged);
-            // 
-            // albumTitleCheckbox
-            // 
-            this.albumTitleCheckbox.AutoSize = true;
-            this.albumTitleCheckbox.Checked = true;
-            this.albumTitleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.albumTitleCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumTitleCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.albumTitleCheckbox.Location = new System.Drawing.Point(178, 73);
-            this.albumTitleCheckbox.Name = "albumTitleCheckbox";
-            this.albumTitleCheckbox.Size = new System.Drawing.Size(83, 17);
-            this.albumTitleCheckbox.TabIndex = 3;
-            this.albumTitleCheckbox.Text = "Album Title";
-            this.albumTitleCheckbox.UseVisualStyleBackColor = true;
-            this.albumTitleCheckbox.CheckedChanged += new System.EventHandler(this.albumTitleCheckbox_CheckedChanged);
-            // 
-            // albumArtistCheckbox
-            // 
-            this.albumArtistCheckbox.AutoSize = true;
-            this.albumArtistCheckbox.Checked = true;
-            this.albumArtistCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.albumArtistCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumArtistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.albumArtistCheckbox.Location = new System.Drawing.Point(83, 73);
-            this.albumArtistCheckbox.Name = "albumArtistCheckbox";
-            this.albumArtistCheckbox.Size = new System.Drawing.Size(89, 17);
-            this.albumArtistCheckbox.TabIndex = 2;
-            this.albumArtistCheckbox.Text = "Album Artist";
-            this.albumArtistCheckbox.UseVisualStyleBackColor = true;
-            this.albumArtistCheckbox.CheckedChanged += new System.EventHandler(this.albumArtistCheckbox_CheckedChanged);
             // 
             // extraSettingsLabel
             // 
@@ -1553,7 +1562,7 @@
             this.searchPanel.Controls.Add(this.searchLabel);
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(688, 353);
+            this.searchPanel.Location = new System.Drawing.Point(730, 375);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 29;
@@ -1673,10 +1682,10 @@
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.downloaderPanel);
-            this.Controls.Add(this.aboutPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.searchPanel);
+            this.Controls.Add(this.aboutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";
@@ -1695,6 +1704,8 @@
             this.aboutPanel.PerformLayout();
             this.extraSettingsPanel.ResumeLayout(false);
             this.extraSettingsPanel.PerformLayout();
+            this.taggingOptionsPanel.ResumeLayout(false);
+            this.taggingOptionsPanel.PerformLayout();
             this.qualitySelectPanel.ResumeLayout(false);
             this.qualitySelectPanel.PerformLayout();
             this.searchPanel.ResumeLayout(false);
@@ -1725,10 +1736,7 @@
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Label welcomeLabel;
         private System.Windows.Forms.PictureBox albumPictureBox;
-        private System.Windows.Forms.Label dateSlotLabel;
-        private System.Windows.Forms.Label albumSlotLabel;
-        private System.Windows.Forms.Label artistSlotLabel;
-        private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.Label albumLabel;
         private System.Windows.Forms.Label artistLabel;
         private System.Windows.Forms.TextBox userInfoTextbox;
@@ -1773,9 +1781,9 @@
         private System.Windows.Forms.CheckBox trackTitleCheckbox;
         private System.Windows.Forms.CheckBox albumTitleCheckbox;
         private System.Windows.Forms.ComboBox embeddedArtSizeSelect;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label taggingOptionsLabel;
+        private System.Windows.Forms.Label embeddedArtLabel;
+        private System.Windows.Forms.Label savedArtLabel;
         private System.Windows.Forms.ComboBox savedArtSizeSelect;
         private System.Windows.Forms.Button closeAdditionalButton;
         private System.Windows.Forms.Button additionalSettingsButton;
@@ -1789,7 +1797,7 @@
         private System.Windows.Forms.Label flacLowLabel2;
         private System.Windows.Forms.Label flacMidLabel2;
         private System.Windows.Forms.Label flacHighLabel2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label advancedOptionsLabel;
         public System.Windows.Forms.CheckBox streamableCheckbox;
         public System.Windows.Forms.TextBox templatesListTextbox;
         private System.Windows.Forms.Label templatesListLabel;
@@ -1813,5 +1821,9 @@
         private System.Windows.Forms.Label themeSectionLabel;
         private System.Windows.Forms.Label themeLabel;
         public System.Windows.Forms.ComboBox themeComboBox;
+        private System.Windows.Forms.Label languageLabel;
+        public System.Windows.Forms.ComboBox languageComboBox;
+        private System.Windows.Forms.FlowLayoutPanel taggingOptionsPanel;
+        private System.Windows.Forms.Label commentLabel;
     }
 }

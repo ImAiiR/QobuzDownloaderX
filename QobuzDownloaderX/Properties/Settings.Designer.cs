@@ -622,5 +622,17 @@ namespace QobuzDownloaderX.Properties {
                 this["currentTheme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EN")]
+        public string currentLanguage {
+            get {
+                return ((string)(this["currentLanguage"]));
+            }
+            set {
+                this["currentLanguage"] = value;
+            }
+        }
     }
 }

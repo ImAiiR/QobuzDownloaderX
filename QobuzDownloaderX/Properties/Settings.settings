@@ -152,5 +152,8 @@
     <Setting Name="currentTheme" Type="System.String" Scope="User">
       <Value Profile="(Default)">Dark</Value>
     </Setting>
+    <Setting Name="currentLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">EN</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

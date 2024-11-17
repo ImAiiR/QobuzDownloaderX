@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using QobuzDownloaderX.Properties;
-using System.Drawing.Imaging;
+using System;
 
 namespace QobuzDownloaderX
 {
@@ -156,10 +156,21 @@ namespace QobuzDownloaderX
 
                     if (_currentTheme.InvertLogo)
                     {
+                        // Use custom image URL or reset to default logo, and then invert
+                        if (_currentTheme.LogoReplaceURL != null)
+                        {
+                            if (pictureBox.Name == "logoPictureBox" || pictureBox.Name == "qbdlxPictureBox") { try { pictureBox.ImageLocation = _currentTheme.LogoReplaceURL; } catch { } }
+                        }
+                        else
+                        {
+                            if (pictureBox.Name == "logoPictureBox" || pictureBox.Name == "qbdlxPictureBox") { pictureBox.Image = Resources.qbdlx_new; }
+                        }
+
                         if (pictureBox.Name == "logoPictureBox" || pictureBox.Name == "qbdlxPictureBox" || pictureBox.Name == "albumPictureBox") { pictureBox.Image = InvertImage(pictureBox.Image); }
                     }
                     else
                     {
+                        // Use custom image URL or reset to default logo, do not invert
                         if (_currentTheme.LogoReplaceURL != null)
                         {
                             if (pictureBox.Name == "logoPictureBox" || pictureBox.Name == "qbdlxPictureBox") { try { pictureBox.ImageLocation = _currentTheme.LogoReplaceURL; } catch { } }
@@ -250,6 +261,169 @@ namespace QobuzDownloaderX
             }
 
             return newImage;
+        }
+    }
+
+    public class LanguageManager
+    {
+        private Dictionary<string, string> languageDictionary;
+        public string languagesDirectory = "languages";
+
+        // Default English translation if no files are avaialble
+        public string defaultLanguage = @"{
+	""TranslationCredit"":			    ""AiiR"",
+	""TranslationUpdatedOn"":			""November 17, 2024, 12:38PM EST"",
+	""_SECTION1_"":					    ""=================== MAIN FORM BUTTONS ==================="",
+	""additionalSettingsButton"":		""Additional Settings"",
+	""aboutButton"": 					""ABOUT"",
+	""closeAdditionalButton"":		    ""Back to Settings"",
+	""downloadButton"":				    ""GET"",
+	""downloaderButton"": 			    ""DOWNLOADER"",
+	""logoutButton"": 				    ""LOGOUT"",
+	""openFolderButton"":				""Open Folder"",
+	""qualitySelectButton"":			""Quality Selector"",
+	""saveTemplatesButton"":			""Save"",
+	""searchButton"": 				    ""SEARCH"",
+	""searchAlbumsButton"":			    ""RELEASES"",
+	""searchTracksButton"":			    ""TRACKS"",
+	""selectFolderButton"":			    ""Select Folder"",
+	""settingsButton"": 				""SETTINGS"",
+	""_SECTION2_"":					    ""=================== MAIN FORM LABELS ==================="",
+	""advancedOptionsLabel"":			""ADVANCED OPTIONS"",
+	""albumTemplateLabel"":			    ""ALBUM TEMPLATE"",
+	""artistTemplateLabel"":			""ARTIST TEMPLATE"",
+	""commentLabel"":					""Custom Comment"",
+	""downloadFolderLabel"":			""DOWNLOAD FOLDER"",
+	""downloadOptionsLabel"":			""DOWNLOAD OPTIONS"",
+	""embeddedArtLabel"":				""Embedded Artwork Size"",
+	""extraSettingsLabel"":			    ""ADDITIONAL SETTINGS"",
+	""languageLabel"":				    ""Current Language"",
+	""playlistTemplateLabel"":		    ""PLAYLIST TEMPLATE"",
+	""savedArtLabel"":				    ""Saved Artwork Size"",
+	""searchingLabel"":				    ""Searching..."",
+	""taggingOptionsLabel"":			""TAGGING OPTIONS"",
+	""templatesLabel"":				    ""TEMPLATES"",
+	""themeLabel"":					    ""Current Theme"",
+	""themeSectionLabel"":			    ""THEMING OPTIONS"",
+	""trackTemplateLabel"":			    ""TRACK TEMPLATE"",
+	""userInfoLabel"": 				    ""USER INFO"",
+	""welcomeLabel"": 				    ""Welcome\r\n{username}"",
+	""_SECTION3_"":					    ""=================== MAIN FORM CHECKBOXES ==================="",
+	""albumArtistCheckbox"":			""Album Artist"",
+	""albumTitleCheckbox"":			    ""Album Title"",
+	""trackArtistCheckbox"":			""Track Artist"",
+	""trackTitleCheckbox"":			    ""Track Title"",
+	""releaseDateCheckbox"":			""Release Date"",
+	""releaseTypeCheckbox"":			""Release Type"",
+	""genreCheckbox"":				    ""Genre"",
+	""trackNumberCheckbox"":			""Track Number"",
+	""trackTotalCheckbox"":			    ""Total Tracks"",
+	""discNumberCheckbox"":			    ""Disc Number"",
+	""discTotalCheckbox"":			    ""Total Discs"",
+	""composerCheckbox"":				""Composer"",
+	""explicitCheckbox"":				""Explicit Advisory"",
+	""coverArtCheckbox"":				""Cover Art"",
+	""copyrightCheckbox"":			    ""Copyright"",
+	""labelCheckbox"":				    ""Label"",
+	""upcCheckbox"":					""UPC / Barcode"",
+	""isrcCheckbox"":					""ISRC"",
+	""streamableCheckbox"":			    ""Streamable Check"",
+	""fixMD5sCheckbox"":				""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
+	""downloadSpeedCheckbox"":		    ""Print Download Speed"",
+	""_SECTION4_"":					    ""=================== MAIN FORM PLACEHOLDERS ==================="",
+	""albumLabelPlaceholder"":		    ""Welcome to QBDLX!"",
+	""artistLabelPlaceholder"":		    ""Input your Qobuz link and hit GET!"",
+	""infoLabelPlaceholder"":			""Released"",
+	""inputTextboxPlaceholder"":		""Paste a Qobuz URL..."",
+	""searchTextboxPlaceholder"":		""Input your search..."",
+	""downloadFolderPlaceholder"":	    ""No folder selected"",
+	""userInfoTextboxPlaceholder"":	    ""User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}"",
+	""downloadOutputWelcome"":		    ""Welcome {user_display_name}!"",
+	""downloadOutputExpired"": 		    ""YOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!"",
+	""downloadOutputPath"": 			""Download Path"",
+	""downloadOutputNoPath"": 		    ""No path has been set! Remember to Choose a Folder!"",
+	""downloadOutputAPIError"": 		""Qobuz API error. Maybe release isn't available in this account region?"",
+	""downloadOutputNotImplemented"":   ""Not implemented yet or the URL is not understood. Is there a typo?"",
+	""downloadOutputCheckLink"": 		""Checking Link..."",
+	""downloadOutputTrNotStream"": 	    ""Track {TrackNumber} is not available for streaming. Skipping."",
+	""downloadOutputAlNotStream"": 	    ""Release is not available for streaming."",
+	""downloadOutputGoodyFound"": 	    ""Goody found, downloading..."",
+	""downloadOutputGoodyExists"": 	    ""File for goody already exists"",
+	""downloadOutputGoodyNoURL"": 	    ""No download URL found for goody, skipping"",
+	""downloadOutputFileExists"": 	    ""File for track {TrackNumber} already exists, skipping."",
+	""downloadOutputDownloading"": 	    ""Downloading"",
+	""downloadOutputDone"": 			""DONE"",
+	""downloadOutputCompleted"": 		""DOWNLOAD COMPLETE"",
+	""progressLabelInactive"": 		    ""No download active"",
+	""progressLabelActive"": 			""Download progress"",
+	""_SECTION5_"":					    ""=================== LOGIN FORM BUTTONS ==================="",
+	""closeAboutButton"":				""CLOSE"",
+	""customSaveButton"":				""SAVE"",
+	""exitButton"":					    ""EXIT"",
+	""loginButton"":					""LOGIN"",
+	""_SECTION6_"":					    ""=================== LOGIN FORM LABELS ==================="",
+	""appidLabel"":					    ""App ID"",
+	""appSecretLabel"":				    ""App Secret"",
+	""customLabel"":					""USE CUSTOM APP ID + SECRET"",
+	""_SECTION7_"":					    ""=================== LOGIN FORM TEXTBOXES ==================="",
+	""customInfoTextbox"":			    ""Leave values blank if you would like to automatically grab the values!"",
+""aboutTextbox"":						""Version - {version}\r\nCreated by AiiR\r\n\r\nInspired By Qo-DL\r\n(Created by Sorrow and DashLt)\r\n\r\nThanks to the users on Github and Telegram for offering bug reports and ideas! And huge shoutout to DJDoubleD for keeping the original running since I've been busy!"",
+	""_SECTION8_"":					    ""=================== LOGIN FORM PLACEHOLDERS ==================="",
+	""emailPlaceholder"":				""e-mail"",
+	""passwordPlaceholder"":			""password"",
+	""tokenPlaceholder"":				""token"",
+	""altLoginLabelToken"":			    ""LOGIN WITH TOKEN"",
+	""altLoginLabelEmail"":			    ""LOGIN WITH E-MAIL AND PASSWORD"",
+	""loginTextWaiting"":				""waiting for login..."",
+	""loginTextStart"":				    ""logging in..."",
+	""loginTextError"":	                ""login failed, error log saved"",
+	""loginTextNoEmail"":				""no e-mail in input"",
+	""loginTextNoPassword"":			""no password/token in input"",
+	""updateNotification"":             ""New version of QBDLX is available!\r\n\r\nInstalled version - {currentVersion}\r\nLatest version - {newVersion}\r\n\r\nChangelog Below\r\n==============\r\n{changelog}\r\n==============\r\n\r\nWould you like to update?"",
+	""updateNotificationTitle"":        ""QBDLX | Update Available""
+}
+";
+
+        public void PopulateLanguageComboBox(qbdlxForm mainForm)
+        {
+            ComboBox languageComboBox = mainForm.languageComboBox;
+
+            if (!Directory.Exists(languagesDirectory))
+            {
+                qbdlxForm._qbdlxForm.logger.Warning("Language directory not found.");
+                return;
+            }
+
+            // Get all .json files in the languages folder
+            var languageFiles = Directory.GetFiles(languagesDirectory, "*.json");
+
+            foreach (var filePath in languageFiles)
+            {
+                // Extract the language code from file name (e.g., "en" from "en.json")
+                var fileName = Path.GetFileNameWithoutExtension(filePath);
+                languageComboBox.Items.Add(fileName.ToUpper()); // Add language code to combo box
+            }
+        }
+
+        public void LoadLanguage(string filePath)
+        {
+            try
+            {
+                qbdlxForm._qbdlxForm.logger.Info("Loading language from: " + filePath);
+                var json = File.ReadAllText(filePath);
+                languageDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            }
+            catch (Exception ex)
+            {
+                qbdlxForm._qbdlxForm.logger.Error($"Error loading language file: {ex.Message}");
+                Console.WriteLine($"Error loading language file: {ex.Message}");
+                languageDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(defaultLanguage);
+            }
+        }
+
+        public string GetTranslation(string key)
+        {
+            return languageDictionary.ContainsKey(key) ? languageDictionary[key] : key;
         }
     }
 }

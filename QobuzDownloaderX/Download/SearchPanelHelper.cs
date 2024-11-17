@@ -1,32 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using QopenAPI;
 using QobuzDownloaderX.Properties;
-using QobuzDownloaderX.Download;
-using System.Reflection;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace QobuzDownloaderX.Download
 {
-    public class SearchResultRow
-    {
-        public string ThumbnailUrl { get; set; }
-        public string Artist { get; set; }
-        public string Title { get; set; }
-        public bool Explicit { get; set; }
-        public string FormattedDuration { get; set; }
-        public string WebPlayerUrl { get; set; }
-        public string StoreUrl { get; set; }
-        public int TrackCount { get; set; }
-        public string ReleaseDate { get; set; }
-        public string FormattedQuality { get; set; }
-    }
-
     class SearchPanelHelper
     {
         public Service QoService = new Service();
@@ -35,21 +15,21 @@ namespace QobuzDownloaderX.Download
         public SearchAlbumResult QoAlbumSearch = new SearchAlbumResult();
         public SearchTrackResult QoTrackSearch = new SearchTrackResult();
 
-        public void SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
+        public async Task SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
         {
             if (searchType == "releases")
             {
                 QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
-                PopulateTableAlbums(qbdlxForm._qbdlxForm, QoAlbumSearch);
+                await PopulateTableAlbums(qbdlxForm._qbdlxForm, QoAlbumSearch);
             }
             else if (searchType == "tracks")
             {
                 QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
-                PopulateTableTracks(qbdlxForm._qbdlxForm, QoTrackSearch);
+                await PopulateTableTracks(qbdlxForm._qbdlxForm, QoTrackSearch);
             }
         }
 
-        public void PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
+        public async Task PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
         {
             // Access the "items" array from the response
             var albums = QoAlbumSearch.Albums.Items;
@@ -130,7 +110,7 @@ namespace QobuzDownloaderX.Download
 
                     // Add Button for selecting album ID
                     Button selectButton = new Button();
-                    selectButton.Text = "GET";
+                    selectButton.Text = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton");
                     selectButton.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText); // Set button text color
                     selectButton.BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground); // Set button background color
                     selectButton.Font = new Font("Nirmala UI", 8F, FontStyle.Regular); // Set font size and style
@@ -148,7 +128,7 @@ namespace QobuzDownloaderX.Download
             });
         }
 
-        public void PopulateTableTracks(qbdlxForm mainForm, SearchTrackResult QoTrackSearch)
+        public async Task PopulateTableTracks(qbdlxForm mainForm, SearchTrackResult QoTrackSearch)
         {
             // Access the "items" array from the response
             var tracks = QoTrackSearch.Tracks.Items;
@@ -229,7 +209,7 @@ namespace QobuzDownloaderX.Download
 
                     // Add Button for selecting album ID
                     Button selectButton = new Button();
-                    selectButton.Text = "GET";
+                    selectButton.Text = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton");
                     selectButton.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText); // Set button text color
                     selectButton.BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground); // Set button background color
                     selectButton.Font = new Font("Nirmala UI", 8F, FontStyle.Regular); // Set font size and style

@@ -1,25 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QobuzDownloaderX;
 using QopenAPI;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using System.Net;
 using System.Threading;
 using QobuzDownloaderX.Properties;
 using System.IO;
-using static System.Net.Mime.MediaTypeNames;
 using QobuzDownloaderX.Download;
-using ZetaLongPaths;
 using System.Globalization;
 
 namespace QobuzDownloaderX
@@ -60,8 +51,9 @@ namespace QobuzDownloaderX
         public bool downloadPanelActive = false;
         public bool aboutPanelActive = false;
         public bool settingsPanelActive = false;
+        private bool firstLoadComplete = false;
 
-        //Create logger for this form
+        // Create logger for this form
         public Logger logger { get; set; }
 
         public string downloadLocation { get; set; }
@@ -86,11 +78,41 @@ namespace QobuzDownloaderX
         public string embeddedArtSize { get; set; }
         public string savedArtSize { get; set; }
         public string themeName { get; set; }
-        public Theme theme { get; set; }
 
-        public string latestWebResponse { get; set; }
+        // Create theme and language options
+        public Theme theme { get; set; }
+        public LanguageManager languageManager;
+
+        #region Language
+        public string userInfoTextboxPlaceholder { get; set; }
+        public string albumLabelPlaceholder { get; set; }
+        public string artistLabelPlaceholder { get; set; }
+        public string infoLabelPlaceholder { get; set; }
+        public string inputTextboxPlaceholder { get; set; }
+        public string searchTextboxPlaceholder { get; set; }
+        public string downloadFolderPlaceholder { get; set; }
+        public string downloadOutputWelcome { get; set; }
+        public string downloadOutputExpired { get; set; }
+        public string downloadOutputPath { get; set; }
+        public string downloadOutputNoPath { get; set; }
+        public string downloadOutputAPIError { get; set; }
+        public string downloadOutputNotImplemented { get; set; }
+        public string downloadOutputCheckLink { get; set; }
+        public string downloadOutputTrNotStream { get; set; }
+        public string downloadOutputAlNotStream { get; set; }
+        public string downloadOutputGoodyFound { get; set; }
+        public string downloadOutputGoodyExists { get; set; }
+        public string downloadOutputGoodyNoURL { get; set; }
+        public string downloadOutputFileExists { get; set; }
+        public string downloadOutputDownloading { get; set; }
+        public string downloadOutputDone { get; set; }
+        public string downloadOutputCompleted { get; set; }
+        public string progressLabelInactive { get; set; }
+        public string progressLabelActive { get; set; }
+        #endregion
 
         GetInfo getInfo = new GetInfo();
+        RenameTemplates renameTemplates = new RenameTemplates();
         DownloadAlbum downloadAlbum = new DownloadAlbum();
         DownloadTrack downloadTrack = new DownloadTrack();
         SearchPanelHelper searchPanelHelper = new SearchPanelHelper();
@@ -175,7 +197,7 @@ namespace QobuzDownloaderX
         private void SetDownloadPath()
         {
             downloadLocation = Settings.Default.savedFolder;
-            downloadFolderTextbox.Text = !string.IsNullOrEmpty(downloadLocation) ? downloadLocation : "no folder selected";
+            downloadFolderTextbox.Text = !string.IsNullOrEmpty(downloadLocation) ? downloadLocation : downloadFolderPlaceholder;
             folderBrowser.SelectedPath = downloadLocation;
             logger.Info("Saved download path: " + folderBrowser.SelectedPath);
         }
@@ -197,6 +219,7 @@ namespace QobuzDownloaderX
             downloadPanelActive = true;
             downloaderButton.BackColor = ColorTranslator.FromHtml(_themeManager._currentTheme.HighlightedButtonBackground);
         }
+
         private void InitializeTheme()
         {
             // Populate theme options in settings
@@ -208,6 +231,125 @@ namespace QobuzDownloaderX
             theme = _themeManager._currentTheme;
         }
 
+        private void InitializeLanguage()
+        {
+            // Set saved language
+            languageManager = new LanguageManager();
+            languageManager.LoadLanguage($"languages/{Settings.Default.currentLanguage.ToLower()}.json");
+
+            // Populate theme options in settings
+            languageManager.PopulateLanguageComboBox(this);
+            languageComboBox.SelectedItem = Settings.Default.currentLanguage.ToUpper();
+
+            // Load theme
+            UpdateUILanguage();
+        }
+
+        private void UpdateUILanguage()
+        {
+            /* Update labels, buttons, textboxes, etc., based on the loaded language */
+
+            // Buttons
+            additionalSettingsButton.Text = languageManager.GetTranslation("additionalSettingsButton");
+            aboutButton.Text = languageManager.GetTranslation("aboutButton");
+            closeAdditionalButton.Text = languageManager.GetTranslation("closeAdditionalButton");
+            downloadButton.Text = languageManager.GetTranslation("downloadButton");
+            downloaderButton.Text = languageManager.GetTranslation("downloaderButton");
+            logoutButton.Text = languageManager.GetTranslation("logoutButton");
+            openFolderButton.Text = languageManager.GetTranslation("openFolderButton");
+            qualitySelectButton.Text = languageManager.GetTranslation("qualitySelectButton");
+            saveTemplatesButton.Text = languageManager.GetTranslation("saveTemplatesButton");
+            searchButton.Text = languageManager.GetTranslation("searchButton");
+            searchAlbumsButton.Text = languageManager.GetTranslation("searchAlbumsButton");
+            searchTracksButton.Text = languageManager.GetTranslation("searchTracksButton");
+            selectFolderButton.Text = languageManager.GetTranslation("selectFolderButton");
+            settingsButton.Text = languageManager.GetTranslation("settingsButton");
+
+            // Labels
+            aboutLabel.Text = languageManager.GetTranslation("aboutButton") + "                                                                                                 ";
+            advancedOptionsLabel.Text = languageManager.GetTranslation("advancedOptionsLabel");
+            albumTemplateLabel.Text = languageManager.GetTranslation("albumTemplateLabel");
+            artistTemplateLabel.Text = languageManager.GetTranslation("artistTemplateLabel");
+            commentLabel.Text = languageManager.GetTranslation("commentLabel");
+            downloadLabel.Text = languageManager.GetTranslation("downloaderButton") + "                                                                                         ";
+            downloadFolderLabel.Text = languageManager.GetTranslation("downloadFolderLabel");
+            downloadOptionsLabel.Text = languageManager.GetTranslation("downloadOptionsLabel");
+            embeddedArtLabel.Text = languageManager.GetTranslation("embeddedArtLabel");
+            extraSettingsLabel.Text = languageManager.GetTranslation("extraSettingsLabel");
+            languageLabel.Text = languageManager.GetTranslation("languageLabel");
+            playlistTemplateLabel.Text = languageManager.GetTranslation("playlistTemplateLabel");
+            savedArtLabel.Text = languageManager.GetTranslation("savedArtLabel");
+            searchLabel.Text = languageManager.GetTranslation("searchButton") + "                                                                                               ";
+            searchingLabel.Text = languageManager.GetTranslation("searchingLabel");
+            settingsLabel.Text = languageManager.GetTranslation("settingsButton") + "                                                                                           ";
+            taggingOptionsLabel.Text = languageManager.GetTranslation("taggingOptionsLabel");
+            templatesLabel.Text = languageManager.GetTranslation("templatesLabel");
+            themeLabel.Text = languageManager.GetTranslation("themeLabel");
+            themeSectionLabel.Text = languageManager.GetTranslation("themeSectionLabel");
+            trackTemplateLabel.Text = languageManager.GetTranslation("trackTemplateLabel");
+            userInfoLabel.Text = languageManager.GetTranslation("userInfoLabel");
+            welcomeLabel.Text = languageManager.GetTranslation("welcomeLabel");
+
+            // Checkboxes
+            albumArtistCheckbox.Text = languageManager.GetTranslation("albumArtistCheckbox");
+            albumTitleCheckbox.Text = languageManager.GetTranslation("albumTitleCheckbox");
+            trackArtistCheckbox.Text = languageManager.GetTranslation("trackArtistCheckbox");
+            trackTitleCheckbox.Text = languageManager.GetTranslation("trackTitleCheckbox");
+            releaseDateCheckbox.Text = languageManager.GetTranslation("releaseDateCheckbox");
+            releaseTypeCheckbox.Text = languageManager.GetTranslation("releaseTypeCheckbox");
+            genreCheckbox.Text = languageManager.GetTranslation("genreCheckbox");
+            trackNumberCheckbox.Text = languageManager.GetTranslation("trackNumberCheckbox");
+            trackTotalCheckbox.Text = languageManager.GetTranslation("trackTotalCheckbox");
+            discNumberCheckbox.Text = languageManager.GetTranslation("discNumberCheckbox");
+            discTotalCheckbox.Text = languageManager.GetTranslation("discTotalCheckbox");
+            composerCheckbox.Text = languageManager.GetTranslation("composerCheckbox");
+            explicitCheckbox.Text = languageManager.GetTranslation("explicitCheckbox");
+            coverArtCheckbox.Text = languageManager.GetTranslation("coverArtCheckbox");
+            copyrightCheckbox.Text = languageManager.GetTranslation("copyrightCheckbox");
+            labelCheckbox.Text = languageManager.GetTranslation("labelCheckbox");
+            upcCheckbox.Text = languageManager.GetTranslation("upcCheckbox");
+            isrcCheckbox.Text = languageManager.GetTranslation("isrcCheckbox");
+            streamableCheckbox.Text = languageManager.GetTranslation("streamableCheckbox");
+            fixMD5sCheckbox.Text = languageManager.GetTranslation("fixMD5sCheckbox");
+            downloadSpeedCheckbox.Text = languageManager.GetTranslation("downloadSpeedCheckbox");
+
+            /* Center certain checkboxes in panels */
+            streamableCheckbox.Location = new Point((extraSettingsPanel.Width - streamableCheckbox.Width) / 2, streamableCheckbox.Location.Y);
+            fixMD5sCheckbox.Location = new Point((extraSettingsPanel.Width - fixMD5sCheckbox.Width) / 2, fixMD5sCheckbox.Location.Y);
+            downloadSpeedCheckbox.Location = new Point((extraSettingsPanel.Width - downloadSpeedCheckbox.Width) / 2, downloadSpeedCheckbox.Location.Y);
+
+            // Placeholders
+            albumLabelPlaceholder = languageManager.GetTranslation("albumLabelPlaceholder");
+            artistLabelPlaceholder = languageManager.GetTranslation("artistLabelPlaceholder");
+            infoLabelPlaceholder = languageManager.GetTranslation("infoLabelPlaceholder");
+            inputTextboxPlaceholder = languageManager.GetTranslation("inputTextboxPlaceholder");
+            searchTextboxPlaceholder = languageManager.GetTranslation("searchTextboxPlaceholder");
+            downloadFolderPlaceholder = languageManager.GetTranslation("downloadFolderPlaceholder");
+            userInfoTextboxPlaceholder = languageManager.GetTranslation("userInfoTextboxPlaceholder");
+            downloadOutputWelcome = languageManager.GetTranslation("downloadOutputWelcome");
+            downloadOutputExpired = languageManager.GetTranslation("downloadOutputExpired");
+            downloadOutputPath = languageManager.GetTranslation("downloadOutputPath");
+            downloadOutputNoPath = languageManager.GetTranslation("downloadOutputNoPath");
+            downloadOutputAPIError = languageManager.GetTranslation("downloadOutputAPIError");
+            downloadOutputNotImplemented = languageManager.GetTranslation("downloadOutputNotImplemented");
+            downloadOutputCheckLink = languageManager.GetTranslation("downloadOutputCheckLink");
+            downloadOutputTrNotStream = languageManager.GetTranslation("downloadOutputTrNotStream");
+            downloadOutputAlNotStream = languageManager.GetTranslation("downloadOutputAlNotStream");
+            downloadOutputGoodyFound = languageManager.GetTranslation("downloadOutputGoodyFound");
+            downloadOutputGoodyExists = languageManager.GetTranslation("downloadOutputGoodyExists");
+            downloadOutputGoodyNoURL = languageManager.GetTranslation("downloadOutputGoodyNoURL");
+            downloadOutputFileExists = languageManager.GetTranslation("downloadOutputFileExists");
+            downloadOutputDownloading = languageManager.GetTranslation("downloadOutputDownloading");
+            downloadOutputDone = languageManager.GetTranslation("downloadOutputDone");
+            downloadOutputCompleted = languageManager.GetTranslation("downloadOutputCompleted");
+            progressLabelInactive = languageManager.GetTranslation("progressLabelInactive");
+            progressLabelActive = languageManager.GetTranslation("progressLabelActive");
+
+            // Set the placeholders as needed
+            inputTextbox.Text = inputTextboxPlaceholder;
+            searchTextbox.Text = searchTextboxPlaceholder;
+        }
+
         private void qbdlxForm_Load(object sender, EventArgs e)
         {
             logger.Debug("QBDLX form loaded!");
@@ -215,22 +357,28 @@ namespace QobuzDownloaderX
             // Round corners of form
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
-            // Load settings / download location / theme / panels
-            SetDownloadPath();
+            // Load settings / download location / theme / language / panels
             LoadSavedTemplates();
             LoadQualitySettings();
             LoadTaggingSettings();
             InitializeTheme();
             InitializePanels();
+            InitializeLanguage();
+            SetDownloadPath();
 
             // Get and display version number.
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            
+
+            // Set placeholders for downloader panel
+            albumLabel.Text = albumLabelPlaceholder;
+            artistLabel.Text = artistLabelPlaceholder;
+            infoLabel.Text = string.Empty;
+
             // Set display_name to welcomeLabel
             welcomeLabel.Text = welcomeLabel.Text.Replace("{username}", user_display_name);
 
             // Get user account + subscription information for about panel
-            downloadOutput.Text = "Welcome " + user_display_name + "!";
+            downloadOutput.Text = downloadOutputWelcome.Replace("{user_display_name}", user_display_name);
 
             TextInfo textInfo = CultureInfo.InvariantCulture.TextInfo;
             var endDate = QoUser?.UserInfo?.Subscription?.EndDate ?? "N/A - Family account";
@@ -238,7 +386,7 @@ namespace QobuzDownloaderX
                 ? textInfo.ToTitleCase(QoUser?.UserInfo?.Credential?.label?.ToString().ToLower().Replace("-", " ")).Replace("Hifi", "HiFi")
                 : "N/A - Expired";
 
-            userInfoTextbox.Text = userInfoTextbox.Text
+            userInfoTextbox.Text = userInfoTextboxPlaceholder
                 .Replace("{user_id}", user_id)
                 .Replace("{user_email}", QoUser?.UserInfo?.Email)
                 .Replace("{user_country}", QoUser?.UserInfo?.Country)
@@ -247,8 +395,10 @@ namespace QobuzDownloaderX
 
 
             downloadOutput.AppendText(QoUser.UserInfo.Credential.label == null
-                ? $"\r\n\r\nYOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!\r\n\r\nDownload Path\r\n{folderBrowser.SelectedPath}"
-                : $"\r\n\r\nDownload Path\r\n{folderBrowser.SelectedPath}");
+                ? $"\r\n\r\n{downloadOutputExpired}\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}"
+                : $"\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}");
+
+            firstLoadComplete = true;
         }
 
         private void qualitySelectButton_Click(object sender, EventArgs e)
@@ -300,7 +450,7 @@ namespace QobuzDownloaderX
         public async void getLinkType()
         {
             downloadOutput.Focus();
-            progressLabel.Invoke(new Action(() => progressLabel.Text = "Checking link..."));
+            progressLabel.Invoke(new Action(() => progressLabel.Text = downloadOutputCheckLink));
 
             // Check if there's no selected path.
             if (downloadLocation == null | downloadLocation == "" | downloadLocation == "no folder selected")
@@ -308,8 +458,8 @@ namespace QobuzDownloaderX
                 // If there is NOT a saved path.
                 logger.Warning("No path has been set! Remember to Choose a Folder!");
                 downloadOutput.Invoke(new Action(() => downloadOutput.Text = String.Empty));
-                downloadOutput.Invoke(new Action(() => downloadOutput.AppendText("No path has been set! Remember to Choose a Folder!\r\n")));
-                progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
+                downloadOutput.Invoke(new Action(() => downloadOutput.AppendText($"{downloadOutputNoPath}\r\n")));
+                progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                 return;
             }
 
@@ -341,7 +491,7 @@ namespace QobuzDownloaderX
 
             downloadTrack.clearOutputText();
             getInfo.outputText = null;
-            getInfo.updateDownloadOutput("Checking Link...");
+            getInfo.updateDownloadOutput(downloadOutputCheckLink);
 
             switch (linkType)
             {
@@ -350,19 +500,27 @@ namespace QobuzDownloaderX
                     QoAlbum = getInfo.QoAlbum;
                     if (QoAlbum == null)
                     {
-                        getInfo.updateDownloadOutput("Qobuz API error. Maybe release isn't available in this account region?");
-                        progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
+                        getInfo.updateDownloadOutput($"{downloadOutputAPIError}");
+                        progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                         break;
                     }
-                    await updateAlbumInfoLabels(QoAlbum);
+                    updateAlbumInfoLabels(QoAlbum);
                     await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                    // Say the downloading is finished when it's completed.
+                    getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                    getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 case "track":
                     await Task.Run(() => getInfo.getTrackInfoLabels(app_id, qobuz_id, user_auth_token));
                     QoItem = getInfo.QoItem;
                     QoAlbum = getInfo.QoAlbum;
-                    await updateAlbumInfoLabels(QoAlbum);
-                    await Task.Run(() => downloadTrack.downloadIndividualTrack(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                    updateAlbumInfoLabels(QoAlbum);
+                    await Task.Run(() => downloadTrack.DownloadTrackAsync("track", app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoItem));
+                    // Say the downloading is finished when it's completed.
+                    getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                    getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 case "playlist":
                     await Task.Run(() => getInfo.getPlaylistInfoLabels(app_id, qobuz_id, user_auth_token));
@@ -376,7 +534,7 @@ namespace QobuzDownloaderX
                             await Task.Run(() => getInfo.getTrackInfoLabels(app_id, track_id, user_auth_token));
                             QoItem = item;
                             QoAlbum = getInfo.QoAlbum;
-                            await Task.Run(() => downloadTrack.downloadPlaylistTrack(app_id, track_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, playlistTemplate, QoAlbum, QoItem, QoPlaylist));
+                            await Task.Run(() => downloadTrack.DownloadPlaylistTrackAsync(app_id, track_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, playlistTemplate, QoAlbum, QoItem, QoPlaylist));
                         }
                         catch
                         {
@@ -385,8 +543,8 @@ namespace QobuzDownloaderX
                     }
                     // Say the downloading is finished when it's completed.
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
-                    getInfo.updateDownloadOutput("\r\n" + "DOWNLOAD COMPLETE");
-                    progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
+                    getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 case "artist":
                     await Task.Run(() => getInfo.getArtistInfo(app_id, qobuz_id, user_auth_token));
@@ -398,7 +556,7 @@ namespace QobuzDownloaderX
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
-                            await updateAlbumInfoLabels(QoAlbum);
+                            updateAlbumInfoLabels(QoAlbum);
                             await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                         }
                         catch
@@ -406,6 +564,10 @@ namespace QobuzDownloaderX
                             continue;
                         }
                     }
+                    // Say the downloading is finished when it's completed.
+                    getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                    getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 case "label":
                     await Task.Run(() => getInfo.getLabelInfo(app_id, qobuz_id, user_auth_token));
@@ -417,7 +579,7 @@ namespace QobuzDownloaderX
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
-                            await updateAlbumInfoLabels(QoAlbum);
+                            updateAlbumInfoLabels(QoAlbum);
                             await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                         }
                         catch
@@ -425,6 +587,10 @@ namespace QobuzDownloaderX
                             continue;
                         }
                     }
+                    // Say the downloading is finished when it's completed.
+                    getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                    getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 case "user":
                     if (qobuzLinkId.Contains("albums"))
@@ -438,7 +604,7 @@ namespace QobuzDownloaderX
                                 string album_id = item.Id.ToString();
                                 await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                 QoAlbum = getInfo.QoAlbum;
-                                await updateAlbumInfoLabels(QoAlbum);
+                                updateAlbumInfoLabels(QoAlbum);
                                 await Task.Run(() => downloadAlbum.downloadAlbum(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                             }
                             catch
@@ -459,8 +625,8 @@ namespace QobuzDownloaderX
                                 await Task.Run(() => getInfo.getTrackInfoLabels(app_id, track_id, user_auth_token));
                                 QoItem = getInfo.QoItem;
                                 QoAlbum = getInfo.QoAlbum;
-                                await updateAlbumInfoLabels(QoAlbum);
-                                await Task.Run(() => downloadTrack.downloadIndividualTrack(app_id, track_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                                updateAlbumInfoLabels(QoAlbum);
+                                await Task.Run(() => downloadTrack.DownloadTrackAsync("track", app_id, track_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoItem));
                             }
                             catch
                             {
@@ -486,7 +652,7 @@ namespace QobuzDownloaderX
                                         string album_id = artistItem.Id.ToString();
                                         await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                         QoAlbum = getInfo.QoAlbum;
-                                        await updateAlbumInfoLabels(QoAlbum);
+                                        updateAlbumInfoLabels(QoAlbum);
                                         await Task.Run(() => downloadAlbum.downloadAlbum(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                                     }
                                     catch
@@ -505,45 +671,31 @@ namespace QobuzDownloaderX
                     {
                         // Say what isn't available at the moment.
                         downloadOutput.Invoke(new Action(() => downloadOutput.Text = String.Empty));
-                        downloadOutput.Invoke(new Action(() => downloadOutput.AppendText("Not implemented yet or the URL is not understood. Is there a typo?")));
-                        progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
+                        downloadOutput.Invoke(new Action(() => downloadOutput.AppendText(downloadOutputNotImplemented)));
+                        progressLabel.Invoke(new Action(() => progressLabel.Text = downloadFolderPlaceholder));
                         return;
                     }
+                    // Say the downloading is finished when it's completed.
+                    getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                    getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 default:
                     // Say what isn't available at the moment.
                     downloadOutput.Invoke(new Action(() => downloadOutput.Text = String.Empty));
-                    downloadOutput.Invoke(new Action(() => downloadOutput.AppendText("Not implemented yet or the URL is not understood. Is there a typo?")));
-                    progressLabel.Invoke(new Action(() => progressLabel.Text = "No download active"));
+                    downloadOutput.Invoke(new Action(() => downloadOutput.AppendText(downloadOutputNotImplemented)));
+                    progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     return;
             }
         }
 
-        public async Task updateAlbumInfoLabels(Album QoAlbum)
+        public void updateAlbumInfoLabels(Album QoAlbum)
         {
-            // For albums with multiple main artists listed
-            if (QoAlbum.Artists.Count > 1)
-            {
-                var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
-                string allButLastArtist = string.Join(", ", mainArtists.Take(mainArtists.Count - 1).Select(a => a.Name));
-                string lastArtist = mainArtists.Last().Name;
-
-                if (mainArtists.Count > 1)
-                {
-                    artistLabel.Text = allButLastArtist + " && " + lastArtist;
-                }
-                else
-                {
-                    artistLabel.Text = lastArtist;
-                }
-            }
-            else
-            {
-                artistLabel.Text = QoAlbum.Artist.Name.Replace(@"&", @"&&");
-            }
-
+            string trackOrTracks = "tracks";
+            if (QoAlbum.TracksCount == 1) { trackOrTracks = "track"; }
+            artistLabel.Text = renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
             if (QoAlbum.Version == null) { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&"); } else { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&").TrimEnd() + " (" + QoAlbum.Version + ")"; }
-            dateLabel.Text = QoAlbum.ReleaseDateOriginal;
+            infoLabel.Text = $"{infoLabelPlaceholder} {QoAlbum.ReleaseDateOriginal} • {QoAlbum.TracksCount.ToString()} {trackOrTracks} • {QoAlbum.UPC.ToString()}";
             try { albumPictureBox.ImageLocation = QoAlbum.Image.Small; } catch { }
         }
 
@@ -551,7 +703,7 @@ namespace QobuzDownloaderX
         {
             artistLabel.Text = QoPlaylist.Owner.Name.Replace(@"&", @"&&") + "'s Playlist";
             albumLabel.Text = QoPlaylist.Name.Replace(@"&", @"&&");
-            dateLabel.Text = "N/A";
+            infoLabel.Text = "";
             try { albumPictureBox.ImageLocation = QoPlaylist.Images300[0]; } catch { }
         }
 
@@ -577,22 +729,22 @@ namespace QobuzDownloaderX
 
         private void inputTextbox_Click(object sender, EventArgs e)
         {
-            SetPlaceholder(inputTextbox, "Paste a Qobuz URL...", true);
+            SetPlaceholder(inputTextbox, inputTextboxPlaceholder, true);
         }
 
         private void inputTextbox_Leave(object sender, EventArgs e)
         {
-            SetPlaceholder(inputTextbox, "Paste a Qobuz URL...", false);
+            SetPlaceholder(inputTextbox, inputTextboxPlaceholder, false);
         }
 
         private void searchTextbox_Click(object sender, EventArgs e)
         {
-            SetPlaceholder(searchTextbox, "Input your search...", true);
+            SetPlaceholder(searchTextbox, searchTextboxPlaceholder, true);
         }
 
         private void searchTextbox_Leave(object sender, EventArgs e)
         {
-            SetPlaceholder(searchTextbox, "Input your search...", false);
+            SetPlaceholder(searchTextbox, searchTextboxPlaceholder, false);
         }
 
         private void openFolderButton_Click(object sender, EventArgs e)
@@ -601,7 +753,7 @@ namespace QobuzDownloaderX
             if (folderBrowser.SelectedPath == null | folderBrowser.SelectedPath == "")
             {
                 // If there's no selected path.
-                MessageBox.Show("No path selected!", "ERROR",
+                MessageBox.Show(downloadOutputNoPath, "ERROR",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -869,12 +1021,36 @@ namespace QobuzDownloaderX
         {
             // Save the selected theme name to settings
             string selectedTheme = themeComboBox.SelectedItem.ToString();
-            Settings.Default.currentTheme = selectedTheme; // Assuming you have this property in settings
+            Settings.Default.currentTheme = selectedTheme;
             Settings.Default.Save();
 
             // Load and apply the selected theme
             _themeManager.LoadTheme(selectedTheme);
             _themeManager.ApplyTheme(this);
+        }
+
+        private void languageComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Save the selected language to settings
+            string selectedLanguage = languageComboBox.SelectedItem.ToString();
+            Settings.Default.currentLanguage = selectedLanguage;
+            Settings.Default.Save();
+
+            // Load the selected language file when the user changes selection
+            string filePath = Path.Combine(languageManager.languagesDirectory, selectedLanguage.ToLower() + ".json");
+
+            if (File.Exists(filePath))
+            {
+                languageManager.LoadLanguage(filePath);
+                if (!firstLoadComplete) return; // Ignore initial load
+                // Could use some work, but this works.
+                Process.Start("QobuzDownloaderX.exe");
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                MessageBox.Show("Selected language file not found.");
+            }
         }
         #endregion
 

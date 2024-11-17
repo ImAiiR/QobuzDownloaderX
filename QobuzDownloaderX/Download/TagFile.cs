@@ -51,7 +51,7 @@ namespace QobuzDownloaderX
             {
                 customTags.SetField("COMMENT", new string[]
                 {
-                    Settings.Default.commentText
+                    Regex.Replace(Settings.Default.commentText, @"%(.*?)%", match => match.Value.ToLower())
                         .Replace("%description%", QoAlbum.Description)
                         .Replace("<br/>", Environment.NewLine)
                         .Replace("<br />", Environment.NewLine)
@@ -69,7 +69,7 @@ namespace QobuzDownloaderX
             if (Settings.Default.typeTag) mp3Tag.SetTextFrame("TMED", QoAlbum.ProductType.ToUpper());
             if (Settings.Default.commentTag && !string.IsNullOrEmpty(Settings.Default.commentText))
             {
-                mp3Tag.Comment = Settings.Default.commentText
+                mp3Tag.Comment = Regex.Replace(Settings.Default.commentText, @"%(.*?)%", match => match.Value.ToLower())
                     .Replace("%description%", QoAlbum.Description)
                     .Replace("<br/>", Environment.NewLine)
                     .Replace("<br />", Environment.NewLine);

@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
-using ZetaLongPaths;
-using QobuzDownloaderX;
 using QopenAPI;
 using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.Download;
-using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
 
 namespace QobuzDownloaderX
@@ -23,11 +17,6 @@ namespace QobuzDownloaderX
         GetInfo getInfo = new GetInfo();
         FixMD5 fixMD5 = new FixMD5();
 
-        public string artistTemplateConverted { get; set; }
-        public string albumTemplateConverted { get; set; }
-        public string trackTemplateConverted { get; set; }
-        public string playlistTemplateConverted { get; set; }
-        public string downloadPath { get; set; }
         public string artworkPath { get; set; }
 
         public async Task<string> createPath(string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, string favoritesTemplate, int paddedTrackLength, int paddedDiscLength, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
@@ -99,12 +88,12 @@ namespace QobuzDownloaderX
                                 ? $"{speed / (1024 * 1024):F2} MB/s"
                                 : $"{speed / 1024:F2} KB/s";
 
-                            qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = "Download progress - " + progressPercentage + "% [" + speedText + "]"; }));
+                            qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{speedText}]"; }));
                         }
                     }
                     else
                     {
-                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = "Download progress - " + progressPercentage + "%"; }));
+                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"; }));
                     }
                 };
 
@@ -156,7 +145,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public void downloadArtwork(string downloadPath, Album QoAlbum)
+        public async Task downloadArtwork(string downloadPath, Album QoAlbum)
         {
             using (var client = new WebClient())
             {
@@ -167,12 +156,12 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.logger.Debug("Downloading Cover Art");
                 Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
 
-                if (File.Exists(downloadPath + @"Cover.jpg") == false)
+                if (!File.Exists(downloadPath + @"Cover.jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork Cover.jpg not found, downloading");
                     try { client.DownloadFile(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize), downloadPath + @"Cover.jpg"); } catch { Console.WriteLine("Failed to Download Cover Art"); }
                 }
-                if (File.Exists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg") == false)
+                if (!File.Exists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork for embedding not found, downloading");
                     try { client.DownloadFile(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize), downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"); } catch { Console.WriteLine("Failed to Download Cover Art"); }
@@ -180,7 +169,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public void downloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody)
+        public async Task downloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody)
         {
             using (var client = new WebClient())
             {
