@@ -95,11 +95,15 @@ namespace QobuzDownloaderX
             if (!Settings.Default.albumArtistTag) return;
 
             var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
-            string albumArtist = mainArtists.Count > 1
-                ? string.Join(", ", mainArtists.Select(a => a.Name))
-                : QoAlbum.Artist.Name;
+            if (mainArtists.Count > 1)
+            {
+                var allButLastArtist = string.Join(", ", mainArtists.Take(mainArtists.Count - 1).Select(a => a.Name));
+                var lastArtist = mainArtists.Last().Name;
+                file.Tag.AlbumArtists = new[] { $"{allButLastArtist} & {lastArtist}" };
+                return;
+            }
 
-            file.Tag.AlbumArtists = new[] { albumArtist };
+            file.Tag.AlbumArtists = new[] { QoAlbum.Artist.Name };
         }
 
         private static void EmbedArtwork(TagLib.File file, string artworkPath)

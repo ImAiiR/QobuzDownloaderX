@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using QopenAPI;
 using System.IO;
 using QobuzDownloaderX.Properties;
-using QobuzDownloaderX.Download;
 using System.Text.RegularExpressions;
 
 namespace QobuzDownloaderX

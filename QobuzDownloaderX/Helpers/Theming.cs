@@ -273,6 +273,7 @@ namespace QobuzDownloaderX
         public string defaultLanguage = @"{
 	""TranslationCredit"":			    ""AiiR"",
 	""TranslationUpdatedOn"":			""November 17, 2024, 12:38PM EST"",
+	""TranslationFont"":				""Nirmala UI"",
 	""_SECTION1_"":					    ""=================== MAIN FORM BUTTONS ==================="",
 	""additionalSettingsButton"":		""Additional Settings"",
 	""aboutButton"": 					""ABOUT"",
@@ -299,10 +300,12 @@ namespace QobuzDownloaderX
 	""extraSettingsLabel"":			    ""ADDITIONAL SETTINGS"",
 	""languageLabel"":				    ""Current Language"",
 	""playlistTemplateLabel"":		    ""PLAYLIST TEMPLATE"",
+	""favoritesTemplateLabel"":		    ""FAVORITES TEMPLATE"",
 	""savedArtLabel"":				    ""Saved Artwork Size"",
 	""searchingLabel"":				    ""Searching..."",
 	""taggingOptionsLabel"":			""TAGGING OPTIONS"",
 	""templatesLabel"":				    ""TEMPLATES"",
+	""templatesListLabel"":			    ""TEMPLATES LIST"",
 	""themeLabel"":					    ""Current Theme"",
 	""themeSectionLabel"":			    ""THEMING OPTIONS"",
 	""trackTemplateLabel"":			    ""TRACK TEMPLATE"",
@@ -367,7 +370,7 @@ namespace QobuzDownloaderX
 	""customLabel"":					""USE CUSTOM APP ID + SECRET"",
 	""_SECTION7_"":					    ""=================== LOGIN FORM TEXTBOXES ==================="",
 	""customInfoTextbox"":			    ""Leave values blank if you would like to automatically grab the values!"",
-""aboutTextbox"":						""Version - {version}\r\nCreated by AiiR\r\n\r\nInspired By Qo-DL\r\n(Created by Sorrow and DashLt)\r\n\r\nThanks to the users on Github and Telegram for offering bug reports and ideas! And huge shoutout to DJDoubleD for keeping the original running since I've been busy!"",
+	""aboutTextbox"":					""Version - {version}\r\nCreated by AiiR\r\n\r\nInspired By Qo-DL\r\n(Created by Sorrow and DashLt)\r\n\r\nThanks to the users on Github and Telegram for offering bug reports and ideas! And huge shoutout to DJDoubleD for keeping the original running since I've been busy!"",
 	""_SECTION8_"":					    ""=================== LOGIN FORM PLACEHOLDERS ==================="",
 	""emailPlaceholder"":				""e-mail"",
 	""passwordPlaceholder"":			""password"",
@@ -376,11 +379,11 @@ namespace QobuzDownloaderX
 	""altLoginLabelEmail"":			    ""LOGIN WITH E-MAIL AND PASSWORD"",
 	""loginTextWaiting"":				""waiting for login..."",
 	""loginTextStart"":				    ""logging in..."",
-	""loginTextError"":	                ""login failed, error log saved"",
+	""loginTextError"":				    ""login failed, error log saved"",
 	""loginTextNoEmail"":				""no e-mail in input"",
 	""loginTextNoPassword"":			""no password/token in input"",
-	""updateNotification"":             ""New version of QBDLX is available!\r\n\r\nInstalled version - {currentVersion}\r\nLatest version - {newVersion}\r\n\r\nChangelog Below\r\n==============\r\n{changelog}\r\n==============\r\n\r\nWould you like to update?"",
-	""updateNotificationTitle"":        ""QBDLX | Update Available""
+	""updateNotification"":			    ""New version of QBDLX is available!\r\n\r\nInstalled version - {currentVersion}\r\nLatest version - {newVersion}\r\n\r\nChangelog Below\r\n==============\r\n{changelog}\r\n==============\r\n\r\nWould you like to update?"",
+	""updateNotificationTitle"":		""QBDLX | Update Available""
 }
 ";
 
@@ -424,6 +427,27 @@ namespace QobuzDownloaderX
         public string GetTranslation(string key)
         {
             return languageDictionary.ContainsKey(key) ? languageDictionary[key] : key;
+        }
+
+        public void UpdateControlFont(Control.ControlCollection controls, string fontName)
+        {
+            foreach (Control control in controls)
+            {
+                if (control is Label || control is Button || control is TextBox)
+                {
+                    // Keep the original font size
+                    float originalSize = control.Font.Size;
+                    FontStyle originalStyle = control.Font.Style;
+
+                    control.Font = new Font(fontName, originalSize, originalStyle);
+                }
+
+                // Recursively update child controls
+                if (control.HasChildren)
+                {
+                    UpdateControlFont(control.Controls, fontName);
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Threading.Tasks;
 
-namespace QobuzDownloaderX.Download
+namespace QobuzDownloaderX
 {
     class SearchPanelHelper
     {
@@ -33,6 +33,9 @@ namespace QobuzDownloaderX.Download
         {
             // Access the "items" array from the response
             var albums = QoAlbumSearch.Albums.Items;
+
+            // Load the font name from the translation file
+            string fontName = qbdlxForm._qbdlxForm.languageManager.GetTranslation("TranslationFont");
 
             mainForm.Invoke((MethodInvoker)delegate ()
             {
@@ -71,7 +74,7 @@ namespace QobuzDownloaderX.Download
                     artistName.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     artistName.Anchor = AnchorStyles.None; // Center within the cell
                     artistName.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
-                    artistName.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
+                    artistName.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(artistName, 1, rowIndex);
 
                     // Add Label for album title
@@ -84,7 +87,7 @@ namespace QobuzDownloaderX.Download
                     albumTitle.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     albumTitle.Anchor = AnchorStyles.None; // Center within the cell
                     albumTitle.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
-                    albumTitle.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
+                    albumTitle.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(albumTitle, 2, rowIndex);
 
                     // Add Label for quality
@@ -105,7 +108,7 @@ namespace QobuzDownloaderX.Download
                         qualityLabel.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); ;
                     }
 
-                    qualityLabel.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
+                    qualityLabel.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(qualityLabel, 3, rowIndex);
 
                     // Add Button for selecting album ID
@@ -113,7 +116,7 @@ namespace QobuzDownloaderX.Download
                     selectButton.Text = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton");
                     selectButton.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText); // Set button text color
                     selectButton.BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground); // Set button background color
-                    selectButton.Font = new Font("Nirmala UI", 8F, FontStyle.Regular); // Set font size and style
+                    selectButton.Font = new Font(fontName, 8F, FontStyle.Regular); // Set font size and style
                     selectButton.FlatStyle = FlatStyle.Flat; // Set FlatStyle to Flat
                     selectButton.FlatAppearance.BorderSize = 0;  // Set border size
                     selectButton.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HighlightedButtonBackground); // Set background color when hovering
@@ -132,6 +135,9 @@ namespace QobuzDownloaderX.Download
         {
             // Access the "items" array from the response
             var tracks = QoTrackSearch.Tracks.Items;
+
+            // Load the font name from the translation file
+            string fontName = qbdlxForm._qbdlxForm.languageManager.GetTranslation("TranslationFont");
 
             mainForm.Invoke((MethodInvoker)delegate ()
             {
@@ -170,7 +176,7 @@ namespace QobuzDownloaderX.Download
                     artistName.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     artistName.Anchor = AnchorStyles.None; // Center within the cell
                     artistName.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
-                    artistName.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
+                    artistName.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(artistName, 1, rowIndex);
 
                     // Add Label for track title
@@ -183,7 +189,7 @@ namespace QobuzDownloaderX.Download
                     trackTitle.TextAlign = ContentAlignment.MiddleCenter; // Center text horizontally and vertically
                     trackTitle.Anchor = AnchorStyles.None; // Center within the cell
                     trackTitle.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
-                    trackTitle.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
+                    trackTitle.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(trackTitle, 2, rowIndex);
 
                     // Add Label for quality
@@ -204,7 +210,7 @@ namespace QobuzDownloaderX.Download
                         qualityLabel.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText);
                     }
 
-                    qualityLabel.Font = new Font("Nirmala UI", 10F, FontStyle.Regular); // Set font size and style
+                    qualityLabel.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(qualityLabel, 3, rowIndex);
 
                     // Add Button for selecting album ID
@@ -212,7 +218,7 @@ namespace QobuzDownloaderX.Download
                     selectButton.Text = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton");
                     selectButton.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText); // Set button text color
                     selectButton.BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground); // Set button background color
-                    selectButton.Font = new Font("Nirmala UI", 8F, FontStyle.Regular); // Set font size and style
+                    selectButton.Font = new Font(fontName, 8F, FontStyle.Regular); // Set font size and style
                     selectButton.FlatStyle = FlatStyle.Flat; // Set FlatStyle to Flat
                     selectButton.FlatAppearance.BorderSize = 0;  // Set border size
                     selectButton.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HighlightedButtonBackground); // Set background color when hovering

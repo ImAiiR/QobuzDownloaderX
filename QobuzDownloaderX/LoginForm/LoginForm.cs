@@ -88,6 +88,15 @@ namespace QobuzDownloaderX
 
         private void UpdateUILanguage()
         {
+            // Load the font name from the translation file
+            string fontName = languageManager.GetTranslation("TranslationFont");
+
+            if (!string.IsNullOrEmpty(fontName))
+            {
+                // Call method to update fonts
+                languageManager.UpdateControlFont(this.Controls, fontName);
+            }
+
             /* Update labels, buttons, textboxes, etc., based on the loaded language */
 
             // Buttons

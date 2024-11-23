@@ -83,15 +83,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Download\DownloadTrack.cs" />
-    <Compile Include="Download\DownloadAlbum.cs" />
-    <Compile Include="Download\DownloadFile.cs" />
-    <Compile Include="Download\FixMD5.cs" />
-    <Compile Include="Download\GetInfo.cs" />
-    <Compile Include="Download\PaddingNumbers.cs" />
-    <Compile Include="Download\RenameTemplates.cs" />
-    <Compile Include="Download\SearchPanelHelper.cs" />
-    <Compile Include="Download\TagFile.cs" />
+    <Compile Include="Helpers\DownloadTrack.cs" />
+    <Compile Include="Helpers\DownloadAlbum.cs" />
+    <Compile Include="Helpers\DownloadFile.cs" />
+    <Compile Include="Helpers\FixMD5.cs" />
+    <Compile Include="Helpers\GetInfo.cs" />
+    <Compile Include="Helpers\PaddingNumbers.cs" />
+    <Compile Include="Helpers\RenameTemplates.cs" />
+    <Compile Include="Helpers\SearchPanelHelper.cs" />
+    <Compile Include="Helpers\TagFile.cs" />
     <Compile Include="Old\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +170,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Resources\Languages\en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\Languages\ru.json" />
+    <None Include="Resources\Languages\zh-cn.json" />
     <None Include="Resources\qbdlx_new.png" />
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +208,14 @@
     <Content Include="Resources\alert.png" />
     <Content Include="Resources\qbdlx_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\Download\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y /i "$(ProjectDir)Resources\Languages\*.json" "$(TargetDir)languages\"
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

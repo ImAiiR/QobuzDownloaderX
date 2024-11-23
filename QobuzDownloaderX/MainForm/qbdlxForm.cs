@@ -10,7 +10,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using QobuzDownloaderX.Properties;
 using System.IO;
-using QobuzDownloaderX.Download;
 using System.Globalization;
 
 namespace QobuzDownloaderX
@@ -247,6 +246,15 @@ namespace QobuzDownloaderX
 
         private void UpdateUILanguage()
         {
+            // Load the font name from the translation file
+            string fontName = languageManager.GetTranslation("TranslationFont");
+
+            if (!string.IsNullOrEmpty(fontName))
+            {
+                // Call method to update fonts
+                languageManager.UpdateControlFont(this.Controls, fontName);
+            }
+
             /* Update labels, buttons, textboxes, etc., based on the loaded language */
 
             // Buttons
@@ -265,6 +273,12 @@ namespace QobuzDownloaderX
             selectFolderButton.Text = languageManager.GetTranslation("selectFolderButton");
             settingsButton.Text = languageManager.GetTranslation("settingsButton");
 
+            /* Center additional settings button to center of panel */
+            additionalSettingsButton.Location = new Point((settingsPanel.Width - additionalSettingsButton.Width) / 2, additionalSettingsButton.Location.Y);
+
+            /* Center quality panel to center of quality button */
+            qualitySelectPanel.Location = new Point(qualitySelectButton.Left + (qualitySelectButton.Width / 2) - (qualitySelectPanel.Width / 2), qualitySelectPanel.Location.Y);
+
             // Labels
             aboutLabel.Text = languageManager.GetTranslation("aboutButton") + "                                                                                                 ";
             advancedOptionsLabel.Text = languageManager.GetTranslation("advancedOptionsLabel");
@@ -278,12 +292,14 @@ namespace QobuzDownloaderX
             extraSettingsLabel.Text = languageManager.GetTranslation("extraSettingsLabel");
             languageLabel.Text = languageManager.GetTranslation("languageLabel");
             playlistTemplateLabel.Text = languageManager.GetTranslation("playlistTemplateLabel");
+            favoritesTemplateLabel.Text = languageManager.GetTranslation("favoritesTemplateLabel");
             savedArtLabel.Text = languageManager.GetTranslation("savedArtLabel");
             searchLabel.Text = languageManager.GetTranslation("searchButton") + "                                                                                               ";
             searchingLabel.Text = languageManager.GetTranslation("searchingLabel");
             settingsLabel.Text = languageManager.GetTranslation("settingsButton") + "                                                                                           ";
             taggingOptionsLabel.Text = languageManager.GetTranslation("taggingOptionsLabel");
             templatesLabel.Text = languageManager.GetTranslation("templatesLabel");
+            templatesListLabel.Text = languageManager.GetTranslation("templatesListLabel");
             themeLabel.Text = languageManager.GetTranslation("themeLabel");
             themeSectionLabel.Text = languageManager.GetTranslation("themeSectionLabel");
             trackTemplateLabel.Text = languageManager.GetTranslation("trackTemplateLabel");
@@ -373,6 +389,7 @@ namespace QobuzDownloaderX
             albumLabel.Text = albumLabelPlaceholder;
             artistLabel.Text = artistLabelPlaceholder;
             infoLabel.Text = string.Empty;
+            progressLabel.Text = progressLabelInactive;
 
             // Set display_name to welcomeLabel
             welcomeLabel.Text = welcomeLabel.Text.Replace("{username}", user_display_name);
@@ -1308,7 +1325,7 @@ namespace QobuzDownloaderX
 
             string searchQuery = searchTextbox.Text;
 
-            if (string.IsNullOrEmpty(searchQuery) | searchQuery == "Input your search...")
+            if (string.IsNullOrEmpty(searchQuery) | searchQuery == searchTextboxPlaceholder)
             {
                 logger.Debug("Search query was null, canceling");
                 searchResultsPanel.Show();
@@ -1350,7 +1367,7 @@ namespace QobuzDownloaderX
 
             string searchQuery = searchTextbox.Text;
 
-            if (string.IsNullOrEmpty(searchQuery) | searchQuery == "Input your search...")
+            if (string.IsNullOrEmpty(searchQuery) | searchQuery == searchTextboxPlaceholder)
             {
                 logger.Debug("Search query was null, canceling");
                 searchResultsPanel.Show();

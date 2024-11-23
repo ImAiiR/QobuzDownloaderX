@@ -50,6 +50,11 @@
             this.inputTextbox = new System.Windows.Forms.TextBox();
             this.downloadLabel = new System.Windows.Forms.Label();
             this.settingsPanel = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.saveTemplatesButton = new System.Windows.Forms.Button();
+            this.folderButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.selectFolderButton = new System.Windows.Forms.Button();
+            this.openFolderButton = new System.Windows.Forms.Button();
             this.templatesListLabel = new System.Windows.Forms.Label();
             this.templatesListTextbox = new System.Windows.Forms.TextBox();
             this.additionalSettingsButton = new System.Windows.Forms.Button();
@@ -66,9 +71,6 @@
             this.albumTemplateLabel = new System.Windows.Forms.Label();
             this.downloadFolderLabel = new System.Windows.Forms.Label();
             this.downloadOptionsLabel = new System.Windows.Forms.Label();
-            this.openFolderButton = new System.Windows.Forms.Button();
-            this.saveTemplatesButton = new System.Windows.Forms.Button();
-            this.selectFolderButton = new System.Windows.Forms.Button();
             this.templatesLabel = new System.Windows.Forms.Label();
             this.settingsLabel = new System.Windows.Forms.Label();
             this.userInfoTextbox = new System.Windows.Forms.TextBox();
@@ -142,6 +144,8 @@
             this.downloaderPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumPictureBox)).BeginInit();
             this.settingsPanel.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.folderButtonsPanel.SuspendLayout();
             this.aboutPanel.SuspendLayout();
             this.extraSettingsPanel.SuspendLayout();
             this.taggingOptionsPanel.SuspendLayout();
@@ -317,7 +321,7 @@
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextbox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(520, 493);
+            this.downloaderPanel.Location = new System.Drawing.Point(581, 525);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 1;
@@ -343,9 +347,9 @@
             this.downloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.downloadButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadButton.Location = new System.Drawing.Point(669, 46);
+            this.downloadButton.Location = new System.Drawing.Point(649, 46);
             this.downloadButton.Name = "downloadButton";
-            this.downloadButton.Size = new System.Drawing.Size(82, 31);
+            this.downloadButton.Size = new System.Drawing.Size(102, 31);
             this.downloadButton.TabIndex = 6;
             this.downloadButton.Text = "GET";
             this.downloadButton.UseVisualStyleBackColor = false;
@@ -392,7 +396,7 @@
             this.downloadOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.downloadOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.downloadOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.downloadOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadOutput.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadOutput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadOutput.Location = new System.Drawing.Point(18, 252);
             this.downloadOutput.Multiline = true;
@@ -424,7 +428,7 @@
             this.inputTextbox.Location = new System.Drawing.Point(18, 48);
             this.inputTextbox.Multiline = true;
             this.inputTextbox.Name = "inputTextbox";
-            this.inputTextbox.Size = new System.Drawing.Size(645, 27);
+            this.inputTextbox.Size = new System.Drawing.Size(625, 27);
             this.inputTextbox.TabIndex = 1;
             this.inputTextbox.Text = "Paste a Qobuz URL...";
             this.inputTextbox.WordWrap = false;
@@ -447,6 +451,8 @@
             // 
             // settingsPanel
             // 
+            this.settingsPanel.Controls.Add(this.flowLayoutPanel1);
+            this.settingsPanel.Controls.Add(this.folderButtonsPanel);
             this.settingsPanel.Controls.Add(this.templatesListLabel);
             this.settingsPanel.Controls.Add(this.templatesListTextbox);
             this.settingsPanel.Controls.Add(this.additionalSettingsButton);
@@ -463,15 +469,88 @@
             this.settingsPanel.Controls.Add(this.albumTemplateLabel);
             this.settingsPanel.Controls.Add(this.downloadFolderLabel);
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
-            this.settingsPanel.Controls.Add(this.openFolderButton);
-            this.settingsPanel.Controls.Add(this.saveTemplatesButton);
-            this.settingsPanel.Controls.Add(this.selectFolderButton);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(574, 452);
+            this.settingsPanel.Location = new System.Drawing.Point(635, 487);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.saveTemplatesButton);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(248, 345);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(443, 37);
+            this.flowLayoutPanel1.TabIndex = 30;
+            // 
+            // saveTemplatesButton
+            // 
+            this.saveTemplatesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveTemplatesButton.AutoSize = true;
+            this.saveTemplatesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.saveTemplatesButton.FlatAppearance.BorderSize = 0;
+            this.saveTemplatesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.saveTemplatesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.saveTemplatesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveTemplatesButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveTemplatesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.saveTemplatesButton.Location = new System.Drawing.Point(356, 3);
+            this.saveTemplatesButton.Name = "saveTemplatesButton";
+            this.saveTemplatesButton.Size = new System.Drawing.Size(84, 31);
+            this.saveTemplatesButton.TabIndex = 1;
+            this.saveTemplatesButton.Text = "Save";
+            this.saveTemplatesButton.UseVisualStyleBackColor = false;
+            this.saveTemplatesButton.Click += new System.EventHandler(this.saveTemplatesButton_Click);
+            // 
+            // folderButtonsPanel
+            // 
+            this.folderButtonsPanel.Controls.Add(this.selectFolderButton);
+            this.folderButtonsPanel.Controls.Add(this.openFolderButton);
+            this.folderButtonsPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.folderButtonsPanel.Location = new System.Drawing.Point(248, 101);
+            this.folderButtonsPanel.Name = "folderButtonsPanel";
+            this.folderButtonsPanel.Size = new System.Drawing.Size(443, 37);
+            this.folderButtonsPanel.TabIndex = 29;
+            // 
+            // selectFolderButton
+            // 
+            this.selectFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectFolderButton.AutoSize = true;
+            this.selectFolderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.selectFolderButton.FlatAppearance.BorderSize = 0;
+            this.selectFolderButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.selectFolderButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.selectFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectFolderButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectFolderButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.selectFolderButton.Location = new System.Drawing.Point(356, 3);
+            this.selectFolderButton.Name = "selectFolderButton";
+            this.selectFolderButton.Size = new System.Drawing.Size(84, 31);
+            this.selectFolderButton.TabIndex = 1;
+            this.selectFolderButton.Text = "Select Folder";
+            this.selectFolderButton.UseVisualStyleBackColor = false;
+            this.selectFolderButton.Click += new System.EventHandler(this.selectFolderButton_Click);
+            // 
+            // openFolderButton
+            // 
+            this.openFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.openFolderButton.AutoSize = true;
+            this.openFolderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.openFolderButton.FlatAppearance.BorderSize = 0;
+            this.openFolderButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.openFolderButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.openFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.openFolderButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.openFolderButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.openFolderButton.Location = new System.Drawing.Point(268, 3);
+            this.openFolderButton.Name = "openFolderButton";
+            this.openFolderButton.Size = new System.Drawing.Size(82, 31);
+            this.openFolderButton.TabIndex = 1;
+            this.openFolderButton.Text = "Open Folder";
+            this.openFolderButton.UseVisualStyleBackColor = false;
+            this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
             // 
             // templatesListLabel
             // 
@@ -504,6 +583,7 @@
             // 
             // additionalSettingsButton
             // 
+            this.additionalSettingsButton.AutoSize = true;
             this.additionalSettingsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
             this.additionalSettingsButton.FlatAppearance.BorderSize = 0;
             this.additionalSettingsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -679,57 +759,6 @@
             this.downloadOptionsLabel.Text = "DOWNLOAD OPTIONS";
             this.downloadOptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // openFolderButton
-            // 
-            this.openFolderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.openFolderButton.FlatAppearance.BorderSize = 0;
-            this.openFolderButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.openFolderButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.openFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.openFolderButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openFolderButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.openFolderButton.Location = new System.Drawing.Point(519, 102);
-            this.openFolderButton.Name = "openFolderButton";
-            this.openFolderButton.Size = new System.Drawing.Size(82, 31);
-            this.openFolderButton.TabIndex = 1;
-            this.openFolderButton.Text = "Open Folder";
-            this.openFolderButton.UseVisualStyleBackColor = false;
-            this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
-            // 
-            // saveTemplatesButton
-            // 
-            this.saveTemplatesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.saveTemplatesButton.FlatAppearance.BorderSize = 0;
-            this.saveTemplatesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.saveTemplatesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.saveTemplatesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveTemplatesButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveTemplatesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.saveTemplatesButton.Location = new System.Drawing.Point(607, 345);
-            this.saveTemplatesButton.Name = "saveTemplatesButton";
-            this.saveTemplatesButton.Size = new System.Drawing.Size(84, 31);
-            this.saveTemplatesButton.TabIndex = 1;
-            this.saveTemplatesButton.Text = "Save";
-            this.saveTemplatesButton.UseVisualStyleBackColor = false;
-            this.saveTemplatesButton.Click += new System.EventHandler(this.saveTemplatesButton_Click);
-            // 
-            // selectFolderButton
-            // 
-            this.selectFolderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.selectFolderButton.FlatAppearance.BorderSize = 0;
-            this.selectFolderButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.selectFolderButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.selectFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectFolderButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectFolderButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.selectFolderButton.Location = new System.Drawing.Point(607, 102);
-            this.selectFolderButton.Name = "selectFolderButton";
-            this.selectFolderButton.Size = new System.Drawing.Size(84, 31);
-            this.selectFolderButton.TabIndex = 1;
-            this.selectFolderButton.Text = "Select Folder";
-            this.selectFolderButton.UseVisualStyleBackColor = false;
-            this.selectFolderButton.Click += new System.EventHandler(this.selectFolderButton_Click);
-            // 
             // templatesLabel
             // 
             this.templatesLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -822,7 +851,7 @@
             this.aboutPanel.Controls.Add(this.userInfoTextbox);
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(787, 339);
+            this.aboutPanel.Location = new System.Drawing.Point(787, 352);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
             this.aboutPanel.TabIndex = 1;
@@ -863,7 +892,7 @@
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(213, 30);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(689, 442);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 3;
@@ -1407,6 +1436,8 @@
             // 
             // qualitySelectButton
             // 
+            this.qualitySelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.qualitySelectButton.AutoSize = true;
             this.qualitySelectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.qualitySelectButton.FlatAppearance.BorderSize = 0;
             this.qualitySelectButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -1545,7 +1576,7 @@
             this.movingLabel.AutoSize = true;
             this.movingLabel.BackColor = System.Drawing.Color.Transparent;
             this.movingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.movingLabel.Location = new System.Drawing.Point(181, 1);
+            this.movingLabel.Location = new System.Drawing.Point(181, -5);
             this.movingLabel.Name = "movingLabel";
             this.movingLabel.Size = new System.Drawing.Size(565, 13);
             this.movingLabel.TabIndex = 6;
@@ -1562,7 +1593,7 @@
             this.searchPanel.Controls.Add(this.searchLabel);
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(730, 375);
+            this.searchPanel.Location = new System.Drawing.Point(749, 402);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 29;
@@ -1675,11 +1706,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(951, 577);
-            this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.qualitySelectPanel);
-            this.Controls.Add(this.qualitySelectButton);
-            this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.minimizeButton);
+            this.Controls.Add(this.qualitySelectButton);
+            this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.settingsPanel);
@@ -1700,6 +1731,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.albumPictureBox)).EndInit();
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.folderButtonsPanel.ResumeLayout(false);
+            this.folderButtonsPanel.PerformLayout();
             this.aboutPanel.ResumeLayout(false);
             this.aboutPanel.PerformLayout();
             this.extraSettingsPanel.ResumeLayout(false);
@@ -1825,5 +1860,7 @@
         public System.Windows.Forms.ComboBox languageComboBox;
         private System.Windows.Forms.FlowLayoutPanel taggingOptionsPanel;
         private System.Windows.Forms.Label commentLabel;
+        private System.Windows.Forms.FlowLayoutPanel folderButtonsPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

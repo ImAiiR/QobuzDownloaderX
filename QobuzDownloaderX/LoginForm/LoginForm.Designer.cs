@@ -407,16 +407,17 @@
             // updateButton
             // 
             this.updateButton.BackColor = System.Drawing.Color.Transparent;
+            this.updateButton.BackgroundImage = global::QobuzDownloaderX.Properties.Resources.alert;
+            this.updateButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.updateButton.Enabled = false;
             this.updateButton.FlatAppearance.BorderSize = 0;
             this.updateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.updateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.updateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.updateButton.ForeColor = System.Drawing.Color.Transparent;
-            this.updateButton.Image = global::QobuzDownloaderX.Properties.Resources.alert;
-            this.updateButton.Location = new System.Drawing.Point(12, 333);
+            this.updateButton.Location = new System.Drawing.Point(12, 354);
             this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(40, 44);
+            this.updateButton.Size = new System.Drawing.Size(25, 25);
             this.updateButton.TabIndex = 44;
             this.updateButton.UseVisualStyleBackColor = false;
             this.updateButton.Visible = false;
