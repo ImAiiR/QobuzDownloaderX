@@ -103,7 +103,6 @@ namespace QobuzDownloaderX
             {
                 if (control is Button button)
                 {
-                    qbdlxForm._qbdlxForm.logger.Info("Setting button theme for button: " + button.Name);
                     button.ForeColor = ColorTranslator.FromHtml(_currentTheme.ButtonText);
                     button.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml(_currentTheme.HighlightedButtonBackground);
                     button.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(_currentTheme.ClickedButtonBackground);
@@ -123,7 +122,6 @@ namespace QobuzDownloaderX
                 }
                 else if (control is Label label)
                 {
-                    qbdlxForm._qbdlxForm.logger.Info("Setting label theme for label: " + label.Name);
                     if (label.Name == "versionNumber") { if (parent.Name == "LoginForm") { label.BackColor = ColorTranslator.FromHtml(_currentTheme.MainPanelBackground); } else { label.BackColor = ColorTranslator.FromHtml(_currentTheme.SidePanelBackground); } }
 
                     // Apply specific colors for specific panels if needed
@@ -133,7 +131,6 @@ namespace QobuzDownloaderX
                 }
                 else if (control is TextBox textBox)
                 {
-                    qbdlxForm._qbdlxForm.logger.Info("Setting textBox theme for textBox: " + textBox.Name);
                     textBox.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
 
                     // Apply specific colors for specific panels if needed
@@ -147,8 +144,6 @@ namespace QobuzDownloaderX
                 }
                 else if (control is PictureBox pictureBox)
                 {
-                    qbdlxForm._qbdlxForm.logger.Info("Setting textBox theme for textBox: " + pictureBox.Name);
-
                     // Apply specific colors for specific panels if needed
                     pictureBox.BackColor = pictureBox.Name == "logoPictureBox"
                         ? ColorTranslator.FromHtml(_currentTheme.SidePanelBackground)
@@ -183,8 +178,6 @@ namespace QobuzDownloaderX
                 }
                 else if (control is Panel panel)
                 {
-                    qbdlxForm._qbdlxForm.logger.Info("Setting panel theme for panel: " + panel.Name);
-
                     if (panel.Name == "emailPanel" || panel.Name == "passwordPanel") { continue; }
 
                     // Apply specific colors for specific panels if needed

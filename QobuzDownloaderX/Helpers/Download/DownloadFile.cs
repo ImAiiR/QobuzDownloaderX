@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading.Tasks;
 using QopenAPI;
 using QobuzDownloaderX.Properties;
-using QobuzDownloaderX.Download;
 using System.Text.RegularExpressions;
 
 namespace QobuzDownloaderX
@@ -43,7 +42,7 @@ namespace QobuzDownloaderX
             });
         }
 
-        public async Task downloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem)
+        public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Writing temp file to qbdlx-temp/qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
 
@@ -145,7 +144,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task downloadArtwork(string downloadPath, Album QoAlbum)
+        public async Task DownloadArtwork(string downloadPath, Album QoAlbum)
         {
             using (var client = new WebClient())
             {
@@ -159,17 +158,17 @@ namespace QobuzDownloaderX
                 if (!File.Exists(downloadPath + @"Cover.jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork Cover.jpg not found, downloading");
-                    try { client.DownloadFile(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize), downloadPath + @"Cover.jpg"); } catch { Console.WriteLine("Failed to Download Cover Art"); }
+                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize), downloadPath + @"Cover.jpg"); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
                 }
                 if (!File.Exists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork for embedding not found, downloading");
-                    try { client.DownloadFile(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize), downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"); } catch { Console.WriteLine("Failed to Download Cover Art"); }
+                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize), downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
                 }
             }
         }
 
-        public async Task downloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody)
+        public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody)
         {
             using (var client = new WebClient())
             {
@@ -178,7 +177,7 @@ namespace QobuzDownloaderX
 
                 // Download goody to the download path
                 Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
-                client.DownloadFile(QoGoody.Url, downloadPath + renameTemplates.GetSafeFilename(QoAlbum.Title) + " (" + QoGoody.Id + @").pdf");
+                await client.DownloadFileTaskAsync(QoGoody.Url, downloadPath + renameTemplates.GetSafeFilename(QoAlbum.Title) + " (" + QoGoody.Id + @").pdf");
             }
         }
     }

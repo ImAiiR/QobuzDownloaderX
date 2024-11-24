@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using QopenAPI;
 using System.IO;
 using QobuzDownloaderX.Properties;
-using QobuzDownloaderX.Download;
 
 namespace QobuzDownloaderX
 {
@@ -80,7 +79,7 @@ namespace QobuzDownloaderX
             else { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.Position.ToString().PadLeft(paddedTrackLength, '0')} {trackName}..."); }
 
             // Download stream
-            await downloadFile.downloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
+            await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
             getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
         }
 
@@ -124,7 +123,7 @@ namespace QobuzDownloaderX
                     }
 
                     // Download cover art
-                    try { await downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
+                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
 
                     // Check for Existing File
                     if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
@@ -175,7 +174,7 @@ namespace QobuzDownloaderX
                     if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
 
                     // Download cover art
-                    try { await downloadFile.downloadArtwork(downloadPath, QoAlbum); } catch { Console.WriteLine("Failed to Download Cover Art"); }
+                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch { Console.WriteLine("Failed to Download Cover Art"); }
 
                     // Download and Save Track
                     await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength);

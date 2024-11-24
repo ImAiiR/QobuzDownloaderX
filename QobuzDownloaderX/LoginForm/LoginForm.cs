@@ -2,15 +2,13 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Net;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Net.Http;
 using QopenAPI;
-using Newtonsoft.Json.Linq;
+using QobuzDownloaderX.Helpers;
 
 namespace QobuzDownloaderX
 {
@@ -43,15 +41,13 @@ namespace QobuzDownloaderX
         private readonly Theming themeManager = new Theming();
         private LanguageManager languageManager;
         qbdlxForm qbdlx = new qbdlxForm();
+        Logger logger = qbdlxForm._qbdlxForm.logger;
         Service QoService = new Service();
         User QoUser;
 
         public string currentVersion { get; set; }
         public string newVersion { get; set; }
         public string changes { get; set; }
-
-        // Create logger for this form
-        public Logger logger { get; set; }
 
         public string username { get; set; }
         public string password { get; set; }
@@ -134,47 +130,8 @@ namespace QobuzDownloaderX
             altLoginLabel.Text = altLoginLabelToken;
         }
 
-        private async void LoginForm_Load(object sender, EventArgs e)
+        private void SetSavedValues()
         {
-            // Create new log file
-            Directory.CreateDirectory("logs");
-            logger = new Logger("logs\\loginForm_log-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
-            logger.Debug("Logger started, login form loaded!");
-
-            // Round corners of form
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-
-            if (!System.IO.File.Exists(dllCheck))
-            {
-                logger.Error("taglib-sharp.dll is missing from folder. Exiting.");
-                MessageBox.Show("taglib-sharp.dll missing from folder!\r\nPlease Make sure the DLL is in the same folder as QobuzDownloaderX.exe!", "ERROR",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            // Bring to center of screen.
-            CenterToScreen();
-
-            // Set and load theme
-            themeManager.LoadTheme(Settings.Default.currentTheme);
-            themeManager.ApplyTheme(this);
-
-            // Set and load language
-            languageManager = new LanguageManager();
-            languageManager.LoadLanguage($"languages/{Settings.Default.currentLanguage.ToLower()}.json");
-            UpdateUILanguage();
-
-            if (Properties.Settings.Default.UpgradeRequired)
-            {
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.UpgradeRequired = false;
-                Properties.Settings.Default.Save();
-            }
-
-            // Get and display version number.
-            logger.Info("QobuzDownlaoderX | Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            aboutTextbox.Text = aboutTextbox.Text.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-
             // Set saved settings to correct places.
             username = Settings.Default.savedEmail.ToString();
             password = Settings.Default.savedPassword.ToString();
@@ -219,64 +176,83 @@ namespace QobuzDownloaderX
                 passwordTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
                 passwordTextbox.Text = passwordPlaceholder;
             }
+        }
 
+        private void InitializeTheme()
+        {
+            themeManager.LoadTheme(Settings.Default.currentTheme);
+            themeManager.ApplyTheme(this);
+        }
+
+        private void InitializeLanguage()
+        {
+            languageManager = new LanguageManager();
+            languageManager.LoadLanguage($"languages/{Settings.Default.currentLanguage.ToLower()}.json");
+            UpdateUILanguage();
+        }
+
+        private async void CheckForNewVersion()
+        {
             try
             {
-                // Create HttpClient to grab version number from Github
-                var versionURLClient = new HttpClient();
-                logger.Debug("versionURLClient initialized");
-                // Run through TLS to allow secure connection.
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-                // Set user-agent to Firefox.
-                versionURLClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+                var (isUpdateAvailable, _newVersion, _currentVersion, _changes) = await VersionChecker.CheckForUpdate();
 
-                // Grab response from Github to get version number.
-                logger.Debug("Starting request for latest GitHub version");
-                var versionURL = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
-                var versionURLResponse = await versionURLClient.GetAsync(versionURL);
-                string versionURLResponseString = versionURLResponse.Content.ReadAsStringAsync().Result;
-                latestWebResponse = versionURLResponseString;
+                changes = _changes;
+                newVersion = _newVersion;
+                currentVersion = _currentVersion;
 
-                // Grab metadata from API JSON response
-                JObject joVersionResponse = JObject.Parse(versionURLResponseString);
-
-                // Grab latest version number
-                string version = (string)joVersionResponse["tag_name"];
-                logger.Debug("Recieved version: " + version);
-                // Grab changelog
-                changes = (string)joVersionResponse["body"];
-
-                currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                newVersion = version;
-
-                if (currentVersion.Contains(newVersion))
+                if (isUpdateAvailable)
                 {
-                    // Do nothing. All is good.
-                    logger.Debug("Current version and new version match!");
-                }
-                else
-                {
-                    logger.Warning("Current version and new version do not match!");
-                    logger.Debug("Enabling update button");
+                    logger.Warning("An update is available.");
                     updateButton.Enabled = true;
                     updateButton.Visible = true;
                 }
-            }
-            catch
-            {
-                logger.Error("Connection to GitHub failed, unable to grab latest version.");
-                DialogResult dialogResult = MessageBox.Show("Connection to GitHub to check for an update has failed.\r\nWould you like to check for an update manually?\r\n\r\nYour current version is " + Assembly.GetExecutingAssembly().GetName().Version.ToString(), "QBDLX | GitHub Connection Failed", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    // If "Yes" is clicked, open GitHub page and close QBDLX.
-                    Process.Start("https://github.com/ImAiiR/QobuzDownloaderX/releases/latest");
-                    Application.Exit();
-                }
                 else
                 {
-                    // Ignore the update until next open.
+                    logger.Debug("No update needed.");
                 }
             }
+            catch (Exception ex)
+            {
+                logger.Error($"Connection to GitHub to check for an update has failed: {ex.Message}");
+            }
+        }
+
+        private async void LoginForm_Load(object sender, EventArgs e)
+        {
+            // Upgrade previous settings to current version
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
+
+            // Round corners of form
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+            if (!System.IO.File.Exists(dllCheck))
+            {
+                logger.Error("taglib-sharp.dll is missing from folder. Exiting.");
+                MessageBox.Show("taglib-sharp.dll missing from folder!\r\nPlease Make sure the DLL is in the same folder as QobuzDownloaderX.exe!", "ERROR",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+
+            // Center program + Set theme, language, saved values + Check for update on GitHub
+            CenterToScreen();
+            InitializeTheme();
+            InitializeLanguage();
+            SetSavedValues();
+            CheckForNewVersion();
+
+            // Get and display version number.
+            logger.Info("QobuzDownlaoderX | Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            aboutTextbox.Text = aboutTextbox.Text.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+
+            // Check for language updates
+            await TranslationUpdater.CheckAndUpdateLanguageFiles();
         }
 
         private void exitButton_Click(object sender, EventArgs e)

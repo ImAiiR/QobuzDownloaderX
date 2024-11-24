@@ -634,5 +634,17 @@ namespace QobuzDownloaderX.Properties {
                 this["currentLanguage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AiiR")]
+        public string postTemplateUsername {
+            get {
+                return ((string)(this["postTemplateUsername"]));
+            }
+            set {
+                this["postTemplateUsername"] = value;
+            }
+        }
     }
 }

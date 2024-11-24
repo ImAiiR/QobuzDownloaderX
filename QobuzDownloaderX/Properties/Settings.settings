@@ -155,5 +155,8 @@
     <Setting Name="currentLanguage" Type="System.String" Scope="User">
       <Value Profile="(Default)">EN</Value>
     </Setting>
+    <Setting Name="postTemplateUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AiiR</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,0 +1,72 @@
+{
+  "themes": {
+    "Dark": {
+      "FormBackground": "#121212",
+      "MainPanelBackground": "#121212",
+      "HighlightedButtonBackground": "#121212",
+      "SidePanelBackground": "#0d0d0d",
+      "ButtonBackground": "#0d0d0d",
+      "ClickedButtonBackground": "#191919",
+	  "TextBoxBackground": "#1e1e1e",
+	  "PlaceholderTextBoxText": "#3c3c3c",
+	  "TextBoxText": "#939393",
+	  "LabelText": "#939393",
+	  "ButtonText": "#939393",
+	  "NavBarIconColor": "#939393",
+	  "HiResLabelText": "#fac819",
+	  "LogoReplaceURL": null,
+	  "InvertLogo": false
+    },
+    "Light": {
+      "FormBackground": "#ededed",
+      "MainPanelBackground": "#ededed",
+      "HighlightedButtonBackground": "#ededed",
+      "SidePanelBackground": "#f2f2f2",
+      "ButtonBackground": "#f2f2f2",
+      "ClickedButtonBackground": "#e6e6e6",
+	  "TextBoxBackground": "#e1e1e1",
+	  "PlaceholderTextBoxText": "#c3c3c3",
+	  "TextBoxText": "#6c6c6c",
+	  "LabelText": "#6c6c6c",
+	  "ButtonText": "#6c6c6c",
+	  "NavBarIconColor": "#6c6c6c",
+	  "HiResLabelText": "#cd9b00",
+	  "LogoReplaceURL": null,
+	  "InvertLogo": true
+    },
+    "JAM.S": {
+      "FormBackground": "#2b2f34",
+      "MainPanelBackground": "#2b2f34",
+      "HighlightedButtonBackground": "#bc243c",
+      "SidePanelBackground": "#56343e",
+      "ButtonBackground": "#56343e",
+      "ClickedButtonBackground": "#734141",
+	  "TextBoxBackground": "#1e1e1e",
+	  "PlaceholderTextBoxText": "#3c3c3c",
+	  "TextBoxText": "#8c8c8c",
+	  "LabelText": "#8c8c8c",
+	  "ButtonText": "#FFFFFF",
+	  "NavBarIconColor": "#FFFFFF",
+	  "HiResLabelText": "#fac819",
+	  "LogoReplaceURL": "https://justanothermusic.site/styles/pach/logo.png",
+	  "InvertLogo": false
+    },
+    "Qotify": {
+      "FormBackground": "#121212",
+      "MainPanelBackground": "#121212",
+      "HighlightedButtonBackground": "#4ac776",
+      "SidePanelBackground": "#1db954",
+      "ButtonBackground": "#1db954",
+      "ClickedButtonBackground": "#62d089",
+	  "TextBoxBackground": "#1e1e1e",
+	  "PlaceholderTextBoxText": "#3c3c3c",
+	  "TextBoxText": "#939393",
+	  "LabelText": "#FFFFFF",
+	  "ButtonText": "#FFFFFF",
+	  "NavBarIconColor": "#FFFFFF",
+	  "HiResLabelText": "#1db954",
+	  "LogoReplaceURL": null,
+	  "InvertLogo": false
+    }
+  }
+}

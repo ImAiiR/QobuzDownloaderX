@@ -15,21 +15,21 @@ namespace QobuzDownloaderX
         public SearchAlbumResult QoAlbumSearch = new SearchAlbumResult();
         public SearchTrackResult QoTrackSearch = new SearchTrackResult();
 
-        public async Task SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
+        public void SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
         {
             if (searchType == "releases")
             {
                 QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
-                await PopulateTableAlbums(qbdlxForm._qbdlxForm, QoAlbumSearch);
+                PopulateTableAlbums(qbdlxForm._qbdlxForm, QoAlbumSearch);
             }
             else if (searchType == "tracks")
             {
                 QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
-                await PopulateTableTracks(qbdlxForm._qbdlxForm, QoTrackSearch);
+                PopulateTableTracks(qbdlxForm._qbdlxForm, QoTrackSearch);
             }
         }
 
-        public async Task PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
+        public void PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
         {
             // Access the "items" array from the response
             var albums = QoAlbumSearch.Albums.Items;
@@ -131,7 +131,7 @@ namespace QobuzDownloaderX
             });
         }
 
-        public async Task PopulateTableTracks(qbdlxForm mainForm, SearchTrackResult QoTrackSearch)
+        public void PopulateTableTracks(qbdlxForm mainForm, SearchTrackResult QoTrackSearch)
         {
             // Access the "items" array from the response
             var tracks = QoTrackSearch.Tracks.Items;

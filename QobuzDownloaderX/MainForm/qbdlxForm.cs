@@ -35,6 +35,13 @@ namespace QobuzDownloaderX
             int nHeightEllipse // height of ellipse
         );
 
+        // Create logger for this form
+        public Logger logger { get; set; }
+
+        // Create theme and language options
+        public Theme theme { get; set; }
+        public LanguageManager languageManager;
+
         public Service QoService = new Service();
         public User QoUser = new User();
         public Artist QoArtist = new Artist();
@@ -51,9 +58,6 @@ namespace QobuzDownloaderX
         public bool aboutPanelActive = false;
         public bool settingsPanelActive = false;
         private bool firstLoadComplete = false;
-
-        // Create logger for this form
-        public Logger logger { get; set; }
 
         public string downloadLocation { get; set; }
         public string artistTemplate { get; set; }
@@ -77,10 +81,6 @@ namespace QobuzDownloaderX
         public string embeddedArtSize { get; set; }
         public string savedArtSize { get; set; }
         public string themeName { get; set; }
-
-        // Create theme and language options
-        public Theme theme { get; set; }
-        public LanguageManager languageManager;
 
         #region Language
         public string userInfoTextboxPlaceholder { get; set; }
@@ -120,7 +120,7 @@ namespace QobuzDownloaderX
         {
             // Create new log file
             Directory.CreateDirectory("logs");
-            logger = new Logger("logs\\qbdlxForm_log-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
+            logger = new Logger("logs\\log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
             logger.Debug("Logger started, QBDLX form initialized!");
 
             InitializeComponent();
@@ -522,7 +522,7 @@ namespace QobuzDownloaderX
                         break;
                     }
                     updateAlbumInfoLabels(QoAlbum);
-                    await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                    await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                     // Say the downloading is finished when it's completed.
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
@@ -574,7 +574,7 @@ namespace QobuzDownloaderX
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
                             updateAlbumInfoLabels(QoAlbum);
-                            await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                            await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                         }
                         catch
                         {
@@ -597,7 +597,7 @@ namespace QobuzDownloaderX
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
                             updateAlbumInfoLabels(QoAlbum);
-                            await Task.Run(() => downloadAlbum.downloadAlbum(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                            await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                         }
                         catch
                         {
@@ -622,7 +622,7 @@ namespace QobuzDownloaderX
                                 await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                 QoAlbum = getInfo.QoAlbum;
                                 updateAlbumInfoLabels(QoAlbum);
-                                await Task.Run(() => downloadAlbum.downloadAlbum(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                                await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                             }
                             catch
                             {
@@ -670,7 +670,7 @@ namespace QobuzDownloaderX
                                         await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                         QoAlbum = getInfo.QoAlbum;
                                         updateAlbumInfoLabels(QoAlbum);
-                                        await Task.Run(() => downloadAlbum.downloadAlbum(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                                        await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
                                     }
                                     catch
                                     {
@@ -1429,21 +1429,25 @@ namespace QobuzDownloaderX
 
         public void Debug(string message)
         {
+            Console.WriteLine($"DEBUG | {message}");
             Log(message, "DEBUG");
         }
 
         public void Info(string message)
         {
+            Console.WriteLine($"INFO | {message}");
             Log(message, "INFO");
         }
 
         public void Warning(string message)
         {
+            Console.WriteLine($"WARNING | {message}");
             Log(message, "WARNING");
         }
 
         public void Error(string message)
         {
+            Console.WriteLine($"ERROR | {message}");
             Log(message, "ERROR");
         }
     }

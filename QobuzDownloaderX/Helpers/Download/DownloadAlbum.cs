@@ -33,16 +33,14 @@ namespace QobuzDownloaderX
         PaddingNumbers padNumber = new PaddingNumbers();
         DownloadTrack downloadTrack = new DownloadTrack();
         DownloadFile downloadFile = new DownloadFile();
-        RenameTemplates renameTemplates = new RenameTemplates();
         GetInfo getInfo = new GetInfo();
-        FixMD5 fixMD5 = new FixMD5();
 
         private async Task DownloadArtwork(string downloadPath, Album album)
         {
             try
             {
                 qbdlxForm._qbdlxForm.logger.Debug("Downloading artwork...");
-                await downloadFile.downloadArtwork(downloadPath, album);
+                await downloadFile.DownloadArtwork(downloadPath, album);
                 qbdlxForm._qbdlxForm.logger.Debug("Artwork download complete");
             }
             catch (Exception ex)
@@ -52,7 +50,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private async Task DeleteEmbeddedArtwork(string downloadPath)
+        private void DeleteEmbeddedArtwork(string downloadPath)
         {
             try
             {
@@ -81,7 +79,7 @@ namespace QobuzDownloaderX
                     }
 
                     qbdlxForm._qbdlxForm.logger.Debug("Downloading goody...");
-                    await downloadFile.downloadGoody(downloadPath, album, goody);
+                    await downloadFile.DownloadGoody(downloadPath, album, goody);
                     qbdlxForm._qbdlxForm.logger.Debug("Goody download complete");
                     getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
                 }
@@ -112,7 +110,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task downloadAlbum(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
+        public async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Starting album download (downloadAlbum)");
 
@@ -154,7 +152,7 @@ namespace QobuzDownloaderX
                 await DownloadTracksAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum);
 
                 // Delete image used for embedding artwork
-                await DeleteEmbeddedArtwork(downloadPath);
+                DeleteEmbeddedArtwork(downloadPath);
 
                 // Set current output text
                 getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
@@ -210,20 +208,20 @@ namespace QobuzDownloaderX
                     if (album.MaximumBitDepth > 16)
                     {
                         sw.WriteLine($"[format=FLAC / Lossless ({album.MaximumBitDepth.ToString()}bit/{album.MaximumSamplingRate.ToString()}kHz) / WEB]");
-                        sw.WriteLine("Uploaded by @AiiR");
+                        sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername.ToString()}");
                         sw.WriteLine("");
                         sw.WriteLine("DOWNLOAD");
                         sw.WriteLine("REPLACE THIS WITH URL");
                         sw.WriteLine("[/format]");
                     }
                     sw.WriteLine("[format=FLAC / Lossless / WEB]");
-                    sw.WriteLine("Uploaded by @AiiR");
+                    sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername.ToString()}");
                     sw.WriteLine("");
                     sw.WriteLine("DOWNLOAD");
                     sw.WriteLine("REPLACE THIS WITH URL");
                     sw.WriteLine("[/format]");
                     sw.WriteLine("[format=MP3 / 320 / WEB]");
-                    sw.WriteLine("Uploaded by @AiiR");
+                    sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername.ToString()}");
                     sw.WriteLine("");
                     sw.WriteLine("DOWNLOAD");
                     sw.WriteLine("REPLACE THIS WITH URL");
