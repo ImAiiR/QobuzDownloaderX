@@ -98,8 +98,15 @@ namespace QobuzDownloaderX
                     // Get track info with auth if not there already
                     if (QoItem == null) { QoItem = QoService.TrackGetWithAuth(app_id, album_id, user_auth_token); }
 
+                    // Check if QoItem is still null. If so, skip.
+                    if (QoItem == null) 
+                    {
+                        getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputAPIError}\r\n");
+                        return;
+                    }
+
                     // Verify Streamable
-                    if (!VerifyStreamable(QoItem, paddedTrackLength)) return;
+                    try { if (!VerifyStreamable(QoItem, paddedTrackLength)) return; } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Unable to verify if track is streamable. Error below:\r\n{ex}"); }
 
                     // Setting up download and file path
                     downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
@@ -123,7 +130,7 @@ namespace QobuzDownloaderX
                     }
 
                     // Download cover art
-                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
+                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
 
                     // Check for Existing File
                     if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
@@ -174,7 +181,7 @@ namespace QobuzDownloaderX
                     if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
 
                     // Download cover art
-                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch { Console.WriteLine("Failed to Download Cover Art"); }
+                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { Console.WriteLine($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
 
                     // Download and Save Track
                     await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength);
