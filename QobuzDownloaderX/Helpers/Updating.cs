@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Net;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
 {
@@ -52,16 +52,16 @@ namespace QobuzDownloaderX.Helpers
                                 string remoteUpdatedOnString = remoteJson["TranslationUpdatedOn"]?.ToString();
 
                                 // Parse the local file's "TranslationUpdatedOn" field
-                                if (File.Exists(localFilePath.ToLower()))
+                                if (ZlpIOHelper.FileExists(localFilePath.ToLower()))
                                 {
-                                    string localContent = File.ReadAllText(localFilePath.ToLower());
+                                    string localContent = ZlpIOHelper.ReadAllText(localFilePath.ToLower());
                                     JObject localJson = JObject.Parse(localContent);
                                     string localUpdatedOnString = localJson["TranslationUpdatedOn"]?.ToString();
 
                                     // Compare updated date
                                     if (remoteUpdatedOnString != localUpdatedOnString)
                                     {
-                                        File.WriteAllText(localFilePath.ToLower(), remoteContent);
+                                        ZlpIOHelper.WriteAllText(localFilePath.ToLower(), remoteContent);
                                         qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} updated successfully.");
                                     }
                                     else
@@ -72,7 +72,7 @@ namespace QobuzDownloaderX.Helpers
                                 else
                                 {
                                     // Local file does not exist, download it
-                                    File.WriteAllText(localFilePath.ToLower(), remoteContent);
+                                    ZlpIOHelper.WriteAllText(localFilePath.ToLower(), remoteContent);
                                     qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} downloaded successfully.");
                                 }
                             }

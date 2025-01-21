@@ -4,6 +4,7 @@ using QopenAPI;
 using System.IO;
 using QobuzDownloaderX.Properties;
 using System.Text.RegularExpressions;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
@@ -55,7 +56,7 @@ namespace QobuzDownloaderX
             try
             {
                 qbdlxForm._qbdlxForm.logger.Debug("Deleting embedded artwork...");
-                File.Delete($"{downloadPath}{qbdlxForm._qbdlxForm.embeddedArtSize}.jpg");
+                ZlpIOHelper.DeleteFile($"{downloadPath}{qbdlxForm._qbdlxForm.embeddedArtSize}.jpg");
             }
             catch
             {
@@ -90,7 +91,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album)
+        public async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album)
         {
             foreach (var item in album.Tracks.Items)
             {
@@ -181,7 +182,7 @@ namespace QobuzDownloaderX
                 // Not useful at all for normal users, but I use it so... yeah
                 qbdlxForm._qbdlxForm.logger.Debug("Writing post template...");
                 var templateDate = DateTime.Parse(album.ReleaseDateOriginal).ToString("MMMM d, yyyy");
-                File.WriteAllText("post_template.txt", String.Empty);
+                ZlpIOHelper.WriteAllText("post_template.txt", String.Empty);
                 
                 using (StreamWriter sw = File.AppendText("post_template.txt"))
                 {

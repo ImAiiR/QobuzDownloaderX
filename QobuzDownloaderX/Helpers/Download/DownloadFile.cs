@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net;
-using System.IO;
 using System.Threading.Tasks;
 using QopenAPI;
 using QobuzDownloaderX.Properties;
 using System.Text.RegularExpressions;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
@@ -28,14 +28,15 @@ namespace QobuzDownloaderX
                     qbdlxForm._qbdlxForm.logger.Debug("Using non-playlist path");
                     string artistTemplateConverted = renameTemplates.renameTemplates(artistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
                     string albumTemplateConverted = renameTemplates.renameTemplates(albumTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, null, null);
-                    downloadPath = Path.Combine(downloadLocation, artistTemplateConverted, albumTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
+                    downloadPath = ZlpPathHelper.Combine(downloadLocation, artistTemplateConverted, albumTemplateConverted.TrimEnd(ZlpPathHelper.DirectorySeparatorChar) + ZlpPathHelper.DirectorySeparatorChar);
                     downloadPath = Regex.Replace(downloadPath, @"\s+", " "); // Remove double spaces
+                    
                 }
                 else
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Using playlist path");
                     string playlistTemplateConverted = renameTemplates.renameTemplates(playlistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, null, null, QoPlaylist);
-                    downloadPath = Path.Combine(downloadLocation, playlistTemplateConverted.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
+                    downloadPath = ZlpPathHelper.Combine(downloadLocation, playlistTemplateConverted.TrimEnd(ZlpPathHelper.DirectorySeparatorChar) + ZlpPathHelper.DirectorySeparatorChar);
                     downloadPath = Regex.Replace(downloadPath, @"\s+", " "); // Remove double spaces
                 }
                 return downloadPath;
@@ -47,8 +48,8 @@ namespace QobuzDownloaderX
             qbdlxForm._qbdlxForm.logger.Debug("Writing temp file to qbdlx-temp/qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
 
             // Create a temp directory inside the exe location, to download files to.
-            string tempFile = Path.Combine(@"qbdlx-temp", "qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
-            Directory.CreateDirectory(@"qbdlx-temp");
+            string tempFile = ZlpPathHelper.Combine(@"qbdlx-temp", "qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
+            ZlpIOHelper.CreateDirectory(@"qbdlx-temp");
 
             using (var client = new WebClient())
             {
@@ -119,7 +120,7 @@ namespace QobuzDownloaderX
 
                     // Move the file with the full name (Zeta Long Paths to avoid MAX_PATH error)
                     qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
-                    ZetaLongPaths.ZlpIOHelper.MoveFile(tempFile, filePath);
+                    ZlpIOHelper.MoveFile(tempFile, filePath);
                     
                     // Signal the TaskCompletionSource that the task is complete
                     tcs.SetResult(true);
@@ -130,11 +131,11 @@ namespace QobuzDownloaderX
                 if (QoAlbum.MediaCount > 1)
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
-                    Directory.CreateDirectory(Path.GetDirectoryName(downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0') + Path.DirectorySeparatorChar));
+                    ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0') + ZlpPathHelper.DirectorySeparatorChar));
                 }
                 else
                 {
-                    Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
+                    ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
                 }
 
                 client.DownloadFileAsync(new Uri(streamUrl), tempFile);
@@ -153,17 +154,17 @@ namespace QobuzDownloaderX
 
                 // Download cover art (600x600) to the download path
                 qbdlxForm._qbdlxForm.logger.Debug("Downloading Cover Art");
-                Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
+                ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
 
-                if (!File.Exists(downloadPath + @"Cover.jpg"))
+                if (!ZlpIOHelper.FileExists(downloadPath + @"Cover.jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork Cover.jpg not found, downloading");
-                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize), downloadPath + @"Cover.jpg"); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
+                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize), ZlpPathHelper.GetFullPath(downloadPath + @"Cover.jpg")); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to download cover art. Error below:\r\n{ex}"); }
                 }
-                if (!File.Exists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"))
+                if (!ZlpIOHelper.FileExists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork for embedding not found, downloading");
-                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize), downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"); } catch { qbdlxForm._qbdlxForm.logger.Error("Failed to Download Cover Art"); }
+                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize), ZlpPathHelper.GetFullPath(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg")); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to download cover art. Error below:\r\n{ex}"); }
                 }
             }
         }
@@ -176,7 +177,7 @@ namespace QobuzDownloaderX
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
                 // Download goody to the download path
-                Directory.CreateDirectory(Path.GetDirectoryName(downloadPath));
+                ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
                 await client.DownloadFileTaskAsync(QoGoody.Url, downloadPath + renameTemplates.GetSafeFilename(QoAlbum.Title) + " (" + QoGoody.Id + @").pdf");
             }
         }

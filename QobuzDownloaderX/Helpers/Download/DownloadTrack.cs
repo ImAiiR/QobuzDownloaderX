@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using QopenAPI;
-using System.IO;
 using QobuzDownloaderX.Properties;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
@@ -37,7 +37,7 @@ namespace QobuzDownloaderX
 
         private bool CheckForExistingFile(string filePath, int paddedTrackLength, Item QoItem)
         {
-            if (File.Exists(filePath))
+            if (ZlpIOHelper.FileExists(filePath))
             {
                 getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputFileExists.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n");
                 return true;
@@ -48,9 +48,9 @@ namespace QobuzDownloaderX
         private void CleanupArtwork(string downloadPath)
         {
             string artworkPath = downloadFile.artworkPath;
-            if (File.Exists(artworkPath))
+            if (ZlpIOHelper.FileExists(artworkPath))
             {
-                File.Delete(artworkPath);
+                ZlpIOHelper.DeleteFile(artworkPath);
             }
         }
 
@@ -122,7 +122,7 @@ namespace QobuzDownloaderX
                     // Create subfolders for multi-volume releases
                     if (QoAlbum.MediaCount > 1)
                     {
-                        filePath = downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddedDiscLength, '0') + Path.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
+                        filePath = downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddedDiscLength, '0') + ZlpPathHelper.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
                     }
                     else
                     {

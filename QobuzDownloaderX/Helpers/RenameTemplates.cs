@@ -3,6 +3,7 @@ using System.Linq;
 using System.IO;
 using QopenAPI;
 using System.Text.RegularExpressions;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
@@ -141,7 +142,7 @@ namespace QobuzDownloaderX
             template = Regex.Replace(template, @"%(.*?)%", match => match.Value.ToLower());
 
             // Keep backslashes to be used to make new folders
-            if (template.Contains(Path.DirectorySeparatorChar))
+            if (template.Contains(ZlpPathHelper.DirectorySeparatorChar))
             {
                 template = template.Replace(@"\", "{backslash}").Replace(@"/", "{forwardslash}");
             }

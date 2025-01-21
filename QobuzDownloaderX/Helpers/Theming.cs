@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using QobuzDownloaderX.Properties;
 using System;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
@@ -39,10 +39,10 @@ namespace QobuzDownloaderX
 
         public void LoadTheme(string themeName)
         {
-            string themesFilePath = Path.GetDirectoryName(Application.ExecutablePath) + "\\themes.json";
-            if (File.Exists(themesFilePath))
+            string themesFilePath = ZlpPathHelper.GetDirectoryPathNameFromFilePath(Application.ExecutablePath) + "\\themes.json";
+            if (ZlpIOHelper.FileExists(themesFilePath))
             {
-                string json = File.ReadAllText(themesFilePath);
+                string json = ZlpIOHelper.ReadAllText(themesFilePath);
                 var themeSettings = JsonConvert.DeserializeObject<ThemeSettings>(json);
 
                 if (themeSettings.Themes.TryGetValue(themeName, out var theme))
@@ -61,10 +61,10 @@ namespace QobuzDownloaderX
         }
         public void PopulateThemeOptions(qbdlxForm mainForm)
         {
-            string themesFilePath = Path.GetDirectoryName(Application.ExecutablePath) + "\\themes.json";
-            if (File.Exists(themesFilePath))
+            string themesFilePath = ZlpPathHelper.GetDirectoryPathNameFromFilePath(Application.ExecutablePath) + "\\themes.json";
+            if (ZlpIOHelper.FileExists(themesFilePath))
             {
-                string json = File.ReadAllText(themesFilePath);
+                string json = ZlpIOHelper.ReadAllText(themesFilePath);
                 var themeSettings = JsonConvert.DeserializeObject<ThemeSettings>(json);
 
                 mainForm.Invoke((MethodInvoker)delegate ()
@@ -384,19 +384,19 @@ namespace QobuzDownloaderX
         {
             ComboBox languageComboBox = mainForm.languageComboBox;
 
-            if (!Directory.Exists(languagesDirectory))
+            if (!ZlpIOHelper.DirectoryExists(languagesDirectory))
             {
                 qbdlxForm._qbdlxForm.logger.Warning("Language directory not found.");
                 return;
             }
 
             // Get all .json files in the languages folder
-            var languageFiles = Directory.GetFiles(languagesDirectory, "*.json");
+            var languageFiles = ZlpIOHelper.GetFiles(languagesDirectory, "*.json");
 
             foreach (var filePath in languageFiles)
             {
                 // Extract the language code from file name (e.g., "en" from "en.json")
-                var fileName = Path.GetFileNameWithoutExtension(filePath);
+                var fileName = filePath.NameWithoutExtension;
                 languageComboBox.Items.Add(fileName.ToUpper()); // Add language code to combo box
             }
         }
@@ -406,7 +406,7 @@ namespace QobuzDownloaderX
             try
             {
                 qbdlxForm._qbdlxForm.logger.Info("Loading language from: " + filePath);
-                var json = File.ReadAllText(filePath);
+                var json = ZlpIOHelper.ReadAllText(filePath);
                 languageDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             }
             catch (Exception ex)
