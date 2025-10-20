@@ -16,7 +16,8 @@ namespace QobuzDownloaderX.Helpers
         {
             { "en.json", "Languages/en.json" },
             { "ru.json", "Languages/ru.json" },
-            { "zh-cn.json", "Languages/zh-cn.json" }
+            { "zh-cn.json", "Languages/zh-cn.json" },
+            { "tr.json", "Languages/tr.json" }
         };
 
         public static async Task CheckAndUpdateLanguageFiles()

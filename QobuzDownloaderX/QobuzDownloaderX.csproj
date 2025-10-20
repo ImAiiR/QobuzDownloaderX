@@ -142,6 +142,7 @@
     <None Include="Resources\Languages\en.json" />
     <None Include="Resources\Languages\ru.json" />
     <None Include="Resources\Languages\zh-cn.json" />
+    <None Include="Resources\Languages\tr.json" />
     <None Include="Resources\qbdlx_new.png" />
     <None Include="Resources\themes.json" />
   </ItemGroup>
