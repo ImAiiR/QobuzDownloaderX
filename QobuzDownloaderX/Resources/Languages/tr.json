@@ -83,7 +83,7 @@
 	"downloadOutputGoodyNoURL": 	"bu Nâdide beste için indirme Linki bulunamadı, atlanıyor",
 	"downloadOutputFileExists": 	"Parça {TrackNumber} zaten mevcut, atlanıyor.",
 	"downloadOutputDownloading": 	"İndiriliyor",
-	"downloadOutputDone": 			"BİTTİ",
+	"downloadOutputDone": 			"İNDİRİLDİ",
 	"downloadOutputCompleted": 		"İNDİRME TAMAMLANDI",
 	"progressLabelInactive": 		"Aktif İndirme Yok",
 	"progressLabelActive": 			"İndirme İlerlemesi",
