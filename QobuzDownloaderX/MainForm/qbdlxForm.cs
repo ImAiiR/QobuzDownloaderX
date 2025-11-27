@@ -19,6 +19,9 @@ namespace QobuzDownloaderX
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
+        const int WS_MINIMIZEBOX = 0x20000;
+        const int CS_DBLCLKS = 0x8;
+
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
@@ -115,6 +118,18 @@ namespace QobuzDownloaderX
         DownloadAlbum downloadAlbum = new DownloadAlbum();
         DownloadTrack downloadTrack = new DownloadTrack();
         SearchPanelHelper searchPanelHelper = new SearchPanelHelper();
+
+        // Allows to minimize/restore the form when clicking on the taskbar icon.
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.Style |= WS_MINIMIZEBOX;
+                cp.ClassStyle |= CS_DBLCLKS;
+                return cp;
+            }
+        }
 
         public qbdlxForm()
         {
@@ -1398,6 +1413,7 @@ namespace QobuzDownloaderX
             searchingLabel.Visible = false;
             return;
         }
+
     }
     public class Logger
     {
@@ -1451,4 +1467,5 @@ namespace QobuzDownloaderX
             Log(message, "ERROR");
         }
     }
+
 }
