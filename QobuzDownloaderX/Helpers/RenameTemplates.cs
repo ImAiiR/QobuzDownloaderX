@@ -213,6 +213,9 @@ namespace QobuzDownloaderX
             // Remove any double spaces
             template = Regex.Replace(Regex.Replace(template.Replace("{backslash}", @"\").Replace("{forwardslash}", @"/"), @"\s+", " ").Replace(@" \", @"\"), @"\s+\\", " "); // Replace slash placeholders & remove double spaces
 
+            // Replace long ellipsis
+            template = template.Replace("...", "…");
+            
             qbdlxForm._qbdlxForm.logger.Debug("Template output - " + template);
             return template;
         }
