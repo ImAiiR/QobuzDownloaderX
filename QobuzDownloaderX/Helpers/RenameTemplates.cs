@@ -14,7 +14,8 @@ namespace QobuzDownloaderX
         public string GetSafeFilename(string filename)
         {
             string safe = MakeValidWindowsFileName(filename);
-            return safe;
+            string safeTruncated = TruncateLongName(safe, (Byte)"flac".Length); // "flac" = largest possible file extension length.
+            return safeTruncated;
         }
 
         public string GetReleaseArtists(Album QoAlbum)
@@ -341,6 +342,26 @@ namespace QobuzDownloaderX
         //
         //    return sb.ToString();
         //}
+
+        public static string TruncateLongName(string name, byte extLen, byte maxFileNameLength = 255)
+        {
+
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException(nameof(name));
+
+            if (maxFileNameLength == 0)
+                throw new ArgumentException("Value must be greater than zero.", nameof(maxFileNameLength));
+
+            if (maxFileNameLength == 0)
+                throw new ArgumentException("Value must be greater than zero.", nameof(maxFileNameLength));
+
+            if ((name.Length + extLen) >= maxFileNameLength)
+            {
+                name = name.Substring(0, maxFileNameLength - 1 - extLen) + '…';
+            }
+
+            return name;
+        }
 
     }
 }
