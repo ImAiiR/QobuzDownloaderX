@@ -1,7 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using QopenAPI;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using QopenAPI;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using ZetaLongPaths;
 
@@ -11,9 +13,8 @@ namespace QobuzDownloaderX
     {
         public string GetSafeFilename(string filename)
         {
-            // For converting illegal filename characters to an underscore.
-            Console.WriteLine(string.Join("_", filename.TrimEnd().TrimEnd('.').TrimEnd('.').Split(Path.GetInvalidFileNameChars())));
-            return string.Join("_", filename.TrimEnd().TrimEnd('.').TrimEnd('.').Split(Path.GetInvalidFileNameChars()));
+            string safe = MakeValidWindowsFileName(filename);
+            return safe;
         }
 
         public string GetReleaseArtists(Album QoAlbum)
@@ -208,13 +209,138 @@ namespace QobuzDownloaderX
             }
 
             // GetSafeFilename call to make sure path will be valid
-            template = GetSafeFilename(template);
+            template = GetSafeFilename(template); 
 
             // Remove any double spaces
             template = Regex.Replace(Regex.Replace(template.Replace("{backslash}", @"\").Replace("{forwardslash}", @"/"), @"\s+", " ").Replace(@" \", @"\"), @"\s+\\", " "); // Replace slash placeholders & remove double spaces
 
+            // Replace long ellipsis
+            template = template.Replace("...", "…");
+
             qbdlxForm._qbdlxForm.logger.Debug("Template output - " + template);
             return template;
         }
+
+        public static string MakeValidWindowsFileName(
+            string fileName,
+            char asteriskChar = '✲',
+            char colonChar = '∶',
+            char questionMarkChar = 'ʔ',
+            char verticalBarChar = 'ǀ',
+            char quoteChar = '″',
+            char backSlashChar = '⧹',
+            char forwardSlashChar = '⧸',
+            char lessThanChar = '˂',
+            char greaterThanChar = '˃')
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+                throw new ArgumentNullException(nameof(fileName));
+
+            char[] invalidFileNameChars = Path.GetInvalidFileNameChars();
+
+            if (invalidFileNameChars.Contains(asteriskChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(asteriskChar)}.", nameof(asteriskChar));
+            if (invalidFileNameChars.Contains(colonChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(colonChar)}.", nameof(colonChar));
+            if (invalidFileNameChars.Contains(questionMarkChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(questionMarkChar)}.", nameof(questionMarkChar));
+            if (invalidFileNameChars.Contains(verticalBarChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(verticalBarChar)}.", nameof(verticalBarChar));
+            if (invalidFileNameChars.Contains(quoteChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(quoteChar)}.", nameof(quoteChar));
+            if (invalidFileNameChars.Contains(backSlashChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(backSlashChar)}.", nameof(backSlashChar));
+            if (invalidFileNameChars.Contains(forwardSlashChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(forwardSlashChar)}.", nameof(forwardSlashChar));
+            if (invalidFileNameChars.Contains(lessThanChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(lessThanChar)}.", nameof(lessThanChar));
+            if (invalidFileNameChars.Contains(greaterThanChar))
+                throw new ArgumentException($"Invalid replacement character for {nameof(greaterThanChar)}.", nameof(greaterThanChar));
+
+            var replacements = new Dictionary<char, char>
+            {
+                { '*', asteriskChar },
+                { ':', colonChar },
+                { '?', questionMarkChar },
+                { '|', verticalBarChar },
+                { '"', quoteChar },
+                { '<', lessThanChar },
+                { '>', greaterThanChar },
+                { '\\', backSlashChar },
+                { '/', forwardSlashChar }
+            };
+
+            fileName = fileName.Trim(new char[] {' ', '.'});
+
+            var sb = new StringBuilder(fileName.Length);
+            foreach (char c in fileName)
+            {
+                if (replacements.ContainsKey(c))
+                    sb.Append(replacements[c]);
+                else
+                    sb.Append(c);
+            }
+
+            return sb.ToString();
+        }
+
+        // UNUSED
+        // ======
+        //
+        //public static string MakeValidWindowsDirectoryName(
+        //    string dirPath,
+        //    char asteriskChar = '✲',
+        //    char colonChar = '∶',
+        //    char questionMarkChar = 'ʔ',
+        //    char verticalBarChar = 'ǀ',
+        //    char quoteChar = '″'',
+        //    char lessThanChar = '˂',
+        //    char greaterThanChar = '˃')
+        //{
+        //    if (string.IsNullOrWhiteSpace(dirPath))
+        //        throw new ArgumentNullException(nameof(dirPath));
+        //
+        //    char[] invalidPathChars = Path.GetInvalidPathChars();
+        //
+        //    if (invalidPathChars.Contains(asteriskChar))
+        //        throw new ArgumentException($"Invalid replacement character for {nameof(asteriskChar)}.", nameof(asteriskChar));
+        //    if (invalidPathChars.Contains(colonChar))
+        //        throw new ArgumentException($"Invalid replacement character for {nameof(colonChar)}.", nameof(colonChar));
+        //    if (invalidPathChars.Contains(questionMarkChar))
+        //        throw new ArgumentException($"Invalid replacement character for {nameof(questionMarkChar)}.", nameof(questionMarkChar));
+        //    if (invalidPathChars.Contains(verticalBarChar))
+        //        throw new ArgumentException($"Invalid replacement character for {nameof(verticalBarChar)}.", nameof(verticalBarChar));
+        //    if (invalidPathChars.Contains(quoteChar))
+        //        throw new ArgumentException($"Invalid replacement character for {nameof(quoteChar)}.", nameof(quoteChar));
+        //    if (invalidPathChars.Contains(lessThanChar))
+        //        throw new ArgumentException($"Invalid replacement character for {nameof(lessThanChar)}.", nameof(lessThanChar));
+        //    if (invalidPathChars.Contains(greaterThanChar))
+        //        throw new ArgumentException($"Invalid replacement character for {nameof(greaterThanChar)}.", nameof(greaterThanChar));
+        //
+        //    var replacements = new Dictionary<char, char>
+        //    {
+        //        { '*', asteriskChar },
+        //        { ':', colonChar },
+        //        { '?', questionMarkChar },
+        //        { '|', verticalBarChar },
+        //        { '"', quoteChar },
+        //        { '<', lessThanChar },
+        //        { '>', greaterThanChar }
+        //    };
+        //
+        //    dirPath = dirPath.Trim();
+        //
+        //    var sb = new StringBuilder(dirPath.Length);
+        //    foreach (char c in dirPath)
+        //    {
+        //        if (replacements.ContainsKey(c))
+        //            sb.Append(replacements[c]);
+        //        else
+        //            sb.Append(c);
+        //    }
+        //
+        //    return sb.ToString();
+        //}
+
     }
 }
