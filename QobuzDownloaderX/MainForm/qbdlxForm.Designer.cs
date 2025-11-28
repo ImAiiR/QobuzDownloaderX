@@ -79,7 +79,7 @@
             this.minimizeButton = new System.Windows.Forms.Button();
             this.aboutPanel = new System.Windows.Forms.Panel();
             this.aboutLabel = new System.Windows.Forms.Label();
-            this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderBrowser = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
             this.extraSettingsPanel = new System.Windows.Forms.Panel();
             this.commentLabel = new System.Windows.Forms.Label();
             this.taggingOptionsPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -703,6 +703,8 @@
             this.downloadFolderTextbox.Size = new System.Drawing.Size(443, 21);
             this.downloadFolderTextbox.TabIndex = 2;
             this.downloadFolderTextbox.Text = "no folder selected";
+            this.downloadFolderTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
+            this.downloadFolderTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
             // 
             // artistTemplateLabel
             // 
@@ -1776,7 +1778,7 @@
         private System.Windows.Forms.Label artistLabel;
         private System.Windows.Forms.TextBox userInfoTextbox;
         private System.Windows.Forms.Label userInfoLabel;
-        public System.Windows.Forms.FolderBrowserDialog folderBrowser;
+        public Ookii.Dialogs.WinForms.VistaFolderBrowserDialog folderBrowser;
         private System.Windows.Forms.Label downloadOptionsLabel;
         private System.Windows.Forms.TextBox downloadFolderTextbox;
         private System.Windows.Forms.Label downloadFolderLabel;

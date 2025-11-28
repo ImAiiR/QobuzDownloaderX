@@ -455,7 +455,41 @@ namespace QobuzDownloaderX
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                getLinkType();
+                downloadButton.PerformClick();
+            }
+        }
+
+        private void downloadFolderTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Enter))
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void downloadFolderTextbox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string path = downloadFolderTextbox.Text?.TrimEnd('\\');
+
+                if (Directory.Exists(path))
+                {
+                    Thread t = new Thread((ThreadStart)(() =>
+                    {
+                        // Save the selection
+                        Settings.Default.savedFolder = path + @"\";
+                        Settings.Default.Save();
+                    }));
+
+                    // Run your code from a thread that joins the STA Thread
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.Start();
+                    t.Join();
+
+                    folderBrowser.SelectedPath = path + @"\";
+                    downloadLocation = path + @"\";
+                }
             }
         }
 
@@ -766,7 +800,7 @@ namespace QobuzDownloaderX
 
         private void openFolderButton_Click(object sender, EventArgs e)
         {
-            // Open selcted folder
+            // Open selected folder
             if (folderBrowser.SelectedPath == null | folderBrowser.SelectedPath == "")
             {
                 // If there's no selected path.
@@ -788,8 +822,10 @@ namespace QobuzDownloaderX
             Thread t = new Thread((ThreadStart)(() =>
             {
                 // Open Folder Browser to select path & Save the selection
+                folderBrowser.ShowNewFolderButton = true;
                 folderBrowser.ShowDialog();
-                Settings.Default.savedFolder = folderBrowser.SelectedPath + @"\";
+                folderBrowser.SelectedPath = folderBrowser.SelectedPath.TrimEnd('\\') + @"\";
+                Settings.Default.savedFolder = folderBrowser.SelectedPath;
                 Settings.Default.Save();
             }));
 
@@ -798,8 +834,8 @@ namespace QobuzDownloaderX
             t.Start();
             t.Join();
             
-            downloadFolderTextbox.Text = folderBrowser.SelectedPath + @"\";
-            downloadLocation = folderBrowser.SelectedPath + @"\";
+            downloadFolderTextbox.Text = folderBrowser.SelectedPath;
+            downloadLocation = folderBrowser.SelectedPath;
         }
 
         private void saveTemplatesButton_Click(object sender, EventArgs e)
