@@ -8,15 +8,18 @@ using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
-    public static class StringExt
-    {
-        public static string Truncate(this string value, int maxLength)
-        {
-            // This is currently unused, but leaving this here in case it needs to be used in the future.
-            if (string.IsNullOrEmpty(value)) return value;
-            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
-        }
-    }
+    // UNUSED
+    // ======
+    //
+    //public static class StringExt
+    //{
+    //    public static string Truncate(this string value, int maxLength)
+    //    {
+    //        // This is currently unused, but leaving this here in case it needs to be used in the future.
+    //        if (string.IsNullOrEmpty(value)) return value;
+    //        return value.Length <= maxLength ? value : value.Substring(0, maxLength);
+    //    }
+    //}
 
     class DownloadAlbum
     {
