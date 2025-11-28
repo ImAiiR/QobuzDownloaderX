@@ -139,6 +139,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\Languages\de.json" />
+    <None Include="Resources\Languages\es.json" />
     <None Include="Resources\Languages\en.json" />
     <None Include="Resources\Languages\ru.json" />
     <None Include="Resources\Languages\zh-cn.json" />
