@@ -251,8 +251,11 @@ namespace QobuzDownloaderX
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             aboutTextbox.Text = aboutTextbox.Text.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
+            this.BeginInvoke((Action)(() => loginButton.Focus()));
+
             // Check for language updates
             await TranslationUpdater.CheckAndUpdateLanguageFiles();
+            
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -632,5 +635,6 @@ namespace QobuzDownloaderX
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
+
     }
 }

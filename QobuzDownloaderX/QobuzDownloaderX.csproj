@@ -112,6 +112,9 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Helpers\Theming.cs" />
+    <Compile Include="UserControls\CustomProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="LoginForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

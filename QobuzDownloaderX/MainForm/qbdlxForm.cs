@@ -110,11 +110,11 @@ namespace QobuzDownloaderX
         public string progressLabelActive { get; set; }
         #endregion
 
-        GetInfo getInfo = new GetInfo();
-        RenameTemplates renameTemplates = new RenameTemplates();
-        DownloadAlbum downloadAlbum = new DownloadAlbum();
-        DownloadTrack downloadTrack = new DownloadTrack();
-        SearchPanelHelper searchPanelHelper = new SearchPanelHelper();
+        readonly GetInfo getInfo = new GetInfo();
+        readonly RenameTemplates renameTemplates = new RenameTemplates();
+        readonly DownloadAlbum downloadAlbum = new DownloadAlbum();
+        readonly DownloadTrack downloadTrack = new DownloadTrack();
+        readonly SearchPanelHelper searchPanelHelper = new SearchPanelHelper();
 
         public qbdlxForm()
         {
@@ -370,6 +370,8 @@ namespace QobuzDownloaderX
         {
             logger.Debug("QBDLX form loaded!");
 
+            this.DoubleBuffered = true;
+
             // Round corners of form
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
@@ -382,6 +384,22 @@ namespace QobuzDownloaderX
             InitializeLanguage();
             SetDownloadPath();
 
+            // Fix hidden controls tab-order
+            // --- SEARCH PAGE
+            searchAlbumsButton.TabIndex = 0;
+            searchTracksButton.TabIndex = 1;
+            // --- SETTINGS PAGE
+            downloadFolderTextbox.TabIndex = 0;
+            openFolderButton.TabIndex = 1;
+            selectFolderButton.TabIndex = 2;
+            artistTemplateTextbox.TabIndex = 3;
+            albumTemplateTextbox.TabIndex = 4;
+            trackTemplateTextbox.TabIndex = 5;
+            playlistTemplateTextbox.TabIndex = 6;
+            favoritesTemplateTextbox.TabIndex = 7;
+            saveTemplatesButton.TabIndex = 8;
+            templatesListTextbox.TabIndex = 9;
+          
             // Get and display version number.
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -449,25 +467,50 @@ namespace QobuzDownloaderX
                 e.SuppressKeyPress = true;
             }
         }
+        
+        private void searchTextbox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchAlbumsButton.PerformClick();
+            }
+        }
 
-        private void inputTextbox_KeyDown(object sender, KeyEventArgs e)
+        private async void inputTextbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                getLinkType();
+                await getLinkTypeAsync();
             }
         }
 
-        private void downloadButton_Click(object sender, EventArgs e)
+        private async void downloadButton_Click(object sender, EventArgs e)
         {
-            getLinkType();
+            inputTextbox.Enabled = false;
+            downloadButton.Enabled = false;
+            try
+            {
+               await getLinkTypeAsync();
+            } 
+            finally
+            {
+                inputTextbox.Enabled = true;
+                downloadButton.Enabled = true;
+            }
+
         }
 
-        public async void getLinkType()
+        public async Task getLinkTypeAsync()
         {
+            var progress = new Progress<int>(value =>
+            {
+                progressBarDownload.Value = value;
+            });
+
             downloadOutput.Focus();
             progressLabel.Invoke(new Action(() => progressLabel.Text = downloadOutputCheckLink));
+            progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = progressBarDownload.Minimum));
 
             // Check if there's no selected path.
             if (downloadLocation == null | downloadLocation == "" | downloadLocation == "no folder selected")
@@ -522,7 +565,7 @@ namespace QobuzDownloaderX
                         break;
                     }
                     updateAlbumInfoLabels(QoAlbum);
-                    await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                    await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress));
                     // Say the downloading is finished when it's completed.
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
@@ -533,25 +576,36 @@ namespace QobuzDownloaderX
                     QoItem = getInfo.QoItem;
                     QoAlbum = getInfo.QoAlbum;
                     updateAlbumInfoLabels(QoAlbum);
-                    await Task.Run(() => downloadTrack.DownloadTrackAsync("track", app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoItem));
+                    await Task.Run(() => downloadTrack.DownloadTrackAsync("track", app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoItem, progress));
                     // Say the downloading is finished when it's completed.
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
                     progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
+                    progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = progressBarDownload.Maximum));
                     break;
                 case "playlist":
                     await Task.Run(() => getInfo.getPlaylistInfoLabels(app_id, qobuz_id, user_auth_token));
                     QoPlaylist = getInfo.QoPlaylist;
                     updatePlaylistInfoLabels(QoPlaylist);
+                    int totalTracksPlaylist = QoPlaylist.Tracks.Items.Count;
+                    int trackIndexPlaylist = 0;
                     foreach (var item in QoPlaylist.Tracks.Items)
                     {
+                        trackIndexPlaylist++;
                         try
                         {
                             string track_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getTrackInfoLabels(app_id, track_id, user_auth_token));
                             QoItem = item;
                             QoAlbum = getInfo.QoAlbum;
-                            await Task.Run(() => downloadTrack.DownloadPlaylistTrackAsync(app_id, track_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, playlistTemplate, QoAlbum, QoItem, QoPlaylist));
+                            await Task.Run(() => downloadTrack.DownloadPlaylistTrackAsync(
+                                app_id, format_id, audio_format, user_auth_token, app_secret,
+                                downloadLocation, trackTemplate, playlistTemplate, QoAlbum, QoItem, QoPlaylist,
+                                new Progress<int>(value =>
+                                {
+                                    double scaledValue = (trackIndexPlaylist - 1 + value / 100.0) / totalTracksPlaylist * 100.0;
+                                    progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                                })));
                         }
                         catch
                         {
@@ -566,15 +620,26 @@ namespace QobuzDownloaderX
                 case "artist":
                     await Task.Run(() => getInfo.getArtistInfo(app_id, qobuz_id, user_auth_token));
                     QoArtist = getInfo.QoArtist;
+                    int totalAlbumsArtist = QoArtist.Albums.Items.Count;
+                    int albumIndexArtist = 0;
                     foreach (var item in QoArtist.Albums.Items)
                     {
+                        albumIndexArtist++;
                         try
                         {
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
                             updateAlbumInfoLabels(QoAlbum);
-                            await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                            await Task.Run(() => downloadAlbum.DownloadAlbumAsync(
+                               app_id, album_id, format_id, audio_format, user_auth_token, app_secret,
+                               downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum,
+                               new Progress<int>(value =>
+                               {
+                                   double scaledValue = ((albumIndexArtist - 1) + value / 100.0) / totalAlbumsArtist * 100.0;
+                                   progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                               })
+                            ));
                         }
                         catch
                         {
@@ -589,15 +654,26 @@ namespace QobuzDownloaderX
                 case "label":
                     await Task.Run(() => getInfo.getLabelInfo(app_id, qobuz_id, user_auth_token));
                     QoLabel = getInfo.QoLabel;
+                    int totalAlbumsLabel = QoLabel.Albums.Items.Count;
+                    int albumIndexLabel = 0;
                     foreach (var item in QoLabel.Albums.Items)
                     {
+                        albumIndexLabel++;
                         try
                         {
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
                             updateAlbumInfoLabels(QoAlbum);
-                            await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                            await Task.Run(() => downloadAlbum.DownloadAlbumAsync(
+                                app_id, album_id, format_id, audio_format, user_auth_token, app_secret,
+                                downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum,
+                                new Progress<int>(value =>
+                                {
+                                    double scaledValue = ((albumIndexLabel - 1) + value / 100.0) / totalAlbumsLabel * 100.0;
+                                    progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                                })
+                            ));
                         }
                         catch
                         {
@@ -614,15 +690,25 @@ namespace QobuzDownloaderX
                     {
                         await Task.Run(() => getInfo.getFavoritesInfo(app_id, user_id, "albums", user_auth_token));
                         QoFavorites = getInfo.QoFavorites;
+                        int totalAlbumsUser = QoFavorites.Albums.Items.Count;
+                        int albumIndexUser = 0;
                         foreach (var item in QoFavorites.Albums.Items)
                         {
+                            albumIndexUser++;
                             try
                             {
                                 string album_id = item.Id.ToString();
                                 await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                 QoAlbum = getInfo.QoAlbum;
                                 updateAlbumInfoLabels(QoAlbum);
-                                await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+                                await Task.Run(() => downloadAlbum.DownloadAlbumAsync(
+                                    app_id, album_id, format_id, audio_format, user_auth_token, app_secret,
+                                    downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum,
+                                    new Progress<int>(value =>
+                                    {
+                                        double scaledValue = ((albumIndexUser - 1) + value / 100.0) / totalAlbumsUser * 100.0;
+                                        progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                                    })));
                             }
                             catch
                             {
@@ -634,8 +720,11 @@ namespace QobuzDownloaderX
                     {
                         await Task.Run(() => getInfo.getFavoritesInfo(app_id, user_id, "tracks", user_auth_token));
                         QoFavorites = getInfo.QoFavorites;
+                        int totalTracksUser = QoFavorites.Tracks.Items.Count;
+                        int trackIndexUser = 0;
                         foreach (var item in QoFavorites.Tracks.Items)
                         {
+                            trackIndexUser++;
                             try
                             {
                                 string track_id = item.Id.ToString();
@@ -643,7 +732,15 @@ namespace QobuzDownloaderX
                                 QoItem = getInfo.QoItem;
                                 QoAlbum = getInfo.QoAlbum;
                                 updateAlbumInfoLabels(QoAlbum);
-                                await Task.Run(() => downloadTrack.DownloadTrackAsync("track", app_id, track_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoItem));
+                                await Task.Run(() => downloadTrack.DownloadTrackAsync(
+                                    "track", app_id, track_id, format_id, audio_format, user_auth_token, app_secret,
+                                    downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoItem,
+                                    new Progress<int>(value =>
+                                    {
+                                        double scaledValue = ((trackIndexUser - 1) + value / 100.0) / totalTracksUser * 100.0;
+                                        progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                                    })
+                                ));
                             }
                             catch
                             {
@@ -655,22 +752,51 @@ namespace QobuzDownloaderX
                     {
                         await Task.Run(() => getInfo.getFavoritesInfo(app_id, user_id, "artists", user_auth_token));
                         QoFavorites = getInfo.QoFavorites;
-                        foreach (var item in QoFavorites.Artists.Items)
+
+                        int totalAlbumsUserArtists = 0;
+                        foreach (var artist in QoFavorites.Artists.Items)
                         {
                             try
                             {
-                                string artist_id = item.Id.ToString();
+                                await Task.Run(() => getInfo.getArtistInfo(app_id, artist.Id.ToString(), user_auth_token));
+                                QoArtist = getInfo.QoArtist;
+                                totalAlbumsUserArtists += QoArtist.Albums.Items.Count;
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+                        }
+
+                        int albumIndexUserArtist = 0;
+
+                        foreach (var artist in QoFavorites.Artists.Items)
+                        {
+                            try
+                            {
+                                string artist_id = artist.Id.ToString();
                                 await Task.Run(() => getInfo.getArtistInfo(app_id, artist_id, user_auth_token));
                                 QoArtist = getInfo.QoArtist;
+
                                 foreach (var artistItem in QoArtist.Albums.Items)
                                 {
+                                    albumIndexUserArtist++;
                                     try
                                     {
                                         string album_id = artistItem.Id.ToString();
                                         await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                         QoAlbum = getInfo.QoAlbum;
                                         updateAlbumInfoLabels(QoAlbum);
-                                        await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum));
+
+                                        await Task.Run(() => downloadAlbum.DownloadAlbumAsync(
+                                            app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation,
+                                            artistTemplate, albumTemplate, trackTemplate, QoAlbum,
+                                            new Progress<int>(value =>
+                                            {
+                                                double scaledValue = ((albumIndexUserArtist - 1) + value / 100.0) / totalAlbumsUserArtists * 100.0;
+                                                progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                                            })
+                                        ));
                                     }
                                     catch
                                     {
@@ -712,7 +838,7 @@ namespace QobuzDownloaderX
             if (QoAlbum.TracksCount == 1) { trackOrTracks = "track"; }
             artistLabel.Text = renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
             if (QoAlbum.Version == null) { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&"); } else { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&").TrimEnd() + " (" + QoAlbum.Version + ")"; }
-            infoLabel.Text = $"{infoLabelPlaceholder} {QoAlbum.ReleaseDateOriginal} • {QoAlbum.TracksCount.ToString()} {trackOrTracks} • {QoAlbum.UPC.ToString()}";
+            infoLabel.Text = $"{infoLabelPlaceholder} {QoAlbum.ReleaseDateOriginal} • {QoAlbum.TracksCount} {trackOrTracks} • {QoAlbum.UPC}";
             try { albumPictureBox.ImageLocation = QoAlbum.Image.Small; } catch { }
         }
 

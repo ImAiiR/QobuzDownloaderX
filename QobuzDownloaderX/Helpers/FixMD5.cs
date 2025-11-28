@@ -5,7 +5,7 @@ namespace QobuzDownloaderX
 {
     class FixMD5
     {
-        GetInfo getInfo = new GetInfo();
+        readonly GetInfo getInfo = new GetInfo();
 
         public string outputResult { get; set; }
 

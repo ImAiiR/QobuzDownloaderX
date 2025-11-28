@@ -1,7 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using QopenAPI;
+﻿using Newtonsoft.Json.Linq;
 using QobuzDownloaderX.Properties;
+using QopenAPI;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX
@@ -19,11 +21,11 @@ namespace QobuzDownloaderX
         public string downloadPath { get; set; }
         public string filePath { get; set; }
 
-        PaddingNumbers padNumber = new PaddingNumbers();
-        DownloadFile downloadFile = new DownloadFile();
-        RenameTemplates renameTemplates = new RenameTemplates();
-        GetInfo getInfo = new GetInfo();
-        FixMD5 fixMD5 = new FixMD5();
+        readonly PaddingNumbers padNumber = new PaddingNumbers();
+        readonly DownloadFile downloadFile = new DownloadFile();
+        readonly RenameTemplates renameTemplates = new RenameTemplates();
+        readonly GetInfo getInfo = new GetInfo();
+        // readonly FixMD5 fixMD5 = new FixMD5(); // UNUSED
 
         public void clearOutputText() => getInfo.outputText = null;
 
@@ -45,7 +47,7 @@ namespace QobuzDownloaderX
             return false;
         }
 
-        private void CleanupArtwork(string downloadPath)
+        private void CleanupArtwork()
         {
             string artworkPath = downloadFile.artworkPath;
             if (ZlpIOHelper.FileExists(artworkPath))
@@ -83,7 +85,7 @@ namespace QobuzDownloaderX
             getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
         }
 
-        public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem)
+        public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem, IProgress<int> progress)
         {
             // Empty output on main form if individual track download
             if (downloadType == "track") { getInfo.outputText = null; }
@@ -102,11 +104,13 @@ namespace QobuzDownloaderX
                     if (QoItem == null) 
                     {
                         getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputAPIError}\r\n");
+                        progress?.Report(100);
                         return;
                     }
 
                     // Verify Streamable
-                    try { if (!VerifyStreamable(QoItem, paddedTrackLength)) return; } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Unable to verify if track is streamable. Error below:\r\n{ex}"); }
+                    try { if (!VerifyStreamable(QoItem, paddedTrackLength)) { progress?.Report(100); return; } }
+                    catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Unable to verify if track is streamable. Error below:\r\n{ex}"); }
 
                     // Setting up download and file path
                     downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
@@ -133,10 +137,13 @@ namespace QobuzDownloaderX
                     try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
 
                     // Check for Existing File
-                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
+                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) {
+                        progress?.Report(100); 
+                        return; }
 
                     // Download and Save Track
                     await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, null, downloadPath, filePath, audio_format, paddedTrackLength);
+                    progress?.Report(100);
                 }
                 catch (Exception downloadAlbumEx)
                 {
@@ -151,8 +158,7 @@ namespace QobuzDownloaderX
                 return;
             }
         }
-
-        public async Task DownloadPlaylistTrackAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
+        public async Task DownloadPlaylistTrackAsync(string app_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist, IProgress<int> progress)
         {
             try
             {
@@ -168,8 +174,8 @@ namespace QobuzDownloaderX
                     downloadPath = await downloadFile.createPath(downloadLocation, null, null, trackTemplate, playlistTemplate, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, QoPlaylist);
                     string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, QoPlaylist);
 
-                    if (trackTemplateConverted.Contains(@"\")) 
-                    { 
+                    if (trackTemplateConverted.Contains(@"\"))
+                    {
                         downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
                         trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
                         Console.WriteLine(downloadPath);
@@ -178,16 +184,24 @@ namespace QobuzDownloaderX
                     filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
 
                     // Check for Existing File
-                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) return;
+                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem)) { 
+                        progress?.Report(100);
+                        return;
+                    }
 
                     // Download cover art
-                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { Console.WriteLine($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
+                    try
+                    {
+                        await downloadFile.DownloadArtwork(downloadPath, QoAlbum);
+                    }
+                    catch { }
 
                     // Download and Save Track
                     await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength);
 
                     // Delete image used for embedded artwork
-                    CleanupArtwork(downloadPath);
+                    CleanupArtwork();
+                    progress?.Report(100);
                 }
                 catch (Exception downloadAlbumEx)
                 {
