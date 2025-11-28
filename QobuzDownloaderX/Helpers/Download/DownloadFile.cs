@@ -10,11 +10,11 @@ namespace QobuzDownloaderX
 {
     class DownloadFile
     {
-        TagFile tagFile = new TagFile();
-        RenameTemplates renameTemplates = new RenameTemplates();
-        PaddingNumbers paddingNumbers = new PaddingNumbers();
-        GetInfo getInfo = new GetInfo();
-        FixMD5 fixMD5 = new FixMD5();
+        readonly TagFile tagFile = new TagFile();
+        readonly RenameTemplates renameTemplates = new RenameTemplates();
+        readonly PaddingNumbers paddingNumbers = new PaddingNumbers();
+        readonly GetInfo getInfo = new GetInfo();
+        readonly FixMD5 fixMD5 = new FixMD5();
 
         public string artworkPath { get; set; }
 

@@ -8,15 +8,18 @@ using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
-    public static class StringExt
-    {
-        public static string Truncate(this string value, int maxLength)
-        {
-            // This is currently unused, but leaving this here in case it needs to be used in the future.
-            if (string.IsNullOrEmpty(value)) return value;
-            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
-        }
-    }
+    // UNUSED
+    // ======
+    //
+    //public static class StringExt
+    //{
+    //    public static string Truncate(this string value, int maxLength)
+    //    {
+    //        // This is currently unused, but leaving this here in case it needs to be used in the future.
+    //        if (string.IsNullOrEmpty(value)) return value;
+    //        return value.Length <= maxLength ? value : value.Substring(0, maxLength);
+    //    }
+    //}
 
     class DownloadAlbum
     {
@@ -31,10 +34,10 @@ namespace QobuzDownloaderX
 
         public string downloadPath { get; set; }
 
-        PaddingNumbers padNumber = new PaddingNumbers();
-        DownloadTrack downloadTrack = new DownloadTrack();
-        DownloadFile downloadFile = new DownloadFile();
-        GetInfo getInfo = new GetInfo();
+        readonly PaddingNumbers padNumber = new PaddingNumbers();
+        readonly DownloadTrack downloadTrack = new DownloadTrack();
+        readonly DownloadFile downloadFile = new DownloadFile();
+        readonly GetInfo getInfo = new GetInfo();
 
         private async Task DownloadArtwork(string downloadPath, Album album)
         {
@@ -91,27 +94,35 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album)
+        public async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album, IProgress<int> progress)
         {
+            int totalTracks = album.Tracks.Items.Count;
+            int trackIndex = 0;
+
             foreach (var item in album.Tracks.Items)
             {
+                trackIndex++;
+                var trackProgress = new Progress<int>(value =>
+                {
+                    double trackPortion = 100.0 / totalTracks;
+                    double scaledValue = (trackIndex - 1) * trackPortion + (value / 100.0) * trackPortion;
+                    progress?.Report((int)Math.Round(scaledValue));
+                });
+
                 try
                 {
-                    qbdlxForm._qbdlxForm.logger.Debug("Downloading track...");
-                    await downloadTrack.DownloadTrackAsync("album", app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, album, QoService.TrackGetWithAuth(app_id, item.Id.ToString(), user_auth_token));
-                    qbdlxForm._qbdlxForm.logger.Debug("Track download complete");
+                    var trackInfo = QoService.TrackGetWithAuth(app_id, item.Id.ToString(), user_auth_token);
+                    await downloadTrack.DownloadTrackAsync("album", app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, album, trackInfo, trackProgress);
                 }
                 catch (Exception ex)
                 {
-                    qbdlxForm._qbdlxForm.logger.Error($"Track download failed: {ex}");
+                    qbdlxForm._qbdlxForm.logger.Error($"Track {item.Id} failed: {ex}");
                     getInfo.updateDownloadOutput($"\r\n{ex}");
-                    Console.WriteLine(ex);
-                    return;
                 }
             }
         }
 
-        public async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum)
+        public async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, IProgress<int> progress)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Starting album download (downloadAlbum)");
 
@@ -128,6 +139,7 @@ namespace QobuzDownloaderX
                     qbdlxForm._qbdlxForm.logger.Debug("Streamable tag is set to false on Qobuz, and streamable check is enabled, skipping download");
                     getInfo.updateDownloadOutput(qbdlxForm._qbdlxForm.downloadOutputAlNotStream);
                     getInfo.updateDownloadOutput("\r\n" + qbdlxForm._qbdlxForm.downloadOutputCompleted);
+                    progress?.Report(100);
                     return;
                 }
                 else
@@ -150,7 +162,7 @@ namespace QobuzDownloaderX
                 await DownloadArtwork(downloadPath, QoAlbum);
 
                 // Download tracks
-                await DownloadTracksAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum);
+                await DownloadTracksAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress);
 
                 // Delete image used for embedding artwork
                 DeleteEmbeddedArtwork(downloadPath);
@@ -160,6 +172,8 @@ namespace QobuzDownloaderX
 
                 // Download goodies
                 await DownloadGoodiesAsync(downloadPath, QoAlbum);
+
+                progress?.Report(100);
 
                 // Tell user that download is completed
                 qbdlxForm._qbdlxForm.logger.Debug("All downloads completed!");
@@ -183,7 +197,7 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.logger.Debug("Writing post template...");
                 var templateDate = DateTime.Parse(album.ReleaseDateOriginal).ToString("MMMM d, yyyy");
                 ZlpIOHelper.WriteAllText("post_template.txt", String.Empty);
-                
+
                 using (StreamWriter sw = File.AppendText("post_template.txt"))
                 {
                     sw.WriteLine("[center]");
@@ -208,21 +222,21 @@ namespace QobuzDownloaderX
                     sw.WriteLine($"[spoiler={Regex.Replace(album.Label.Name, @"\s+", " ")} / {album.UPC} / WEB]");
                     if (album.MaximumBitDepth > 16)
                     {
-                        sw.WriteLine($"[format=FLAC / Lossless ({album.MaximumBitDepth.ToString()}bit/{album.MaximumSamplingRate.ToString()}kHz) / WEB]");
-                        sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername.ToString()}");
+                        sw.WriteLine($"[format=FLAC / Lossless ({album.MaximumBitDepth}bit/{album.MaximumSamplingRate}kHz) / WEB]");
+                        sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername}");
                         sw.WriteLine("");
                         sw.WriteLine("DOWNLOAD");
                         sw.WriteLine("REPLACE THIS WITH URL");
                         sw.WriteLine("[/format]");
                     }
                     sw.WriteLine("[format=FLAC / Lossless / WEB]");
-                    sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername.ToString()}");
+                    sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername}");
                     sw.WriteLine("");
                     sw.WriteLine("DOWNLOAD");
                     sw.WriteLine("REPLACE THIS WITH URL");
                     sw.WriteLine("[/format]");
                     sw.WriteLine("[format=MP3 / 320 / WEB]");
-                    sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername.ToString()}");
+                    sw.WriteLine($"Uploaded by @{Settings.Default.postTemplateUsername}");
                     sw.WriteLine("");
                     sw.WriteLine("DOWNLOAD");
                     sw.WriteLine("REPLACE THIS WITH URL");

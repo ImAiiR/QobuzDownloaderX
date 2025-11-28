@@ -40,9 +40,9 @@ namespace QobuzDownloaderX
 
         private readonly Theming themeManager = new Theming();
         private LanguageManager languageManager;
-        qbdlxForm qbdlx = new qbdlxForm();
-        Logger logger = qbdlxForm._qbdlxForm.logger;
-        Service QoService = new Service();
+        readonly qbdlxForm qbdlx = new qbdlxForm();
+        readonly Logger logger = qbdlxForm._qbdlxForm.logger;
+        readonly Service QoService = new Service();
         User QoUser;
 
         public string currentVersion { get; set; }
@@ -79,8 +79,8 @@ namespace QobuzDownloaderX
             InitializeComponent();
         }
 
-        string errorLog = Path.GetDirectoryName(Application.ExecutablePath) + "\\Latest_Error.log";
-        string dllCheck = Path.GetDirectoryName(Application.ExecutablePath) + "\\taglib-sharp.dll";
+        readonly string errorLog = Path.GetDirectoryName(Application.ExecutablePath) + "\\Latest_Error.log";
+        readonly string dllCheck = Path.GetDirectoryName(Application.ExecutablePath) + "\\taglib-sharp.dll";
 
         private void UpdateUILanguage()
         {
@@ -251,8 +251,11 @@ namespace QobuzDownloaderX
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             aboutTextbox.Text = aboutTextbox.Text.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
+            this.BeginInvoke((Action)(() => loginButton.Focus()));
+
             // Check for language updates
             await TranslationUpdater.CheckAndUpdateLanguageFiles();
+
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -307,7 +310,7 @@ namespace QobuzDownloaderX
                 {
                     passwordTextbox.Text = tokenPlaceholder;
                 }
-                
+
             }
         }
 
@@ -545,7 +548,7 @@ namespace QobuzDownloaderX
                 emailTextbox.Text = null;
                 emailTextbox_Leave(this, new EventArgs());
             }
-            
+
             // Save choice locally to be used on next launch.
             Settings.Default.Save();
         }
@@ -631,6 +634,11 @@ namespace QobuzDownloaderX
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void topPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

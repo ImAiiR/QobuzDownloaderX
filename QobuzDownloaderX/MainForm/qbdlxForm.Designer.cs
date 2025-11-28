@@ -1,4 +1,6 @@
-﻿namespace QobuzDownloaderX
+﻿using QobuzDownloaderX.UserControls;
+
+namespace QobuzDownloaderX
 {
     partial class qbdlxForm
     {
@@ -40,6 +42,7 @@
             this.versionNumber = new System.Windows.Forms.Label();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.downloaderPanel = new System.Windows.Forms.Panel();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -183,7 +186,7 @@
             this.searchButton.Location = new System.Drawing.Point(0, 166);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(180, 66);
-            this.searchButton.TabIndex = 33;
+            this.searchButton.TabIndex = 2;
             this.searchButton.Text = "SEARCH";
             this.searchButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchButton.UseVisualStyleBackColor = true;
@@ -196,7 +199,7 @@
             this.welcomeLabel.Location = new System.Drawing.Point(0, 403);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(180, 36);
-            this.welcomeLabel.TabIndex = 32;
+            this.welcomeLabel.TabIndex = 4;
             this.welcomeLabel.Text = "Welcome\r\n{username}";
             this.welcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -213,7 +216,7 @@
             this.settingsButton.Location = new System.Drawing.Point(0, 442);
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.Size = new System.Drawing.Size(180, 66);
-            this.settingsButton.TabIndex = 1;
+            this.settingsButton.TabIndex = 5;
             this.settingsButton.Text = "SETTINGS";
             this.settingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.settingsButton.UseVisualStyleBackColor = true;
@@ -232,7 +235,7 @@
             this.logoutButton.Location = new System.Drawing.Point(0, 508);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(180, 66);
-            this.logoutButton.TabIndex = 1;
+            this.logoutButton.TabIndex = 6;
             this.logoutButton.Text = "LOGOUT";
             this.logoutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logoutButton.UseVisualStyleBackColor = true;
@@ -251,7 +254,7 @@
             this.aboutButton.Location = new System.Drawing.Point(0, 232);
             this.aboutButton.Name = "aboutButton";
             this.aboutButton.Size = new System.Drawing.Size(180, 66);
-            this.aboutButton.TabIndex = 1;
+            this.aboutButton.TabIndex = 3;
             this.aboutButton.Text = "ABOUT";
             this.aboutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.aboutButton.UseVisualStyleBackColor = true;
@@ -294,7 +297,7 @@
             this.versionNumber.Location = new System.Drawing.Point(119, 79);
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(58, 18);
-            this.versionNumber.TabIndex = 32;
+            this.versionNumber.TabIndex = 0;
             this.versionNumber.Text = "#.#.#.#";
             this.versionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -312,6 +315,7 @@
             // 
             // downloaderPanel
             // 
+            this.downloaderPanel.Controls.Add(this.progressBarDownload);
             this.downloaderPanel.Controls.Add(this.progressLabel);
             this.downloaderPanel.Controls.Add(this.downloadButton);
             this.downloaderPanel.Controls.Add(this.infoLabel);
@@ -324,7 +328,18 @@
             this.downloaderPanel.Location = new System.Drawing.Point(203, 83);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
-            this.downloaderPanel.TabIndex = 1;
+            this.downloaderPanel.TabIndex = 5;
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(649, 83);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(99, 23);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 3;
             // 
             // progressLabel
             // 
@@ -350,7 +365,7 @@
             this.downloadButton.Location = new System.Drawing.Point(649, 46);
             this.downloadButton.Name = "downloadButton";
             this.downloadButton.Size = new System.Drawing.Size(102, 31);
-            this.downloadButton.TabIndex = 6;
+            this.downloadButton.TabIndex = 2;
             this.downloadButton.Text = "GET";
             this.downloadButton.UseVisualStyleBackColor = false;
             this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
@@ -364,19 +379,19 @@
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.infoLabel.Size = new System.Drawing.Size(261, 21);
-            this.infoLabel.TabIndex = 5;
+            this.infoLabel.TabIndex = 6;
             this.infoLabel.Text = "Released xxxx-xx-xx • xx Tracks • UPC";
             // 
             // albumLabel
             // 
-            this.albumLabel.AutoSize = true;
+            this.albumLabel.AutoEllipsis = true;
             this.albumLabel.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.albumLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.albumLabel.Location = new System.Drawing.Point(184, 169);
             this.albumLabel.Name = "albumLabel";
             this.albumLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.albumLabel.Size = new System.Drawing.Size(305, 32);
-            this.albumLabel.TabIndex = 5;
+            this.albumLabel.Size = new System.Drawing.Size(567, 32);
+            this.albumLabel.TabIndex = 4;
             this.albumLabel.Text = "Placeholder Album Name";
             // 
             // artistLabel
@@ -404,7 +419,7 @@
             this.downloadOutput.ReadOnly = true;
             this.downloadOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.downloadOutput.Size = new System.Drawing.Size(733, 300);
-            this.downloadOutput.TabIndex = 4;
+            this.downloadOutput.TabIndex = 7;
             this.downloadOutput.Text = "Test String";
             this.downloadOutput.TextChanged += new System.EventHandler(this.downloadOutput_TextChanged);
             // 
@@ -551,6 +566,8 @@
             this.openFolderButton.Text = "Open Folder";
             this.openFolderButton.UseVisualStyleBackColor = false;
             this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
+            this.openFolderButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
+            this.openFolderButton.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
             // 
             // templatesListLabel
             // 
@@ -703,6 +720,8 @@
             this.downloadFolderTextbox.Size = new System.Drawing.Size(443, 21);
             this.downloadFolderTextbox.TabIndex = 2;
             this.downloadFolderTextbox.Text = "no folder selected";
+            this.downloadFolderTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
+            this.downloadFolderTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
             // 
             // artistTemplateLabel
             // 
@@ -822,7 +841,8 @@
             this.exitButton.Location = new System.Drawing.Point(914, 0);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(37, 30);
-            this.exitButton.TabIndex = 1;
+            this.exitButton.TabIndex = 3;
+            this.exitButton.TabStop = false;
             this.exitButton.Text = "X";
             this.exitButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.exitButton.UseVisualStyleBackColor = false;
@@ -840,7 +860,8 @@
             this.minimizeButton.Location = new System.Drawing.Point(880, 0);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(37, 30);
-            this.minimizeButton.TabIndex = 1;
+            this.minimizeButton.TabIndex = 2;
+            this.minimizeButton.TabStop = false;
             this.minimizeButton.Text = "_";
             this.minimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.minimizeButton.UseVisualStyleBackColor = false;
@@ -1448,7 +1469,7 @@
             this.qualitySelectButton.Location = new System.Drawing.Point(749, -1);
             this.qualitySelectButton.Name = "qualitySelectButton";
             this.qualitySelectButton.Size = new System.Drawing.Size(132, 31);
-            this.qualitySelectButton.TabIndex = 4;
+            this.qualitySelectButton.TabIndex = 1;
             this.qualitySelectButton.Text = "Quality Selector";
             this.qualitySelectButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.qualitySelectButton.UseVisualStyleBackColor = false;
@@ -1468,7 +1489,7 @@
             this.qualitySelectPanel.Location = new System.Drawing.Point(730, 30);
             this.qualitySelectPanel.Name = "qualitySelectPanel";
             this.qualitySelectPanel.Size = new System.Drawing.Size(168, 87);
-            this.qualitySelectPanel.TabIndex = 5;
+            this.qualitySelectPanel.TabIndex = 4;
             this.qualitySelectPanel.Visible = false;
             // 
             // mp3Button2
@@ -1480,7 +1501,7 @@
             this.mp3Button2.Location = new System.Drawing.Point(38, 63);
             this.mp3Button2.Name = "mp3Button2";
             this.mp3Button2.Size = new System.Drawing.Size(13, 12);
-            this.mp3Button2.TabIndex = 10;
+            this.mp3Button2.TabIndex = 7;
             this.mp3Button2.UseVisualStyleBackColor = true;
             this.mp3Button2.CheckedChanged += new System.EventHandler(this.mp3Button2_CheckedChanged);
             // 
@@ -1493,7 +1514,7 @@
             this.flacLowButton2.Location = new System.Drawing.Point(38, 45);
             this.flacLowButton2.Name = "flacLowButton2";
             this.flacLowButton2.Size = new System.Drawing.Size(13, 12);
-            this.flacLowButton2.TabIndex = 11;
+            this.flacLowButton2.TabIndex = 5;
             this.flacLowButton2.UseVisualStyleBackColor = true;
             this.flacLowButton2.CheckedChanged += new System.EventHandler(this.flacLowButton2_CheckedChanged);
             // 
@@ -1506,7 +1527,7 @@
             this.flacMidButton2.Location = new System.Drawing.Point(38, 27);
             this.flacMidButton2.Name = "flacMidButton2";
             this.flacMidButton2.Size = new System.Drawing.Size(13, 12);
-            this.flacMidButton2.TabIndex = 12;
+            this.flacMidButton2.TabIndex = 3;
             this.flacMidButton2.UseVisualStyleBackColor = true;
             this.flacMidButton2.CheckedChanged += new System.EventHandler(this.flacMidButton2_CheckedChanged);
             // 
@@ -1519,7 +1540,7 @@
             this.flacHighButton2.Location = new System.Drawing.Point(38, 9);
             this.flacHighButton2.Name = "flacHighButton2";
             this.flacHighButton2.Size = new System.Drawing.Size(13, 12);
-            this.flacHighButton2.TabIndex = 13;
+            this.flacHighButton2.TabIndex = 1;
             this.flacHighButton2.UseVisualStyleBackColor = true;
             this.flacHighButton2.CheckedChanged += new System.EventHandler(this.flacHighButton2_CheckedChanged);
             // 
@@ -1531,7 +1552,7 @@
             this.mp3Label2.Location = new System.Drawing.Point(54, 63);
             this.mp3Label2.Name = "mp3Label2";
             this.mp3Label2.Size = new System.Drawing.Size(50, 13);
-            this.mp3Label2.TabIndex = 6;
+            this.mp3Label2.TabIndex = 0;
             this.mp3Label2.Text = "MP3 320";
             this.mp3Label2.Click += new System.EventHandler(this.mp3Label2_Click);
             // 
@@ -1543,7 +1564,7 @@
             this.flacLowLabel2.Location = new System.Drawing.Point(54, 45);
             this.flacLowLabel2.Name = "flacLowLabel2";
             this.flacLowLabel2.Size = new System.Drawing.Size(78, 13);
-            this.flacLowLabel2.TabIndex = 7;
+            this.flacLowLabel2.TabIndex = 6;
             this.flacLowLabel2.Text = "FLAC (16/44.1)";
             this.flacLowLabel2.Click += new System.EventHandler(this.flacLowLabel2_Click);
             // 
@@ -1555,7 +1576,7 @@
             this.flacMidLabel2.Location = new System.Drawing.Point(54, 27);
             this.flacMidLabel2.Name = "flacMidLabel2";
             this.flacMidLabel2.Size = new System.Drawing.Size(69, 13);
-            this.flacMidLabel2.TabIndex = 8;
+            this.flacMidLabel2.TabIndex = 4;
             this.flacMidLabel2.Text = "FLAC (24/96)";
             this.flacMidLabel2.Click += new System.EventHandler(this.flacMidLabel2_Click);
             // 
@@ -1567,7 +1588,7 @@
             this.flacHighLabel2.Location = new System.Drawing.Point(54, 9);
             this.flacHighLabel2.Name = "flacHighLabel2";
             this.flacHighLabel2.Size = new System.Drawing.Size(75, 13);
-            this.flacHighLabel2.TabIndex = 9;
+            this.flacHighLabel2.TabIndex = 2;
             this.flacHighLabel2.Text = "FLAC (24/192)";
             this.flacHighLabel2.Click += new System.EventHandler(this.flacHighLabel2_Click);
             // 
@@ -1579,7 +1600,7 @@
             this.movingLabel.Location = new System.Drawing.Point(181, -5);
             this.movingLabel.Name = "movingLabel";
             this.movingLabel.Size = new System.Drawing.Size(565, 13);
-            this.movingLabel.TabIndex = 6;
+            this.movingLabel.TabIndex = 0;
             this.movingLabel.Text = "=================================================================================" +
     "============";
             this.movingLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movingLabel_MouseMove);
@@ -1673,6 +1694,7 @@
             this.searchTextbox.WordWrap = false;
             this.searchTextbox.Click += new System.EventHandler(this.searchTextbox_Click);
             this.searchTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyDown);
+            this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp);
             this.searchTextbox.Leave += new System.EventHandler(this.searchTextbox_Leave);
             // 
             // searchLabel
@@ -1862,5 +1884,6 @@
         private System.Windows.Forms.Label commentLabel;
         private System.Windows.Forms.FlowLayoutPanel folderButtonsPanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private CustomProgressBar progressBarDownload;
     }
 }

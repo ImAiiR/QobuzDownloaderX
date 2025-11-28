@@ -5,13 +5,14 @@ using System.Windows.Forms;
 using QobuzDownloaderX.Properties;
 using System;
 using ZetaLongPaths;
+using QobuzDownloaderX.UserControls;
 
 namespace QobuzDownloaderX
 {
     public class ThemeSettings
     {
         public Dictionary<string, Theme> Themes { get; set; }
-        private Dictionary<string, Image> originalImages = new Dictionary<string, Image>();
+        private readonly Dictionary<string, Image> originalImages = new Dictionary<string, Image>();
     }
 
     public class Theme
@@ -141,6 +142,14 @@ namespace QobuzDownloaderX
                     textBox.ForeColor = (textBox.Text == "Paste a Qobuz URL..." || textBox.Text == "Input your search..." || textBox.Text == "e-mail" || textBox.Text == "password" || textBox.Text == "token")
                         ? ColorTranslator.FromHtml(_currentTheme.PlaceholderTextBoxText)
                         : ColorTranslator.FromHtml(_currentTheme.TextBoxText);
+                }
+                else if (control is CustomProgressBar progressBar)
+                {
+                    progressBar.BackgroundColor = ColorTranslator.FromHtml(_currentTheme.TextBoxBackground);
+                    progressBar.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
+                    progressBar.BorderColor = progressBar.BackgroundColor;
+                    progressBar.FillColor = Color.RoyalBlue; // Fits good with all themes.
+
                 }
                 else if (control is PictureBox pictureBox)
                 {
