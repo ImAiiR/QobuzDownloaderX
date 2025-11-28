@@ -100,8 +100,26 @@ namespace QobuzDownloaderX
                 outputText = null;
                 qbdlxForm._qbdlxForm.logger.Debug("Getting track Info...");
                 QoItem = QoService.TrackGetWithAuth(app_id, track_id, user_auth_token);
-                string album_id = QoItem.Album.Id;
-                QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
+
+                if (QoItem != null)
+                {
+                    if (QoItem.Album != null)
+                    {
+                        string album_id = QoItem.Album.Id;
+                        QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
+                    }
+                    else
+                    {
+                        QoAlbum = null;
+                        qbdlxForm._qbdlxForm.logger.Warning("Track has no associated album.");
+                    }
+                }
+                else
+                {
+                    QoAlbum = null;
+                    qbdlxForm._qbdlxForm.logger.Warning("No track information was retrieved.");
+                }
+
                 return QoItem;
             }
             catch (Exception getTrackInfoLabelsEx)
