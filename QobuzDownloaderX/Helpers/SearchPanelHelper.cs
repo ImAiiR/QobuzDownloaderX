@@ -22,13 +22,15 @@ namespace QobuzDownloaderX
         public void SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
         {
             limitResults = (int)qbdlxForm._qbdlxForm.limitSearchResultsNumericUpDown.Value;
-           
+            qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.searchResultsCountLabel.Text = "..."));
+
             if (searchType == "releases")
             {
                 QoAlbumSearch = null;
                 QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, limitResults, 0, user_auth_token);
                 QoAlbumSearch.Albums = SortAlbums(QoAlbumSearch.Albums);
                 PopulateTableAlbums(qbdlxForm._qbdlxForm, QoAlbumSearch);
+                qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.searchResultsCountLabel.Text = $"{QoAlbumSearch.Albums.Items.Count:N0} {qbdlxForm._qbdlxForm.languageManager.GetTranslation("searchResultsCountLabel")}"));
             }
             else if (searchType == "tracks")
             {
@@ -36,6 +38,7 @@ namespace QobuzDownloaderX
                 QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, limitResults, 0, user_auth_token);
                 QoTrackSearch.Tracks = SortTracks(QoTrackSearch.Tracks);
                 PopulateTableTracks(qbdlxForm._qbdlxForm, QoTrackSearch);
+                qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.searchResultsCountLabel.Text = $"{QoTrackSearch.Tracks.Items.Count:N0} {qbdlxForm._qbdlxForm.languageManager.GetTranslation("searchResultsCountLabel")}"));
             }
         }
 
@@ -419,6 +422,13 @@ namespace QobuzDownloaderX
             if (albums == null || albums.Items == null)
                 return albums;
 
+            DateTime? parseDate(Item i)
+            {
+                if (DateTime.TryParse(i.ReleaseDateOriginal, out DateTime dt))
+                    return dt;
+                return null;
+            }
+
             IEnumerable<Item> query = albums.Items;
 
             bool descending = !qbdlxForm._qbdlxForm.sortAscendantCheckBox.Checked;
@@ -429,8 +439,8 @@ namespace QobuzDownloaderX
                 query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
             else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
                 query = descending
-                    ? query.OrderByDescending(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000")
-                    : query.OrderBy(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000");
+                    ? query.OrderByDescending(i => parseDate(i))
+                    : query.OrderBy(i => parseDate(i));
 
             return new Albums
             {
@@ -444,6 +454,13 @@ namespace QobuzDownloaderX
             if (tracks == null || tracks.Items == null)
                 return tracks;
 
+            DateTime? parseDate(Item i)
+            {
+                if (DateTime.TryParse(i.ReleaseDateOriginal, out DateTime dt))
+                    return dt;
+                return null;
+            }
+
             IEnumerable<Item> query = tracks.Items;
 
             bool descending = !qbdlxForm._qbdlxForm.sortAscendantCheckBox.Checked;
@@ -456,8 +473,8 @@ namespace QobuzDownloaderX
                 query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
             else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
                 query = descending
-                    ? query.OrderByDescending(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000")
-                    : query.OrderBy(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000");
+                    ? query.OrderByDescending(i => parseDate(i))
+                    : query.OrderBy(i => parseDate(i));
 
             return new Tracks
             {

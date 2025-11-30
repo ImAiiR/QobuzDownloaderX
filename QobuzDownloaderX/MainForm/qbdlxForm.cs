@@ -630,9 +630,12 @@ namespace QobuzDownloaderX
                     downloadLocation = path + @"\";
                 } else
                 {
-                    MessageBox.Show(this, downloadOutputDontExist, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    // Restore previous path text.
-                    downloadFolderTextbox.Text = folderBrowser.SelectedPath;
+                    MessageBox.Show(this, downloadOutputDontExist, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    // Restore previous path text only if it's not null or empty.
+                    if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
+                    {
+                        downloadFolderTextbox.Text = folderBrowser.SelectedPath;
+                    }
                     downloadFolderTextbox.SelectionStart = downloadFolderTextbox.Text.Length;
                     downloadFolderTextbox.SelectionLength = 0;
                 }
@@ -1214,10 +1217,15 @@ namespace QobuzDownloaderX
             Thread t = new Thread((ThreadStart)(() =>
             {
                 // Open Folder Browser to select path & Save the selection
-                folderBrowser.ShowDialog();
-                folderBrowser.SelectedPath = folderBrowser.SelectedPath.TrimEnd('\\') + @"\";
-                Settings.Default.savedFolder = folderBrowser.SelectedPath;
-                Settings.Default.Save();
+                if (folderBrowser.ShowDialog() == DialogResult.OK)
+                {
+                    if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
+                    {
+                        folderBrowser.SelectedPath = folderBrowser.SelectedPath.TrimEnd('\\') + @"\";
+                        Settings.Default.savedFolder = folderBrowser.SelectedPath;
+                        Settings.Default.Save();
+                    }
+                }
             }));
 
             // Run your code from a thread that joins the STA Thread
@@ -1225,8 +1233,11 @@ namespace QobuzDownloaderX
             t.Start();
             t.Join();
 
-            downloadFolderTextbox.Text = folderBrowser.SelectedPath;
-            downloadLocation = folderBrowser.SelectedPath;
+            if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
+            { 
+                downloadFolderTextbox.Text = folderBrowser.SelectedPath;
+                downloadLocation = folderBrowser.SelectedPath;
+            }
         }
 
         private void saveTemplatesButton_Click(object sender, EventArgs e)
