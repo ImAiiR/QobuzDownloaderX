@@ -5,6 +5,7 @@ using QopenAPI;
 using QobuzDownloaderX.Properties;
 using System.Text.RegularExpressions;
 using ZetaLongPaths;
+using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
@@ -35,7 +36,7 @@ namespace QobuzDownloaderX
                 else
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Using playlist path");
-                    string playlistTemplateConverted = renameTemplates.renameTemplates(playlistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, null, null, QoPlaylist);
+                    string playlistTemplateConverted = renameTemplates.renameTemplates(playlistTemplate, paddedTrackLength, paddedDiscLength, qbdlxForm._qbdlxForm.audio_format, QoAlbum, QoItem, QoPlaylist);
                     downloadPath = ZlpPathHelper.Combine(downloadLocation, playlistTemplateConverted.TrimEnd(ZlpPathHelper.DirectorySeparatorChar) + ZlpPathHelper.DirectorySeparatorChar);
                     downloadPath = Regex.Replace(downloadPath, @"\s+", " "); // Remove double spaces
                 }
@@ -58,7 +59,7 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.logger.Debug("Artwork path: " + artworkPath);
 
                 // Use secure connection
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
                 
                 // Create a TaskCompletionSource to handle asynchronous waiting
                 var tcs = new TaskCompletionSource<bool>();
@@ -147,10 +148,12 @@ namespace QobuzDownloaderX
 
         public async Task DownloadArtwork(string downloadPath, Album QoAlbum)
         {
+            if (qbdlxForm._qbdlxForm.savedArtSize == "0") return; 
+
             using (var client = new WebClient())
             {
                 // Use secure connection
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
                 // Download cover art (600x600) to the download path
                 qbdlxForm._qbdlxForm.logger.Debug("Downloading Cover Art");
@@ -174,7 +177,7 @@ namespace QobuzDownloaderX
             using (var client = new WebClient())
             {
                 // Use secure connection
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
                 // Download goody to the download path
                 ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));

@@ -2,11 +2,15 @@
 	"TranslationCredit":			"TheParaTiger",
 	"TranslationUpdatedOn":			"November 24, 2024, 09:37AM MET",
 	"TranslationFont":				"Nirmala UI",
+
 	"_SECTION1_":					"=================== MAIN FORM BUTTONS ===================",
 	"additionalSettingsButton":		"Weitere Optionen",
 	"aboutButton": 					"ÜBER",
 	"closeAdditionalButton":		"Optionen",
 	"downloadButton":				"HOLEN!",
+	"batchDownloadButton":			"GET BATCH",
+	"abortButton": 					"ABORT",
+	"skipButton": 					"SKIP",
 	"downloaderButton": 			"DOWNLOADER",
 	"logoutButton": 				"AUSLOGGEN",
 	"openFolderButton":				"Ordner Öffnen",
@@ -17,6 +21,7 @@
 	"searchTracksButton":			"TRACK",
 	"selectFolderButton":			"Ordner Auswählen",
 	"settingsButton": 				"OPTIONEN",
+
 	"_SECTION2_":					"=================== MAIN FORM LABELS ===================",
 	"advancedOptionsLabel":			"Weitere Optionen",
 	"albumTemplateLabel":			"ALBUM VORLAGE",
@@ -33,12 +38,19 @@
 	"searchingLabel":				"Suche...",
 	"taggingOptionsLabel":			"TAG OPTIONEN",
 	"templatesLabel":				"VORLAGEN",
-	"templatesListLabel": "VORLAGEN LISTE",
+	"templatesListLabel":			"VORLAGEN LISTE",
 	"themeLabel":					"Aktuelles Theme",
 	"themeSectionLabel":			"THEME OPTIONEN",
 	"trackTemplateLabel":			"TRACK VORLAGE",
 	"userInfoLabel": 				"BENUTZERINFO",
 	"welcomeLabel": 				"Willkommen\r\n{username}",
+	"limitSearchResultsLabel":		"LIMIT RESULTS TO",
+	"searchSortingLabel":			"SORT BY",
+	"sortReleaseDateLabel":			"Release Date",
+	"sortArtistNameLabel":			"Artist Name",
+	"sortAlbumTrackNameLabel":		"Album / Track Name",
+	"sortingSearchResultsLabel":	"Sorting...",
+
 	"_SECTION3_":					"=================== MAIN FORM CHECKBOXES ===================",
 	"albumArtistCheckbox":			"Album Artist",
 	"albumTitleCheckbox":			"Album Titel",
@@ -58,9 +70,12 @@
 	"labelCheckbox":				"Label",
 	"upcCheckbox":					"UPC / Barcode",
 	"isrcCheckbox":					"ISRC",
+	"urlCheckbox":					"URL",
 	"streamableCheckbox":			"Ist Streamfähig Check",
 	"fixMD5sCheckbox":				"Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
 	"downloadSpeedCheckbox":		"Downloadgeschwindigkeit Anzeigen",
+	"sortAscendantCheckBox":	    "Ascendant",
+
 	"_SECTION4_":					"=================== MAIN FORM PLACEHOLDERS ===================",
 	"albumLabelPlaceholder":		"Willkommen in QBDLX!",
 	"artistLabelPlaceholder":		"Füge einen Qobuz-Link ein und Klicke HOLEN!",
@@ -73,6 +88,7 @@
 	"downloadOutputExpired": 		"DEIN ABONNEMENT IST ABGELAUFEN!, ES WERDEN NUR 30-SEKUNDEN AUSSCHNITTE HERUNTERGELADEN!",
 	"downloadOutputPath": 			"Download Pfad",
 	"downloadOutputNoPath": 		"Es wurde kein Pfad gesetzt! Denke daran einen Ordner auszuwählen!",
+	"downloadOutputDontExist":		"The specified path does not exist.",
 	"downloadOutputAPIError": 		"Qobuz-API Fehler, ist dieses Album in deiner Region verfügbar?",
 	"downloadOutputNotImplemented": "Noch nicht Implementiert oder nicht verstanden, hast du dich vielleicht vertippt?",
 	"downloadOutputCheckLink": 		"Überprüfe Link...",
@@ -85,20 +101,36 @@
 	"downloadOutputDownloading": 	"Lädt Herunter",
 	"downloadOutputDone": 			"FERTIG",
 	"downloadOutputCompleted": 		"DOWNLOAD FERTIG!",
+	"downloadAborted": 			    "DOWNLOAD ABORTED BY USER.",
+	"albumSkipped": 			    "ALBUM SKIPPED BY USER.",
 	"progressLabelInactive": 		"Kein Download aktiv",
 	"progressLabelActive": 			"Download Fortschritt",
+	"formClosingWarning": 			"A download is in progress, do you really want to quit?.",
+	"artists": 						"artists",
+	"albums": 						"albums",
+	"tracks": 						"tracks",
+	"singleArtist": 				"Single artist", // First char in upper-case.
+	"singleAlbum": 					"Single album",  // First char in upper-case.
+	"singleTrack": 					"Single track",  // First char in upper-case.
+	"playlist": 					"Playlist",      // First char in upper-case.
+	"recordLabel": 					"Record label",  // First char in upper-case.
+	"user": 						"User",          // First char in upper-case.
+
 	"_SECTION5_":					"=================== LOGIN FORM BUTTONS ===================",
 	"closeAboutButton":				"SCHLIEßEN",
 	"customSaveButton":				"SPEICHERN",
 	"exitButton":					"VERLASSEN",
 	"loginButton":					"EINLOGGEN",
+
 	"_SECTION6_":					"=================== LOGIN FORM LABELS ===================",
 	"appidLabel":					"App ID",
 	"appSecretLabel":				"App Secret",
 	"customLabel":					"EIGENE APP ID + SECRET NUTZEN",
+	
 	"_SECTION7_":					"=================== LOGIN FORM TEXTBOXES ===================",
 	"customInfoTextbox":			"Felder leerlassen wenn du willst, dass das Programm die Werte selber holt.",
-"aboutTextbox":						"Version - {version}\r\nErstellt von AiiR\r\n\r\nInspiriert von Qo-DL\r\n(Erstellt von Sorrow und DashLt)\r\n\r\nDanke an die Benutzer von GitHub und Telegramm für die Fehlerberichte und Ideen! Und ein großes Dankeschön an DJDoubleD für die Weiterentwicklung des ursprünglichen Programms während ich Beschäftigt war!",
+	"aboutTextbox":					"Version - {version}\r\nErstellt von AiiR\r\n\r\nInspiriert von Qo-DL\r\n(Erstellt von Sorrow und DashLt)\r\n\r\nDanke an die Benutzer von GitHub und Telegramm für die Fehlerberichte und Ideen! Und ein großes Dankeschön an DJDoubleD für die Weiterentwicklung des ursprünglichen Programms während ich Beschäftigt war!",
+
 	"_SECTION8_":					"=================== LOGIN FORM PLACEHOLDERS ===================",
 	"emailPlaceholder":				"E-Mail",
 	"passwordPlaceholder":			"Passwort",
@@ -111,5 +143,11 @@
 	"loginTextNoEmail":				"Keine E-Mail in dem Feld",
 	"loginTextNoPassword":			"Kein Passwort/Token in dem Feld",
 	"updateNotification":			"Eine neue Version von QBDLX ist verfügbar!\r\n\r\nInstallierte Version - {currentVersion}\r\nNeueste Version - {newVersion}\r\n\r\nÄnderungsliste\r\n==============\r\n{changelog}\r\n==============\r\n\r\nMöchtest du aktualisieren?",
-	"updateNotificationTitle":		"QBDLX | Update Verfügbar"
+	"updateNotificationTitle":		"QBDLX | Update Verfügbar",
+
+	"_SECTION9_":					"=================== BATCH DOWNLOAD DIALOG CONTROLS ===================",
+	"batchDownloadDlgText": 		"Batch Download",
+	"batchDownloadLabel": 			"Paste one or more Qobuz URLs...",
+	"closeBatchDownloadbutton": 	"CLOSE / CANCEL",
+	"getAllBatchDownloadButton": 	"GET ALL"
 }

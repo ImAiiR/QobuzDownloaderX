@@ -2,6 +2,7 @@
 using QobuzDownloaderX.Properties;
 using QopenAPI;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZetaLongPaths;

@@ -220,6 +220,10 @@ namespace QobuzDownloaderX
 
         private async void LoginForm_Load(object sender, EventArgs e)
         {
+            // Avoids annoying image transition visuals.
+            this.qbdlxPictureBox.InitialImage = null;
+            this.qbdlxPictureBox.Image = null;
+
             // Upgrade previous settings to current version
             if (Properties.Settings.Default.UpgradeRequired)
             {
@@ -241,7 +245,7 @@ namespace QobuzDownloaderX
 
             // Center program + Set theme, language, saved values + Check for update on GitHub
             CenterToScreen();
-            InitializeTheme();
+            InitializeTheme(); 
             InitializeLanguage();
             SetSavedValues();
             CheckForNewVersion();

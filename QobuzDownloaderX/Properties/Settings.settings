@@ -47,6 +47,9 @@
     <Setting Name="isrcTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="urlTag" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="upcTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -119,17 +122,8 @@
     <Setting Name="savedSecret" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="savedTrackTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%TrackNumber% %TrackTitle%</Value>
-    </Setting>
-    <Setting Name="savedAlbumTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%AlbumTitle%</Value>
-    </Setting>
     <Setting Name="savedArtistTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">%ArtistName%</Value>
-    </Setting>
-    <Setting Name="savedPlaylistTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%PlaylistTitle%</Value>
     </Setting>
     <Setting Name="savedFavoritesTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">- Favorites</Value>
@@ -157,6 +151,15 @@
     </Setting>
     <Setting Name="postTemplateUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)">AiiR</Value>
+    </Setting>
+    <Setting Name="savedTrackTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%TrackNumber%. %ArtistName% - %TrackTitle%</Value>
+    </Setting>
+    <Setting Name="savedAlbumTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%AlbumTitle% (%AlbumPA%) [%UPC%]</Value>
+    </Setting>
+    <Setting Name="savedPlaylistTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%PlaylistTitle%\%ArtistName%</Value>
     </Setting>
   </Settings>
 </SettingsFile>

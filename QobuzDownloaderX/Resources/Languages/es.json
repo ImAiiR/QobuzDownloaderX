@@ -1,25 +1,28 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "November 27, 2025, 5:00PM EST",
+    "TranslationUpdatedOn":         "November 30, 2025, 09:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
-    "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
+    "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
     "additionalSettingsButton":     "Ajustes adicionales",
     "aboutButton":                  "ACERCA DE...",
     "closeAdditionalButton":        "Volver a Ajustes",
-    "downloadButton":               "OBTENER",
+    "downloadButton":               "DESCARGAR",
+	"batchDownloadButton":			"MULTIDESCARGA",
+	"abortButton": 				    "ABORTAR",
+	"skipButton": 					"OMITIR",
     "downloaderButton":             "DESCARGADOR",
     "logoutButton":                 "CERRAR SESIÓN",
     "openFolderButton":             "Abrir carpeta",
     "qualitySelectButton":          "Selector de calidad",
     "saveTemplatesButton":          "Guardar",
     "searchButton":                 "BUSCAR",
-    "searchAlbumsButton":           "ÁLBUMES", // NOTA: La traducción original sería "LANZAMIENTOS", pero es demasiado larga para el botón.
+    "searchAlbumsButton":           "ÁLBUMES", // Nota: el término "LANZAMIENTOS" sobrepasa la longitud del botón.
     "searchTracksButton":           "PISTAS",
     "selectFolderButton":           "Seleccionar carpeta",
     "settingsButton":               "AJUSTES",
 
-    "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
+    "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",
     "albumTemplateLabel":           "PLANTILLA DE ÁLBUM",
     "artistTemplateLabel":          "PLANTILLA DE ARTISTA",
@@ -33,7 +36,7 @@
     "favoritesTemplateLabel":       "PLANTILLA DE FAVORITOS",
     "savedArtLabel":                "Tamaño del arte guardado",
     "searchingLabel":               "Buscando...",
-    "taggingOptionsLabel":          "OPCIONES DE ETIQUETADO",
+    "taggingOptionsLabel":          "OPCIONES DE METADATOS",
     "templatesLabel":               "PLANTILLAS",
     "templatesListLabel":           "LISTA DE PLANTILLAS",
     "themeLabel":                   "Tema actual",
@@ -41,8 +44,14 @@
     "trackTemplateLabel":           "PLANTILLA DE PISTA",
     "userInfoLabel":                "INFORMACIÓN DE USUARIO",
     "welcomeLabel":                 "Bienvenido\r\n{username}",
+	"limitSearchResultsLabel":		"LIMITAR RESULTADOS A",
+	"searchSortingLabel":			"ORDENACIÓN:",
+	"sortReleaseDateLabel":			"Fecha de lanzamiento",
+	"sortArtistNameLabel":			"Nombre de artista",
+	"sortAlbumTrackNameLabel":		"Nombre de album / pista",
+	"sortingSearchResultsLabel":	"Ordenando...",
 
-    "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
+    "_SECTION3_":                   "=================== CASILLAS (CHECKBOX) DEL FORM PRINCIPAL ===================",
     "albumArtistCheckbox":          "Artista de álbum",
     "albumTitleCheckbox":           "Título de álbum",
     "trackArtistCheckbox":          "Artista de pista",
@@ -61,13 +70,15 @@
     "labelCheckbox":                "Sello discográfico",
     "upcCheckbox":                  "UPC / Código de barras",
     "isrcCheckbox":                 "ISRC",
+    "urlCheckbox":                  "URL",
     "streamableCheckbox":           "Verificación de stream",
     "fixMD5sCheckbox":              "Auto-corregir MD5 sin definir (requiere FLAC en la variable PATH)",
     "downloadSpeedCheckbox":        "Mostrar velocidad de descarga",
+	"sortAscendantCheckBox":	    "Ascendente",
 
-    "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
+    "_SECTION4_":                   "=================== CAMPOS DEL FORM PRINCIPAL ===================",
     "albumLabelPlaceholder":        "¡Bienvenido a QBDLX!",
-    "artistLabelPlaceholder":       "Introduce tu enlace de Qobuz y pulsa OBTENER!",
+    "artistLabelPlaceholder":       "Introduce tu enlace de Qobuz y pulsa DESCARGAR!",
     "infoLabelPlaceholder":         "Lanzado",
     "inputTextboxPlaceholder":      "Pega una URL de Qobuz...",
     "searchTextboxPlaceholder":     "Introduce tu búsqueda...",
@@ -77,8 +88,9 @@
     "downloadOutputExpired":        "¡TU SUSCRIPCIÓN HA EXPIRADO, LAS DESCARGAS SE LIMITARÁN A FRAGMENTOS DE 30 SEGUNDOS!",
     "downloadOutputPath":           "Ruta de descarga:",
     "downloadOutputNoPath":         "¡No se ha establecido una ruta! ¡Recuerda seleccionar una carpeta!",
+	"downloadOutputDontExist":		"La ruta especificada no existe.",
     "downloadOutputAPIError":       "Error de la API de Qobuz. ¿Quizá el lanzamiento no está disponible para la región geoógrafica de esta cuenta?",
-    "downloadOutputNotImplemented": "Aún no implementado o la URL no se reconoce. ¿Hubo un error tipográfico?",
+    "downloadOutputNotImplemented": "Funcionalidad no implementada o la URL no se reconoce. ¿Hay un error tipográfico?.",
     "downloadOutputCheckLink":      "Comprobando enlace...",
     "downloadOutputTrNotStream":    "La pista {TrackNumber} no está disponible para streaming. Omitiendo.",
     "downloadOutputAlNotStream":    "El lanzamiento no está disponible para streaming.",
@@ -89,16 +101,28 @@
     "downloadOutputDownloading":    "Descargando",
     "downloadOutputDone":           "LISTO",
     "downloadOutputCompleted":      "DESCARGA COMPLETADA",
+	"downloadAborted": 			    "DESCARGA ABORTADA POR EL USUARIO.",
+	"albumSkipped": 			    "ÁLBUM OMITIDO POR EL USUARIO.",
     "progressLabelInactive":        "No hay ninguna descarga activa",
     "progressLabelActive":          "Progreso de descarga",
+	"formClosingWarning": 			"Hay una descarga en progreso, ¿realmente quieres salir?.",
+	"artists": 						"artistas",
+	"albums": 						"álbumes",
+	"tracks": 						"pistas",
+	"singleArtist": 				"Artista individual",    // Primer caracter en mayúscula.
+	"singleAlbum": 					"Álbum individual",      // Primer caracter en mayúscula.
+	"singleTrack": 					"Pista individual",      // Primer caracter en mayúscula.
+	"playlist": 					"Lista de reproducción", // Primer caracter en mayúscula.
+	"recordLabel": 					"Sello discográfico",    // Primer caracter en mayúscula.
+	"user": 						"Usuario",               // Primer caracter en mayúscula.
 
-    "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
+    "_SECTION5_":                   "=================== BOTONES (BUTTON) DEL FORM DE INICIO DE SESIÓN ===================",
     "closeAboutButton":             "CERRAR",
     "customSaveButton":             "GUARDAR",
     "exitButton":                   "SALIR",
     "loginButton":                  "INICIAR SESIÓN",
 
-    "_SECTION6_":                   "=================== LOGIN FORM LABELS ===================",
+    "_SECTION6_":                   "=================== ETIQUETAS (LABEL) DEL FORM DE INICIO DE SESIÓN ===================",
     "appidLabel":                   "Identificador de aplicación",
     "appSecretLabel":               "Secreto de aplicación",
     "customLabel":                  "USAR IDENTIFICADOR DE APLICACIÓN + SECRETO PERSONALIZADOS",
@@ -107,7 +131,7 @@
     "customInfoTextbox":            "Deja los valores en blanco si deseas obtenerlos automáticamente!.",
     "aboutTextbox":                 "Versión - {version}\r\nCreado por AiiR\r\n\r\nInspirado por Qo-DL\r\n(Creado por Sorrow y DashLt)\r\n\r\nGracias a los usuarios de Github y Telegram por sus reportes de errores e ideas. ¡Y un enorme agradecimiento a DJDoubleD por mantener el original funcionando mientras he estado ocupado!",
 
-    "_SECTION8_":                   "=================== LOGIN FORM PLACEHOLDERS ===================",
+    "_SECTION8_":                   "=================== CAMPOS DEL FORM DE INICIO DE SESIÓN ===================",
     "emailPlaceholder":             "dirección e-mail",
     "passwordPlaceholder":          "contraseña",
     "tokenPlaceholder":             "token",
@@ -119,5 +143,11 @@
     "loginTextNoEmail":             "no hay dirección e-mail en el campo de entrada",
     "loginTextNoPassword":          "no hay contraseña/token en el campo de entrada",
     "updateNotification":           "¡Hay una nueva versión de QBDLX disponible!\r\n\r\nVersión instalada - {currentVersion}\r\nÚltima versión - {newVersion}\r\n\r\nRegistro de cambios\r\n==============\r\n{changelog}\r\n==============\r\n\r\n¿Deseas actualizar?",
-    "updateNotificationTitle":      "QBDLX | Actualización disponible"
+    "updateNotificationTitle":      "QBDLX | Actualización disponible",
+
+	"_SECTION9_":					"=================== CONTROLES DEL DIÁLOGO DE MULTIDESCARGA ===================",
+	"batchDownloadDlgText": 		"Multidescarga",
+	"batchDownloadLabel": 			"Pega una o más URLs de Qobuz...",
+	"closeBatchDownloadbutton": 	"CERRAR / CANCELAR",
+	"getAllBatchDownloadButton": 	"DESCARGAR TODO"
 }

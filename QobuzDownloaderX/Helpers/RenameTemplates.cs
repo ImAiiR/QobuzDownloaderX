@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX
@@ -171,25 +172,31 @@ namespace QobuzDownloaderX
                 template = RenameFormatTemplate(template, qbdlxForm._qbdlxForm.format_id, fileFormat, QoItem.MaximumBitDepth, QoItem.MaximumSamplingRate, "%trackformatwithhiresquality%", "%trackformatwithquality%");
             }
 
+            //// If album is null but item exists (playlist scenario), try to recover album from item.
+            //if (QoItem != null && QoItem != null)
+            //{
+            //    QoAlbum = QoItem.Album;
+            //}
+
             // Album Templates
             if (QoAlbum != null)
             {
                 template = ReplaceParentalWarningTags(template, QoAlbum.ParentalWarning);
                 template = template
-                    .Replace("%albumid%", QoAlbum.Id.ToString())
-                    .Replace("%albumurl%", QoAlbum.Url.ToString())
-                    .Replace("%artistname%", GetReleaseArtists(QoAlbum))
-                    .Replace("%albumgenre%", QoAlbum?.Genre?.Name)
-                    .Replace("%albumcomposer%", QoAlbum?.Composer?.Name?.ToString())
-                    .Replace("%label%", Regex.Replace(QoAlbum.Label.Name, @"\s+", " ")) // Qobuz sometimes has multiple spaces in place of where a single space should be when it comes to Labels
-                    .Replace("%copyright%", QoAlbum.Copyright)
-                    .Replace("%upc%", QoAlbum.UPC)
-                    .Replace("%releasedate%", QoAlbum.ReleaseDateOriginal)
-                    .Replace("%year%", UInt32.Parse(QoAlbum.ReleaseDateOriginal.Substring(0, 4)).ToString())
-                    .Replace("%releasetype%", char.ToUpper(QoAlbum.ProductType.First()) + QoAlbum.ProductType.Substring(1).ToLower())
-                    .Replace("%bitdepth%", QoAlbum.MaximumBitDepth.ToString())
-                    .Replace("%samplerate%", QoAlbum.MaximumSamplingRate.ToString())
-                    .Replace("%albumtitle%", QoAlbum.Version == null ? QoAlbum.Title : $"{QoAlbum.Title.TrimEnd()} ({QoAlbum.Version})")
+                    .Replace("%albumid%", QoAlbum.Id?.ToString() ?? "")
+                    .Replace("%albumurl%", QoAlbum.Url?.ToString() ?? "")
+                    .Replace("%artistname%", GetReleaseArtists(QoAlbum) ?? "")
+                    .Replace("%albumgenre%", QoAlbum?.Genre?.Name ?? "")
+                    .Replace("%albumcomposer%", QoAlbum?.Composer?.Name?.ToString() ?? "")
+                    .Replace("%label%", Regex.Replace(QoAlbum.Label?.Name ?? "", @"\s+", " ")) // Qobuz sometimes has multiple spaces in place of where a single space should be when it comes to Labels
+                    .Replace("%copyright%", QoAlbum.Copyright ?? "")
+                    .Replace("%upc%", QoAlbum.UPC ?? "")
+                    .Replace("%releasedate%", QoAlbum.ReleaseDateOriginal ?? "")
+                    .Replace("%year%", UInt32.Parse(QoAlbum.ReleaseDateOriginal?.Substring(0, 4)).ToString() ?? "")
+                    .Replace("%releasetype%", char.ToUpper(QoAlbum.ProductType.FirstOrDefault()) + QoAlbum.ProductType?.Substring(1)?.ToLower())
+                    .Replace("%bitdepth%", QoAlbum.MaximumBitDepth.ToString() ?? "")
+                    .Replace("%samplerate%", QoAlbum.MaximumSamplingRate.ToString() ?? "")
+                    .Replace("%albumtitle%", QoAlbum.Version == null ? QoAlbum.Title : $"{QoAlbum.Title?.TrimEnd()} ({QoAlbum.Version})")
                     .Replace("%format%", fileFormat.ToUpper().TrimStart('.'));
             }
 
@@ -206,7 +213,28 @@ namespace QobuzDownloaderX
                     .Replace("%playlisttitle%", QoPlaylist.Name)
                     .Replace("%format%", fileFormat.ToUpper().TrimStart('.'))
                     .Replace("%formatwithhiresquality%", fileFormat.ToUpper().TrimStart('.'))
-                    .Replace("%formatwithquality%", fileFormat.ToUpper().TrimStart('.'));
+                    .Replace("%formatwithquality%", fileFormat.ToUpper().TrimStart('.')); 
+
+                if (QoItem != null)
+                {
+                    // Album Template for playlist path
+                    template = template
+                        .Replace("%albumid%", QoAlbum.Id?.ToString() ?? "")
+                        .Replace("%albumurl%", QoAlbum.Url?.ToString() ?? "")
+                        .Replace("%artistname%", GetReleaseArtists(QoAlbum) ?? "")
+                        .Replace("%albumgenre%", QoAlbum?.Genre?.Name ?? "")
+                        .Replace("%albumcomposer%", QoAlbum?.Composer?.Name?.ToString() ?? "")
+                        .Replace("%label%", Regex.Replace(QoAlbum.Label?.Name ?? "", @"\s+", " ")) // Qobuz sometimes has multiple spaces in place of where a single space should be when it comes to Labels
+                        .Replace("%copyright%", QoAlbum.Copyright ?? "")
+                        .Replace("%upc%", QoAlbum.UPC ?? "")
+                        .Replace("%releasedate%", QoAlbum.ReleaseDateOriginal ?? "")
+                        .Replace("%year%", UInt32.Parse(QoAlbum.ReleaseDateOriginal?.Substring(0, 4)).ToString() ?? "")
+                        .Replace("%releasetype%", char.ToUpper(QoAlbum.ProductType.FirstOrDefault()) + QoAlbum.ProductType?.Substring(1)?.ToLower())
+                        .Replace("%bitdepth%", QoAlbum.MaximumBitDepth.ToString() ?? "")
+                        .Replace("%samplerate%", QoAlbum.MaximumSamplingRate.ToString() ?? "")
+                        .Replace("%albumtitle%", QoAlbum.Version == null ? QoAlbum.Title : $"{QoAlbum.Title?.TrimEnd()} ({QoAlbum.Version})")
+                        .Replace("%format%", fileFormat.ToUpper().TrimStart('.'));
+                }
             }
 
             // GetSafeFilename call to make sure path will be valid

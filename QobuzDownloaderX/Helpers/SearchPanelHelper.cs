@@ -1,9 +1,10 @@
-﻿using System;
+﻿using QobuzDownloaderX.Properties;
 using QopenAPI;
-using QobuzDownloaderX.Properties;
-using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
@@ -15,21 +16,30 @@ namespace QobuzDownloaderX
         public SearchAlbumResult QoAlbumSearch = new SearchAlbumResult();
         public SearchTrackResult QoTrackSearch = new SearchTrackResult();
 
+        public int limitResults;
+        public string lastSearchType = "";
+
         public void SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
         {
+            limitResults = (int)qbdlxForm._qbdlxForm.limitSearchResultsNumericUpDown.Value;
+           
             if (searchType == "releases")
             {
-                QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
+                QoAlbumSearch = null;
+                QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, limitResults, 0, user_auth_token);
+                QoAlbumSearch.Albums = SortAlbums(QoAlbumSearch.Albums);
                 PopulateTableAlbums(qbdlxForm._qbdlxForm, QoAlbumSearch);
             }
             else if (searchType == "tracks")
             {
-                QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, 25, 0, user_auth_token);
+                QoTrackSearch = null;
+                QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, limitResults, 0, user_auth_token);
+                QoTrackSearch.Tracks = SortTracks(QoTrackSearch.Tracks);
                 PopulateTableTracks(qbdlxForm._qbdlxForm, QoTrackSearch);
             }
         }
 
-        public void PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
+    public void PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
         {
             // Access the "items" array from the response
             var albums = QoAlbumSearch.Albums.Items;
@@ -39,10 +49,22 @@ namespace QobuzDownloaderX
 
             mainForm.Invoke((MethodInvoker)delegate ()
             {
+                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = false;
+
                 TableLayoutPanel searchResultsTablePanel = mainForm.searchResultsTablePanel;
+                searchResultsTablePanel.SuspendLayout();
+                foreach (Control ctrl in searchResultsTablePanel.Controls)
+                {
+                    if (ctrl is PictureBox pb)
+                    {
+                        pb.Image?.Dispose();
+                    }
+                    ctrl?.Dispose();
+                }
                 searchResultsTablePanel.Controls.Clear();
+
                 searchResultsTablePanel.ColumnCount = 5; // Artwork, Artist, Title, Quality, Button
-                searchResultsTablePanel.RowCount = 25; // Set row count based on the number of albums
+                searchResultsTablePanel.RowCount = limitResults; // Set row count based on the number of albums
                 searchResultsTablePanel.AutoSize = true;
 
                 // Set ColumnStyles to define the size of each column
@@ -96,13 +118,14 @@ namespace QobuzDownloaderX
                     albumTitle.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
                     searchResultsTablePanel.Controls.Add(albumTitle, 2, rowIndex);
 
-                    // Add Label for quality
+                    // Add Label for quality and other info
                     System.Windows.Forms.Label qualityLabel = new System.Windows.Forms.Label
                     {
-                        Text = album.MaximumBitDepth.ToString() + "bit/" + album.MaximumSamplingRate + "kHz",
+                        Text = GetQualityInfoAlbumLabelText(album),
+                        ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText),
                         AutoSize = true,
                         MaximumSize = new Size(0, 0), // Allow word-wrap
-                        TextAlign = ContentAlignment.MiddleCenter, // Center text horizontally and vertically
+                        TextAlign = ContentAlignment.TopCenter, // Center text horizontally and vertically
                         Anchor = AnchorStyles.None // Center within the cell
                     };
 
@@ -133,17 +156,30 @@ namespace QobuzDownloaderX
                     selectButton.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ClickedButtonBackground); // Set background color when clicked
                     string albumLink = "https://play.qobuz.com/album/" + album.Id.ToString(); // Store the album link
                     selectButton.Click += (sender, e) => SendURL(mainForm, albumLink);
-                    mainForm.downloadButton.EnabledChanged += (sender, e) => selectButton.Enabled = mainForm.downloadButton.Enabled;
                     selectButton.Anchor = AnchorStyles.None; // Center the button
+                    selectButton.Enabled = !qbdlxForm._qbdlxForm.getLinkTypeIsBusy;
+                    mainForm.downloadButton.EnabledChanged += (sender, e) =>
+                    {
+                        selectButton.Enabled =
+                            mainForm.downloadButton.Enabled == true ||
+                            !qbdlxForm._qbdlxForm.getLinkTypeIsBusy ||
+                            string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
+
+                    };
                     searchResultsTablePanel.Controls.Add(selectButton, 4, rowIndex);
 
                     rowIndex++;
                 }
+                searchResultsTablePanel.ResumeLayout();
+                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = true;
             });
+
+            lastSearchType = "releases";
         }
 
         public void PopulateTableTracks(qbdlxForm mainForm, SearchTrackResult QoTrackSearch)
         {
+
             // Access the "items" array from the response
             var tracks = QoTrackSearch.Tracks.Items;
 
@@ -152,10 +188,21 @@ namespace QobuzDownloaderX
 
             mainForm.Invoke((MethodInvoker)delegate ()
             {
+                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = false;
                 TableLayoutPanel searchResultsTablePanel = mainForm.searchResultsTablePanel;
+                searchResultsTablePanel.SuspendLayout();
+                foreach (Control ctrl in searchResultsTablePanel.Controls)
+                {
+                    if (ctrl is PictureBox pb)
+                    {
+                        pb.Image?.Dispose();
+                    }
+                    ctrl?.Dispose();
+                }
                 searchResultsTablePanel.Controls.Clear();
+
                 searchResultsTablePanel.ColumnCount = 5; // Artwork, Artist, Title, Quality, Button
-                searchResultsTablePanel.RowCount = 25; // Set row count based on the number of albums
+                searchResultsTablePanel.RowCount = limitResults; // Set row count based on the number of albums
                 searchResultsTablePanel.AutoSize = true;
 
                 // Set ColumnStyles to define the size of each column
@@ -212,7 +259,7 @@ namespace QobuzDownloaderX
                     // Add Label for quality
                     System.Windows.Forms.Label qualityLabel = new System.Windows.Forms.Label
                     {
-                        Text = track.MaximumBitDepth.ToString() + "bit/" + track.MaximumSamplingRate + "kHz",
+                        Text = GetQualityInfoTrackLabelText(track),
                         AutoSize = true,
                         MaximumSize = new Size(0, 0), // Allow word-wrap
                         TextAlign = ContentAlignment.MiddleCenter, // Center text horizontally and vertically
@@ -247,11 +294,23 @@ namespace QobuzDownloaderX
                     string trackLink = "https://open.qobuz.com/track/" + track.Id.ToString(); // Store the track link
                     selectButton.Click += (sender, e) => SendURL(mainForm, trackLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
+                    selectButton.Enabled = !qbdlxForm._qbdlxForm.getLinkTypeIsBusy;
+                    mainForm.downloadButton.EnabledChanged += (sender, e) =>
+                    {
+                        selectButton.Enabled =
+                            mainForm.downloadButton.Enabled == true ||
+                            !qbdlxForm._qbdlxForm.getLinkTypeIsBusy ||
+                            string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
+                    };
                     searchResultsTablePanel.Controls.Add(selectButton, 4, rowIndex);
 
                     rowIndex++;
                 }
+                searchResultsTablePanel.ResumeLayout();
+                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = true;
             });
+
+            lastSearchType = "tracks";
         }
 
         public void SendURL(qbdlxForm mainForm, string url)
@@ -271,6 +330,140 @@ namespace QobuzDownloaderX
                 mainForm.logger.Error("Error on SendURL (SearchPanelHelper). Error below:\r\n" + ex);
                 return;
             }
+        }
+
+        public string GetQualityInfoAlbumLabelText(Item album)
+        {
+            if (album == null) return string.Empty;
+
+            // Text Format:
+            // ------------
+            // RELEASE DATE, "SINGLE" OR "{n} tracks"
+            // QUALITY INFO
+            // GENRE
+            string tracksText = album.TracksCount == 1
+                ? "Single"
+                : $"{album.TracksCount} {qbdlxForm._qbdlxForm.languageManager.GetTranslation("tracks")}";
+
+            string qualityText = $"{album.MaximumBitDepth}bit / {album.MaximumSamplingRate}kHz";
+            string genreName = GetShortenedGenreName(album.Genre.Name);
+
+            string labelText = $"{album.ReleaseDateOriginal?.Substring(0, 4)}, {tracksText}\r\n{qualityText}\r\n{genreName}";
+            return labelText;
+        }
+
+        public string GetQualityInfoTrackLabelText(Item track)
+        {
+            if (track == null) return string.Empty;
+
+            // Text Format:
+            // ------------
+            // RELEASE DATE
+            // QUALITY INFO
+            // GENRE
+            string qualityText = $"{track.MaximumBitDepth}bit / {track.MaximumSamplingRate}kHz";
+            string genreName = GetShortenedGenreName(track.Album.Genre.Name);
+
+            string labelText = $"{track.ReleaseDateOriginal?.Substring(0, 4)}\r\n{qualityText}\r\n{genreName}";
+            return labelText;
+        }
+
+        public string GetShortenedGenreName(string genre)
+        {
+            if (string.IsNullOrEmpty(genre))
+                return string.Empty;
+
+            // Shorten English genre names
+            string genreName = genre
+                .Replace("Alternative", "Alt.")
+                .Replace("Brazilian", "Brazil.")
+                .Replace("Film Soundtracks", "OST")
+                .Replace("Latin America", "Latin Am.")
+                .Replace("Miscellaneous", "Misc.")
+                .Replace(" Music", "")
+                .Replace(" music", "")
+                .Replace("North America", "North Am.");
+
+            // Shorten Spanish genre names
+            genreName = genreName
+                .Replace("Alternativa", "Alt.")
+                .Replace("América latina", "Latina")
+                .Replace("Bandas sonoras de", "BSO")
+                .Replace("brasileño", "Brasil.")
+                .Replace("Chanson ", "")
+                .Replace("Música ", "")
+                .Replace("música ", "")
+                .Replace("Músicas ", "")
+                .Replace("músicas ", "")
+                .Replace("Música de ", "")
+                .Replace("música de ", "")
+                .Replace("Músicas de ", "")
+                .Replace("músicas de ", "")
+                .Replace("Norteamérica", "Norteam.")
+                .Replace("World music", "Mundial");
+
+            // Format before truncating
+            genreName = genreName.TrimStart(' ', '&', '-', '.', ',').Replace("&", "&&");
+            if (!string.IsNullOrEmpty(genreName))
+                genreName = char.ToUpper(genreName[0]) + genreName.Substring(1).TrimEnd();
+
+            // Truncate if too long
+            if (genreName.Length > 18)
+                genreName = genreName.Substring(0, 18) + "…";
+
+            return genreName;
+        }
+
+        public Albums SortAlbums(Albums albums)
+        {
+            if (albums == null || albums.Items == null)
+                return albums;
+
+            IEnumerable<Item> query = albums.Items;
+
+            bool descending = !qbdlxForm._qbdlxForm.sortAscendantCheckBox.Checked;
+
+            if (qbdlxForm._qbdlxForm.sortArtistNameButton.Checked)
+                query = descending ? query.OrderByDescending(i => i.Artist?.Name) : query.OrderBy(i => i.Artist?.Name);
+            else if (qbdlxForm._qbdlxForm.sortAlbumTrackNameButton.Checked)
+                query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
+            else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
+                query = descending
+                    ? query.OrderByDescending(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000")
+                    : query.OrderBy(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000");
+
+            return new Albums
+            {
+                Items = query.ToList(),
+                Total = albums.Total
+            };
+        }
+
+        public Tracks SortTracks(Tracks tracks)
+        {
+            if (tracks == null || tracks.Items == null)
+                return tracks;
+
+            IEnumerable<Item> query = tracks.Items;
+
+            bool descending = !qbdlxForm._qbdlxForm.sortAscendantCheckBox.Checked;
+
+            if (qbdlxForm._qbdlxForm.sortArtistNameButton.Checked)
+                query = descending
+                    ? query.OrderByDescending(i => i.Album?.Artist?.Name ?? i.Name)
+                    : query.OrderBy(i => i.Album?.Artist?.Name ?? i.Name);
+            else if (qbdlxForm._qbdlxForm.sortAlbumTrackNameButton.Checked)
+                query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
+            else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
+                query = descending
+                    ? query.OrderByDescending(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000")
+                    : query.OrderBy(i => i.ReleaseDateOriginal != null ? i.ReleaseDateOriginal.Substring(0, 4) : "0000");
+
+            return new Tracks
+            {
+                Items = query.ToList(),
+                Total = tracks.Total
+            };
         }
     }
 }

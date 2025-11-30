@@ -106,52 +106,57 @@ namespace QobuzDownloaderX.Helpers
 
             try
             {
-                // Initialize HttpClient to grab version number from GitHub
-                using (var versionURLClient = new HttpClient())
+                // Initialize HttpClient to fetch version number from GitHub
+                using (var httpClient = new HttpClient())
                 {
-                    qbdlxForm._qbdlxForm.logger.Debug("versionURLClient initialized");
+                    qbdlxForm._qbdlxForm.logger.Debug("HttpClient initialized");
 
                     // Configure TLS for secure connection
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
                     // Set user-agent to Firefox
-                    versionURLClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+                    httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
 
                     // Request the latest release from GitHub
-                    qbdlxForm._qbdlxForm.logger.Debug("Starting request for latest GitHub version");
-                    var versionURL = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
-                    var versionURLResponse = await versionURLClient.GetAsync(versionURL);
-                    string versionURLResponseString = await versionURLResponse.Content.ReadAsStringAsync();
+                    qbdlxForm._qbdlxForm.logger.Debug("Requesting latest GitHub release");
+                    var versionUrl = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
+                    var response = await httpClient.GetAsync(versionUrl);
+                    string responseString = await response.Content.ReadAsStringAsync();
 
                     // Parse the JSON response
-                    JObject joVersionResponse = JObject.Parse(versionURLResponseString);
+                    JObject json = JObject.Parse(responseString);
 
                     // Extract version number and changelog
-                    newVersion = (string)joVersionResponse["tag_name"];
+                    newVersion = (string)json["tag_name"];
+                    changes = (string)json["body"];
                     qbdlxForm._qbdlxForm.logger.Debug("Received version from GitHub: " + newVersion);
-                    changes = (string)joVersionResponse["body"];
 
                     // Get the current version from the assembly
                     currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-                    // Compare versions
-                    if (!currentVersion.Contains(newVersion))
+                    // Compare versions numerically
+                    var newVersionObj = new Version(newVersion?.TrimStart('v')); // Remove leading 'v' if present
+                    var currentVersionObj = new Version(currentVersion);
+
+                    isUpdateAvailable = newVersionObj > currentVersionObj;
+
+                    if (isUpdateAvailable)
                     {
-                        isUpdateAvailable = true;
                         qbdlxForm._qbdlxForm.logger.Debug("New version available: " + newVersion);
                     }
                     else
                     {
-                        qbdlxForm._qbdlxForm.logger.Debug("Current version matches the latest version.");
+                        qbdlxForm._qbdlxForm.logger.Debug("Current version matches the latest release.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("Connection to GitHub failed: " + ex.Message);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to connect to GitHub: " + ex.Message);
             }
 
             return (isUpdateAvailable, newVersion, currentVersion, changes);
         }
     }
+
 }

@@ -2,11 +2,15 @@
 	"TranslationCredit":			"Kuzmich55",
 	"TranslationUpdatedOn":			"December 03, 2024, 11:01AM MSK",
 	"TranslationFont":				"Segoe UI",
+
 	"_SECTION1_":					"=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
 	"additionalSettingsButton":		"Дополнительно",
 	"aboutButton": 					"О ПРОГРАММЕ",
 	"closeAdditionalButton":		"Назад",
 	"downloadButton":				"ЗАГРУЗИТЬ",
+	"batchDownloadButton":			"GET BATCH",
+	"abortButton": 					"ABORT",
+	"skipButton": 					"SKIP",
 	"downloaderButton": 			"ЗАГРУЗЧИК",
 	"logoutButton": 				"ВЫХОД",
 	"openFolderButton":				"Открыть папку",
@@ -17,6 +21,7 @@
 	"searchTracksButton":			"ТРЕКИ",
 	"selectFolderButton":			"Выбрать папку",
 	"settingsButton": 				"НАСТРОЙКИ",
+
 	"_SECTION2_":					"=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",
 	"advancedOptionsLabel":			"РАСШИРЕННЫЕ НАСТРОЙКИ",
 	"albumTemplateLabel":			"ШАБЛОН АЛЬБОМА",
@@ -39,6 +44,13 @@
 	"trackTemplateLabel":			"ШАБЛОН ТРЕКА",
 	"userInfoLabel": 				"ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ",
 	"welcomeLabel": 				"Добро пожаловать\r\n{username}",
+	"limitSearchResultsLabel":		"LIMIT RESULTS TO",
+	"searchSortingLabel":			"SORT BY",
+	"sortReleaseDateLabel":			"Release Date",
+	"sortArtistNameLabel":			"Artist Name",
+	"sortAlbumTrackNameLabel":		"Album / Track Name",
+	"sortingSearchResultsLabel":	"Sorting...",
+
 	"_SECTION3_":					"=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
 	"albumArtistCheckbox":			"Исполнитель альбома",
 	"albumTitleCheckbox":			"Название альбома",
@@ -58,9 +70,12 @@
 	"labelCheckbox":				"Лейбл",
 	"upcCheckbox":					"UPC / Штрих-код",
 	"isrcCheckbox":					"ISRC",
+	"urlCheckbox":					"URL",
 	"streamableCheckbox":			"Проверка возможности трансляции",
 	"fixMD5sCheckbox":				"Автоматическое исправление отсутствующих MD5 (FLAC должен быть в переменной PATH)",
 	"downloadSpeedCheckbox":		"Показывать скорость загрузки",
+	"sortAscendantCheckBox":	    "Ascendant",
+
 	"_SECTION4_":					"=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
 	"albumLabelPlaceholder":		"Добро пожаловать в QBDLX!",
 	"artistLabelPlaceholder":		"Вставьте Qobuz URL и нажмите загрузить!",
@@ -73,6 +88,7 @@
 	"downloadOutputExpired": 		"ВАША ПОДПИСКА ИСТЕКЛА, ЗАГРУЗКИ БУДУТ ОГРАНИЧЕНЫ 30-СЕКУНДНЫМИ ФРАГМЕНТАМИ!",
 	"downloadOutputPath": 			"Путь загрузки",
 	"downloadOutputNoPath": 		"Путь не установлен! Не забудьте выбрать папку!",
+	"downloadOutputDontExist":		"The specified path does not exist.",
 	"downloadOutputAPIError": 		"Ошибка API Qobuz. Возможно, релиз недоступен в этом регионе аккаунта?",
 	"downloadOutputNotImplemented": "Ещё не реализовано или URL невозможно разобрать. Возможно, есть опечатка?",
 	"downloadOutputCheckLink": 		"Проверка ссылки...",
@@ -85,20 +101,36 @@
 	"downloadOutputDownloading": 	"Загрузка",
 	"downloadOutputDone": 			"ГОТОВО",
 	"downloadOutputCompleted": 		"ЗАГРУЗКА ЗАВЕРШЕНА",
+	"downloadAborted": 			    "DOWNLOAD ABORTED BY USER.",
+	"albumSkipped": 			    "ALBUM SKIPPED BY USER.",
 	"progressLabelInactive": 		"Активных загрузок нет",
 	"progressLabelActive": 			"Прогресс загрузки",
+	"formClosingWarning": 			"A download is in progress, do you really want to quit?.",
+	"artists": 						"artists",
+	"albums": 						"albums",
+	"tracks": 						"tracks",
+	"singleArtist": 				"Single artist", // First char in upper-case.
+	"singleAlbum": 					"Single album",  // First char in upper-case.
+	"singleTrack": 					"Single track",  // First char in upper-case.
+	"playlist": 					"Playlist",      // First char in upper-case.
+	"recordLabel": 					"Record label",  // First char in upper-case.
+	"user": 						"User",          // First char in upper-case.
+
 	"_SECTION5_":					"=================== КНОПКИ ФОРМЫ АВТОРИЗАЦИИ ===================",
 	"closeAboutButton":				"ЗАКРЫТЬ",
 	"customSaveButton":				"СОХРАНИТЬ",
 	"exitButton":					"ВЫХОД",
 	"loginButton":					"ВХОД",
+
 	"_SECTION6_":					"=================== ПОДПИСИ ФОРМЫ АВТОРИЗАЦИИ ===================",
 	"appidLabel":					"App ID",
 	"appSecretLabel":				"App Secret",
 	"customLabel":					"ИСПОЛЬЗОВАТЬ СВОЙ APP ID + SECRET",
+
 	"_SECTION7_":					"=================== ТЕКСТОВЫЕ ПОЛЯ ФОРМЫ АВТОРИЗАЦИИ ===================",
 	"customInfoTextbox":			"Оставьте поля пустыми, чтобы заполнить значения автоматически!",
 	"aboutTextbox":					"Версия - {version}\r\nСоздано AiiR\r\n\r\nВдохновлено Qo-DL\r\n(Создано Sorrow и DashLt)\r\n\r\nСпасибо пользователям на Github и в Telegram за отчеты об ошибках и идеи! И огромное спасибо DJDoubleD за поддержку оригинала, пока я был занят!",
+
 	"_SECTION8_":					"=================== ПЛЕЙСХОЛДЕРЫ ФОРМЫ АВТОРИЗАЦИИ ===================",
 	"emailPlaceholder":				"e-mail",
 	"passwordPlaceholder":			"пароль",
@@ -111,5 +143,11 @@
 	"loginTextNoEmail":				"в поле ввода отсутствует e-mail",
 	"loginTextNoPassword":			"в поле ввода отсутствует пароль/токен",
 	"updateNotification":			"Доступна новая версия QBDLX!\r\n\r\nУстановлена версия - {currentVersion}\r\nПоследняя версия - {newVersion}\r\n\r\nЖурнал изменений\r\n==============\r\n{changelog}\r\n==============\r\n\r\nВы хотите обновить?",
-	"updateNotificationTitle":		"QBDLX | Доступно обновление"
+	"updateNotificationTitle":		"QBDLX | Доступно обновление",
+	
+	"_SECTION9_":					"=================== BATCH DOWNLOAD DIALOG CONTROLS ===================",
+	"batchDownloadDlgText": 		"Batch Download",
+	"batchDownloadLabel": 			"Paste one or more Qobuz URLs...",
+	"closeBatchDownloadbutton": 	"CLOSE / CANCEL",
+	"getAllBatchDownloadButton": 	"GET ALL"
 }

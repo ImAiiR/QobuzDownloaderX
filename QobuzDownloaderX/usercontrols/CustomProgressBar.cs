@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QobuzDownloaderX.UserControls
@@ -82,7 +83,7 @@ namespace QobuzDownloaderX.UserControls
             {
                 path.AddString(
                     text,
-                    this.Font.FontFamily,
+                    this.DesignMode ? this.Font.FontFamily: Application.OpenForms.OfType<qbdlxForm>().Single().Font.FontFamily,
                     (int)this.Font.Style,
                     this.Font.SizeInPoints * e.Graphics.DpiY / 72, // Exact pixel size
                     this.ClientRectangle,
@@ -93,8 +94,7 @@ namespace QobuzDownloaderX.UserControls
                     }
                 );
 
-                // Smooth edges
-                e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
                 // Fill inside text
                 using (Brush fillBrush = new SolidBrush(this.ForeColor))

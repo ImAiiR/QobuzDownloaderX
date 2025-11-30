@@ -1,9 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using QopenAPI;
-using System.IO;
+﻿using Newtonsoft.Json.Linq;
 using QobuzDownloaderX.Properties;
+using QopenAPI;
+using System;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX
@@ -94,13 +96,20 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album, IProgress<int> progress)
+        public async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album, IProgress<int> progress, CancellationToken abortToken)
         {
             int totalTracks = album.Tracks.Items.Count;
             int trackIndex = 0;
 
             foreach (var item in album.Tracks.Items)
             {
+                if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                if (qbdlxForm.skipCurrentAlbum) {
+                    qbdlxForm.skipCurrentAlbum = false;
+                    qbdlxForm._qbdlxForm.logger.Debug("Skipping current album by user");
+                    getInfo.updateDownloadOutput(qbdlxForm._qbdlxForm.albumSkipped);
+                    break; }
+
                 trackIndex++;
                 var trackProgress = new Progress<int>(value =>
                 {
@@ -112,7 +121,10 @@ namespace QobuzDownloaderX
                 try
                 {
                     var trackInfo = QoService.TrackGetWithAuth(app_id, item.Id.ToString(), user_auth_token);
-                    await downloadTrack.DownloadTrackAsync("album", app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, album, trackInfo, trackProgress);
+                    await downloadTrack.DownloadTrackAsync(
+                        "album", app_id, album_id, format_id, audio_format, 
+                        user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, 
+                        trackTemplate, album, trackInfo, trackProgress);
                 }
                 catch (Exception ex)
                 {
@@ -120,9 +132,10 @@ namespace QobuzDownloaderX
                     getInfo.updateDownloadOutput($"\r\n{ex}");
                 }
             }
+            qbdlxForm.skipCurrentAlbum = false;
         }
 
-        public async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, IProgress<int> progress)
+        public async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, IProgress<int> progress, CancellationToken abortToken)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Starting album download (downloadAlbum)");
 
@@ -148,6 +161,7 @@ namespace QobuzDownloaderX
                 }
             }
 
+            if (abortToken.IsCancellationRequested) {abortToken.ThrowIfCancellationRequested();}
             try
             {
                 // Find the how many characters are needed for padding
@@ -160,17 +174,22 @@ namespace QobuzDownloaderX
 
                 // Download artwork
                 await DownloadArtwork(downloadPath, QoAlbum);
+                if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
 
                 // Download tracks
-                await DownloadTracksAsync(app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress);
+                await DownloadTracksAsync(
+                    app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, 
+                    artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress, abortToken);
 
                 // Delete image used for embedding artwork
+                if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                 DeleteEmbeddedArtwork(downloadPath);
 
                 // Set current output text
                 getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
 
                 // Download goodies
+                if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                 await DownloadGoodiesAsync(downloadPath, QoAlbum);
 
                 progress?.Report(100);

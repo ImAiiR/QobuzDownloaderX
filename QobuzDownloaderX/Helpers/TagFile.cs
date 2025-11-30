@@ -6,6 +6,7 @@ using QobuzDownloaderX.Properties;
 using QopenAPI;
 using TagLib.Id3v2;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
@@ -47,6 +48,14 @@ namespace QobuzDownloaderX
             if (Settings.Default.upcTag) customTags.SetField("BARCODE", QoAlbum.UPC);
             if (Settings.Default.labelTag) customTags.SetField("LABEL", Regex.Replace(QoAlbum.Label.Name, @"\s+", " "));
             if (Settings.Default.explicitTag) customTags.SetField("ITUNESADVISORY", QoItem.ParentalWarning ? "1" : "0");
+            if (Settings.Default.urlTag)
+            {
+                string url = !string.IsNullOrWhiteSpace(QoItem?.Url) ? QoItem.Url : QoAlbum?.Url;
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    customTags.SetField("Qobuz URL", new string[] { url });
+                }
+            }
             if (Settings.Default.commentTag && !string.IsNullOrEmpty(Settings.Default.commentText))
             {
                 customTags.SetField("COMMENT", new string[]
@@ -61,6 +70,20 @@ namespace QobuzDownloaderX
 
         private static void SetMp3Tags(TagLib.Id3v2.Tag mp3Tag, Album QoAlbum, Item QoItem)
         {
+            if (Settings.Default.urlTag)
+            {
+                string url = !string.IsNullOrWhiteSpace(QoItem?.Url) ? QoItem.Url : QoAlbum?.Url;
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    var data = new ByteVector {
+                        0, ByteVector.FromString("Qobuz URL", StringType.UTF8),
+                        0, ByteVector.FromString(url, StringType.UTF8)
+                    };
+                    var wxxx = new UnknownFrame("WXXX", data);
+                    mp3Tag.AddFrame(wxxx);
+                }
+            }
+            
             if (Settings.Default.upcTag) UserTextInformationFrame.Get(mp3Tag, "BARCODE", true).Text = new[] { QoAlbum.UPC };
             if (Settings.Default.explicitTag) UserTextInformationFrame.Get(mp3Tag, "ITUNESADVISORY", true).Text = new[] { QoItem.ParentalWarning ? "1" : "0" };
             if (Settings.Default.yearTag) mp3Tag.Year = uint.Parse(QoAlbum.ReleaseDateOriginal.Substring(0, 4));
