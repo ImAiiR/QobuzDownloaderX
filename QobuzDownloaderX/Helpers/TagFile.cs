@@ -42,7 +42,16 @@ namespace QobuzDownloaderX
 
         private static void SetFlacTags(TagLib.Ogg.XiphComment customTags, Album QoAlbum, Item QoItem)
         {
-            if (Settings.Default.yearTag) customTags.SetField("DATE", QoAlbum.ReleaseDateOriginal);
+            if (Settings.Default.yearTag)
+            {
+                string releaseDate = QoAlbum.ReleaseDateOriginal;
+                customTags.SetField("DATE", releaseDate); 
+                if (!string.IsNullOrEmpty(releaseDate) && releaseDate.Length >= 4)
+                {
+                    string yearOnly = releaseDate.Substring(0, 4);
+                    customTags.SetField("YEAR", yearOnly);
+                }
+            }
             if (Settings.Default.isrcTag) customTags.SetField("ISRC", QoItem.ISRC);
             if (Settings.Default.typeTag) customTags.SetField("MEDIATYPE", QoAlbum.ProductType.ToUpper());
             if (Settings.Default.upcTag) customTags.SetField("BARCODE", QoAlbum.UPC);
@@ -51,9 +60,10 @@ namespace QobuzDownloaderX
             if (Settings.Default.urlTag)
             {
                 string url = !string.IsNullOrWhiteSpace(QoItem?.Url) ? QoItem.Url : QoAlbum?.Url;
+                url = url.Replace("fr-fr/", "");
                 if (!string.IsNullOrWhiteSpace(url))
                 {
-                    customTags.SetField("Qobuz URL", new string[] { url });
+                    customTags.SetField("Qobuz URL", new string[] {url});
                 }
             }
             if (Settings.Default.commentTag && !string.IsNullOrEmpty(Settings.Default.commentText))
@@ -73,6 +83,7 @@ namespace QobuzDownloaderX
             if (Settings.Default.urlTag)
             {
                 string url = !string.IsNullOrWhiteSpace(QoItem?.Url) ? QoItem.Url : QoAlbum?.Url;
+                url = url.Replace("fr-fr/", "");
                 if (!string.IsNullOrWhiteSpace(url))
                 {
                     var data = new ByteVector {
