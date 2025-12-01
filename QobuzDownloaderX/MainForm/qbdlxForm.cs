@@ -1711,6 +1711,7 @@ namespace QobuzDownloaderX
         private void downloadOutput_TextChanged(object sender, EventArgs e)
         {
             downloadOutput.SelectionStart = downloadOutput.Text.Length;
+            downloadOutput.SelectionLength = 0;
             downloadOutput.ScrollToCaret();
         }
 

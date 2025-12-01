@@ -364,11 +364,11 @@ namespace QobuzDownloaderX
             // progressItemsCountLabel
             // 
             this.progressItemsCountLabel.AutoSize = true;
-            this.progressItemsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressItemsCountLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F);
             this.progressItemsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.progressItemsCountLabel.Location = new System.Drawing.Point(185, 118);
             this.progressItemsCountLabel.Name = "progressItemsCountLabel";
-            this.progressItemsCountLabel.Size = new System.Drawing.Size(24, 25);
+            this.progressItemsCountLabel.Size = new System.Drawing.Size(22, 21);
             this.progressItemsCountLabel.TabIndex = 12;
             this.progressItemsCountLabel.Text = "...";
             // 
@@ -381,7 +381,7 @@ namespace QobuzDownloaderX
             this.batchDownloadPanel.Controls.Add(this.closeBatchDownloadbutton);
             this.batchDownloadPanel.Location = new System.Drawing.Point(213, 118);
             this.batchDownloadPanel.Name = "batchDownloadPanel";
-            this.batchDownloadPanel.Size = new System.Drawing.Size(533, 25);
+            this.batchDownloadPanel.Size = new System.Drawing.Size(533, 21);
             this.batchDownloadPanel.TabIndex = 11;
             this.batchDownloadPanel.Visible = false;
             // 
@@ -394,6 +394,7 @@ namespace QobuzDownloaderX
             this.batchDownloadTextBox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.batchDownloadTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.batchDownloadTextBox.Location = new System.Drawing.Point(0, 25);
+            this.batchDownloadTextBox.MaxLength = 0;
             this.batchDownloadTextBox.Multiline = true;
             this.batchDownloadTextBox.Name = "batchDownloadTextBox";
             this.batchDownloadTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -589,6 +590,7 @@ namespace QobuzDownloaderX
             this.downloadOutput.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadOutput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadOutput.Location = new System.Drawing.Point(18, 252);
+            this.downloadOutput.MaxLength = 0;
             this.downloadOutput.Multiline = true;
             this.downloadOutput.Name = "downloadOutput";
             this.downloadOutput.ReadOnly = true;
@@ -616,6 +618,7 @@ namespace QobuzDownloaderX
             this.inputTextbox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.inputTextbox.Location = new System.Drawing.Point(18, 48);
+            this.inputTextbox.MaxLength = 1000;
             this.inputTextbox.Name = "inputTextbox";
             this.inputTextbox.Size = new System.Drawing.Size(498, 26);
             this.inputTextbox.TabIndex = 1;
@@ -2039,6 +2042,7 @@ namespace QobuzDownloaderX
             this.searchTextbox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.searchTextbox.Location = new System.Drawing.Point(18, 48);
+            this.searchTextbox.MaxLength = 1000;
             this.searchTextbox.Multiline = true;
             this.searchTextbox.Name = "searchTextbox";
             this.searchTextbox.Size = new System.Drawing.Size(557, 27);
