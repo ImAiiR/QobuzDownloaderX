@@ -318,7 +318,7 @@ namespace QobuzDownloaderX
 	""trackTemplateLabel"":			""TRACK TEMPLATE"",
 	""userInfoLabel"": 				""USER INFO"",
 	""welcomeLabel"": 				""Welcome\r\n{username}"",
-	""limitSearchResultsLabel"":	""LIMIT RESULTS TO"",
+	""limitSearchResultsLabel"":	""Results Limit:"",
 	""searchSortingLabel"":			""SORT BY"",
 	""sortReleaseDateLabel"":		""Release Date"",
 	""sortArtistNameLabel"":		""Artist Name"",
