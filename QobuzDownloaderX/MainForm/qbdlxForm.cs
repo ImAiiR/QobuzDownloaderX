@@ -108,6 +108,7 @@ namespace QobuzDownloaderX
         public string downloadOutputExpired { get; set; }
         public string downloadOutputPath { get; set; }
         public string downloadOutputNoPath { get; set; }
+        public string downloadOutputNoUrl { get; set; }
         public string downloadOutputDontExist { get; set; }
         public string downloadOutputAPIError { get; set; }
         public string downloadOutputNotImplemented { get; set; }
@@ -391,6 +392,7 @@ namespace QobuzDownloaderX
             downloadOutputExpired = languageManager.GetTranslation("downloadOutputExpired");
             downloadOutputPath = languageManager.GetTranslation("downloadOutputPath");
             downloadOutputNoPath = languageManager.GetTranslation("downloadOutputNoPath");
+            downloadOutputNoUrl = languageManager.GetTranslation("downloadOutputNoUrl");
             downloadOutputDontExist = languageManager.GetTranslation("downloadOutputDontExist");
             downloadOutputAPIError = languageManager.GetTranslation("downloadOutputAPIError");
             downloadOutputNotImplemented = languageManager.GetTranslation("downloadOutputNotImplemented");
@@ -910,6 +912,12 @@ namespace QobuzDownloaderX
                     QoArtist = getInfo.QoArtist;
                     int totalAlbumsArtist = QoArtist.Albums.Items.Count;
                     int albumIndexArtist = 0;
+
+                    if (totalAlbumsArtist == 0)
+                    {
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("singleArtist")} | 0 {languageManager.GetTranslation("albums")}";
+                    }
+
                     foreach (var item in QoArtist.Albums.Items)
                     {
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -946,6 +954,12 @@ namespace QobuzDownloaderX
                     QoLabel = getInfo.QoLabel;
                     int totalAlbumsLabel = QoLabel.Albums.Items.Count;
                     int albumIndexLabel = 0;
+
+                    if (totalAlbumsLabel == 0)
+                    {
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("recordLabel")} | 0 {languageManager.GetTranslation("albums")}";
+                    }
+
                     foreach (var item in QoLabel.Albums.Items)
                     {
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -984,6 +998,12 @@ namespace QobuzDownloaderX
                         QoFavorites = getInfo.QoFavorites;
                         int totalAlbumsUser = QoFavorites.Albums.Items.Count;
                         int albumIndexUser = 0;
+
+                        if (totalAlbumsUser == 0)
+                        {
+                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | 0 {languageManager.GetTranslation("albums")}";
+                        }
+
                         foreach (var item in QoFavorites.Albums.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -1017,6 +1037,12 @@ namespace QobuzDownloaderX
                         QoFavorites = getInfo.QoFavorites;
                         int totalTracksUser = QoFavorites.Tracks.Items.Count;
                         int trackIndexUser = 0;
+
+                        if (totalTracksUser == 0)
+                        {
+                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | 0 {languageManager.GetTranslation("tracks")}";
+                        }
+
                         foreach (var item in QoFavorites.Tracks.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -1052,6 +1078,12 @@ namespace QobuzDownloaderX
 
                         int totalAlbumsUserArtists = 0;
                         int totalArtists = QoFavorites.Artists.Items.Count;
+
+                        if (totalAlbumsUserArtists == 0)
+                        {
+                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | 0 {languageManager.GetTranslation("artists")}";
+                        }
+
                         foreach (var artist in QoFavorites.Artists.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -1142,7 +1174,7 @@ namespace QobuzDownloaderX
             artistLabel.Text = renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
             if (QoAlbum.Version == null) { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&"); } else { albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&").TrimEnd() + " (" + QoAlbum.Version + ")"; }
             infoLabel.Text = $"{infoLabelPlaceholder} {QoAlbum.ReleaseDateOriginal} • {QoAlbum.TracksCount} {trackOrTracks} • {QoAlbum.UPC}";
-            try { albumPictureBox.ImageLocation = QoAlbum.Image.Small; } catch { }
+            try { albumPictureBox.ImageLocation = QoAlbum.Image?.Small; } catch { }
         }
 
         public void updatePlaylistInfoLabels(Playlist QoPlaylist)

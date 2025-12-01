@@ -74,7 +74,16 @@ namespace QobuzDownloaderX
         private async Task DownloadAndSaveTrack(string app_id, string format_id, string user_auth_token, string app_secret, Album QoAlbum, Item QoItem, Playlist QoPlaylist, string downloadPath, string filePath, string audio_format, int paddedTrackLength)
         {
             var QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
+            if (QoStream == null) {
+                getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputNoUrl.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n");
+                return;
+            }
+
             string streamURL = QoStream.StreamURL;
+            if (string.IsNullOrWhiteSpace(streamURL)) {
+                getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputNoUrl.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n");
+                return;
+            }
 
             // Display download status (depending on track number or playlist position number)
             var trackName = QoItem.Version == null ? QoItem.Title : $"{QoItem.Title.Trim()} ({QoItem.Version})";
@@ -115,6 +124,7 @@ namespace QobuzDownloaderX
 
                     // Setting up download and file path
                     downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
+
                     string trackTemplateConverted = renameTemplates.renameTemplates(trackTemplate, paddedTrackLength, paddedDiscLength, audio_format, QoAlbum, QoItem, null);
 
                     if (trackTemplateConverted.Contains(@"\"))

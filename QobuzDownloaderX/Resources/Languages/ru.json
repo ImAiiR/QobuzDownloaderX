@@ -89,6 +89,7 @@
 	"downloadOutputExpired": 		"ВАША ПОДПИСКА ИСТЕКЛА, ЗАГРУЗКИ БУДУТ ОГРАНИЧЕНЫ 30-СЕКУНДНЫМИ ФРАГМЕНТАМИ!",
 	"downloadOutputPath": 			"Путь загрузки",
 	"downloadOutputNoPath": 		"Путь не установлен! Не забудьте выбрать папку!",
+	"downloadOutputNoUrl": 		    "Track {TrackNumber} is not available for download. Skipping.",
 	"downloadOutputDontExist":		"The specified path does not exist.",
 	"downloadOutputAPIError": 		"Ошибка API Qobuz. Возможно, релиз недоступен в этом регионе аккаунта?",
 	"downloadOutputNotImplemented": "Ещё не реализовано или URL невозможно разобрать. Возможно, есть опечатка?",

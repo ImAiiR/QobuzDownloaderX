@@ -89,6 +89,7 @@
 	"downloadOutputExpired": 		"YOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!",
 	"downloadOutputPath": 			"Download Path",
 	"downloadOutputNoPath":			"No path has been set! Remember to Choose a Folder!",
+	"downloadOutputNoUrl": 		    "Track {TrackNumber} is not available for download. Skipping.",
 	"downloadOutputDontExist":		"The specified path does not exist.",
 	"downloadOutputAPIError": 		"Qobuz API error. Maybe release isn't available in this account region?",
 	"downloadOutputNotImplemented": "Not implemented yet or the URL is not understood. Is there a typo?",

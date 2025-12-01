@@ -89,6 +89,7 @@
 	"downloadOutputExpired": 		"DEIN ABONNEMENT IST ABGELAUFEN!, ES WERDEN NUR 30-SEKUNDEN AUSSCHNITTE HERUNTERGELADEN!",
 	"downloadOutputPath": 			"Download Pfad",
 	"downloadOutputNoPath": 		"Es wurde kein Pfad gesetzt! Denke daran einen Ordner auszuwählen!",
+	"downloadOutputNoUrl": 		    "Track {TrackNumber} is not available for download. Skipping.",
 	"downloadOutputDontExist":		"The specified path does not exist.",
 	"downloadOutputAPIError": 		"Qobuz-API Fehler, ist dieses Album in deiner Region verfügbar?",
 	"downloadOutputNotImplemented": "Noch nicht Implementiert oder nicht verstanden, hast du dich vielleicht vertippt?",

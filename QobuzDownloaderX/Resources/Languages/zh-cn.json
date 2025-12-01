@@ -89,6 +89,7 @@
 	"downloadOutputExpired": 		"你的订阅已过期，下载将仅限于 30 秒的片段!",
 	"downloadOutputPath": 			"下载路径",
 	"downloadOutputNoPath": 		"未设置路径! 记得选择一个文件夹!",
+	"downloadOutputNoUrl": 		    "Track {TrackNumber} is not available for download. Skipping.",
 	"downloadOutputDontExist":		"The specified path does not exist.",
 	"downloadOutputAPIError": 		"Qobuz API 错误。可能是该发行版在当前账户地区不可用?",
 	"downloadOutputNotImplemented": "尚未实现或 URL 无法理解。是否有拼写错误?",

@@ -89,6 +89,7 @@
     "downloadOutputExpired":        "¡TU SUSCRIPCIÓN HA EXPIRADO, LAS DESCARGAS SE LIMITARÁN A FRAGMENTOS DE 30 SEGUNDOS!",
     "downloadOutputPath":           "Ruta de descarga:",
     "downloadOutputNoPath":         "¡No se ha establecido una ruta! ¡Recuerda seleccionar una carpeta!",
+	"downloadOutputNoUrl": 		    "La pista {TrackNumber} no está disponible para descarga. Omitiendo.",
 	"downloadOutputDontExist":		"La ruta especificada no existe.",
     "downloadOutputAPIError":       "Error de la API de Qobuz. ¿Quizá el lanzamiento no está disponible para la región geoógrafica de esta cuenta?",
     "downloadOutputNotImplemented": "Funcionalidad no implementada o la URL no se reconoce. ¿Hay un error tipográfico?.",
