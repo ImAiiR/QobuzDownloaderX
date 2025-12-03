@@ -153,13 +153,13 @@
       <Value Profile="(Default)">AiiR</Value>
     </Setting>
     <Setting Name="savedTrackTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%TrackNumber%. %ArtistName% - %TrackTitle%</Value>
+      <Value Profile="(Default)">%TrackNumber%. %TrackArtist% - %TrackTitle%</Value>
     </Setting>
     <Setting Name="savedAlbumTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%AlbumTitle% (%AlbumPA%) [%UPC%]</Value>
+      <Value Profile="(Default)">(%Year%) %AlbumTitle% (%AlbumPA%) [UPC-%UPC%]</Value>
     </Setting>
     <Setting Name="savedPlaylistTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%PlaylistTitle%\%ArtistName%</Value>
+      <Value Profile="(Default)">%PlaylistTitle% [ID-%PlaylistID%]\%ArtistName%</Value>
     </Setting>
   </Settings>
 </SettingsFile>

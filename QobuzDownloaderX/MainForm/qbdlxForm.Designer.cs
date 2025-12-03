@@ -804,7 +804,7 @@ namespace QobuzDownloaderX
             this.trackTemplateTextbox.Name = "trackTemplateTextbox";
             this.trackTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.trackTemplateTextbox.TabIndex = 2;
-            this.trackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
+            this.trackTemplateTextbox.Text = "%TrackNumber%. %TrackArtist% - %TrackTitle%";
             this.trackTemplateTextbox.WordWrap = false;
             // 
             // trackTemplateLabel
@@ -829,7 +829,7 @@ namespace QobuzDownloaderX
             this.playlistTemplateTextbox.Name = "playlistTemplateTextbox";
             this.playlistTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.playlistTemplateTextbox.TabIndex = 2;
-            this.playlistTemplateTextbox.Text = "%PlaylistTitle%\\%ArtistName%";
+            this.playlistTemplateTextbox.Text = "%PlaylistTitle% [ID-%PlaylistID%]\\%ArtistName%";
             this.playlistTemplateTextbox.WordWrap = false;
             // 
             // playlistTemplateLabel
@@ -882,7 +882,7 @@ namespace QobuzDownloaderX
             this.albumTemplateTextbox.Name = "albumTemplateTextbox";
             this.albumTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.albumTemplateTextbox.TabIndex = 2;
-            this.albumTemplateTextbox.Text = "%AlbumTitle% (%AlbumPA%) [%UPC%]";
+            this.albumTemplateTextbox.Text = "(%Year%) %AlbumTitle% (%AlbumPA%) [UPC-%UPC%]";
             this.albumTemplateTextbox.WordWrap = false;
             // 
             // downloadFolderTextbox

@@ -358,7 +358,7 @@
   </data>
   <data name="templatesListTextbox.Text" xml:space="preserve">
     <value>=== RELEASE SPECIFIC ===
-%AlbumID%, %AlbumURL%, %AlbumGenre%, %AlbumComposer%, %AlbumTitle%, %AlbumTitle%, %Label%, %Copyright%, %UPC%, %ReleaseDate%, %Year%, %ReleaseType%, %ArtistName%, %Format%, %FormatWithQuality%, %FormatWithHiResQuality%, %BitDepth%, %SampleRate%
+%AlbumID%, %AlbumURL%, %AlbumGenre%, %AlbumComposer%, %AlbumTitle%, %Label%, %Copyright%, %UPC%, %ReleaseDate%, %Year%, %ReleaseType%, %ArtistName%, %Format%, %FormatWithQuality%, %FormatWithHiResQuality%, %BitDepth%, %SampleRate%
 // Parental warning templates //
 %AlbumPA%, %AlbumPAShort%, %AlbumPAifEx%, %AlbumPAifExShort%, %AlbumPAifCl%, %AlbumPAifClShort%, %AlbumPAEnclosed%, %AlbumPAEnclosed[]%, %AlbumPAEnclosedShort%, %AlbumPAEnclosedShort[]%, %AlbumPAifExEnclosed%, %AlbumPAifExEnclosed[]%, %AlbumPAifExEnclosedShort%, %AlbumPAifExEnclosedShort[]%, %AlbumPAifClEnclosed%, %AlbumPAifClEnclosed[]%, %AlbumPAifClEnclosedShort%, %AlbumPAifClEnclosedShort[]%
 

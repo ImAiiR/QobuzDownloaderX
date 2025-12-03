@@ -625,7 +625,7 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%TrackNumber%. %ArtistName% - %TrackTitle%")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%TrackNumber%. %TrackArtist% - %TrackTitle%")]
         public string savedTrackTemplate {
             get {
                 return ((string)(this["savedTrackTemplate"]));
@@ -637,7 +637,7 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%AlbumTitle% (%AlbumPA%) [%UPC%]")]
+        [global::System.Configuration.DefaultSettingValueAttribute("(%Year%) %AlbumTitle% (%AlbumPA%) [UPC-%UPC%]")]
         public string savedAlbumTemplate {
             get {
                 return ((string)(this["savedAlbumTemplate"]));
@@ -649,7 +649,7 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%PlaylistTitle%\\%ArtistName%")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%PlaylistTitle% [ID-%PlaylistID%]\\%ArtistName%")]
         public string savedPlaylistTemplate {
             get {
                 return ((string)(this["savedPlaylistTemplate"]));
