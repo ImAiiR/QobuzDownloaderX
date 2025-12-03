@@ -108,15 +108,15 @@
     "progressLabelInactive":        "No hay ninguna descarga activa",
     "progressLabelActive":          "Progreso de descarga",
 	"formClosingWarning": 			"Hay una descarga en progreso, ¿realmente quieres salir?.",
+	"artist": 						"Artista", // Primer caracter en mayúscula.
 	"artists": 						"artistas",
+	"album": 						"Álbum",   // Primer caracter en mayúscula.
 	"albums": 						"álbumes",
 	"tracks": 						"pistas",
-	"singleArtist": 				"Artista individual",    // Primer caracter en mayúscula.
-	"singleAlbum": 					"Álbum individual",      // Primer caracter en mayúscula.
-	"singleTrack": 					"Pista individual",      // Primer caracter en mayúscula.
-	"playlist": 					"Lista de reproducción", // Primer caracter en mayúscula.
-	"recordLabel": 					"Sello discográfico",    // Primer caracter en mayúscula.
-	"user": 						"Usuario",               // Primer caracter en mayúscula.
+	"singleTrack": 					"Pista individual",     // Primer caracter en mayúscula.
+	"playlist": 					"Lista de reproducción",// Primer caracter en mayúscula.
+	"recordLabel": 					"Sello discográfico",   // Primer caracter en mayúscula.
+	"user": 						"Usuario",              // Primer caracter en mayúscula.
 
     "_SECTION5_":                   "=================== BOTONES (BUTTON) DEL FORM DE INICIO DE SESIÓN ===================",
     "closeAboutButton":             "CERRAR",

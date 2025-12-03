@@ -141,6 +141,7 @@
     <Compile Include="Helpers\Download\DownloadTrack.cs" />
     <Compile Include="Helpers\Download\DownloadAlbum.cs" />
     <Compile Include="Helpers\Download\DownloadFile.cs" />
+    <Compile Include="Helpers\TaskbarManager.cs" />
     <Compile Include="Helpers\FixMD5.cs" />
     <Compile Include="Helpers\GetInfo.cs" />
     <Compile Include="Helpers\PaddingNumbers.cs" />
@@ -154,6 +155,12 @@
     <Compile Include="LoginForm\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Win32\TaskbarList.cs" />
+    <Compile Include="Win32\Constants.cs" />
+    <Compile Include="Win32\CTaskbarList.cs" />
+    <Compile Include="Win32\ITaskbarList4.cs" />
+    <Compile Include="Win32\TaskbarProgressBarState.cs" />
+    <Compile Include="Win32\Win32.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainForm\qbdlxForm.cs">
@@ -222,6 +229,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ShowWindow.png" />
     <None Include="Resources\search.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\password.png" />
@@ -233,6 +241,8 @@
     <None Include="Resources\log_out.png" />
     <None Include="Resources\QBDLX-Icon.png" />
     <Content Include="Resources\alert.png" />
+    <None Include="Resources\HideWindow.png" />
+    <None Include="Resources\Exit.png" />
     <Content Include="Resources\qbdlx_icon.ico" />
   </ItemGroup>
   <ItemGroup />

@@ -383,8 +383,8 @@ namespace QobuzDownloaderX
 	""artists"": 					""artists"",
 	""albums"": 					""albums"",
 	""tracks"": 					""tracks"",
-	""singleArtist"": 				""Single artist"", // First char in upper-case.
-	""singleAlbum"": 				""Single album"",  // First char in upper-case.
+	""artist"": 				""Single artist"", // First char in upper-case.
+	""album"": 				""Single album"",  // First char in upper-case.
 	""singleTrack"": 				""Single track"",  // First char in upper-case.
 	""playlist"": 					""Playlist"",      // First char in upper-case.
 	""recordLabel"": 				""Record label"",  // First char in upper-case.

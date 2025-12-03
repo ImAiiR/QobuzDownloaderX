@@ -637,7 +637,7 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(%Year%) %AlbumTitle% (%AlbumPA%) [UPC-%UPC%]")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%AlbumTitle% (%Year%) (%AlbumPA%) [UPC-%UPC%]")]
         public string savedAlbumTemplate {
             get {
                 return ((string)(this["savedAlbumTemplate"]));

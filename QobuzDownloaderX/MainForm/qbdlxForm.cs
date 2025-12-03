@@ -1,4 +1,5 @@
-﻿using QobuzDownloaderX.Properties;
+﻿using Newtonsoft.Json.Linq;
+using QobuzDownloaderX.Properties;
 using QopenAPI;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -92,6 +94,9 @@ namespace QobuzDownloaderX
 
         // Local flag that indicates whether 'getLinkTypeAsync' is executing.
         public bool getLinkTypeIsBusy;
+
+        // Local flag that indicates whether a batch download is running.
+        public static bool isBatchDownloadRunning;
 
         // Global flag that indicates whether the current album download must be skipped in the current 'getLinkTypeAsync' execution.
         public static bool skipCurrentAlbum;
@@ -419,7 +424,7 @@ namespace QobuzDownloaderX
 
         private void qbdlxForm_Load(object sender, EventArgs e)
         {
-            logger.Debug("QBDLX form loaded!");
+            logger.Debug("QBDLX form loading!");
 
             this.DoubleBuffered = true;
 
@@ -485,6 +490,12 @@ namespace QobuzDownloaderX
                 : $"\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}");
 
             firstLoadComplete = true;
+            logger.Debug("QBDLX form loaded!");
+        }
+
+        private void qbdlxForm_Shown(object sender, EventArgs e)
+        {
+            this.notifyIcon1.Visible = true;
         }
 
         private async void qbdlxForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -683,6 +694,7 @@ namespace QobuzDownloaderX
             }
             catch (OperationCanceledException)
             {
+                TaskbarManager.SetProgressState(Win32.TaskbarProgressBarState.Error);
                 logger.Debug("Download aborted by user.");
                 downloadOutput.AppendText($"\r\n{downloadAborted}");
             }
@@ -701,6 +713,7 @@ namespace QobuzDownloaderX
         private void abortButton_Click(object sender, EventArgs e)
         {
             abortButton.Enabled = false;
+            skipButton.Enabled = false;
             if (getLinkTypeIsBusy && abortTokenSource != null)
             {
                 logger.Debug("abortTokenSource cancel request by user.");
@@ -757,18 +770,29 @@ namespace QobuzDownloaderX
 
                 batchDownloadProgressCountLabel.Text = "";
                 batchDownloadProgressCountLabel.Visible = true;
+                TaskbarManager.SetProgressState(Win32.TaskbarProgressBarState.Normal);
+                TaskbarManager.SetProgressValue(0, batchUrlsCount);
+                batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+                isBatchDownloadRunning = true;
                 foreach (string url in batchUrls)
                 {
                     batchUrlsCurrentIndex++;
-                    if (abortTokenSource != null && abortTokenSource.IsCancellationRequested) break;
+                    if (abortTokenSource != null && abortTokenSource.IsCancellationRequested)
+                    {
+                        TaskbarManager.SetProgressState(Win32.TaskbarProgressBarState.Error);
+                        isBatchDownloadRunning = false;
+                        break;
+                    }
 
                     inputTextbox.Text = url;
                     inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
-                    batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
                     await downloadButtonAsyncWork();
+                    batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+                    TaskbarManager.SetProgressValue(batchUrlsCurrentIndex, batchUrlsCount);
                 }
                 batchDownloadProgressCountLabel.Text = "";
                 batchDownloadProgressCountLabel.Visible = false;
+                isBatchDownloadRunning = false;
             }
         }
 
@@ -792,6 +816,13 @@ namespace QobuzDownloaderX
 
         public async Task getLinkTypeAsync(CancellationToken abortToken)
         {
+            if (!isBatchDownloadRunning)
+            {
+                TaskbarManager.SetProgressState(Win32.TaskbarProgressBarState.Normal);
+                TaskbarManager.SetProgressValue(0, progressBarDownload.Maximum);
+            }
+
+            IntPtr hwnd = Process.GetCurrentProcess().MainWindowHandle;
             var progress = new Progress<int>(value =>
             {
                 progressBarDownload.Value = value;
@@ -844,10 +875,12 @@ namespace QobuzDownloaderX
 
             progressItemsCountLabel.Text = "";
             progressItemsCountLabel.Visible = true;
+
             switch (linkType)
             {
                 case "album":
                     skipButton.Enabled = true;
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                     await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, qobuz_id, user_auth_token));
                     QoAlbum = getInfo.QoAlbum;
                     if (QoAlbum == null)
@@ -856,16 +889,18 @@ namespace QobuzDownloaderX
                         progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                         break;
                     }
-                    progressItemsCountLabel.Text = $"{languageManager.GetTranslation("singleAlbum")} | {QoAlbum.TracksCount:N0} {languageManager.GetTranslation("tracks")}";
+                    progressItemsCountLabel.Text = $"{languageManager.GetTranslation("album")} | {QoAlbum.TracksCount:N0} {languageManager.GetTranslation("tracks")}";
                     updateAlbumInfoLabels(QoAlbum);
                     await Task.Run(() => downloadAlbum.DownloadAlbumAsync(app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress, abortToken));
                     // Say the downloading is finished when it's completed.
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(1, 1);
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
                     progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 case "track":
                     skipButton.Enabled = false;
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                     await Task.Run(() => getInfo.getTrackInfoLabels(app_id, qobuz_id, user_auth_token));
                     QoItem = getInfo.QoItem;
                     QoAlbum = getInfo.QoAlbum;
@@ -873,6 +908,7 @@ namespace QobuzDownloaderX
                     progressItemsCountLabel.Text = $"{languageManager.GetTranslation("singleTrack")}";
                     await Task.Run(() => downloadTrack.DownloadTrackAsync("track", app_id, qobuz_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, trackTemplate, QoAlbum, QoItem, progress));
                     // Say the downloading is finished when it's completed.
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(1, 1);
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
                     progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
@@ -880,6 +916,7 @@ namespace QobuzDownloaderX
                     break;
                 case "playlist":
                     skipButton.Enabled = false;
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                     await Task.Run(() => getInfo.getPlaylistInfoLabels(app_id, qobuz_id, user_auth_token));
                     QoPlaylist = getInfo.QoPlaylist;
                     updatePlaylistInfoLabels(QoPlaylist);
@@ -888,10 +925,12 @@ namespace QobuzDownloaderX
                     foreach (var item in QoPlaylist.Tracks.Items)
                     {
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(trackIndexPlaylist, totalTracksPlaylist);
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {languageManager.GetTranslation("tracks")}";
+
                         trackIndexPlaylist++;
                         try
                         {
-                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {languageManager.GetTranslation("tracks")}";
                             string track_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getTrackInfoLabels(app_id, track_id, user_auth_token));
                             QoItem = item;
@@ -909,6 +948,9 @@ namespace QobuzDownloaderX
                         {
                             continue;
                         }
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(trackIndexPlaylist, totalTracksPlaylist);
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {languageManager.GetTranslation("tracks")}";
+
                     }
                     // Say the downloading is finished when it's completed.
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
@@ -917,6 +959,7 @@ namespace QobuzDownloaderX
                     break;
                 case "artist":
                     skipButton.Enabled = true;
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                     await Task.Run(() => getInfo.getArtistInfo(app_id, qobuz_id, user_auth_token));
                     QoArtist = getInfo.QoArtist;
                     int totalAlbumsArtist = QoArtist.Albums.Items.Count;
@@ -924,16 +967,18 @@ namespace QobuzDownloaderX
 
                     if (totalAlbumsArtist == 0)
                     {
-                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("singleArtist")} | 0 {languageManager.GetTranslation("albums")}";
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("artist")} | 0 {languageManager.GetTranslation("albums")}";
                     }
 
                     foreach (var item in QoArtist.Albums.Items)
                     {
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(albumIndexArtist, totalAlbumsArtist);
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("artist")} | {albumIndexArtist:N0} / {totalAlbumsArtist:N0} {languageManager.GetTranslation("albums")}";
+                       
                         albumIndexArtist++;
                         try
                         {
-                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("singleArtist")} | {albumIndexArtist:N0} / {totalAlbumsArtist:N0} {languageManager.GetTranslation("albums")}";
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
@@ -953,12 +998,15 @@ namespace QobuzDownloaderX
                         }
                     }
                     // Say the downloading is finished when it's completed.
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(albumIndexArtist, totalAlbumsArtist);
+                    progressItemsCountLabel.Text = $"{languageManager.GetTranslation("artist")} | {albumIndexArtist:N0} / {totalAlbumsArtist:N0} {languageManager.GetTranslation("albums")}";
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     getInfo.updateDownloadOutput("\r\n" + downloadOutputCompleted);
                     progressLabel.Invoke(new Action(() => progressLabel.Text = progressLabelInactive));
                     break;
                 case "label":
                     skipButton.Enabled = true;
+                    if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                     await Task.Run(() => getInfo.getLabelInfo(app_id, qobuz_id, user_auth_token));
                     QoLabel = getInfo.QoLabel;
                     int totalAlbumsLabel = QoLabel.Albums.Items.Count;
@@ -972,10 +1020,12 @@ namespace QobuzDownloaderX
                     foreach (var item in QoLabel.Albums.Items)
                     {
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(albumIndexLabel, totalAlbumsLabel);
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("recordLabel")} | {albumIndexLabel:N0} / {totalAlbumsLabel:N0} {languageManager.GetTranslation("albums")}";
+
                         albumIndexLabel++;
                         try
                         {
-                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("recordLabel")} | {albumIndexLabel:N0} / {totalAlbumsLabel:N0} {languageManager.GetTranslation("albums")}";
                             string album_id = item.Id.ToString();
                             await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                             QoAlbum = getInfo.QoAlbum;
@@ -993,6 +1043,8 @@ namespace QobuzDownloaderX
                         {
                             continue;
                         }
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(albumIndexLabel, totalAlbumsLabel);
+                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("recordLabel")} | {albumIndexLabel:N0} / {totalAlbumsLabel:N0} {languageManager.GetTranslation("albums")}";
                     }
                     // Say the downloading is finished when it's completed.
                     getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
@@ -1003,6 +1055,7 @@ namespace QobuzDownloaderX
                     if (qobuzLinkId.Contains("albums"))
                     {
                         skipButton.Enabled = true;
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                         await Task.Run(() => getInfo.getFavoritesInfo(app_id, user_id, "albums", user_auth_token));
                         QoFavorites = getInfo.QoFavorites;
                         int totalAlbumsUser = QoFavorites.Albums.Items.Count;
@@ -1016,10 +1069,12 @@ namespace QobuzDownloaderX
                         foreach (var item in QoFavorites.Albums.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                            if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(albumIndexUser, totalAlbumsUser);
+                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {albumIndexUser:N0} / {totalAlbumsUser:N0} {languageManager.GetTranslation("albums")}";
+                            
                             albumIndexUser++;
                             try
                             {
-                                progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {albumIndexUser:N0} / {totalAlbumsUser:N0} {languageManager.GetTranslation("albums")}";
                                 string album_id = item.Id.ToString();
                                 await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                 QoAlbum = getInfo.QoAlbum;
@@ -1031,17 +1086,20 @@ namespace QobuzDownloaderX
                                     {
                                         double scaledValue = ((albumIndexUser - 1) + value / 100.0) / totalAlbumsUser * 100.0;
                                         progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue((int)scaledValue, 100);
                                     }), abortToken));
                             }
                             catch
                             {
                                 continue;
                             }
+                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {albumIndexUser:N0} / {totalAlbumsUser:N0} {languageManager.GetTranslation("albums")}";
                         }
                     }
                     else if (qobuzLinkId.Contains("tracks"))
                     {
                         skipButton.Enabled = false;
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                         await Task.Run(() => getInfo.getFavoritesInfo(app_id, user_id, "tracks", user_auth_token));
                         QoFavorites = getInfo.QoFavorites;
                         int totalTracksUser = QoFavorites.Tracks.Items.Count;
@@ -1055,10 +1113,12 @@ namespace QobuzDownloaderX
                         foreach (var item in QoFavorites.Tracks.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                            if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(trackIndexUser, totalTracksUser);
+                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {trackIndexUser:N0} / {totalTracksUser:N0} {languageManager.GetTranslation("tracks")}";
+
                             trackIndexUser++;
                             try
                             {
-                                progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {trackIndexUser:N0} / {totalTracksUser:N0} {languageManager.GetTranslation("tracks")}";
                                 string track_id = item.Id.ToString();
                                 await Task.Run(() => getInfo.getTrackInfoLabels(app_id, track_id, user_auth_token));
                                 QoItem = getInfo.QoItem;
@@ -1077,11 +1137,14 @@ namespace QobuzDownloaderX
                             {
                                 continue;
                             }
+                            if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(trackIndexUser, totalTracksUser);
+                            progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {trackIndexUser:N0} / {totalTracksUser:N0} {languageManager.GetTranslation("tracks")}";
                         }
                     }
                     else if (qobuzLinkId.Contains("artists"))
                     {
                         skipButton.Enabled = true;
+                        if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(0, 1);
                         await Task.Run(() => getInfo.getFavoritesInfo(app_id, user_id, "artists", user_auth_token));
                         QoFavorites = getInfo.QoFavorites;
 
@@ -1114,6 +1177,8 @@ namespace QobuzDownloaderX
                         foreach (var artist in QoFavorites.Artists.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                            if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue(indexUserArtist, totalArtists);
+
                             indexUserArtist++;
                             try
                             {
@@ -1124,10 +1189,11 @@ namespace QobuzDownloaderX
                                 foreach (var artistItem in QoArtist.Albums.Items)
                                 {
                                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                                    progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {indexUserArtist:N0} / {totalArtists:N0} {languageManager.GetTranslation("artists")} | {albumIndexUserArtist:N0} / {totalAlbumsUserArtists:N0} {languageManager.GetTranslation("albums")}";
+
                                     albumIndexUserArtist++;
                                     try
                                     {
-                                        progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {indexUserArtist:N0} / {totalArtists:N0} {languageManager.GetTranslation("artists")} | {albumIndexUserArtist:N0} / {totalAlbumsUserArtists:N0} {languageManager.GetTranslation("albums")}";
                                         string album_id = artistItem.Id.ToString();
                                         await Task.Run(() => getInfo.getAlbumInfoLabels(app_id, album_id, user_auth_token));
                                         QoAlbum = getInfo.QoAlbum;
@@ -1140,6 +1206,7 @@ namespace QobuzDownloaderX
                                             {
                                                 double scaledValue = ((albumIndexUserArtist - 1) + value / 100.0) / totalAlbumsUserArtists * 100.0;
                                                 progressBarDownload.Invoke(new Action(() => progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
+                                                if (!isBatchDownloadRunning) TaskbarManager.SetProgressValue((int)scaledValue, 100);
                                             }), abortToken));
                                     }
                                     catch
@@ -1147,6 +1214,7 @@ namespace QobuzDownloaderX
                                         continue;
                                     }
                                 }
+                                progressItemsCountLabel.Text = $"{languageManager.GetTranslation("user")} | {indexUserArtist:N0} / {totalArtists:N0} {languageManager.GetTranslation("artists")} | {albumIndexUserArtist:N0} / {totalAlbumsUserArtists:N0} {languageManager.GetTranslation("albums")}";
                             }
                             catch
                             {
@@ -1545,9 +1613,10 @@ namespace QobuzDownloaderX
             {
                 languageManager.LoadLanguage(filePath);
                 if (!firstLoadComplete) return; // Ignore initial load
-                // Could use some work, but this works.
-                Process.Start("QobuzDownloaderX.exe");
-                System.Windows.Forms.Application.Exit();
+                                                // Could use some work, but this works.
+                string exePath = Application.ExecutablePath;
+                Process.Start(exePath);
+                Application.Exit();
             }
             else
             {
@@ -1561,8 +1630,9 @@ namespace QobuzDownloaderX
         {
             logger.Debug("Restarting program to logout");
             // Could use some work, but this works.
-            Process.Start("QobuzDownloaderX.exe");
-            System.Windows.Forms.Application.Exit();
+            string exePath = Application.ExecutablePath;
+            Process.Start(exePath);
+            Application.Exit();
         }
 
         private void aboutButton_Click(object sender, EventArgs e)
@@ -1991,6 +2061,77 @@ namespace QobuzDownloaderX
         private async void sortAscendantCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             await reorderSearchResultsAsync();
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            ToggleMainFormVisibility();
+        }
+
+        private void sysTrayContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.showWindowToolStripMenuItem.Enabled = !this.Visible;
+            this.hideWindowToolStripMenuItem.Enabled = this.Visible;
+
+        }
+
+        private void showWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!this.Visible)
+            {
+                ToggleMainFormVisibility();
+            }
+        }
+
+        private void hideWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (this.Visible)
+            {
+                ToggleMainFormVisibility();
+            }
+        }
+
+        private void closeProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        [DebuggerStepThrough]
+        public void ToggleMainFormVisibility()
+        {
+            void act()
+            {
+                if (this.Visible)
+                {
+                    this.Hide();
+                }
+                else
+                {
+                    if (!this.Visible)
+                    {
+                        this.Show();
+                    }
+
+                    this.WindowState = FormWindowState.Normal;
+                    Process pr = Process.GetCurrentProcess();
+                    IntPtr hwnd = pr.MainWindowHandle;
+                    if (NativeMethods.IsIconic(hwnd))
+                        NativeMethods.ShowWindow(hwnd, Win32.Constants.SW_RESTORE);
+
+                    this.BringToFront();
+                    this.Activate();
+                }
+            }
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke((Action)(() => act()));
+            }
+            else
+            {
+                act();
+            }
         }
 
     }

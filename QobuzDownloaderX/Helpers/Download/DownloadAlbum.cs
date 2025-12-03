@@ -116,6 +116,7 @@ namespace QobuzDownloaderX
                     double trackPortion = 100.0 / totalTracks;
                     double scaledValue = (trackIndex - 1) * trackPortion + (value / 100.0) * trackPortion;
                     progress?.Report((int)Math.Round(scaledValue));
+                    if (!qbdlxForm.isBatchDownloadRunning) TaskbarManager.SetProgressValue((int)scaledValue, 100);
                 });
 
                 try

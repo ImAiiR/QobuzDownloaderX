@@ -30,6 +30,7 @@ namespace QobuzDownloaderX
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(qbdlxForm));
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.searchButton = new System.Windows.Forms.Button();
@@ -165,6 +166,11 @@ namespace QobuzDownloaderX
             this.searchLabel = new System.Windows.Forms.Label();
             this.searchingLabel = new System.Windows.Forms.Label();
             this.sortingSearchResultsLabel = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.sysTrayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -182,6 +188,7 @@ namespace QobuzDownloaderX
             this.searchSortingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.limitSearchResultsNumericUpDown)).BeginInit();
             this.searchResultsPanel.SuspendLayout();
+            this.sysTrayContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // navigationPanel
@@ -897,7 +904,7 @@ namespace QobuzDownloaderX
             this.albumTemplateTextbox.Name = "albumTemplateTextbox";
             this.albumTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.albumTemplateTextbox.TabIndex = 2;
-            this.albumTemplateTextbox.Text = "(%Year%) %AlbumTitle% (%AlbumPA%) [UPC-%UPC%]";
+            this.albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC-%UPC%]";
             this.albumTemplateTextbox.WordWrap = false;
             // 
             // downloadFolderTextbox
@@ -2106,6 +2113,48 @@ namespace QobuzDownloaderX
             this.sortingSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.sortingSearchResultsLabel.Visible = false;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.ContextMenuStrip = this.sysTrayContextMenuStrip;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "QobuzDLX";
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            // 
+            // sysTrayContextMenuStrip
+            // 
+            this.sysTrayContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showWindowToolStripMenuItem,
+            this.hideWindowToolStripMenuItem,
+            this.closeProgramToolStripMenuItem});
+            this.sysTrayContextMenuStrip.Name = "sysTrayContextMenuStrip";
+            this.sysTrayContextMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.sysTrayContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.sysTrayContextMenuStrip_Opening);
+            // 
+            // showWindowToolStripMenuItem
+            // 
+            this.showWindowToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.ShowWindow;
+            this.showWindowToolStripMenuItem.Name = "showWindowToolStripMenuItem";
+            this.showWindowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showWindowToolStripMenuItem.Text = "Show window";
+            this.showWindowToolStripMenuItem.Click += new System.EventHandler(this.showWindowToolStripMenuItem_Click);
+            // 
+            // hideWindowToolStripMenuItem
+            // 
+            this.hideWindowToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.HideWindow;
+            this.hideWindowToolStripMenuItem.Name = "hideWindowToolStripMenuItem";
+            this.hideWindowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hideWindowToolStripMenuItem.Text = "Hide window";
+            this.hideWindowToolStripMenuItem.Click += new System.EventHandler(this.hideWindowToolStripMenuItem_Click);
+            // 
+            // closeProgramToolStripMenuItem
+            // 
+            this.closeProgramToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.Exit;
+            this.closeProgramToolStripMenuItem.Name = "closeProgramToolStripMenuItem";
+            this.closeProgramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeProgramToolStripMenuItem.Text = "Close program";
+            this.closeProgramToolStripMenuItem.Click += new System.EventHandler(this.closeProgramToolStripMenuItem_Click);
+            // 
             // qbdlxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2130,6 +2179,7 @@ namespace QobuzDownloaderX
             this.Text = "QobuzDLX";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.qbdlxForm_FormClosing);
             this.Load += new System.EventHandler(this.qbdlxForm_Load);
+            this.Shown += new System.EventHandler(this.qbdlxForm_Shown);
             this.navigationPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
@@ -2158,6 +2208,7 @@ namespace QobuzDownloaderX
             this.searchSortingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.limitSearchResultsNumericUpDown)).EndInit();
             this.searchResultsPanel.ResumeLayout(false);
+            this.sysTrayContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2299,5 +2350,10 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.Label sortingSearchResultsLabel;
         public System.Windows.Forms.Label searchResultsCountLabel;
         private System.Windows.Forms.Label batchDownloadProgressCountLabel;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip sysTrayContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem showWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeProgramToolStripMenuItem;
     }
 }
