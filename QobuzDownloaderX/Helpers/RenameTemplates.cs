@@ -156,6 +156,18 @@ namespace QobuzDownloaderX
             // Track Templates
             if (QoItem != null)
             {
+                if (QoAlbum != null)
+                {
+                    string artistsNames = GetReleaseArtists(QoAlbum) ?? "";
+                    if (artistsNames.Equals("Various Artists", StringComparison.OrdinalIgnoreCase) ||
+                        artistsNames.Equals("Various Artist", StringComparison.OrdinalIgnoreCase) ||
+                        artistsNames.Equals("Various Interpreters", StringComparison.OrdinalIgnoreCase) ||
+                        artistsNames.Equals("Various Interpreter", StringComparison.OrdinalIgnoreCase))
+                    {
+                        template = template.Replace("%artistname%", "%trackartist%");
+                    }
+                }
+
                 template = ReplaceParentalWarningTags(template, QoItem.ParentalWarning);
                 template = template
                     .Replace("%trackid%", QoItem.Id.ToString())
@@ -170,13 +182,8 @@ namespace QobuzDownloaderX
                 // Track Format Templates
                 template = template.Replace("%trackformat%", fileFormat.ToUpper().TrimStart('.'));
                 template = RenameFormatTemplate(template, qbdlxForm._qbdlxForm.format_id, fileFormat, QoItem.MaximumBitDepth, QoItem.MaximumSamplingRate, "%trackformatwithhiresquality%", "%trackformatwithquality%");
-            }
 
-            //// If album is null but item exists (playlist scenario), try to recover album from item.
-            //if (QoItem != null && QoItem != null)
-            //{
-            //    QoAlbum = QoItem.Album;
-            //}
+            }
 
             // Album Templates
             if (QoAlbum != null)

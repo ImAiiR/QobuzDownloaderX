@@ -819,7 +819,7 @@ namespace QobuzDownloaderX
             this.trackTemplateTextbox.Name = "trackTemplateTextbox";
             this.trackTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.trackTemplateTextbox.TabIndex = 2;
-            this.trackTemplateTextbox.Text = "%TrackNumber%. %TrackArtist% - %TrackTitle%";
+            this.trackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
             this.trackTemplateTextbox.WordWrap = false;
             // 
             // trackTemplateLabel

@@ -153,7 +153,7 @@
       <Value Profile="(Default)">AiiR</Value>
     </Setting>
     <Setting Name="savedTrackTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%TrackNumber%. %TrackArtist% - %TrackTitle%</Value>
+      <Value Profile="(Default)">%TrackNumber%. %ArtistName% - %TrackTitle%</Value>
     </Setting>
     <Setting Name="savedAlbumTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">(%Year%) %AlbumTitle% (%AlbumPA%) [UPC-%UPC%]</Value>
