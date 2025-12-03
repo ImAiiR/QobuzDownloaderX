@@ -42,6 +42,7 @@ namespace QobuzDownloaderX
             this.versionNumber = new System.Windows.Forms.Label();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.downloaderPanel = new System.Windows.Forms.Panel();
+            this.batchDownloadProgressCountLabel = new System.Windows.Forms.Label();
             this.progressItemsCountLabel = new System.Windows.Forms.Label();
             this.batchDownloadPanel = new System.Windows.Forms.Panel();
             this.batchDownloadTextBox = new System.Windows.Forms.TextBox();
@@ -341,6 +342,7 @@ namespace QobuzDownloaderX
             // 
             // downloaderPanel
             // 
+            this.downloaderPanel.Controls.Add(this.batchDownloadProgressCountLabel);
             this.downloaderPanel.Controls.Add(this.progressItemsCountLabel);
             this.downloaderPanel.Controls.Add(this.batchDownloadPanel);
             this.downloaderPanel.Controls.Add(this.batchDownloadButton);
@@ -361,6 +363,18 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 5;
             // 
+            // batchDownloadProgressCountLabel
+            // 
+            this.batchDownloadProgressCountLabel.AutoSize = true;
+            this.batchDownloadProgressCountLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F);
+            this.batchDownloadProgressCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.batchDownloadProgressCountLabel.Location = new System.Drawing.Point(185, 143);
+            this.batchDownloadProgressCountLabel.Name = "batchDownloadProgressCountLabel";
+            this.batchDownloadProgressCountLabel.Size = new System.Drawing.Size(22, 21);
+            this.batchDownloadProgressCountLabel.TabIndex = 13;
+            this.batchDownloadProgressCountLabel.Text = "...";
+            this.batchDownloadProgressCountLabel.Visible = false;
+            // 
             // progressItemsCountLabel
             // 
             this.progressItemsCountLabel.AutoSize = true;
@@ -371,6 +385,7 @@ namespace QobuzDownloaderX
             this.progressItemsCountLabel.Size = new System.Drawing.Size(22, 21);
             this.progressItemsCountLabel.TabIndex = 12;
             this.progressItemsCountLabel.Text = "...";
+            this.progressItemsCountLabel.Visible = false;
             // 
             // batchDownloadPanel
             // 
@@ -2283,5 +2298,6 @@ namespace QobuzDownloaderX
         public System.Windows.Forms.CheckBox sortAscendantCheckBox;
         private System.Windows.Forms.Label sortingSearchResultsLabel;
         public System.Windows.Forms.Label searchResultsCountLabel;
+        private System.Windows.Forms.Label batchDownloadProgressCountLabel;
     }
 }

@@ -751,17 +751,24 @@ namespace QobuzDownloaderX
 
                 abortTokenSource?.Dispose();
                 abortTokenSource = null;
+
+                int batchUrlsCount = batchUrls.Count;
+                int batchUrlsCurrentIndex = 0;
+
+                batchDownloadProgressCountLabel.Text = "";
+                batchDownloadProgressCountLabel.Visible = true;
                 foreach (string url in batchUrls)
                 {
-                    if (abortTokenSource != null && abortTokenSource.IsCancellationRequested)
-                    {
-                        break;
-                    }
+                    batchUrlsCurrentIndex++;
+                    if (abortTokenSource != null && abortTokenSource.IsCancellationRequested) break;
 
                     inputTextbox.Text = url;
                     inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
+                    batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
                     await downloadButtonAsyncWork();
                 }
+                batchDownloadProgressCountLabel.Text = "";
+                batchDownloadProgressCountLabel.Visible = false;
             }
         }
 
@@ -835,6 +842,8 @@ namespace QobuzDownloaderX
             getInfo.outputText = null;
             getInfo.updateDownloadOutput(downloadOutputCheckLink);
 
+            progressItemsCountLabel.Text = "";
+            progressItemsCountLabel.Visible = true;
             switch (linkType)
             {
                 case "album":
