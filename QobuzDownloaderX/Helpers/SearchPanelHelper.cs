@@ -1,10 +1,12 @@
-﻿using QobuzDownloaderX.Properties;
-using QopenAPI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+
+using QopenAPI;
+
+using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {

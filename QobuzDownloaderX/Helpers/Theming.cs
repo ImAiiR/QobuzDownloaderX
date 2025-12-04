@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using QobuzDownloaderX.Properties;
-using System;
+
+using Newtonsoft.Json;
 using ZetaLongPaths;
+
+using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.UserControls;
 
 namespace QobuzDownloaderX

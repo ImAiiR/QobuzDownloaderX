@@ -1,16 +1,16 @@
 {
 	"TranslationCredit":			"Mxqing",
-	"TranslationUpdatedOn":			"November 21, 2024, 01:15AM GMT+8",
+	"TranslationUpdatedOn":			"December 4, 2025, 01:15AM GMT+8",
 	"TranslationFont":				"Microsoft YaHei UI",
 	
 	"_SECTION1_":					"=================== 主表单按钮 ===================",
 	"additionalSettingsButton":		"附加设置",
-	"aboutButton": 					"关于",
+	"aboutButton": 					"关于...",
 	"closeAdditionalButton":		"返回设置",
 	"downloadButton":				"获取",
-	"batchDownloadButton":			"GET BATCH",
-	"abortButton": 					"ABORT",
-	"skipButton": 					"SKIP",
+	"batchDownloadButton":			"批量获取", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"abortButton": 					"中止", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"skipButton": 					"跳过", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 	"downloaderButton": 			"下载器",
 	"logoutButton": 				"退出登录",
 	"openFolderButton":				"打开文件夹",
@@ -44,13 +44,13 @@
 	"trackTemplateLabel":			"曲目模板",
 	"userInfoLabel": 				"用户信息",
 	"welcomeLabel": 				"欢迎\r\n{username}",
-	"limitSearchResultsLabel":		"Results Limit:",
-	"searchSortingLabel":			"Sort By:",
-	"sortReleaseDateLabel":			"Release Date",
-	"sortArtistNameLabel":			"Artist Name",
-	"sortAlbumTrackNameLabel":		"Album / Track Name",
-	"sortingSearchResultsLabel":	"Sorting...",
-	"searchResultsCountLabel":      "results",
+	"limitSearchResultsLabel":		"结果限制：", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"searchSortingLabel":			"排序方式：", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortReleaseDateLabel":			"发行日期", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortArtistNameLabel":			"艺术家名称", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortAlbumTrackNameLabel":		"专辑 / 曲目名称", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortingSearchResultsLabel":	"正在排序…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"searchResultsCountLabel":      "结果", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
 	"_SECTION3_":					"=================== 主表单复选框 ===================",
 	"albumArtistCheckbox":			"专辑艺术家",
@@ -75,7 +75,7 @@
 	"streamableCheckbox":			"歌曲流媒体可播性检查",
 	"fixMD5sCheckbox":				"自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
 	"downloadSpeedCheckbox":		"显示下载速度",
-	"sortAscendantCheckBox":	    "Ascendant",
+	"sortAscendantCheckBox":	    "升序", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
 	"_SECTION4_":					"=================== 主表单占位符 ===================",
 	"albumLabelPlaceholder":		"欢迎使用 QBDLX!",
@@ -87,10 +87,10 @@
 	"userInfoTextboxPlaceholder":	"用户 ID = {user_id}\r\n邮箱 = {user_email}\r\n国家 = {user_country}\r\n订阅 = {user_subscription}\r\n到期 = {user_subscription_expiration}",
 	"downloadOutputWelcome":		"欢迎 {user_display_name}!",
 	"downloadOutputExpired": 		"你的订阅已过期，下载将仅限于 30 秒的片段!",
-	"downloadOutputPath": 			"下载路径",
+	"downloadOutputPath": 			"下载路径:",
 	"downloadOutputNoPath": 		"未设置路径! 记得选择一个文件夹!",
-	"downloadOutputNoUrl": 		    "Track {TrackNumber} is not available for download. Skipping.",
-	"downloadOutputDontExist":		"The specified path does not exist.",
+	"downloadOutputNoUrl": 		    "曲目 {TrackNumber} 无法下载。正在跳过。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"downloadOutputDontExist":		"指定的路径不存在。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 	"downloadOutputAPIError": 		"Qobuz API 错误。可能是该发行版在当前账户地区不可用?",
 	"downloadOutputNotImplemented": "尚未实现或 URL 无法理解。是否有拼写错误?",
 	"downloadOutputCheckLink": 		"正在检查链接...",
@@ -103,20 +103,20 @@
 	"downloadOutputDownloading": 	"正在下载",
 	"downloadOutputDone": 			"完成",
 	"downloadOutputCompleted": 		"下载完成",
-	"downloadAborted": 			    "DOWNLOAD ABORTED BY USER.",
-	"albumSkipped": 			    "ALBUM SKIPPED BY USER.",
+	"downloadAborted": 			    "用户已中止下载。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"albumSkipped": 			    "用户已跳过专辑。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 	"progressLabelInactive": 		"无下载任务",
 	"progressLabelActive": 			"下载进度",
-	"formClosingWarning": 			"A download is in progress, do you really want to quit?.",
-	"artist": 						"Artist", // First char in upper-case.
-	"artists": 						"artists",
-	"album": 						"Album",  // First char in upper-case.
-	"albums": 						"albums",
-	"tracks": 						"tracks",
-	"singleTrack": 					"Single track",  // First char in upper-case.
-	"playlist": 					"Playlist",      // First char in upper-case.
-	"recordLabel": 					"Record label",  // First char in upper-case.
-	"user": 						"User",          // First char in upper-case.
+	"formClosingWarning": 			"正在下载，确定要退出吗？", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"artist": 						"艺术家", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"artists": 						"艺术家", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"album": 						"专辑", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"albums": 						"专辑", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"tracks": 						"曲目", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"singleTrack": 					"单曲", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"playlist": 					"播放列表", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"recordLabel": 					"唱片公司", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"user": 						"用户", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
 	"_SECTION5_":					"=================== 登录表单按钮 ===================",
 	"closeAboutButton":				"关闭",
@@ -147,9 +147,14 @@
 	"updateNotification":			"QBDLX 的新版本可用!\r\n\r\n已安装版本 - {currentVersion}\r\n最新版本 - {newVersion}\r\n\r\n更新日志如下\r\n==============\r\n{changelog}\r\n==============\r\n\r\n你是否要更新?",
 	"updateNotificationTitle":		"QBDLX | 有可用更新",
 
-	"_SECTION9_":					"=================== BATCH DOWNLOAD DIALOG CONTROLS ===================",
-	"batchDownloadDlgText": 		"Batch Download",
-	"batchDownloadLabel": 			"Paste one or more Qobuz URLs...",
-	"closeBatchDownloadbutton": 	"CLOSE / CANCEL",
-	"getAllBatchDownloadButton": 	"GET ALL"
+	"_SECTION9_":					"=================== 批量下载对话框控件 ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"batchDownloadDlgText": 		"批量下载", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"batchDownloadLabel": 			"粘贴一个或多个 Qobuz 链接...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"closeBatchDownloadbutton": 	"关闭 / 取消", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"getAllBatchDownloadButton": 	"全部获取", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+	"_SECTION10_":					"=================== 上下文菜单项 ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"showWindowCmItem": 			"显示窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"hideWindowCmItem": 			"隐藏窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"closeProgramCmItem": 			"关闭程序" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }

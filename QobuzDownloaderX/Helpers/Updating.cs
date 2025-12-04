@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System;
-using Newtonsoft.Json.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Net;
+
+using Newtonsoft.Json.Linq;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
@@ -14,7 +15,9 @@ namespace QobuzDownloaderX.Helpers
         // List of language files
         private static readonly Dictionary<string, string> LanguageFiles = new Dictionary<string, string>
         {
+            { "de.json", "Languages/de.json" },
             { "en.json", "Languages/en.json" },
+            { "es.json", "Languages/es.json" },
             { "ru.json", "Languages/ru.json" },
             { "zh-cn.json", "Languages/zh-cn.json" }
         };

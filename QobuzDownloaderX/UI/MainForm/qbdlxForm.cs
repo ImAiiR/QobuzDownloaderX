@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using QobuzDownloaderX.Properties;
-using QopenAPI;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -10,11 +8,15 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+
+using QopenAPI;
+
+using QobuzDownloaderX.Properties;
+using QobuzDownloaderX.Win32;
 
 namespace QobuzDownloaderX
 {
@@ -95,11 +97,20 @@ namespace QobuzDownloaderX
         // Local flag that indicates whether 'getLinkTypeAsync' is executing.
         public bool getLinkTypeIsBusy;
 
-        // Local flag that indicates whether a batch download is running.
+        // Global flag that indicates whether a batch download is running.
         public static bool isBatchDownloadRunning;
 
         // Global flag that indicates whether the current album download must be skipped in the current 'getLinkTypeAsync' execution.
         public static bool skipCurrentAlbum;
+
+        // Global flag that keeps track of the last current taskbar progress value to restore it when minimizing and restoring the main form.
+        public static int lastTaskBarProgressCurrentValue;
+
+        // Global flag that keeps track of the last maximum taskbar progress value to restore it when minimizing and restoring the main form.
+        public static int lastTaskBarProgressMaxValue;
+
+        // Global flag that keeps track of the last taskbar progress state to restore it when minimizing and restoring the main form.
+        public static TaskbarProgressBarState lastTaskBarProgressState;
 
         #region Language
         public string userInfoTextboxPlaceholder { get; set; }
@@ -384,6 +395,11 @@ namespace QobuzDownloaderX
             streamableCheckbox.Location = new Point((extraSettingsPanel.Width - streamableCheckbox.Width) / 2, streamableCheckbox.Location.Y);
             fixMD5sCheckbox.Location = new Point((extraSettingsPanel.Width - fixMD5sCheckbox.Width) / 2, fixMD5sCheckbox.Location.Y);
             downloadSpeedCheckbox.Location = new Point((extraSettingsPanel.Width - downloadSpeedCheckbox.Width) / 2, downloadSpeedCheckbox.Location.Y);
+
+            // Context menu items
+            showWindowToolStripMenuItem.Text = languageManager.GetTranslation("showWindowCmItem");
+            hideWindowToolStripMenuItem.Text = languageManager.GetTranslation("hideWindowCmItem");
+            closeProgramToolStripMenuItem.Text = languageManager.GetTranslation("closeProgramCmItem");
 
             // Placeholders
             albumLabelPlaceholder = languageManager.GetTranslation("albumLabelPlaceholder");
@@ -694,7 +710,7 @@ namespace QobuzDownloaderX
             }
             catch (OperationCanceledException)
             {
-                TaskbarManager.SetProgressState(Win32.TaskbarProgressBarState.Error);
+                TaskbarManager.SetProgressState(TaskbarProgressBarState.Error);
                 logger.Debug("Download aborted by user.");
                 downloadOutput.AppendText($"\r\n{downloadAborted}");
             }
@@ -770,7 +786,7 @@ namespace QobuzDownloaderX
 
                 batchDownloadProgressCountLabel.Text = "";
                 batchDownloadProgressCountLabel.Visible = true;
-                TaskbarManager.SetProgressState(Win32.TaskbarProgressBarState.Normal);
+                TaskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
                 TaskbarManager.SetProgressValue(0, batchUrlsCount);
                 batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
                 isBatchDownloadRunning = true;
@@ -2068,11 +2084,10 @@ namespace QobuzDownloaderX
             ToggleMainFormVisibility();
         }
 
-        private void sysTrayContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void sysTrayContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            this.showWindowToolStripMenuItem.Enabled = !this.Visible;
-            this.hideWindowToolStripMenuItem.Enabled = this.Visible;
-
+            this.showWindowToolStripMenuItem.Visible = !this.Visible;
+            this.hideWindowToolStripMenuItem.Visible = this.Visible;
         }
 
         private void showWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2117,10 +2132,13 @@ namespace QobuzDownloaderX
                     Process pr = Process.GetCurrentProcess();
                     IntPtr hwnd = pr.MainWindowHandle;
                     if (NativeMethods.IsIconic(hwnd))
-                        NativeMethods.ShowWindow(hwnd, Win32.Constants.SW_RESTORE);
+                        NativeMethods.ShowWindow(hwnd, Constants.SW_RESTORE);
 
                     this.BringToFront();
                     this.Activate();
+
+                    TaskbarManager.SetProgressValue(lastTaskBarProgressCurrentValue, lastTaskBarProgressMaxValue);
+                    TaskbarManager.SetProgressState(lastTaskBarProgressState);
                 }
             }
 

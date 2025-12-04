@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
-using TagLib;
-using File = TagLib.File;
-using QobuzDownloaderX.Properties;
-using QopenAPI;
-using TagLib.Id3v2;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
+
+using QopenAPI;
+using TagLib;
+using TagLib.Id3v2;
+using File = TagLib.File;
+
+using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {

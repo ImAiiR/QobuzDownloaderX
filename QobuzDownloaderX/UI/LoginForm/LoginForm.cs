@@ -1,14 +1,16 @@
-﻿using QobuzDownloaderX.Properties;
-using System;
+﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+
 using QopenAPI;
+
 using QobuzDownloaderX.Helpers;
+using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {

@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
-using QobuzDownloaderX.Properties;
-using QopenAPI;
-using System;
-using System.Threading;
+﻿using System;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
+using QopenAPI;
 using ZetaLongPaths;
+
+using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {

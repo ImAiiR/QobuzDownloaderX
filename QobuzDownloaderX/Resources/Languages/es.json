@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "November 30, 2025, 09:00AM UTC",
+    "TranslationUpdatedOn":         "December 4, 2025, 09:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -86,8 +86,8 @@
     "downloadFolderPlaceholder":    "Ninguna carpeta seleccionada",
     "userInfoTextboxPlaceholder":   "Identificador de usuario = {user_id}\r\nDirección e-mail = {user_email}\r\nPaís = {user_country}\r\nSuscripción = {user_subscription}\r\nExpira = {user_subscription_expiration}",
     "downloadOutputWelcome":        "¡Bienvenido, {user_display_name}!",
-    "downloadOutputExpired":        "¡TU SUSCRIPCIÓN HA EXPIRADO, LAS DESCARGAS SE LIMITARÁN A FRAGMENTOS DE 30 SEGUNDOS!",
-    "downloadOutputPath":           "Ruta de descarga:",
+    "downloadOutputExpired":        "¡TU SUSCRIPCIÓN DE QOBUZ HA EXPIRADO, LAS DESCARGAS SE LIMITARÁN A FRAGMENTOS DE 30 SEGUNDOS!",
+    "downloadOutputPath":           "Ruta de descargas:",
     "downloadOutputNoPath":         "¡No se ha establecido una ruta! ¡Recuerda seleccionar una carpeta!",
 	"downloadOutputNoUrl": 		    "La pista {TrackNumber} no está disponible para descarga. Omitiendo.",
 	"downloadOutputDontExist":		"La ruta especificada no existe.",
@@ -108,15 +108,15 @@
     "progressLabelInactive":        "No hay ninguna descarga activa",
     "progressLabelActive":          "Progreso de descarga",
 	"formClosingWarning": 			"Hay una descarga en progreso, ¿realmente quieres salir?.",
-	"artist": 						"Artista", // Primer caracter en mayúscula.
+	"artist": 						"Artista",
 	"artists": 						"artistas",
-	"album": 						"Álbum",   // Primer caracter en mayúscula.
+	"album": 						"Álbum",
 	"albums": 						"álbumes",
 	"tracks": 						"pistas",
-	"singleTrack": 					"Pista individual",     // Primer caracter en mayúscula.
-	"playlist": 					"Lista de reproducción",// Primer caracter en mayúscula.
-	"recordLabel": 					"Sello discográfico",   // Primer caracter en mayúscula.
-	"user": 						"Usuario",              // Primer caracter en mayúscula.
+	"singleTrack": 					"Pista individual",
+	"playlist": 					"Lista de reproducción",
+	"recordLabel": 					"Sello discográfico",
+	"user": 						"Usuario",
 
     "_SECTION5_":                   "=================== BOTONES (BUTTON) DEL FORM DE INICIO DE SESIÓN ===================",
     "closeAboutButton":             "CERRAR",
@@ -151,5 +151,10 @@
 	"batchDownloadDlgText": 		"Multidescarga",
 	"batchDownloadLabel": 			"Pega una o más URLs de Qobuz...",
 	"closeBatchDownloadbutton": 	"CERRAR / CANCELAR",
-	"getAllBatchDownloadButton": 	"DESCARGAR TODO"
+	"getAllBatchDownloadButton": 	"DESCARGAR TODO",
+
+	"_SECTION10_":					"=================== CONTEXT MENU ITEMS ===================",
+	"showWindowCmItem": 			"Mostrar ventana",
+	"hideWindowCmItem": 			"Ocultar ventana",
+	"closeProgramCmItem": 			"Cerrar programa"
 }

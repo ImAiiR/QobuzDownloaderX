@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Net;
-using System.Threading.Tasks;
-using QopenAPI;
-using QobuzDownloaderX.Properties;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+using QopenAPI;
 using ZetaLongPaths;
-using System.Windows.Forms;
+
+using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {

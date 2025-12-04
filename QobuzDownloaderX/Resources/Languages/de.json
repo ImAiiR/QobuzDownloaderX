@@ -1,16 +1,16 @@
 {
 	"TranslationCredit":			"TheParaTiger",
-	"TranslationUpdatedOn":			"November 24, 2024, 09:37AM MET",
+	"TranslationUpdatedOn":			"December 4, 2025, 09:37AM MET",
 	"TranslationFont":				"Nirmala UI",
 
 	"_SECTION1_":					"=================== MAIN FORM BUTTONS ===================",
 	"additionalSettingsButton":		"Weitere Optionen",
-	"aboutButton": 					"ÜBER",
+	"aboutButton": 					"ÜBER...",
 	"closeAdditionalButton":		"Optionen",
 	"downloadButton":				"HOLEN!",
-	"batchDownloadButton":			"GET BATCH",
-	"abortButton": 					"ABORT",
-	"skipButton": 					"SKIP",
+	"batchDownloadButton":			"PAKET HERUNTERLADEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"abortButton": 					"ABBRECHEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"skipButton": 					"ÜBERSPRINGEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 	"downloaderButton": 			"DOWNLOADER",
 	"logoutButton": 				"AUSLOGGEN",
 	"openFolderButton":				"Ordner Öffnen",
@@ -44,13 +44,13 @@
 	"trackTemplateLabel":			"TRACK VORLAGE",
 	"userInfoLabel": 				"BENUTZERINFO",
 	"welcomeLabel": 				"Willkommen\r\n{username}",
-	"limitSearchResultsLabel":		"Results Limit:",
-	"searchSortingLabel":			"Sort By:",
-	"sortReleaseDateLabel":			"Release Date",
-	"sortArtistNameLabel":			"Artist Name",
-	"sortAlbumTrackNameLabel":		"Album / Track Name",
-	"sortingSearchResultsLabel":	"Sorting...",
-	"searchResultsCountLabel":      "results",
+	"limitSearchResultsLabel":		"Ergebnislimit:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"searchSortingLabel":			"Sortieren nach:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortReleaseDateLabel":			"Veröffentlichungsdatum", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortArtistNameLabel":			"Künstlername", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortAlbumTrackNameLabel":		"Album / Titelname", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"sortingSearchResultsLabel":	"Sortiere...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"searchResultsCountLabel":      "Ergebnisse", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
 	"_SECTION3_":					"=================== MAIN FORM CHECKBOXES ===================",
 	"albumArtistCheckbox":			"Album Artist",
@@ -75,7 +75,7 @@
 	"streamableCheckbox":			"Ist Streamfähig Check",
 	"fixMD5sCheckbox":				"Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
 	"downloadSpeedCheckbox":		"Downloadgeschwindigkeit Anzeigen",
-	"sortAscendantCheckBox":	    "Ascendant",
+	"sortAscendantCheckBox":	    "Aufsteigend", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
 	"_SECTION4_":					"=================== MAIN FORM PLACEHOLDERS ===================",
 	"albumLabelPlaceholder":		"Willkommen in QBDLX!",
@@ -87,10 +87,10 @@
 	"userInfoTextboxPlaceholder":	"Nutzer ID = {user_id}\r\nE-Mail = {user_email}\r\nLand = {user_country}\r\nAbonnement = {user_subscription}\r\nLäuft ab = {user_subscription_expiration}",
 	"downloadOutputWelcome":		"Willkommen {user_display_name}!",
 	"downloadOutputExpired": 		"DEIN ABONNEMENT IST ABGELAUFEN!, ES WERDEN NUR 30-SEKUNDEN AUSSCHNITTE HERUNTERGELADEN!",
-	"downloadOutputPath": 			"Download Pfad",
+	"downloadOutputPath": 			"Download Pfad:",
 	"downloadOutputNoPath": 		"Es wurde kein Pfad gesetzt! Denke daran einen Ordner auszuwählen!",
-	"downloadOutputNoUrl": 		    "Track {TrackNumber} is not available for download. Skipping.",
-	"downloadOutputDontExist":		"The specified path does not exist.",
+	"downloadOutputNoUrl": 		    "Titel {TrackNumber} steht zum Herunterladen nicht zur Verfügung. Wird übersprungen.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"downloadOutputDontExist":		"Der angegebene Pfad existiert nicht.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 	"downloadOutputAPIError": 		"Qobuz-API Fehler, ist dieses Album in deiner Region verfügbar?",
 	"downloadOutputNotImplemented": "Noch nicht Implementiert oder nicht verstanden, hast du dich vielleicht vertippt?",
 	"downloadOutputCheckLink": 		"Überprüfe Link...",
@@ -103,20 +103,20 @@
 	"downloadOutputDownloading": 	"Lädt Herunter",
 	"downloadOutputDone": 			"FERTIG",
 	"downloadOutputCompleted": 		"DOWNLOAD FERTIG!",
-	"downloadAborted": 			    "DOWNLOAD ABORTED BY USER.",
-	"albumSkipped": 			    "ALBUM SKIPPED BY USER.",
+	"downloadAborted": 			    "DOWNLOAD VOM BENUTZER ABGEBROCHEN.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"albumSkipped": 			    "ALBUM VOM BENUTZER ÜBERSPRUNGEN.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 	"progressLabelInactive": 		"Kein Download aktiv",
 	"progressLabelActive": 			"Download Fortschritt",
-	"formClosingWarning": 			"A download is in progress, do you really want to quit?.",
-	"artist": 						"Artist", // First char in upper-case.
-	"artists": 						"artists",
-	"album": 						"Album",  // First char in upper-case.
-	"albums": 						"albums",
-	"tracks": 						"tracks",
-	"singleTrack": 					"Single track",  // First char in upper-case.
-	"playlist": 					"Playlist",      // First char in upper-case.
-	"recordLabel": 					"Record label",  // First char in upper-case.
-	"user": 						"User",          // First char in upper-case.
+	"formClosingWarning": 			"Ein Download läuft, möchten Sie wirklich beenden?", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"artist": 						"Künstler", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"artists": 						"Künstler", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"album": 						"Album", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"albums": 						"Alben", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"tracks": 						"Tracks", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"singleTrack": 					"Einzeltitel", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"playlist": 					"Wiedergabeliste", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"recordLabel": 					"Plattenlabel", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"user": 						"Benutzer", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
 	"_SECTION5_":					"=================== LOGIN FORM BUTTONS ===================",
 	"closeAboutButton":				"SCHLIEßEN",
@@ -147,9 +147,14 @@
 	"updateNotification":			"Eine neue Version von QBDLX ist verfügbar!\r\n\r\nInstallierte Version - {currentVersion}\r\nNeueste Version - {newVersion}\r\n\r\nÄnderungsliste\r\n==============\r\n{changelog}\r\n==============\r\n\r\nMöchtest du aktualisieren?",
 	"updateNotificationTitle":		"QBDLX | Update Verfügbar",
 
-	"_SECTION9_":					"=================== BATCH DOWNLOAD DIALOG CONTROLS ===================",
-	"batchDownloadDlgText": 		"Batch Download",
-	"batchDownloadLabel": 			"Paste one or more Qobuz URLs...",
-	"closeBatchDownloadbutton": 	"CLOSE / CANCEL",
-	"getAllBatchDownloadButton": 	"GET ALL"
+	"_SECTION9_":					"=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"batchDownloadDlgText":			"Stapel-Download", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"batchDownloadLabel":			"Fügen Sie eine oder mehrere Qobuz-URLs ein...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"closeBatchDownloadbutton":		"SCHLIESSEN / ABBRECHEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"getAllBatchDownloadButton":	"ALLES HERUNTERLADEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+	"_SECTION10_":					"=================== CONTEXT MENU ITEMS ===================",// Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"showWindowCmItem":				"Fenster anzeigen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"hideWindowCmItem":				"Fenster ausblenden", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+	"closeProgramCmItem":			"Programm schließen" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }
