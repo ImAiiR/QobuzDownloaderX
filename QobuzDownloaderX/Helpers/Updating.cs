@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
-using Newtonsoft.Json.Linq;
+using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
@@ -22,6 +23,12 @@ namespace QobuzDownloaderX.Helpers
             { "tr.json", "Languages/tr.json" },
             { "zh-cn.json", "Languages/zh-cn.json" }
         };
+
+        public static string NormalizeDate(string dateStr)
+        {
+            // Remove any alphabetic timezone part
+            return Regex.Replace(dateStr, @"[A-Z]{2,5}(\+?\d{0,2})?$", "").Trim();
+        }
 
         public static async Task CheckAndUpdateLanguageFiles()
         {
@@ -63,8 +70,8 @@ namespace QobuzDownloaderX.Helpers
                                     string localUpdatedOnString = localJson["TranslationUpdatedOn"]?.ToString();
 
                                     // Compare updated date
-                                    if (DateTime.TryParse(remoteUpdatedOnString, out DateTime remoteDate) &&
-                                        DateTime.TryParse(localUpdatedOnString, out DateTime localDate))
+                                    if (DateTime.TryParse(NormalizeDate(remoteUpdatedOnString), out DateTime remoteDate) &&
+                                        DateTime.TryParse(NormalizeDate(localUpdatedOnString), out DateTime localDate))
                                     {
                                         if (remoteDate > localDate)
                                         {

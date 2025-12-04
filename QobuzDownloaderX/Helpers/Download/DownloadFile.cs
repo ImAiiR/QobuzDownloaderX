@@ -1,13 +1,15 @@
-﻿using QobuzDownloaderX.Properties;
-using QopenAPI;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+
+using QopenAPI;
 using ZetaLongPaths;
+
+using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {

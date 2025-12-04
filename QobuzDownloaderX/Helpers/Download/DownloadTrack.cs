@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 using QopenAPI;
@@ -125,7 +126,7 @@ namespace QobuzDownloaderX
                     {
                         downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
                         trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
-                        Console.WriteLine(downloadPath);
+                        Debug.WriteLine(downloadPath);
                     }
 
                     // Create subfolders for multi-volume releases
@@ -155,13 +156,13 @@ namespace QobuzDownloaderX
                 catch (Exception downloadAlbumEx)
                 {
                     getInfo.updateDownloadOutput("\r\n\r\n" + downloadAlbumEx + "\r\n\r\n");
-                    Console.WriteLine(downloadAlbumEx);
+                    Debug.WriteLine(downloadAlbumEx);
                     return;
                 }
             }
             catch (Exception downloadAlbumEx)
             {
-                Console.WriteLine(downloadAlbumEx);
+                Debug.WriteLine(downloadAlbumEx);
                 return;
             }
         }
@@ -185,7 +186,7 @@ namespace QobuzDownloaderX
                     {
                         downloadPath = downloadPath + trackTemplateConverted.Substring(0, trackTemplateConverted.LastIndexOf(@"\")) + @"\";
                         trackTemplateConverted = trackTemplateConverted.Substring(trackTemplateConverted.LastIndexOf(@"\") + 1);
-                        Console.WriteLine(downloadPath);
+                        Debug.WriteLine(downloadPath);
                     }
 
                     filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
@@ -214,14 +215,14 @@ namespace QobuzDownloaderX
                 catch (Exception downloadAlbumEx)
                 {
                     getInfo.updateDownloadOutput("\r\n\r\n" + downloadAlbumEx + "\r\n\r\n");
-                    Console.WriteLine(downloadAlbumEx);
+                    Debug.WriteLine(downloadAlbumEx);
                     return;
                 }
 
             }
             catch (Exception downloadAlbumEx)
             {
-                Console.WriteLine(downloadAlbumEx);
+                Debug.WriteLine(downloadAlbumEx);
                 return;
             }
         }

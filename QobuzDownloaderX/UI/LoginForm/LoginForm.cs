@@ -16,28 +16,10 @@ namespace QobuzDownloaderX
 {
     public partial class LoginForm : Form
     {
-
-
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
-
-        private void QobuzDownloaderX_FormClosing(Object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private readonly Theming themeManager = new Theming();
         private LanguageManager languageManager;
         readonly qbdlxForm qbdlx = new qbdlxForm();
-        readonly Logger logger = qbdlxForm._qbdlxForm.logger;
+        readonly BufferedLogger logger = qbdlxForm._qbdlxForm.logger;
         readonly Service QoService = new Service();
         User QoUser;
 
@@ -229,7 +211,7 @@ namespace QobuzDownloaderX
             }
 
             // Round corners of form
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
             if (!System.IO.File.Exists(dllCheck))
             {

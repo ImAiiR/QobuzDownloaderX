@@ -8,9 +8,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using QopenAPI;
@@ -22,30 +23,8 @@ namespace QobuzDownloaderX
 {
     public partial class qbdlxForm : Form
     {
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        const int WS_MINIMIZEBOX = 0x20000;
-        const int CS_DBLCLKS = 0x8;
-
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
-
         // Create logger for this form
-        public Logger logger { get; set; }
+        public BufferedLogger logger { get; set; }
 
         // Create theme and language options
         public Theme theme { get; set; }
@@ -157,8 +136,8 @@ namespace QobuzDownloaderX
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.Style |= WS_MINIMIZEBOX;
-                cp.ClassStyle |= CS_DBLCLKS;
+                cp.Style |= Constants.WS_MINIMIZEBOX;
+                cp.ClassStyle |= Constants.CS_DBLCLKS;
                 return cp;
             }
         }
@@ -167,7 +146,7 @@ namespace QobuzDownloaderX
         {
             // Create new log file
             Directory.CreateDirectory("logs");
-            logger = new Logger("logs\\log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
+            logger = new BufferedLogger("logs\\log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
             logger.Debug("Logger started, QBDLX form initialized!");
 
             InitializeComponent();
@@ -445,7 +424,7 @@ namespace QobuzDownloaderX
             this.DoubleBuffered = true;
 
             // Round corners of form
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
 
             // Load settings / download location / theme / language / panels
             LoadSavedTemplates();
@@ -556,6 +535,7 @@ namespace QobuzDownloaderX
                     }
                 } 
             }
+            logger?.Dispose();
             Application.Exit(); // Triggers 'qbdlxForm_FormClosing' with CloseReason.ApplicationExitCall
         }
 
@@ -1821,8 +1801,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -1830,8 +1810,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -1839,8 +1819,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -1848,8 +1828,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -1857,8 +1837,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -1866,8 +1846,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -1875,8 +1855,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -1884,8 +1864,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Constants.WM_NCLBUTTONDOWN, Constants.HT_CAPTION, 0);
             }
         }
 
@@ -2154,57 +2134,174 @@ namespace QobuzDownloaderX
 
     }
 
-    public class Logger
+    // Upsides of this buffering approach:
+    //
+    //   - Thread-safe file writes.
+    //
+    //   - Flexibility in the write/flush calls, which:
+    //       Minimizes application slowdown by performing less writes to large log files.
+    //       Minimizes disk drive wear and tear by limiting unnecessary I/O (read/write) operations.
+    //
+    // Downsides of this buffering approach:
+    //
+    //   - For those who like to see log files updating in real time,
+    //     log entries are buffered so will not appear in the file immediately.
+    //
+    //   - If the process is terminated abruptly (e.g., using Task Manager),
+    //     any remaining log entries in '_buffer' cannot be written to log file. 
+    public sealed class BufferedLogger : IDisposable
     {
         private readonly string _filePath;
+        private readonly StreamWriter _writer;
+        private readonly StringBuilder _buffer;
+        private const int FlushThreshold = 1024 * 1024; // 1 MB
+        private bool _disposed = false; 
+        private readonly object _lock = new object();
 
-        public Logger(string filePath)
+        public BufferedLogger(string filePath)
         {
             _filePath = filePath;
+            _buffer = new StringBuilder();
+
+            _writer = new StreamWriter(new FileStream(_filePath, FileMode.Append, FileAccess.Write, FileShare.Read), Encoding.UTF8)
+            {
+                AutoFlush = false
+            };
         }
 
-        public void Log(string message, string level)
+        private void WriteLog(string level, string message)
         {
             var logMessage = $"[{DateTime.Now}] [{level}] {message}";
 
-            try
+            lock (_lock) // Thread-safety
             {
-                using (var writer = File.AppendText(_filePath))
+                if (_disposed)
                 {
-                    writer.WriteLine(logMessage);
+                    // Ignore writes after a 'Logger.Dispose()' call
+                    return;
+                }
+
+                try
+                {
+                    // Write to console immediately
+                    System.Diagnostics.Debug.WriteLine($"{level} | {message}");
+
+                    // Add to buffer
+                    _buffer.AppendLine(logMessage);
+
+                    // If buffer exceeds threshold, flush to file
+                    if (_buffer.Length >= FlushThreshold)
+                    {
+                        _writer.Write(_buffer.ToString());
+                        _buffer.Clear();
+                        _writer.Flush();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Somehow, the log failed to write, lol");
+                    System.Diagnostics.Debug.WriteLine(logMessage);
+                    System.Diagnostics.Debug.WriteLine(ex);
                 }
             }
-            catch (Exception ex)
+        }
+
+        public void Debug(string message) => WriteLog("DEBUG", message);
+        public void Info(string message) => WriteLog("INFO", message);
+        public void Warning(string message) => WriteLog("WARNING", message);
+        public void Error(string message) => WriteLog("ERROR", message);
+
+        public void Dispose()
+        {
+            lock (_lock)
             {
-                Console.WriteLine("Somehow, the log failed to write, lol");
-                Console.WriteLine(logMessage);
-                Console.WriteLine(ex);
+                if (!_disposed)
+                {
+                    try
+                    {
+                        // Flush any remaining buffered logs
+                        if (_buffer.Length > 0)
+                        {
+                            _writer.Write(_buffer.ToString());
+                            _buffer.Clear();
+                            _writer.Flush();
+                        }
+
+                        _writer.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Failed to flush logs to log file on Logger.Dispose().");
+                        System.Diagnostics.Debug.WriteLine(ex);
+                    }
+
+                    _disposed = true;
+                }
             }
         }
-
-        public void Debug(string message)
-        {
-            Console.WriteLine($"DEBUG | {message}");
-            Log(message, "DEBUG");
-        }
-
-        public void Info(string message)
-        {
-            Console.WriteLine($"INFO | {message}");
-            Log(message, "INFO");
-        }
-
-        public void Warning(string message)
-        {
-            Console.WriteLine($"WARNING | {message}");
-            Log(message, "WARNING");
-        }
-
-        public void Error(string message)
-        {
-            Console.WriteLine($"ERROR | {message}");
-            Log(message, "ERROR");
-        }
     }
+
+    // Previous implementation.
+    //
+    // Terrible performance with hundreds of I/O operations (open, seek, write, close) per few seconds.
+    // This constant writing contributed to wear the disk drive.
+    //
+    // Also, the larger the log file grew (becoming more noticeable around 20~30 MB log files),
+    // the more the application (specially during file downloads) slowed down due continuous log writes,
+    // because each 'File.AppendText()' call has to seek to the end of the file and write the data.
+    // =================================================================================================
+    //
+    //public class Logger
+    //{
+    //    private readonly string _filePath;
+    //
+    //    public Logger(string filePath)
+    //    {
+    //        _filePath = filePath;
+    //    }
+    //
+    //    public void Log(string message, string level)
+    //    {
+    //        var logMessage = $"[{DateTime.Now}] [{level}] {message}";
+    //
+    //        try
+    //        {
+    //            using (var writer = File.AppendText(_filePath))
+    //            {
+    //                writer.WriteLine(logMessage);
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Debug.WriteLine("Somehow, the log failed to write, lol");
+    //            Debug.WriteLine(logMessage);
+    //            Debug.WriteLine(ex);
+    //        }
+    //    }
+    //
+    //    public void Debug(string message)
+    //    {
+    //        Debug.WriteLine($"DEBUG | {message}");
+    //        Log(message, "DEBUG");
+    //    }
+    //
+    //    public void Info(string message)
+    //    {
+    //        Debug.WriteLine($"INFO | {message}");
+    //        Log(message, "INFO");
+    //    }
+    //
+    //    public void Warning(string message)
+    //    {
+    //        Debug.WriteLine($"WARNING | {message}");
+    //        Log(message, "WARNING");
+    //    }
+    //
+    //    public void Error(string message)
+    //    {
+    //        Debug.WriteLine($"ERROR | {message}");
+    //        Log(message, "ERROR");
+    //    }
+    //}
 
 }

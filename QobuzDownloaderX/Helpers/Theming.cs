@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -468,7 +469,7 @@ namespace QobuzDownloaderX
             catch (Exception ex)
             {
                 qbdlxForm._qbdlxForm.logger.Error($"Error loading language file: {ex.Message}");
-                Console.WriteLine($"Error loading language file: {ex.Message}");
+                Debug.WriteLine($"Error loading language file: {ex.Message}");
                 languageDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(defaultLanguage);
             }
         }

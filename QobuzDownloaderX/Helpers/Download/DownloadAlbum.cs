@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -53,7 +54,7 @@ namespace QobuzDownloaderX
             catch (Exception ex)
             {
                 qbdlxForm._qbdlxForm.logger.Error($"Artwork download failed: {ex}");
-                Console.WriteLine("Unable to download artwork");
+                Debug.WriteLine("Unable to download artwork");
             }
         }
 
@@ -205,7 +206,7 @@ namespace QobuzDownloaderX
             catch (Exception downloadAlbumEx)
             {
                 qbdlxForm._qbdlxForm.logger.Error("Error occured during downloadAlbum, error below:\r\n" + downloadAlbumEx);
-                Console.WriteLine(downloadAlbumEx);
+                Debug.WriteLine(downloadAlbumEx);
                 return;
             }
         }
