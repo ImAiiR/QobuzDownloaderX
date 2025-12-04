@@ -153,8 +153,9 @@
     "closeBatchDownloadbutton":     "CERRAR / CANCELAR",
     "getAllBatchDownloadButton":    "DESCARGAR TODO",
 
-    "_SECTION10_":                  "=================== CONTEXT MENU ITEMS ===================",
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================",
     "showWindowCmItem":             "Mostrar ventana",
     "hideWindowCmItem":             "Ocultar ventana",
-    "closeProgramCmItem":           "Cerrar programa"
+    "closeProgramCmItem":           "Cerrar programa",
+    "batchDownloadFinished":        "¡Multidescarga completada!"
 }

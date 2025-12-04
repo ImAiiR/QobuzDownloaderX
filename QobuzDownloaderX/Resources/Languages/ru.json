@@ -147,14 +147,15 @@
     "updateNotification":           "Доступна новая версия QBDLX!\r\n\r\nУстановлена версия - {currentVersion}\r\nПоследняя версия - {newVersion}\r\n\r\nЖурнал изменений\r\n==============\r\n{changelog}\r\n==============\r\n\r\nВы хотите обновить?",
     "updateNotificationTitle":      "QBDLX | Доступно обновление",
     
-    "_SECTION9_":                   "=================== ЭЛЕМЕНТЫ ДИАЛОГА ПАКЕТНОЙ ЗАГРУЗКИ ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "batchDownloadDlgText":         "Пакетная загрузка", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "batchDownloadLabel":           "Вставьте один или несколько URL-адресов Qobuz...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "closeBatchDownloadbutton":     "ЗАКРЫТЬ / ОТМЕНА", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "getAllBatchDownloadButton":    "ЗАГРУЗИТЬ ВСЁ", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
-    "_SECTION10_":                  "=================== ЭЛЕМЕНТЫ КОНТЕКСТНОГО МЕНЮ ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "showWindowCmItem":             "Показать окно", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "hideWindowCmItem":             "Скрыть окно", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeProgramCmItem":           "Закрыть программу" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "closeProgramCmItem":           "Закрыть программу", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadFinished":        "Пакетная загрузка завершена!" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }

@@ -58,6 +58,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -149,6 +152,7 @@
       <DependentUpon>qbdlxForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -164,6 +168,7 @@
     <None Include="Resources\Languages\es.json" />
     <None Include="Resources\Languages\en.json" />
     <None Include="Resources\Languages\ru.json" />
+    <None Include="Resources\Languages\tr.json" />
     <None Include="Resources\Languages\zh-cn.json" />
     <None Include="Resources\qbdlx_new.png" />
     <None Include="Resources\themes.json" />

@@ -668,6 +668,26 @@ namespace QobuzDownloaderX
             downloadButton.Enabled = (text.StartsWith("http", StringComparison.OrdinalIgnoreCase));
         }
 
+        private void abortButton_Click(object sender, EventArgs e)
+        {
+            abortButton.Enabled = false;
+            skipButton.Enabled = false;
+            if (getLinkTypeIsBusy && abortTokenSource != null)
+            {
+                logger.Debug("abortTokenSource cancel request by user.");
+                abortTokenSource.Cancel();
+            }
+        }
+
+        private void skipButton_Click(object sender, EventArgs e)
+        {
+            if (getLinkTypeIsBusy)
+            {
+                logger.Debug("skipCurrentAlbum request by user.");
+                skipCurrentAlbum = true;
+            }
+        }
+
         private async void downloadButton_Click(object sender, EventArgs e)
         {
             await downloadButtonAsyncWork();
@@ -703,26 +723,6 @@ namespace QobuzDownloaderX
                 batchDownloadButton.Enabled = true;
                 skipCurrentAlbum = false;
                 getLinkTypeIsBusy = false;
-            }
-        }
-
-        private void abortButton_Click(object sender, EventArgs e)
-        {
-            abortButton.Enabled = false;
-            skipButton.Enabled = false;
-            if (getLinkTypeIsBusy && abortTokenSource != null)
-            {
-                logger.Debug("abortTokenSource cancel request by user.");
-                abortTokenSource.Cancel();
-            }
-        }
-
-        private void skipButton_Click(object sender, EventArgs e)
-        {
-            if (getLinkTypeIsBusy)
-            {
-                logger.Debug("skipCurrentAlbum request by user.");
-                skipCurrentAlbum = true;
             }
         }
 
@@ -775,7 +775,7 @@ namespace QobuzDownloaderX
                     batchUrlsCurrentIndex++;
                     if (abortTokenSource != null && abortTokenSource.IsCancellationRequested)
                     {
-                        TaskbarManager.SetProgressState(Win32.TaskbarProgressBarState.Error);
+                        TaskbarManager.SetProgressState(TaskbarProgressBarState.Error);
                         isBatchDownloadRunning = false;
                         break;
                     }
@@ -786,6 +786,7 @@ namespace QobuzDownloaderX
                     batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
                     TaskbarManager.SetProgressValue(batchUrlsCurrentIndex, batchUrlsCount);
                 }
+                if (!this.Visible) notifyIcon1.ShowBalloonTip(5000, "QobuzDLX", languageManager.GetTranslation("batchDownloadFinished"), ToolTipIcon.Info);
                 batchDownloadProgressCountLabel.Text = "";
                 batchDownloadProgressCountLabel.Visible = false;
                 isBatchDownloadRunning = false;

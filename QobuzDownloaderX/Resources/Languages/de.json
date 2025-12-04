@@ -153,8 +153,9 @@
     "closeBatchDownloadbutton":     "SCHLIESSEN / ABBRECHEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "getAllBatchDownloadButton":    "ALLES HERUNTERLADEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
-    "_SECTION10_":                  "=================== CONTEXT MENU ITEMS ===================",// Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "showWindowCmItem":             "Fenster anzeigen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "hideWindowCmItem":             "Fenster ausblenden", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeProgramCmItem":           "Programm schließen" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "closeProgramCmItem":           "Programm schließen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadFinished":        "Stapel-Download abgeschlossen!" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }

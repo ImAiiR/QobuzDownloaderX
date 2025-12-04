@@ -147,14 +147,15 @@
     "updateNotification":           "QBDLX 的新版本可用!\r\n\r\n已安装版本 - {currentVersion}\r\n最新版本 - {newVersion}\r\n\r\n更新日志如下\r\n==============\r\n{changelog}\r\n==============\r\n\r\n你是否要更新?",
     "updateNotificationTitle":      "QBDLX | 有可用更新",
 
-    "_SECTION9_":                   "=================== 批量下载对话框控件 ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "batchDownloadDlgText":         "批量下载", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "closeBatchDownloadbutton":     "关闭 / 取消", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "getAllBatchDownloadButton":    "全部获取", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
-    "_SECTION10_":                  "=================== 上下文菜单项 ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "showWindowCmItem":             "显示窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "hideWindowCmItem":             "隐藏窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeProgramCmItem":           "关闭程序" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "closeProgramCmItem":           "关闭程序", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadFinished":        "批量下载完成！" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }

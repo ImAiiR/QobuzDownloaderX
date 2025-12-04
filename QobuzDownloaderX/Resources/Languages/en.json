@@ -153,8 +153,9 @@
     "closeBatchDownloadbutton":     "CLOSE / CANCEL",
     "getAllBatchDownloadButton":    "GET ALL",
 
-    "_SECTION10_":                   "=================== CONTEXT MENU ITEMS ===================",
+    "_SECTION10_":                   "=================== SYSTRAY ICON ===================",
     "showWindowCmItem":              "Show window",
     "hideWindowCmItem":              "Hide window",
-    "closeProgramCmItem":            "Close program"
+    "closeProgramCmItem":            "Close program",
+    "batchDownloadFinished":         "Batch download finished!"
 }
