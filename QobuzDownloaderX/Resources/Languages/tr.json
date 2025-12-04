@@ -1,0 +1,160 @@
+﻿{
+    "TranslationCredit":            "bleedfed",
+    "TranslationUpdatedOn":         "December 4, 2025, 01:25PM UTC",
+    "TranslationFont":              "Segoe UI",
+
+    "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
+    "additionalSettingsButton":     "Ek Ayarlar",
+    "aboutButton":                  "HAKKINDA",
+    "closeAdditionalButton":        "Ayarlara Geri Dön",
+    "downloadButton":               "İndir",
+    "batchDownloadButton":          "TOPLU İNDİR", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "abortButton":                  "İPTAL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "skipButton":                   "ATLA", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloaderButton":             "İNDİR",
+    "logoutButton":                 "ÇIKIŞ YAP",
+    "openFolderButton":             "Klasörü Aç",
+    "qualitySelectButton":          "Kalite Seç",
+    "saveTemplatesButton":          "Kaydet",
+    "searchButton":                 "ARA",
+    "searchAlbumsButton":           "ESER",
+    "searchTracksButton":           "PARÇA",
+    "selectFolderButton":           "Klasör Seç",
+    "settingsButton":               "AYARLAR",
+
+    "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
+    "advancedOptionsLabel":         "GELİŞMİŞ AYARLAR",
+    "albumTemplateLabel":           "ALBÜM ŞABLONU",
+    "artistTemplateLabel":          "SANATÇI ŞABLONU",
+    "commentLabel":                 "Özel Yorum",
+    "downloadFolderLabel":          "İNDİRİLECEK KLASÖR",
+    "downloadOptionsLabel":         "İNDİRME SEÇENEKLERİ",
+    "embeddedArtLabel":             "GÖMÜLÜ KAPAK BOYUTU (px)",
+    "extraSettingsLabel":           "EK AYARLAR",
+    "languageLabel":                "DİL",
+    "playlistTemplateLabel":        "OYNATMA LİSTESİ ŞABLONU",
+    "favoritesTemplateLabel":       "FAVORİLER ŞABLONU",
+    "savedArtLabel":                "KAYDEDİLEN KAPAK BOYUTU (px)",
+    "searchingLabel":               "Aranıyor...",
+    "taggingOptionsLabel":          "ETİKET AYARLARI",
+    "templatesLabel":               "ŞABLON",
+    "templatesListLabel":           "ŞABLON LİSTESİ",
+    "themeLabel":                   "Aktif Tema",
+    "themeSectionLabel":            "TEMA AYARLARI",
+    "trackTemplateLabel":           "PARÇA ŞABLONU",
+    "userInfoLabel":                "HESAP BİLGİLERİ",
+    "welcomeLabel":                 "Hoşgeldin\r\n{username}",
+    "limitSearchResultsLabel":      "Sonuç Sınırı:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "searchSortingLabel":           "Sırala:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortReleaseDateLabel":         "Yayın Tarihi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortArtistNameLabel":          "Sanatçı Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortAlbumTrackNameLabel":      "Albüm / Parça Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortingSearchResultsLabel":    "Sıralanıyor...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "searchResultsCountLabel":      "sonuç", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+    "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
+    "albumArtistCheckbox":          "Albüm Sanatçısı",
+    "albumTitleCheckbox":           "Albüm Başlığı",
+    "trackArtistCheckbox":          "Parça Sanatçısı",
+    "trackTitleCheckbox":           "Parça İsmi",
+    "releaseDateCheckbox":          "Çıkış Tarihi",
+    "releaseTypeCheckbox":          "Çıkış Türü",
+    "genreCheckbox":                "Tür",
+    "trackNumberCheckbox":          "Parça Sırası",
+    "trackTotalCheckbox":           "Toplam Parça Sayısı",
+    "discNumberCheckbox":           "Disk Numarası",
+    "discTotalCheckbox":            "Toplam Disk Sayısı",
+    "composerCheckbox":             "Besteci",
+    "explicitCheckbox":             "Müstehcen İçerik Uyarısı",
+    "coverArtCheckbox":             "Kapak Resmi",
+    "copyrightCheckbox":            "Telif",
+    "labelCheckbox":                "Müzik Şirketi",
+    "upcCheckbox":                  "UPC / Barkod",
+    "isrcCheckbox":                 "ISRC",
+    "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "streamableCheckbox":           "Oynatılabilirlik Doğrulaması",
+    "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
+    "downloadSpeedCheckbox":        "İndirme Hızını Göster",
+    "sortAscendantCheckBox":        "Artan", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+    "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
+    "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",
+    "artistLabelPlaceholder":       "QOBUZ Linkini Yapıştır ve İndir'e Bas!",
+    "infoLabelPlaceholder":         "Çıkış Tarihi",
+    "inputTextboxPlaceholder":      "QOBUZ Linki Yapıştırın...",
+    "searchTextboxPlaceholder":     "Aramanızı Girin...",
+    "downloadFolderPlaceholder":    "Klasör Seçilmemiş",
+    "userInfoTextboxPlaceholder":   "Hesap ID = {user_id}\r\nE-posta = {user_email}\r\nÜlke = {user_country}\r\nAbonelik = {user_subscription}\r\nAbonelik Sona Erme Süresi = {user_subscription_expiration}",
+    "downloadOutputWelcome":        "Hoşgeldin {user_display_name}!",
+    "downloadOutputExpired":        "ABONELİĞİNİZ BİTMİŞ, YÜKLEMELER 30 SANİYELİK PARÇALARLA KISITLI OLACAK!",
+    "downloadOutputPath":           "İndirme Yolu",
+    "downloadOutputNoPath":         "İndirme Yolu seçilmemiş! Bir İndirme Klasörü Seçin!",
+    "downloadOutputNoUrl":          "Parça {TrackNumber} indirilebilir değil. Atlanıyor.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputDontExist":      "Belirtilen yol mevcut değil.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputAPIError":       "Qobuz API Hatası. Belki Parça / Albüm bu bölgede erişilebilir değildir?",
+    "downloadOutputNotImplemented": "Bu özellik henüz eklenmedi veya URL hatalı. Bir yazım yanlışı mı var?",
+    "downloadOutputCheckLink":      "Link Kontrol Ediliyor...",
+    "downloadOutputTrNotStream":    "Parça {TrackNumber} Oynatılmaya uygun değil. Atlanıyor.",
+    "downloadOutputAlNotStream":    "Albüm / Parça oynatılmaya uygun değil.",
+    "downloadOutputGoodyFound":     "Nâdide Bir Beste Keşfolundu, İndirilmekte...",
+    "downloadOutputGoodyExists":    "Bu Nâdide beste zaten mevcut",
+    "downloadOutputGoodyNoURL":     "bu Nâdide beste için indirme Linki bulunamadı, atlanıyor",
+    "downloadOutputFileExists":     "Parça {TrackNumber} zaten mevcut, atlanıyor.",
+    "downloadOutputDownloading":    "İndiriliyor",
+    "downloadOutputDone":           "İNDİRİLDİ",
+    "downloadOutputCompleted":      "İNDİRME TAMAMLANDI",
+    "downloadAborted":              "İNDİRME KULLANICI TARAFINDAN İPTAL EDİLDİ.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "albumSkipped":                 "ALBÜM KULLANICI TARAFINDAN ATLANDI.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "progressLabelInactive":        "Aktif İndirme Yok",
+    "progressLabelActive":          "İndirme İlerlemesi",
+    "formClosingWarning":           "A download is in progress, do you really want to quit?.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "artist":                       "Sanatçı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "artists":                      "sanatçılar", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "album":                        "Albüm", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "albums":                       "albümler", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "tracks":                       "parçalar", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "singleTrack":                  "Tek parça", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "playlist":                     "Çalma listesi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "recordLabel":                  "Plak şirketi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "user":                         "Kullanıcı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+    "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
+    "closeAboutButton":             "KAPAT",
+    "customSaveButton":             "KAYDET",
+    "exitButton":                   "ÇIKIŞ",
+    "loginButton":                  "GİRİŞ YAP",
+
+    "_SECTION6_":                   "=================== LOGIN FORM LABELS ===================",
+    "appidLabel":                   "Uygulama ID",
+    "appSecretLabel":               "Uygulama Gizli Kodu (Secret)",
+    "customLabel":                  "ÖZEL UYGULAMA ID + GİZLİ KODU (SECRET) KULLAN",
+
+    "_SECTION7_":                   "=================== LOGIN FORM TEXTBOXES ===================",
+    "customInfoTextbox":            "Otomatik olarak oluşturulması için bu değerleri boş bırak!",
+    "aboutTextbox":                 "Sürüm - {version}\r\nAiiR Tarafından Yapıldı\r\n\r\nQo-DL'den İlham Alındı\r\n(Sorrow ve DashLt) Tarafından Yapılan\r\n\r\nGithub ve Telegram'daki kullanıcılara bug raporları ve verdikleri fikirler için teşekkürler! Aynı zamanda DJDoubleD'ye ben meşgulken programı çalışır halde tuttuğu için kocaman teşekkürler.",
+   
+    "_SECTION8_":                   "=================== LOGIN FORM PLACEHOLDERS ===================",
+    "emailPlaceholder":             "e-posta",
+    "passwordPlaceholder":          "şifre",
+    "tokenPlaceholder":             "token",
+    "altLoginLabelToken":           "TOKEN İLE GİRİŞ YAP",
+    "altLoginLabelEmail":           "E-POSTA VE ŞİFRE İLE GİRİŞ YAP",
+    "loginTextWaiting":             "giriş için bekleniyor...",
+    "loginTextStart":               "giriş yapılıyor...",
+    "loginTextError":               "giriş yapılamadı, hata logu kaydedildi.",
+    "loginTextNoEmail":             "e-posta girilmemiş",
+    "loginTextNoPassword":          "şifre / token girilmemiş",
+    "updateNotification":           "QBDLX'in Yeni sürümü mevcut\r\n\r\nYüklü sürüm - {currentVersion}\r\nSon sürüm - {newVersion}\r\n\r\nDeğişiklikler Aşağıda\r\n==============\r\n{changelog}\r\n==============\r\n\r\nGüncelleme yapmak ister misiniz?",
+    "updateNotificationTitle":      "QBDLX | Güncelleme Yapılabilir",
+
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadDlgText":         "Toplu İndirme", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadLabel":           "Bir veya daha fazla Qobuz URL'si yapıştırın...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "closeBatchDownloadbutton":     "KAPAT / İPTAL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "getAllBatchDownloadButton":    "HEPSİNİ AL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+    "_SECTION10_":                  "=================== CONTEXT MENU ITEMS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "showWindowCmItem":             "Pencereyi göster", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "hideWindowCmItem":             "Pencereyi gizle", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "closeProgramCmItem":           "Programı kapat" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+}

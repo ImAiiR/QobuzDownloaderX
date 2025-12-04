@@ -19,6 +19,7 @@ namespace QobuzDownloaderX.Helpers
             { "en.json", "Languages/en.json" },
             { "es.json", "Languages/es.json" },
             { "ru.json", "Languages/ru.json" },
+            { "tr.json", "Languages/tr.json" },
             { "zh-cn.json", "Languages/zh-cn.json" }
         };
 
