@@ -276,12 +276,12 @@ namespace QobuzDownloaderX
         // Default English translation if no files are avaialble
         public string defaultLanguage = @"{
 	""TranslationCredit"":			""AiiR"",
-	""TranslationUpdatedOn"":		""November 17, 2024, 12:38PM EST"",
+	""TranslationUpdatedOn"":		""December 4, 2025, 12:38PM EST"",
 	""TranslationFont"":			""Nirmala UI"",
 
 	""_SECTION1_"":					""=================== MAIN FORM BUTTONS ==================="",
 	""additionalSettingsButton"":	""Additional Settings"",
-	""aboutButton"": 				""ABOUT"",
+	""aboutButton"": 				""ABOUT..."",
 	""closeAdditionalButton"":		""Back to Settings"",
 	""downloadButton"":				""GET"",
 	""batchDownloadButton"":		""GET BATCH"",
@@ -321,12 +321,12 @@ namespace QobuzDownloaderX
 	""userInfoLabel"": 				""USER INFO"",
 	""welcomeLabel"": 				""Welcome\r\n{username}"",
 	""limitSearchResultsLabel"":	""Results Limit:"",
-	""searchSortingLabel"":			""SORT BY"",
+	""searchSortingLabel"":			""Sort By:"",
 	""sortReleaseDateLabel"":		""Release Date"",
 	""sortArtistNameLabel"":		""Artist Name"",
 	""sortAlbumTrackNameLabel"":	""Album / Track Name"",
 	""sortingSearchResultsLabel"":	""Sorting..."",
-	""sortAscendantLabel"":	        ""Ascendant"",
+	""searchResultsCountLabel"":    ""results"",
 
 	""_SECTION3_"":					""=================== MAIN FORM CHECKBOXES ==================="",
 	""albumArtistCheckbox"":		""Album Artist"",
@@ -351,6 +351,7 @@ namespace QobuzDownloaderX
 	""streamableCheckbox"":			""Streamable Check"",
 	""fixMD5sCheckbox"":			""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
 	""downloadSpeedCheckbox"":		""Print Download Speed"",
+	""sortAscendantCheckBox"":	    ""Ascendant"",
 
 	""_SECTION4_"":					""=================== MAIN FORM PLACEHOLDERS ==================="",
 	""albumLabelPlaceholder"":		""Welcome to QBDLX!"",
@@ -362,8 +363,9 @@ namespace QobuzDownloaderX
 	""userInfoTextboxPlaceholder"":	""User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}"",
 	""downloadOutputWelcome"":		""Welcome {user_display_name}!"",
 	""downloadOutputExpired"": 		""YOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!"",
-	""downloadOutputPath"": 		""Download Path"",
+	""downloadOutputPath"": 		""Download Path:"",
 	""downloadOutputNoPath"":		""No path has been set! Remember to Choose a Folder!"",
+	""downloadOutputNoUrl"": 		""Track {TrackNumber} is not available for download. Skipping."",
 	""downloadOutputDontExist"":	""The specified path does not exist."",
 	""downloadOutputAPIError"": 	""Qobuz API error. Maybe release isn't available in this account region?"",
 	""downloadOutputNotImplemented"": ""Not implemented yet or the URL is not understood. Is there a typo?"",
@@ -382,11 +384,11 @@ namespace QobuzDownloaderX
 	""progressLabelInactive"": 		""No download active"",
 	""progressLabelActive"": 		""Download progress"",
 	""formClosingWarning"": 		""A download is in progress, do you really want to quit?."",
+	""artist"": 					""Artist"", // First char in upper-case.
 	""artists"": 					""artists"",
+	""album"": 						""Album"",  // First char in upper-case.
 	""albums"": 					""albums"",
 	""tracks"": 					""tracks"",
-	""artist"": 				""Single artist"", // First char in upper-case.
-	""album"": 				""Single album"",  // First char in upper-case.
 	""singleTrack"": 				""Single track"",  // First char in upper-case.
 	""playlist"": 					""Playlist"",      // First char in upper-case.
 	""recordLabel"": 				""Record label"",  // First char in upper-case.
@@ -420,12 +422,17 @@ namespace QobuzDownloaderX
 	""loginTextNoPassword"":		""no password/token in input"",
 	""updateNotification"":			""New version of QBDLX is available!\r\n\r\nInstalled version - {currentVersion}\r\nLatest version - {newVersion}\r\n\r\nChangelog Below\r\n==============\r\n{changelog}\r\n==============\r\n\r\nWould you like to update?"",
 	""updateNotificationTitle"":	""QBDLX | Update Available"",
-
-	""_SECTION9_"":					""=================== BATCH DOWNLOAD FORM CONTROLS ==================="",
+	
+	""_SECTION9_"":					""=================== BATCH DOWNLOAD DIALOG CONTROLS ==================="",
 	""batchDownloadDlgText"": 		""Batch Download"",
 	""batchDownloadLabel"": 		""Paste one or more Qobuz URLs..."",
 	""closeBatchDownloadbutton"": 	""CLOSE / CANCEL"",
-	""getAllBatchDownloadButton"": 	""GET ALL""
+	""getAllBatchDownloadButton"":	""GET ALL"",
+
+	""_SECTION10_"":				""=================== CONTEXT MENU ITEMS ==================="",
+	""showWindowCmItem"": 			""Show window"",
+	""hideWindowCmItem"": 			""Hide window"",
+	""closeProgramCmItem"": 		""Close program""
 }
 ";
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Reflection;
 using System.Net;
+using System.Net.Http;
+using System.Reflection;
+using System.Threading.Tasks;
 
 using Newtonsoft.Json.Linq;
 using ZetaLongPaths;
@@ -62,14 +62,22 @@ namespace QobuzDownloaderX.Helpers
                                     string localUpdatedOnString = localJson["TranslationUpdatedOn"]?.ToString();
 
                                     // Compare updated date
-                                    if (remoteUpdatedOnString != localUpdatedOnString)
+                                    if (DateTime.TryParse(remoteUpdatedOnString, out DateTime remoteDate) &&
+                                        DateTime.TryParse(localUpdatedOnString, out DateTime localDate))
                                     {
-                                        ZlpIOHelper.WriteAllText(localFilePath.ToLower(), remoteContent);
-                                        qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} updated successfully.");
+                                        if (remoteDate > localDate)
+                                        {
+                                            ZlpIOHelper.WriteAllText(localFilePath.ToLower(), remoteContent);
+                                            qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} updated successfully.");
+                                        }
+                                        else
+                                        {
+                                            qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} is already up-to-date.");
+                                        }
                                     }
                                     else
                                     {
-                                        qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} is already up-to-date.");
+                                        qbdlxForm._qbdlxForm.logger.Error($"Failed to parse dates for {fileName}. Remote: '{remoteUpdatedOnString}', Local: '{localUpdatedOnString}'");
                                     }
                                 }
                                 else

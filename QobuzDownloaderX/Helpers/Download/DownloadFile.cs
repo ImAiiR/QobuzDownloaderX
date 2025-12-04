@@ -1,12 +1,13 @@
-﻿using System;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
+﻿using QobuzDownloaderX.Properties;
 using QopenAPI;
+using System;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using ZetaLongPaths;
-
-using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {
@@ -49,103 +50,221 @@ namespace QobuzDownloaderX
         {
             qbdlxForm._qbdlxForm.logger.Debug("Writing temp file to qbdlx-temp/qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
 
-            // Create a temp directory inside the exe location, to download files to.
+            // Create a temp directory inside the exe location
             string tempFile = ZlpPathHelper.Combine(@"qbdlx-temp", "qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
             ZlpIOHelper.CreateDirectory(@"qbdlx-temp");
 
-            using (var client = new WebClient())
+            qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {0}%"; }));
+
+            // Set path for downloaded artwork
+            artworkPath = downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg";
+            qbdlxForm._qbdlxForm.logger.Debug("Artwork path: " + artworkPath);
+
+            // Use secure connection
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
+
+            // Handle subfolders if more than 1 volume
+            string finalDownloadPath = downloadPath;
+            if (QoAlbum.MediaCount > 1)
             {
-                // Set path for downloaded artwork.
-                artworkPath = downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg";
-                qbdlxForm._qbdlxForm.logger.Debug("Artwork path: " + artworkPath);
+                qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
+                finalDownloadPath = ZlpPathHelper.Combine(downloadPath, "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0'));
+                ZlpIOHelper.CreateDirectory(finalDownloadPath);
+            }
+            else
+            {
+                ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
+            }
 
-                // Use secure connection
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
-                
-                // Create a TaskCompletionSource to handle asynchronous waiting
-                var tcs = new TaskCompletionSource<bool>();
-                
-                // Fields to track previous progress and time for speed calculation
-                long previousBytesReceived = 0;
-                DateTime lastUpdateTime = DateTime.Now;
-
-                // Subscribe to progress changed event
-                client.DownloadProgressChanged += (sender, e) =>
+            try
+            {
+                using (var httpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(5) })
+                using (var response = await httpClient.GetAsync(streamUrl, HttpCompletionOption.ResponseHeadersRead))
                 {
-                    int progressPercentage = e.ProgressPercentage;
-                    long bytesReceived = e.BytesReceived;
-                    long totalBytesToReceive = e.TotalBytesToReceive;
+                    response.EnsureSuccessStatusCode();
 
-                    if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked)
+                    long totalBytes = response.Content.Headers.ContentLength ?? -1;
+                    long totalBytesRead = 0;
+                    int bufferLength = 65536; // 64 Kb.
+                    byte[] buffer = new byte[bufferLength];
+                    DateTime lastUpdateTime = DateTime.Now;
+                    long previousBytesRead = 0;
+
+                    using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync:true))
+                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30)))
                     {
-                        // Calculate download speed in bytes per second
-                        DateTime currentTime = DateTime.Now;
-                        double timeDiff = (currentTime - lastUpdateTime).TotalSeconds;
-
-                        if (timeDiff > 0)
+                        int bytesRead;
+                        while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)
                         {
-                            long bytesDiff = bytesReceived - previousBytesReceived;
-                            double speed = bytesDiff / timeDiff; // bytes per second
-                            string speedText = speed > 1024 * 1024
-                                ? $"{speed / (1024 * 1024):F2} MB/s"
-                                : $"{speed / 1024:F2} KB/s";
+                            await fs.WriteAsync(buffer, 0, bytesRead);
+                            totalBytesRead += bytesRead;
 
-                            qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{speedText}]"; }));
+                            int progressPercentage = totalBytes > 0 ? (int)(totalBytesRead * 100L / totalBytes) : -1;
+
+                            if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked)
+                            {
+                                DateTime currentTime = DateTime.Now;
+                                double timeDiff = (currentTime - lastUpdateTime).TotalSeconds;
+
+                                if (timeDiff > 0)
+                                {
+                                    long bytesDiff = totalBytesRead - previousBytesRead;
+                                    double speed = bytesDiff / timeDiff;
+                                    string speedText = speed > 1024 * 1024
+                                        ? $"{speed / (1024 * 1024):F2} MB/s"
+                                        : $"{speed / 1024:F2} KB/s";
+
+                                    qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
+                                        qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{speedText}]"));
+
+                                    previousBytesRead = totalBytesRead;
+                                    lastUpdateTime = currentTime;
+                                }
+                            }
+                            else
+                            {
+                                qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
+                                    qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"));
+                            }
                         }
                     }
-                    else
-                    {
-                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"; }));
-                    }
-                };
-
-                // Handle completion of the download
-                client.DownloadFileCompleted += (sender, e) =>
-                {
-                    if (e.Error != null)
-                    {
-                        qbdlxForm._qbdlxForm.logger.Error("Download failed: " + e.Error.Message);
-                        tcs.SetException(e.Error);
-                        return;
-                    }
-
-                    qbdlxForm._qbdlxForm.logger.Debug("Download complete.");
-
-                    if (Settings.Default.fixMD5s && audio_format.Contains("flac"))
-                    {
-                        qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5s...");
-                        fixMD5.fixMD5(tempFile, "flac");
-                    }
-
-                    qbdlxForm._qbdlxForm.logger.Debug("Starting file metadata tagging");
-                    TagFile.WriteToFile(tempFile, artworkPath, QoAlbum, QoItem);
-
-                    // Move the file with the full name (Zeta Long Paths to avoid MAX_PATH error)
-                    qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
-                    ZlpIOHelper.MoveFile(tempFile, filePath);
-                    
-                    // Signal the TaskCompletionSource that the task is complete
-                    tcs.SetResult(true);
-                };
-                
-                // Start the asynchronous download
-                qbdlxForm._qbdlxForm.logger.Debug("Downloading to temp file...");
-                if (QoAlbum.MediaCount > 1)
-                {
-                    qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
-                    ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0') + ZlpPathHelper.DirectorySeparatorChar));
-                }
-                else
-                {
-                    ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
                 }
 
-                client.DownloadFileAsync(new Uri(streamUrl), tempFile);
+                if (Settings.Default.fixMD5s && audio_format.Contains("flac"))
+                {
+                    qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5s...");
+                    fixMD5.fixMD5(tempFile, "flac");
+                }
 
-                // Await the TaskCompletionSource to wait until download completes
-                await tcs.Task;
+                qbdlxForm._qbdlxForm.logger.Debug("Starting file metadata tagging");
+                TagFile.WriteToFile(tempFile, artworkPath, QoAlbum, QoItem);
+
+                // Move the file to final destination
+                qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
+                ZlpIOHelper.MoveFile(tempFile, filePath);
+
+                qbdlxForm._qbdlxForm.logger.Debug("Download complete.");
+            }
+            catch (TaskCanceledException ex)
+            {
+                qbdlxForm._qbdlxForm.logger.Error("Download timed out or cancelled: " + ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                qbdlxForm._qbdlxForm.logger.Error("Download failed: " + ex.Message);
+                throw;
             }
         }
+
+        // PREVIOUS WORKING IMPLEMENTATION USING OBSOLETE WEBCLIENT CLASS AND WITHOUT A CONNECTION TIMEOUT,
+        // HANGING FOREVER THE APPLICATION IN SOME CASES. AND WITH SLOWER OVERALL TRACKS DOWNLOAD TIME.
+        // ================================================================================================
+        //
+        //[Obsolete("WebClient is obsolete, and you shouldn't use it for development. Use HttpClient instead. https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient", false)]
+        //public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem)
+        //{
+        //    qbdlxForm._qbdlxForm.logger.Debug("Writing temp file to qbdlx-temp/qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
+        //
+        //    // Create a temp directory inside the exe location, to download files to.
+        //    string tempFile = ZlpPathHelper.Combine(@"qbdlx-temp", "qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
+        //    ZlpIOHelper.CreateDirectory(@"qbdlx-temp");
+        //
+        //    qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {0}%"; }));
+        //
+        //    using (var client = new WebClient())
+        //    {
+        //        // Set path for downloaded artwork.
+        //        artworkPath = downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg";
+        //        qbdlxForm._qbdlxForm.logger.Debug("Artwork path: " + artworkPath);
+        //
+        //        // Use secure connection
+        //        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
+        //
+        //        // Create a TaskCompletionSource to handle asynchronous waiting
+        //        var tcs = new TaskCompletionSource<bool>();
+        //
+        //        // Fields to track previous progress and time for speed calculation
+        //        long previousBytesReceived = 0;
+        //        DateTime lastUpdateTime = DateTime.Now;
+        //
+        //        // Subscribe to progress changed event
+        //        client.DownloadProgressChanged += (sender, e) =>
+        //        {
+        //            int progressPercentage = e.ProgressPercentage;
+        //            long bytesReceived = e.BytesReceived;
+        //            long totalBytesToReceive = e.TotalBytesToReceive;
+        //
+        //            if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked)
+        //            {
+        //                // Calculate download speed in bytes per second
+        //                DateTime currentTime = DateTime.Now;
+        //                double timeDiff = (currentTime - lastUpdateTime).TotalSeconds;
+        //
+        //                if (timeDiff > 0)
+        //                {
+        //                    long bytesDiff = bytesReceived - previousBytesReceived;
+        //                    double speed = bytesDiff / timeDiff; // bytes per second
+        //                    string speedText = speed > 1024 * 1024
+        //                        ? $"{speed / (1024 * 1024):F2} MB/s"
+        //                        : $"{speed / 1024:F2} KB/s";
+        //
+        //                    qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{speedText}]"; }));
+        //                }
+        //            }
+        //            else
+        //            {
+        //                qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"; }));
+        //            }
+        //        };
+        //
+        //        // Handle completion of the download
+        //        client.DownloadFileCompleted += (sender, e) =>
+        //        {
+        //            if (e.Error != null)
+        //            {
+        //                qbdlxForm._qbdlxForm.logger.Error("Download failed: " + e.Error.Message);
+        //                tcs.SetException(e.Error);
+        //                return;
+        //            }
+        //
+        //            qbdlxForm._qbdlxForm.logger.Debug("Download complete.");
+        //
+        //            if (Settings.Default.fixMD5s && audio_format.Contains("flac"))
+        //            {
+        //                qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5s...");
+        //                fixMD5.fixMD5(tempFile, "flac");
+        //            }
+        //
+        //            qbdlxForm._qbdlxForm.logger.Debug("Starting file metadata tagging");
+        //            TagFile.WriteToFile(tempFile, artworkPath, QoAlbum, QoItem);
+        //
+        //            // Move the file with the full name (Zeta Long Paths to avoid MAX_PATH error)
+        //            qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
+        //            ZlpIOHelper.MoveFile(tempFile, filePath);
+        //
+        //            // Signal the TaskCompletionSource that the task is complete
+        //            tcs.SetResult(true);
+        //        };
+        //
+        //        // Start the asynchronous download
+        //        qbdlxForm._qbdlxForm.logger.Debug("Downloading to temp file...");
+        //        if (QoAlbum.MediaCount > 1)
+        //        {
+        //            qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
+        //            ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0') + ZlpPathHelper.DirectorySeparatorChar));
+        //        }
+        //        else
+        //        {
+        //            ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
+        //        }
+        //        client.DownloadFileAsync(new Uri(streamUrl), tempFile);
+        //
+        //        // Await the TaskCompletionSource to wait until download completes
+        //        await tcs.Task;
+        //    }
+        //}
 
         public async Task DownloadArtwork(string downloadPath, Album QoAlbum)
         {

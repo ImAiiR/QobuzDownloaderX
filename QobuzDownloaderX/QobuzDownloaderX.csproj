@@ -81,7 +81,6 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
