@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Windows.Forms;
 
 using QopenAPI;
+using ZetaLongPaths;
 
 using QobuzDownloaderX.Helpers;
 using QobuzDownloaderX.Properties;
@@ -213,7 +214,7 @@ namespace QobuzDownloaderX
             // Round corners of form
             Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
-            if (!System.IO.File.Exists(dllCheck))
+            if (!ZlpIOHelper.FileExists(dllCheck))
             {
                 logger.Error("taglib-sharp.dll is missing from folder. Exiting.");
                 string exeName = Path.GetFileName(Application.ExecutablePath);

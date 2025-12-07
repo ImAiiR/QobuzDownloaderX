@@ -2326,7 +2326,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.Label commentLabel;
         private System.Windows.Forms.FlowLayoutPanel folderButtonsPanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private CustomProgressBar progressBarDownload;
+        public CustomProgressBar progressBarDownload;
         public System.Windows.Forms.Button abortButton;
         public System.Windows.Forms.Button skipButton;
         public System.Windows.Forms.Button batchDownloadButton;

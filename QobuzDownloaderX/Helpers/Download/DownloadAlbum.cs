@@ -9,6 +9,7 @@ using QopenAPI;
 using ZetaLongPaths;
 
 using QobuzDownloaderX.Properties;
+using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
@@ -73,28 +74,25 @@ namespace QobuzDownloaderX
 
         private async Task DownloadGoodiesAsync(string downloadPath, Album album)
         {
-            try
+            foreach (var goody in album.Goodies)
             {
-                foreach (var goody in album.Goodies)
+                try
                 {
-                    getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputGoodyFound} ");
+                if (goody.FileFormatId == 52) continue; // Clip video, skip.
 
-                    if (goody.Url == null)
-                    {
-                        qbdlxForm._qbdlxForm.logger.Warning("No URL found for the goody, skipping.");
-                        getInfo.updateDownloadOutput($"\r\n{qbdlxForm._qbdlxForm.downloadOutputGoodyNoURL}\r\n");
-                        continue;
-                    }
-
-                    qbdlxForm._qbdlxForm.logger.Debug("Downloading goody...");
-                    await downloadFile.DownloadGoody(downloadPath, album, goody);
-                    qbdlxForm._qbdlxForm.logger.Debug("Goody download complete");
-                    getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
+                if (goody.Url == null)
+                {
+                    qbdlxForm._qbdlxForm.logger.Warning("No URL found for the goody, skipping.");
+                    getInfo.updateDownloadOutput($"\r\n{qbdlxForm._qbdlxForm.downloadOutputGoodyNoURL}\r\n");
+                    continue;
                 }
-            }
-            catch
-            {
-                qbdlxForm._qbdlxForm.logger.Warning("No goodies found or failed to download");
+
+                await downloadFile.DownloadGoody(downloadPath, album, goody, getInfo);
+                }
+                catch
+                {
+                    qbdlxForm._qbdlxForm.logger.Warning("No goodies found or failed to download");
+                }
             }
         }
 
@@ -118,7 +116,6 @@ namespace QobuzDownloaderX
                     double trackPortion = 100.0 / totalTracks;
                     double scaledValue = (trackIndex - 1) * trackPortion + (value / 100.0) * trackPortion;
                     progress?.Report((int)Math.Round(scaledValue));
-                    if (!qbdlxForm.isBatchDownloadRunning) TaskbarManager.SetProgressValue((int)scaledValue, 100);
                 });
 
                 try

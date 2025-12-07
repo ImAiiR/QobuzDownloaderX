@@ -14,8 +14,8 @@ namespace QobuzDownloaderX
     {
         public string GetSafeFilename(string filename)
         {
-            string safe = MakeValidWindowsFileName(filename);
-            string safeTruncated = TruncateLongName(safe, (Byte)"flac".Length); // "flac" = largest possible file extension length.
+            string safe = RenameTemplates.MakeValidWindowsFileName(filename);
+            string safeTruncated = RenameTemplates.TruncateLongName(safe, (Byte)"flac".Length); // "flac" = largest possible known file extension length on this application.
             return safeTruncated;
         }
 

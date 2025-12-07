@@ -1,15 +1,15 @@
-﻿using System;
+﻿using QobuzDownloaderX.Properties;
+using QopenAPI;
+using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-
-using QopenAPI;
+using System.Windows.Forms;
 using ZetaLongPaths;
-
-using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {
@@ -85,14 +85,14 @@ namespace QobuzDownloaderX
 
                     long totalBytes = response.Content.Headers.ContentLength ?? -1;
                     long totalBytesRead = 0;
-                    int bufferLength = 65536; // 64 kb.
+                    int bufferLength = 81920; // 80 kb. Stream.cs: const int DefaultCopyBufferSize = 81920
                     byte[] buffer = new byte[bufferLength];
                     DateTime lastUpdateTime = DateTime.Now;
                     long previousBytesRead = 0;
 
                     using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync:true))
                     using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60)))
+                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(50)))
                     {
                         int bytesRead;
                         while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)
@@ -292,17 +292,93 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody)
+        public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody, GetInfo getInfo)
         {
-            using (var client = new WebClient())
-            {
-                // Use secure connection
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                 | SecurityProtocolType.Tls11
+                                                 | SecurityProtocolType.Tls12
+                                                 | SecurityProtocolType.Tls13;
 
-                // Download goody to the download path
-                ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
-                await client.DownloadFileTaskAsync(QoGoody.Url, downloadPath + renameTemplates.GetSafeFilename(QoAlbum.Title) + " (" + QoGoody.Id + @").pdf");
+            ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
+
+            string fileName = downloadPath
+                              + renameTemplates.GetSafeFilename(QoGoody.Description ?? QoAlbum.Title)
+                              + " (" + QoGoody.Id + $"){Path.GetExtension(QoGoody.Url)}";
+
+            if (ZlpIOHelper.FileExists(fileName))
+            {
+                qbdlxForm._qbdlxForm.logger.Debug("Goody file already exists: " + fileName);
+                getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadOutputGoodyExists")}\r\n");
+                return;
+            }
+
+            try
+            {
+                using (var http = new HttpClient() { Timeout = TimeSpan.FromMinutes(5) })
+                {
+                    getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputGoodyFound} ");
+                    qbdlxForm._qbdlxForm.logger.Debug("Downloading goody...");
+
+                    int bufferLength = 81920; // 80 kb. Stream.cs: const int DefaultCopyBufferSize = 81920
+                    using (var response = await http.GetAsync(QoGoody.Url, HttpCompletionOption.ResponseHeadersRead))
+                    {
+                        response.EnsureSuccessStatusCode();
+
+                        using (var httpStream = await response.Content.ReadAsStreamAsync())
+                        using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
+                        using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(50)))
+                        {
+                            await httpStream.CopyToAsync(fileStream, bufferLength, cts.Token);
+                        }
+                    }
+                }
+
+                qbdlxForm._qbdlxForm.logger.Debug("Goody download complete");
+                getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
+            }
+            catch (Exception ex)
+            {
+                qbdlxForm._qbdlxForm.logger.Error($"Error downloading goody: {ex.Message}");
+                getInfo.updateDownloadOutput("ERROR: " + ex.Message + "\r\n");
             }
         }
+
+        // PREVIOUS WORKING IMPLEMENTATION USING OBSOLETE WEBCLIENT CLASS.
+        // It was not reporting http status code errors.
+        // ===============================================================
+        //public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody, GetInfo getInfo)
+        //{
+        //    using (var client = new WebClient())
+        //    {
+        //        // Use secure connection
+        //        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+        //                                             | SecurityProtocolType.Tls11
+        //                                             | SecurityProtocolType.Tls12
+        //                                             | SecurityProtocolType.Tls13;
+        //
+        //        // Ensure directory exists
+        //        ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
+        //
+        //        // Build the file name
+        //        string fileName = downloadPath + renameTemplates.GetSafeFilename($"{QoAlbum.Title} - {QoGoody.Description}")
+        //                          + " (" + QoGoody.Id + $").{Path.GetExtension(QoGoody.Url)}";
+        //
+        //        // Check if the file already exists
+        //        if (!ZlpIOHelper.FileExists(fileName))
+        //        {
+        //            getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputGoodyFound} ");
+        //            qbdlxForm._qbdlxForm.logger.Debug("Downloading goody...");
+        //            await client.DownloadFileTaskAsync(QoGoody.Url, fileName);
+        //            qbdlxForm._qbdlxForm.logger.Debug("Goody download complete");
+        //            getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
+        //        }
+        //        else
+        //        {
+        //            qbdlxForm._qbdlxForm.logger.Debug("Goody file already exists: " + fileName);
+        //            System.Diagnostics.Debug.WriteLine("Goody file already exists: " + fileName);
+        //            getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadOutputGoodyExists")}\r\n");
+        //        }
+        //    }
+        //}
     }
 }
