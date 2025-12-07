@@ -7,7 +7,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -146,7 +145,7 @@ namespace QobuzDownloaderX
         {
             // Create new log file
             Directory.CreateDirectory("logs");
-            logger = new BufferedLogger("logs\\log_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt");
+            logger = new BufferedLogger("logs\\QobuzDLX " + DateTime.Now.ToString("yyyy⧸MM⧸dd HH꞉mm꞉ss") + ".log");
             logger.Debug("Logger started, QBDLX form initialized!");
 
             InitializeComponent();
@@ -769,6 +768,7 @@ namespace QobuzDownloaderX
                 TaskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
                 TaskbarManager.SetProgressValue(0, batchUrlsCount);
                 batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+                notifyIcon1.Text = $"QobuzDLX\r\n\r\n{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
                 isBatchDownloadRunning = true;
                 foreach (string url in batchUrls)
                 {
@@ -784,9 +784,11 @@ namespace QobuzDownloaderX
                     inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
                     await downloadButtonAsyncWork();
                     batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+                    notifyIcon1.Text = $"QobuzDLX\r\n\r\n{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
                     TaskbarManager.SetProgressValue(batchUrlsCurrentIndex, batchUrlsCount);
                 }
                 if (!this.Visible) notifyIcon1.ShowBalloonTip(5000, "QobuzDLX", languageManager.GetTranslation("batchDownloadFinished"), ToolTipIcon.Info);
+                notifyIcon1.Text = $"QobuzDLX";
                 batchDownloadProgressCountLabel.Text = "";
                 batchDownloadProgressCountLabel.Visible = false;
                 isBatchDownloadRunning = false;
@@ -2132,9 +2134,8 @@ namespace QobuzDownloaderX
                 act();
             }
         }
-
     }
-
+    
     // Upsides of this buffering approach:
     //
     //   - Thread-safe file writes.
@@ -2152,10 +2153,12 @@ namespace QobuzDownloaderX
     //     any remaining log entries in '_buffer' cannot be written to log file. 
     public sealed class BufferedLogger : IDisposable
     {
-        private readonly string _filePath;
-        private readonly StreamWriter _writer;
+        private const int flushThreshold = 1024 * 1024; // 1 MB
+        private const long maxLogFileSize = 50L * 1024L * 1024L; // 50 MB
+
+        private string _filePath;
+        private StreamWriter _writer;
         private readonly StringBuilder _buffer;
-        private const int FlushThreshold = 1024 * 1024; // 1 MB
         private bool _disposed = false; 
         private readonly object _lock = new object();
 
@@ -2184,6 +2187,8 @@ namespace QobuzDownloaderX
 
                 try
                 {
+                    this.RotateToNewLogFileIfNeeded();
+
                     // Write to console immediately
                     System.Diagnostics.Debug.WriteLine($"{level} | {message}");
 
@@ -2191,7 +2196,7 @@ namespace QobuzDownloaderX
                     _buffer.AppendLine(logMessage);
 
                     // If buffer exceeds threshold, flush to file
-                    if (_buffer.Length >= FlushThreshold)
+                    if (_buffer.Length >= BufferedLogger.flushThreshold)
                     {
                         _writer.Write(_buffer.ToString());
                         _buffer.Clear();
@@ -2208,9 +2213,85 @@ namespace QobuzDownloaderX
         }
 
         public void Debug(string message) => WriteLog("DEBUG", message);
+
         public void Info(string message) => WriteLog("INFO", message);
+
         public void Warning(string message) => WriteLog("WARNING", message);
+
         public void Error(string message) => WriteLog("ERROR", message);
+
+        private void RotateToNewLogFileIfNeeded()
+        {
+            if (!File.Exists(_filePath))
+                return;
+
+            long size = new FileInfo(_filePath).Length;
+
+            if (size < BufferedLogger.maxLogFileSize)
+                return;
+
+            if (_buffer.Length > 0)
+            {
+                _writer.Write(_buffer.ToString());
+                _buffer.Clear();
+                _writer.Flush();
+            }
+
+            _writer.Dispose();
+
+            string newName = this.GetUniqueFileName(_filePath);
+            System.Diagnostics.Debug.WriteLine($"Rotating to new log file: {newName}");
+
+            _writer = new StreamWriter(new FileStream(newName, FileMode.Append, FileAccess.Write, FileShare.None), Encoding.UTF8)
+            {
+                AutoFlush = false
+            };
+
+            _filePath = newName;
+        }
+
+        private string GetUniqueFileName(string fullPath)
+        {
+            string folder = Path.GetDirectoryName(fullPath) ?? throw new ArgumentException("Invalid path: " + fullPath);
+            string file = Path.GetFileName(fullPath);
+            string pszPathForApi = fullPath;
+
+            const int MAX_PATH = 260;
+            StringBuilder sb = new StringBuilder(MAX_PATH);
+
+            bool ok = NativeMethods.PathYetAnotherMakeUniqueName(
+                sb,
+                pszPathForApi, // full path + name
+                null,          // pszShort = null -> base on long name
+                null           // optional pszFileSpec, can be left null
+            );
+
+            if (!ok)
+            {
+                // The function can return FALSE in case of truncation or other failure.
+                throw new IOException("PathYetAnotherMakeUniqueName failed.");
+            }
+
+            string result = sb.ToString();
+
+            // Extra safety: if the API returns exactly the same name
+            // and the file already exists, use a manual fallback.
+            if (string.Equals(result, fullPath, StringComparison.OrdinalIgnoreCase) && File.Exists(fullPath))
+            {
+                string baseName = Path.GetFileNameWithoutExtension(file);
+                string ext = Path.GetExtension(file);
+                int count = 1;
+                string candidate;
+                do
+                {
+                    candidate = Path.Combine(folder, string.Format("{0} ({1}){2}", baseName, count, ext));
+                    count++;
+                } while (File.Exists(candidate));
+                return candidate;
+            }
+
+            return result;
+        }
 
         public void Dispose()
         {

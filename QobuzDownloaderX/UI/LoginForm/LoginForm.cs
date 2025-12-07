@@ -4,13 +4,13 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 using QopenAPI;
 
 using QobuzDownloaderX.Helpers;
 using QobuzDownloaderX.Properties;
+using QobuzDownloaderX.Win32;
 
 namespace QobuzDownloaderX
 {

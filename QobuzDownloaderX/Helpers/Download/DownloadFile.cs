@@ -15,10 +15,8 @@ namespace QobuzDownloaderX
 {
     class DownloadFile
     {
-        readonly TagFile tagFile = new TagFile();
         readonly RenameTemplates renameTemplates = new RenameTemplates();
         readonly PaddingNumbers paddingNumbers = new PaddingNumbers();
-        readonly GetInfo getInfo = new GetInfo();
         readonly FixMD5 fixMD5 = new FixMD5();
 
         public string artworkPath { get; set; }
@@ -87,14 +85,14 @@ namespace QobuzDownloaderX
 
                     long totalBytes = response.Content.Headers.ContentLength ?? -1;
                     long totalBytesRead = 0;
-                    int bufferLength = 65536; // 64 Kb.
+                    int bufferLength = 65536; // 64 kb.
                     byte[] buffer = new byte[bufferLength];
                     DateTime lastUpdateTime = DateTime.Now;
                     long previousBytesRead = 0;
 
                     using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync:true))
                     using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30)))
+                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60)))
                     {
                         int bytesRead;
                         while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)

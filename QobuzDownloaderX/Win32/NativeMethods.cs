@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Win32
 {
     internal class NativeMethods
     {
@@ -14,6 +15,14 @@ namespace QobuzDownloaderX
             int nBottomRect,   // y-coordinate of lower-right corner
             int nWidthEllipse, // width of ellipse
             int nHeightEllipse // height of ellipse
+        );
+
+        [DllImport("shell32.dll", CharSet = CharSet.Unicode, SetLastError = false)]
+        public static extern bool PathYetAnotherMakeUniqueName(
+            StringBuilder pszUniqueName,   // Output buffer
+            string pszPath,                // Folder path
+            string pszShort,               // Optional short name (can be null)
+            string pszFile                 // Original file name
         );
 
         [DllImport("user32.dll")]
