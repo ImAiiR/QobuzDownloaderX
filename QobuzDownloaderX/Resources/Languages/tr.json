@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Barkod",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "Sanatçı İsimlerini Birleştir\n\nBu seçenek etkinleştirildiğinde, birden fazla sanatçı adına sahip parçalar tek bir virgülle ayrılmış metin haline getirilir. Listedeki son sanatçı adı virgül yerine \"&&\" ile ayrılır. 'Feat.' etiketiyle başlayan konuk sanatçılar listenin sonuna eklenir.\n\nÖrnek (etkin):\nTamika && S3rl Feat. Amy - Here.mp3\n\nÖrnek (devre dışı):\nTamika - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Sanatçı İsimlerini Birleştir\n\nBu seçenek etkinleştirildiğinde, birden fazla sanatçı adına sahip parçalar tek bir virgülle ayrılmış metin haline getirilir. Listedeki son sanatçı adı virgül yerine \"&&\" ile ayrılır. 'Feat.' etiketiyle başlayan konuk sanatçılar listenin sonuna eklenir.\n\nÖrnek (etkin):\nS3rl && Tamika Feat. Amy - Here.mp3\n\nÖrnek (devre dışı):\nS3rl - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Oynatılabilirlik Doğrulaması",
     "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
     "downloadSpeedCheckbox":        "İndirme Hızını Göster",

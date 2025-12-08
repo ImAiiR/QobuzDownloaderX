@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Código de barras",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Unir nombres de artistas\n\nSi se activa, las pistas con varios artistas se unirán en una sola cadena separada por comas. El último nombre de la lista se separará usando \"&&\". Los artistas colaboradores se agregarán al final, precedidos por \"Feat.\".\n\nEjemplo (activado):\nTamika && S3rl Feat. Amy - Here.mp3\n\nEjemplo (desactivado):\nTamika - Here.mp3",
+    "mergeArtistNamesCheckbox":     "Unir nombres de artistas\n\nSi se activa, las pistas con varios artistas se unirán en una sola cadena separada por comas. El último nombre de la lista se separará usando \"&&\". Los artistas colaboradores se agregarán al final, precedidos por \"Feat.\".\n\nEjemplo (activado):\nS3rl && Tamika Feat. Amy - Here.mp3\n\nEjemplo (desactivado):\nS3rl - Here.mp3",
     "streamableCheckbox":           "Verificación de stream",
     "fixMD5sCheckbox":              "Auto-corregir MD5 sin definir (requiere FLAC en la variable PATH)",
     "downloadSpeedCheckbox":        "Mostrar velocidad de descarga",

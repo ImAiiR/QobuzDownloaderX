@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Barcode",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "Künstlernamen zusammenführen\n\nWenn diese Option aktiviert ist, werden Titel mit mehreren Künstlernamen zu einer einzigen kommagetrennten Zeichenkette zusammengeführt. Der letzte Künstlername verwendet dabei \"&&\" anstelle eines Kommas. Gastkünstler werden am Ende hinzugefügt und mit \"Feat.\" eingeleitet.\n\nBeispiel (aktiviert):\nTamika && S3rl Feat. Amy - Here.mp3\n\nBeispiel (deaktiviert):\nTamika - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Künstlernamen zusammenführen\n\nWenn diese Option aktiviert ist, werden Titel mit mehreren Künstlernamen zu einer einzigen kommagetrennten Zeichenkette zusammengeführt. Der letzte Künstlername verwendet dabei \"&&\" anstelle eines Kommas. Gastkünstler werden am Ende hinzugefügt und mit \"Feat.\" eingeleitet.\n\nBeispiel (aktiviert):\nS3rl && Tamika Feat. Amy - Here.mp3\n\nBeispiel (deaktiviert):\nS3rl - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Ist Streamfähig Check",
     "fixMD5sCheckbox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
     "downloadSpeedCheckbox":        "Downloadgeschwindigkeit Anzeigen",

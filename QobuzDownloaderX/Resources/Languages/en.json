@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Barcode",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Merge Artist Names\n\nIf enabled, tracks with various artist names will be merged into a single comma-separated string. The last artist name will use \"&&\" instead of a comma. Featured artists will be added at the end, preceded with \"Feat.\"\n\nExample, if enabled:\nTamika && S3rl Feat. Amy - Here.mp3\n\nExample, if disabled:\nTamika - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Merge Artist Names\n\nIf enabled, tracks with various artist names will be merged into a single comma-separated string. The last artist name will use \"&&\" instead of a comma. Featured artists will be added at the end, preceded with \"Feat.\"\n\nExample, if enabled:\nS3rl && Tamika Feat. Amy - Here.mp3\n\nExample, if disabled:\nS3rl - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Streamable Check",
     "fixMD5sCheckbox":              "Auto-Fix Unset MD5s (must have FLAC in PATH variables)",
     "downloadSpeedCheckbox":        "Print Download Speed",
