@@ -8,7 +8,7 @@ using QopenAPI;
 
 using QobuzDownloaderX.Properties;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
     class SearchPanelHelper
     {

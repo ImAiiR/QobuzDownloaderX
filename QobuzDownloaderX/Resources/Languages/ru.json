@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55",
-    "TranslationUpdatedOn":         "December 4, 2025, 11:01AM MSK",
+    "TranslationUpdatedOn":         "December 7, 2025, 11:01AM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -72,6 +72,7 @@
     "upcCheckbox":                  "UPC / Штрих-код",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Объединить имена исполнителей\n\nЕсли включено, треки с несколькими исполнителями будут объединены в одну строку, разделённую запятыми. Последнее имя исполнителя будет отделено с помощью \"&&\", а не запятой. Приглашённые исполнители будут добавлены в конце и помечены как \"Feat.\".\n\nПример (включено):\nTamika && S3rl Feat. Amy - Here.mp3\n\nПример (выключено):\nTamika - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Проверка возможности трансляции",
     "fixMD5sCheckbox":              "Автоматическое исправление отсутствующих MD5 (FLAC должен быть в переменной PATH)",
     "downloadSpeedCheckbox":        "Показывать скорость загрузки",

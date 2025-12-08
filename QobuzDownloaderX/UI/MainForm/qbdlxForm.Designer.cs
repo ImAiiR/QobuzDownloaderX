@@ -1,4 +1,5 @@
 ﻿using QobuzDownloaderX.UserControls;
+using System.Drawing;
 
 namespace QobuzDownloaderX
 {
@@ -134,6 +135,7 @@ namespace QobuzDownloaderX
             this.embeddedArtLabel = new System.Windows.Forms.Label();
             this.embeddedArtSizeSelect = new System.Windows.Forms.ComboBox();
             this.extraSettingsLabel = new System.Windows.Forms.Label();
+            this.mergeArtistNamesCheckbox = new System.Windows.Forms.CheckBox();
             this.qualitySelectButton = new System.Windows.Forms.Button();
             this.qualitySelectPanel = new System.Windows.Forms.Panel();
             this.mp3Button2 = new System.Windows.Forms.RadioButton();
@@ -851,7 +853,7 @@ namespace QobuzDownloaderX
             this.playlistTemplateTextbox.Name = "playlistTemplateTextbox";
             this.playlistTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.playlistTemplateTextbox.TabIndex = 2;
-            this.playlistTemplateTextbox.Text = "%PlaylistTitle% [ID-%PlaylistID%]\\%ArtistName%";
+            this.playlistTemplateTextbox.Text = "%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%";
             this.playlistTemplateTextbox.WordWrap = false;
             // 
             // playlistTemplateLabel
@@ -904,7 +906,7 @@ namespace QobuzDownloaderX
             this.albumTemplateTextbox.Name = "albumTemplateTextbox";
             this.albumTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.albumTemplateTextbox.TabIndex = 2;
-            this.albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC-%UPC%]";
+            this.albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]";
             this.albumTemplateTextbox.WordWrap = false;
             // 
             // downloadFolderTextbox
@@ -1111,6 +1113,8 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtLabel);
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
+            this.extraSettingsPanel.Controls.Add(this.mergeArtistNamesCheckbox);
+            this.mergeArtistNamesCheckbox.BringToFront();
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extraSettingsPanel.Location = new System.Drawing.Point(689, 442);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
@@ -1670,6 +1674,21 @@ namespace QobuzDownloaderX
             this.extraSettingsLabel.Text = "ADDITIONAL SETTINGS                                                              " +
     "       ";
             this.extraSettingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.extraSettingsLabel_MouseMove);
+            // 
+            // mergeArtistNamesCheckbox
+            // 
+            this.mergeArtistNamesCheckbox.AutoSize = false;
+            this.mergeArtistNamesCheckbox.Checked = true;
+            this.mergeArtistNamesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mergeArtistNamesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeArtistNamesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.mergeArtistNamesCheckbox.Location = new Point(10, extraSettingsPanel.Height - mergeArtistNamesCheckbox.Height - 250);
+            this.mergeArtistNamesCheckbox.Name = "mergeArtistNamesCheckbox";
+            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(210, 320);
+            this.mergeArtistNamesCheckbox.TabIndex = 15;
+            this.mergeArtistNamesCheckbox.Text = "Merge Artists Names";
+            this.mergeArtistNamesCheckbox.UseVisualStyleBackColor = true;
+            this.mergeArtistNamesCheckbox.CheckedChanged += new System.EventHandler(this.mergeArtistNamesCheckbox_CheckedChanged);
             // 
             // qualitySelectButton
             // 
@@ -2269,6 +2288,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.CheckBox trackTotalCheckbox;
         private System.Windows.Forms.CheckBox isrcCheckbox;
         private System.Windows.Forms.CheckBox urlCheckbox;
+        private System.Windows.Forms.CheckBox mergeArtistNamesCheckbox;
         private System.Windows.Forms.CheckBox upcCheckbox;
         private System.Windows.Forms.CheckBox labelCheckbox;
         private System.Windows.Forms.CheckBox copyrightCheckbox;

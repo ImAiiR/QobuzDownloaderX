@@ -218,6 +218,18 @@ namespace QobuzDownloaderX.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool mergeArtistNames {
+            get {
+                return ((bool)(this["mergeArtistNames"]));
+            }
+            set {
+                this["mergeArtistNames"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool upcTag {
             get {
                 return ((bool)(this["upcTag"]));
@@ -637,7 +649,7 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%AlbumTitle% (%Year%) (%AlbumPA%) [UPC-%UPC%]")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]")]
         public string savedAlbumTemplate {
             get {
                 return ((string)(this["savedAlbumTemplate"]));
@@ -649,7 +661,7 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%PlaylistTitle% [ID-%PlaylistID%]\\%ArtistName%")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%")]
         public string savedPlaylistTemplate {
             get {
                 return ((string)(this["savedPlaylistTemplate"]));

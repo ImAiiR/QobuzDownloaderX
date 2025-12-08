@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "December 4, 2025, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "December 7, 2025, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -72,6 +72,7 @@
     "upcCheckbox":                  "UPC/条形码",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "合并艺术家名称\n\n启用后，包含多个艺术家名称的曲目将被合并为一个以逗号分隔的字符串。最后一个艺术家名称将使用 \"&&\" 而不是逗号。客串艺术家将添加在末尾，并以 \"Feat.\" 开头。\n\n示例（启用）:\nTamika && S3rl Feat. Amy - Here.mp3\n\n示例（禁用）:\nTamika - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "歌曲流媒体可播性检查",
     "fixMD5sCheckbox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckbox":        "显示下载速度",

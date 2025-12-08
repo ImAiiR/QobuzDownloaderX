@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 using QobuzDownloaderX.Win32;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
     internal sealed class TaskbarManager
     {

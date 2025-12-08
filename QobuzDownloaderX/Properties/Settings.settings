@@ -47,9 +47,12 @@
     <Setting Name="isrcTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="urlTag" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
+	  <Setting Name="urlTag" Type="System.Boolean" Scope="User">
+		  <Value Profile="(Default)">True</Value>
+	  </Setting>
+	  <Setting Name="mergeArtistNames" Type="System.Boolean" Scope="User">
+		  <Value Profile="(Default)">True</Value>
+	  </Setting>
     <Setting Name="upcTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -156,10 +159,10 @@
       <Value Profile="(Default)">%TrackNumber%. %ArtistName% - %TrackTitle%</Value>
     </Setting>
     <Setting Name="savedAlbumTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%AlbumTitle% (%Year%) (%AlbumPA%) [UPC-%UPC%]</Value>
+      <Value Profile="(Default)">%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]</Value>
     </Setting>
     <Setting Name="savedPlaylistTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%PlaylistTitle% [ID-%PlaylistID%]\%ArtistName%</Value>
+      <Value Profile="(Default)">%PlaylistTitle% [ID%PlaylistID%]\%ArtistName%</Value>
     </Setting>
   </Settings>
 </SettingsFile>

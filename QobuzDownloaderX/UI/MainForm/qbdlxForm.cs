@@ -1,6 +1,4 @@
-﻿using QobuzDownloaderX.Properties;
-using QobuzDownloaderX.Win32;
-using QopenAPI;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +13,13 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using QopenAPI;
 using ZetaLongPaths;
+
+using QobuzDownloaderX.Helpers;
+using QobuzDownloaderX.Properties;
+using QobuzDownloaderX.Win32;
 
 namespace QobuzDownloaderX
 {
@@ -204,6 +208,7 @@ namespace QobuzDownloaderX
             genreCheckbox.Checked = Settings.Default.genreTag;
             isrcCheckbox.Checked = Settings.Default.isrcTag;
             urlCheckbox.Checked = Settings.Default.urlTag;
+            mergeArtistNamesCheckbox.Checked = Settings.Default.mergeArtistNames;
             releaseTypeCheckbox.Checked = Settings.Default.typeTag;
             explicitCheckbox.Checked = Settings.Default.explicitTag;
             trackTitleCheckbox.Checked = Settings.Default.trackTitleTag;
@@ -363,6 +368,7 @@ namespace QobuzDownloaderX
             upcCheckbox.Text = languageManager.GetTranslation("upcCheckbox");
             isrcCheckbox.Text = languageManager.GetTranslation("isrcCheckbox");
             urlCheckbox.Text = languageManager.GetTranslation("urlCheckbox");
+            mergeArtistNamesCheckbox.Text = languageManager.GetTranslation("mergeArtistNamesCheckbox");
             streamableCheckbox.Text = languageManager.GetTranslation("streamableCheckbox");
             fixMD5sCheckbox.Text = languageManager.GetTranslation("fixMD5sCheckbox");
             downloadSpeedCheckbox.Text = languageManager.GetTranslation("downloadSpeedCheckbox");
@@ -1535,6 +1541,12 @@ namespace QobuzDownloaderX
         private void urlCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.urlTag = urlCheckbox.Checked;
+            Settings.Default.Save();
+        }
+
+        private void mergeArtistNamesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.mergeArtistNames = mergeArtistNamesCheckbox.Checked;
             Settings.Default.Save();
         }
 

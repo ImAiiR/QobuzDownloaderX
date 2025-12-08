@@ -2,7 +2,7 @@
 
 using QopenAPI;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
     class PaddingNumbers
     {

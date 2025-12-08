@@ -101,6 +101,10 @@
     <Compile Include="Helpers\Download\DownloadTrack.cs" />
     <Compile Include="Helpers\Download\DownloadAlbum.cs" />
     <Compile Include="Helpers\Download\DownloadFile.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\InvolvedPersonRoleMapping.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\InvolvedPersonRoleType.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\ParsingHelper.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\PerformersParser.cs" />
     <Compile Include="Helpers\TaskbarManager.cs" />
     <Compile Include="Helpers\FixMD5.cs" />
     <Compile Include="Helpers\GetInfo.cs" />

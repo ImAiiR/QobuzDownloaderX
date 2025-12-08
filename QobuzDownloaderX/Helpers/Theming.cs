@@ -10,7 +10,7 @@ using ZetaLongPaths;
 using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.UserControls;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
     public class ThemeSettings
     {
@@ -349,6 +349,7 @@ namespace QobuzDownloaderX
 	""upcCheckbox"":				""UPC / Barcode"",
 	""isrcCheckbox"":				""ISRC"",
 	""urlCheckbox"":				""URL"",
+	""mergeArtistNamesCheckbox"":   ""Merge Artist Names"",
 	""streamableCheckbox"":			""Streamable Check"",
 	""fixMD5sCheckbox"":			""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
 	""downloadSpeedCheckbox"":		""Print Download Speed"",

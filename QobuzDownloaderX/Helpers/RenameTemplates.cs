@@ -1,14 +1,15 @@
-﻿using System;
+﻿using QobuzDownloaderX.Helpers.QobuzDownloaderXMOD;
+using QobuzDownloaderX.Properties;
+using QopenAPI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-
-using QopenAPI;
 using ZetaLongPaths;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
     class RenameTemplates
     {
@@ -171,18 +172,27 @@ namespace QobuzDownloaderX
                 template = ReplaceParentalWarningTags(template, QoItem.ParentalWarning);
                 template = template
                     .Replace("%trackid%", QoItem.Id.ToString())
-                    .Replace("%trackartist%", QoItem?.Performer?.Name?.ToString())
                     .Replace("%trackcomposer%", QoItem?.Composer?.Name?.ToString())
                     .Replace("%tracknumber%", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))
                     .Replace("%isrc%", QoItem.ISRC.ToString())
                     .Replace("%trackbitdepth%", QoItem.MaximumBitDepth.ToString())
                     .Replace("%tracksamplerate%", QoItem.MaximumSamplingRate.ToString())
                     .Replace("%tracktitle%", QoItem.Version == null ? QoItem.Title : $"{QoItem.Title.TrimEnd()} ({QoItem.Version})");
-                
+
+                if (Settings.Default.mergeArtistNames)
+                {
+                    string performerNames = ParsingHelper.GetTrackPerformersName(QoItem);
+                    template = template.Replace("%artistname%", performerNames);
+                    template = template.Replace("%trackartist%", performerNames);
+                }
+                else
+                {
+                    template = template.Replace("%trackartist%", QoItem?.Performer?.Name?.ToString());
+                }
+
                 // Track Format Templates
                 template = template.Replace("%trackformat%", fileFormat.ToUpper().TrimStart('.'));
                 template = RenameFormatTemplate(template, qbdlxForm._qbdlxForm.format_id, fileFormat, QoItem.MaximumBitDepth, QoItem.MaximumSamplingRate, "%trackformatwithhiresquality%", "%trackformatwithquality%");
-
             }
 
             // Album Templates
@@ -259,7 +269,7 @@ namespace QobuzDownloaderX
 
         public static string MakeValidWindowsFileName(
             string fileName,
-            char asteriskChar = '✲',
+            char asteriskChar = '∗',
             char colonChar = '∶',
             char questionMarkChar = 'ʔ',
             char verticalBarChar = 'ǀ',

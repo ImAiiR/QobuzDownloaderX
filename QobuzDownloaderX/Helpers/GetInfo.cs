@@ -4,7 +4,7 @@ using System.Linq;
 
 using QopenAPI;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
     class GetInfo
     {

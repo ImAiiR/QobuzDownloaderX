@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
     class FixMD5
     {
