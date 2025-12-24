@@ -218,7 +218,7 @@ namespace QobuzDownloaderX
             {
                 logger.Error("taglib-sharp.dll is missing from folder. Exiting.");
                 string exeName = Path.GetFileName(Application.ExecutablePath);
-                MessageBox.Show($"taglib-sharp.dll missing from folder!\r\nPlease Make sure the DLL is in the same folder as {exeName}!", "ERROR",
+                MessageBox.Show(this, qbdlxForm._qbdlxForm.languageManager.GetTranslation("tagLibSharpMissingMsg").Replace("{exeName}", exeName), Application.ProductName,
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
@@ -330,7 +330,7 @@ namespace QobuzDownloaderX
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            logger.Debug("Logging in...");
+            logger.Debug("Logging in…");
             #region Check if textboxes are valid
             if (emailTextbox.Text == emailPlaceholder | emailTextbox.Text == null | emailTextbox.Text == "")
             {
@@ -360,7 +360,7 @@ namespace QobuzDownloaderX
             Settings.Default.savedPassword = password;
             Settings.Default.Save();
 
-            logger.Debug("Starting loginBackground...");
+            logger.Debug("Starting loginBackground…");
             loginBackground.RunWorkerAsync();
         }
 
@@ -554,7 +554,7 @@ namespace QobuzDownloaderX
 
         private void customSaveButton_Click(object sender, EventArgs e)
         {
-            logger.Debug("Saving custom app ID and secret...");
+            logger.Debug("Saving custom app ID and secret…");
             Settings.Default.savedAppID = appidTextbox.Text;
             Settings.Default.savedSecret = appSecretTextbox.Text;
             logger.Debug("Custom app ID and secret saved! Hiding custom values panel");
@@ -585,7 +585,7 @@ namespace QobuzDownloaderX
         private void updateButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Opening update information dialog");
-            DialogResult dialogResult = MessageBox.Show(updateNotification.Replace("{currentVersion}", currentVersion).Replace("{newVersion}", newVersion).Replace("{changelog}", changes.Replace("\\r\\n", "\r\n")), updateNotificationTitle, MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show(this, updateNotification.Replace("{currentVersion}", currentVersion).Replace("{newVersion}", newVersion).Replace("{changelog}", changes.Replace("\\r\\n", "\r\n")), updateNotificationTitle, MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 // If "Yes" is clicked, open GitHub page and close QBDLX.

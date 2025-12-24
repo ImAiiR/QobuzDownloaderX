@@ -13,6 +13,11 @@ namespace QobuzDownloaderX.Helpers
 {
     class RenameTemplates
     {
+        public static readonly Regex percentRegex = new Regex(@"%(.*?)%", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        public static readonly Regex spacesRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        public static readonly Regex repeatedParenthesesRegex = new Regex(@"\(([^()]+)\)\s*(\(\1\))+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static readonly Regex spacesBeforeBackslashRegex = new Regex(@"\s+\\", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
         public string GetSafeFilename(string filename)
         {
             string safe = RenameTemplates.MakeValidWindowsFileName(filename);
@@ -143,7 +148,7 @@ namespace QobuzDownloaderX.Helpers
             qbdlxForm._qbdlxForm.logger.Debug("Renaming user template - " + template);
 
             // Convert all text between % symbols to lowercase
-            template = Regex.Replace(template, @"%(.*?)%", match => match.Value.ToLower());
+            template = percentRegex.Replace(template, match => match.Value.ToLower());
 
             // Keep backslashes to be used to make new folders
             if (template.Contains(ZlpPathHelper.DirectorySeparatorChar))
@@ -176,8 +181,13 @@ namespace QobuzDownloaderX.Helpers
                     .Replace("%tracknumber%", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))
                     .Replace("%isrc%", QoItem.ISRC.ToString())
                     .Replace("%trackbitdepth%", QoItem.MaximumBitDepth.ToString())
-                    .Replace("%tracksamplerate%", QoItem.MaximumSamplingRate.ToString())
-                    .Replace("%tracktitle%", QoItem.Version == null ? QoItem.Title : $"{QoItem.Title.TrimEnd()} ({QoItem.Version})");
+                    .Replace("%tracksamplerate%", QoItem.MaximumSamplingRate.ToString());
+
+                string titleFormatted = QoItem.Version == null
+                                        ? QoItem.Title
+                                        : $"{QoItem.Title.TrimEnd()} ({QoItem.Version})";
+                titleFormatted = repeatedParenthesesRegex.Replace(titleFormatted, "($1)");
+                template = template.Replace("%tracktitle%", titleFormatted);
 
                 if (Settings.Default.mergeArtistNames)
                 {
@@ -205,7 +215,7 @@ namespace QobuzDownloaderX.Helpers
                     .Replace("%artistname%", GetReleaseArtists(QoAlbum) ?? "")
                     .Replace("%albumgenre%", QoAlbum?.Genre?.Name ?? "")
                     .Replace("%albumcomposer%", QoAlbum?.Composer?.Name?.ToString() ?? "")
-                    .Replace("%label%", Regex.Replace(QoAlbum.Label?.Name ?? "", @"\s+", " ")) // Qobuz sometimes has multiple spaces in place of where a single space should be when it comes to Labels
+                    .Replace("%label%", spacesRegex.Replace(QoAlbum.Label?.Name ?? "", " "))
                     .Replace("%copyright%", QoAlbum.Copyright ?? "")
                     .Replace("%upc%", QoAlbum.UPC ?? "")
                     .Replace("%releasedate%", QoAlbum.ReleaseDateOriginal ?? "")
@@ -241,7 +251,7 @@ namespace QobuzDownloaderX.Helpers
                         .Replace("%artistname%", GetReleaseArtists(QoAlbum) ?? "")
                         .Replace("%albumgenre%", QoAlbum?.Genre?.Name ?? "")
                         .Replace("%albumcomposer%", QoAlbum?.Composer?.Name?.ToString() ?? "")
-                        .Replace("%label%", Regex.Replace(QoAlbum.Label?.Name ?? "", @"\s+", " ")) // Qobuz sometimes has multiple spaces in place of where a single space should be when it comes to Labels
+                        .Replace("%label%", spacesRegex.Replace(QoAlbum.Label?.Name ?? "", " ")) // Qobuz sometimes has multiple spaces where a single one should be
                         .Replace("%copyright%", QoAlbum.Copyright ?? "")
                         .Replace("%upc%", QoAlbum.UPC ?? "")
                         .Replace("%releasedate%", QoAlbum.ReleaseDateOriginal ?? "")
@@ -258,7 +268,11 @@ namespace QobuzDownloaderX.Helpers
             template = GetSafeFilename(template); 
 
             // Remove any double spaces
-            template = Regex.Replace(Regex.Replace(template.Replace("{backslash}", @"\").Replace("{forwardslash}", @"/"), @"\s+", " ").Replace(@" \", @"\"), @"\s+\\", " "); // Replace slash placeholders & remove double spaces
+            template = spacesBeforeBackslashRegex.Replace(
+                           spacesRegex.Replace(
+                               template.Replace("{backslash}", @"\").Replace("{forwardslash}", @"/").Replace(@" \", @"\"),
+                               " "),
+                           " "); // Replace slash placeholders & remove double spaces
 
             // Replace long ellipsis
             template = template.Replace("...", "…");

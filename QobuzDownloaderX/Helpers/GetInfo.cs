@@ -47,7 +47,7 @@ namespace QobuzDownloaderX.Helpers
             {
                 // Grab artist info with auth
                 outputText = null;
-                qbdlxForm._qbdlxForm.logger.Debug("Getting artist Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting artist Info…");
                 QoArtist = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token);
                 return QoArtist;
             }
@@ -63,7 +63,7 @@ namespace QobuzDownloaderX.Helpers
         {
             try
             {
-                qbdlxForm._qbdlxForm.logger.Debug("Getting label info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting label info…");
                 outputText = null;
 
                 int limit = 100;
@@ -117,7 +117,7 @@ namespace QobuzDownloaderX.Helpers
         {
             try
             {
-                qbdlxForm._qbdlxForm.logger.Debug("Getting favorites Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting favorites Info…");
                 outputText = null;
 
                 int limit = 100;
@@ -204,7 +204,7 @@ namespace QobuzDownloaderX.Helpers
             {
                 // Grab track info with auth
                 outputText = null;
-                qbdlxForm._qbdlxForm.logger.Debug("Getting track Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting track Info…");
                 QoItem = QoService.TrackGetWithAuth(app_id, track_id, user_auth_token);
 
                 if (QoItem != null)
@@ -242,7 +242,7 @@ namespace QobuzDownloaderX.Helpers
             {
                 // Grab album info with auth
                 outputText = null;
-                qbdlxForm._qbdlxForm.logger.Debug("Getting album Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting album Info…");
                 QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
                 return QoAlbum;
             }
@@ -258,7 +258,7 @@ namespace QobuzDownloaderX.Helpers
         {
             try
             {
-                qbdlxForm._qbdlxForm.logger.Debug("Getting playlist Info...");
+                qbdlxForm._qbdlxForm.logger.Debug("Getting playlist Info…");
                 outputText = null;
 
                 int limit = 100;

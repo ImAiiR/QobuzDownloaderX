@@ -1,7 +1,7 @@
 ﻿
 namespace QobuzDownloaderX.Win32
 {
-    public enum TaskbarProgressBarState
+    public enum TaskbarProgressState
     {
         NoProgress = 0,
         Indeterminate = 0x1,

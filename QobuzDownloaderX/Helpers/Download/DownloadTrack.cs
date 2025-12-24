@@ -82,9 +82,13 @@ namespace QobuzDownloaderX
             }
 
             // Display download status (depending on track number or playlist position number)
-            var trackName = QoItem.Version == null ? QoItem.Title : $"{QoItem.Title.Trim()} ({QoItem.Version})";
-            if (QoPlaylist == null) { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0')} {trackName}..."); }
-            else { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.Position.ToString().PadLeft(paddedTrackLength, '0')} {trackName}..."); }
+            string trackNameFormatted = QoItem.Version == null
+                                        ? QoItem.Title
+                                        : $"{QoItem.Title.TrimEnd()} ({QoItem.Version})";
+            trackNameFormatted = RenameTemplates.repeatedParenthesesRegex.Replace(trackNameFormatted, "($1)");
+
+            if (QoPlaylist == null) { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0')} {trackNameFormatted}…"); }
+            else { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.Position.ToString().PadLeft(paddedTrackLength, '0')} {trackNameFormatted}…"); }
 
             // Download stream
             await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);

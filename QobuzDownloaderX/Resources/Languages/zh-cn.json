@@ -5,7 +5,7 @@
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
     "additionalSettingsButton":     "附加设置",
-    "aboutButton":                  "关于...",
+    "aboutButton":                  "关于…",
     "closeAdditionalButton":        "返回设置",
     "downloadButton":               "获取",
     "batchDownloadButton":          "批量获取", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
@@ -35,7 +35,7 @@
     "playlistTemplateLabel":        "播放列表模板",
     "favoritesTemplateLabel":       "收藏模板",
     "savedArtLabel":                "保存的封面尺寸",
-    "searchingLabel":               "搜索中...",
+    "searchingLabel":               "搜索中…",
     "taggingOptionsLabel":          "标签选项",
     "templatesLabel":               "模板",
     "templatesListLabel":           "模板列表",
@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC/条形码",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "合并艺术家名称\n\n启用后，包含多个艺术家名称的曲目将被合并为一个以逗号分隔的字符串。最后一个艺术家名称将使用 \"&&\" 而不是逗号。客串艺术家将添加在末尾，并以 \"Feat.\" 开头。\n\n示例（启用）:\nS3rl && Tamika Feat. Amy - Here.mp3\n\n示例（禁用）:\nS3rl - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "将主艺术家和客串艺术家合并为一个字符串。\n\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "歌曲流媒体可播性检查",
     "fixMD5sCheckbox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckbox":        "显示下载速度",
@@ -82,8 +82,8 @@
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",
     "artistLabelPlaceholder":       "输入你的 Qobuz URL 并点击获取!",
     "infoLabelPlaceholder":         "发行",
-    "inputTextboxPlaceholder":      "粘贴一个 Qobuz URL...",
-    "searchTextboxPlaceholder":     "输入你的搜索内容...",
+    "inputTextboxPlaceholder":      "粘贴一个 Qobuz URL…",
+    "searchTextboxPlaceholder":     "输入你的搜索内容…",
     "downloadFolderPlaceholder":    "未选择文件夹",
     "userInfoTextboxPlaceholder":   "用户 ID = {user_id}\r\n邮箱 = {user_email}\r\n国家 = {user_country}\r\n订阅 = {user_subscription}\r\n到期 = {user_subscription_expiration}",
     "downloadOutputWelcome":        "欢迎 {user_display_name}!",
@@ -91,13 +91,12 @@
     "downloadOutputPath":           "下载路径:",
     "downloadOutputNoPath":         "未设置路径! 记得选择一个文件夹!",
     "downloadOutputNoUrl":          "曲目 {TrackNumber} 无法下载。正在跳过。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadOutputDontExist":      "指定的路径不存在。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "downloadOutputAPIError":       "Qobuz API 错误。可能是该发行版在当前账户地区不可用?",
     "downloadOutputNotImplemented": "尚未实现或 URL 无法理解。是否有拼写错误?",
-    "downloadOutputCheckLink":      "正在检查链接...",
+    "downloadOutputCheckLink":      "正在检查链接…",
     "downloadOutputTrNotStream":    "曲目{TrackNumber}不支持流媒体播放。跳过。",
     "downloadOutputAlNotStream":    "发行版不支持流媒体播放。",
-    "downloadOutputGoodyFound":     "找到歌曲，正在下载...",
+    "downloadOutputGoodyFound":     "找到歌曲，正在下载…",
     "downloadOutputGoodyExists":    "歌曲文件已存在",
     "downloadOutputGoodyNoURL":     "未找到歌曲的下载 URL，跳过",
     "downloadOutputFileExists":     "曲目{TrackNumber}的文件已存在，跳过。",
@@ -140,8 +139,8 @@
     "tokenPlaceholder":             "Token",
     "altLoginLabelToken":           "使用 Token 登录",
     "altLoginLabelEmail":           "使用邮箱和密码登录",
-    "loginTextWaiting":             "等待登录...",
-    "loginTextStart":               "正在登录...",
+    "loginTextWaiting":             "等待登录…",
+    "loginTextStart":               "正在登录…",
     "loginTextError":               "登录失败，已保存错误日志",
     "loginTextNoEmail":             "输入中没有邮箱",
     "loginTextNoPassword":          "输入中没有密码/Token",
@@ -150,7 +149,7 @@
 
     "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "batchDownloadDlgText":         "批量下载", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "closeBatchDownloadbutton":     "关闭 / 取消", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "getAllBatchDownloadButton":    "全部获取", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
@@ -158,5 +157,13 @@
     "showWindowCmItem":             "显示窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "hideWindowCmItem":             "隐藏窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "closeProgramCmItem":           "关闭程序", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadFinished":        "批量下载完成！" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadFinished":        "批量下载完成！", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "tagLibSharpMissingMsg":        "文件夹中缺少 taglib-sharp.dll！\r\n请确保该 DLL 与 {exeName} 位于同一文件夹中！", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "themeFileNotFoundMsg":         "未找到主题文件。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "themeNameNotFoundMsg":         "未找到主题 '{themeName}'。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedLangFileNotfoundMsg":  "未找到所选语言文件。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputDontExistMsg":   "指定的路径不存在。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }

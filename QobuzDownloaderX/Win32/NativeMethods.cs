@@ -25,6 +25,9 @@ namespace QobuzDownloaderX.Win32
             string pszFile                 // Original file name
         );
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool DestroyIcon(IntPtr hIcon);
+
         [DllImport("user32.dll")]
         public static extern bool IsIconic(IntPtr hWnd);
 

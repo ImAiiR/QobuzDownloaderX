@@ -105,7 +105,8 @@
     <Compile Include="Helpers\QobuzDownloaderXMOD\InvolvedPersonRoleType.cs" />
     <Compile Include="Helpers\QobuzDownloaderXMOD\ParsingHelper.cs" />
     <Compile Include="Helpers\QobuzDownloaderXMOD\PerformersParser.cs" />
-    <Compile Include="Helpers\TaskbarManager.cs" />
+    <Compile Include="Helpers\NotifyIconHelper.cs" />
+    <Compile Include="Helpers\TaskbarHelper.cs" />
     <Compile Include="Helpers\FixMD5.cs" />
     <Compile Include="Helpers\GetInfo.cs" />
     <Compile Include="Helpers\PaddingNumbers.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Helpers\SearchPanelHelper.cs" />
     <Compile Include="Helpers\TagFile.cs" />
     <Compile Include="Helpers\Updating.cs" />
+    <Compile Include="UI\NotifyIconProgressBar.cs" />
     <Compile Include="UI\LoginForm\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +211,8 @@
     <Content Include="Resources\alert.png" />
     <None Include="Resources\HideWindow.png" />
     <None Include="Resources\Exit.png" />
+    <None Include="Resources\QBDLX-Icon2.ico" />
+    <None Include="Resources\QBDLX-Icon16x16.ico" />
     <Content Include="Resources\qbdlx_icon.ico" />
   </ItemGroup>
   <ItemGroup />

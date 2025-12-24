@@ -11,7 +11,7 @@ namespace QobuzDownloaderX.Helpers
 
         public void fixMD5(string filePath, string flacEXEPath)
         {
-            qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5...");
+            qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5…");
             // string driveLetter = filePath.Substring(0, 2); // UNUSED
             string cmdText = "/C echo Fixing unset MD5s... & \"" + flacEXEPath + "\" -f8 \"" + filePath + "\"";
             qbdlxForm._qbdlxForm.logger.Debug("Commands - " + cmdText);

@@ -6,15 +6,15 @@ using System.Text.RegularExpressions;
 
 namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
 {
-    // Credits to QobuzDownloaderX-MOD author(s):
+    // Inspired by QobuzDownloaderX-MOD source-code.
     // https://github.com/DJDoubleD/QobuzDownloaderX-MOD
     internal class ParsingHelper
     {
         static readonly string primaryListSeparator = ", ";
         static readonly string listEndSeparator = " & ";
 
-        // Adapted by ElektroStudios to use a QopenAPI.ArtistsList object
-        //
+        private static readonly Regex unicodeRegex = new Regex(@"\\u(?<Value>[0-9A-Fa-f]{4})", RegexOptions.Compiled );
+
         /// <summary>
         /// Get the Artist names with given role as an array
         /// </summary>
@@ -24,14 +24,14 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
         public static string[] GetArtistNames(List<QopenAPI.ArtistsList> artists, InvolvedPersonRoleType role)
         {
             return artists.Where(artist => artist.Roles.Exists(roleString => InvolvedPersonRoleMapping.GetRoleByString(roleString) == role))
-                .Select(artist => artist.Name)
-                .ToArray();
+                          .Select(artist => artist.Name)
+                          .ToArray();
         }
 
         public static string MergeFeaturedArtistsWithMainArtists(string[] mainArtists, string[] featuresArtists)
         {
             string mergedMainArtists = MergeDoubleDelimitedList(mainArtists, primaryListSeparator, listEndSeparator);
-            string mergedFeaturedArtists = MergeDoubleDelimitedList(featuresArtists, primaryListSeparator, primaryListSeparator);
+            string mergedFeaturedArtists = MergeDoubleDelimitedList(featuresArtists, primaryListSeparator, listEndSeparator);
 
             if (string.IsNullOrEmpty(mergedFeaturedArtists))
             {
@@ -41,9 +41,9 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
             {
                 return $"{mergedMainArtists} Feat. {mergedFeaturedArtists}";
             }
-
         }
 
+        // https://github.com/DJDoubleD/QobuzDownloaderX-MOD/blob/993c708f594faaab36ca4b3a97e4a7b84676ecf2/QobuzDownloaderX/Shared/Tools/StringTools.cs#L81
         public static string MergeDoubleDelimitedList(string[] stringList, string initialDelimiter, string finalDelimiter)
         {
             if (stringList != null)
@@ -66,6 +66,7 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
             }
         }
 
+        // https://github.com/DJDoubleD/QobuzDownloaderX-MOD/blob/993c708f594faaab36ca4b3a97e4a7b84676ecf2/QobuzDownloaderX/Shared/Tools/StringTools.cs#L16C16-L16C22
         /// <summary>
         /// Decodes the encoded non ascii characters.
         /// </summary>
@@ -73,22 +74,19 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
         /// <returns>The decoded string.</returns>
         public static string DecodeEncodedNonAsciiCharacters(string value)
         {
-            if (value != null)
-            {
-                return Regex.Replace(
-                    value,
-                    @"\\u(?<Value>[a-zA-Z0-9]{4})",
-                    m => ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString());
-            }
-            else
-            {
+            if (value == null)
                 return null;
-            }
+
+            return unicodeRegex.Replace(
+                value,
+                m => ((char)int.Parse(m.Groups["Value"].Value, NumberStyles.HexNumber)).ToString()
+            );
         }
 
         // Adapted by ElektroStudios from QobuzDownloaderX-MOD's source-code to use a QopenAPI.Item object.
-        // Also, handle cases where the track title already contains " Feat. "-like strings (case-insensitive).
-        // (i.e., does not add featured artists names to the final string.)
+        // Also, now it handles cases where the track title already contains " Feat. "-like words (case-insensitive)
+        // and where the performer name is a composed name that already contains " Feat " word.
+        // (i.e., does not add featured artists names to the resulting string.)
         public static string GetTrackPerformersName(QopenAPI.Item QoItem)
         {
             PerformersParser performersParser = new PerformersParser(QoItem);
@@ -98,22 +96,49 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
             string[] featuredPerformers = performersParser.GetPerformersWithRole(InvolvedPersonRoleType.FeaturedArtist);
 
             string title = QoItem.Title;
-            if (title.IndexOf("[feat.", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                title.IndexOf("(feat.", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                title.IndexOf(" feat. ", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                title.IndexOf(" feat ", StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                featuredPerformers = null;
-            }
-            // MessageBox.Show(string.Join(", ", mainPerformers), "Main Performers");
-            // MessageBox.Show(string.Join(", ", featuredPerformers), "Featured Artist");
+            
+            string[] featPatterns = { 
+                "featuring ", " ft.",
+                "(feat ", "(feat.",
+                "[feat ", "[feat.", 
+                " feat ", " feat. ", 
+                "[ft ", "[ft.", 
+                "(ft ", "(ft." 
+            };
+            // Note: using multiple IndexOf calls instead of Regex is preferable here for performance.
+            bool hasFeat = featPatterns.Any(p => title.IndexOf(p, StringComparison.OrdinalIgnoreCase) >= 0);
 
-            // Merge main + featured
+            if (hasFeat)
+            {
+                // If the title already contains "feat."-like word, set the featuredPerformers to null.
+                featuredPerformers = null;
+
+                // Also, remove any main artists that appear in the track title, except the first main artist.
+                // Case: Qobuz API returns the featured artists as "Main Artist".
+                if (mainPerformers != null && mainPerformers.Length > 1)
+                {
+                    string titleNorm = PerformersParser.Normalize(QoItem.Title);
+
+                    // Keep the first main artist.
+                    string firstArtist = mainPerformers[0];
+
+                    // Filter the rest
+                    string[] filteredArtists = mainPerformers
+                        .Skip(1)
+                        .Where(mp => titleNorm.IndexOf(PerformersParser.Normalize(mp), StringComparison.OrdinalIgnoreCase) < 0)
+                        .ToArray();
+
+                    // Combine first artist with the filtered rest
+                    mainPerformers = new[] { firstArtist }.Concat(filteredArtists).ToArray();
+                }
+            }
+
+            // Merge main artists + featured artists
             string trackArtists = ParsingHelper.MergeFeaturedArtistsWithMainArtists(mainPerformers, featuredPerformers);
 
             string performerName;
 
-            // Use merged main + featured artists if available
+            // Use merged main artists + featured artists if available
             if (!string.IsNullOrEmpty(trackArtists))
             {
                 performerName = trackArtists;
@@ -129,6 +154,13 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
             {
                 performerName = ParsingHelper.DecodeEncodedNonAsciiCharacters(QoItem.Album?.Artist?.Name);
             }
+
+            // Case: the main artist name (QoItem.Performer.Name) or the name extracted from the artist role
+            // is a composed name that includes a "Feat" word without a dot, for example: "David Feat Dj Mago, MainArtist".
+            performerName = performerName.Replace(" Feat ", " Feat. ").
+                                          Replace(" feat ", " Feat. ").
+                                          Replace(" Featuring ", " Feat. ").
+                                          Replace(" featuring ", " Feat. ");
 
             return performerName;
         }

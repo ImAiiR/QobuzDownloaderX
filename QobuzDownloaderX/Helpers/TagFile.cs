@@ -1,11 +1,10 @@
-﻿using QobuzDownloaderX.Helpers.QobuzDownloaderXMOD;
+﻿using QobuzDownloaderX.Helpers;
+using QobuzDownloaderX.Helpers.QobuzDownloaderXMOD;
 using QobuzDownloaderX.Properties;
 using QopenAPI;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using TagLib;
 using TagLib.Id3v2;
 using File = TagLib.File;
@@ -55,14 +54,14 @@ namespace QobuzDownloaderX
             if (Settings.Default.isrcTag) customTags.SetField("ISRC", QoItem.ISRC);
             if (Settings.Default.typeTag) customTags.SetField("MEDIATYPE", QoAlbum.ProductType.ToUpper());
             if (Settings.Default.upcTag) customTags.SetField("BARCODE", QoAlbum.UPC);
-            if (Settings.Default.labelTag) customTags.SetField("LABEL", Regex.Replace(QoAlbum.Label.Name, @"\s+", " "));
+            if (Settings.Default.labelTag) customTags.SetField("LABEL", RenameTemplates.spacesRegex.Replace(QoAlbum.Label.Name, " "));
             if (Settings.Default.explicitTag) customTags.SetField("ITUNESADVISORY", QoItem.ParentalWarning ? "1" : "0");
 
             if (Settings.Default.commentTag && !string.IsNullOrEmpty(Settings.Default.commentText))
             {
                 customTags.SetField("COMMENT", new string[]
                 {
-                    Regex.Replace(Settings.Default.commentText, @"%(.*?)%", match => match.Value.ToLower())
+                    RenameTemplates.percentRegex.Replace(Settings.Default.commentText, match => match.Value.ToLower())
                         .Replace("%description%", QoAlbum.Description)
                         .Replace("<br/>", Environment.NewLine)
                         .Replace("<br />", Environment.NewLine)
@@ -97,12 +96,12 @@ namespace QobuzDownloaderX
             if (Settings.Default.upcTag) UserTextInformationFrame.Get(mp3Tag, "BARCODE", true).Text = new[] { QoAlbum.UPC };
             if (Settings.Default.explicitTag) UserTextInformationFrame.Get(mp3Tag, "ITUNESADVISORY", true).Text = new[] { QoItem.ParentalWarning ? "1" : "0" };
             if (Settings.Default.isrcTag) mp3Tag.SetTextFrame("TSRC", QoItem.ISRC);
-            if (Settings.Default.labelTag) mp3Tag.SetTextFrame("TPUB", Regex.Replace(QoAlbum.Label.Name, @"\s+", " "));
+            if (Settings.Default.labelTag) mp3Tag.SetTextFrame("TPUB", RenameTemplates.spacesRegex.Replace(QoAlbum.Label.Name, " "));
             if (Settings.Default.typeTag) mp3Tag.SetTextFrame("TMED", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(QoAlbum.ProductType.ToLower()));
 
             if (Settings.Default.commentTag && !string.IsNullOrEmpty(Settings.Default.commentText))
             {
-                mp3Tag.Comment = Regex.Replace(Settings.Default.commentText, @"%(.*?)%", match => match.Value.ToLower())
+                mp3Tag.Comment = RenameTemplates.percentRegex.Replace(Settings.Default.commentText, match => match.Value.ToLower())
                     .Replace("%description%", QoAlbum.Description)
                     .Replace("<br/>", Environment.NewLine)
                     .Replace("<br />", Environment.NewLine);
@@ -152,7 +151,6 @@ namespace QobuzDownloaderX
 
         private static void SetCommonTags(TagLib.File file, Album QoAlbum, Item QoItem)
         {
-            if (Settings.Default.trackTitleTag) file.Tag.Title = QoItem.Version == null ? QoItem.Title : $"{QoItem.Title.TrimEnd()} ({QoItem.Version})";
             if (Settings.Default.genreTag) file.Tag.Genres = new[] { QoAlbum.Genre.Name };
             if (Settings.Default.albumTag) file.Tag.Album = QoAlbum.Version == null ? QoAlbum.Title : $"{QoAlbum.Title.TrimEnd()} ({QoAlbum.Version})";
             if (Settings.Default.composerTag) file.Tag.Composers = new[] { QoItem.Composer?.Name };
@@ -160,6 +158,15 @@ namespace QobuzDownloaderX
             if (Settings.Default.discTag) file.Tag.Disc = (uint)QoItem.MediaNumber;
             if (Settings.Default.totalDiscsTag) file.Tag.DiscCount = (uint)QoAlbum.MediaCount;
             if (Settings.Default.copyrightTag) file.Tag.Copyright = QoAlbum.Copyright;
+
+            if (Settings.Default.trackTitleTag)
+            {
+                string titleFormatted = QoItem.Version == null
+                                        ? QoItem.Title
+                                        : $"{QoItem.Title.TrimEnd()} ({QoItem.Version})";
+                titleFormatted = RenameTemplates.repeatedParenthesesRegex.Replace(titleFormatted, "($1)");
+                file.Tag.Title = titleFormatted;
+            }
 
             if (Settings.Default.artistTag)
             {

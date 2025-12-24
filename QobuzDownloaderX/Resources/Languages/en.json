@@ -5,7 +5,7 @@
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
     "additionalSettingsButton":     "Additional Settings",
-    "aboutButton":                  "ABOUT...",
+    "aboutButton":                  "ABOUT…",
     "closeAdditionalButton":        "Back to Settings",
     "downloadButton":               "GET",
     "batchDownloadButton":          "GET BATCH",
@@ -35,7 +35,7 @@
     "playlistTemplateLabel":        "PLAYLIST TEMPLATE",
     "favoritesTemplateLabel":       "FAVORITES TEMPLATE",
     "savedArtLabel":                "Saved Artwork Size",
-    "searchingLabel":               "Searching...",
+    "searchingLabel":               "Searching…",
     "taggingOptionsLabel":          "TAGGING OPTIONS",
     "templatesLabel":               "TEMPLATES",
     "templatesListLabel":           "TEMPLATES LIST",
@@ -49,7 +49,7 @@
     "sortReleaseDateLabel":         "Release Date",
     "sortArtistNameLabel":          "Artist Name",
     "sortAlbumTrackNameLabel":      "Album / Track Name",
-    "sortingSearchResultsLabel":    "Sorting...",
+    "sortingSearchResultsLabel":    "Sorting…",
     "searchResultsCountLabel":      "results",
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Barcode",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Merge Artist Names\n\nIf enabled, tracks with various artist names will be merged into a single comma-separated string. The last artist name will use \"&&\" instead of a comma. Featured artists will be added at the end, preceded with \"Feat.\"\n\nExample, if enabled:\nS3rl && Tamika Feat. Amy - Here.mp3\n\nExample, if disabled:\nS3rl - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Merge track artist names.\n\nExample:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Streamable Check",
     "fixMD5sCheckbox":              "Auto-Fix Unset MD5s (must have FLAC in PATH variables)",
     "downloadSpeedCheckbox":        "Print Download Speed",
@@ -82,8 +82,8 @@
     "albumLabelPlaceholder":        "Welcome to QBDLX!",
     "artistLabelPlaceholder":       "Input your Qobuz link and hit GET!",
     "infoLabelPlaceholder":         "Released",
-    "inputTextboxPlaceholder":      "Paste a Qobuz URL...",
-    "searchTextboxPlaceholder":     "Input your search...",
+    "inputTextboxPlaceholder":      "Paste a Qobuz URL…",
+    "searchTextboxPlaceholder":     "Input your search…",
     "downloadFolderPlaceholder":    "No folder selected",
     "userInfoTextboxPlaceholder":   "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}",
     "downloadOutputWelcome":        "Welcome {user_display_name}!",
@@ -91,13 +91,12 @@
     "downloadOutputPath":           "Download Path:",
     "downloadOutputNoPath":         "No path has been set! Remember to Choose a Folder!",
     "downloadOutputNoUrl":          "Track {TrackNumber} is not available for download. Skipping.",
-    "downloadOutputDontExist":      "The specified path does not exist.",
     "downloadOutputAPIError":       "Qobuz API error. Maybe release isn't available in this account region?",
     "downloadOutputNotImplemented": "Not implemented yet or the URL is not understood. Is there a typo?",
-    "downloadOutputCheckLink":      "Checking Link...",
+    "downloadOutputCheckLink":      "Checking Link…",
     "downloadOutputTrNotStream":    "Track {TrackNumber} is not available for streaming. Skipping.",
     "downloadOutputAlNotStream":    "Release is not available for streaming.",
-    "downloadOutputGoodyFound":     "Goody found, downloading...",
+    "downloadOutputGoodyFound":     "Goody found, downloading…",
     "downloadOutputGoodyExists":    "File for goody already exists",
     "downloadOutputGoodyNoURL":     "No download URL found for goody, skipping",
     "downloadOutputFileExists":     "File for track {TrackNumber} already exists, skipping.",
@@ -109,15 +108,15 @@
     "progressLabelInactive":        "No download active",
     "progressLabelActive":          "Download progress",
     "formClosingWarning":           "A download is in progress, do you really want to quit?.",
-    "artist":                       "Artist", // First char in upper-case.
+    "artist":                       "Artist",
     "artists":                      "artists",
-    "album":                        "Album",  // First char in upper-case.
+    "album":                        "Album",
     "albums":                       "albums",
     "tracks":                       "tracks",
-    "singleTrack":                  "Single track",  // First char in upper-case.
-    "playlist":                     "Playlist",      // First char in upper-case.
-    "recordLabel":                  "Record label",  // First char in upper-case.
-    "user":                         "User",          // First char in upper-case.
+    "singleTrack":                  "Single track",
+    "playlist":                     "Playlist",
+    "recordLabel":                  "Record label",
+    "user":                         "User",
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "CLOSE",
@@ -140,23 +139,31 @@
     "tokenPlaceholder":             "token",
     "altLoginLabelToken":           "LOGIN WITH TOKEN",
     "altLoginLabelEmail":           "LOGIN WITH E-MAIL AND PASSWORD",
-    "loginTextWaiting":             "waiting for login...",
-    "loginTextStart":               "logging in...",
+    "loginTextWaiting":             "waiting for login…",
+    "loginTextStart":               "logging in…",
     "loginTextError":               "login failed, error log saved",
     "loginTextNoEmail":             "no e-mail in input",
     "loginTextNoPassword":          "no password/token in input",
     "updateNotification":           "New version of QBDLX is available!\r\n\r\nInstalled version - {currentVersion}\r\nLatest version - {newVersion}\r\n\r\nChangelog Below\r\n==============\r\n{changelog}\r\n==============\r\n\r\nWould you like to update?",
     "updateNotificationTitle":      "QBDLX | Update Available",
-    
+
     "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================",
     "batchDownloadDlgText":         "Batch Download",
-    "batchDownloadLabel":           "Paste one or more Qobuz URLs...",
+    "batchDownloadLabel":           "Paste one or more Qobuz URLs…",
     "closeBatchDownloadbutton":     "CLOSE / CANCEL",
     "getAllBatchDownloadButton":    "GET ALL",
 
-    "_SECTION10_":                   "=================== SYSTRAY ICON ===================",
-    "showWindowCmItem":              "Show window",
-    "hideWindowCmItem":              "Hide window",
-    "closeProgramCmItem":            "Close program",
-    "batchDownloadFinished":         "Batch download finished!"
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================",
+    "showWindowCmItem":             "Show window",
+    "hideWindowCmItem":             "Hide window",
+    "closeProgramCmItem":           "Close program",
+    "batchDownloadFinished":        "Batch download finished!",
+
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================",
+    "tagLibSharpMissingMsg":        "taglib-sharp.dll missing from folder!\\r\\nPlease Make sure the DLL is in the same folder as {exeName}!",
+    "themeFileNotFoundMsg":         "Visual theme file not found.",
+    "themeNameNotFoundMsg":         "Visual theme '{themeName}' not found.",
+    "selectedLangFileNotfoundMsg":  "Selected language file not found.",
+    "downloadOutputDontExistMsg":   "The specified path does not exist.",
+    "notEnoughFreeSpaceMsg":        "Not enough free space on drive: '{pathRoot}'"
 }

@@ -55,12 +55,12 @@ namespace QobuzDownloaderX.Helpers
                 }
                 else
                 {
-                    MessageBox.Show($"Theme '{themeName}' not found.");
+                    MessageBox.Show(qbdlxForm._qbdlxForm.languageManager.GetTranslation("themeNameNotFoundMsg").Replace("{themeName}", themeName), Application.ProductName);
                 }
             }
             else
             {
-                MessageBox.Show("Theme file not found.");
+                MessageBox.Show(qbdlxForm._qbdlxForm.languageManager.GetTranslation("themeFileNotFoundMsg"), Application.ProductName);
             }
         }
         public void PopulateThemeOptions(qbdlxForm mainForm)
@@ -87,7 +87,7 @@ namespace QobuzDownloaderX.Helpers
             }
             else
             {
-                MessageBox.Show("Theme file not found.");
+                MessageBox.Show(qbdlxForm._qbdlxForm.languageManager.GetTranslation("themeFileNotFoundMsg"), Application.ProductName);
             }
         }
 
@@ -142,7 +142,7 @@ namespace QobuzDownloaderX.Helpers
                         ? ColorTranslator.FromHtml(_currentTheme.MainPanelBackground)
                         : ColorTranslator.FromHtml(_currentTheme.TextBoxBackground);
 
-                    textBox.ForeColor = (textBox.Text == "Paste a Qobuz URL..." || textBox.Text == "Input your search..." || textBox.Text == "e-mail" || textBox.Text == "password" || textBox.Text == "token")
+                    textBox.ForeColor = (textBox.Text == "Paste a Qobuz URL…" || textBox.Text == "Input your search…" || textBox.Text == "e-mail" || textBox.Text == "password" || textBox.Text == "token")
                         ? ColorTranslator.FromHtml(_currentTheme.PlaceholderTextBoxText)
                         : ColorTranslator.FromHtml(_currentTheme.TextBoxText);
                 }
@@ -282,7 +282,7 @@ namespace QobuzDownloaderX.Helpers
 
 	""_SECTION1_"":					""=================== MAIN FORM BUTTONS ==================="",
 	""additionalSettingsButton"":	""Additional Settings"",
-	""aboutButton"": 				""ABOUT..."",
+	""aboutButton"": 				""ABOUT…"",
 	""closeAdditionalButton"":		""Back to Settings"",
 	""downloadButton"":				""GET"",
 	""batchDownloadButton"":		""GET BATCH"",
@@ -312,7 +312,7 @@ namespace QobuzDownloaderX.Helpers
 	""playlistTemplateLabel"":		""PLAYLIST TEMPLATE"",
 	""favoritesTemplateLabel"":		""FAVORITES TEMPLATE"",
 	""savedArtLabel"":				""Saved Artwork Size"",
-	""searchingLabel"":				""Searching..."",
+	""searchingLabel"":				""Searching…"",
 	""taggingOptionsLabel"":		""TAGGING OPTIONS"",
 	""templatesLabel"":				""TEMPLATES"",
 	""templatesListLabel"":			""TEMPLATES LIST"",
@@ -326,7 +326,7 @@ namespace QobuzDownloaderX.Helpers
 	""sortReleaseDateLabel"":		""Release Date"",
 	""sortArtistNameLabel"":		""Artist Name"",
 	""sortAlbumTrackNameLabel"":	""Album / Track Name"",
-	""sortingSearchResultsLabel"":	""Sorting..."",
+	""sortingSearchResultsLabel"":	""Sorting…"",
 	""searchResultsCountLabel"":    ""results"",
 
 	""_SECTION3_"":					""=================== MAIN FORM CHECKBOXES ==================="",
@@ -359,8 +359,8 @@ namespace QobuzDownloaderX.Helpers
 	""albumLabelPlaceholder"":		""Welcome to QBDLX!"",
 	""artistLabelPlaceholder"":		""Input your Qobuz link and hit GET!"",
 	""infoLabelPlaceholder"":		""Released"",
-	""inputTextboxPlaceholder"":	""Paste a Qobuz URL..."",
-	""searchTextboxPlaceholder"":	""Input your search..."",
+	""inputTextboxPlaceholder"":	""Paste a Qobuz URL…"",
+	""searchTextboxPlaceholder"":	""Input your search…"",
 	""downloadFolderPlaceholder"":	""No folder selected"",
 	""userInfoTextboxPlaceholder"":	""User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}"",
 	""downloadOutputWelcome"":		""Welcome {user_display_name}!"",
@@ -368,13 +368,12 @@ namespace QobuzDownloaderX.Helpers
 	""downloadOutputPath"": 		""Download Path:"",
 	""downloadOutputNoPath"":		""No path has been set! Remember to Choose a Folder!"",
 	""downloadOutputNoUrl"": 		""Track {TrackNumber} is not available for download. Skipping."",
-	""downloadOutputDontExist"":	""The specified path does not exist."",
 	""downloadOutputAPIError"": 	""Qobuz API error. Maybe release isn't available in this account region?"",
 	""downloadOutputNotImplemented"": ""Not implemented yet or the URL is not understood. Is there a typo?"",
-	""downloadOutputCheckLink"": 	""Checking Link..."",
+	""downloadOutputCheckLink"": 	""Checking Link…"",
 	""downloadOutputTrNotStream"": 	""Track {TrackNumber} is not available for streaming. Skipping."",
 	""downloadOutputAlNotStream"": 	""Release is not available for streaming."",
-	""downloadOutputGoodyFound"": 	""Goody found, downloading..."",
+	""downloadOutputGoodyFound"": 	""Goody found, downloading…"",
 	""downloadOutputGoodyExists"": 	""File for goody already exists"",
 	""downloadOutputGoodyNoURL"": 	""No download URL found for goody, skipping"",
 	""downloadOutputFileExists"": 	""File for track {TrackNumber} already exists, skipping."",
@@ -417,8 +416,8 @@ namespace QobuzDownloaderX.Helpers
 	""tokenPlaceholder"":			""token"",
 	""altLoginLabelToken"":			""LOGIN WITH TOKEN"",
 	""altLoginLabelEmail"":			""LOGIN WITH E-MAIL AND PASSWORD"",
-	""loginTextWaiting"":			""waiting for login..."",
-	""loginTextStart"":				""logging in..."",
+	""loginTextWaiting"":			""waiting for login…"",
+	""loginTextStart"":				""logging in…"",
 	""loginTextError"":				""login failed, error log saved"",
 	""loginTextNoEmail"":			""no e-mail in input"",
 	""loginTextNoPassword"":		""no password/token in input"",
@@ -427,7 +426,7 @@ namespace QobuzDownloaderX.Helpers
 	
 	""_SECTION9_"":					""=================== BATCH DOWNLOAD DIALOG CONTROLS ==================="",
 	""batchDownloadDlgText"": 		""Batch Download"",
-	""batchDownloadLabel"": 		""Paste one or more Qobuz URLs..."",
+	""batchDownloadLabel"": 		""Paste one or more Qobuz URLs…"",
 	""closeBatchDownloadbutton"": 	""CLOSE / CANCEL"",
 	""getAllBatchDownloadButton"":	""GET ALL"",
 

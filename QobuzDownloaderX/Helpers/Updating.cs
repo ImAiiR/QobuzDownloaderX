@@ -13,6 +13,8 @@ namespace QobuzDownloaderX.Helpers
 {
     public class TranslationUpdater
     {
+       static readonly Regex removeTimezoneRegEx = new Regex(@"[A-Z]{2,5}(\+?\d{0,2})?$", RegexOptions.Compiled);
+
         // List of language files
         private static readonly Dictionary<string, string> LanguageFiles = new Dictionary<string, string>
         {
@@ -27,7 +29,7 @@ namespace QobuzDownloaderX.Helpers
         public static string NormalizeDate(string dateStr)
         {
             // Remove any alphabetic timezone part
-            return Regex.Replace(dateStr, @"[A-Z]{2,5}(\+?\d{0,2})?$", "").Trim();
+            return removeTimezoneRegEx.Replace(dateStr, "").Trim();
         }
 
         public static async Task CheckAndUpdateLanguageFiles()

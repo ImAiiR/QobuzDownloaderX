@@ -40,7 +40,7 @@ namespace QobuzDownloaderX.Win32
         int SetProgressValue(IntPtr hWnd, ulong ullCompleted, ulong ullTotal);
 
         [PreserveSig]
-        int SetProgressState(IntPtr hWnd, TaskbarProgressBarState tbpFlags);
+        int SetProgressState(IntPtr hWnd, TaskbarProgressState tbpFlags);
 
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         [PreserveSig]

@@ -379,9 +379,9 @@ namespace QobuzDownloaderX
             this.batchDownloadProgressCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.batchDownloadProgressCountLabel.Location = new System.Drawing.Point(185, 143);
             this.batchDownloadProgressCountLabel.Name = "batchDownloadProgressCountLabel";
-            this.batchDownloadProgressCountLabel.Size = new System.Drawing.Size(22, 21);
+            this.batchDownloadProgressCountLabel.Size = new System.Drawing.Size(21, 21);
             this.batchDownloadProgressCountLabel.TabIndex = 13;
-            this.batchDownloadProgressCountLabel.Text = "...";
+            this.batchDownloadProgressCountLabel.Text = "…";
             this.batchDownloadProgressCountLabel.Visible = false;
             // 
             // progressItemsCountLabel
@@ -391,9 +391,9 @@ namespace QobuzDownloaderX
             this.progressItemsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.progressItemsCountLabel.Location = new System.Drawing.Point(185, 118);
             this.progressItemsCountLabel.Name = "progressItemsCountLabel";
-            this.progressItemsCountLabel.Size = new System.Drawing.Size(22, 21);
+            this.progressItemsCountLabel.Size = new System.Drawing.Size(21, 21);
             this.progressItemsCountLabel.TabIndex = 12;
-            this.progressItemsCountLabel.Text = "...";
+            this.progressItemsCountLabel.Text = "…";
             this.progressItemsCountLabel.Visible = false;
             // 
             // batchDownloadPanel
@@ -436,9 +436,9 @@ namespace QobuzDownloaderX
             this.batchDownloadLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.batchDownloadLabel.Location = new System.Drawing.Point(0, 0);
             this.batchDownloadLabel.Name = "batchDownloadLabel";
-            this.batchDownloadLabel.Size = new System.Drawing.Size(284, 25);
+            this.batchDownloadLabel.Size = new System.Drawing.Size(286, 25);
             this.batchDownloadLabel.TabIndex = 0;
-            this.batchDownloadLabel.Text = "Paste one or more Qobuz URLs...";
+            this.batchDownloadLabel.Text = "Paste one or more Qobuz URLs…";
             // 
             // getAllBatchDownloadButton
             // 
@@ -646,12 +646,13 @@ namespace QobuzDownloaderX
             this.inputTextbox.Name = "inputTextbox";
             this.inputTextbox.Size = new System.Drawing.Size(498, 26);
             this.inputTextbox.TabIndex = 1;
-            this.inputTextbox.Text = "Paste a Qobuz URL...";
+            this.inputTextbox.Text = "Paste a Qobuz URL…";
             this.inputTextbox.WordWrap = false;
             this.inputTextbox.Click += new System.EventHandler(this.inputTextbox_Click);
             this.inputTextbox.TextChanged += new System.EventHandler(this.inputTextbox_TextChanged);
             this.inputTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTextbox_KeyDown);
             this.inputTextbox.Leave += new System.EventHandler(this.inputTextbox_Leave);
+            this.inputTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.inputTextbox_MouseDown);
             // 
             // downloadLabel
             // 
@@ -1114,7 +1115,6 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Controls.Add(this.mergeArtistNamesCheckbox);
-            this.mergeArtistNamesCheckbox.BringToFront();
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extraSettingsPanel.Location = new System.Drawing.Point(689, 442);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
@@ -1677,14 +1677,13 @@ namespace QobuzDownloaderX
             // 
             // mergeArtistNamesCheckbox
             // 
-            this.mergeArtistNamesCheckbox.AutoSize = false;
             this.mergeArtistNamesCheckbox.Checked = true;
             this.mergeArtistNamesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mergeArtistNamesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mergeArtistNamesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.mergeArtistNamesCheckbox.Location = new Point(10, extraSettingsPanel.Height - mergeArtistNamesCheckbox.Height - 250);
+            this.mergeArtistNamesCheckbox.Location = new System.Drawing.Point(10, 376);
             this.mergeArtistNamesCheckbox.Name = "mergeArtistNamesCheckbox";
-            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(210, 320);
+            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(260, 300);
             this.mergeArtistNamesCheckbox.TabIndex = 15;
             this.mergeArtistNamesCheckbox.Text = "Merge Artists Names";
             this.mergeArtistNamesCheckbox.UseVisualStyleBackColor = true;
@@ -1856,7 +1855,7 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(362, 42);
+            this.searchPanel.Location = new System.Drawing.Point(393, 42);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 29;
@@ -1880,7 +1879,7 @@ namespace QobuzDownloaderX
             this.searchResultsCountLabel.Name = "searchResultsCountLabel";
             this.searchResultsCountLabel.Size = new System.Drawing.Size(168, 28);
             this.searchResultsCountLabel.TabIndex = 16;
-            this.searchResultsCountLabel.Text = "...";
+            this.searchResultsCountLabel.Text = "…";
             this.searchResultsCountLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // searchSortingLabel
@@ -2090,12 +2089,13 @@ namespace QobuzDownloaderX
             this.searchTextbox.Name = "searchTextbox";
             this.searchTextbox.Size = new System.Drawing.Size(557, 27);
             this.searchTextbox.TabIndex = 7;
-            this.searchTextbox.Text = "Input your search...";
+            this.searchTextbox.Text = "Input your search…";
             this.searchTextbox.WordWrap = false;
             this.searchTextbox.Click += new System.EventHandler(this.searchTextbox_Click);
             this.searchTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyDown);
             this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp);
             this.searchTextbox.Leave += new System.EventHandler(this.searchTextbox_Leave);
+            this.searchTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.searchTextbox_MouseDown);
             // 
             // searchLabel
             // 
@@ -2103,7 +2103,7 @@ namespace QobuzDownloaderX
             this.searchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.searchLabel.Location = new System.Drawing.Point(13, 10);
             this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(112, 30);
+            this.searchLabel.Size = new System.Drawing.Size(562, 30);
             this.searchLabel.TabIndex = 1;
             this.searchLabel.Text = "SEARCH";
             this.searchLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.searchLabel_MouseMove);
@@ -2116,7 +2116,7 @@ namespace QobuzDownloaderX
             this.searchingLabel.Name = "searchingLabel";
             this.searchingLabel.Size = new System.Drawing.Size(170, 25);
             this.searchingLabel.TabIndex = 11;
-            this.searchingLabel.Text = "Searching...";
+            this.searchingLabel.Text = "Searching…";
             this.searchingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.searchingLabel.Visible = false;
             // 
@@ -2128,7 +2128,7 @@ namespace QobuzDownloaderX
             this.sortingSearchResultsLabel.Name = "sortingSearchResultsLabel";
             this.sortingSearchResultsLabel.Size = new System.Drawing.Size(170, 25);
             this.sortingSearchResultsLabel.TabIndex = 12;
-            this.sortingSearchResultsLabel.Text = "Sorting...";
+            this.sortingSearchResultsLabel.Text = "Sorting…";
             this.sortingSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.sortingSearchResultsLabel.Visible = false;
             // 
@@ -2322,7 +2322,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.Label templatesListLabel;
         public System.Windows.Forms.CheckBox fixMD5sCheckbox;
         private System.Windows.Forms.Label movingLabel;
-        private System.Windows.Forms.Button searchButton;
+        public System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Panel searchPanel;
         private System.Windows.Forms.Label searchLabel;
         private System.Windows.Forms.Button searchTracksButton;
@@ -2370,7 +2370,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.Label sortingSearchResultsLabel;
         public System.Windows.Forms.Label searchResultsCountLabel;
         private System.Windows.Forms.Label batchDownloadProgressCountLabel;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        public System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip sysTrayContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem showWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideWindowToolStripMenuItem;

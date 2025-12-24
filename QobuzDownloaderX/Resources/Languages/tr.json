@@ -35,7 +35,7 @@
     "playlistTemplateLabel":        "OYNATMA LİSTESİ ŞABLONU",
     "favoritesTemplateLabel":       "FAVORİLER ŞABLONU",
     "savedArtLabel":                "KAYDEDİLEN KAPAK BOYUTU (px)",
-    "searchingLabel":               "Aranıyor...",
+    "searchingLabel":               "Aranıyor…",
     "taggingOptionsLabel":          "ETİKET AYARLARI",
     "templatesLabel":               "ŞABLON",
     "templatesListLabel":           "ŞABLON LİSTESİ",
@@ -49,7 +49,7 @@
     "sortReleaseDateLabel":         "Yayın Tarihi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortArtistNameLabel":          "Sanatçı Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortAlbumTrackNameLabel":      "Albüm / Parça Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortingSearchResultsLabel":    "Sıralanıyor...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortingSearchResultsLabel":    "Sıralanıyor…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchResultsCountLabel":      "sonuç", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Barkod",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "Sanatçı İsimlerini Birleştir\n\nBu seçenek etkinleştirildiğinde, birden fazla sanatçı adına sahip parçalar tek bir virgülle ayrılmış metin haline getirilir. Listedeki son sanatçı adı virgül yerine \"&&\" ile ayrılır. 'Feat.' etiketiyle başlayan konuk sanatçılar listenin sonuna eklenir.\n\nÖrnek (etkin):\nS3rl && Tamika Feat. Amy - Here.mp3\n\nÖrnek (devre dışı):\nS3rl - Here.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Parça sanatçı isimlerini birleştir.\n\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Oynatılabilirlik Doğrulaması",
     "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
     "downloadSpeedCheckbox":        "İndirme Hızını Göster",
@@ -82,8 +82,8 @@
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",
     "artistLabelPlaceholder":       "QOBUZ Linkini Yapıştır ve İndir'e Bas!",
     "infoLabelPlaceholder":         "Çıkış Tarihi",
-    "inputTextboxPlaceholder":      "QOBUZ Linki Yapıştırın...",
-    "searchTextboxPlaceholder":     "Aramanızı Girin...",
+    "inputTextboxPlaceholder":      "QOBUZ Linki Yapıştırın…",
+    "searchTextboxPlaceholder":     "Aramanızı Girin…",
     "downloadFolderPlaceholder":    "Klasör Seçilmemiş",
     "userInfoTextboxPlaceholder":   "Hesap ID = {user_id}\r\nE-posta = {user_email}\r\nÜlke = {user_country}\r\nAbonelik = {user_subscription}\r\nAbonelik Sona Erme Süresi = {user_subscription_expiration}",
     "downloadOutputWelcome":        "Hoşgeldin {user_display_name}!",
@@ -91,13 +91,12 @@
     "downloadOutputPath":           "İndirme Yolu",
     "downloadOutputNoPath":         "İndirme Yolu seçilmemiş! Bir İndirme Klasörü Seçin!",
     "downloadOutputNoUrl":          "Parça {TrackNumber} indirilebilir değil. Atlanıyor.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadOutputDontExist":      "Belirtilen yol mevcut değil.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "downloadOutputAPIError":       "Qobuz API Hatası. Belki Parça / Albüm bu bölgede erişilebilir değildir?",
     "downloadOutputNotImplemented": "Bu özellik henüz eklenmedi veya URL hatalı. Bir yazım yanlışı mı var?",
-    "downloadOutputCheckLink":      "Link Kontrol Ediliyor...",
+    "downloadOutputCheckLink":      "Link Kontrol Ediliyor…",
     "downloadOutputTrNotStream":    "Parça {TrackNumber} Oynatılmaya uygun değil. Atlanıyor.",
     "downloadOutputAlNotStream":    "Albüm / Parça oynatılmaya uygun değil.",
-    "downloadOutputGoodyFound":     "Nâdide Bir Beste Keşfolundu, İndirilmekte...",
+    "downloadOutputGoodyFound":     "Nâdide Bir Beste Keşfolundu, İndirilmekte…",
     "downloadOutputGoodyExists":    "Bu Nâdide beste zaten mevcut",
     "downloadOutputGoodyNoURL":     "bu Nâdide beste için indirme Linki bulunamadı, atlanıyor",
     "downloadOutputFileExists":     "Parça {TrackNumber} zaten mevcut, atlanıyor.",
@@ -140,8 +139,8 @@
     "tokenPlaceholder":             "token",
     "altLoginLabelToken":           "TOKEN İLE GİRİŞ YAP",
     "altLoginLabelEmail":           "E-POSTA VE ŞİFRE İLE GİRİŞ YAP",
-    "loginTextWaiting":             "giriş için bekleniyor...",
-    "loginTextStart":               "giriş yapılıyor...",
+    "loginTextWaiting":             "giriş için bekleniyor…",
+    "loginTextStart":               "giriş yapılıyor…",
     "loginTextError":               "giriş yapılamadı, hata logu kaydedildi.",
     "loginTextNoEmail":             "e-posta girilmemiş",
     "loginTextNoPassword":          "şifre / token girilmemiş",
@@ -150,7 +149,7 @@
 
     "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "batchDownloadDlgText":         "Toplu İndirme", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadLabel":           "Bir veya daha fazla Qobuz URL'si yapıştırın...", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadLabel":           "Bir veya daha fazla Qobuz URL'si yapıştırın…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "closeBatchDownloadbutton":     "KAPAT / İPTAL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "getAllBatchDownloadButton":    "HEPSİNİ AL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
@@ -158,5 +157,13 @@
     "showWindowCmItem":             "Pencereyi göster", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "hideWindowCmItem":             "Pencereyi gizle", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "closeProgramCmItem":           "Programı kapat", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadFinished":        "Toplu indirme tamamlandı!" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadFinished":        "Toplu indirme tamamlandı!", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "tagLibSharpMissingMsg":        "Klasörde taglib-sharp.dll bulunamadı!\r\nLütfen DLL’in {exeName} ile aynı klasörde olduğundan emin olun!", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "themeFileNotFoundMsg":         "Tema dosyası bulunamadı.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "themeNameNotFoundMsg":         "Tema '{themeName}' bulunamadı.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedLangFileNotfoundMsg":  "Seçilen dil dosyası bulunamadı.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputDontExistMsg":   "Belirtilen yol mevcut değil.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "notEnoughFreeSpaceMsg":        "Sürücüde yeterli boş alan yok: '{pathRoot}'" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }

@@ -24,7 +24,7 @@ namespace QobuzDownloaderX.Helpers
         public void SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
         {
             limitResults = (int)qbdlxForm._qbdlxForm.limitSearchResultsNumericUpDown.Value;
-            qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.searchResultsCountLabel.Text = "..."));
+            qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.searchResultsCountLabel.Text = "…"));
 
             if (searchType == "releases")
             {
@@ -329,6 +329,7 @@ namespace QobuzDownloaderX.Helpers
                 inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
                 mainForm.downloaderButton_Click(this, EventArgs.Empty);
                 mainForm.downloadButton.PerformClick();
+                mainForm.searchButton.PerformClick(); // Return to search panel.
             }
             catch (Exception ex)
             {

@@ -193,7 +193,7 @@
             this.loginText.Name = "loginText";
             this.loginText.Size = new System.Drawing.Size(268, 23);
             this.loginText.TabIndex = 38;
-            this.loginText.Text = "waiting for login...";
+            this.loginText.Text = "waiting for login…";
             this.loginText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // loginBackground

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -48,7 +47,7 @@ namespace QobuzDownloaderX
         {
             try
             {
-                qbdlxForm._qbdlxForm.logger.Debug("Downloading artwork...");
+                qbdlxForm._qbdlxForm.logger.Debug("Downloading artwork…");
                 await downloadFile.DownloadArtwork(downloadPath, album);
                 qbdlxForm._qbdlxForm.logger.Debug("Artwork download complete");
             }
@@ -63,7 +62,7 @@ namespace QobuzDownloaderX
         {
             try
             {
-                qbdlxForm._qbdlxForm.logger.Debug("Deleting embedded artwork...");
+                qbdlxForm._qbdlxForm.logger.Debug("Deleting embedded artwork…");
                 ZlpIOHelper.DeleteFile($"{downloadPath}{qbdlxForm._qbdlxForm.embeddedArtSize}.jpg");
             }
             catch
@@ -212,8 +211,8 @@ namespace QobuzDownloaderX
         {
             try
             {
-                // Not useful at all for normal users, but I use it so... yeah
-                qbdlxForm._qbdlxForm.logger.Debug("Writing post template...");
+                // Not useful at all for normal users, but I use it so… yeah
+                qbdlxForm._qbdlxForm.logger.Debug("Writing post template…");
                 var templateDate = DateTime.Parse(album.ReleaseDateOriginal).ToString("MMMM d, yyyy");
                 ZlpIOHelper.WriteAllText("post_template.txt", String.Empty);
 
@@ -238,7 +237,7 @@ namespace QobuzDownloaderX
                     sw.WriteLine("");
                     sw.WriteLine("[b]DOWNLOADS[/b]");
                     sw.WriteLine("-----------------------------------");
-                    sw.WriteLine($"[spoiler={Regex.Replace(album.Label.Name, @"\s+", " ")} / {album.UPC} / WEB]");
+                    sw.WriteLine($"[spoiler={RenameTemplates.spacesRegex.Replace(album.Label.Name, " ")} / {album.UPC} / WEB]");
                     if (album.MaximumBitDepth > 16)
                     {
                         sw.WriteLine($"[format=FLAC / Lossless ({album.MaximumBitDepth}bit/{album.MaximumSamplingRate}kHz) / WEB]");
