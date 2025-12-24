@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Code Barre",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Fusionner les noms d'artistes\n\nSi cette option est activée, les pistes comportant plusieurs noms d'artistes seront fusionnées en une seule chaîne séparée par des virgules. Le dernier nom d'artiste utilisera \"&&\" à la place d'une virgule. Les artistes invités seront ajoutés à la fin, précédés de \"Feat.\"\n\nExemple, si cette option est activée :\nS3rl && Tamika Feat. Amy - Here.mp3\n\nExemple, si cette option est désactivée :\nS3rl - Here.mp3",
+    "mergeArtistNamesCheckbox":     "Fusionner les noms des artistes des pistes.\n\nExemple :\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Contrôle du flux",
     "fixMD5sCheckbox":              "Corriger les MD5 non définis (doit avoir FLAC dans la variable PATH)",
     "downloadSpeedCheckbox":        "Afficher la vitesse de téléchargement",
@@ -91,7 +91,6 @@
     "downloadOutputPath":           "Chemin de téléchargement :",
     "downloadOutputNoPath":         "Aucun chemin n'a été défini ! N'oubliez pas de choisir un dossier !",
     "downloadOutputNoUrl":          "La piste {TrackNumber} n'est pas disponible en téléchargement et sera ignorée.",
-    "downloadOutputDontExist":      "Le chemin spécifié n'existe pas.",
     "downloadOutputAPIError":       "Erreur de l'API Qobuz. Peut-être que l'album n'est pas disponible dans cette région du compte ?",
     "downloadOutputNotImplemented": "Pas encore mis en œuvre ou l'URL n'est pas comprise. Y a-t-il une faute de frappe ?",
     "downloadOutputCheckLink":      "Vérification du lien...",
@@ -146,7 +145,7 @@
     "loginTextNoEmail":             "Aucun E-mail saisi",
     "loginTextNoPassword":          "Aucun Mot de passe/Token saisi",
     "updateNotification":           "Une nouvelle version de QBDLX est disponible !\r\n\r\nVersion Installée - {currentVersion}\r\nNouvelle Version - {newVersion}\r\n\r\nListe Des Changements\r\n==============\r\n{changelog}\r\n==============\r\n\r\nVoulez-vous mettre à jour ?",
-    "updateNotificationTitle":      "QBDLX | Mise à jour disponible"
+    "updateNotificationTitle":      "QBDLX | Mise à jour disponible",
     
     "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================",
     "batchDownloadDlgText":         "Téléchargement Multiple",
@@ -154,9 +153,17 @@
     "closeBatchDownloadbutton":     "Fermer / Annuler",
     "getAllBatchDownloadButton":    "Tout télécharger",
 
-    "_SECTION10_":                   "=================== SYSTRAY ICON ===================",
-    "showWindowCmItem":              "Montrer la fenêtre",
-    "hideWindowCmItem":              "Masquer la fenêtre",
-    "closeProgramCmItem":            "Fermer le programme",
-    "batchDownloadFinished":         "Téléchargement Multiple Terminé !"
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================",
+    "showWindowCmItem":             "Montrer la fenêtre",
+    "hideWindowCmItem":             "Masquer la fenêtre",
+    "closeProgramCmItem":           "Fermer le programme",
+    "batchDownloadFinished":        "Téléchargement Multiple Terminé !",
+
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================",
+    "tagLibSharpMissingMsg":        "taglib-sharp.dll manquant dans le dossier !\\r\\nVeuillez vous assurer que la DLL se trouve dans le même dossier que {exeName} !", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "themeFileNotFoundMsg":         "Fichier de thème visuel introuvable.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "themeNameNotFoundMsg":         "Thème visuel '{themeName}' introuvable.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedLangFileNotfoundMsg":  "Fichier de langue sélectionné introuvable.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputDontExistMsg":   "Le chemin spécifié n'existe pas.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "notEnoughFreeSpaceMsg":        "Pas assez d'espace libre sur le lecteur : '{pathRoot}'" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 }
