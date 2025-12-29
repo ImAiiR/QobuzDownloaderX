@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "December 29, 2025, 15:04PM MSK",
+    "TranslationUpdatedOn":         "December 30, 2025, 01:12AM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -72,7 +72,7 @@
     "upcCheckbox":                  "UPC / Штрих-код",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Объединять имена исполнителей трека.\n\nПример:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Объединять имена исполнителей трека.\n\nПример:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3",
     "streamableCheckbox":           "Проверка возможности трансляции",
     "fixMD5sCheckbox":              "Автоматическое исправление отсутствующих MD5 (FLAC должен быть в переменной PATH)",
     "downloadSpeedCheckbox":        "Показывать скорость загрузки",
