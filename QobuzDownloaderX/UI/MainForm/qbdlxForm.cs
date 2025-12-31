@@ -148,7 +148,7 @@ namespace QobuzDownloaderX
             @"https:\/\/(?:.*?).qobuz.com\/(?<type>.*?)\/(?<id>.*?)$", RegexOptions.Compiled);
 
         private readonly Regex qobuzUrlRegEx = new Regex(
-         @"^https?:\/\/(?:.*\.)?qobuz\.com\/.+\/[^\/]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+         @"^https?:\/\/(?!.*https?:\/\/)(?:[\w\-]+\.)?qobuz\.com\/[^\s]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         // Allows to minimize/restore the form by clicking on the taskbar icon.
         protected override CreateParams CreateParams
