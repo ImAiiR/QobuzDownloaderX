@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
@@ -265,7 +266,7 @@ namespace QobuzDownloaderX.Helpers
             }
 
             // GetSafeFilename call to make sure path will be valid
-            template = GetSafeFilename(template); 
+            template = GetSafeFilename(template);
 
             // Remove any double spaces
             template = spacesBeforeBackslashRegex.Replace(
@@ -294,7 +295,7 @@ namespace QobuzDownloaderX.Helpers
             char greaterThanChar = '˃')
         {
             if (string.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentNullException(nameof(fileName));
+                return fileName;
 
             char[] invalidFileNameChars = Path.GetInvalidFileNameChars();
 
@@ -406,7 +407,7 @@ namespace QobuzDownloaderX.Helpers
         {
 
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException(nameof(name));
+                return name;
 
             if (maxFileNameLength == 0)
                 throw new ArgumentException("Value must be greater than zero.", nameof(maxFileNameLength));

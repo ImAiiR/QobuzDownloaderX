@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -213,8 +214,6 @@ namespace QobuzDownloaderX
 
         private void LoadTaggingSettings()
         {
-            streamableCheckbox.Checked = Settings.Default.streamableCheck;
-            downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
             albumTitleCheckbox.Checked = Settings.Default.albumTag;
             albumArtistCheckbox.Checked = Settings.Default.albumArtistTag;
             trackArtistCheckbox.Checked = Settings.Default.artistTag;
@@ -239,6 +238,14 @@ namespace QobuzDownloaderX
             commentTextbox.Text = Settings.Default.commentText;
             embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize;
             savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
+        }
+        private void LoadOtherSettings()
+        {
+            streamableCheckbox.Checked = Settings.Default.streamableCheck;
+            useTLS13Checkbox.Checked = Settings.Default.useTLS13;
+            fixMD5sCheckbox.Checked = Settings.Default.fixMD5s;
+            downloadGoodiesCheckbox.Checked = Settings.Default.downloadGoodies;
+            downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
         }
 
         private void SetDownloadPath()
@@ -317,6 +324,7 @@ namespace QobuzDownloaderX
             logoutButton.Text = languageManager.GetTranslation("logoutButton");
             openFolderButton.Text = languageManager.GetTranslation("openFolderButton");
             qualitySelectButton.Text = languageManager.GetTranslation("qualitySelectButton");
+            resetTemplatesButton.Text = languageManager.GetTranslation("resetTemplatesButton");
             saveTemplatesButton.Text = languageManager.GetTranslation("saveTemplatesButton");
             searchButton.Text = languageManager.GetTranslation("searchButton");
             searchAlbumsButton.Text = languageManager.GetTranslation("searchAlbumsButton");
@@ -393,12 +401,14 @@ namespace QobuzDownloaderX
             downloadSpeedCheckbox.Text = languageManager.GetTranslation("downloadSpeedCheckbox");
             sortAscendantCheckBox.Text = languageManager.GetTranslation("sortAscendantCheckBox");
             downloadGoodiesCheckbox.Text = languageManager.GetTranslation("downloadGoodiesCheckbox");
+            useTLS13Checkbox.Text = languageManager.GetTranslation("useTLS13Checkbox");
 
             /* Center certain checkboxes in panels */
-            streamableCheckbox.Location = new Point((extraSettingsPanel.Width - streamableCheckbox.Width) / 2, streamableCheckbox.Location.Y);
-            downloadGoodiesCheckbox.Location = new Point(streamableCheckbox.Right + 16, streamableCheckbox.Location.Y);
             fixMD5sCheckbox.Location = new Point((extraSettingsPanel.Width - fixMD5sCheckbox.Width) / 2, fixMD5sCheckbox.Location.Y);
             downloadSpeedCheckbox.Location = new Point((extraSettingsPanel.Width - downloadSpeedCheckbox.Width) / 2, downloadSpeedCheckbox.Location.Y);
+            streamableCheckbox.Location = new Point(fixMD5sCheckbox.Left, streamableCheckbox.Location.Y);
+            useTLS13Checkbox.Location = new Point(streamableCheckbox.Right + 16, streamableCheckbox.Location.Y);
+            downloadGoodiesCheckbox.Location = new Point(useTLS13Checkbox.Right + 16, streamableCheckbox.Location.Y);
 
             // Context menu items
             showWindowToolStripMenuItem.Text = languageManager.GetTranslation("showWindowCmItem");
@@ -456,6 +466,7 @@ namespace QobuzDownloaderX
             LoadSavedTemplates();
             LoadQualitySettings();
             LoadTaggingSettings();
+            LoadOtherSettings();
             InitializeTheme();
             InitializePanels();
             InitializeLanguage();
@@ -475,7 +486,8 @@ namespace QobuzDownloaderX
             playlistTemplateTextbox.TabIndex = 6;
             favoritesTemplateTextbox.TabIndex = 7;
             saveTemplatesButton.TabIndex = 8;
-            templatesListTextbox.TabIndex = 9;
+            resetTemplatesButton.TabIndex = 9;
+            templatesListTextbox.TabIndex = 10;
 
             // Get and display version number.
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -1410,6 +1422,15 @@ namespace QobuzDownloaderX
             }
         }
 
+        private void resetTemplatesButton_Click(object sender, EventArgs e)
+        {
+            artistTemplateTextbox.Text = "%ArtistName%";
+            albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]";
+            trackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
+            playlistTemplateTextbox.Text = "%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%";
+            favoritesTemplateTextbox.Text = "- Favorites";
+        }
+
         private void saveTemplatesButton_Click(object sender, EventArgs e)
         {
             Settings.Default.savedArtistTemplate = artistTemplateTextbox.Text;
@@ -1846,6 +1867,13 @@ namespace QobuzDownloaderX
         {
             Settings.Default.downloadGoodies = downloadGoodiesCheckbox.Checked;
             Settings.Default.Save();
+        }
+
+        private void useTLS13Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.useTLS13 = useTLS13Checkbox.Checked;
+            Settings.Default.Save();
+            SetTLSSetting();
         }
 
         private void downloadSpeedCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -2377,6 +2405,18 @@ namespace QobuzDownloaderX
                 !getLinkTypeIsBusy &&
                 SearchPanelHelper.selectedRowindices.Any();
         }
+
+        public static void SetTLSSetting()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                 | SecurityProtocolType.Tls11
+                                                 | SecurityProtocolType.Tls12;
+
+            if (Settings.Default.useTLS13)
+            {
+                ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls13;
+            }
+        }
     }
 
     // Upsides of this buffering approach:
@@ -2565,68 +2605,4 @@ namespace QobuzDownloaderX
             }
         }
     }
-
-    // Previous implementation.
-    //
-    // Terrible performance with hundreds of I/O operations (open, seek, write, close) per few seconds.
-    // This constant writing contributed to wear the disk drive.
-    //
-    // Also, the larger the log file grew (becoming more noticeable around 20~30 MB log files),
-    // the more the application (specially during file downloads) slowed down due continuous log writes,
-    // because each 'File.AppendText()' call has to seek to the end of the file and write the data.
-    // =================================================================================================
-    //
-    //public class Logger
-    //{
-    //    private readonly string _filePath;
-    //
-    //    public Logger(string filePath)
-    //    {
-    //        _filePath = filePath;
-    //    }
-    //
-    //    public void Log(string message, string level)
-    //    {
-    //        var logMessage = $"[{DateTime.Now}] [{level}] {message}";
-    //
-    //        try
-    //        {
-    //            using (var writer = File.AppendText(_filePath))
-    //            {
-    //                writer.WriteLine(logMessage);
-    //            }
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            Debug.WriteLine("Somehow, the log failed to write, lol");
-    //            Debug.WriteLine(logMessage);
-    //            Debug.WriteLine(ex);
-    //        }
-    //    }
-    //
-    //    public void Debug(string message)
-    //    {
-    //        Debug.WriteLine($"DEBUG | {message}");
-    //        Log(message, "DEBUG");
-    //    }
-    //
-    //    public void Info(string message)
-    //    {
-    //        Debug.WriteLine($"INFO | {message}");
-    //        Log(message, "INFO");
-    //    }
-    //
-    //    public void Warning(string message)
-    //    {
-    //        Debug.WriteLine($"WARNING | {message}");
-    //        Log(message, "WARNING");
-    //    }
-    //
-    //    public void Error(string message)
-    //    {
-    //        Debug.WriteLine($"ERROR | {message}");
-    //        Log(message, "ERROR");
-    //    }
-    //}
-
 }

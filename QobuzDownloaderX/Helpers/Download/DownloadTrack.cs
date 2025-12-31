@@ -91,8 +91,7 @@ namespace QobuzDownloaderX
             else { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.Position.ToString().PadLeft(paddedTrackLength, '0')} {trackNameFormatted}…"); }
 
             // Download stream
-            await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem);
-            getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
+            await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem, getInfo);
         }
 
         public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem, IProgress<int> progress)

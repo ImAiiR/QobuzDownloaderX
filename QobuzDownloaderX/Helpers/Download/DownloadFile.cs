@@ -4,6 +4,7 @@ using QopenAPI;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -18,6 +19,9 @@ namespace QobuzDownloaderX
         readonly RenameTemplates renameTemplates = new RenameTemplates();
         readonly PaddingNumbers paddingNumbers = new PaddingNumbers();
         readonly FixMD5 fixMD5 = new FixMD5();
+
+        // Static flag to ensure temp directory check runs only once per application run
+        private static bool tempDirChecked = false;
 
         public string artworkPath { get; set; }
 
@@ -44,22 +48,44 @@ namespace QobuzDownloaderX
             });
         }
 
-        public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem)
+        public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem, GetInfo getInfo)
         {
-            qbdlxForm._qbdlxForm.logger.Debug("Writing temp file to qbdlx-temp/qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
+            const string tempDir = @"qbdlx-temp";
+            string tempFile = ZlpPathHelper.Combine(tempDir, $"qbdlx_downloading-{QoItem.Id}{audio_format}");
 
-            // Create a temp directory inside the exe location
-            string tempFile = ZlpPathHelper.Combine(@"qbdlx-temp", "qbdlx_downloading-" + QoItem.Id.ToString() + audio_format);
-            ZlpIOHelper.CreateDirectory(@"qbdlx-temp");
+            // Ensure temp directory exists
+            if (!ZlpIOHelper.DirectoryExists(tempDir))
+            {
+                qbdlxForm._qbdlxForm.logger.Debug($"[DownloadStream] Temp directory does not exist, creating: {tempDir}");
+                ZlpIOHelper.CreateDirectory(tempDir);
+            }
+
+            // Check write permission -only once per session- by creating an empty test file
+            if (!tempDirChecked)
+            {
+                string testFile = ZlpPathHelper.Combine(tempDir, "test.tmp");
+                try
+                {
+                    File.WriteAllText(testFile, "test");
+                    File.Delete(testFile);
+                    tempDirChecked = true;
+                    qbdlxForm._qbdlxForm.logger.Debug("Temp directory is writable.");
+                }
+                catch (Exception ex)
+                {
+                    qbdlxForm._qbdlxForm.logger.Error("Temp directory is not writable: " + ex.Message);
+                    getInfo.updateDownloadOutput($"ERROR: Temp directory '{tempDir}' is not writable: {ex.Message}\r\n");
+                    throw;
+                }
+            }
+
+            qbdlxForm._qbdlxForm.logger.Debug($"Writing temp file to {tempFile}");
 
             qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {0}%"; }));
 
             // Set path for downloaded artwork
             artworkPath = downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg";
             qbdlxForm._qbdlxForm.logger.Debug("Artwork path: " + artworkPath);
-
-            // Use secure connection
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
             // Handle subfolders if more than 1 volume
             string finalDownloadPath = downloadPath;
@@ -76,12 +102,21 @@ namespace QobuzDownloaderX
 
             try
             {
+                qbdlxForm._qbdlxForm.logger.Debug("Stream URL: " + streamUrl);
                 using (var httpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(5) })
                 using (var response = await httpClient.GetAsync(streamUrl, HttpCompletionOption.ResponseHeadersRead))
                 {
                     response.EnsureSuccessStatusCode();
 
                     long totalBytes = response.Content.Headers.ContentLength ?? -1;
+                    qbdlxForm._qbdlxForm.logger.Debug($"HTTP Status Code: {(int)response.StatusCode} ({response.StatusCode})");
+                    qbdlxForm._qbdlxForm.logger.Debug($"Responde Headers: {string.Join("; ", response.Content.Headers.Select(h => $"{h.Key}={string.Join(",", h.Value)}"))}");
+
+                    if (totalBytes < 1)
+                    {
+                        throw new WebException($"response.Content.Headers.ContentLength: {totalBytes}");
+                    }
+
                     long totalBytesRead = 0;
                     int bufferLength = 81920; // 80 kb. Stream.cs: const int DefaultCopyBufferSize = 81920
                     byte[] buffer = new byte[bufferLength];
@@ -90,7 +125,7 @@ namespace QobuzDownloaderX
 
                     using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync:true))
                     using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(50)))
+                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60)))
                     {
                         int bytesRead;
                         while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)
@@ -143,11 +178,17 @@ namespace QobuzDownloaderX
                 ZlpIOHelper.MoveFile(tempFile, filePath);
 
                 qbdlxForm._qbdlxForm.logger.Debug("Download complete.");
+                getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
             }
             catch (TaskCanceledException ex)
             {
                 qbdlxForm._qbdlxForm.logger.Error("Download timed out or cancelled: " + ex.Message);
                 throw;
+            }
+            catch (WebException webEx)
+            {
+                getInfo.updateDownloadOutput($" Download failed: {webEx.Message}\r\n");
+                qbdlxForm._qbdlxForm.logger.Error("WebException caught: " + webEx.Message);
             }
             catch (Exception ex) when (
                   (ex is IOException ioEx && ioEx.HResult == unchecked((int)0x80070070)) ||
@@ -172,9 +213,6 @@ namespace QobuzDownloaderX
 
             using (var client = new WebClient())
             {
-                // Use secure connection
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
-
                 // Download cover art (600x600) to the download path
                 qbdlxForm._qbdlxForm.logger.Debug("Downloading Cover Art");
                 ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
@@ -194,11 +232,6 @@ namespace QobuzDownloaderX
 
         public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody, GetInfo getInfo)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
-                                                 | SecurityProtocolType.Tls11
-                                                 | SecurityProtocolType.Tls12
-                                                 | SecurityProtocolType.Tls13;
-
             ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
 
             string fileName = downloadPath

@@ -16,6 +16,7 @@
     "openFolderButton":             "Klasörü Aç",
     "qualitySelectButton":          "Kalite Seç",
     "saveTemplatesButton":          "Kaydet",
+    "resetTemplatesButton":         "Sıfırla", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchButton":                 "ARA",
     "searchAlbumsButton":           "ESER",
     "searchTracksButton":           "PARÇA",
@@ -77,12 +78,13 @@
     "upcCheckbox":                  "UPC / Barkod",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "Parça sanatçı isimlerini birleştir.\n\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Parça sanatçı isimlerini birleştir.\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Oynatılabilirlik Doğrulaması",
     "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
     "downloadSpeedCheckbox":        "İndirme Hızını Göster",
     "sortAscendantCheckBox":        "Artan", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "downloadGoodiesCheckbox":      "İkramları indir", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "useTLS13Checkbox":             "TLS 1.3 kullan", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",

@@ -16,6 +16,7 @@
     "openFolderButton":             "Ouvrir Le Dossier",
     "qualitySelectButton":          "Qualité",
     "saveTemplatesButton":          "Enregistrer",
+    "resetTemplatesButton":         "Réinitialiser", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchButton":                 "Rechercher",
     "searchAlbumsButton":           "Albums",
     "searchTracksButton":           "Pistes",
@@ -77,12 +78,13 @@
     "upcCheckbox":                  "UPC / Code Barre",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Fusionner les noms des artistes des pistes.\n\nExemple :\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Fusionner les noms des artistes des pistes.\nExemple :\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Contrôle du flux",
     "fixMD5sCheckbox":              "Corriger les MD5 non définis (doit avoir FLAC dans la variable PATH)",
     "downloadSpeedCheckbox":        "Afficher la vitesse de téléchargement",
     "sortAscendantCheckBox":        "Ascendant",
     "downloadGoodiesCheckbox":      "Télécharger les bonus", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "useTLS13Checkbox":             "Utiliser TLS 1.3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",

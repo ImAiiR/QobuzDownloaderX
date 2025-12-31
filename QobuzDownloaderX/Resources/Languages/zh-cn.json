@@ -16,6 +16,7 @@
     "openFolderButton":             "打开文件夹",
     "qualitySelectButton":          "音质选择器",
     "saveTemplatesButton":          "保存",
+    "resetTemplatesButton":         "重置", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchButton":                 "搜索",
     "searchAlbumsButton":           "搜专辑",
     "searchTracksButton":           "搜曲目",
@@ -77,12 +78,13 @@
     "upcCheckbox":                  "UPC/条形码",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "将主艺术家和客串艺术家合并为一个字符串。\n\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "歌曲流媒体可播性检查",
     "fixMD5sCheckbox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckbox":        "显示下载速度",
     "sortAscendantCheckBox":        "升序", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "downloadGoodiesCheckbox":      "下载好礼", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "useTLS13Checkbox":             "使用 TLS 1.3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",

@@ -328,6 +328,7 @@ namespace QobuzDownloaderX.Helpers
     ""openFolderButton"":             ""Open Folder"",
     ""qualitySelectButton"":          ""Quality Selector"",
     ""saveTemplatesButton"":          ""Save"",
+    ""resetTemplatesButton"":         ""Reset"",
     ""searchButton"":                 ""SEARCH"",
     ""searchAlbumsButton"":           ""RELEASES"",
     ""searchTracksButton"":           ""TRACKS"",
@@ -395,6 +396,7 @@ namespace QobuzDownloaderX.Helpers
     ""downloadSpeedCheckbox"":        ""Print Download Speed"",
     ""sortAscendantCheckBox"":        ""Ascendant"",
     ""downloadGoodiesCheckbox"":      ""Download goodies"",
+    ""useTLS13Checkbox"":             ""Use TLS 1.3"",
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",

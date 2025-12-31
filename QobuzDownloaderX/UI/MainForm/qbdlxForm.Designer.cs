@@ -66,6 +66,7 @@ namespace QobuzDownloaderX
             this.downloadLabel = new System.Windows.Forms.Label();
             this.settingsPanel = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.resetTemplatesButton = new System.Windows.Forms.Button();
             this.saveTemplatesButton = new System.Windows.Forms.Button();
             this.folderButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.selectFolderButton = new System.Windows.Forms.Button();
@@ -128,6 +129,7 @@ namespace QobuzDownloaderX
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadGoodiesCheckbox = new System.Windows.Forms.CheckBox();
+            this.useTLS13Checkbox = new System.Windows.Forms.CheckBox();
             this.advancedOptionsLabel = new System.Windows.Forms.Label();
             this.closeAdditionalButton = new System.Windows.Forms.Button();
             this.savedArtLabel = new System.Windows.Forms.Label();
@@ -703,12 +705,32 @@ namespace QobuzDownloaderX
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.resetTemplatesButton);
             this.flowLayoutPanel1.Controls.Add(this.saveTemplatesButton);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(248, 345);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(443, 37);
             this.flowLayoutPanel1.TabIndex = 30;
+            // 
+            // resetTemplatesButton
+            // 
+            this.resetTemplatesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetTemplatesButton.AutoSize = true;
+            this.resetTemplatesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.resetTemplatesButton.FlatAppearance.BorderSize = 0;
+            this.resetTemplatesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.resetTemplatesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.resetTemplatesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetTemplatesButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetTemplatesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.resetTemplatesButton.Location = new System.Drawing.Point(356, 3);
+            this.resetTemplatesButton.Name = "resetTemplatesButton";
+            this.resetTemplatesButton.Size = new System.Drawing.Size(84, 31);
+            this.resetTemplatesButton.TabIndex = 1;
+            this.resetTemplatesButton.Text = "Reset";
+            this.resetTemplatesButton.UseVisualStyleBackColor = false;
+            this.resetTemplatesButton.Click += new System.EventHandler(this.resetTemplatesButton_Click);
             // 
             // saveTemplatesButton
             // 
@@ -724,7 +746,7 @@ namespace QobuzDownloaderX
             this.saveTemplatesButton.Location = new System.Drawing.Point(356, 3);
             this.saveTemplatesButton.Name = "saveTemplatesButton";
             this.saveTemplatesButton.Size = new System.Drawing.Size(84, 31);
-            this.saveTemplatesButton.TabIndex = 1;
+            this.saveTemplatesButton.TabIndex = 2;
             this.saveTemplatesButton.Text = "Save";
             this.saveTemplatesButton.UseVisualStyleBackColor = false;
             this.saveTemplatesButton.Click += new System.EventHandler(this.saveTemplatesButton_Click);
@@ -1115,6 +1137,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.fixMD5sCheckbox);
             this.extraSettingsPanel.Controls.Add(this.streamableCheckbox);
             this.extraSettingsPanel.Controls.Add(this.downloadGoodiesCheckbox);
+            this.extraSettingsPanel.Controls.Add(this.useTLS13Checkbox);
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsLabel);
             this.extraSettingsPanel.Controls.Add(this.closeAdditionalButton);
             this.extraSettingsPanel.Controls.Add(this.savedArtLabel);
@@ -1590,6 +1613,21 @@ namespace QobuzDownloaderX
             this.downloadGoodiesCheckbox.UseVisualStyleBackColor = true;
             this.downloadGoodiesCheckbox.CheckedChanged += new System.EventHandler(this.downloadGoodiesCheckbox_CheckedChanged);
             // 
+            // useTLS13Checkbox
+            // 
+            this.useTLS13Checkbox.AutoSize = true;
+            this.useTLS13Checkbox.Checked = true;
+            this.useTLS13Checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.useTLS13Checkbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useTLS13Checkbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.useTLS13Checkbox.Location = new System.Drawing.Point(297, 326);
+            this.useTLS13Checkbox.Name = "useTLS13Checkbox";
+            this.useTLS13Checkbox.Size = new System.Drawing.Size(82, 17);
+            this.useTLS13Checkbox.TabIndex = 26;
+            this.useTLS13Checkbox.Text = "Use TLS 1.3";
+            this.useTLS13Checkbox.UseVisualStyleBackColor = true;
+            this.useTLS13Checkbox.CheckedChanged += new System.EventHandler(this.useTLS13Checkbox_CheckedChanged);
+            // 
             // advancedOptionsLabel
             // 
             this.advancedOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1958,9 +1996,9 @@ namespace QobuzDownloaderX
             // 
             this.limitSearchResultsLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.limitSearchResultsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.limitSearchResultsLabel.Location = new System.Drawing.Point(392, 87);
+            this.limitSearchResultsLabel.Location = new System.Drawing.Point(392, 84);
             this.limitSearchResultsLabel.Name = "limitSearchResultsLabel";
-            this.limitSearchResultsLabel.Size = new System.Drawing.Size(132, 24);
+            this.limitSearchResultsLabel.Size = new System.Drawing.Size(132, 27);
             this.limitSearchResultsLabel.TabIndex = 12;
             this.limitSearchResultsLabel.Text = "Results Limit:";
             this.limitSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2397,6 +2435,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.TextBox albumTemplateTextbox;
         private System.Windows.Forms.Label playlistTemplateLabel;
         private System.Windows.Forms.Label albumTemplateLabel;
+        private System.Windows.Forms.Button resetTemplatesButton;
         private System.Windows.Forms.Button saveTemplatesButton;
         private System.Windows.Forms.TextBox favoritesTemplateTextbox;
         private System.Windows.Forms.Label favoritesTemplateLabel;
@@ -2444,6 +2483,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.Label advancedOptionsLabel;
         public System.Windows.Forms.CheckBox streamableCheckbox;
         public System.Windows.Forms.CheckBox downloadGoodiesCheckbox;
+        public System.Windows.Forms.CheckBox useTLS13Checkbox;
         public System.Windows.Forms.TextBox templatesListTextbox;
         private System.Windows.Forms.Label templatesListLabel;
         public System.Windows.Forms.CheckBox fixMD5sCheckbox;

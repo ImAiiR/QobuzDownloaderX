@@ -16,6 +16,7 @@
     "openFolderButton":             "Abrir carpeta",
     "qualitySelectButton":          "Selector de calidad",
     "saveTemplatesButton":          "Guardar",
+    "resetTemplatesButton":         "Restaurar",
     "searchButton":                 "BUSCAR",
     "searchAlbumsButton":           "ÁLBUMES", // Nota: el término "LANZAMIENTOS" sobrepasa la longitud del botón.
     "searchTracksButton":           "PISTAS",
@@ -77,12 +78,13 @@
     "upcCheckbox":                  "UPC / Código de barras",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Combinar los nombres de artistas.\n\nEjemplo:\nArtista1 && Artista2 Feat. Artista3 - Título.mp3",
+    "mergeArtistNamesCheckbox":     "Combinar los nombres de artistas.\nEjemplo:\nArtista1 && Artista2 Feat. Artista3 - Título.mp3",
     "streamableCheckbox":           "Verificación de stream",
     "fixMD5sCheckbox":              "Auto-corregir MD5 sin definir (requiere FLAC en la variable PATH)",
     "downloadSpeedCheckbox":        "Mostrar velocidad de descarga",
     "sortAscendantCheckBox":        "Ascendente",
-    "downloadGoodiesCheckbox":      "Descargar extras", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadGoodiesCheckbox":      "Descargar extras",
+    "useTLS13Checkbox":             "Usar TLS 1.3",
 
     "_SECTION4_":                   "=================== CAMPOS DEL FORM PRINCIPAL ===================",
     "albumLabelPlaceholder":        "¡Bienvenido a QBDLX!",

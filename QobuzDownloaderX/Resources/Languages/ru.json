@@ -16,6 +16,7 @@
     "openFolderButton":             "Открыть папку",
     "qualitySelectButton":          "Выбор качества",
     "saveTemplatesButton":          "Сохранить",
+    "resetTemplatesButton":         "Сбросить", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchButton":                 "ПОИСК",
     "searchAlbumsButton":           "РЕЛИЗЫ",
     "searchTracksButton":           "ТРЕКИ",
@@ -77,12 +78,13 @@
     "upcCheckbox":                  "UPC / Штрих-код",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Объединять имена исполнителей трека.\n\nПример:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3",
+    "mergeArtistNamesCheckbox":     "Объединять имена исполнителей трека.\nПример:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3",
     "streamableCheckbox":           "Проверка возможности трансляции",
     "fixMD5sCheckbox":              "Автоматическое исправление отсутствующих MD5 (FLAC должен быть в переменной PATH)",
     "downloadSpeedCheckbox":        "Показывать скорость загрузки",
     "sortAscendantCheckBox":        "По возрастанию",
     "downloadGoodiesCheckbox":      "Скачать бонусы", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "useTLS13Checkbox":             "Использовать TLS 1.3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",

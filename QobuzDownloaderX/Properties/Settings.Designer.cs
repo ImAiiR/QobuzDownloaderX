@@ -682,5 +682,17 @@ namespace QobuzDownloaderX.Properties {
                 this["downloadGoodies"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useTLS13 {
+            get {
+                return ((bool)(this["useTLS13"]));
+            }
+            set {
+                this["useTLS13"] = value;
+            }
+        }
     }
 }

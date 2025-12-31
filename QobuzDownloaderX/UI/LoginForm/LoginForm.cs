@@ -1,17 +1,16 @@
-﻿using System;
+﻿using QobuzDownloaderX.Helpers;
+using QobuzDownloaderX.Properties;
+using QobuzDownloaderX.Win32;
+using QopenAPI;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
-
-using QopenAPI;
 using ZetaLongPaths;
-
-using QobuzDownloaderX.Helpers;
-using QobuzDownloaderX.Properties;
-using QobuzDownloaderX.Win32;
 
 namespace QobuzDownloaderX
 {
@@ -211,6 +210,9 @@ namespace QobuzDownloaderX
                 Properties.Settings.Default.Save();
             }
 
+            // Load saved TLS negotiation settings
+            qbdlxForm.SetTLSSetting();
+
             // Round corners of form
             Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
@@ -239,7 +241,6 @@ namespace QobuzDownloaderX
 
             // Check for language updates
             await TranslationUpdater.CheckAndUpdateLanguageFiles();
-
         }
 
         private void exitButton_Click(object sender, EventArgs e)

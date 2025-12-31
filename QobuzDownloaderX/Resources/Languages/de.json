@@ -16,6 +16,7 @@
     "openFolderButton":             "Ordner Öffnen",
     "qualitySelectButton":          "Qualität",
     "saveTemplatesButton":          "Speichern",
+    "resetTemplatesButton":         "Zurücksetzen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchButton":                 "SUCHE",
     "searchAlbumsButton":           "ALBUM",
     "searchTracksButton":           "TRACK",
@@ -77,12 +78,13 @@
     "upcCheckbox":                  "UPC / Barcode",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "Track-Künstlernamen zusammenführen.\n\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Track-Künstlernamen zusammenführen.\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "streamableCheckbox":           "Ist Streamfähig Check",
     "fixMD5sCheckbox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
     "downloadSpeedCheckbox":        "Downloadgeschwindigkeit Anzeigen",
     "sortAscendantCheckBox":        "Aufsteigend", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "downloadGoodiesCheckbox":      "Goodies herunterladen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "useTLS13Checkbox":             "TLS 1.3 verwenden", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",

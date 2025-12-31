@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -132,9 +131,6 @@ namespace QobuzDownloaderX.Helpers
                 using (var httpClient = new HttpClient())
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("HttpClient initialized");
-
-                    // Configure TLS for secure connection
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
                     // Set user-agent to Firefox
                     httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
