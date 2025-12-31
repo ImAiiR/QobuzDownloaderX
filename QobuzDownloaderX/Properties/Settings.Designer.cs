@@ -670,5 +670,17 @@ namespace QobuzDownloaderX.Properties {
                 this["savedPlaylistTemplate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool downloadGoodies {
+            get {
+                return ((bool)(this["downloadGoodies"]));
+            }
+            set {
+                this["downloadGoodies"] = value;
+            }
+        }
     }
 }

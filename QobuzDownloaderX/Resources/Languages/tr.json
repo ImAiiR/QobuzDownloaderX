@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "December 7, 2025, 01:25PM UTC",
+    "TranslationUpdatedOn":         "December 31, 2025, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -21,6 +21,9 @@
     "searchTracksButton":           "PARÇA",
     "selectFolderButton":           "Klasör Seç",
     "settingsButton":               "AYARLAR",
+    "selectAllRowsButton":          "Tüm satırları seç", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "deselectAllRowsButton":        "Tüm satırların seçimini kaldır", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadRowsButton":      "SEÇİLİ SATIRLARI TOPLU İNDİR", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "GELİŞMİŞ AYARLAR",
@@ -46,11 +49,13 @@
     "welcomeLabel":                 "Hoşgeldin\r\n{username}",
     "limitSearchResultsLabel":      "Sonuç Sınırı:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchSortingLabel":           "Sırala:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortGenreLabel":               "Tür", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortReleaseDateLabel":         "Yayın Tarihi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortArtistNameLabel":          "Sanatçı Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortAlbumTrackNameLabel":      "Albüm / Parça Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortingSearchResultsLabel":    "Sıralanıyor…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchResultsCountLabel":      "sonuç", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedRowsCountLabel":       "{0} seçili satır", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumArtistCheckbox":          "Albüm Sanatçısı",
@@ -77,6 +82,7 @@
     "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
     "downloadSpeedCheckbox":        "İndirme Hızını Göster",
     "sortAscendantCheckBox":        "Artan", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadGoodiesCheckbox":      "İkramları indir", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",
@@ -117,6 +123,7 @@
     "playlist":                     "Çalma listesi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "recordLabel":                  "Plak şirketi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "user":                         "Kullanıcı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "invalidUrl":                   "Geçersiz URL: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "KAPAT",

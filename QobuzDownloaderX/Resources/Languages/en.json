@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "December 7, 2025, 12:38PM EST",
+    "TranslationUpdatedOn":         "December 31, 2025, 12:38PM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -21,6 +21,9 @@
     "searchTracksButton":           "TRACKS",
     "selectFolderButton":           "Select Folder",
     "settingsButton":               "SETTINGS",
+    "selectAllRowsButton":          "Select all rows",
+    "deselectAllRowsButton":        "Deselect all rows",
+    "batchDownloadRowsButton":      "BATCH DOWNLOAD SELECTED ROWS",
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "ADVANCED OPTIONS",
@@ -47,10 +50,12 @@
     "limitSearchResultsLabel":      "Results Limit:",
     "searchSortingLabel":           "Sort By:",
     "sortReleaseDateLabel":         "Release Date",
+    "sortGenreLabel":               "Genre",
     "sortArtistNameLabel":          "Artist Name",
     "sortAlbumTrackNameLabel":      "Album / Track Name",
     "sortingSearchResultsLabel":    "Sorting…",
     "searchResultsCountLabel":      "results",
+    "selectedRowsCountLabel":       "{0} selected rows",
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Album Artist",
@@ -72,11 +77,12 @@
     "upcCheckbox":                  "UPC / Barcode",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Merge track artist names.\n\nExample:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Merge track artist names.\n\nExample:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3",
     "streamableCheckbox":           "Streamable Check",
     "fixMD5sCheckbox":              "Auto-Fix Unset MD5s (must have FLAC in PATH variables)",
     "downloadSpeedCheckbox":        "Print Download Speed",
     "sortAscendantCheckBox":        "Ascendant",
+    "downloadGoodiesCheckbox":      "Download goodies",
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Welcome to QBDLX!",
@@ -117,6 +123,7 @@
     "playlist":                     "Playlist",
     "recordLabel":                  "Record label",
     "user":                         "User",
+    "invalidUrl":                   "Invalid URL: {0}",
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "CLOSE",

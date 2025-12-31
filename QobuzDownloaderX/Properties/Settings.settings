@@ -47,12 +47,12 @@
     <Setting Name="isrcTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-	  <Setting Name="urlTag" Type="System.Boolean" Scope="User">
-		  <Value Profile="(Default)">True</Value>
-	  </Setting>
-	  <Setting Name="mergeArtistNames" Type="System.Boolean" Scope="User">
-		  <Value Profile="(Default)">True</Value>
-	  </Setting>
+    <Setting Name="urlTag" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="mergeArtistNames" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="upcTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -163,6 +163,9 @@
     </Setting>
     <Setting Name="savedPlaylistTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">%PlaylistTitle% [ID%PlaylistID%]\%ArtistName%</Value>
+    </Setting>
+    <Setting Name="downloadGoodies" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

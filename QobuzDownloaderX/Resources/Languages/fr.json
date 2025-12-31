@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "December 12, 2025, 10:00AM UTC",
+    "TranslationUpdatedOn":         "December 31, 2025, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -21,6 +21,9 @@
     "searchTracksButton":           "Pistes",
     "selectFolderButton":           "Sélectionner Le Dossier",
     "settingsButton":               "Paramètres",
+    "selectAllRowsButton":          "Sélectionner toutes les lignes", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "deselectAllRowsButton":        "Désélectionner toutes les lignes", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadRowsButton":      "TÉLÉCHARGER LES LIGNES SÉLECTIONNÉES EN LOT", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Paramètres Avancés",
@@ -47,10 +50,12 @@
     "limitSearchResultsLabel":      "Limite :",
     "searchSortingLabel":           "Trier par :",
     "sortReleaseDateLabel":         "Date de sortie",
+    "sortGenreLabel":               "Genre", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortArtistNameLabel":          "Artiste",
     "sortAlbumTrackNameLabel":      "Album / Piste",
     "sortingSearchResultsLabel":    "Tri en cours...",
     "searchResultsCountLabel":      "résultats",
+    "selectedRowsCountLabel":       "{0} lignes sélectionnées", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Artiste de l'album",
@@ -77,6 +82,7 @@
     "fixMD5sCheckbox":              "Corriger les MD5 non définis (doit avoir FLAC dans la variable PATH)",
     "downloadSpeedCheckbox":        "Afficher la vitesse de téléchargement",
     "sortAscendantCheckBox":        "Ascendant",
+    "downloadGoodiesCheckbox":      "Télécharger les bonus", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",
@@ -117,6 +123,7 @@
     "playlist":                     "Playlist",
     "recordLabel":                  "Label Discographique",
     "user":                         "Utilisateur",
+    "invalidUrl":                   "URL invalide: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "Fermer",

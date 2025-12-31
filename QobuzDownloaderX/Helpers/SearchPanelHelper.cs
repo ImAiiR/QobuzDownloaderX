@@ -10,8 +10,17 @@ using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX.Helpers
 {
+    class RowInfo
+    {
+        public int RowIndex { get; set; }
+        public bool Selected { get; set; }
+        public string AlbumOrTrackUrl { get; set; }
+    }
+
     class SearchPanelHelper
     {
+        public static readonly List<int> selectedRowindices = new List<int>();
+
         public Service QoService = new Service();
         public User QoUser = new User();
         public Item QoItem = new Item();
@@ -44,7 +53,7 @@ namespace QobuzDownloaderX.Helpers
             }
         }
 
-    public void PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
+        public void PopulateTableAlbums(qbdlxForm mainForm, SearchAlbumResult QoAlbumSearch)
         {
             // Access the "items" array from the response
             var albums = QoAlbumSearch.Albums.Items;
@@ -58,32 +67,52 @@ namespace QobuzDownloaderX.Helpers
 
                 TableLayoutPanel searchResultsTablePanel = mainForm.searchResultsTablePanel;
                 searchResultsTablePanel.SuspendLayout();
-                foreach (Control ctrl in searchResultsTablePanel.Controls)
-                {
-                    if (ctrl is PictureBox pb)
-                    {
-                        pb.Image?.Dispose();
-                    }
-                    ctrl?.Dispose();
-                }
-                searchResultsTablePanel.Controls.Clear();
 
-                searchResultsTablePanel.ColumnCount = 5; // Artwork, Artist, Title, Quality, Button
-                searchResultsTablePanel.RowCount = limitResults; // Set row count based on the number of albums
+                // Restore related selection row controls
+                selectedRowindices.Clear();
+                qbdlxForm._qbdlxForm.selectedRowsCountLabel.Text =
+                    string.Format(qbdlxForm._qbdlxForm.languageManager.GetTranslation("selectedRowsCountLabel"),
+                                  selectedRowindices.Count);
+                qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = false;
+                qbdlxForm._qbdlxForm.deselectAllRowsButton.Enabled = false;
+                qbdlxForm._qbdlxForm.batchDownloadSelectedRowsButton.Enabled = false;
+
+                // Clear previous controls
+                DisposeAllControls(searchResultsTablePanel);
+
+                searchResultsTablePanel.ColumnCount = 5; // Artwork, Artist name, Album title, Quality and Genre, "GET" Button
+                searchResultsTablePanel.RowCount = limitResults;
                 searchResultsTablePanel.AutoSize = true;
 
                 // Set ColumnStyles to define the size of each column
                 searchResultsTablePanel.ColumnStyles.Clear();
-                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // Artwork column
+                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // Artwork
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F)); // Artist name
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F)); // Album title
-                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F)); // Quality
-                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // Button column
+                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F)); // Quality and Genre
+                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // "GET" Button
 
                 int rowIndex = 0;
 
                 foreach (var album in albums)
                 {
+                    int currentRowIndex = rowIndex; // capture the current row index
+                    // Create the row panel
+                    Panel rowPanel = new Panel
+                    {
+                        Dock = DockStyle.Fill,
+                        BackColor = Color.Transparent,
+                        Cursor = Cursors.Hand,
+                        Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
+                    };
+
+                    // Add rowPanel to main table
+                    searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
+                    searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
+
+                    // Create a inner table for proper column alignment
+                    TableLayoutPanel innerRow = CreateSearchResultRow();
+
                     // Add PictureBox for artwork
                     PictureBox artwork = new PictureBox
                     {
@@ -93,7 +122,7 @@ namespace QobuzDownloaderX.Helpers
                     artwork.Width = 65;
                     artwork.Height = 65;
                     artwork.Anchor = AnchorStyles.None; // Center both horizontally and vertically
-                    searchResultsTablePanel.Controls.Add(artwork, 0, rowIndex);
+                    innerRow.Controls.Add(artwork, 0, 0);
 
                     // Add Label for artist name
                     System.Windows.Forms.Label artistName = new System.Windows.Forms.Label
@@ -106,7 +135,7 @@ namespace QobuzDownloaderX.Helpers
                         ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText), // Set text color
                         Font = new Font(fontName, 10F, FontStyle.Regular) // Set font size and style
                     };
-                    searchResultsTablePanel.Controls.Add(artistName, 1, rowIndex);
+                    innerRow.Controls.Add(artistName, 1, 0);
 
                     // Add Label for album title
                     System.Windows.Forms.Label albumTitle = new System.Windows.Forms.Label
@@ -121,7 +150,7 @@ namespace QobuzDownloaderX.Helpers
                     albumTitle.Anchor = AnchorStyles.None; // Center within the cell
                     albumTitle.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
                     albumTitle.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
-                    searchResultsTablePanel.Controls.Add(albumTitle, 2, rowIndex);
+                    innerRow.Controls.Add(albumTitle, 2, 0);
 
                     // Add Label for quality and other info
                     System.Windows.Forms.Label qualityLabel = new System.Windows.Forms.Label
@@ -145,7 +174,7 @@ namespace QobuzDownloaderX.Helpers
                     }
 
                     qualityLabel.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
-                    searchResultsTablePanel.Controls.Add(qualityLabel, 3, rowIndex);
+                    innerRow.Controls.Add(qualityLabel, 3, 0);
 
                     // Add Button for selecting album ID
                     Button selectButton = new Button
@@ -160,23 +189,49 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HighlightedButtonBackground); // Set background color when hovering
                     selectButton.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ClickedButtonBackground); // Set background color when clicked
                     string albumLink = "https://play.qobuz.com/album/" + album.Id.ToString(); // Store the album link
+                    selectButton.Tag = albumLink;
                     selectButton.Click += (sender, e) => SendURL(mainForm, albumLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
                     selectButton.Enabled = !qbdlxForm._qbdlxForm.getLinkTypeIsBusy;
-                    mainForm.downloadButton.EnabledChanged += (sender, e) =>
+                    innerRow.Controls.Add(selectButton, 4, 0);
+
+                    void downloadButtonHandler(object s, EventArgs e)
                     {
                         selectButton.Enabled =
-                            mainForm.downloadButton.Enabled == true ||
+                            mainForm.downloadButton.Enabled ||
                             !qbdlxForm._qbdlxForm.getLinkTypeIsBusy ||
                             string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
+                    }
+                    mainForm.downloadButton.EnabledChanged += downloadButtonHandler;
 
+                    // Add inner table to row panel
+                    rowPanel.Controls.Add(innerRow);
+
+                    AttachRowHighlightPaint(rowPanel);
+
+                    AttachClickRecursive(rowPanel, (s, e) =>
+                    {
+                        RowClickHandler(
+                            s as Control,
+                            searchResultsTablePanel,
+                            selectedRowindices,
+                            qbdlxForm._qbdlxForm);
+                    });
+
+                    rowPanel.Disposed += (s, e) =>
+                    {
+                        mainForm.downloadButton.EnabledChanged -= downloadButtonHandler;
                     };
-                    searchResultsTablePanel.Controls.Add(selectButton, 4, rowIndex);
+
+                    searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
+                    searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
 
                     rowIndex++;
                 }
                 searchResultsTablePanel.ResumeLayout();
-                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = true;
+
+                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = rowIndex > 0;
+                qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = rowIndex > 0;
             });
 
             lastSearchType = "releases";
@@ -184,7 +239,6 @@ namespace QobuzDownloaderX.Helpers
 
         public void PopulateTableTracks(qbdlxForm mainForm, SearchTrackResult QoTrackSearch)
         {
-
             // Access the "items" array from the response
             var tracks = QoTrackSearch.Tracks.Items;
 
@@ -194,44 +248,67 @@ namespace QobuzDownloaderX.Helpers
             mainForm.Invoke((MethodInvoker)delegate ()
             {
                 qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = false;
+
                 TableLayoutPanel searchResultsTablePanel = mainForm.searchResultsTablePanel;
                 searchResultsTablePanel.SuspendLayout();
-                foreach (Control ctrl in searchResultsTablePanel.Controls)
-                {
-                    if (ctrl is PictureBox pb)
-                    {
-                        pb.Image?.Dispose();
-                    }
-                    ctrl?.Dispose();
-                }
-                searchResultsTablePanel.Controls.Clear();
 
-                searchResultsTablePanel.ColumnCount = 5; // Artwork, Artist, Title, Quality, Button
-                searchResultsTablePanel.RowCount = limitResults; // Set row count based on the number of albums
+                // Restore related selection row controls
+                selectedRowindices.Clear();
+                qbdlxForm._qbdlxForm.selectedRowsCountLabel.Text =
+                    string.Format(qbdlxForm._qbdlxForm.languageManager.GetTranslation("selectedRowsCountLabel"),
+                                  selectedRowindices.Count);
+                qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = false;
+                qbdlxForm._qbdlxForm.deselectAllRowsButton.Enabled = false;
+                qbdlxForm._qbdlxForm.batchDownloadSelectedRowsButton.Enabled = false;
+
+                // Clear previous controls
+                DisposeAllControls(searchResultsTablePanel);
+
+                searchResultsTablePanel.ColumnCount = 5; // Artwork, Artist, Track title, Quality, "GET" button
+                searchResultsTablePanel.RowCount = limitResults;
                 searchResultsTablePanel.AutoSize = true;
 
                 // Set ColumnStyles to define the size of each column
                 searchResultsTablePanel.ColumnStyles.Clear();
-                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // Artwork column
-                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F)); // Artist name 
+                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // Artwork
+                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F)); // Artist name
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F)); // Track title
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F)); // Quality
-                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // Button column
+                searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // "GET" Button
 
                 int rowIndex = 0;
 
                 foreach (var track in tracks)
                 {
+                    int currentRowIndex = rowIndex; // capture the current row index
+
+                    // Create the row panel
+                    Panel rowPanel = new Panel
+                    {
+                        Dock = DockStyle.Fill,
+                        BackColor = Color.Transparent,
+                        Cursor = Cursors.Hand,
+                        Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
+                    };
+
+                    // Add rowPanel to main table
+                    searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
+                    searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
+
+                    // Create a inner table for proper column alignment
+                    TableLayoutPanel innerRow = CreateSearchResultRow();
+
                     // Add PictureBox for artwork
                     PictureBox artwork = new PictureBox
                     {
                         SizeMode = PictureBoxSizeMode.StretchImage
                     };
-                    try { artwork.Load(track.Album.Image.Large.ToString()); /* Using the thumbnail URL */ } catch { artwork.Image = Resources.qbdlx_new; /* Use QBDLX Icon as fallback */ }
+                    try { artwork.Load(track.Album.Image.Large.ToString()); /* Using the thumbnail URL */ }
+                    catch { artwork.Image = Resources.qbdlx_new; /* Use QBDLX Icon as fallback */ }
                     artwork.Width = 65;
                     artwork.Height = 65;
                     artwork.Anchor = AnchorStyles.None; // Center both horizontally and vertically
-                    searchResultsTablePanel.Controls.Add(artwork, 0, rowIndex);
+                    innerRow.Controls.Add(artwork, 0, 0);
 
                     // Add Label for artist name
                     System.Windows.Forms.Label artistName = new System.Windows.Forms.Label
@@ -244,7 +321,7 @@ namespace QobuzDownloaderX.Helpers
                         ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText), // Set text color
                         Font = new Font(fontName, 10F, FontStyle.Regular) // Set font size and style
                     };
-                    searchResultsTablePanel.Controls.Add(artistName, 1, rowIndex);
+                    innerRow.Controls.Add(artistName, 1, 0);
 
                     // Add Label for track title
                     System.Windows.Forms.Label trackTitle = new System.Windows.Forms.Label
@@ -259,7 +336,7 @@ namespace QobuzDownloaderX.Helpers
                     trackTitle.Anchor = AnchorStyles.None; // Center within the cell
                     trackTitle.ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText); // Set text color
                     trackTitle.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
-                    searchResultsTablePanel.Controls.Add(trackTitle, 2, rowIndex);
+                    innerRow.Controls.Add(trackTitle, 2, 0);
 
                     // Add Label for quality
                     System.Windows.Forms.Label qualityLabel = new System.Windows.Forms.Label
@@ -282,9 +359,9 @@ namespace QobuzDownloaderX.Helpers
                     }
 
                     qualityLabel.Font = new Font(fontName, 10F, FontStyle.Regular); // Set font size and style
-                    searchResultsTablePanel.Controls.Add(qualityLabel, 3, rowIndex);
+                    innerRow.Controls.Add(qualityLabel, 3, 0);
 
-                    // Add Button for selecting album ID
+                    // Add Button for selecting track ID
                     Button selectButton = new Button
                     {
                         Text = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton"),
@@ -297,25 +374,241 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.HighlightedButtonBackground); // Set background color when hovering
                     selectButton.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ClickedButtonBackground); // Set background color when clicked
                     string trackLink = "https://open.qobuz.com/track/" + track.Id.ToString(); // Store the track link
+                    selectButton.Tag = trackLink;
                     selectButton.Click += (sender, e) => SendURL(mainForm, trackLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
                     selectButton.Enabled = !qbdlxForm._qbdlxForm.getLinkTypeIsBusy;
-                    mainForm.downloadButton.EnabledChanged += (sender, e) =>
+                    innerRow.Controls.Add(selectButton, 4, 0);
+
+                    void downloadButtonHandler(object s, EventArgs e)
                     {
                         selectButton.Enabled =
-                            mainForm.downloadButton.Enabled == true ||
+                            mainForm.downloadButton.Enabled ||
                             !qbdlxForm._qbdlxForm.getLinkTypeIsBusy ||
                             string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
+                    }
+                    mainForm.downloadButton.EnabledChanged += downloadButtonHandler;
+
+                    // Add inner table to row panel
+                    rowPanel.Controls.Add(innerRow);
+
+                    AttachRowHighlightPaint(rowPanel);
+
+                    AttachClickRecursive(rowPanel, (s, e) =>
+                    {
+                        RowClickHandler(
+                            s as Control,
+                            searchResultsTablePanel,
+                            selectedRowindices,
+                            qbdlxForm._qbdlxForm);
+                    });
+
+                    rowPanel.Disposed += (s, e) =>
+                    {
+                        mainForm.downloadButton.EnabledChanged -= downloadButtonHandler;
                     };
-                    searchResultsTablePanel.Controls.Add(selectButton, 4, rowIndex);
+
+                    searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
+                    searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
 
                     rowIndex++;
                 }
+
                 searchResultsTablePanel.ResumeLayout();
-                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = true;
+                qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = rowIndex > 0;
+                qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = rowIndex > 0;
             });
 
             lastSearchType = "tracks";
+        }
+
+        /// <summary>
+        /// Safely disposes all controls in a parent panel, including nested panels, TableLayoutPanels, and PictureBoxes.
+        /// </summary>
+        /// <param name="parentPanel">The panel whose controls should be disposed.</param>
+        public static void DisposeAllControls(Panel parentPanel)
+        {
+            if (parentPanel == null) return;
+
+            foreach (Control control in parentPanel.Controls)
+            {
+                DisposeControlRecursively(control);
+            }
+
+            parentPanel.Controls.Clear();
+        }
+
+        /// <summary>
+        /// Recursively disposes a control and its nested controls, disposing PictureBox images as well.
+        /// </summary>
+        /// <param name="control">The control to dispose.</param>
+        private static void DisposeControlRecursively(Control control)
+        {
+            if (control == null) return;
+
+            if (control is Panel panel)
+            {
+                foreach (Control child in panel.Controls)
+                {
+                    DisposeControlRecursively(child);
+                }
+            }
+            else if (control is TableLayoutPanel tableLayout)
+            {
+                foreach (Control child in tableLayout.Controls)
+                {
+                    DisposeControlRecursively(child);
+                }
+            }
+            else if (control is PictureBox pictureBox)
+            {
+                pictureBox.Image?.Dispose();
+            }
+
+            control.Dispose();
+        }
+
+        /// <summary>
+        /// Creates a TableLayoutPanel with a predefined 5-column layout for search results.
+        /// </summary>
+        /// <returns>A configured TableLayoutPanel.</returns>
+        public static TableLayoutPanel CreateSearchResultRow()
+        {
+            var innerRow = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 5,
+                RowCount = 1,
+                BackColor = Color.Transparent
+            };
+
+            // Define column widths
+            innerRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // Artwork
+            innerRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F)); // Artist name
+            innerRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F)); // Album / Track title
+            innerRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F)); // Quality and Genre
+            innerRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // "GET" Button
+
+            return innerRow;
+        }
+
+        /// <summary>
+        /// Attaches a click event recursively to a control and all its children except Buttons.
+        /// </summary>
+        public static void AttachClickRecursive(Control parent, EventHandler handler)
+        {
+            if (!(parent is Button))
+                parent.Click += handler;
+
+            foreach (Control child in parent.Controls)
+                AttachClickRecursive(child, handler);
+        }
+
+        /// <summary>
+        /// Attaches a Paint event to a panel to highlight it when selected and draw a checkmark.
+        /// </summary>
+        /// <param name="rowPanel">The panel to attach the Paint event to.</param>
+        public static void AttachRowHighlightPaint(Panel rowPanel)
+        {
+            if (rowPanel == null) return;
+
+            rowPanel.Paint += (sender, e) =>
+            {
+                if (rowPanel.Tag is RowInfo info && info.Selected)
+                {
+                    // Get the current theme color dynamically
+                    Color highlightColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.SelectedRowBackground);
+
+                    // Draw semi-transparent highlight
+                    using (Brush highlightBrush = new SolidBrush(highlightColor))
+                    {
+                        e.Graphics.FillRectangle(highlightBrush, rowPanel.ClientRectangle);
+                    }
+
+                    // Draw checkmark in the right corner
+                    string checkmark = "✅";
+                    using (Font font = new Font("Segoe UI Emoji", 36, FontStyle.Bold))
+                    using (Brush textBrush = new SolidBrush(Color.Black))
+                    {
+                        SizeF textSize = e.Graphics.MeasureString(checkmark, font);
+                        float x = rowPanel.Width - textSize.Width - 10; // right corner padding
+                        float y = (rowPanel.Height - textSize.Height) / 2;
+                        e.Graphics.DrawString(checkmark, font, textBrush, x, y);
+                    }
+                }
+            };
+        }
+
+        /// <summary>
+        /// Handles a row panel click: toggles selection, updates buttons, label, and repaints the row.
+        /// </summary>
+        /// <param name="clickedControl">The control that was clicked (sender).</param>
+        /// <param name="searchResultsPanel">The parent panel containing all row panels.</param>
+        /// <param name="selectedRowIndices">The list tracking selected row indices.</param>
+        /// <param name="parentForm">The form containing buttons and labels to update.</param>
+        public static void RowClickHandler(
+            Control clickedControl,
+            Panel searchResultsPanel,
+            List<int> selectedRowIndices,
+            qbdlxForm parentForm)
+        {
+            if (clickedControl == null) return;
+
+            // Find the top-level row panel (the one that has RowInfo in its Tag)
+            Panel rowPanel = null;
+            Control current = clickedControl;
+            while (current != null)
+            {
+                if (current.Tag is RowInfo)
+                {
+                    rowPanel = current as Panel;
+                    break;
+                }
+                current = current.Parent;
+            }
+            if (rowPanel == null) return;
+
+            var info = (RowInfo)rowPanel.Tag;
+            info.Selected = !info.Selected;
+
+            // Find the select button anywhere inside rowPanel recursively
+            Button selectButton = null;
+            Queue<Control> queue = new Queue<Control>();
+            queue.Enqueue(rowPanel);
+            while (queue.Count > 0)
+            {
+                var ctrl = queue.Dequeue();
+                if (ctrl is Button btn) // first button found, assume it's the select button
+                {
+                    selectButton = btn;
+                    break;
+                }
+                foreach (Control child in ctrl.Controls)
+                    queue.Enqueue(child);
+            }
+            // Toggle button visibility if found
+            if (selectButton != null)
+                selectButton.Visible = !info.Selected;
+
+            // Track selected row index
+            int currentRowIndex = searchResultsPanel.Controls.IndexOf(rowPanel);
+            if (info.Selected && !selectedRowIndices.Contains(currentRowIndex))
+                selectedRowIndices.Add(currentRowIndex);
+            else if (!info.Selected)
+                selectedRowIndices.Remove(currentRowIndex);
+
+            // Update parent form buttons
+            parentForm.selectAllRowsButton.Enabled = selectedRowIndices.Count < searchResultsPanel.Controls.Count;
+            parentForm.deselectAllRowsButton.Enabled = selectedRowIndices.Any();
+            parentForm.batchDownloadSelectedRowsButton.Enabled = selectedRowIndices.Any() && !parentForm.getLinkTypeIsBusy;
+
+            // Update label showing number of selected rows
+            parentForm.selectedRowsCountLabel.Text = string.Format(
+                parentForm.languageManager.GetTranslation("selectedRowsCountLabel"),
+                selectedRowIndices.Count);
+
+            // Repaint the row to reflect highlight/checkmark
+            rowPanel.Invalidate();
         }
 
         public void SendURL(qbdlxForm mainForm, string url)
@@ -438,8 +731,13 @@ namespace QobuzDownloaderX.Helpers
 
             if (qbdlxForm._qbdlxForm.sortArtistNameButton.Checked)
                 query = descending ? query.OrderByDescending(i => i.Artist?.Name) : query.OrderBy(i => i.Artist?.Name);
+            
             else if (qbdlxForm._qbdlxForm.sortAlbumTrackNameButton.Checked)
                 query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
+            
+            else if (qbdlxForm._qbdlxForm.sortGenreButton.Checked)
+                query = descending ? query.OrderByDescending(i => i.Genre.Name) : query.OrderBy(i => i.Genre.Name);
+            
             else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
                 query = descending
                     ? query.OrderByDescending(i => parseDate(i))
@@ -472,8 +770,13 @@ namespace QobuzDownloaderX.Helpers
                 query = descending
                     ? query.OrderByDescending(i => i.Album?.Artist?.Name ?? i.Name)
                     : query.OrderBy(i => i.Album?.Artist?.Name ?? i.Name);
+
             else if (qbdlxForm._qbdlxForm.sortAlbumTrackNameButton.Checked)
                 query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
+
+            else if (qbdlxForm._qbdlxForm.sortGenreButton.Checked)
+                query = descending ? query.OrderByDescending(i => i.Genre.Name) : query.OrderBy(i => i.Genre.Name);
+
             else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
                 query = descending
                     ? query.OrderByDescending(i => parseDate(i))

@@ -147,6 +147,9 @@ namespace QobuzDownloaderX
         readonly Regex qobuzLinkIdGrabRegex = new Regex(
             @"https:\/\/(?:.*?).qobuz.com\/(?<type>.*?)\/(?<id>.*?)$", RegexOptions.Compiled);
 
+        private readonly Regex qobuzUrlRegEx = new Regex(
+         @"^https?:\/\/(?:.*\.)?qobuz\.com\/.+\/[^\/]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
         // Allows to minimize/restore the form by clicking on the taskbar icon.
         protected override CreateParams CreateParams
         {
@@ -359,6 +362,7 @@ namespace QobuzDownloaderX
             limitSearchResultsLabel.Text = languageManager.GetTranslation("limitSearchResultsLabel");
             searchSortingLabel.Text = languageManager.GetTranslation("searchSortingLabel");
             sortReleaseDateLabel.Text = languageManager.GetTranslation("sortReleaseDateLabel");
+            sortGenreLabel.Text = languageManager.GetTranslation("sortGenreLabel");
             sortArtistNameLabel.Text = languageManager.GetTranslation("sortArtistNameLabel");
             sortAlbumTrackNameLabel.Text = languageManager.GetTranslation("sortAlbumTrackNameLabel");
             sortingSearchResultsLabel.Text = languageManager.GetTranslation("sortingSearchResultsLabel");
@@ -388,9 +392,11 @@ namespace QobuzDownloaderX
             fixMD5sCheckbox.Text = languageManager.GetTranslation("fixMD5sCheckbox");
             downloadSpeedCheckbox.Text = languageManager.GetTranslation("downloadSpeedCheckbox");
             sortAscendantCheckBox.Text = languageManager.GetTranslation("sortAscendantCheckBox");
+            downloadGoodiesCheckbox.Text = languageManager.GetTranslation("downloadGoodiesCheckbox");
 
             /* Center certain checkboxes in panels */
             streamableCheckbox.Location = new Point((extraSettingsPanel.Width - streamableCheckbox.Width) / 2, streamableCheckbox.Location.Y);
+            downloadGoodiesCheckbox.Location = new Point(streamableCheckbox.Right + 16, streamableCheckbox.Location.Y);
             fixMD5sCheckbox.Location = new Point((extraSettingsPanel.Width - fixMD5sCheckbox.Width) / 2, fixMD5sCheckbox.Location.Y);
             downloadSpeedCheckbox.Location = new Point((extraSettingsPanel.Width - downloadSpeedCheckbox.Width) / 2, downloadSpeedCheckbox.Location.Y);
 
@@ -775,51 +781,61 @@ namespace QobuzDownloaderX
                 HashSet<string> batchUrls = new HashSet<string>(
                     batchDownloadTextBox.Lines
                                         .Select(l => l.Trim())
-                                        .Where(l => !string.IsNullOrEmpty(l)), 
+                                        .Where(l => !string.IsNullOrWhiteSpace(l)), 
                     StringComparer.OrdinalIgnoreCase
                 );
 
-                abortTokenSource?.Dispose();
-                abortTokenSource = null;
+                await DownloadBatchUrls(batchUrls);
+            }
+        }
 
-                int batchUrlsCount = batchUrls.Count;
-                int batchUrlsCurrentIndex = 0;
+        public async Task DownloadBatchUrls(HashSet<string> batchUrls)
+        {
+            abortTokenSource?.Dispose();
+            abortTokenSource = null;
 
-                batchDownloadProgressCountLabel.Text = "";
-                batchDownloadProgressCountLabel.Visible = true;
-                TaskbarHelper.SetProgressState(TaskbarProgressState.Normal);
-                TaskbarHelper.SetProgressValue(0, batchUrlsCount);
+            int batchUrlsCount = batchUrls.Count;
+            int batchUrlsCurrentIndex = 0;
+
+            batchDownloadProgressCountLabel.Text = "";
+            batchDownloadProgressCountLabel.Visible = true;
+            TaskbarHelper.SetProgressState(TaskbarProgressState.Normal);
+            TaskbarHelper.SetProgressValue(0, batchUrlsCount);
+            batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+            notifyIcon1.Text = $"QobuzDLX\r\n\r\n{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+            isBatchDownloadRunning = true;
+            foreach (string url in batchUrls)
+            {
+                batchUrlsCurrentIndex++;
+
+                if (abortTokenSource != null && abortTokenSource.IsCancellationRequested)
+                {
+                    TaskbarHelper.SetProgressState(TaskbarProgressState.Error);
+                    isBatchDownloadRunning = false;
+                    break;
+                }
+
+                inputTextbox.Text = url;
+                inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
+
+                await downloadButtonAsyncWork();
+
+                if (abortTokenSource != null && abortTokenSource.IsCancellationRequested)
+                {
+                    break;
+                }
                 batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
                 notifyIcon1.Text = $"QobuzDLX\r\n\r\n{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
-                isBatchDownloadRunning = true;
-                foreach (string url in batchUrls)
-                {
-                    batchUrlsCurrentIndex++;
-
-                    if (abortTokenSource != null && abortTokenSource.IsCancellationRequested)
-                    {
-                        TaskbarHelper.SetProgressState(TaskbarProgressState.Error);
-                        isBatchDownloadRunning = false;
-                        break;
-                    }
-
-                    inputTextbox.Text = url;
-                    inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
-
-                    await downloadButtonAsyncWork();
-
-                    if (abortTokenSource != null && abortTokenSource.IsCancellationRequested)
-                    {
-                        break;
-                    }
-                    batchDownloadProgressCountLabel.Text = $"{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
-                    notifyIcon1.Text = $"QobuzDLX\r\n\r\n{languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
-                    TaskbarHelper.SetProgressValue(batchUrlsCurrentIndex, batchUrlsCount);
-                }
-                if (!this.Visible) notifyIcon1.ShowBalloonTip(5000, "QobuzDLX", languageManager.GetTranslation("batchDownloadFinished"), ToolTipIcon.Info);
-                notifyIcon1.Text = $"QobuzDLX";
-                isBatchDownloadRunning = false;
+                TaskbarHelper.SetProgressValue(batchUrlsCurrentIndex, batchUrlsCount);
             }
+            if (!this.Visible) notifyIcon1.ShowBalloonTip(5000, "QobuzDLX", languageManager.GetTranslation("batchDownloadFinished"), ToolTipIcon.Info);
+            notifyIcon1.Text = $"QobuzDLX";
+            isBatchDownloadRunning = false;
+
+            batchDownloadSelectedRowsButton.Enabled =
+                downloadButton.Enabled &&
+                !getLinkTypeIsBusy &&
+                SearchPanelHelper.selectedRowindices.Any();
         }
 
         private void closeBatchDownloadbutton_Click(object sender, EventArgs e)
@@ -870,7 +886,22 @@ namespace QobuzDownloaderX
                 return;
             }
 
-            string albumLink = inputTextbox.Text;
+            string albumLink = inputTextbox.Text.Trim();
+
+            bool isValidUrl = qobuzUrlRegEx.IsMatch(albumLink)
+                              && Uri.TryCreate(albumLink, UriKind.Absolute, out Uri uriResult)
+                              && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+            if (!isValidUrl)
+            {
+                string msg = string.Format(languageManager.GetTranslation("invalidUrl"), albumLink);
+                logger.Error(msg);
+                downloadOutput.Invoke(new Action(() => downloadOutput.Text= msg));
+                progressLabel.Invoke(new Action(() => progressLabel.Text = msg));
+                if (!isBatchDownloadRunning) TaskbarHelper.SetProgressState(TaskbarProgressState.Error);
+                if (isBatchDownloadRunning) MessageBox.Show(this, msg, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             var qobuzStoreLinkGrab = qobuzStoreLinkRegex.Match(albumLink).Groups;
             var linkRegion = qobuzStoreLinkGrab[1].Value;
@@ -1811,6 +1842,12 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void downloadGoodiesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.downloadGoodies = downloadGoodiesCheckbox.Checked;
+            Settings.Default.Save();
+        }
+
         private void downloadSpeedCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.showDownloadSpeed = downloadSpeedCheckbox.Checked;
@@ -2069,6 +2106,10 @@ namespace QobuzDownloaderX
             sortReleaseDateButton.Checked = true;
         }
 
+        private void sortGenreLabel_Click(object sender, EventArgs e)
+        {
+            sortGenreButton.Checked = true;
+        }
 
         private async void sortArtistNameButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -2093,6 +2134,15 @@ namespace QobuzDownloaderX
                 await reorderSearchResultsAsync();
             }
         }
+
+        private async void sortGenreButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sortGenreButton.Checked)
+            {
+                await reorderSearchResultsAsync();
+            }
+        }
+
 
         private async void sortAscendantCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -2247,6 +2297,85 @@ namespace QobuzDownloaderX
             {
                 // Ignore directory access errors
             }
+        }
+
+        private void selectAllRowsButton_Click(object sender, EventArgs e)
+        {
+            searchResultsTablePanel.SuspendLayout();
+            foreach (Control rowControl in searchResultsTablePanel.Controls)
+            {
+                rowControl.SuspendLayout();
+                if (rowControl is Panel rowPanel && rowPanel.Tag is RowInfo info)
+                {
+                    if (!info.Selected)
+                    {
+                        var method = typeof(Control).GetMethod("InvokeOnClick", BindingFlags.Instance | BindingFlags.NonPublic);
+                        method.Invoke(rowPanel, new object[] { rowPanel, EventArgs.Empty });
+                    }
+                }
+                rowControl.ResumeLayout();
+            }
+            searchResultsTablePanel.ResumeLayout();
+        }
+
+        private void deselectAllRowsButton_Click(object sender, EventArgs e)
+        {
+            searchResultsTablePanel.SuspendLayout();
+            foreach (Control rowControl in searchResultsTablePanel.Controls)
+            {
+                rowControl.SuspendLayout();
+                if (rowControl is Panel rowPanel && rowPanel.Tag is RowInfo info)
+                {
+                    if (info.Selected)
+                    {
+                        var method = typeof(Control).GetMethod("InvokeOnClick", BindingFlags.Instance | BindingFlags.NonPublic);
+                        method.Invoke(rowPanel, new object[] { rowPanel, EventArgs.Empty });
+                    }
+                }
+                rowControl.ResumeLayout();
+            }
+            searchResultsTablePanel.ResumeLayout();
+        }
+
+        private async void batchDownloadSelectedRowsButton_Click(object sender, EventArgs e)
+        {
+            if (getLinkTypeIsBusy)
+            {
+                // This should never trigger.
+                return;
+            }
+
+            batchDownloadSelectedRowsButton.Enabled = false;
+
+            var batchUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (int rowIndex in SearchPanelHelper.selectedRowindices)
+            {
+                Panel rowPanel = searchResultsTablePanel
+                    .GetControlFromPosition(0, rowIndex) as Panel;
+
+                var selectButton = rowPanel.Controls
+                    .OfType<TableLayoutPanel>()
+                    .SelectMany(t => t.Controls.OfType<Button>())
+                    .FirstOrDefault(b => b.Tag is string);
+
+                if (selectButton?.Tag is string url && !string.IsNullOrWhiteSpace(url))
+                {
+                    batchUrls.Add(url);
+                }
+            }
+
+            await DownloadBatchUrls(batchUrls);
+
+            batchDownloadSelectedRowsButton.Enabled = SearchPanelHelper.selectedRowindices.Any();
+        }
+
+        private void downloadButton_EnabledChanged(object sender, EventArgs e)
+        {
+            batchDownloadSelectedRowsButton.Enabled =
+                downloadButton.Enabled &&
+                !getLinkTypeIsBusy &&
+                SearchPanelHelper.selectedRowindices.Any();
         }
     }
 

@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "December 7, 2025, 09:00AM UTC",
+    "TranslationUpdatedOn":         "December 31, 2025, 09:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -21,6 +21,9 @@
     "searchTracksButton":           "PISTAS",
     "selectFolderButton":           "Seleccionar carpeta",
     "settingsButton":               "AJUSTES",
+    "selectAllRowsButton":          "Seleccionar todas las filas",
+    "deselectAllRowsButton":        "Deseleccionar todas las filas",
+    "batchDownloadRowsButton":      "DESCARGA MASIVA DE LAS FILAS SELECCIONADAS",
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",
@@ -47,10 +50,12 @@
     "limitSearchResultsLabel":      "Límite resultados:",
     "searchSortingLabel":           "Ordenación:",
     "sortReleaseDateLabel":         "Fecha de lanz.",
+    "sortGenreLabel":               "Género",
     "sortArtistNameLabel":          "Nombre de artista",
     "sortAlbumTrackNameLabel":      "Nombre de álbum o pista",
     "sortingSearchResultsLabel":    "Ordenando…",
     "searchResultsCountLabel":      "resultados",
+    "selectedRowsCountLabel":       "{0} filas seleccionadas",
 
     "_SECTION3_":                   "=================== CASILLAS (CHECKBOX) DEL FORM PRINCIPAL ===================",
     "albumArtistCheckbox":          "Artista de álbum",
@@ -77,6 +82,7 @@
     "fixMD5sCheckbox":              "Auto-corregir MD5 sin definir (requiere FLAC en la variable PATH)",
     "downloadSpeedCheckbox":        "Mostrar velocidad de descarga",
     "sortAscendantCheckBox":        "Ascendente",
+    "downloadGoodiesCheckbox":      "Descargar extras", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== CAMPOS DEL FORM PRINCIPAL ===================",
     "albumLabelPlaceholder":        "¡Bienvenido a QBDLX!",
@@ -117,6 +123,7 @@
     "playlist":                     "Lista de reproducción",
     "recordLabel":                  "Sello discográfico",
     "user":                         "Usuario",
+    "invalidUrl":                   "URL inválida: {0}",
 
     "_SECTION5_":                   "=================== BOTONES (BUTTON) DEL FORM DE INICIO DE SESIÓN ===================",
     "closeAboutButton":             "CERRAR",

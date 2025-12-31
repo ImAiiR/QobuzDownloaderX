@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using QobuzDownloaderX.Properties;
+using QobuzDownloaderX.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-
-using Newtonsoft.Json;
 using ZetaLongPaths;
-
-using QobuzDownloaderX.Properties;
-using QobuzDownloaderX.UserControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace QobuzDownloaderX.Helpers
 {
@@ -23,6 +22,8 @@ namespace QobuzDownloaderX.Helpers
         public string FormBackground { get; set; }
         public string MainPanelBackground { get; set; }
         public string HighlightedButtonBackground { get; set; }
+        public string ProgressBarFillColor { get; set; }
+        public string SelectedRowBackground { get; set; }
         public string SidePanelBackground { get; set; }
         public string ButtonBackground { get; set; }
         public string ClickedButtonBackground { get; set; }
@@ -63,6 +64,7 @@ namespace QobuzDownloaderX.Helpers
                 MessageBox.Show(qbdlxForm._qbdlxForm.languageManager.GetTranslation("themeFileNotFoundMsg"), Application.ProductName);
             }
         }
+
         public void PopulateThemeOptions(qbdlxForm mainForm)
         {
             string themesFilePath = ZlpPathHelper.GetDirectoryPathNameFromFilePath(Application.ExecutablePath) + "\\themes.json";
@@ -151,7 +153,7 @@ namespace QobuzDownloaderX.Helpers
                     progressBar.BackgroundColor = ColorTranslator.FromHtml(_currentTheme.TextBoxBackground);
                     progressBar.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
                     progressBar.BorderColor = progressBar.BackgroundColor;
-                    progressBar.FillColor = Color.RoyalBlue; // Fits good with all themes.
+                    progressBar.FillColor = ColorTranslator.FromHtml(_currentTheme.ProgressBarFillColor);
 
                 }
                 else if (control is PictureBox pictureBox)
@@ -190,6 +192,39 @@ namespace QobuzDownloaderX.Helpers
                 }
                 else if (control is Panel panel)
                 {
+                    if (panel.Tag is RowInfo)
+                    {
+                        // Get the inner table (innerRow)
+                        foreach (Control child in panel.Controls)
+                        {
+                            if (child is TableLayoutPanel innerRow)
+                            {
+                                foreach (Control innerChild in innerRow.Controls)
+                                {
+                                    if (innerChild is Label lbl)
+                                    {
+                                        lbl.ForeColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                                    }
+                                    else if (innerChild is Button btn)
+                                    {
+                                        btn.ForeColor = ColorTranslator.FromHtml(_currentTheme.ButtonText);
+                                        btn.BackColor = ColorTranslator.FromHtml(_currentTheme.ButtonBackground);
+
+                                        btn.FlatStyle = FlatStyle.Flat;
+                                        btn.FlatAppearance.BorderSize = 0;
+                                        btn.FlatAppearance.MouseOverBackColor =
+                                            ColorTranslator.FromHtml(_currentTheme.HighlightedButtonBackground);
+                                        btn.FlatAppearance.MouseDownBackColor =
+                                            ColorTranslator.FromHtml(_currentTheme.ClickedButtonBackground);
+                                    }
+                                }
+                            }
+                        }
+
+                        // no ApplyTheme recursion for RowPanels
+                        continue;
+                    }
+
                     if (panel.Name == "emailPanel" || panel.Name == "passwordPanel") { continue; }
 
                     // Apply specific colors for specific panels if needed
@@ -275,165 +310,181 @@ namespace QobuzDownloaderX.Helpers
         public string languagesDirectory = "languages";
 
         // Default English translation if no files are avaialble
-        public string defaultLanguage = @"{
-	""TranslationCredit"":			""AiiR"",
-	""TranslationUpdatedOn"":		""December 4, 2025, 12:38PM EST"",
-	""TranslationFont"":			""Nirmala UI"",
+        public const string defaultLanguage = @"{
+    ""TranslationCredit"":            ""AiiR"",
+    ""TranslationUpdatedOn"":         ""December 31, 2025, 12:38PM EST"",
+    ""TranslationFont"":              ""Nirmala UI"",
 
-	""_SECTION1_"":					""=================== MAIN FORM BUTTONS ==================="",
-	""additionalSettingsButton"":	""Additional Settings"",
-	""aboutButton"": 				""ABOUT…"",
-	""closeAdditionalButton"":		""Back to Settings"",
-	""downloadButton"":				""GET"",
-	""batchDownloadButton"":		""GET BATCH"",
-	""abortButton"": 				""ABORT"",
-	""skipButton"": 				""SKIP"",
-	""downloaderButton"": 			""DOWNLOADER"",
-	""logoutButton"": 				""LOGOUT"",
-	""openFolderButton"":			""Open Folder"",
-	""qualitySelectButton"":		""Quality Selector"",
-	""saveTemplatesButton"":		""Save"",
-	""searchButton"": 				""SEARCH"",
-	""searchAlbumsButton"":			""RELEASES"",
-	""searchTracksButton"":			""TRACKS"",
-	""selectFolderButton"":			""Select Folder"",
-	""settingsButton"": 			""SETTINGS"",
+    ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
+    ""additionalSettingsButton"":     ""Additional Settings"",
+    ""aboutButton"":                  ""ABOUT…"",
+    ""closeAdditionalButton"":        ""Back to Settings"",
+    ""downloadButton"":               ""GET"",
+    ""batchDownloadButton"":          ""GET BATCH"",
+    ""abortButton"":                  ""ABORT"",
+    ""skipButton"":                   ""SKIP"",
+    ""downloaderButton"":             ""DOWNLOADER"",
+    ""logoutButton"":                 ""LOGOUT"",
+    ""openFolderButton"":             ""Open Folder"",
+    ""qualitySelectButton"":          ""Quality Selector"",
+    ""saveTemplatesButton"":          ""Save"",
+    ""searchButton"":                 ""SEARCH"",
+    ""searchAlbumsButton"":           ""RELEASES"",
+    ""searchTracksButton"":           ""TRACKS"",
+    ""selectFolderButton"":           ""Select Folder"",
+    ""settingsButton"":               ""SETTINGS"",
+    ""selectAllRowsButton"":          ""Select all rows"",
+    ""deselectAllRowsButton"":        ""Deselect all rows"",
+    ""batchDownloadRowsButton"":      ""BATCH DOWNLOAD SELECTED ROWS"",
 
-	""_SECTION2_"":					""=================== MAIN FORM LABELS ==================="",
-	""advancedOptionsLabel"":		""ADVANCED OPTIONS"",
-	""albumTemplateLabel"":			""ALBUM TEMPLATE"",
-	""artistTemplateLabel"":		""ARTIST TEMPLATE"",
-	""commentLabel"":				""Custom Comment"",
-	""downloadFolderLabel"":		""DOWNLOAD FOLDER"",
-	""downloadOptionsLabel"":		""DOWNLOAD OPTIONS"",
-	""embeddedArtLabel"":			""Embedded Artwork Size"",
-	""extraSettingsLabel"":			""ADDITIONAL SETTINGS"",
-	""languageLabel"":				""Current Language"",
-	""playlistTemplateLabel"":		""PLAYLIST TEMPLATE"",
-	""favoritesTemplateLabel"":		""FAVORITES TEMPLATE"",
-	""savedArtLabel"":				""Saved Artwork Size"",
-	""searchingLabel"":				""Searching…"",
-	""taggingOptionsLabel"":		""TAGGING OPTIONS"",
-	""templatesLabel"":				""TEMPLATES"",
-	""templatesListLabel"":			""TEMPLATES LIST"",
-	""themeLabel"":					""Current Theme"",
-	""themeSectionLabel"":			""THEMING OPTIONS"",
-	""trackTemplateLabel"":			""TRACK TEMPLATE"",
-	""userInfoLabel"": 				""USER INFO"",
-	""welcomeLabel"": 				""Welcome\r\n{username}"",
-	""limitSearchResultsLabel"":	""Results Limit:"",
-	""searchSortingLabel"":			""Sort By:"",
-	""sortReleaseDateLabel"":		""Release Date"",
-	""sortArtistNameLabel"":		""Artist Name"",
-	""sortAlbumTrackNameLabel"":	""Album / Track Name"",
-	""sortingSearchResultsLabel"":	""Sorting…"",
-	""searchResultsCountLabel"":    ""results"",
+    ""_SECTION2_"":                   ""=================== MAIN FORM LABELS ==================="",
+    ""advancedOptionsLabel"":         ""ADVANCED OPTIONS"",
+    ""albumTemplateLabel"":           ""ALBUM TEMPLATE"",
+    ""artistTemplateLabel"":          ""ARTIST TEMPLATE"",
+    ""commentLabel"":                 ""Custom Comment"",
+    ""downloadFolderLabel"":          ""DOWNLOAD FOLDER"",
+    ""downloadOptionsLabel"":         ""DOWNLOAD OPTIONS"",
+    ""embeddedArtLabel"":             ""Embedded Artwork Size"",
+    ""extraSettingsLabel"":           ""ADDITIONAL SETTINGS"",
+    ""languageLabel"":                ""Current Language"",
+    ""playlistTemplateLabel"":        ""PLAYLIST TEMPLATE"",
+    ""favoritesTemplateLabel"":       ""FAVORITES TEMPLATE"",
+    ""savedArtLabel"":                ""Saved Artwork Size"",
+    ""searchingLabel"":               ""Searching…"",
+    ""taggingOptionsLabel"":          ""TAGGING OPTIONS"",
+    ""templatesLabel"":               ""TEMPLATES"",
+    ""templatesListLabel"":           ""TEMPLATES LIST"",
+    ""themeLabel"":                   ""Current Theme"",
+    ""themeSectionLabel"":            ""THEMING OPTIONS"",
+    ""trackTemplateLabel"":           ""TRACK TEMPLATE"",
+    ""userInfoLabel"":                ""USER INFO"",
+    ""welcomeLabel"":                 ""Welcome\r\n{username}"",
+    ""limitSearchResultsLabel"":      ""Results Limit:"",
+    ""searchSortingLabel"":           ""Sort By:"",
+    ""sortReleaseDateLabel"":         ""Release Date"",
+    ""sortGenreLabel"":               ""Genre"",
+    ""sortArtistNameLabel"":          ""Artist Name"",
+    ""sortAlbumTrackNameLabel"":      ""Album / Track Name"",
+    ""sortingSearchResultsLabel"":    ""Sorting…"",
+    ""searchResultsCountLabel"":      ""results"",
+    ""selectedRowsCountLabel"":       ""{0} selected rows"",
 
-	""_SECTION3_"":					""=================== MAIN FORM CHECKBOXES ==================="",
-	""albumArtistCheckbox"":		""Album Artist"",
-	""albumTitleCheckbox"":			""Album Title"",
-	""trackArtistCheckbox"":		""Track Artist"",
-	""trackTitleCheckbox"":			""Track Title"",
-	""releaseDateCheckbox"":		""Release Date"",
-	""releaseTypeCheckbox"":		""Release Type"",
-	""genreCheckbox"":				""Genre"",
-	""trackNumberCheckbox"":		""Track Number"",
-	""trackTotalCheckbox"":			""Total Tracks"",
-	""discNumberCheckbox"":			""Disc Number"",
-	""discTotalCheckbox"":			""Total Discs"",
-	""composerCheckbox"":			""Composer"",
-	""explicitCheckbox"":			""Explicit Advisory"",
-	""coverArtCheckbox"":			""Cover Art"",
-	""copyrightCheckbox"":			""Copyright"",
-	""labelCheckbox"":				""Label"",
-	""upcCheckbox"":				""UPC / Barcode"",
-	""isrcCheckbox"":				""ISRC"",
-	""urlCheckbox"":				""URL"",
-	""mergeArtistNamesCheckbox"":   ""Merge Artist Names"",
-	""streamableCheckbox"":			""Streamable Check"",
-	""fixMD5sCheckbox"":			""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
-	""downloadSpeedCheckbox"":		""Print Download Speed"",
-	""sortAscendantCheckBox"":	    ""Ascendant"",
+    ""_SECTION3_"":                   ""=================== MAIN FORM CHECKBOXES ==================="",
+    ""albumArtistCheckbox"":          ""Album Artist"",
+    ""albumTitleCheckbox"":           ""Album Title"",
+    ""trackArtistCheckbox"":          ""Track Artist"",
+    ""trackTitleCheckbox"":           ""Track Title"",
+    ""releaseDateCheckbox"":          ""Release Date"",
+    ""releaseTypeCheckbox"":          ""Release Type"",
+    ""genreCheckbox"":                ""Genre"",
+    ""trackNumberCheckbox"":          ""Track Number"",
+    ""trackTotalCheckbox"":           ""Total Tracks"",
+    ""discNumberCheckbox"":           ""Disc Number"",
+    ""discTotalCheckbox"":            ""Total Discs"",
+    ""composerCheckbox"":             ""Composer"",
+    ""explicitCheckbox"":             ""Explicit Advisory"",
+    ""coverArtCheckbox"":             ""Cover Art"",
+    ""copyrightCheckbox"":            ""Copyright"",
+    ""labelCheckbox"":                ""Label"",
+    ""upcCheckbox"":                  ""UPC / Barcode"",
+    ""isrcCheckbox"":                 ""ISRC"",
+    ""urlCheckbox"":                  ""URL"",
+    ""mergeArtistNamesCheckbox"":     ""Merge track artist names.\n\nExample:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3"", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    ""streamableCheckbox"":           ""Streamable Check"",
+    ""fixMD5sCheckbox"":              ""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
+    ""downloadSpeedCheckbox"":        ""Print Download Speed"",
+    ""sortAscendantCheckBox"":        ""Ascendant"",
+    ""downloadGoodiesCheckbox"":      ""Download goodies"",
 
-	""_SECTION4_"":					""=================== MAIN FORM PLACEHOLDERS ==================="",
-	""albumLabelPlaceholder"":		""Welcome to QBDLX!"",
-	""artistLabelPlaceholder"":		""Input your Qobuz link and hit GET!"",
-	""infoLabelPlaceholder"":		""Released"",
-	""inputTextboxPlaceholder"":	""Paste a Qobuz URL…"",
-	""searchTextboxPlaceholder"":	""Input your search…"",
-	""downloadFolderPlaceholder"":	""No folder selected"",
-	""userInfoTextboxPlaceholder"":	""User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}"",
-	""downloadOutputWelcome"":		""Welcome {user_display_name}!"",
-	""downloadOutputExpired"": 		""YOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!"",
-	""downloadOutputPath"": 		""Download Path:"",
-	""downloadOutputNoPath"":		""No path has been set! Remember to Choose a Folder!"",
-	""downloadOutputNoUrl"": 		""Track {TrackNumber} is not available for download. Skipping."",
-	""downloadOutputAPIError"": 	""Qobuz API error. Maybe release isn't available in this account region?"",
-	""downloadOutputNotImplemented"": ""Not implemented yet or the URL is not understood. Is there a typo?"",
-	""downloadOutputCheckLink"": 	""Checking Link…"",
-	""downloadOutputTrNotStream"": 	""Track {TrackNumber} is not available for streaming. Skipping."",
-	""downloadOutputAlNotStream"": 	""Release is not available for streaming."",
-	""downloadOutputGoodyFound"": 	""Goody found, downloading…"",
-	""downloadOutputGoodyExists"": 	""File for goody already exists"",
-	""downloadOutputGoodyNoURL"": 	""No download URL found for goody, skipping"",
-	""downloadOutputFileExists"": 	""File for track {TrackNumber} already exists, skipping."",
-	""downloadOutputDownloading"": 	""Downloading"",
-	""downloadOutputDone"": 		""DONE"",
-	""downloadOutputCompleted"": 	""DOWNLOAD COMPLETE"",
-	""downloadAborted"": 			""DOWNLOAD ABORTED BY USER."",
-	""albumSkipped"": 			    ""ALBUM SKIPPED BY USER."",
-	""progressLabelInactive"": 		""No download active"",
-	""progressLabelActive"": 		""Download progress"",
-	""formClosingWarning"": 		""A download is in progress, do you really want to quit?."",
-	""artist"": 					""Artist"", // First char in upper-case.
-	""artists"": 					""artists"",
-	""album"": 						""Album"",  // First char in upper-case.
-	""albums"": 					""albums"",
-	""tracks"": 					""tracks"",
-	""singleTrack"": 				""Single track"",  // First char in upper-case.
-	""playlist"": 					""Playlist"",      // First char in upper-case.
-	""recordLabel"": 				""Record label"",  // First char in upper-case.
-	""user"": 						""User"",          // First char in upper-case.
+    ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
+    ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",
+    ""artistLabelPlaceholder"":       ""Input your Qobuz link and hit GET!"",
+    ""infoLabelPlaceholder"":         ""Released"",
+    ""inputTextboxPlaceholder"":      ""Paste a Qobuz URL…"",
+    ""searchTextboxPlaceholder"":     ""Input your search…"",
+    ""downloadFolderPlaceholder"":    ""No folder selected"",
+    ""userInfoTextboxPlaceholder"":   ""User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}"",
+    ""downloadOutputWelcome"":        ""Welcome {user_display_name}!"",
+    ""downloadOutputExpired"":        ""YOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!"",
+    ""downloadOutputPath"":           ""Download Path:"",
+    ""downloadOutputNoPath"":         ""No path has been set! Remember to Choose a Folder!"",
+    ""downloadOutputNoUrl"":          ""Track {TrackNumber} is not available for download. Skipping."",
+    ""downloadOutputAPIError"":       ""Qobuz API error. Maybe release isn't available in this account region?"",
+    ""downloadOutputNotImplemented"": ""Not implemented yet or the URL is not understood. Is there a typo?"",
+    ""downloadOutputCheckLink"":      ""Checking Link…"",
+    ""downloadOutputTrNotStream"":    ""Track {TrackNumber} is not available for streaming. Skipping."",
+    ""downloadOutputAlNotStream"":    ""Release is not available for streaming."",
+    ""downloadOutputGoodyFound"":     ""Goody found, downloading…"",
+    ""downloadOutputGoodyExists"":    ""File for goody already exists"",
+    ""downloadOutputGoodyNoURL"":     ""No download URL found for goody, skipping"",
+    ""downloadOutputFileExists"":     ""File for track {TrackNumber} already exists, skipping."",
+    ""downloadOutputDownloading"":    ""Downloading"",
+    ""downloadOutputDone"":           ""DONE"",
+    ""downloadOutputCompleted"":      ""DOWNLOAD COMPLETE"",
+    ""downloadAborted"":              ""DOWNLOAD ABORTED BY USER."",
+    ""albumSkipped"":                 ""ALBUM SKIPPED BY USER."",
+    ""progressLabelInactive"":        ""No download active"",
+    ""progressLabelActive"":          ""Download progress"",
+    ""formClosingWarning"":           ""A download is in progress, do you really want to quit?."",
+    ""artist"":                       ""Artist"",
+    ""artists"":                      ""artists"",
+    ""album"":                        ""Album"",
+    ""albums"":                       ""albums"",
+    ""tracks"":                       ""tracks"",
+    ""singleTrack"":                  ""Single track"",
+    ""playlist"":                     ""Playlist"",
+    ""recordLabel"":                  ""Record label"",
+    ""user"":                         ""User"",
+    ""invalidUrl"":                   ""Invalid URL: {0}"",
 
-	""_SECTION5_"":					""=================== LOGIN FORM BUTTONS ==================="",
-	""closeAboutButton"":			""CLOSE"",
-	""customSaveButton"":			""SAVE"",
-	""exitButton"":					""EXIT"",
-	""loginButton"":				""LOGIN"",
+    ""_SECTION5_"":                   ""=================== LOGIN FORM BUTTONS ==================="",
+    ""closeAboutButton"":             ""CLOSE"",
+    ""customSaveButton"":             ""SAVE"",
+    ""exitButton"":                   ""EXIT"",
+    ""loginButton"":                  ""LOGIN"",
 
-	""_SECTION6_"":					""=================== LOGIN FORM LABELS ==================="",
-	""appidLabel"":					""App ID"",
-	""appSecretLabel"":				""App Secret"",
-	""customLabel"":				""USE CUSTOM APP ID + SECRET"",
+    ""_SECTION6_"":                   ""=================== LOGIN FORM LABELS ==================="",
+    ""appidLabel"":                   ""App ID"",
+    ""appSecretLabel"":               ""App Secret"",
+    ""customLabel"":                  ""USE CUSTOM APP ID + SECRET"",
 
-	""_SECTION7_"":					""=================== LOGIN FORM TEXTBOXES ==================="",
-	""customInfoTextbox"":			""Leave values blank if you would like to automatically grab the values!"",
-	""aboutTextbox"":				""Version - {version}\r\nCreated by AiiR\r\n\r\nInspired By Qo-DL\r\n(Created by Sorrow and DashLt)\r\n\r\nThanks to the users on Github and Telegram for offering bug reports and ideas! And huge shoutout to DJDoubleD for keeping the original running since I've been busy!"",
+    ""_SECTION7_"":                   ""=================== LOGIN FORM TEXTBOXES ==================="",
+    ""customInfoTextbox"":            ""Leave values blank if you would like to automatically grab the values!"",
+    ""aboutTextbox"":                 ""Version - {version}\r\nCreated by AiiR\r\n\r\nInspired By Qo-DL\r\n(Created by Sorrow and DashLt)\r\n\r\nThanks to the users on Github and Telegram for offering bug reports and ideas! And huge shoutout to DJDoubleD for keeping the original running since I've been busy!"",
 
-	""_SECTION8_"":					""=================== LOGIN FORM PLACEHOLDERS ==================="",
-	""emailPlaceholder"":			""e-mail"",
-	""passwordPlaceholder"":		""password"",
-	""tokenPlaceholder"":			""token"",
-	""altLoginLabelToken"":			""LOGIN WITH TOKEN"",
-	""altLoginLabelEmail"":			""LOGIN WITH E-MAIL AND PASSWORD"",
-	""loginTextWaiting"":			""waiting for login…"",
-	""loginTextStart"":				""logging in…"",
-	""loginTextError"":				""login failed, error log saved"",
-	""loginTextNoEmail"":			""no e-mail in input"",
-	""loginTextNoPassword"":		""no password/token in input"",
-	""updateNotification"":			""New version of QBDLX is available!\r\n\r\nInstalled version - {currentVersion}\r\nLatest version - {newVersion}\r\n\r\nChangelog Below\r\n==============\r\n{changelog}\r\n==============\r\n\r\nWould you like to update?"",
-	""updateNotificationTitle"":	""QBDLX | Update Available"",
-	
-	""_SECTION9_"":					""=================== BATCH DOWNLOAD DIALOG CONTROLS ==================="",
-	""batchDownloadDlgText"": 		""Batch Download"",
-	""batchDownloadLabel"": 		""Paste one or more Qobuz URLs…"",
-	""closeBatchDownloadbutton"": 	""CLOSE / CANCEL"",
-	""getAllBatchDownloadButton"":	""GET ALL"",
+    ""_SECTION8_"":                   ""=================== LOGIN FORM PLACEHOLDERS ==================="",
+    ""emailPlaceholder"":             ""e-mail"",
+    ""passwordPlaceholder"":          ""password"",
+    ""tokenPlaceholder"":             ""token"",
+    ""altLoginLabelToken"":           ""LOGIN WITH TOKEN"",
+    ""altLoginLabelEmail"":           ""LOGIN WITH E-MAIL AND PASSWORD"",
+    ""loginTextWaiting"":             ""waiting for login…"",
+    ""loginTextStart"":               ""logging in…"",
+    ""loginTextError"":               ""login failed, error log saved"",
+    ""loginTextNoEmail"":             ""no e-mail in input"",
+    ""loginTextNoPassword"":          ""no password/token in input"",
+    ""updateNotification"":           ""New version of QBDLX is available!\r\n\r\nInstalled version - {currentVersion}\r\nLatest version - {newVersion}\r\n\r\nChangelog Below\r\n==============\r\n{changelog}\r\n==============\r\n\r\nWould you like to update?"",
+    ""updateNotificationTitle"":      ""QBDLX | Update Available"",
 
-	""_SECTION10_"":				""=================== CONTEXT MENU ITEMS ==================="",
-	""showWindowCmItem"": 			""Show window"",
-	""hideWindowCmItem"": 			""Hide window"",
-	""closeProgramCmItem"": 		""Close program""
+    ""_SECTION9_"":                   ""=================== BATCH DOWNLOAD DIALOG CONTROLS ==================="",
+    ""batchDownloadDlgText"":         ""Batch Download"",
+    ""batchDownloadLabel"":           ""Paste one or more Qobuz URLs…"",
+    ""closeBatchDownloadbutton"":     ""CLOSE / CANCEL"",
+    ""getAllBatchDownloadButton"":    ""GET ALL"",
+
+    ""_SECTION10_"":                  ""=================== SYSTRAY ICON ==================="",
+    ""showWindowCmItem"":             ""Show window"",
+    ""hideWindowCmItem"":             ""Hide window"",
+    ""closeProgramCmItem"":           ""Close program"",
+    ""batchDownloadFinished"":        ""Batch download finished!"",
+
+    ""_SECTION11_"":                  ""=================== MESSAGE BOXES ==================="",
+    ""tagLibSharpMissingMsg"":        ""taglib-sharp.dll missing from folder!\\r\\nPlease Make sure the DLL is in the same folder as {exeName}!"",
+    ""themeFileNotFoundMsg"":         ""Visual theme file not found."",
+    ""themeNameNotFoundMsg"":         ""Visual theme '{themeName}' not found."",
+    ""selectedLangFileNotfoundMsg"":  ""Selected language file not found."",
+    ""downloadOutputDontExistMsg"":   ""The specified path does not exist."",
+    ""notEnoughFreeSpaceMsg"":        ""Not enough free space on drive: '{pathRoot}'""
 }
 ";
 

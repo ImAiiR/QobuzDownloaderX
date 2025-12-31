@@ -188,8 +188,15 @@ namespace QobuzDownloaderX
                 getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
 
                 // Download goodies
-                if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
-                await DownloadGoodiesAsync(downloadPath, QoAlbum);
+                if (abortToken.IsCancellationRequested) { 
+                    abortToken.ThrowIfCancellationRequested(); 
+                } else
+                {
+                    if (Settings.Default.downloadGoodies)
+                    {
+                        await DownloadGoodiesAsync(downloadPath, QoAlbum);
+                    }
+                }
 
                 progress?.Report(100);
 

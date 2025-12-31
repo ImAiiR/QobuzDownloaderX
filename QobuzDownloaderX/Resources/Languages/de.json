@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "December 7, 2025, 09:37AM MET",
+    "TranslationUpdatedOn":         "December 31, 2025, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -21,6 +21,9 @@
     "searchTracksButton":           "TRACK",
     "selectFolderButton":           "Ordner Auswählen",
     "settingsButton":               "OPTIONEN",
+    "selectAllRowsButton":          "Alle Zeilen auswählen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "deselectAllRowsButton":        "Auswahl aller Zeilen aufheben", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadRowsButton":      "AUSGEWÄHLTE ZEILEN STAPELWEISE HERUNTERLADEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Weitere Optionen",
@@ -47,10 +50,12 @@
     "limitSearchResultsLabel":      "Ergebnislimit:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchSortingLabel":           "Sortieren nach:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortReleaseDateLabel":         "Veröffentlichungsdatum", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortGenreLabel":               "Genre", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortArtistNameLabel":          "Künstlername", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortAlbumTrackNameLabel":      "Album / Titelname", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortingSearchResultsLabel":    "Sortiere…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchResultsCountLabel":      "Ergebnisse", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Album Artist",
@@ -77,6 +82,7 @@
     "fixMD5sCheckbox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
     "downloadSpeedCheckbox":        "Downloadgeschwindigkeit Anzeigen",
     "sortAscendantCheckBox":        "Aufsteigend", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadGoodiesCheckbox":      "Goodies herunterladen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",
@@ -117,6 +123,7 @@
     "playlist":                     "Wiedergabeliste", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "recordLabel":                  "Plattenlabel", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "user":                         "Benutzer", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "invalidUrl":                   "Ungültige URL: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "SCHLIEßEN",

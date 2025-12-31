@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "December 7, 2025, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "December 31, 2025, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -21,6 +21,9 @@
     "searchTracksButton":           "搜曲目",
     "selectFolderButton":           "选择文件夹",
     "settingsButton":               "设置",
+    "selectAllRowsButton":          "全选行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "deselectAllRowsButton":        "取消选择所有行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadRowsButton":      "批量下载选中的行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION2_":                   "=================== 主表单标签 ===================",
     "advancedOptionsLabel":         "高级选项",
@@ -47,10 +50,12 @@
     "limitSearchResultsLabel":      "结果限制：", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchSortingLabel":           "排序方式：", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortReleaseDateLabel":         "发行日期", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortGenreLabel":               "类型", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortArtistNameLabel":          "艺术家名称", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortAlbumTrackNameLabel":      "专辑 / 曲目名称", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "sortingSearchResultsLabel":    "正在排序…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "searchResultsCountLabel":      "结果", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedRowsCountLabel":       "已选择 {0} 行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION3_":                   "=================== 主表单复选框 ===================",
     "albumArtistCheckbox":          "专辑艺术家",
@@ -77,6 +82,7 @@
     "fixMD5sCheckbox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckbox":        "显示下载速度",
     "sortAscendantCheckBox":        "升序", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadGoodiesCheckbox":      "下载好礼", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",
@@ -117,6 +123,7 @@
     "playlist":                     "播放列表", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "recordLabel":                  "唱片公司", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "user":                         "用户", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "invalidUrl":                   "无效的 URL: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION5_":                   "=================== 登录表单按钮 ===================",
     "closeAboutButton":             "关闭",
