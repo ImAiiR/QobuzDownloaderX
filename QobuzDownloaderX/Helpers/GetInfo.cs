@@ -256,7 +256,7 @@ namespace QobuzDownloaderX.Helpers
                         string album_id = QoItem.Album.Id;
 
                         // Pagination variables
-                        int limit = 1200;
+                        int limit = 500;
                         int offset = 0;
 
                         // 1) First request (initial page)
@@ -323,7 +323,7 @@ namespace QobuzDownloaderX.Helpers
                 qbdlxForm._qbdlxForm.logger.Debug("Getting album Info…");
 
                 // Pagination variables
-                int limit = 1200;
+                int limit = 500;
                 int offset = 0;
 
                 // 1) First request (initial page)
