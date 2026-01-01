@@ -86,6 +86,7 @@
     "sortAscendantCheckBox":        "Aufsteigend", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "downloadGoodiesCheckbox":      "Goodies herunterladen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
     "useTLS13Checkbox":             "TLS 1.3 verwenden", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadArtistOther":          "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",

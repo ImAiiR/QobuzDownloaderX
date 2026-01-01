@@ -76,8 +76,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Qo%28penAPI%29, Version=0.0.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\QopenAPI.0.0.3.4\lib\net48\Qo(penAPI).dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>External References\Qo(penAPI).dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
@@ -209,6 +208,7 @@
     <None Include="Resources\logout.png" />
     <None Include="Resources\log_out.png" />
     <None Include="Resources\QBDLX-Icon.png" />
+    <Content Include="External References\Qo%28penAPI%29.dll" />
     <Content Include="Resources\alert.png" />
     <None Include="Resources\HideWindow.png" />
     <None Include="Resources\Exit.png" />

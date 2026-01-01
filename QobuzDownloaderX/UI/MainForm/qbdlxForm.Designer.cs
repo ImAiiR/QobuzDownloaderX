@@ -130,6 +130,7 @@ namespace QobuzDownloaderX
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadGoodiesCheckbox = new System.Windows.Forms.CheckBox();
+            this.downloadArtistOtherCheckbox = new System.Windows.Forms.CheckBox();
             this.useTLS13Checkbox = new System.Windows.Forms.CheckBox();
             this.advancedOptionsLabel = new System.Windows.Forms.Label();
             this.closeAdditionalButton = new System.Windows.Forms.Button();
@@ -1049,7 +1050,6 @@ namespace QobuzDownloaderX
             this.userInfoTextbox.TabIndex = 2;
             this.userInfoTextbox.Text = "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscriptio" +
     "n = {user_subscription}\r\nExpires = {user_subscription_expiration}\r\n";
-            this.userInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // userInfoLabel
             // 
@@ -1150,6 +1150,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.fixMD5sCheckbox);
             this.extraSettingsPanel.Controls.Add(this.streamableCheckbox);
             this.extraSettingsPanel.Controls.Add(this.downloadGoodiesCheckbox);
+            this.extraSettingsPanel.Controls.Add(this.downloadArtistOtherCheckbox);
             this.extraSettingsPanel.Controls.Add(this.useTLS13Checkbox);
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsLabel);
             this.extraSettingsPanel.Controls.Add(this.closeAdditionalButton);
@@ -1625,6 +1626,21 @@ namespace QobuzDownloaderX
             this.downloadGoodiesCheckbox.Text = "Download Goodies";
             this.downloadGoodiesCheckbox.UseVisualStyleBackColor = true;
             this.downloadGoodiesCheckbox.CheckedChanged += new System.EventHandler(this.downloadGoodiesCheckbox_CheckedChanged);
+            // 
+            // downloadArtistOtherCheckbox
+            // 
+            this.downloadArtistOtherCheckbox.AutoSize = true;
+            this.downloadArtistOtherCheckbox.Checked = true;
+            this.downloadArtistOtherCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.downloadArtistOtherCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadArtistOtherCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.downloadArtistOtherCheckbox.Location = new System.Drawing.Point(427, 326);
+            this.downloadArtistOtherCheckbox.Name = "downloadArtistOtherCheckbox";
+            this.downloadArtistOtherCheckbox.Size = new System.Drawing.Size(191, 17);
+            this.downloadArtistOtherCheckbox.TabIndex = 29;
+            this.downloadArtistOtherCheckbox.Text = "Download artist - Other / covers";
+            this.downloadArtistOtherCheckbox.UseVisualStyleBackColor = true;
+            this.downloadArtistOtherCheckbox.CheckedChanged += new System.EventHandler(this.downloadArtistOtherCheckbox_CheckedChanged);
             // 
             // useTLS13Checkbox
             // 
@@ -2497,6 +2513,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.Label advancedOptionsLabel;
         public System.Windows.Forms.CheckBox streamableCheckbox;
         public System.Windows.Forms.CheckBox downloadGoodiesCheckbox;
+        public System.Windows.Forms.CheckBox downloadArtistOtherCheckbox;
         public System.Windows.Forms.CheckBox useTLS13Checkbox;
         public System.Windows.Forms.TextBox templatesListTextbox;
         private System.Windows.Forms.Label templatesListLabel;

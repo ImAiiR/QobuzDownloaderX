@@ -170,6 +170,7 @@ namespace QobuzDownloaderX
                 return;
             }
         }
+
         public async Task DownloadPlaylistTrackAsync(string app_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist, IProgress<int> progress)
         {
             try

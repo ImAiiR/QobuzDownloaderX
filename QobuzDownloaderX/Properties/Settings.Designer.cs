@@ -574,7 +574,21 @@ namespace QobuzDownloaderX.Properties {
                 this["streamableCheck"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool downloadArtistOther
+        {
+            get
+            {
+                return ((bool)(this["downloadArtistOther"]));
+            }
+            set
+            {
+                this["downloadArtistOther"] = value;
+            }
+        }
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]

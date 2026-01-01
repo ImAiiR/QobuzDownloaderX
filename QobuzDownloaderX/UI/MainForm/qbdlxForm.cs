@@ -245,6 +245,7 @@ namespace QobuzDownloaderX
             useTLS13Checkbox.Checked = Settings.Default.useTLS13;
             fixMD5sCheckbox.Checked = Settings.Default.fixMD5s;
             downloadGoodiesCheckbox.Checked = Settings.Default.downloadGoodies;
+            downloadArtistOtherCheckbox.Checked = Settings.Default.downloadArtistOther;
             downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
         }
 
@@ -402,14 +403,17 @@ namespace QobuzDownloaderX
             downloadSpeedCheckbox.Text = languageManager.GetTranslation("downloadSpeedCheckbox");
             sortAscendantCheckBox.Text = languageManager.GetTranslation("sortAscendantCheckBox");
             downloadGoodiesCheckbox.Text = languageManager.GetTranslation("downloadGoodiesCheckbox");
+            downloadArtistOtherCheckbox.Text = languageManager.GetTranslation("downloadArtistOther");
             useTLS13Checkbox.Text = languageManager.GetTranslation("useTLS13Checkbox");
 
             /* Center certain checkboxes in panels */
             fixMD5sCheckbox.Location = new Point((extraSettingsPanel.Width - fixMD5sCheckbox.Width) / 2, fixMD5sCheckbox.Location.Y);
             downloadSpeedCheckbox.Location = new Point((extraSettingsPanel.Width - downloadSpeedCheckbox.Width) / 2, downloadSpeedCheckbox.Location.Y);
-            streamableCheckbox.Location = new Point(fixMD5sCheckbox.Left, streamableCheckbox.Location.Y);
+           
+            streamableCheckbox.Location = new Point(fixMD5sCheckbox.Left - 100, streamableCheckbox.Location.Y);
             useTLS13Checkbox.Location = new Point(streamableCheckbox.Right + 16, streamableCheckbox.Location.Y);
             downloadGoodiesCheckbox.Location = new Point(useTLS13Checkbox.Right + 16, streamableCheckbox.Location.Y);
+            downloadArtistOtherCheckbox.Location = new Point(downloadGoodiesCheckbox.Right + 16, streamableCheckbox.Location.Y);
 
             // Context menu items
             showWindowToolStripMenuItem.Text = languageManager.GetTranslation("showWindowCmItem");
@@ -507,8 +511,8 @@ namespace QobuzDownloaderX
 
             TextInfo textInfo = CultureInfo.InvariantCulture.TextInfo;
             var endDate = QoUser?.UserInfo?.Subscription?.EndDate ?? "N/A - Family account";
-            var subscription = !string.IsNullOrEmpty(QoUser?.UserInfo?.Credential?.label?.ToString())
-                ? textInfo.ToTitleCase(QoUser?.UserInfo?.Credential?.label?.ToString().ToLower().Replace("-", " ")).Replace("Hifi", "HiFi")
+            var subscription = !string.IsNullOrEmpty(QoUser?.UserInfo?.Credential?.Label?.ToString())
+                ? textInfo.ToTitleCase(QoUser?.UserInfo?.Credential?.Label?.ToString().ToLower().Replace("-", " ")).Replace("Hifi", "HiFi")
                 : "N/A - Expired";
 
             userInfoTextbox.Text = userInfoTextboxPlaceholder
@@ -519,7 +523,7 @@ namespace QobuzDownloaderX
                 .Replace("{user_subscription_expiration}", endDate);
 
 
-            downloadOutput.AppendText(QoUser.UserInfo.Credential.label == null
+            downloadOutput.AppendText(QoUser.UserInfo.Credential.Label == null
                 ? $"\r\n\r\n{downloadOutputExpired}\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}"
                 : $"\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}");
 
@@ -1864,17 +1868,23 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void useTLS13Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.useTLS13 = useTLS13Checkbox.Checked;
+            Settings.Default.Save();
+            SetTLSSetting();
+        }
+
         private void downloadGoodiesCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.downloadGoodies = downloadGoodiesCheckbox.Checked;
             Settings.Default.Save();
         }
 
-        private void useTLS13Checkbox_CheckedChanged(object sender, EventArgs e)
+        private void downloadArtistOtherCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.useTLS13 = useTLS13Checkbox.Checked;
+            Settings.Default.downloadArtistOther = downloadArtistOtherCheckbox.Checked;
             Settings.Default.Save();
-            SetTLSSetting();
         }
 
         private void downloadSpeedCheckbox_CheckedChanged(object sender, EventArgs e)

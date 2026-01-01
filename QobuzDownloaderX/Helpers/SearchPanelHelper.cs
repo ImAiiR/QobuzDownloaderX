@@ -38,7 +38,7 @@ namespace QobuzDownloaderX.Helpers
             if (searchType == "releases")
             {
                 QoAlbumSearch = null;
-                QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, searchQuery, limitResults, 0, user_auth_token);
+                QoAlbumSearch = QoService.SearchAlbumsWithAuth(app_id, user_auth_token, searchQuery, limitResults, 0);
                 QoAlbumSearch.Albums = SortAlbums(QoAlbumSearch.Albums);
                 PopulateTableAlbums(qbdlxForm._qbdlxForm, QoAlbumSearch);
                 qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.searchResultsCountLabel.Text = $"{QoAlbumSearch.Albums.Items.Count:N0} {qbdlxForm._qbdlxForm.languageManager.GetTranslation("searchResultsCountLabel")}"));
@@ -46,7 +46,7 @@ namespace QobuzDownloaderX.Helpers
             else if (searchType == "tracks")
             {
                 QoTrackSearch = null;
-                QoTrackSearch = QoService.SearchTracksWithAuth(app_id, searchQuery, limitResults, 0, user_auth_token);
+                QoTrackSearch = QoService.SearchTracksWithAuth(app_id, user_auth_token, searchQuery, limitResults, 0);
                 QoTrackSearch.Tracks = SortTracks(QoTrackSearch.Tracks);
                 PopulateTableTracks(qbdlxForm._qbdlxForm, QoTrackSearch);
                 qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.searchResultsCountLabel.Text = $"{QoTrackSearch.Tracks.Items.Count:N0} {qbdlxForm._qbdlxForm.languageManager.GetTranslation("searchResultsCountLabel")}"));

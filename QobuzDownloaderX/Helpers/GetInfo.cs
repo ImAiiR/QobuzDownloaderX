@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using QobuzDownloaderX.Properties;
 using QopenAPI;
 
 namespace QobuzDownloaderX.Helpers
@@ -38,7 +38,6 @@ namespace QobuzDownloaderX.Helpers
                 qbdlxForm._qbdlxForm.update(outputText + text);
                 outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
             }
-
         }
 
         public Artist getArtistInfo(string app_id, string artist_id, string user_auth_token)
@@ -48,7 +47,53 @@ namespace QobuzDownloaderX.Helpers
                 // Grab artist info with auth
                 outputText = null;
                 qbdlxForm._qbdlxForm.logger.Debug("Getting artist Info…");
-                QoArtist = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token);
+
+                int limit = 99999;
+                int offset = 0;
+
+                // 1) First request (initial page)
+                QoArtist = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, limit, offset);
+
+                if (QoArtist == null || QoArtist.Albums == null || QoArtist.Albums.Items == null)
+                {
+                    qbdlxForm._qbdlxForm.logger.Warning("Artist has no albums or retrieval failed.");
+                    return QoArtist; // return what we have (possibly null)
+                }
+
+                var allItems = QoArtist.Albums.Items.Cast<object>().ToList();
+                int total = QoArtist.Albums.Total;
+
+                offset += limit;
+
+                // 2) Pagination loop - keep requesting pages until all albums are collected
+                while (allItems.Count < total)
+                {
+                    var page = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, limit, offset);
+
+                    if (page == null || page.Albums == null || page.Albums.Items == null || page.Albums.Items.Count == 0)
+                        break;
+
+                    allItems.AddRange(page.Albums.Items.Cast<object>());
+                    offset += limit;
+
+                    // Safety break to prevent infinite loop
+                    if (offset > 100000) break;
+                }
+
+                if (!Settings.Default.downloadArtistOther)
+                {
+                    QoArtist.Albums.Items = allItems.Cast<Item>()
+                                                    .Where(a => a.Artist != null && a.Artist.Id.ToString() == artist_id)
+                                                    .ToList();
+                } else
+                {
+                    QoArtist.Albums.Items = allItems
+                         .Cast<Item>()
+                         .Where(a => a.Artist != null)
+                         .OrderByDescending(a => a.Artist.Id.ToString() == artist_id)
+                         .ToList();
+                }
+
                 return QoArtist;
             }
             catch (Exception getArtistInfoEx)
@@ -66,11 +111,11 @@ namespace QobuzDownloaderX.Helpers
                 qbdlxForm._qbdlxForm.logger.Debug("Getting label info…");
                 outputText = null;
 
-                int limit = 100;
+                int limit = 500;
                 int offset = 0;
 
                 // 1) First request (initial page)
-                QoLabel = QoService.LabelGetWithAuth(app_id, label_id, "albums", limit, offset, user_auth_token);
+                QoLabel = QoService.LabelGetWithAuth(app_id, label_id, "albums", user_auth_token, limit, offset);
 
                 if (QoLabel == null || QoLabel.Albums == null || QoLabel.Albums.Items == null)
                     return QoLabel;
@@ -87,7 +132,7 @@ namespace QobuzDownloaderX.Helpers
                 while ((total == 0 && QoLabel.Albums.Items.Count > 0)
                     || (total > 0 && allItems.Count < total))
                 {
-                    var page = QoService.LabelGetWithAuth(app_id, label_id, "albums", limit, offset, user_auth_token);
+                    var page = QoService.LabelGetWithAuth(app_id, label_id, "albums", user_auth_token, limit, offset);
 
                     if (page == null || page.Albums == null || page.Albums.Items == null || page.Albums.Items.Count == 0)
                         break;
@@ -97,12 +142,10 @@ namespace QobuzDownloaderX.Helpers
 
                     offset += limit;
 
-                    if (offset > 1000000) break; // safety cutoff
+                    if (offset > 100000) break; // safety cutoff
                 }
 
-                // Deduplicate
-                QoLabel.Albums.Items = allItems.Cast<Item>().GroupBy(a => a.Id).Select(g => g.First()).ToList();
-
+                QoLabel.Albums.Items = allItems.Cast<Item>().ToList();
                 return QoLabel;
             }
             catch (Exception getLabelInfoEx)
@@ -120,12 +163,12 @@ namespace QobuzDownloaderX.Helpers
                 qbdlxForm._qbdlxForm.logger.Debug("Getting favorites Info…");
                 outputText = null;
 
-                int limit = 100;
+                int limit = 500;
                 int offset = 0;
 
                 // 1) First request (initial page)
                 QoFavorites = QoService.FavoriteGetUserFavoritesWithAuth(
-                    app_id, user_id, type, limit, offset, user_auth_token);
+                    app_id, user_id, type, user_auth_token, limit, offset);
 
                 if (QoFavorites == null)
                     return QoFavorites;
@@ -157,7 +200,7 @@ namespace QobuzDownloaderX.Helpers
                 while (total == 0 || allItems.Count < total)
                 {
                     var page = QoService.FavoriteGetUserFavoritesWithAuth(
-                        app_id, user_id, type, limit, offset, user_auth_token);
+                        app_id, user_id, type, user_auth_token, limit, offset);
 
                     if (page == null)
                         break;
@@ -180,13 +223,12 @@ namespace QobuzDownloaderX.Helpers
                     if (offset > 1000000) break;
                 }
 
-                // Deduplicate
                 if (type == "albums")
-                    QoFavorites.Albums.Items = allItems.Cast<Item>().GroupBy(a => a.Id).Select(g => g.First()).ToList();
+                    QoFavorites.Albums.Items = allItems.Cast<Item>().ToList();
                 else if (type == "tracks")
-                    QoFavorites.Tracks.Items = allItems.Cast<Item>().GroupBy(t => t.Id).Select(g => g.First()).ToList();
+                    QoFavorites.Tracks.Items = allItems.Cast<Item>().ToList();
                 else
-                    QoFavorites.Artists.Items = allItems.Cast<Item>().GroupBy(a => a.Id).Select(g => g.First()).ToList();
+                    QoFavorites.Artists.Items = allItems.Cast<Item>().ToList();
 
                 return QoFavorites;
             }
@@ -198,7 +240,7 @@ namespace QobuzDownloaderX.Helpers
             }
         }
 
-       public Item getTrackInfoLabels(string app_id, string track_id, string user_auth_token)
+        public Item getTrackInfoLabels(string app_id, string track_id, string user_auth_token)
         {
             try
             {
@@ -212,7 +254,43 @@ namespace QobuzDownloaderX.Helpers
                     if (QoItem.Album != null)
                     {
                         string album_id = QoItem.Album.Id;
-                        QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
+
+                        // Pagination variables
+                        int limit = 1200;
+                        int offset = 0;
+
+                        // 1) First request (initial page)
+                        QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token, limit, offset);
+
+                        if (QoAlbum == null || QoAlbum.Tracks == null || QoAlbum.Tracks.Items == null)
+                        {
+                            QoAlbum = null;
+                            qbdlxForm._qbdlxForm.logger.Warning("Album has no associated tracks or album retrieval failed.");
+                        }
+                        else
+                        {
+                            var allItems = QoAlbum.Tracks.Items.Cast<object>().ToList();
+                            int total = QoAlbum.Tracks.Total;
+
+                            offset += limit;
+
+                            // 2) Pagination loop
+                            while (allItems.Count < total)
+                            {
+                                var page = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token, limit, offset);
+
+                                if (page == null || page.Tracks == null || page.Tracks.Items == null || page.Tracks.Items.Count == 0)
+                                    break;
+
+                                allItems.AddRange(page.Tracks.Items.Cast<object>());
+                                offset += limit;
+
+                                // Safety break to prevent infinite loop
+                                if (offset > 100000) break;
+                            }
+
+                            QoAlbum.Tracks.Items = allItems.Cast<Item>().ToList();
+                        }
                     }
                     else
                     {
@@ -243,7 +321,41 @@ namespace QobuzDownloaderX.Helpers
                 // Grab album info with auth
                 outputText = null;
                 qbdlxForm._qbdlxForm.logger.Debug("Getting album Info…");
-                QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token);
+
+                // Pagination variables
+                int limit = 1200;
+                int offset = 0;
+
+                // 1) First request (initial page)
+                QoAlbum = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token, limit, offset);
+
+                if (QoAlbum == null || QoAlbum.Tracks == null || QoAlbum.Tracks.Items == null)
+                {
+                    qbdlxForm._qbdlxForm.logger.Warning("Album has no tracks or retrieval failed.");
+                    return QoAlbum; // Return whatever we got, possibly null
+                }
+
+                var allItems = QoAlbum.Tracks.Items.Cast<object>().ToList();
+                int total = QoAlbum.Tracks.Total;
+
+                offset += limit;
+
+                // 2) Pagination loop - keep requesting pages until all tracks are collected
+                while (allItems.Count < total)
+                {
+                    var page = QoService.AlbumGetWithAuth(app_id, album_id, user_auth_token, limit, offset);
+
+                    if (page == null || page.Tracks == null || page.Tracks.Items == null || page.Tracks.Items.Count == 0)
+                        break;
+
+                    allItems.AddRange(page.Tracks.Items.Cast<object>());
+                    offset += limit;
+
+                    // Safety break to prevent infinite loop
+                    if (offset > 100000) break;
+                }
+
+                QoAlbum.Tracks.Items = allItems.Cast<Item>().ToList();
                 return QoAlbum;
             }
             catch (Exception getAlbumInfoLabelsEx)
@@ -261,11 +373,11 @@ namespace QobuzDownloaderX.Helpers
                 qbdlxForm._qbdlxForm.logger.Debug("Getting playlist Info…");
                 outputText = null;
 
-                int limit = 100;
+                int limit = 500;
                 int offset = 0;
 
                 // 1) First request (initial page)
-                QoPlaylist = QoService.PlaylistGetWithAuth(app_id, playlist_id, "tracks", limit, offset, user_auth_token);
+                QoPlaylist = QoService.PlaylistGetWithAuth(app_id, user_auth_token, playlist_id, "tracks", limit, offset);
 
                 if (QoPlaylist == null || QoPlaylist.Tracks == null || QoPlaylist.Tracks.Items == null)
                     return QoPlaylist;
@@ -279,7 +391,7 @@ namespace QobuzDownloaderX.Helpers
                 // 2) Pagination loop - keep requesting pages until all items are collected
                 while (total == 0 || allItems.Count < total)
                 {
-                    var page = QoService.PlaylistGetWithAuth(app_id, playlist_id, "tracks", limit, offset, user_auth_token);
+                    var page = QoService.PlaylistGetWithAuth(app_id, user_auth_token, playlist_id, "tracks", limit, offset);
 
                     if (page == null || page.Tracks == null || page.Tracks.Items == null)
                         break;
@@ -293,9 +405,7 @@ namespace QobuzDownloaderX.Helpers
                     if (offset > 1000000) break;
                 }
 
-                // Deduplicate
-                QoPlaylist.Tracks.Items = allItems.Cast<Item>().GroupBy(t => t.Id).Select(g => g.First()).ToList();
-
+                QoPlaylist.Tracks.Items = allItems.Cast<Item>().ToList();
                 return QoPlaylist;
             }
             catch (Exception getPlaylistInfoLabelsEx)
