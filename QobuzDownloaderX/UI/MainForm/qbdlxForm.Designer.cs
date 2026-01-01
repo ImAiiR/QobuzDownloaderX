@@ -91,6 +91,7 @@ namespace QobuzDownloaderX
             this.settingsLabel = new System.Windows.Forms.Label();
             this.userInfoTextbox = new System.Windows.Forms.TextBox();
             this.userInfoLabel = new System.Windows.Forms.Label();
+            this.disclaimerLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.aboutPanel = new System.Windows.Forms.Panel();
@@ -743,7 +744,7 @@ namespace QobuzDownloaderX
             this.saveTemplatesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveTemplatesButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveTemplatesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.saveTemplatesButton.Location = new System.Drawing.Point(356, 3);
+            this.saveTemplatesButton.Location = new System.Drawing.Point(266, 3);
             this.saveTemplatesButton.Name = "saveTemplatesButton";
             this.saveTemplatesButton.Size = new System.Drawing.Size(84, 31);
             this.saveTemplatesButton.TabIndex = 2;
@@ -1041,14 +1042,14 @@ namespace QobuzDownloaderX
             this.userInfoTextbox.Enabled = false;
             this.userInfoTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.userInfoTextbox.Location = new System.Drawing.Point(0, 63);
+            this.userInfoTextbox.Location = new System.Drawing.Point(300, 63);
             this.userInfoTextbox.Multiline = true;
             this.userInfoTextbox.Name = "userInfoTextbox";
-            this.userInfoTextbox.Size = new System.Drawing.Size(771, 97);
+            this.userInfoTextbox.Size = new System.Drawing.Size(400, 97);
             this.userInfoTextbox.TabIndex = 2;
             this.userInfoTextbox.Text = "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscriptio" +
     "n = {user_subscription}\r\nExpires = {user_subscription_expiration}\r\n";
-            this.userInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.userInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // userInfoLabel
             // 
@@ -1060,6 +1061,17 @@ namespace QobuzDownloaderX
             this.userInfoLabel.TabIndex = 1;
             this.userInfoLabel.Text = "USER INFO";
             this.userInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // disclaimerLabel
+            // 
+            this.disclaimerLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.disclaimerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.disclaimerLabel.Location = new System.Drawing.Point(0, 150);
+            this.disclaimerLabel.Name = "disclaimerLabel";
+            this.disclaimerLabel.Size = new System.Drawing.Size(771, 450);
+            this.disclaimerLabel.TabIndex = 2;
+            this.disclaimerLabel.Text = "DISCLAIMER / LEGAL ADVICE";
+            this.disclaimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exitButton
             // 
@@ -1104,6 +1116,7 @@ namespace QobuzDownloaderX
             this.aboutPanel.Controls.Add(this.userInfoTextbox);
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
+            this.aboutPanel.Controls.Add(this.disclaimerLabel);
             this.aboutPanel.Location = new System.Drawing.Point(787, 352);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
@@ -2421,6 +2434,7 @@ namespace QobuzDownloaderX
         private System.Windows.Forms.Label artistLabel;
         private System.Windows.Forms.TextBox userInfoTextbox;
         private System.Windows.Forms.Label userInfoLabel;
+        private System.Windows.Forms.Label disclaimerLabel;
         public Ookii.Dialogs.WinForms.VistaFolderBrowserDialog folderBrowser;
         private System.Windows.Forms.Label downloadOptionsLabel;
         private System.Windows.Forms.TextBox downloadFolderTextbox;

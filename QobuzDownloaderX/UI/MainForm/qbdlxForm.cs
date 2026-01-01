@@ -365,6 +365,7 @@ namespace QobuzDownloaderX
             themeSectionLabel.Text = languageManager.GetTranslation("themeSectionLabel");
             trackTemplateLabel.Text = languageManager.GetTranslation("trackTemplateLabel");
             userInfoLabel.Text = languageManager.GetTranslation("userInfoLabel");
+            disclaimerLabel.Text = languageManager.GetTranslation("disclaimer");
             welcomeLabel.Text = languageManager.GetTranslation("welcomeLabel");
             batchDownloadLabel.Text = languageManager.GetTranslation("batchDownloadLabel");
             limitSearchResultsLabel.Text = languageManager.GetTranslation("limitSearchResultsLabel");
