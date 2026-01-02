@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 1, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 2, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -16,15 +16,15 @@
     "openFolderButton":             "Ouvrir Le Dossier",
     "qualitySelectButton":          "Qualité",
     "saveTemplatesButton":          "Enregistrer",
-    "resetTemplatesButton":         "Réinitialiser", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "resetTemplatesButton":         "Réinitialiser", // ChatGPT translation.
     "searchButton":                 "Rechercher",
     "searchAlbumsButton":           "Albums",
     "searchTracksButton":           "Pistes",
     "selectFolderButton":           "Sélectionner Le Dossier",
     "settingsButton":               "Paramètres",
-    "selectAllRowsButton":          "Sélectionner toutes les lignes", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "deselectAllRowsButton":        "Désélectionner toutes les lignes", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadRowsButton":      "TÉLÉCHARGER LES LIGNES SÉLECTIONNÉES EN LOT", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectAllRowsButton":          "Sélectionner toutes les lignes", // ChatGPT translation.
+    "deselectAllRowsButton":        "Désélectionner toutes les lignes", // ChatGPT translation.
+    "batchDownloadRowsButton":      "TÉLÉCHARGER LES LIGNES SÉLECTIONNÉES EN LOT", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Paramètres Avancés",
@@ -51,12 +51,12 @@
     "limitSearchResultsLabel":      "Limite :",
     "searchSortingLabel":           "Trier par :",
     "sortReleaseDateLabel":         "Date de sortie",
-    "sortGenreLabel":               "Genre", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortGenreLabel":               "Genre", // ChatGPT translation.
     "sortArtistNameLabel":          "Artiste",
     "sortAlbumTrackNameLabel":      "Album / Piste",
     "sortingSearchResultsLabel":    "Tri en cours...",
     "searchResultsCountLabel":      "résultats",
-    "selectedRowsCountLabel":       "{0} lignes sélectionnées", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedRowsCountLabel":       "{0} lignes sélectionnées", // ChatGPT translation.
     "disclaimer":                   "Avis de Non-Responsabilité / Mentions Légales\n\nCette application utilise l'API Qobuz, mais n'est pas certifiée par Qobuz.\n\nLe logiciel et ses auteurs ne sont affiliés, approuvés ou officiellement liés à Qobuz d'aucune manière. L'utilisation de cette application se fait à vos propres risques. Les auteurs ne garantissent pas l'exactitude, la fiabilité ou la disponibilité du service et ne peuvent être tenus responsables de tout dommage ou perte de données résultant de son utilisation.\n\nEn utilisant cette application, vous reconnaissez et acceptez qu'elle est fournie \"telle quelle\", sans aucune garantie expresse ou implicite, y compris, mais sans s'y limiter, les garanties de qualité marchande, d'adéquation à un usage particulier ou de non-contrefaçon.\n\nLes utilisateurs sont responsables de se conformer à toutes les lois applicables, aux conditions de service et aux restrictions d'utilisation lors de l'accès à l'API Qobuz ou à tout autre service tiers.\n\nPour les services officiels et le support Qobuz, veuillez consulter le site officiel de Qobuz: https://www.qobuz.com/",
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
@@ -79,13 +79,13 @@
     "upcCheckbox":                  "UPC / Code Barre",
     "isrcCheckbox":                 "ISRC",
     "urlCheckbox":                  "URL",
-    "mergeArtistNamesCheckbox":     "Fusionner les noms des artistes des pistes.\nExemple :\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "mergeArtistNamesCheckbox":     "Fusionner les noms des artistes des pistes.\nExemple :\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
     "streamableCheckbox":           "Contrôle du flux",
     "fixMD5sCheckbox":              "Corriger les MD5 non définis (doit avoir FLAC dans la variable PATH)",
     "downloadSpeedCheckbox":        "Afficher la vitesse de téléchargement",
     "sortAscendantCheckBox":        "Ascendant",
-    "downloadGoodiesCheckbox":      "Télécharger les bonus", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "useTLS13Checkbox":             "Utiliser TLS 1.3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadGoodiesCheckbox":      "Télécharger les bonus", // ChatGPT translation.
+    "useTLS13Checkbox":             "Utiliser TLS 1.3", // ChatGPT translation.
     "downloadArtistOther":          "Télécharger artiste — Autres / reprises", 
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
@@ -127,7 +127,11 @@
     "playlist":                     "Playlist",
     "recordLabel":                  "Label Discographique",
     "user":                         "Utilisateur",
-    "invalidUrl":                   "URL invalide: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "invalidUrl":                   "URL invalide: {0}", // ChatGPT translation.
+    "copyToClipboard":              "Copier dans le presse-papiers", // ChatGPT translation.
+    "copyThisRowToClipboard":       "Copier cette ligne dans le presse-papiers", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "Copier les lignes sélectionnées dans le presse-papiers", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "Copier toutes les lignes dans le presse-papiers", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "Fermer",
@@ -171,10 +175,10 @@
     "batchDownloadFinished":        "Téléchargement Multiple Terminé !",
 
     "_SECTION11_":                  "=================== MESSAGE BOXES ===================",
-    "tagLibSharpMissingMsg":        "taglib-sharp.dll manquant dans le dossier !\\r\\nVeuillez vous assurer que la DLL se trouve dans le même dossier que {exeName} !", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "themeFileNotFoundMsg":         "Fichier de thème visuel introuvable.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "themeNameNotFoundMsg":         "Thème visuel '{themeName}' introuvable.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "selectedLangFileNotfoundMsg":  "Fichier de langue sélectionné introuvable.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadOutputDontExistMsg":   "Le chemin spécifié n'existe pas.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "notEnoughFreeSpaceMsg":        "Pas assez d'espace libre sur le lecteur : '{pathRoot}'" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "tagLibSharpMissingMsg":        "taglib-sharp.dll manquant dans le dossier !\\r\\nVeuillez vous assurer que la DLL se trouve dans le même dossier que {exeName} !", // ChatGPT translation.
+    "themeFileNotFoundMsg":         "Fichier de thème visuel introuvable.", // ChatGPT translation.
+    "themeNameNotFoundMsg":         "Thème visuel '{themeName}' introuvable.", // ChatGPT translation.
+    "selectedLangFileNotfoundMsg":  "Fichier de langue sélectionné introuvable.", // ChatGPT translation.
+    "downloadOutputDontExistMsg":   "Le chemin spécifié n'existe pas.", // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "Pas assez d'espace libre sur le lecteur : '{pathRoot}'" // ChatGPT translation.
 }

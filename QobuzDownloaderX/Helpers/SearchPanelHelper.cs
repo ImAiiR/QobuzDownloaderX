@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using QopenAPI;
 
 using QobuzDownloaderX.Properties;
+using QobuzDownloaderX.Win32;
 
 namespace QobuzDownloaderX.Helpers
 {
@@ -489,6 +490,8 @@ namespace QobuzDownloaderX.Helpers
             innerRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F)); // Quality and Genre
             innerRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // "GET" Button
 
+            innerRow.ContextMenuStrip = qbdlxForm._qbdlxForm.mainContextMenuStrip;
+
             return innerRow;
         }
 
@@ -620,9 +623,13 @@ namespace QobuzDownloaderX.Helpers
                 TextBox inputTextbox = mainForm.inputTextbox;
                 inputTextbox.Text = url;
                 inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
+
+                const int WM_SETREDRAW = 0x000B;
+                NativeMethods.SendMessage(mainForm.Handle, WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
                 mainForm.downloaderButton_Click(this, EventArgs.Empty);
                 mainForm.downloadButton.PerformClick();
                 mainForm.searchButton.PerformClick(); // Return to search panel.
+                NativeMethods.SendMessage(mainForm.Handle, WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
             }
             catch (Exception ex)
             {

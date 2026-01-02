@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 1, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 2, 2026, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -8,23 +8,23 @@
     "aboutButton":                  "关于…",
     "closeAdditionalButton":        "返回设置",
     "downloadButton":               "获取",
-    "batchDownloadButton":          "批量获取", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "abortButton":                  "中止", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "skipButton":                   "跳过", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadButton":          "批量获取", // ChatGPT translation.
+    "abortButton":                  "中止", // ChatGPT translation.
+    "skipButton":                   "跳过", // ChatGPT translation.
     "downloaderButton":             "下载器",
     "logoutButton":                 "退出登录",
     "openFolderButton":             "打开文件夹",
     "qualitySelectButton":          "音质选择器",
     "saveTemplatesButton":          "保存",
-    "resetTemplatesButton":         "重置", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "resetTemplatesButton":         "重置", // ChatGPT translation.
     "searchButton":                 "搜索",
     "searchAlbumsButton":           "搜专辑",
     "searchTracksButton":           "搜曲目",
     "selectFolderButton":           "选择文件夹",
     "settingsButton":               "设置",
-    "selectAllRowsButton":          "全选行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "deselectAllRowsButton":        "取消选择所有行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadRowsButton":      "批量下载选中的行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectAllRowsButton":          "全选行", // ChatGPT translation.
+    "deselectAllRowsButton":        "取消选择所有行", // ChatGPT translation.
+    "batchDownloadRowsButton":      "批量下载选中的行", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== 主表单标签 ===================",
     "advancedOptionsLabel":         "高级选项",
@@ -48,15 +48,15 @@
     "trackTemplateLabel":           "曲目模板",
     "userInfoLabel":                "用户信息",
     "welcomeLabel":                 "欢迎\r\n{username}",
-    "limitSearchResultsLabel":      "结果限制：", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "searchSortingLabel":           "排序方式：", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortReleaseDateLabel":         "发行日期", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortGenreLabel":               "类型", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortArtistNameLabel":          "艺术家名称", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortAlbumTrackNameLabel":      "专辑 / 曲目名称", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortingSearchResultsLabel":    "正在排序…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "searchResultsCountLabel":      "结果", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "selectedRowsCountLabel":       "已选择 {0} 行", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "limitSearchResultsLabel":      "结果限制：", // ChatGPT translation.
+    "searchSortingLabel":           "排序方式：", // ChatGPT translation.
+    "sortReleaseDateLabel":         "发行日期", // ChatGPT translation.
+    "sortGenreLabel":               "类型", // ChatGPT translation.
+    "sortArtistNameLabel":          "艺术家名称", // ChatGPT translation.
+    "sortAlbumTrackNameLabel":      "专辑 / 曲目名称", // ChatGPT translation.
+    "sortingSearchResultsLabel":    "正在排序…", // ChatGPT translation.
+    "searchResultsCountLabel":      "结果", // ChatGPT translation.
+    "selectedRowsCountLabel":       "已选择 {0} 行", // ChatGPT translation.
     "disclaimer":                   "免责声明 / 法律声明\n\n此应用程序使用 Qobuz API，但未经过 Qobuz 认证。\n\n本软件及其作者与 Qobuz 没有任何关联、认可或官方关系。使用本应用程序的风险由您自行承担。作者不对服务的准确性、可靠性或可用性提供任何保证，并且不对因使用本应用程序而造成的任何损失或数据丢失承担责任。\n\n使用本应用程序即表示您承认并接受该应用程序按“原样”提供，不附带任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。\n\n用户在访问 Qobuz API 或任何其他第三方服务时，有责任遵守所有适用法律、服务条款和使用限制。\n\n有关官方 Qobuz 服务和支持，请参阅 Qobuz 官方网站: https://www.qobuz.com/", 
 
     "_SECTION3_":                   "=================== 主表单复选框 ===================",
@@ -78,15 +78,15 @@
     "labelCheckbox":                "唱片公司",
     "upcCheckbox":                  "UPC/条形码",
     "isrcCheckbox":                 "ISRC",
-    "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "urlCheckbox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckbox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
     "streamableCheckbox":           "歌曲流媒体可播性检查",
     "fixMD5sCheckbox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckbox":        "显示下载速度",
-    "sortAscendantCheckBox":        "升序", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadGoodiesCheckbox":      "下载好礼", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "useTLS13Checkbox":             "使用 TLS 1.3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadArtistOther":          "下载艺术家 — 其他 / 翻唱歌曲", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortAscendantCheckBox":        "升序", // ChatGPT translation.
+    "downloadGoodiesCheckbox":      "下载好礼", // ChatGPT translation.
+    "useTLS13Checkbox":             "使用 TLS 1.3", // ChatGPT translation.
+    "downloadArtistOther":          "下载艺术家 — 其他 / 翻唱歌曲", // ChatGPT translation.
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",
@@ -100,7 +100,7 @@
     "downloadOutputExpired":        "你的订阅已过期，下载将仅限于 30 秒的片段!",
     "downloadOutputPath":           "下载路径:",
     "downloadOutputNoPath":         "未设置路径! 记得选择一个文件夹!",
-    "downloadOutputNoUrl":          "曲目 {TrackNumber} 无法下载。正在跳过。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputNoUrl":          "曲目 {TrackNumber} 无法下载。正在跳过。", // ChatGPT translation.
     "downloadOutputAPIError":       "Qobuz API 错误。可能是该发行版在当前账户地区不可用?",
     "downloadOutputNotImplemented": "尚未实现或 URL 无法理解。是否有拼写错误?",
     "downloadOutputCheckLink":      "正在检查链接…",
@@ -113,21 +113,25 @@
     "downloadOutputDownloading":    "正在下载",
     "downloadOutputDone":           "完成",
     "downloadOutputCompleted":      "下载完成",
-    "downloadAborted":              "用户已中止下载。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "albumSkipped":                 "用户已跳过专辑。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadAborted":              "用户已中止下载。", // ChatGPT translation.
+    "albumSkipped":                 "用户已跳过专辑。", // ChatGPT translation.
     "progressLabelInactive":        "无下载任务",
     "progressLabelActive":          "下载进度",
-    "formClosingWarning":           "正在下载，确定要退出吗？", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "artist":                       "艺术家", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "artists":                      "艺术家", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "album":                        "专辑", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "albums":                       "专辑", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "tracks":                       "曲目", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "singleTrack":                  "单曲", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "playlist":                     "播放列表", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "recordLabel":                  "唱片公司", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "user":                         "用户", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "invalidUrl":                   "无效的 URL: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "formClosingWarning":           "正在下载，确定要退出吗？", // ChatGPT translation.
+    "artist":                       "艺术家", // ChatGPT translation.
+    "artists":                      "艺术家", // ChatGPT translation.
+    "album":                        "专辑", // ChatGPT translation.
+    "albums":                       "专辑", // ChatGPT translation.
+    "tracks":                       "曲目", // ChatGPT translation.
+    "singleTrack":                  "单曲", // ChatGPT translation.
+    "playlist":                     "播放列表", // ChatGPT translation.
+    "recordLabel":                  "唱片公司", // ChatGPT translation.
+    "user":                         "用户", // ChatGPT translation.
+    "invalidUrl":                   "无效的 URL: {0}", // ChatGPT translation.
+    "copyToClipboard":              "复制到剪贴板", // ChatGPT translation.
+    "copyThisRowToClipboard":       "复制此行到剪贴板", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "复制选中的行到剪贴板", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "复制所有行到剪贴板", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== 登录表单按钮 ===================",
     "closeAboutButton":             "关闭",
@@ -158,23 +162,23 @@
     "updateNotification":           "QBDLX 的新版本可用!\r\n\r\n已安装版本 - {currentVersion}\r\n最新版本 - {newVersion}\r\n\r\n更新日志如下\r\n==============\r\n{changelog}\r\n==============\r\n\r\n你是否要更新?",
     "updateNotificationTitle":      "QBDLX | 有可用更新",
 
-    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadDlgText":         "批量下载", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeBatchDownloadbutton":     "关闭 / 取消", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "getAllBatchDownloadButton":    "全部获取", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
+    "batchDownloadDlgText":         "批量下载", // ChatGPT translation.
+    "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接…", // ChatGPT translation.
+    "closeBatchDownloadbutton":     "关闭 / 取消", // ChatGPT translation.
+    "getAllBatchDownloadButton":    "全部获取", // ChatGPT translation.
 
-    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "showWindowCmItem":             "显示窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "hideWindowCmItem":             "隐藏窗口", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeProgramCmItem":           "关闭程序", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadFinished":        "批量下载完成！", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
+    "showWindowCmItem":             "显示窗口", // ChatGPT translation.
+    "hideWindowCmItem":             "隐藏窗口", // ChatGPT translation.
+    "closeProgramCmItem":           "关闭程序", // ChatGPT translation.
+    "batchDownloadFinished":        "批量下载完成！", // ChatGPT translation.
 
-    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "tagLibSharpMissingMsg":        "文件夹中缺少 taglib-sharp.dll！\r\n请确保该 DLL 与 {exeName} 位于同一文件夹中！", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "themeFileNotFoundMsg":         "未找到主题文件。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "themeNameNotFoundMsg":         "未找到主题 '{themeName}'。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "selectedLangFileNotfoundMsg":  "未找到所选语言文件。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadOutputDontExistMsg":   "指定的路径不存在。", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
+    "tagLibSharpMissingMsg":        "文件夹中缺少 taglib-sharp.dll！\r\n请确保该 DLL 与 {exeName} 位于同一文件夹中！", // ChatGPT translation.
+    "themeFileNotFoundMsg":         "未找到主题文件。", // ChatGPT translation.
+    "themeNameNotFoundMsg":         "未找到主题 '{themeName}'。", // ChatGPT translation.
+    "selectedLangFileNotfoundMsg":  "未找到所选语言文件。", // ChatGPT translation.
+    "downloadOutputDontExistMsg":   "指定的路径不存在。", // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'" // ChatGPT translation.
 }

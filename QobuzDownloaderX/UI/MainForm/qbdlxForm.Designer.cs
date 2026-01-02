@@ -1,5 +1,7 @@
 ﻿using QobuzDownloaderX.UserControls;
+using QobuzDownloaderX.Win32;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
@@ -90,6 +92,11 @@ namespace QobuzDownloaderX
             this.templatesLabel = new System.Windows.Forms.Label();
             this.settingsLabel = new System.Windows.Forms.Label();
             this.userInfoTextbox = new System.Windows.Forms.TextBox();
+            this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyThisRowToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectedRowsToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyAllRowsToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userInfoLabel = new System.Windows.Forms.Label();
             this.disclaimerLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
@@ -193,6 +200,7 @@ namespace QobuzDownloaderX
             this.settingsPanel.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.folderButtonsPanel.SuspendLayout();
+            this.mainContextMenuStrip.SuspendLayout();
             this.aboutPanel.SuspendLayout();
             this.extraSettingsPanel.SuspendLayout();
             this.taggingOptionsPanel.SuspendLayout();
@@ -1040,16 +1048,64 @@ namespace QobuzDownloaderX
             // 
             this.userInfoTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.userInfoTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.userInfoTextbox.Enabled = false;
-            this.userInfoTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userInfoTextbox.ContextMenuStrip = this.mainContextMenuStrip;
+            this.userInfoTextbox.Cursor = System.Windows.Forms.Cursors.Help;
+            this.userInfoTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.userInfoTextbox.Location = new System.Drawing.Point(300, 63);
+            this.userInfoTextbox.Location = new System.Drawing.Point(285, 63);
             this.userInfoTextbox.Multiline = true;
             this.userInfoTextbox.Name = "userInfoTextbox";
+            this.userInfoTextbox.ReadOnly = true;
             this.userInfoTextbox.Size = new System.Drawing.Size(400, 97);
             this.userInfoTextbox.TabIndex = 2;
             this.userInfoTextbox.Text = "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscriptio" +
     "n = {user_subscription}\r\nExpires = {user_subscription_expiration}\r\n";
+            this.userInfoTextbox.GotFocus += new System.EventHandler(this.userInfoTextbox_GotFocus);
+            this.userInfoTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.userInfoTextbox_MouseDown);
+            this.userInfoTextbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.userInfoTextbox_MouseUp);
+            // 
+            // mainContextMenuStrip
+            // 
+            this.mainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToClipboardToolStripMenuItem,
+            this.copyThisRowToClipboardToolStripMenuItem,
+            this.copySelectedRowsToClipboardToolStripMenuItem,
+            this.copyAllRowsToClipboardToolStripMenuItem});
+            this.mainContextMenuStrip.Name = "mainContextMenuStrip";
+            this.mainContextMenuStrip.Size = new System.Drawing.Size(244, 114);
+            this.mainContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.mainContextMenuStrip_Opening);
+            // 
+            // copyToClipboardToolStripMenuItem
+            // 
+            this.copyToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
+            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copyToClipboardToolStripMenuItem.Text = "Copy to clipboard";
+            this.copyToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyToclipboardToolStripMenuItem_Click);
+            // 
+            // copyThisRowToClipboardToolStripMenuItem
+            // 
+            this.copyThisRowToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copyThisRowToClipboardToolStripMenuItem.Name = "copyThisRowToClipboardToolStripMenuItem";
+            this.copyThisRowToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copyThisRowToClipboardToolStripMenuItem.Text = "Copy this row to clipboard";
+            this.copyThisRowToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyThisRowToClipboardToolStripMenuItem_Click);
+            // 
+            // copySelectedRowsToClipboardToolStripMenuItem
+            // 
+            this.copySelectedRowsToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copySelectedRowsToClipboardToolStripMenuItem.Name = "copySelectedRowsToClipboardToolStripMenuItem";
+            this.copySelectedRowsToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copySelectedRowsToClipboardToolStripMenuItem.Text = "Copy selected rows to clipboard";
+            this.copySelectedRowsToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedRowsToClipboardToolStripMenuItem_Click);
+            // 
+            // copyAllRowsToClipboardToolStripMenuItem
+            // 
+            this.copyAllRowsToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copyAllRowsToClipboardToolStripMenuItem.Name = "copyAllRowsToClipboardToolStripMenuItem";
+            this.copyAllRowsToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copyAllRowsToClipboardToolStripMenuItem.Text = "Copy all rows to clipboard";
+            this.copyAllRowsToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyAllRowsToClipboardToolStripMenuItem_Click);
             // 
             // userInfoLabel
             // 
@@ -2073,7 +2129,7 @@ namespace QobuzDownloaderX
             // sortGenreLabel
             // 
             this.sortGenreLabel.AutoSize = true;
-            this.sortGenreLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortGenreLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortGenreLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sortGenreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortGenreLabel.Location = new System.Drawing.Point(18, 21);
@@ -2086,7 +2142,7 @@ namespace QobuzDownloaderX
             // sortGenreButton
             // 
             this.sortGenreButton.AutoSize = true;
-            this.sortGenreButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortGenreButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortGenreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortGenreButton.Location = new System.Drawing.Point(4, 21);
             this.sortGenreButton.Name = "sortGenreButton";
@@ -2098,7 +2154,7 @@ namespace QobuzDownloaderX
             // sortAlbumTrackNameLabel
             // 
             this.sortAlbumTrackNameLabel.AutoSize = true;
-            this.sortAlbumTrackNameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortAlbumTrackNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortAlbumTrackNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sortAlbumTrackNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortAlbumTrackNameLabel.Location = new System.Drawing.Point(131, 21);
@@ -2111,7 +2167,7 @@ namespace QobuzDownloaderX
             // sortArtistNameLabel
             // 
             this.sortArtistNameLabel.AutoSize = true;
-            this.sortArtistNameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortArtistNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortArtistNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sortArtistNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortArtistNameLabel.Location = new System.Drawing.Point(131, 2);
@@ -2124,7 +2180,7 @@ namespace QobuzDownloaderX
             // sortAlbumTrackNameButton
             // 
             this.sortAlbumTrackNameButton.AutoSize = true;
-            this.sortAlbumTrackNameButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortAlbumTrackNameButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortAlbumTrackNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortAlbumTrackNameButton.Location = new System.Drawing.Point(116, 21);
             this.sortAlbumTrackNameButton.Name = "sortAlbumTrackNameButton";
@@ -2136,7 +2192,7 @@ namespace QobuzDownloaderX
             // sortArtistNameButton
             // 
             this.sortArtistNameButton.AutoSize = true;
-            this.sortArtistNameButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortArtistNameButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortArtistNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortArtistNameButton.Location = new System.Drawing.Point(116, 3);
             this.sortArtistNameButton.Name = "sortArtistNameButton";
@@ -2149,7 +2205,7 @@ namespace QobuzDownloaderX
             // 
             this.sortReleaseDateButton.AutoSize = true;
             this.sortReleaseDateButton.Checked = true;
-            this.sortReleaseDateButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortReleaseDateButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortReleaseDateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortReleaseDateButton.Location = new System.Drawing.Point(4, 3);
             this.sortReleaseDateButton.Name = "sortReleaseDateButton";
@@ -2162,7 +2218,7 @@ namespace QobuzDownloaderX
             // sortReleaseDateLabel
             // 
             this.sortReleaseDateLabel.AutoSize = true;
-            this.sortReleaseDateLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sortReleaseDateLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortReleaseDateLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sortReleaseDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.sortReleaseDateLabel.Location = new System.Drawing.Point(18, 2);
@@ -2405,6 +2461,7 @@ namespace QobuzDownloaderX
             this.flowLayoutPanel1.PerformLayout();
             this.folderButtonsPanel.ResumeLayout(false);
             this.folderButtonsPanel.PerformLayout();
+            this.mainContextMenuStrip.ResumeLayout(false);
             this.aboutPanel.ResumeLayout(false);
             this.aboutPanel.PerformLayout();
             this.extraSettingsPanel.ResumeLayout(false);
@@ -2578,5 +2635,10 @@ namespace QobuzDownloaderX
         public System.Windows.Forms.Button batchDownloadSelectedRowsButton;
         public System.Windows.Forms.Button deselectAllRowsButton;
         public System.Windows.Forms.Button selectAllRowsButton;
+        public System.Windows.Forms.ContextMenuStrip mainContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem copyToClipboardToolStripMenuItem;
+        private ToolStripMenuItem copyThisRowToClipboardToolStripMenuItem;
+        private ToolStripMenuItem copySelectedRowsToClipboardToolStripMenuItem;
+        private ToolStripMenuItem copyAllRowsToClipboardToolStripMenuItem;
     }
 }

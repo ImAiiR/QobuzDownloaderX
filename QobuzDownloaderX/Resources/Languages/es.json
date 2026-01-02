@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 1, 2026, 09:00AM UTC",
+    "TranslationUpdatedOn":         "January 2, 2026, 09:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -17,7 +17,7 @@
     "qualitySelectButton":          "Selector de calidad",
     "saveTemplatesButton":          "Guardar",
     "resetTemplatesButton":         "Restaurar",
-    "searchButton":                 "BUSCAR",
+    "searchButton":                 "BUSCADOR",
     "searchAlbumsButton":           "ÁLBUMES", // Nota: el término "LANZAMIENTOS" sobrepasa la longitud del botón.
     "searchTracksButton":           "PISTAS",
     "selectFolderButton":           "Seleccionar carpeta",
@@ -128,6 +128,10 @@
     "recordLabel":                  "Sello discográfico",
     "user":                         "Usuario",
     "invalidUrl":                   "URL inválida: {0}",
+    "copyToClipboard":              "Copiar al portapapeles",
+    "copyThisRowToClipboard":       "Copiar esta fila al portapapeles",
+    "copySelectedRowsToClipboard":  "Copiar filas seleccionadas al portapapeles",
+    "copyAllRowsToClipboard":       "Copiar todas las filas al portapapeles",
 
     "_SECTION5_":                   "=================== BOTONES (BUTTON) DEL FORM DE INICIO DE SESIÓN ===================",
     "closeAboutButton":             "CERRAR",

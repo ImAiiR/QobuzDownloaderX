@@ -334,6 +334,9 @@ namespace QobuzDownloaderX
             settingsButton.Text = languageManager.GetTranslation("settingsButton");
             closeBatchDownloadbutton.Text = languageManager.GetTranslation("closeBatchDownloadbutton");
             getAllBatchDownloadButton.Text = languageManager.GetTranslation("getAllBatchDownloadButton");
+            selectAllRowsButton.Text = languageManager.GetTranslation("selectAllRowsButton");
+            deselectAllRowsButton.Text = languageManager.GetTranslation("deselectAllRowsButton");
+            batchDownloadSelectedRowsButton.Text = languageManager.GetTranslation("batchDownloadRowsButton");
 
             /* Center additional settings button to center of panel */
             additionalSettingsButton.Location = new Point((settingsPanel.Width - additionalSettingsButton.Width) / 2, additionalSettingsButton.Location.Y);
@@ -1862,6 +1865,21 @@ namespace QobuzDownloaderX
 
         #endregion
 
+        private void userInfoTextbox_GotFocus(object sender, EventArgs e)
+        {
+            NativeMethods.HideCaret(this.userInfoTextbox.Handle);
+        }
+
+        private void userInfoTextbox_MouseDown(object sender, MouseEventArgs e)
+        {
+            NativeMethods.HideCaret(this.userInfoTextbox.Handle);
+        }
+
+        private void userInfoTextbox_MouseUp(object sender, MouseEventArgs e)
+        {
+            NativeMethods.HideCaret(this.userInfoTextbox.Handle);
+        }
+
         private void streamableCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.streamableCheck = streamableCheckbox.Checked;
@@ -2427,6 +2445,161 @@ namespace QobuzDownloaderX
             {
                 ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls13;
             }
+        }
+
+        private void copyToclipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = sender as ToolStripItem;
+            var cms = item?.Owner as ContextMenuStrip;
+            var ctrl = cms?.SourceControl;
+
+            string text = ctrl.Text;
+            SafeSetClipboardText(text);
+        }
+
+        private void SafeSetClipboardText(string text)
+        {
+            var thread = new Thread(() =>
+            {
+                Clipboard.SetText(text);
+            });
+
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            thread.Join();
+        }
+
+        private void mainContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if (searchPanel.Visible)
+            {
+                copyThisRowToClipboardToolStripMenuItem.Text = languageManager.GetTranslation("copyThisRowToClipboard");
+                copySelectedRowsToClipboardToolStripMenuItem.Text = languageManager.GetTranslation("copySelectedRowsToClipboard");
+                copyAllRowsToClipboardToolStripMenuItem.Text = languageManager.GetTranslation("copyAllRowsToClipboard");
+                copyToClipboardToolStripMenuItem.Visible = false;
+                copyThisRowToClipboardToolStripMenuItem.Visible = true;
+                copyAllRowsToClipboardToolStripMenuItem.Visible = true;
+                copySelectedRowsToClipboardToolStripMenuItem.Visible = SearchPanelHelper.selectedRowindices.Any();
+            }
+            else
+            {
+                copyToClipboardToolStripMenuItem.Text = languageManager.GetTranslation("copyToClipboard");
+                copyToClipboardToolStripMenuItem.Visible = true;
+                copyThisRowToClipboardToolStripMenuItem.Visible = false;
+                copySelectedRowsToClipboardToolStripMenuItem.Visible = false;
+                copyAllRowsToClipboardToolStripMenuItem.Visible = false;
+            }
+        }
+
+        private void copyAllRowsToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sb = new StringBuilder();
+
+            int rowCount = searchResultsTablePanel.RowCount;
+
+            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
+            {
+                if (!(searchResultsTablePanel.GetControlFromPosition(0, rowIndex) is Panel rowPanel))
+                    continue;
+
+                var innerTlp = rowPanel.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
+                if (innerTlp == null)
+                    continue;
+
+                foreach (Control c in innerTlp.Controls)
+                {
+                    switch (c)
+                    {
+                        case System.Windows.Forms.Label lbl:
+                            if (!string.IsNullOrEmpty(lbl.Text))
+                            {
+                                string cleanText = lbl.Text.Replace("\r\n", " - ");
+                                sb.Append(cleanText + "; ");
+                            }
+                            break;
+
+                        case Button btn:
+                            if (btn.Tag != null)
+                                sb.AppendLine(btn.Tag.ToString());
+                            break;
+                    }
+                }
+            }
+
+            SafeSetClipboardText(sb.ToString());
+        }
+
+        private void copySelectedRowsToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sb = new StringBuilder();
+
+            foreach (int rowIndex in SearchPanelHelper.selectedRowindices)
+            {
+                if (!(searchResultsTablePanel.GetControlFromPosition(0, rowIndex) is Panel rowPanel)) continue;
+
+                var innerTlp = rowPanel.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
+                if (innerTlp != null)
+                {
+                    foreach (Control c in innerTlp.Controls)
+                    {
+                        switch (c)
+                        {
+                            case System.Windows.Forms.Label lbl:
+                                if (!string.IsNullOrEmpty(lbl.Text))
+                                {
+                                    string cleanText = lbl.Text.Replace("\r\n", " - ");
+                                    sb.Append(cleanText + "; ");
+                                }
+                                break;
+
+                            case Button btn:
+                                if (btn.Tag != null)
+                                    sb.AppendLine(btn.Tag.ToString());
+                                break;
+                        }
+                    }
+                }
+            }
+
+            SafeSetClipboardText(sb.ToString());
+        }
+
+        private void copyThisRowToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = sender as ToolStripItem;
+            var cms = item?.Owner as ContextMenuStrip;
+            var sourceCtrl = cms?.SourceControl;
+
+            if (sourceCtrl == null) return;
+
+            Panel rowPanel = sourceCtrl.Parent as Panel;
+            if (rowPanel == null) return;
+
+            var innerTlp = rowPanel.Controls.OfType<TableLayoutPanel>().FirstOrDefault();
+            if (innerTlp == null) return;
+
+            var sb = new StringBuilder();
+
+            foreach (Control c in innerTlp.Controls)
+            {
+                switch (c)
+                {
+                    case System.Windows.Forms.Label lbl:
+                        if (!string.IsNullOrEmpty(lbl.Text))
+                        {
+                            string cleanText = lbl.Text.Replace("\r\n", " - ");
+                            sb.Append(cleanText + "; ");
+                        }
+                        break;
+
+                    case Button btn:
+                        if (btn.Tag != null)
+                            sb.AppendLine(btn.Tag.ToString());
+                        break;
+                }
+            }
+
+            SafeSetClipboardText(sb.ToString());
         }
     }
 

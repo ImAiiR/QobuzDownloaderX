@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 1, 2026, 12:38PM EST",
+    "TranslationUpdatedOn":         "January 2, 2026, 12:38PM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -128,6 +128,10 @@
     "recordLabel":                  "Record label",
     "user":                         "User",
     "invalidUrl":                   "Invalid URL: {0}",
+    "copyToClipboard":              "Copy to clipboard",
+    "copyThisRowToClipboard":       "Copy this row to clipboard",
+    "copySelectedRowsToClipboard":  "Copy selected rows to clipboard",
+    "copyAllRowsToClipboard":       "Copy all rows to clipboard",
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "CLOSE",

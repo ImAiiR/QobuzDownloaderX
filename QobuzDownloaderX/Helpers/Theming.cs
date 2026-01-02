@@ -312,7 +312,7 @@ namespace QobuzDownloaderX.Helpers
         // Default English translation if no files are avaialble
         public const string defaultLanguage = @"{
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""December 31, 2025, 12:38PM EST"",
+    ""TranslationUpdatedOn"":         ""January 2, 2026, 12:38PM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -391,13 +391,14 @@ namespace QobuzDownloaderX.Helpers
     ""upcCheckbox"":                  ""UPC / Barcode"",
     ""isrcCheckbox"":                 ""ISRC"",
     ""urlCheckbox"":                  ""URL"",
-    ""mergeArtistNamesCheckbox"":     ""Merge track artist names.\n\nExample:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3"", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    ""mergeArtistNamesCheckbox"":     ""Merge track artist names.\nExample:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3"",
     ""streamableCheckbox"":           ""Streamable Check"",
     ""fixMD5sCheckbox"":              ""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
     ""downloadSpeedCheckbox"":        ""Print Download Speed"",
     ""sortAscendantCheckBox"":        ""Ascendant"",
     ""downloadGoodiesCheckbox"":      ""Download goodies"",
     ""useTLS13Checkbox"":             ""Use TLS 1.3"",
+    ""downloadArtistOther"":          ""Download artist - Other / covers"", 
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",
@@ -439,6 +440,10 @@ namespace QobuzDownloaderX.Helpers
     ""recordLabel"":                  ""Record label"",
     ""user"":                         ""User"",
     ""invalidUrl"":                   ""Invalid URL: {0}"",
+    ""copyToClipboard"":              ""Copy to clipboard"",
+    ""copyThisRowToClipboard"":       ""Copy this row to clipboard"",
+    ""copySelectedRowsToClipboard"":  ""Copy selected rows to clipboard"",
+    ""copyAllRowsToClipboard"":       ""Copy all rows to clipboard"",
 
     ""_SECTION5_"":                   ""=================== LOGIN FORM BUTTONS ==================="",
     ""closeAboutButton"":             ""CLOSE"",

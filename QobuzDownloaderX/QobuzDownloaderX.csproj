@@ -212,6 +212,7 @@
     <Content Include="Resources\alert.png" />
     <None Include="Resources\HideWindow.png" />
     <None Include="Resources\Exit.png" />
+    <None Include="Resources\clipboard.png" />
     <Content Include="Resources\qbdlx_icon.ico" />
   </ItemGroup>
   <ItemGroup />

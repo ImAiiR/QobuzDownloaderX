@@ -1,8 +1,8 @@
-﻿using System;
+﻿using QobuzDownloaderX.Properties;
+using QopenAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using QobuzDownloaderX.Properties;
-using QopenAPI;
 
 namespace QobuzDownloaderX.Helpers
 {
@@ -48,7 +48,7 @@ namespace QobuzDownloaderX.Helpers
                 outputText = null;
                 qbdlxForm._qbdlxForm.logger.Debug("Getting artist Info…");
 
-                int limit = 99999;
+                int limit = 500;
                 int offset = 0;
 
                 // 1) First request (initial page)

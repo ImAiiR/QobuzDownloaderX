@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 1, 2026, 01:12AM MSK",
+    "TranslationUpdatedOn":         "January 2, 2026, 01:12AM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -16,15 +16,15 @@
     "openFolderButton":             "Открыть папку",
     "qualitySelectButton":          "Выбор качества",
     "saveTemplatesButton":          "Сохранить",
-    "resetTemplatesButton":         "Сбросить", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "resetTemplatesButton":         "Сбросить", // ChatGPT translation.
     "searchButton":                 "ПОИСК",
     "searchAlbumsButton":           "РЕЛИЗЫ",
     "searchTracksButton":           "ТРЕКИ",
     "selectFolderButton":           "Выбрать папку",
     "settingsButton":               "НАСТРОЙКИ",
-    "selectAllRowsButton":          "Выбрать все строки", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "deselectAllRowsButton":        "Снять выделение со всех строк", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadRowsButton":      "ПАКЕТНАЯ ЗАГРУЗКА ВЫБРАННЫХ СТРОК", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectAllRowsButton":          "Выбрать все строки", // ChatGPT translation.
+    "deselectAllRowsButton":        "Снять выделение со всех строк", // ChatGPT translation.
+    "batchDownloadRowsButton":      "ПАКЕТНАЯ ЗАГРУЗКА ВЫБРАННЫХ СТРОК", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",
     "advancedOptionsLabel":         "РАСШИРЕННЫЕ НАСТРОЙКИ",
@@ -51,12 +51,12 @@
     "limitSearchResultsLabel":      "Показать первые:",
     "searchSortingLabel":           "Сорт. по:",
     "sortReleaseDateLabel":         "Дата релиза",
-    "sortGenreLabel":               "Жанр", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortGenreLabel":               "Жанр", // ChatGPT translation.
     "sortArtistNameLabel":          "Имя исполнителя",
     "sortAlbumTrackNameLabel":      "Альбом / Название трека",
     "sortingSearchResultsLabel":    "Сортировка...",
     "searchResultsCountLabel":      "результ.",
-    "selectedRowsCountLabel":       "Выбрано строк: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectedRowsCountLabel":       "Выбрано строк: {0}", // ChatGPT translation.
     "disclaimer":                   "Это приложение использует API Qobuz, но не сертифицировано Qobuz.\n\nПрограммное обеспечение и его авторы не аффилированы, не поддерживаются и не связаны с Qobuz официально. Использование этого приложения осуществляется на ваш страх и риск. Авторы не дают никаких гарантий относительно точности, надежности или доступности сервиса и не несут ответственности за любой ущерб или потерю данных, возникшие в результате его использования.\n\nИспользуя это приложение, вы признаете и принимаете, что оно предоставляется «как есть», без каких-либо явных или подразумеваемых гарантий, включая, но не ограничиваясь гарантиями товарной пригодности, пригодности для определенной цели или отсутствия нарушения прав.\n\nПользователи несут ответственность за соблюдение всех применимых законов, условий обслуживания и ограничений при доступе к API Qobuz или любым другим сторонним сервисам.\n\nДля официальных услуг и поддержки Qobuz обратитесь к официальному сайту Qobuz: https://www.qobuz.com/",
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
@@ -84,9 +84,9 @@
     "fixMD5sCheckbox":              "Автоматическое исправление отсутствующих MD5 (FLAC должен быть в переменной PATH)",
     "downloadSpeedCheckbox":        "Показывать скорость загрузки",
     "sortAscendantCheckBox":        "По возрастанию",
-    "downloadGoodiesCheckbox":      "Скачать бонусы", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "useTLS13Checkbox":             "Использовать TLS 1.3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadArtistOther":          "Скачать артистов — Другое / кавер-версии",  // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadGoodiesCheckbox":      "Скачать бонусы", // ChatGPT translation.
+    "useTLS13Checkbox":             "Использовать TLS 1.3", // ChatGPT translation.
+    "downloadArtistOther":          "Скачать артистов — Другое / кавер-версии",  // ChatGPT translation.
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",
@@ -127,7 +127,11 @@
     "playlist":                     "Плейлист",
     "recordLabel":                  "Лейбл",
     "user":                         "Пользователь",
-    "invalidUrl":                   "Неверный URL: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "invalidUrl":                   "Неверный URL: {0}", // ChatGPT translation.
+    "copyToClipboard":              "Скопировать в буфер обмена", // ChatGPT translation.
+    "copyThisRowToClipboard":       "Скопировать эту строку в буфер обмена", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "Скопировать выбранные строки в буфер обмена", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "Скопировать все строки в буфер обмена", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== КНОПКИ ФОРМЫ АВТОРИЗАЦИИ ===================",
     "closeAboutButton":             "ЗАКРЫТЬ",

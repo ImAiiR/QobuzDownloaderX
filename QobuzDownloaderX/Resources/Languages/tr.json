@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "January 1, 2026, 01:25PM UTC",
+    "TranslationUpdatedOn":         "January 2, 2026, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -8,23 +8,23 @@
     "aboutButton":                  "HAKKINDA",
     "closeAdditionalButton":        "Ayarlara Geri Dön",
     "downloadButton":               "İndir",
-    "batchDownloadButton":          "TOPLU İNDİR", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "abortButton":                  "İPTAL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "skipButton":                   "ATLA", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadButton":          "TOPLU İNDİR", // ChatGPT translation.
+    "abortButton":                  "İPTAL", // ChatGPT translation.
+    "skipButton":                   "ATLA", // ChatGPT translation.
     "downloaderButton":             "İNDİR",
     "logoutButton":                 "ÇIKIŞ YAP",
     "openFolderButton":             "Klasörü Aç",
     "qualitySelectButton":          "Kalite Seç",
     "saveTemplatesButton":          "Kaydet",
-    "resetTemplatesButton":         "Sıfırla", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "resetTemplatesButton":         "Sıfırla", // ChatGPT translation.
     "searchButton":                 "ARA",
     "searchAlbumsButton":           "ESER",
     "searchTracksButton":           "PARÇA",
     "selectFolderButton":           "Klasör Seç",
     "settingsButton":               "AYARLAR",
-    "selectAllRowsButton":          "Tüm satırları seç", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "deselectAllRowsButton":        "Tüm satırların seçimini kaldır", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadRowsButton":      "SEÇİLİ SATIRLARI TOPLU İNDİR", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectAllRowsButton":          "Tüm satırları seç", // ChatGPT translation.
+    "deselectAllRowsButton":        "Tüm satırların seçimini kaldır", // ChatGPT translation.
+    "batchDownloadRowsButton":      "SEÇİLİ SATIRLARI TOPLU İNDİR", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "GELİŞMİŞ AYARLAR",
@@ -48,15 +48,15 @@
     "trackTemplateLabel":           "PARÇA ŞABLONU",
     "userInfoLabel":                "HESAP BİLGİLERİ",
     "welcomeLabel":                 "Hoşgeldin\r\n{username}",
-    "limitSearchResultsLabel":      "Sonuç Sınırı:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "searchSortingLabel":           "Sırala:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortGenreLabel":               "Tür", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortReleaseDateLabel":         "Yayın Tarihi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortArtistNameLabel":          "Sanatçı Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortAlbumTrackNameLabel":      "Albüm / Parça Adı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortingSearchResultsLabel":    "Sıralanıyor…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "searchResultsCountLabel":      "sonuç", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "selectedRowsCountLabel":       "{0} seçili satır", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "limitSearchResultsLabel":      "Sonuç Sınırı:", // ChatGPT translation.
+    "searchSortingLabel":           "Sırala:", // ChatGPT translation.
+    "sortGenreLabel":               "Tür", // ChatGPT translation.
+    "sortReleaseDateLabel":         "Yayın Tarihi", // ChatGPT translation.
+    "sortArtistNameLabel":          "Sanatçı Adı", // ChatGPT translation.
+    "sortAlbumTrackNameLabel":      "Albüm / Parça Adı", // ChatGPT translation.
+    "sortingSearchResultsLabel":    "Sıralanıyor…", // ChatGPT translation.
+    "searchResultsCountLabel":      "sonuç", // ChatGPT translation.
+    "selectedRowsCountLabel":       "{0} seçili satır", // ChatGPT translation.
     "disclaimer":                   "Feragat / Yasal Uyarı\n\nBu uygulama Qobuz API’sini kullanır ancak Qobuz tarafından onaylanmamıştır.\n\nYazılım ve yazarları, Qobuz ile herhangi bir şekilde bağlı, onaylı veya resmi olarak bağlantılı değildir. Bu uygulamanın kullanımı kendi sorumluluğunuzdadır. Yazarlar, hizmetin doğruluğu, güvenilirliği veya kullanılabilirliği konusunda herhangi bir garanti vermez ve kullanımından kaynaklanabilecek herhangi bir zarar veya veri kaybından sorumlu tutulamaz.\n\nBu uygulamayı kullanarak, uygulamanın “olduğu gibi” sağlandığını ve hiçbir açık veya zımni garanti verilmediğini kabul etmiş olursunuz; bu garantiler, ticari uygunluk, belirli bir amaç için uygunluk veya ihlal etmeme garantilerini de kapsar ancak bunlarla sınırlı değildir.\n\nKullanıcılar, Qobuz API’sine veya diğer üçüncü taraf hizmetlerine erişirken geçerli tüm yasa, hizmet şartları ve kullanım kısıtlamalarına uymaktan sorumludur.\n\nResmî Qobuz hizmetleri ve destek için Qobuz’un resmi web sitesine: https://www.qobuz.com/",
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
@@ -78,15 +78,15 @@
     "labelCheckbox":                "Müzik Şirketi",
     "upcCheckbox":                  "UPC / Barkod",
     "isrcCheckbox":                 "ISRC",
-    "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "Parça sanatçı isimlerini birleştir.\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "urlCheckbox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckbox":     "Parça sanatçı isimlerini birleştir.\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
     "streamableCheckbox":           "Oynatılabilirlik Doğrulaması",
     "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
     "downloadSpeedCheckbox":        "İndirme Hızını Göster",
-    "sortAscendantCheckBox":        "Artan", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadGoodiesCheckbox":      "İkramları indir", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "useTLS13Checkbox":             "TLS 1.3 kullan", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadArtistOther":          "Sanatçıları indir — Diğer / cover parçaları", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortAscendantCheckBox":        "Artan", // ChatGPT translation.
+    "downloadGoodiesCheckbox":      "İkramları indir", // ChatGPT translation.
+    "useTLS13Checkbox":             "TLS 1.3 kullan", // ChatGPT translation.
+    "downloadArtistOther":          "Sanatçıları indir — Diğer / cover parçaları", // ChatGPT translation.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",
@@ -100,7 +100,7 @@
     "downloadOutputExpired":        "ABONELİĞİNİZ BİTMİŞ, YÜKLEMELER 30 SANİYELİK PARÇALARLA KISITLI OLACAK!",
     "downloadOutputPath":           "İndirme Yolu",
     "downloadOutputNoPath":         "İndirme Yolu seçilmemiş! Bir İndirme Klasörü Seçin!",
-    "downloadOutputNoUrl":          "Parça {TrackNumber} indirilebilir değil. Atlanıyor.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputNoUrl":          "Parça {TrackNumber} indirilebilir değil. Atlanıyor.", // ChatGPT translation.
     "downloadOutputAPIError":       "Qobuz API Hatası. Belki Parça / Albüm bu bölgede erişilebilir değildir?",
     "downloadOutputNotImplemented": "Bu özellik henüz eklenmedi veya URL hatalı. Bir yazım yanlışı mı var?",
     "downloadOutputCheckLink":      "Link Kontrol Ediliyor…",
@@ -113,21 +113,25 @@
     "downloadOutputDownloading":    "İndiriliyor",
     "downloadOutputDone":           "İNDİRİLDİ",
     "downloadOutputCompleted":      "İNDİRME TAMAMLANDI",
-    "downloadAborted":              "İNDİRME KULLANICI TARAFINDAN İPTAL EDİLDİ.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "albumSkipped":                 "ALBÜM KULLANICI TARAFINDAN ATLANDI.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadAborted":              "İNDİRME KULLANICI TARAFINDAN İPTAL EDİLDİ.", // ChatGPT translation.
+    "albumSkipped":                 "ALBÜM KULLANICI TARAFINDAN ATLANDI.", // ChatGPT translation.
     "progressLabelInactive":        "Aktif İndirme Yok",
     "progressLabelActive":          "İndirme İlerlemesi",
-    "formClosingWarning":           "A download is in progress, do you really want to quit?.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "artist":                       "Sanatçı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "artists":                      "sanatçılar", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "album":                        "Albüm", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "albums":                       "albümler", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "tracks":                       "parçalar", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "singleTrack":                  "Tek parça", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "playlist":                     "Çalma listesi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "recordLabel":                  "Plak şirketi", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "user":                         "Kullanıcı", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "invalidUrl":                   "Geçersiz URL: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "formClosingWarning":           "A download is in progress, do you really want to quit?.", // ChatGPT translation.
+    "artist":                       "Sanatçı", // ChatGPT translation.
+    "artists":                      "sanatçılar", // ChatGPT translation.
+    "album":                        "Albüm", // ChatGPT translation.
+    "albums":                       "albümler", // ChatGPT translation.
+    "tracks":                       "parçalar", // ChatGPT translation.
+    "singleTrack":                  "Tek parça", // ChatGPT translation.
+    "playlist":                     "Çalma listesi", // ChatGPT translation.
+    "recordLabel":                  "Plak şirketi", // ChatGPT translation.
+    "user":                         "Kullanıcı", // ChatGPT translation.
+    "invalidUrl":                   "Geçersiz URL: {0}", // ChatGPT translation.
+    "copyToClipboard":              "Panoya kopyala", // ChatGPT translation.
+    "copyThisRowToClipboard":       "Bu satırı panoya kopyala", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "Seçili satırları panoya kopyala", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "Tüm satırları panoya kopyala", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "KAPAT",
@@ -158,23 +162,23 @@
     "updateNotification":           "QBDLX'in Yeni sürümü mevcut\r\n\r\nYüklü sürüm - {currentVersion}\r\nSon sürüm - {newVersion}\r\n\r\nDeğişiklikler Aşağıda\r\n==============\r\n{changelog}\r\n==============\r\n\r\nGüncelleme yapmak ister misiniz?",
     "updateNotificationTitle":      "QBDLX | Güncelleme Yapılabilir",
 
-    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadDlgText":         "Toplu İndirme", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadLabel":           "Bir veya daha fazla Qobuz URL'si yapıştırın…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeBatchDownloadbutton":     "KAPAT / İPTAL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "getAllBatchDownloadButton":    "HEPSİNİ AL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
+    "batchDownloadDlgText":         "Toplu İndirme", // ChatGPT translation.
+    "batchDownloadLabel":           "Bir veya daha fazla Qobuz URL'si yapıştırın…", // ChatGPT translation.
+    "closeBatchDownloadbutton":     "KAPAT / İPTAL", // ChatGPT translation.
+    "getAllBatchDownloadButton":    "HEPSİNİ AL", // ChatGPT translation.
 
-    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "showWindowCmItem":             "Pencereyi göster", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "hideWindowCmItem":             "Pencereyi gizle", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeProgramCmItem":           "Programı kapat", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadFinished":        "Toplu indirme tamamlandı!", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
+    "showWindowCmItem":             "Pencereyi göster", // ChatGPT translation.
+    "hideWindowCmItem":             "Pencereyi gizle", // ChatGPT translation.
+    "closeProgramCmItem":           "Programı kapat", // ChatGPT translation.
+    "batchDownloadFinished":        "Toplu indirme tamamlandı!", // ChatGPT translation.
 
-    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "tagLibSharpMissingMsg":        "Klasörde taglib-sharp.dll bulunamadı!\r\nLütfen DLL’in {exeName} ile aynı klasörde olduğundan emin olun!", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "themeFileNotFoundMsg":         "Tema dosyası bulunamadı.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "themeNameNotFoundMsg":         "Tema '{themeName}' bulunamadı.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "selectedLangFileNotfoundMsg":  "Seçilen dil dosyası bulunamadı.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadOutputDontExistMsg":   "Belirtilen yol mevcut değil.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "notEnoughFreeSpaceMsg":        "Sürücüde yeterli boş alan yok: '{pathRoot}'" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
+    "tagLibSharpMissingMsg":        "Klasörde taglib-sharp.dll bulunamadı!\r\nLütfen DLL’in {exeName} ile aynı klasörde olduğundan emin olun!", // ChatGPT translation.
+    "themeFileNotFoundMsg":         "Tema dosyası bulunamadı.", // ChatGPT translation.
+    "themeNameNotFoundMsg":         "Tema '{themeName}' bulunamadı.", // ChatGPT translation.
+    "selectedLangFileNotfoundMsg":  "Seçilen dil dosyası bulunamadı.", // ChatGPT translation.
+    "downloadOutputDontExistMsg":   "Belirtilen yol mevcut değil.", // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "Sürücüde yeterli boş alan yok: '{pathRoot}'" // ChatGPT translation.
 }

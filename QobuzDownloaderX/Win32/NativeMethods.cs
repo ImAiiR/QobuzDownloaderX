@@ -29,6 +29,9 @@ namespace QobuzDownloaderX.Win32
         public static extern bool DestroyIcon(IntPtr hIcon);
 
         [DllImport("user32.dll")]
+        public static extern bool HideCaret(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
         public static extern bool IsIconic(IntPtr hWnd);
 
         [DllImport("user32.dll")]
@@ -36,6 +39,9 @@ namespace QobuzDownloaderX.Win32
 
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
         public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);

@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 1, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 2, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -8,23 +8,23 @@
     "aboutButton":                  "ÜBER…",
     "closeAdditionalButton":        "Optionen",
     "downloadButton":               "HOLEN!",
-    "batchDownloadButton":          "PAKET HERUNTERLADEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "abortButton":                  "ABBRECHEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "skipButton":                   "ÜBERSPRINGEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "batchDownloadButton":          "PAKET HERUNTERLADEN", // ChatGPT translation.
+    "abortButton":                  "ABBRECHEN", // ChatGPT translation.
+    "skipButton":                   "ÜBERSPRINGEN", // ChatGPT translation.
     "downloaderButton":             "DOWNLOADER",
     "logoutButton":                 "AUSLOGGEN",
     "openFolderButton":             "Ordner Öffnen",
     "qualitySelectButton":          "Qualität",
     "saveTemplatesButton":          "Speichern",
-    "resetTemplatesButton":         "Zurücksetzen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "resetTemplatesButton":         "Zurücksetzen", // ChatGPT translation.
     "searchButton":                 "SUCHE",
     "searchAlbumsButton":           "ALBUM",
     "searchTracksButton":           "TRACK",
     "selectFolderButton":           "Ordner Auswählen",
     "settingsButton":               "OPTIONEN",
-    "selectAllRowsButton":          "Alle Zeilen auswählen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "deselectAllRowsButton":        "Auswahl aller Zeilen aufheben", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadRowsButton":      "AUSGEWÄHLTE ZEILEN STAPELWEISE HERUNTERLADEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "selectAllRowsButton":          "Alle Zeilen auswählen", // ChatGPT translation.
+    "deselectAllRowsButton":        "Auswahl aller Zeilen aufheben", // ChatGPT translation.
+    "batchDownloadRowsButton":      "AUSGEWÄHLTE ZEILEN STAPELWEISE HERUNTERLADEN", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Weitere Optionen",
@@ -48,15 +48,15 @@
     "trackTemplateLabel":           "TRACK VORLAGE",
     "userInfoLabel":                "BENUTZERINFO",
     "welcomeLabel":                 "Willkommen\r\n{username}",
-    "limitSearchResultsLabel":      "Ergebnislimit:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "searchSortingLabel":           "Sortieren nach:", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortReleaseDateLabel":         "Veröffentlichungsdatum", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortGenreLabel":               "Genre", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortArtistNameLabel":          "Künstlername", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortAlbumTrackNameLabel":      "Album / Titelname", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "sortingSearchResultsLabel":    "Sortiere…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "searchResultsCountLabel":      "Ergebnisse", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "limitSearchResultsLabel":      "Ergebnislimit:", // ChatGPT translation.
+    "searchSortingLabel":           "Sortieren nach:", // ChatGPT translation.
+    "sortReleaseDateLabel":         "Veröffentlichungsdatum", // ChatGPT translation.
+    "sortGenreLabel":               "Genre", // ChatGPT translation.
+    "sortArtistNameLabel":          "Künstlername", // ChatGPT translation.
+    "sortAlbumTrackNameLabel":      "Album / Titelname", // ChatGPT translation.
+    "sortingSearchResultsLabel":    "Sortiere…", // ChatGPT translation.
+    "searchResultsCountLabel":      "Ergebnisse", // ChatGPT translation.
+    "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // ChatGPT translation.
     "disclaimer":                   "Haftungsausschluss / Rechtlicher Hinweis\n\nDiese Anwendung verwendet die Qobuz-API, ist jedoch nicht von Qobuz zertifiziert.\n\nDie Software und ihre Autoren sind in keiner Weise mit Qobuz verbunden, werden von Qobuz nicht unterstützt und stehen nicht in offizieller Verbindung zu Qobuz. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko. Die Autoren übernehmen keine Garantie für die Genauigkeit, Zuverlässigkeit oder Verfügbarkeit des Dienstes und haften nicht für Schäden oder Datenverluste, die aus der Nutzung resultieren.\n\nDurch die Nutzung dieser Anwendung erkennen Sie an und akzeptieren, dass sie „wie besehen“ bereitgestellt wird, ohne ausdrückliche oder stillschweigende Garantien jeglicher Art, einschließlich, aber nicht beschränkt auf Garantien der Marktgängigkeit, Eignung für einen bestimmten Zweck oder Nichtverletzung von Rechten.\n\nDie Nutzer sind verantwortlich für die Einhaltung aller geltenden Gesetze, Nutzungsbedingungen und Einschränkungen beim Zugriff auf die Qobuz-API oder andere Drittanbieterdienste.\n\nFür offizielle Qobuz-Dienste und Support besuchen Sie bitte die offizielle Website von Qobuz: https://www.qobuz.com/",
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
@@ -78,15 +78,15 @@
     "labelCheckbox":                "Label",
     "upcCheckbox":                  "UPC / Barcode",
     "isrcCheckbox":                 "ISRC",
-    "urlCheckbox":                  "URL", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "mergeArtistNamesCheckbox":     "Track-Künstlernamen zusammenführen.\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "urlCheckbox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckbox":     "Track-Künstlernamen zusammenführen.\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
     "streamableCheckbox":           "Ist Streamfähig Check",
     "fixMD5sCheckbox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
     "downloadSpeedCheckbox":        "Downloadgeschwindigkeit Anzeigen",
-    "sortAscendantCheckBox":        "Aufsteigend", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadGoodiesCheckbox":      "Goodies herunterladen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "useTLS13Checkbox":             "TLS 1.3 verwenden", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadArtistOther":          "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "sortAscendantCheckBox":        "Aufsteigend", // ChatGPT translation.
+    "downloadGoodiesCheckbox":      "Goodies herunterladen", // ChatGPT translation.
+    "useTLS13Checkbox":             "TLS 1.3 verwenden", // ChatGPT translation.
+    "downloadArtistOther":          "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // ChatGPT translation.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",
@@ -100,7 +100,7 @@
     "downloadOutputExpired":        "DEIN ABONNEMENT IST ABGELAUFEN!, ES WERDEN NUR 30-SEKUNDEN AUSSCHNITTE HERUNTERGELADEN!",
     "downloadOutputPath":           "Download Pfad:",
     "downloadOutputNoPath":         "Es wurde kein Pfad gesetzt! Denke daran einen Ordner auszuwählen!",
-    "downloadOutputNoUrl":          "Titel {TrackNumber} steht zum Herunterladen nicht zur Verfügung. Wird übersprungen.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadOutputNoUrl":          "Titel {TrackNumber} steht zum Herunterladen nicht zur Verfügung. Wird übersprungen.", // ChatGPT translation.
     "downloadOutputAPIError":       "Qobuz-API Fehler, ist dieses Album in deiner Region verfügbar?",
     "downloadOutputNotImplemented": "Noch nicht Implementiert oder nicht verstanden, hast du dich vielleicht vertippt?",
     "downloadOutputCheckLink":      "Überprüfe Link…",
@@ -113,21 +113,25 @@
     "downloadOutputDownloading":    "Lädt Herunter",
     "downloadOutputDone":           "FERTIG",
     "downloadOutputCompleted":      "DOWNLOAD FERTIG!",
-    "downloadAborted":              "DOWNLOAD VOM BENUTZER ABGEBROCHEN.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "albumSkipped":                 "ALBUM VOM BENUTZER ÜBERSPRUNGEN.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "downloadAborted":              "DOWNLOAD VOM BENUTZER ABGEBROCHEN.", // ChatGPT translation.
+    "albumSkipped":                 "ALBUM VOM BENUTZER ÜBERSPRUNGEN.", // ChatGPT translation.
     "progressLabelInactive":        "Kein Download aktiv",
     "progressLabelActive":          "Download Fortschritt",
-    "formClosingWarning":           "Ein Download läuft, möchten Sie wirklich beenden?", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "artist":                       "Künstler", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "artists":                      "Künstler", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "album":                        "Album", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "albums":                       "Alben", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "tracks":                       "Tracks", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "singleTrack":                  "Einzeltitel", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "playlist":                     "Wiedergabeliste", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "recordLabel":                  "Plattenlabel", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "user":                         "Benutzer", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "invalidUrl":                   "Ungültige URL: {0}", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "formClosingWarning":           "Ein Download läuft, möchten Sie wirklich beenden?", // ChatGPT translation.
+    "artist":                       "Künstler", // ChatGPT translation.
+    "artists":                      "Künstler", // ChatGPT translation.
+    "album":                        "Album", // ChatGPT translation.
+    "albums":                       "Alben", // ChatGPT translation.
+    "tracks":                       "Tracks", // ChatGPT translation.
+    "singleTrack":                  "Einzeltitel", // ChatGPT translation.
+    "playlist":                     "Wiedergabeliste", // ChatGPT translation.
+    "recordLabel":                  "Plattenlabel", // ChatGPT translation.
+    "user":                         "Benutzer", // ChatGPT translation.
+    "invalidUrl":                   "Ungültige URL: {0}", // ChatGPT translation.
+    "copyToClipboard":              "In die Zwischenablage kopieren", // ChatGPT translation.
+    "copyThisRowToClipboard":       "Diese Zeile in die Zwischenablage kopieren", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "Ausgewählte Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "Alle Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "SCHLIEßEN",
@@ -158,23 +162,23 @@
     "updateNotification":           "Eine neue Version von QBDLX ist verfügbar!\r\n\r\nInstallierte Version - {currentVersion}\r\nNeueste Version - {newVersion}\r\n\r\nÄnderungsliste\r\n==============\r\n{changelog}\r\n==============\r\n\r\nMöchtest du aktualisieren?",
     "updateNotificationTitle":      "QBDLX | Update Verfügbar",
 
-    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadDlgText":         "Stapel-Download", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadLabel":           "Fügen Sie eine oder mehrere Qobuz-URLs ein…", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeBatchDownloadbutton":     "SCHLIESSEN / ABBRECHEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "getAllBatchDownloadButton":    "ALLES HERUNTERLADEN", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
+    "batchDownloadDlgText":         "Stapel-Download", // ChatGPT translation.
+    "batchDownloadLabel":           "Fügen Sie eine oder mehrere Qobuz-URLs ein…", // ChatGPT translation.
+    "closeBatchDownloadbutton":     "SCHLIESSEN / ABBRECHEN", // ChatGPT translation.
+    "getAllBatchDownloadButton":    "ALLES HERUNTERLADEN", // ChatGPT translation.
 
-    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "showWindowCmItem":             "Fenster anzeigen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "hideWindowCmItem":             "Fenster ausblenden", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "closeProgramCmItem":           "Programm schließen", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "batchDownloadFinished":        "Stapel-Download abgeschlossen!", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
+    "showWindowCmItem":             "Fenster anzeigen", // ChatGPT translation.
+    "hideWindowCmItem":             "Fenster ausblenden", // ChatGPT translation.
+    "closeProgramCmItem":           "Programm schließen", // ChatGPT translation.
+    "batchDownloadFinished":        "Stapel-Download abgeschlossen!", // ChatGPT translation.
 
-    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "tagLibSharpMissingMsg":        "taglib-sharp.dll fehlt im Ordner!\r\nBitte stellen Sie sicher, // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.dass die DLL sich im gleichen Ordner wie {exeName} befindet!",
-    "themeFileNotFoundMsg":         "Design-Datei nicht gefunden.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "themeNameNotFoundMsg":         "Design '{themeName}' nicht gefunden.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "selectedLangFileNotfoundMsg":  "Ausgewählte Sprachdatei nicht gefunden.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "downloadOutputDontExistMsg":   "Der angegebene Pfad existiert nicht.", // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
-    "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'" // Added by ElektroStudios. May require proper translation. You should delete this comment once translated.
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
+    "tagLibSharpMissingMsg":        "taglib-sharp.dll fehlt im Ordner!\r\nBitte stellen Sie sicher, // ChatGPT translation.dass die DLL sich im gleichen Ordner wie {exeName} befindet!",
+    "themeFileNotFoundMsg":         "Design-Datei nicht gefunden.", // ChatGPT translation.
+    "themeNameNotFoundMsg":         "Design '{themeName}' nicht gefunden.", // ChatGPT translation.
+    "selectedLangFileNotfoundMsg":  "Ausgewählte Sprachdatei nicht gefunden.", // ChatGPT translation.
+    "downloadOutputDontExistMsg":   "Der angegebene Pfad existiert nicht.", // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'" // ChatGPT translation.
 }
