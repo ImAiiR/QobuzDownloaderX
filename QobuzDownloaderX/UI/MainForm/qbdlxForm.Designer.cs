@@ -2237,7 +2237,7 @@ namespace QobuzDownloaderX
             this.limitSearchResultsNumericUpDown.Font = new System.Drawing.Font("Nirmala UI", 12F);
             this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(525, 86);
             this.limitSearchResultsNumericUpDown.Maximum = new decimal(new int[] {
-            300,
+            500,
             0,
             0,
             0});

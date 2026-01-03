@@ -423,7 +423,7 @@ namespace QobuzDownloaderX.Helpers
             }
         }
 
-        internal static void updatePlaylistInfoLabels(qbdlxForm f, Playlist QoPlaylist)
+        private static void updatePlaylistInfoLabels(qbdlxForm f, Playlist QoPlaylist)
         {
             f.artistLabel.Text = QoPlaylist.Owner.Name.Replace(@"&", @"&&") + "'s Playlist";
             f.albumLabel.Text = QoPlaylist.Name.Replace(@"&", @"&&");
@@ -451,7 +451,7 @@ namespace QobuzDownloaderX.Helpers
             }
         }
 
-        public static string GetShortenedGenreName(string genre)
+        internal static string GetShortenedGenreName(string genre)
         {
             if (string.IsNullOrEmpty(genre))
                 return string.Empty;
@@ -497,7 +497,7 @@ namespace QobuzDownloaderX.Helpers
             return genreName;
         }
 
-        public static void ShowFloatingImageFromUrl(string imageUrl)
+        internal static void ShowFloatingImageFromUrl(string imageUrl)
         {
             if (string.IsNullOrWhiteSpace(imageUrl))
                 return;
@@ -691,7 +691,7 @@ namespace QobuzDownloaderX.Helpers
                 SearchPanelHelper.selectedRowindices.Any();
         }
 
-        internal static async Task getLinkTypeAsync(qbdlxForm f, CancellationToken abortToken)
+        private static async Task getLinkTypeAsync(qbdlxForm f, CancellationToken abortToken)
         {
             if (!qbdlxForm.isBatchDownloadRunning)
             {

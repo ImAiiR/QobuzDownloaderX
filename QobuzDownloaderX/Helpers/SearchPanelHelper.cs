@@ -13,23 +13,22 @@ namespace QobuzDownloaderX.Helpers
 {
     internal sealed class RowInfo
     {
-        public int RowIndex { get; set; }
-        public bool Selected { get; set; }
-        public string AlbumOrTrackUrl { get; set; }
+        internal int RowIndex { get; set; }
+        internal bool Selected { get; set; }
+        internal string AlbumOrTrackUrl { get; set; }
     }
 
     internal sealed class SearchPanelHelper
     {
         public static readonly List<int> selectedRowindices = new List<int>();
 
-        public Service QoService = new Service();
-        public User QoUser = new User();
-        public Item QoItem = new Item();
-        public SearchAlbumResult QoAlbumSearch = new SearchAlbumResult();
-        public SearchTrackResult QoTrackSearch = new SearchTrackResult();
-
-        public int limitResults;
-        public string lastSearchType = "";
+        private readonly Service QoService = new Service();
+        internal User QoUser = new User();
+        internal Item QoItem = new Item();
+        internal SearchAlbumResult QoAlbumSearch = new SearchAlbumResult();
+        internal SearchTrackResult QoTrackSearch = new SearchTrackResult();
+        internal string lastSearchType = "";
+        private int limitResults;
 
         public void SearchInitiate(string searchType, string app_id, string searchQuery, string user_auth_token)
         {
@@ -68,6 +67,7 @@ namespace QobuzDownloaderX.Helpers
 
                 TableLayoutPanel searchResultsTablePanel = mainForm.searchResultsTablePanel;
                 searchResultsTablePanel.SuspendLayout();
+                NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
 
                 // Restore related selection row controls
                 selectedRowindices.Clear();
@@ -107,10 +107,6 @@ namespace QobuzDownloaderX.Helpers
                         Cursor = Cursors.Default,
                         Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
                     };
-
-                    // Add rowPanel to main table
-                    searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
-                    searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
 
                     // Create a inner table for proper column alignment
                     TableLayoutPanel innerRow = CreateSearchResultRow();
@@ -235,11 +231,13 @@ namespace QobuzDownloaderX.Helpers
                         mainForm.downloadButton.EnabledChanged -= downloadButtonHandler;
                     };
 
+                    // Add rowPanel to main table
                     searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
                     searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
 
                     rowIndex++;
                 }
+                NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
                 searchResultsTablePanel.ResumeLayout();
 
                 qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = rowIndex > 0;
@@ -263,6 +261,7 @@ namespace QobuzDownloaderX.Helpers
 
                 TableLayoutPanel searchResultsTablePanel = mainForm.searchResultsTablePanel;
                 searchResultsTablePanel.SuspendLayout();
+                NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
 
                 // Restore related selection row controls
                 selectedRowindices.Clear();
@@ -302,10 +301,6 @@ namespace QobuzDownloaderX.Helpers
                         Cursor = Cursors.Default,
                         Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
                     };
-
-                    // Add rowPanel to main table
-                    searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
-                    searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
 
                     // Create a inner table for proper column alignment
                     TableLayoutPanel innerRow = CreateSearchResultRow();
@@ -430,12 +425,14 @@ namespace QobuzDownloaderX.Helpers
                         mainForm.downloadButton.EnabledChanged -= downloadButtonHandler;
                     };
 
+                    // Add rowPanel to main table
                     searchResultsTablePanel.Controls.Add(rowPanel, 0, rowIndex);
                     searchResultsTablePanel.SetColumnSpan(rowPanel, 5);
 
                     rowIndex++;
                 }
 
+                NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
                 searchResultsTablePanel.ResumeLayout();
                 qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = rowIndex > 0;
                 qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = rowIndex > 0;
@@ -448,7 +445,7 @@ namespace QobuzDownloaderX.Helpers
         /// Safely disposes all controls in a parent panel, including nested panels, TableLayoutPanels, and PictureBoxes.
         /// </summary>
         /// <param name="parentPanel">The panel whose controls should be disposed.</param>
-        public static void DisposeAllControls(Panel parentPanel)
+        private static void DisposeAllControls(Panel parentPanel)
         {
             if (parentPanel == null) return;
 
@@ -494,7 +491,7 @@ namespace QobuzDownloaderX.Helpers
         /// Creates a TableLayoutPanel with a predefined 5-column layout for search results.
         /// </summary>
         /// <returns>A configured TableLayoutPanel.</returns>
-        public static TableLayoutPanel CreateSearchResultRow()
+        private static TableLayoutPanel CreateSearchResultRow()
         {
             var innerRow = new TableLayoutPanel
             {
@@ -519,7 +516,7 @@ namespace QobuzDownloaderX.Helpers
         /// <summary>
         /// Attaches a click event recursively to a control and all its children except Buttons.
         /// </summary>
-        public static void AttachClickRecursive(Control parent, EventHandler handler)
+        private static void AttachClickRecursive(Control parent, EventHandler handler)
         {
             if (!(parent is Button) && !(parent is PictureBox))
                 parent.Click += handler;
@@ -532,7 +529,7 @@ namespace QobuzDownloaderX.Helpers
         /// Attaches a Paint event to a panel to highlight it when selected and draw a checkmark.
         /// </summary>
         /// <param name="rowPanel">The panel to attach the Paint event to.</param>
-        public static void AttachRowHighlightPaint(Panel rowPanel)
+        private static void AttachRowHighlightPaint(Panel rowPanel)
         {
             if (rowPanel == null) return;
 
@@ -570,7 +567,7 @@ namespace QobuzDownloaderX.Helpers
         /// <param name="searchResultsPanel">The parent panel containing all row panels.</param>
         /// <param name="selectedRowIndices">The list tracking selected row indices.</param>
         /// <param name="parentForm">The form containing buttons and labels to update.</param>
-        public static void RowClickHandler(
+        private static void RowClickHandler(
             Control clickedControl,
             Panel searchResultsPanel,
             List<int> selectedRowIndices,
@@ -635,12 +632,12 @@ namespace QobuzDownloaderX.Helpers
             rowPanel.Invalidate();
         }
 
-        public void SendURL(qbdlxForm mainForm, string url)
+        private void SendURL(qbdlxForm mainForm, string url)
         {
             try
             {
                 // Send URL to the input textbox, and start download
-                mainForm.logger.Debug("Sending URL to download panel, and starting download");
+                mainForm.logger.Debug("Sending URL to downloader panel, and starting download");
                 TextBox inputTextbox = mainForm.inputTextbox;
                 inputTextbox.Text = url;
                 inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
@@ -653,12 +650,12 @@ namespace QobuzDownloaderX.Helpers
             }
             catch (Exception ex)
             {
-                mainForm.logger.Error("Error on SendURL (SearchPanelHelper). Error below:\r\n" + ex);
+                mainForm.logger.Error("Exception thrown on SendURL. Error message below:\r\n" + ex);
                 return;
             }
         }
 
-        public string GetQualityInfoAlbumLabelText(Item album)
+        private string GetQualityInfoAlbumLabelText(Item album)
         {
             if (album == null) return string.Empty;
 
@@ -678,7 +675,7 @@ namespace QobuzDownloaderX.Helpers
             return labelText;
         }
 
-        public string GetQualityInfoTrackLabelText(Item track)
+        private string GetQualityInfoTrackLabelText(Item track)
         {
             if (track == null) return string.Empty;
 
@@ -694,7 +691,7 @@ namespace QobuzDownloaderX.Helpers
             return labelText;
         }
 
-        public Albums SortAlbums(Albums albums)
+        internal Albums SortAlbums(Albums albums)
         {
             if (albums == null || albums.Items == null)
                 return albums;
@@ -731,7 +728,7 @@ namespace QobuzDownloaderX.Helpers
             };
         }
 
-        public Tracks SortTracks(Tracks tracks)
+        internal Tracks SortTracks(Tracks tracks)
         {
             if (tracks == null || tracks.Items == null)
                 return tracks;

@@ -3,6 +3,7 @@ using QobuzDownloaderX.Properties;
 using QopenAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,9 @@ namespace QobuzDownloaderX.Helpers
 {
     internal sealed class RenameTemplates
     {
-        public static readonly Regex percentRegex = new Regex(@"%(.*?)%", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-        public static readonly Regex spacesRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-        public static readonly Regex repeatedParenthesesRegex = new Regex(@"\(([^()]+)\)\s*(\(\1\))+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        internal static readonly Regex percentRegex = new Regex(@"%(.*?)%", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        internal static readonly Regex spacesRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        internal static readonly Regex repeatedParenthesesRegex = new Regex(@"\(([^()]+)\)\s*(\(\1\))+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex spacesBeforeBackslashRegex = new Regex(@"\s+\\", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         // "Various Artists" known variations
@@ -154,6 +155,7 @@ namespace QobuzDownloaderX.Helpers
             return template;
         }
 
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "I don’t feel like changing this and it doesn’t matter")]
         public string renameTemplates(string template, int paddedTrackLength, int paddedDiscLength, string fileFormat, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Renaming user template - " + template);

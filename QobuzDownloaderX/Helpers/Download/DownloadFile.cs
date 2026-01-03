@@ -3,6 +3,7 @@ using QobuzDownloaderX.Properties;
 using QopenAPI;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,15 +17,16 @@ namespace QobuzDownloaderX
 {
     internal sealed class DownloadFile
     {
-        readonly RenameTemplates renameTemplates = new RenameTemplates();
-        readonly PaddingNumbers paddingNumbers = new PaddingNumbers();
-        readonly FixMD5 fixMD5 = new FixMD5();
+        private readonly RenameTemplates renameTemplates = new RenameTemplates();
+        private readonly PaddingNumbers paddingNumbers = new PaddingNumbers();
+        private readonly FixMD5 fixMD5 = new FixMD5();
 
         // Static flag to ensure temp directory check runs only once per application run
         private static bool tempDirChecked = false;
 
         public string artworkPath { get; set; }
 
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "I don’t feel like changing this and it doesn’t matter")]
         public async Task<string> createPath(string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, string favoritesTemplate, int paddedTrackLength, int paddedDiscLength, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
         {
             return await Task.Run(() =>
