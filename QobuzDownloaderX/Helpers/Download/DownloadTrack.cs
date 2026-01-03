@@ -10,7 +10,7 @@ using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {
-    class DownloadTrack
+    internal sealed class DownloadTrack
     {
         public Service QoService = new Service();
         public User QoUser = new User();

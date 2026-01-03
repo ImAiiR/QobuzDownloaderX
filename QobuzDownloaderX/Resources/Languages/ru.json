@@ -22,8 +22,8 @@
     "searchTracksButton":           "ТРЕКИ",
     "selectFolderButton":           "Выбрать папку",
     "settingsButton":               "НАСТРОЙКИ",
-    "selectAllRowsButton":          "Выбрать все строки", // ChatGPT translation.
-    "deselectAllRowsButton":        "Снять выделение со всех строк", // ChatGPT translation.
+    "selectAllRowsButton":          "Выбрать все", // ChatGPT translation.
+    "deselectAllRowsButton":        "Снять выбор", // ChatGPT translation.
     "batchDownloadRowsButton":      "ПАКЕТНАЯ ЗАГРУЗКА ВЫБРАННЫХ СТРОК", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",

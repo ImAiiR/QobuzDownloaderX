@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace QobuzDownloaderX.Helpers
 {
-    class FixMD5
+    internal sealed class FixMD5
     {
         readonly GetInfo getInfo = new GetInfo();
 

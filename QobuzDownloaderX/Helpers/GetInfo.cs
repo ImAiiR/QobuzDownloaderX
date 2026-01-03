@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace QobuzDownloaderX.Helpers
 {
-    class GetInfo
+    internal sealed class GetInfo
     {
         public Service QoService = new Service();
         public User QoUser = new User();
@@ -23,19 +23,19 @@ namespace QobuzDownloaderX.Helpers
         {
             if (outputText == "Test String" | outputText == null)
             {
-                qbdlxForm._qbdlxForm.update(null);
+                Miscellaneous.update(qbdlxForm._qbdlxForm, null);
                 outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
-                qbdlxForm._qbdlxForm.update(text);
+                Miscellaneous.update(qbdlxForm._qbdlxForm, text);
                 outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
             }
             else if (text == null)
             {
-                qbdlxForm._qbdlxForm.update(null);
+                Miscellaneous.update(qbdlxForm._qbdlxForm, null);
                 outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
             }
             else
             {
-                qbdlxForm._qbdlxForm.update(outputText + text);
+                Miscellaneous.update(qbdlxForm._qbdlxForm, outputText + text);
                 outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
             }
         }
@@ -83,15 +83,13 @@ namespace QobuzDownloaderX.Helpers
                 if (!Settings.Default.downloadArtistOther)
                 {
                     QoArtist.Albums.Items = allItems.Cast<Item>()
-                                                    .Where(a => a.Artist != null && a.Artist.Id.ToString() == artist_id)
+                                                    .Where(a => a.Artist?.Id.ToString() == artist_id)
                                                     .ToList();
                 } else
                 {
-                    QoArtist.Albums.Items = allItems
-                         .Cast<Item>()
-                         .Where(a => a.Artist != null)
-                         .OrderByDescending(a => a.Artist.Id.ToString() == artist_id)
-                         .ToList();
+                    QoArtist.Albums.Items = allItems.Cast<Item>()
+                                                    .OrderByDescending(a => a.Artist?.Id.ToString() == artist_id)
+                                                    .ToList();
                 }
 
                 return QoArtist;

@@ -14,7 +14,7 @@ using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
-    class DownloadFile
+    internal sealed class DownloadFile
     {
         readonly RenameTemplates renameTemplates = new RenameTemplates();
         readonly PaddingNumbers paddingNumbers = new PaddingNumbers();

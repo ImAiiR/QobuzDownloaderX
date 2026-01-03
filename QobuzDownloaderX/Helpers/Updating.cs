@@ -10,7 +10,7 @@ using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
 {
-    public class TranslationUpdater
+    internal sealed class TranslationUpdater
     {
        static readonly Regex removeTimezoneRegEx = new Regex(@"[A-Z]{2,5}(\+?\d{0,2})?$", RegexOptions.Compiled);
 
@@ -116,7 +116,7 @@ namespace QobuzDownloaderX.Helpers
         }
     }
 
-    public static class VersionChecker
+    internal static class VersionChecker
     {
         public static async Task<(bool isUpdateAvailable, string newVersion, string currentVersion, string changes)> CheckForUpdate()
         {

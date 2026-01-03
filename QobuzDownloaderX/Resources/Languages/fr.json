@@ -22,8 +22,8 @@
     "searchTracksButton":           "Pistes",
     "selectFolderButton":           "Sélectionner Le Dossier",
     "settingsButton":               "Paramètres",
-    "selectAllRowsButton":          "Sélectionner toutes les lignes", // ChatGPT translation.
-    "deselectAllRowsButton":        "Désélectionner toutes les lignes", // ChatGPT translation.
+    "selectAllRowsButton":          "Sélectionner tout", // ChatGPT translation.
+    "deselectAllRowsButton":        "Tout désélectionner", // ChatGPT translation.
     "batchDownloadRowsButton":      "TÉLÉCHARGER LES LIGNES SÉLECTIONNÉES EN LOT", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",

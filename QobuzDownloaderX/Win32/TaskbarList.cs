@@ -1,7 +1,7 @@
 ﻿
 namespace QobuzDownloaderX.Win32
 {
-    public sealed class TaskbarList
+    internal sealed class TaskbarList
     {
         private static readonly object lockObj = new object();
         private static ITaskbarList4 taskbarList;

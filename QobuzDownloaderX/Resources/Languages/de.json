@@ -22,8 +22,8 @@
     "searchTracksButton":           "TRACK",
     "selectFolderButton":           "Ordner Auswählen",
     "settingsButton":               "OPTIONEN",
-    "selectAllRowsButton":          "Alle Zeilen auswählen", // ChatGPT translation.
-    "deselectAllRowsButton":        "Auswahl aller Zeilen aufheben", // ChatGPT translation.
+    "selectAllRowsButton":          "Alles auswählen", // ChatGPT translation.
+    "deselectAllRowsButton":        "Alles abwählen", // ChatGPT translation.
     "batchDownloadRowsButton":      "AUSGEWÄHLTE ZEILEN STAPELWEISE HERUNTERLADEN", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",

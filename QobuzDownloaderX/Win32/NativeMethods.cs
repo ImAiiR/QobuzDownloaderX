@@ -4,10 +4,10 @@ using System.Text;
 
 namespace QobuzDownloaderX.Win32
 {
-    internal class NativeMethods
+    internal sealed class NativeMethods
     {
         [DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        public static extern IntPtr CreateRoundRectRgn
+        internal static extern IntPtr CreateRoundRectRgn
         (
             int nLeftRect,     // x-coordinate of upper-left corner
             int nTopRect,      // y-coordinate of upper-left corner
@@ -18,7 +18,7 @@ namespace QobuzDownloaderX.Win32
         );
 
         [DllImport("shell32.dll", CharSet = CharSet.Unicode, SetLastError = false)]
-        public static extern bool PathYetAnotherMakeUniqueName(
+        internal static extern bool PathYetAnotherMakeUniqueName(
             StringBuilder pszUniqueName,   // Output buffer
             string pszPath,                // Folder path
             string pszShort,               // Optional short name (can be null)
@@ -26,24 +26,24 @@ namespace QobuzDownloaderX.Win32
         );
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool DestroyIcon(IntPtr hIcon);
+        internal static extern bool DestroyIcon(IntPtr hIcon);
 
         [DllImport("user32.dll")]
-        public static extern bool HideCaret(IntPtr hWnd);
+        internal static extern bool HideCaret(IntPtr hWnd);
 
         [DllImport("user32.dll")]
-        public static extern bool IsIconic(IntPtr hWnd);
+        internal static extern bool IsIconic(IntPtr hWnd);
 
         [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
+        internal static extern bool ReleaseCapture();
 
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        internal static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
+        internal static extern int SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
-        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        internal static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
     }
 }

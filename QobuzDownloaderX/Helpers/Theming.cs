@@ -7,17 +7,16 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using ZetaLongPaths;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace QobuzDownloaderX.Helpers
 {
-    public class ThemeSettings
+    internal sealed class ThemeSettings
     {
         public Dictionary<string, Theme> Themes { get; set; }
         private readonly Dictionary<string, Image> originalImages = new Dictionary<string, Image>();
     }
 
-    public class Theme
+    internal sealed class Theme
     {
         public string FormBackground { get; set; }
         public string MainPanelBackground { get; set; }
@@ -38,7 +37,7 @@ namespace QobuzDownloaderX.Helpers
         public bool InvertLogo { get; set; }
     }
 
-    public class Theming
+    internal sealed class Theming
     {
         public Theme _currentTheme;
 
@@ -304,7 +303,7 @@ namespace QobuzDownloaderX.Helpers
         }
     }
 
-    public class LanguageManager
+    internal sealed class LanguageManager
     {
         private Dictionary<string, string> languageDictionary;
         public string languagesDirectory = "languages";

@@ -22,8 +22,8 @@
     "searchTracksButton":           "PISTAS",
     "selectFolderButton":           "Seleccionar carpeta",
     "settingsButton":               "AJUSTES",
-    "selectAllRowsButton":          "Seleccionar todas las filas",
-    "deselectAllRowsButton":        "Deseleccionar todas las filas",
+    "selectAllRowsButton":          "Seleccionar todo",
+    "deselectAllRowsButton":        "Deseleccionar todo",
     "batchDownloadRowsButton":      "DESCARGA MASIVA DE LAS FILAS SELECCIONADAS",
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",

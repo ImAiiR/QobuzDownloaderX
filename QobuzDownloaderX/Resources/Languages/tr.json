@@ -22,8 +22,8 @@
     "searchTracksButton":           "PARÇA",
     "selectFolderButton":           "Klasör Seç",
     "settingsButton":               "AYARLAR",
-    "selectAllRowsButton":          "Tüm satırları seç", // ChatGPT translation.
-    "deselectAllRowsButton":        "Tüm satırların seçimini kaldır", // ChatGPT translation.
+    "selectAllRowsButton":          "Tümünü seç", // ChatGPT translation.
+    "deselectAllRowsButton":        "Tüm seçimi kaldır", // ChatGPT translation.
     "batchDownloadRowsButton":      "SEÇİLİ SATIRLARI TOPLU İNDİR", // ChatGPT translation.
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",

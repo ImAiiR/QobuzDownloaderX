@@ -12,7 +12,7 @@ using QobuzDownloaderX.Properties;
 
 namespace QobuzDownloaderX
 {
-    class DownloadAlbum
+    internal sealed class DownloadAlbum
     {
         public Service QoService = new Service();
         public User QoUser = new User();
@@ -82,7 +82,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album, IProgress<int> progress, CancellationToken abortToken)
+        internal async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album, IProgress<int> progress, CancellationToken abortToken)
         {
             int totalTracks = album.Tracks.Items.Count;
             int trackIndex = 0;
@@ -121,7 +121,7 @@ namespace QobuzDownloaderX
             qbdlxForm.skipCurrentAlbum = false;
         }
 
-        public async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, IProgress<int> progress, CancellationToken abortToken)
+        internal async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, IProgress<int> progress, CancellationToken abortToken)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Starting album download (downloadAlbum)");
 
@@ -190,8 +190,12 @@ namespace QobuzDownloaderX
                 // Tell user that download is completed
                 qbdlxForm._qbdlxForm.logger.Debug("All downloads completed!");
 
+#if DEBUG
                 // Write post template
-                WritePostTemplate(QoAlbum);
+                bool callWritePostTemplate = true;
+                if (callWritePostTemplate)
+                    WritePostTemplate(QoAlbum);
+#endif
             }
             catch (Exception downloadAlbumEx)
             {

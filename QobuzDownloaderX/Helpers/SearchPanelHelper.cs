@@ -11,14 +11,14 @@ using QobuzDownloaderX.Win32;
 
 namespace QobuzDownloaderX.Helpers
 {
-    class RowInfo
+    internal sealed class RowInfo
     {
         public int RowIndex { get; set; }
         public bool Selected { get; set; }
         public string AlbumOrTrackUrl { get; set; }
     }
 
-    class SearchPanelHelper
+    internal sealed class SearchPanelHelper
     {
         public static readonly List<int> selectedRowindices = new List<int>();
 
@@ -98,12 +98,13 @@ namespace QobuzDownloaderX.Helpers
                 foreach (var album in albums)
                 {
                     int currentRowIndex = rowIndex; // capture the current row index
+
                     // Create the row panel
                     Panel rowPanel = new Panel
                     {
                         Dock = DockStyle.Fill,
                         BackColor = Color.Transparent,
-                        Cursor = Cursors.Hand,
+                        Cursor = Cursors.Default,
                         Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
                     };
 
@@ -123,7 +124,17 @@ namespace QobuzDownloaderX.Helpers
                     artwork.Width = 65;
                     artwork.Height = 65;
                     artwork.Anchor = AnchorStyles.None; // Center both horizontally and vertically
+                    artwork.Cursor = Cursors.Hand;
                     innerRow.Controls.Add(artwork, 0, 0);
+
+                    artwork.MouseClick += (s, e) =>
+                    {
+                        if (e.Button != MouseButtons.Left)
+                            return;
+
+                        Miscellaneous.ShowFloatingImageFromUrl(album.Image?.Large);
+                        qbdlxForm._qbdlxForm.BringToFront();
+                    };
 
                     // Add Label for artist name
                     System.Windows.Forms.Label artistName = new System.Windows.Forms.Label
@@ -193,14 +204,14 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.Tag = albumLink;
                     selectButton.Click += (sender, e) => SendURL(mainForm, albumLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
-                    selectButton.Enabled = !qbdlxForm._qbdlxForm.getLinkTypeIsBusy;
+                    selectButton.Enabled = !qbdlxForm.getLinkTypeIsBusy;
                     innerRow.Controls.Add(selectButton, 4, 0);
 
                     void downloadButtonHandler(object s, EventArgs e)
                     {
                         selectButton.Enabled =
                             mainForm.downloadButton.Enabled ||
-                            !qbdlxForm._qbdlxForm.getLinkTypeIsBusy ||
+                            !qbdlxForm.getLinkTypeIsBusy ||
                             string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
                     }
                     mainForm.downloadButton.EnabledChanged += downloadButtonHandler;
@@ -288,7 +299,7 @@ namespace QobuzDownloaderX.Helpers
                     {
                         Dock = DockStyle.Fill,
                         BackColor = Color.Transparent,
-                        Cursor = Cursors.Hand,
+                        Cursor = Cursors.Default,
                         Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
                     };
 
@@ -309,7 +320,17 @@ namespace QobuzDownloaderX.Helpers
                     artwork.Width = 65;
                     artwork.Height = 65;
                     artwork.Anchor = AnchorStyles.None; // Center both horizontally and vertically
+                    artwork.Cursor = Cursors.Hand;
                     innerRow.Controls.Add(artwork, 0, 0);
+
+                    artwork.MouseClick += (s, e) =>
+                    {
+                        if (e.Button != MouseButtons.Left)
+                            return;
+
+                        Miscellaneous.ShowFloatingImageFromUrl(track.Album?.Image?.Large);
+                        qbdlxForm._qbdlxForm.BringToFront();
+                    };
 
                     // Add Label for artist name
                     System.Windows.Forms.Label artistName = new System.Windows.Forms.Label
@@ -378,14 +399,14 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.Tag = trackLink;
                     selectButton.Click += (sender, e) => SendURL(mainForm, trackLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
-                    selectButton.Enabled = !qbdlxForm._qbdlxForm.getLinkTypeIsBusy;
+                    selectButton.Enabled = !qbdlxForm.getLinkTypeIsBusy;
                     innerRow.Controls.Add(selectButton, 4, 0);
 
                     void downloadButtonHandler(object s, EventArgs e)
                     {
                         selectButton.Enabled =
                             mainForm.downloadButton.Enabled ||
-                            !qbdlxForm._qbdlxForm.getLinkTypeIsBusy ||
+                            !qbdlxForm.getLinkTypeIsBusy ||
                             string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
                     }
                     mainForm.downloadButton.EnabledChanged += downloadButtonHandler;
@@ -500,7 +521,7 @@ namespace QobuzDownloaderX.Helpers
         /// </summary>
         public static void AttachClickRecursive(Control parent, EventHandler handler)
         {
-            if (!(parent is Button))
+            if (!(parent is Button) && !(parent is PictureBox))
                 parent.Click += handler;
 
             foreach (Control child in parent.Controls)
@@ -603,7 +624,7 @@ namespace QobuzDownloaderX.Helpers
             // Update parent form buttons
             parentForm.selectAllRowsButton.Enabled = selectedRowIndices.Count < searchResultsPanel.Controls.Count;
             parentForm.deselectAllRowsButton.Enabled = selectedRowIndices.Any();
-            parentForm.batchDownloadSelectedRowsButton.Enabled = selectedRowIndices.Any() && !parentForm.getLinkTypeIsBusy;
+            parentForm.batchDownloadSelectedRowsButton.Enabled = selectedRowIndices.Any() && !qbdlxForm.getLinkTypeIsBusy;
 
             // Update label showing number of selected rows
             parentForm.selectedRowsCountLabel.Text = string.Format(
@@ -624,12 +645,11 @@ namespace QobuzDownloaderX.Helpers
                 inputTextbox.Text = url;
                 inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
 
-                const int WM_SETREDRAW = 0x000B;
-                NativeMethods.SendMessage(mainForm.Handle, WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
+                NativeMethods.SendMessage(mainForm.Handle, Constants.WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
                 mainForm.downloaderButton_Click(this, EventArgs.Empty);
                 mainForm.downloadButton.PerformClick();
                 mainForm.searchButton.PerformClick(); // Return to search panel.
-                NativeMethods.SendMessage(mainForm.Handle, WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
+                NativeMethods.SendMessage(mainForm.Handle, Constants.WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
             }
             catch (Exception ex)
             {
@@ -652,7 +672,7 @@ namespace QobuzDownloaderX.Helpers
                 : $"{album.TracksCount} {qbdlxForm._qbdlxForm.languageManager.GetTranslation("tracks")}";
 
             string qualityText = $"{album.MaximumBitDepth}bit / {album.MaximumSamplingRate}kHz";
-            string genreName = GetShortenedGenreName(album.Genre.Name);
+            string genreName = Miscellaneous.GetShortenedGenreName(album.Genre.Name);
 
             string labelText = $"{album.ReleaseDateOriginal?.Substring(0, 4)}, {tracksText}\r\n{qualityText}\r\n{genreName}";
             return labelText;
@@ -668,56 +688,10 @@ namespace QobuzDownloaderX.Helpers
             // QUALITY INFO
             // GENRE
             string qualityText = $"{track.MaximumBitDepth}bit / {track.MaximumSamplingRate}kHz";
-            string genreName = GetShortenedGenreName(track.Album.Genre.Name);
+            string genreName = Miscellaneous.GetShortenedGenreName(track.Album.Genre.Name);
 
             string labelText = $"{track.ReleaseDateOriginal?.Substring(0, 4)}\r\n{qualityText}\r\n{genreName}";
             return labelText;
-        }
-
-        public string GetShortenedGenreName(string genre)
-        {
-            if (string.IsNullOrEmpty(genre))
-                return string.Empty;
-
-            // Shorten English genre names
-            string genreName = genre
-                .Replace("Alternative", "Alt.")
-                .Replace("Brazilian", "Brazil.")
-                .Replace("Film Soundtracks", "OST")
-                .Replace("Latin America", "Latin Am.")
-                .Replace("Miscellaneous", "Misc.")
-                .Replace(" Music", "")
-                .Replace(" music", "")
-                .Replace("North America", "North Am.");
-
-            // Shorten Spanish genre names
-            genreName = genreName
-                .Replace("Alternativa", "Alt.")
-                .Replace("América latina", "Latina")
-                .Replace("Bandas sonoras de", "BSO")
-                .Replace("brasileño", "Brasil.")
-                .Replace("Chanson ", "")
-                .Replace("Música ", "")
-                .Replace("música ", "")
-                .Replace("Músicas ", "")
-                .Replace("músicas ", "")
-                .Replace("Música de ", "")
-                .Replace("música de ", "")
-                .Replace("Músicas de ", "")
-                .Replace("músicas de ", "")
-                .Replace("Norteamérica", "Norteam.")
-                .Replace("World music", "Mundial");
-
-            // Format before truncating
-            genreName = genreName.TrimStart(' ', '&', '-', '.', ',').Replace("&", "&&");
-            if (!string.IsNullOrEmpty(genreName))
-                genreName = char.ToUpper(genreName[0]) + genreName.Substring(1).TrimEnd();
-
-            // Truncate if too long
-            if (genreName.Length > 18)
-                genreName = genreName.Substring(0, 18) + "…";
-
-            return genreName;
         }
 
         public Albums SortAlbums(Albums albums)
@@ -743,7 +717,7 @@ namespace QobuzDownloaderX.Helpers
                 query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
             
             else if (qbdlxForm._qbdlxForm.sortGenreButton.Checked)
-                query = descending ? query.OrderByDescending(i => i.Genre.Name) : query.OrderBy(i => i.Genre.Name);
+                query = descending ? query.OrderByDescending(i => Miscellaneous.GetShortenedGenreName(i.Genre.Name)) : query.OrderBy(i => Miscellaneous.GetShortenedGenreName(i.Genre.Name));
             
             else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
                 query = descending
@@ -782,7 +756,7 @@ namespace QobuzDownloaderX.Helpers
                 query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
 
             else if (qbdlxForm._qbdlxForm.sortGenreButton.Checked)
-                query = descending ? query.OrderByDescending(i => i.Genre.Name) : query.OrderBy(i => i.Genre.Name);
+                query = descending ? query.OrderByDescending(i => Miscellaneous.GetShortenedGenreName(i.Genre.Name)) : query.OrderBy(i => Miscellaneous.GetShortenedGenreName(i.Genre.Name));
 
             else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
                 query = descending

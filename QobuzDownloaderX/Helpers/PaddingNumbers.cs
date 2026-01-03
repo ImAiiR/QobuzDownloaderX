@@ -4,7 +4,7 @@ using QopenAPI;
 
 namespace QobuzDownloaderX.Helpers
 {
-    class PaddingNumbers
+    internal sealed class PaddingNumbers
     {
         public Album QoAlbum = new Album();
 

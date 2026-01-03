@@ -11,7 +11,7 @@ using File = TagLib.File;
 
 namespace QobuzDownloaderX
 {
-    class TagFile
+    internal sealed class TagFile
     {
         public static void WriteToFile(string tempPath, string artworkPath, Album QoAlbum, Item QoItem)
         {

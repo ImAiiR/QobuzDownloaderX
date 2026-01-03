@@ -97,9 +97,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\BufferedLogger.cs" />
     <Compile Include="Helpers\Download\DownloadTrack.cs" />
     <Compile Include="Helpers\Download\DownloadAlbum.cs" />
     <Compile Include="Helpers\Download\DownloadFile.cs" />
+    <Compile Include="Helpers\Miscellaneous.cs" />
     <Compile Include="Helpers\QobuzDownloaderXMOD\InvolvedPersonRoleMapping.cs" />
     <Compile Include="Helpers\QobuzDownloaderXMOD\InvolvedPersonRoleType.cs" />
     <Compile Include="Helpers\QobuzDownloaderXMOD\ParsingHelper.cs" />
@@ -113,6 +115,9 @@
     <Compile Include="Helpers\SearchPanelHelper.cs" />
     <Compile Include="Helpers\TagFile.cs" />
     <Compile Include="Helpers\Updating.cs" />
+    <Compile Include="UI\UserControls\DevFloatingPicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\NotifyIconProgressBar.cs" />
     <Compile Include="UI\LoginForm\LoginForm.cs">
       <SubType>Form</SubType>

@@ -8,7 +8,7 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
 {
     // Inspired by QobuzDownloaderX-MOD source-code.
     // https://github.com/DJDoubleD/QobuzDownloaderX-MOD
-    internal class ParsingHelper
+    internal sealed class ParsingHelper
     {
         static readonly string primaryListSeparator = ", ";
         static readonly string listEndSeparator = " & ";

@@ -8,7 +8,7 @@ namespace QobuzDownloaderX.Win32
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("C43DC798-95D1-4BEA-9030-BB99E2983A1A")]
-    public interface ITaskbarList4
+    internal interface ITaskbarList4
     {
         // ITaskbarList
         [PreserveSig]

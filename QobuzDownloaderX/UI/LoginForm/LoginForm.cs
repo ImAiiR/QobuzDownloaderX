@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Windows.Forms;
 using ZetaLongPaths;
@@ -211,7 +210,7 @@ namespace QobuzDownloaderX
             }
 
             // Load saved TLS negotiation settings
-            qbdlxForm.SetTLSSetting();
+            Miscellaneous.SetTLSSetting();
 
             // Round corners of form
             Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));

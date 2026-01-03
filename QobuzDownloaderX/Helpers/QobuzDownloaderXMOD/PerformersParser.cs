@@ -11,7 +11,7 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
 {
     // Inspired by QobuzDownloaderX-MOD source-code:
     // https://github.com/DJDoubleD/QobuzDownloaderX-MOD/blob/master/QobuzDownloaderX/Shared/Tools/PerformersParser.cs
-    internal class PerformersParser
+    internal sealed class PerformersParser
     {
         private readonly List<string> mainArtists = new List<string>();
         private readonly List<string> featuredArtists = new List<string>();

@@ -6,7 +6,7 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
 {
     // Credits to QobuzDownloaderX-MOD author(s).
     // https://github.com/DJDoubleD/QobuzDownloaderX-MOD/blob/master/QobuzDownloaderX/Shared/Tools/InvolvedPersonRoleMapping.cs
-    public static class InvolvedPersonRoleMapping
+    internal static class InvolvedPersonRoleMapping
     {
         // Only the role dictionaries we care about for this parser.
         public static readonly Dictionary<InvolvedPersonRoleType, List<string>> RoleMappings = new Dictionary<InvolvedPersonRoleType, List<string>>

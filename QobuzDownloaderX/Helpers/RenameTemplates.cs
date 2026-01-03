@@ -7,17 +7,27 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
 {
-    class RenameTemplates
+    internal sealed class RenameTemplates
     {
         public static readonly Regex percentRegex = new Regex(@"%(.*?)%", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         public static readonly Regex spacesRegex = new Regex(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         public static readonly Regex repeatedParenthesesRegex = new Regex(@"\(([^()]+)\)\s*(\(\1\))+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex spacesBeforeBackslashRegex = new Regex(@"\s+\\", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+        // "Various Artists" known variations
+        readonly string[] variousArtistsNames = new[]
+        {
+            "Various Artists",
+            "Various Arists",
+            "Various Artist",
+            "Various Interpreters",
+            "Various Interpreter",
+            "Various Interprets"
+        };
 
         public string GetSafeFilename(string filename)
         {
@@ -166,10 +176,7 @@ namespace QobuzDownloaderX.Helpers
                 if (QoAlbum != null)
                 {
                     string artistsNames = GetReleaseArtists(QoAlbum) ?? "";
-                    if (artistsNames.Equals("Various Artists", StringComparison.OrdinalIgnoreCase) ||
-                        artistsNames.Equals("Various Artist", StringComparison.OrdinalIgnoreCase) ||
-                        artistsNames.Equals("Various Interpreters", StringComparison.OrdinalIgnoreCase) ||
-                        artistsNames.Equals("Various Interpreter", StringComparison.OrdinalIgnoreCase))
+                    if (variousArtistsNames.Any(name => artistsNames.Equals(name, StringComparison.OrdinalIgnoreCase)))
                     {
                         template = template.Replace("%artistname%", "%trackartist%");
                     }
