@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 04, 2026, 22:31PM MSK",
+    "TranslationUpdatedOn":         "January 05, 2026, 01:15AM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -48,7 +48,7 @@
     "trackTemplateLabel":           "ШАБЛОН ТРЕКА",
     "userInfoLabel":                "ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ",
     "welcomeLabel":                 "Добро пожаловать\r\n{username}",
-    "limitSearchResultsLabel":      "Показать первые:",
+    "limitSearchResultsLabel":      "Показать:",
     "searchSortingLabel":           "Сорт. по:",
     "sortReleaseDateLabel":         "Дата релиза",
     "sortGenreLabel":               "Жанр",
