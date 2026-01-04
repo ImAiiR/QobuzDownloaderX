@@ -21,6 +21,11 @@ namespace QobuzDownloaderX
         private readonly PaddingNumbers paddingNumbers = new PaddingNumbers();
         private readonly FixMD5 fixMD5 = new FixMD5();
 
+        private readonly TimeSpan artworkDownloadCompletionTimeout = TimeSpan.FromMinutes(2);
+        private readonly TimeSpan trackDownloadCompletionTimeout = TimeSpan.FromMinutes(10);
+        private readonly TimeSpan goodyDownloadCompletionTimeout = TimeSpan.FromMinutes(5);
+        private readonly TimeSpan dataReceiveTimeout = TimeSpan.FromMinutes(1);
+
         // Static flag to ensure temp directory check runs only once per application run
         private static bool tempDirChecked = false;
 
@@ -50,7 +55,7 @@ namespace QobuzDownloaderX
             });
         }
 
-        public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem, GetInfo getInfo)
+        public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem, GetInfo getInfo, CancellationToken abortToken)
         {
             const string tempDir = @"qbdlx-temp";
             string tempFile = ZlpPathHelper.Combine(tempDir, $"qbdlx_downloading-{QoItem.Id}{audio_format}");
@@ -105,7 +110,7 @@ namespace QobuzDownloaderX
             try
             {
                 qbdlxForm._qbdlxForm.logger.Debug("Stream URL: " + streamUrl);
-                using (var httpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(5) })
+                using (var httpClient = new HttpClient { Timeout = trackDownloadCompletionTimeout })
                 using (var response = await httpClient.GetAsync(streamUrl, HttpCompletionOption.ResponseHeadersRead))
                 {
                     response.EnsureSuccessStatusCode();
@@ -120,48 +125,62 @@ namespace QobuzDownloaderX
                     }
 
                     long totalBytesRead = 0;
-                    int bufferLength = 81920; // 80 kb. Stream.cs: const int DefaultCopyBufferSize = 81920
+                    int bufferLength = 81920; // 80 kb - Stream.cs: const int DefaultCopyBufferSize = 81920
                     byte[] buffer = new byte[bufferLength];
                     DateTime lastUpdateTime = DateTime.Now;
                     long previousBytesRead = 0;
 
-                    using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync:true))
+                    // Open file stream for writing and get the HTTP response stream
+                    using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync: true))
                     using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60)))
+                    using (var downloadTimeoutCts = new CancellationTokenSource(trackDownloadCompletionTimeout)) // Total download timeout
                     {
                         int bytesRead;
-                        while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)
+                        while (true)
                         {
-                            await fs.WriteAsync(buffer, 0, bytesRead);
-                            totalBytesRead += bytesRead;
+                            if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
 
-                            int progressPercentage = totalBytes > 0 ? (int)(totalBytesRead * 100L / totalBytes) : -1;
-
-                            if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked)
+                            using (var readTimeoutCts = new CancellationTokenSource(dataReceiveTimeout)) // Timeout if no data is received
+                            using (var readTimeoutLinkedCts = CancellationTokenSource.CreateLinkedTokenSource(downloadTimeoutCts.Token, readTimeoutCts.Token))
                             {
-                                DateTime currentTime = DateTime.Now;
-                                double timeDiff = (currentTime - lastUpdateTime).TotalSeconds;
+                                // Read from the stream with the linked token (total + inactivity timeout)
+                                bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, readTimeoutLinkedCts.Token);
+                                if (bytesRead == 0) break; // End of stream
 
-                                if (timeDiff > 0)
+                                // Write the bytes to the file stream using the same linked token
+                                await fs.WriteAsync(buffer, 0, bytesRead, readTimeoutLinkedCts.Token);
+                                totalBytesRead += bytesRead;
+
+                                int progressPercentage = totalBytes > 0 ? (int)(totalBytesRead * 100L / totalBytes) : -1;
+
+                                if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked)
                                 {
-                                    long bytesDiff = totalBytesRead - previousBytesRead;
-                                    double speed = bytesDiff / timeDiff;
-                                    string speedText = speed > 1024 * 1024
-                                        ? $"{speed / (1024 * 1024):F2} MB/s"
-                                        : $"{speed / 1024:F2} KB/s";
+                                    DateTime currentTime = DateTime.Now;
+                                    double timeDiff = (currentTime - lastUpdateTime).TotalSeconds;
 
-                                    qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
-                                        qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{speedText}]"));
+                                    if (timeDiff > 0)
+                                    {
+                                        long bytesDiff = totalBytesRead - previousBytesRead;
+                                        double speed = bytesDiff / timeDiff;
+                                        string speedText = speed > 1024 * 1024
+                                            ? $"{speed / (1024 * 1024):F2} MB/s"
+                                            : $"{speed / 1024:F2} KB/s";
 
-                                    previousBytesRead = totalBytesRead;
-                                    lastUpdateTime = currentTime;
+                                        // Update progress label with speed
+                                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
+                                            qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{speedText}]"));
+
+                                        previousBytesRead = totalBytesRead;
+                                        lastUpdateTime = currentTime;
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
-                                    qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"));
-                            }
+                                else
+                                {
+                                    // Update progress label without speed
+                                    qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
+                                        qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"));
+                                }
+                            } 
                         }
                     }
                 }
@@ -184,12 +203,21 @@ namespace QobuzDownloaderX
             }
             catch (TaskCanceledException ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("Download timed out or cancelled: " + ex.Message);
+                qbdlxForm._qbdlxForm.logger.Error("Download timed out (TaskCanceledException): " + ex.Message);
                 throw;
+
+            }
+            catch (OperationCanceledException ex)
+            {
+                if (!abortToken.IsCancellationRequested)
+                {
+                    qbdlxForm._qbdlxForm.logger.Error("Download canceled (OperationCanceledException): " + ex.Message);
+                    throw;
+                }
             }
             catch (WebException webEx)
             {
-                getInfo.updateDownloadOutput($" Download failed: {webEx.Message}\r\n");
+                getInfo.updateDownloadOutput($"Download failed (WebException): {webEx.Message}\r\n");
                 qbdlxForm._qbdlxForm.logger.Error("WebException caught: " + webEx.Message);
             }
             catch (Exception ex) when (
@@ -204,35 +232,86 @@ namespace QobuzDownloaderX
             }
             catch (Exception ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("Download failed: " + ex.Message);
+                qbdlxForm._qbdlxForm.logger.Error("Download failed (Exception): " + ex.Message);
                 throw;
             }
         }
 
         public async Task DownloadArtwork(string downloadPath, Album QoAlbum)
         {
-            if (qbdlxForm._qbdlxForm.savedArtSize == "0") return; 
+            if (qbdlxForm._qbdlxForm.savedArtSize == "0") return;
 
-            using (var client = new WebClient())
+            // Download cover art (600x600) to the download path
+            using (var httpClient = new HttpClient { Timeout = artworkDownloadCompletionTimeout })
+            using (var downloadTimeoutCts = new CancellationTokenSource(artworkDownloadCompletionTimeout))
             {
-                // Download cover art (600x600) to the download path
                 qbdlxForm._qbdlxForm.logger.Debug("Downloading Cover Art");
                 ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
 
+                // Helper local function for downloading with dual timeouts
+                async Task DownloadWithTimeoutAsync(string url, string destinationPath)
+                {
+                    try
+                    {
+                        using (var response = await httpClient.GetAsync(
+                            url,
+                            HttpCompletionOption.ResponseHeadersRead,
+                            downloadTimeoutCts.Token))
+                        {
+                            response.EnsureSuccessStatusCode();
+
+                            byte[] buffer = new byte[81920];
+                            using (var httpStream = await response.Content.ReadAsStreamAsync())
+                            using (var fs = new FileStream(destinationPath, FileMode.Create, FileAccess.Write, FileShare.Read))
+                            {
+                                int bytesRead;
+
+                                while (true)
+                                {
+                                    using (var readTimeoutCts = new CancellationTokenSource(dataReceiveTimeout))
+                                    using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
+                                        downloadTimeoutCts.Token,
+                                        readTimeoutCts.Token))
+                                    {
+                                        bytesRead = await httpStream.ReadAsync(buffer, 0, buffer.Length, linkedCts.Token);
+                                        if (bytesRead <= 0)
+                                            break;
+
+                                        await fs.WriteAsync(buffer, 0, bytesRead, linkedCts.Token);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        qbdlxForm._qbdlxForm.logger.Error($"Error downloading cover art ({url}). Error:\r\n{ex}");
+                        throw;
+                    }
+                }
+
+                // Cover.jpg
                 if (!ZlpIOHelper.FileExists(downloadPath + @"Cover.jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork Cover.jpg not found, downloading");
-                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize), ZlpPathHelper.GetFullPath(downloadPath + @"Cover.jpg")); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to download cover art. Error below:\r\n{ex}"); }
+                    string url = QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize);
+                    string dest = ZlpPathHelper.GetFullPath(downloadPath + @"Cover.jpg");
+                    await DownloadWithTimeoutAsync(url, dest);
                 }
+
+                // Embedded art
                 if (!ZlpIOHelper.FileExists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"))
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Saved artwork for embedding not found, downloading");
-                    try { await client.DownloadFileTaskAsync(QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize), ZlpPathHelper.GetFullPath(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg")); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to download cover art. Error below:\r\n{ex}"); }
+                    string url = QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize);
+                    string dest = ZlpPathHelper.GetFullPath(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg");
+                    await DownloadWithTimeoutAsync(url, dest);
                 }
             }
+
         }
 
-        public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody, GetInfo getInfo)
+        public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody, GetInfo getInfo, CancellationToken abortToken)
         {
             ZlpIOHelper.CreateDirectory(ZlpPathHelper.GetDirectoryPathNameFromFilePath(downloadPath));
 
@@ -249,21 +328,45 @@ namespace QobuzDownloaderX
 
             try
             {
-                using (var http = new HttpClient() { Timeout = TimeSpan.FromMinutes(5) })
+                using (var httpClient = new HttpClient { Timeout = goodyDownloadCompletionTimeout })
                 {
-                    getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputGoodyFound} ");
-                    qbdlxForm._qbdlxForm.logger.Debug("Downloading goody…");
-
-                    int bufferLength = 81920; // 80 kb. Stream.cs: const int DefaultCopyBufferSize = 81920
-                    using (var response = await http.GetAsync(QoGoody.Url, HttpCompletionOption.ResponseHeadersRead))
+                    // Global download timeout (total operation)
+                    using (var downloadTimeoutCts = new CancellationTokenSource(goodyDownloadCompletionTimeout))
                     {
-                        response.EnsureSuccessStatusCode();
+                        getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputGoodyFound} ");
+                        qbdlxForm._qbdlxForm.logger.Debug("Downloading goody…");
 
-                        using (var httpStream = await response.Content.ReadAsStreamAsync())
-                        using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
-                        using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(50)))
+                        int bufferLength = 81920; // 80 kb - Stream.cs: const int DefaultCopyBufferSize = 81920
+                        var buffer = new byte[bufferLength];
+
+                        using (var response = await httpClient.GetAsync(
+                            QoGoody.Url,
+                            HttpCompletionOption.ResponseHeadersRead,
+                            downloadTimeoutCts.Token))
                         {
-                            await httpStream.CopyToAsync(fileStream, bufferLength, cts.Token);
+                            response.EnsureSuccessStatusCode();
+
+                            using (var httpStream = await response.Content.ReadAsStreamAsync())
+                            using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
+                            {
+                                int bytesRead;
+
+                                while (true)
+                                {
+                                    // Per-read inactivity timeout (no data received)
+                                    using (var readTimeoutCts = new CancellationTokenSource(dataReceiveTimeout))
+                                    using (var readTimeoutLinkedCts = CancellationTokenSource.CreateLinkedTokenSource(
+                                        downloadTimeoutCts.Token,
+                                        readTimeoutCts.Token))
+                                    {
+                                        bytesRead = await httpStream.ReadAsync(buffer, 0, buffer.Length, readTimeoutLinkedCts.Token);
+                                        if (bytesRead <= 0)
+                                            break;
+
+                                        await fileStream.WriteAsync(buffer, 0, bytesRead, readTimeoutLinkedCts.Token);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -271,10 +374,31 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.logger.Debug("Goody download complete");
                 getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
             }
+            catch (TaskCanceledException ex)
+            {
+                getInfo.updateDownloadOutput($"Download has timed out (TaskCanceledException).");
+                qbdlxForm._qbdlxForm.logger.Error("Download has timed out (TaskCanceledException): " + ex.Message);
+                throw;
+
+            }
+            catch (OperationCanceledException ex)
+            {
+                if (!abortToken.IsCancellationRequested)
+                {
+                    getInfo.updateDownloadOutput($"ERROR: {ex.Message}\r\n");
+                    qbdlxForm._qbdlxForm.logger.Error("Error downloading goody (OperationCanceledException): " + ex.Message);
+                    throw;
+                }
+            }
+            catch (WebException webEx)
+            {
+                getInfo.updateDownloadOutput($"ERROR: {webEx.Message}\r\n");
+                qbdlxForm._qbdlxForm.logger.Error("Error downloading goody (WebException): " + webEx.Message);
+            }
             catch (Exception ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error($"Error downloading goody: {ex.Message}");
                 getInfo.updateDownloadOutput("ERROR: " + ex.Message + "\r\n");
+                qbdlxForm._qbdlxForm.logger.Error($"Error downloading goody (Exception): {ex.Message}");
             }
         }
     }

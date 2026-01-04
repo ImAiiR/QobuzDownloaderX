@@ -799,7 +799,7 @@ namespace QobuzDownloaderX.Helpers
                     f.QoAlbum = f.getInfo.QoAlbum;
                     updateAlbumInfoLabels(f, f.QoAlbum);
                     f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("singleTrack")}";
-                    await Task.Run(() => f.downloadTrack.DownloadTrackAsync("track", f.app_id, f.qobuz_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret, f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum, f.QoItem, progress));
+                    await Task.Run(() => f.downloadTrack.DownloadTrackAsync("track", f.app_id, f.qobuz_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret, f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum, f.QoItem, progress, abortToken));
                     // Say the downloading is finished when it's completed.
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(f.progressBarDownload.Maximum, f.progressBarDownload.Maximum);
                     f.getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
@@ -835,7 +835,7 @@ namespace QobuzDownloaderX.Helpers
                                 {
                                     double scaledValue = (trackIndexPlaylist - 1 + value / 100.0) / totalTracksPlaylist * 100.0;
                                     f.progressBarDownload.Invoke(new Action(() => f.progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
-                                })));
+                                }), abortToken));
                         }
                         catch
                         {
@@ -1027,7 +1027,7 @@ namespace QobuzDownloaderX.Helpers
                                     {
                                         double scaledValue = ((trackIndexUser - 1) + value / 100.0) / totalTracksUser * 100.0;
                                         f.progressBarDownload.Invoke(new Action(() => f.progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
-                                    })));
+                                    }), abortToken));
                             }
                             catch
                             {

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-
-using QopenAPI;
-using ZetaLongPaths;
-
-using QobuzDownloaderX.Helpers;
+﻿using QobuzDownloaderX.Helpers;
 using QobuzDownloaderX.Properties;
+using QopenAPI;
+using System;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
@@ -72,7 +71,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private async Task DownloadAndSaveTrack(string app_id, string format_id, string user_auth_token, string app_secret, Album QoAlbum, Item QoItem, Playlist QoPlaylist, string downloadPath, string filePath, string audio_format, int paddedTrackLength)
+        private async Task DownloadAndSaveTrack(string app_id, string format_id, string user_auth_token, string app_secret, Album QoAlbum, Item QoItem, Playlist QoPlaylist, string downloadPath, string filePath, string audio_format, int paddedTrackLength, CancellationToken abortToken)
         {
             var QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
             string streamURL = QoStream?.StreamURL;
@@ -90,11 +89,13 @@ namespace QobuzDownloaderX
             if (QoPlaylist == null) { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0')} {trackNameFormatted}…"); }
             else { getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputDownloading} - {QoItem.Position.ToString().PadLeft(paddedTrackLength, '0')} {trackNameFormatted}…"); }
 
+            if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+
             // Download stream
-            await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem, getInfo);
+            await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem, getInfo, abortToken);
         }
 
-        public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem, IProgress<int> progress)
+        public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem, IProgress<int> progress, CancellationToken abortToken)
         {
             // Empty output on main form if individual track download
             if (downloadType == "track") { getInfo.outputText = null; }
@@ -146,6 +147,8 @@ namespace QobuzDownloaderX
                     // Download cover art
                     try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
 
+                    if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+
                     // Check for Existing File
                     if (CheckForExistingFile(filePath, paddedTrackLength, QoItem))
                     {
@@ -154,8 +157,16 @@ namespace QobuzDownloaderX
                     }
 
                     // Download and Save Track
-                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, null, downloadPath, filePath, audio_format, paddedTrackLength);
+                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, null, downloadPath, filePath, audio_format, paddedTrackLength, abortToken);
                     progress?.Report(100);
+                }
+                catch (OperationCanceledException ex)
+                {
+                    if (!abortToken.IsCancellationRequested)
+                    {
+                        qbdlxForm._qbdlxForm.logger.Error("Download canceled: " + ex.Message);
+                        throw;
+                    }
                 }
                 catch (Exception downloadAlbumEx)
                 {
@@ -171,7 +182,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task DownloadPlaylistTrackAsync(string app_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist, IProgress<int> progress)
+        public async Task DownloadPlaylistTrackAsync(string app_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist, IProgress<int> progress, CancellationToken abortToken)
         {
             try
             {
@@ -211,7 +222,7 @@ namespace QobuzDownloaderX
                     catch { }
 
                     // Download and Save Track
-                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength);
+                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength, abortToken);
 
                     // Delete image used for embedded artwork
                     CleanupArtwork();

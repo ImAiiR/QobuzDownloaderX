@@ -58,7 +58,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private async Task DownloadGoodiesAsync(string downloadPath, Album album)
+        private async Task DownloadGoodiesAsync(string downloadPath, Album album, CancellationToken abortToken)
         {
             foreach (var goody in album.Goodies)
             {
@@ -73,7 +73,7 @@ namespace QobuzDownloaderX
                     continue;
                 }
 
-                await downloadFile.DownloadGoody(downloadPath, album, goody, getInfo);
+                await downloadFile.DownloadGoody(downloadPath, album, goody, getInfo, abortToken);
                 }
                 catch
                 {
@@ -110,7 +110,7 @@ namespace QobuzDownloaderX
                     await downloadTrack.DownloadTrackAsync(
                         "album", app_id, album_id, format_id, audio_format, 
                         user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, 
-                        trackTemplate, album, trackInfo, trackProgress);
+                        trackTemplate, album, trackInfo, trackProgress, abortToken);
                 }
                 catch (Exception ex)
                 {
@@ -181,7 +181,7 @@ namespace QobuzDownloaderX
                 {
                     if (Settings.Default.downloadGoodies)
                     {
-                        await DownloadGoodiesAsync(downloadPath, QoAlbum);
+                        await DownloadGoodiesAsync(downloadPath, QoAlbum, abortToken);
                     }
                 }
 

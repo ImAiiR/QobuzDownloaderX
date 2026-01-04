@@ -22,8 +22,9 @@ namespace QobuzDownloaderX.Helpers
         // "Various Artists" known variations
         readonly string[] variousArtistsNames = new[]
         {
+            "Various Artists, Array",
             "Various Artists",
-            "Various Arists",
+            "Various Aritsts",
             "Various Artist",
             "Various Interpreters",
             "Various Interpreter",
