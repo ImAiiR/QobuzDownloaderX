@@ -2072,9 +2072,9 @@ namespace QobuzDownloaderX
             // 
             this.limitSearchResultsLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.limitSearchResultsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.limitSearchResultsLabel.Location = new System.Drawing.Point(392, 84);
+            this.limitSearchResultsLabel.Location = new System.Drawing.Point(408, 84);
             this.limitSearchResultsLabel.Name = "limitSearchResultsLabel";
-            this.limitSearchResultsLabel.Size = new System.Drawing.Size(132, 27);
+            this.limitSearchResultsLabel.Size = new System.Drawing.Size(116, 27);
             this.limitSearchResultsLabel.TabIndex = 12;
             this.limitSearchResultsLabel.Text = "Results Limit:";
             this.limitSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2112,7 +2112,7 @@ namespace QobuzDownloaderX
             this.searchSortingPanel.Controls.Add(this.sortArtistNameButton);
             this.searchSortingPanel.Controls.Add(this.sortReleaseDateButton);
             this.searchSortingPanel.Controls.Add(this.sortReleaseDateLabel);
-            this.searchSortingPanel.Location = new System.Drawing.Point(117, 78);
+            this.searchSortingPanel.Location = new System.Drawing.Point(120, 78);
             this.searchSortingPanel.Name = "searchSortingPanel";
             this.searchSortingPanel.Size = new System.Drawing.Size(290, 38);
             this.searchSortingPanel.TabIndex = 14;
@@ -2148,7 +2148,7 @@ namespace QobuzDownloaderX
             this.sortAlbumTrackNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortAlbumTrackNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sortAlbumTrackNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortAlbumTrackNameLabel.Location = new System.Drawing.Point(131, 21);
+            this.sortAlbumTrackNameLabel.Location = new System.Drawing.Point(150, 21);
             this.sortAlbumTrackNameLabel.Name = "sortAlbumTrackNameLabel";
             this.sortAlbumTrackNameLabel.Size = new System.Drawing.Size(99, 13);
             this.sortAlbumTrackNameLabel.TabIndex = 8;
@@ -2161,7 +2161,7 @@ namespace QobuzDownloaderX
             this.sortArtistNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortArtistNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sortArtistNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortArtistNameLabel.Location = new System.Drawing.Point(131, 2);
+            this.sortArtistNameLabel.Location = new System.Drawing.Point(150, 2);
             this.sortArtistNameLabel.Name = "sortArtistNameLabel";
             this.sortArtistNameLabel.Size = new System.Drawing.Size(66, 13);
             this.sortArtistNameLabel.TabIndex = 7;
@@ -2173,7 +2173,7 @@ namespace QobuzDownloaderX
             this.sortAlbumTrackNameButton.AutoSize = true;
             this.sortAlbumTrackNameButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortAlbumTrackNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortAlbumTrackNameButton.Location = new System.Drawing.Point(116, 21);
+            this.sortAlbumTrackNameButton.Location = new System.Drawing.Point(135, 21);
             this.sortAlbumTrackNameButton.Name = "sortAlbumTrackNameButton";
             this.sortAlbumTrackNameButton.Size = new System.Drawing.Size(14, 13);
             this.sortAlbumTrackNameButton.TabIndex = 5;
@@ -2185,7 +2185,7 @@ namespace QobuzDownloaderX
             this.sortArtistNameButton.AutoSize = true;
             this.sortArtistNameButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortArtistNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortArtistNameButton.Location = new System.Drawing.Point(116, 3);
+            this.sortArtistNameButton.Location = new System.Drawing.Point(135, 3);
             this.sortArtistNameButton.Name = "sortArtistNameButton";
             this.sortArtistNameButton.Size = new System.Drawing.Size(14, 13);
             this.sortArtistNameButton.TabIndex = 4;
@@ -2430,9 +2430,8 @@ namespace QobuzDownloaderX
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(951, 615);
-            this.Controls.Add(this.downloaderPanel);
-            this.Controls.Add(this.aboutPanel);
             this.Controls.Add(this.qualitySelectPanel);
+            this.Controls.Add(this.aboutPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
@@ -2440,6 +2439,7 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.extraSettingsPanel);
+            this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.searchPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
