@@ -1457,7 +1457,7 @@ namespace QobuzDownloaderX
                 copyAllRowsToClipboardToolStripMenuItem.Text = languageManager.GetTranslation("copyAllRowsToClipboard");
                 copyToClipboardToolStripMenuItem.Visible = false;
                 copyThisRowToClipboardToolStripMenuItem.Visible = true;
-                copySelectedRowsToClipboardToolStripMenuItem.Visible = SearchPanelHelper.selectedRowindices?.Count > 1;
+                copySelectedRowsToClipboardToolStripMenuItem.Visible = SearchPanelHelper.selectedRowindices.Any();
                 copyAllRowsToClipboardToolStripMenuItem.Visible = searchResultsTablePanel.Controls.Count > 1;
             }
             else
