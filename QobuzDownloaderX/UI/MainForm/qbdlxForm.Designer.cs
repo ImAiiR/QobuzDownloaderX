@@ -1714,6 +1714,7 @@ namespace QobuzDownloaderX
             // 
             // languageComboBox
             // 
+            this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.languageComboBox.FormattingEnabled = true;
             this.languageComboBox.Location = new System.Drawing.Point(248, 484);
@@ -1735,6 +1736,7 @@ namespace QobuzDownloaderX
             // 
             // themeComboBox
             // 
+            this.themeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.themeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.themeComboBox.FormattingEnabled = true;
             this.themeComboBox.Location = new System.Drawing.Point(248, 452);
@@ -1818,11 +1820,12 @@ namespace QobuzDownloaderX
             this.savedArtLabel.Name = "savedArtLabel";
             this.savedArtLabel.Size = new System.Drawing.Size(224, 13);
             this.savedArtLabel.TabIndex = 24;
-            this.savedArtLabel.Text = "Saved Artwork Size";
+            this.savedArtLabel.Text = "Saved Artwork Size On Disk";
             this.savedArtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // savedArtSizeSelect
             // 
+            this.savedArtSizeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.savedArtSizeSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.savedArtSizeSelect.FormattingEnabled = true;
             this.savedArtSizeSelect.Items.AddRange(new object[] {
@@ -1863,6 +1866,7 @@ namespace QobuzDownloaderX
             // 
             // embeddedArtSizeSelect
             // 
+            this.embeddedArtSizeSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.embeddedArtSizeSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.embeddedArtSizeSelect.FormattingEnabled = true;
             this.embeddedArtSizeSelect.Items.AddRange(new object[] {

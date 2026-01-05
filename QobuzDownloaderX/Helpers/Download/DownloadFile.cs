@@ -258,7 +258,7 @@ namespace QobuzDownloaderX
                         {
                             response.EnsureSuccessStatusCode();
 
-                            byte[] buffer = new byte[81920];
+                            byte[] buffer = new byte[81920]; // 80 kb - Stream.cs: const int DefaultCopyBufferSize = 81920
                             using (var httpStream = await response.Content.ReadAsStreamAsync())
                             using (var fs = new FileStream(destinationPath, FileMode.Create, FileAccess.Write, FileShare.Read))
                             {

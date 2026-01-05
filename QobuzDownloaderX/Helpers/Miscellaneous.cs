@@ -217,6 +217,7 @@ namespace QobuzDownloaderX.Helpers
             f.commentTextbox.Text = Settings.Default.commentText;
             f.embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize;
             f.savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
+            f.dontSaveArtworkToDiskCheckBox.Checked = Settings.Default.dontSaveArtworkToDisk;
         }
 
         internal static void LoadOtherSettings(qbdlxForm f)
@@ -227,6 +228,7 @@ namespace QobuzDownloaderX.Helpers
             f.downloadGoodiesCheckbox.Checked = Settings.Default.downloadGoodies;
             f.downloadArtistOtherCheckbox.Checked = Settings.Default.downloadArtistOther;
             f.downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
+            f.clearOldLogsCheckBox.Checked = Settings.Default.clearOldLogs;
         }
 
         internal static void SetDownloadPath(qbdlxForm f)
