@@ -755,6 +755,10 @@ namespace QobuzDownloaderX.Helpers
             }
 
             string albumLink = f.inputTextbox.Text.Trim();
+            if (albumLink.EndsWith("/releases", StringComparison.OrdinalIgnoreCase))
+            {
+                albumLink = albumLink.Substring(0, albumLink.Length - "/releases".Length);
+            }
 
             bool isValidUrl = qbdlxForm.qobuzUrlRegEx.IsMatch(albumLink)
                               && Uri.TryCreate(albumLink, UriKind.Absolute, out Uri uriResult)
@@ -790,9 +794,9 @@ namespace QobuzDownloaderX.Helpers
             }
 
             var qobuzLinkIdGrab = qbdlxForm.qobuzLinkIdGrabRegex.Match(albumLink).Groups;
+
             var linkType = qobuzLinkIdGrab[1].Value;
             var qobuzLinkId = qobuzLinkIdGrab[2].Value;
-
             f.qobuz_id = qobuzLinkId;
 
             f.downloadTrack.clearOutputText();
@@ -889,6 +893,17 @@ namespace QobuzDownloaderX.Helpers
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
                     await Task.Run(() => f.getInfo.getArtistInfo(f.app_id, f.qobuz_id, f.user_auth_token));
                     f.QoArtist = f.getInfo.QoArtist;
+                    if (f.QoArtist == null)
+                    {
+                        string msg = string.Format(f.languageManager.GetTranslation("invalidUrl"), albumLink);
+                        f.logger.Error(msg);
+                        f.downloadOutput.Invoke(new Action(() => f.downloadOutput.Text = msg));
+                        f.progressLabel.Invoke(new Action(() => f.progressLabel.Text = msg));
+                        if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressState(TaskbarProgressState.Error);
+                        if (qbdlxForm.isBatchDownloadRunning) MessageBox.Show(f, msg, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     int totalAlbumsArtist = f.QoArtist.Albums.Items.Count;
                     int albumIndexArtist = 0;
 
