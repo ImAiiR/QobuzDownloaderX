@@ -600,6 +600,36 @@ namespace QobuzDownloaderX.Properties {
                 this["fixMD5s"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool clearOldLogs
+        {
+            get
+            {
+                return ((bool)(this["clearOldLogs"]));
+            }
+            set
+            {
+                this["clearOldLogs"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool dontSaveArtworkToDisk
+        {
+            get
+            {
+                return ((bool)(this["dontSaveArtworkToDisk"]));
+            }
+            set
+            {
+                this["dontSaveArtworkToDisk"] = value;
+            }
+        }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

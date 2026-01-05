@@ -239,8 +239,6 @@ namespace QobuzDownloaderX
 
         public async Task DownloadArtwork(string downloadPath, Album QoAlbum)
         {
-            if (qbdlxForm._qbdlxForm.savedArtSize == "0") return;
-
             // Download cover art (600x600) to the download path
             using (var httpClient = new HttpClient { Timeout = artworkDownloadCompletionTimeout })
             using (var downloadTimeoutCts = new CancellationTokenSource(artworkDownloadCompletionTimeout))
@@ -290,13 +288,16 @@ namespace QobuzDownloaderX
                     }
                 }
 
-                // Cover.jpg
-                if (!ZlpIOHelper.FileExists(downloadPath + @"Cover.jpg"))
+                if (!Settings.Default.dontSaveArtworkToDisk)
                 {
-                    qbdlxForm._qbdlxForm.logger.Debug("Saved artwork Cover.jpg not found, downloading");
-                    string url = QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize);
-                    string dest = ZlpPathHelper.GetFullPath(downloadPath + @"Cover.jpg");
-                    await DownloadWithTimeoutAsync(url, dest);
+                    // Cover.jpg
+                    if (!ZlpIOHelper.FileExists(downloadPath + @"Cover.jpg"))
+                    {
+                        qbdlxForm._qbdlxForm.logger.Debug("Saved artwork Cover.jpg not found, downloading");
+                        string url = QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.savedArtSize);
+                        string dest = ZlpPathHelper.GetFullPath(downloadPath + @"Cover.jpg");
+                        await DownloadWithTimeoutAsync(url, dest);
+                    }
                 }
 
                 // Embedded art

@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 2, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 05, 2026, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -87,6 +87,8 @@
     "downloadGoodiesCheckbox":      "下载好礼", // ChatGPT translation.
     "useTLS13Checkbox":             "使用 TLS 1.3", // ChatGPT translation.
     "downloadArtistOther":          "下载艺术家 — 其他 / 翻唱歌曲", // ChatGPT translation.
+    "clearOldLogsCheckBox":         "启动时清除旧日志", // ChatGPT translation
+    "dontSaveArtworkToDiskCheckBox":"不要将艺术作品保存到磁盘", // ChatGPT translation
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",

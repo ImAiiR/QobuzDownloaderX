@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 2, 2026, 09:00AM UTC",
+    "TranslationUpdatedOn":         "January 05, 2026, 09:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -33,12 +33,12 @@
     "commentLabel":                 "Comentario personalizado",
     "downloadFolderLabel":          "CARPETA DE DESCARGA",
     "downloadOptionsLabel":         "OPCIONES DE DESCARGA",
-    "embeddedArtLabel":             "Tamaño del arte incrustado",
+    "embeddedArtLabel":             "Tamaño de portada incrustada",
     "extraSettingsLabel":           "AJUSTES ADICIONALES",
     "languageLabel":                "Idioma actual",
     "playlistTemplateLabel":        "PLANTILLA DE PLAYLIST",
     "favoritesTemplateLabel":       "PLANTILLA DE FAVORITOS",
-    "savedArtLabel":                "Tamaño del arte guardado",
+    "savedArtLabel":                "Tamaño de portada guardada en disco",
     "searchingLabel":               "Buscando…",
     "taggingOptionsLabel":          "OPCIONES DE METADATOS",
     "templatesLabel":               "PLANTILLAS",
@@ -86,7 +86,9 @@
     "sortAscendantCheckBox":        "Ascendente",
     "downloadGoodiesCheckbox":      "Descargar extras",
     "useTLS13Checkbox":             "Usar TLS 1.3",
-    "downloadArtistOther":          "Descargar artista — Otros / versiones (covers)", 
+    "downloadArtistOtherCheckBox":  "Descargar artista — Otros / versiones (covers)", 
+    "clearOldLogsCheckBox":         "Borrar archivos LOG antiguos al iniciar",
+    "dontSaveArtworkToDiskCheckBox":"No guardar portadas en disco",
 
     "_SECTION4_":                   "=================== CAMPOS DEL FORM PRINCIPAL ===================",
     "albumLabelPlaceholder":        "¡Bienvenido a QBDLX!",

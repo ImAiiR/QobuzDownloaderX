@@ -311,7 +311,7 @@ namespace QobuzDownloaderX.Helpers
         // Default English translation if no files are avaialble
         public const string defaultLanguage = @"{
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 2, 2026, 12:38PM EST"",
+    ""TranslationUpdatedOn"":         ""January 05, 2026, 08:22AM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -368,7 +368,7 @@ namespace QobuzDownloaderX.Helpers
     ""sortingSearchResultsLabel"":    ""Sorting…"",
     ""searchResultsCountLabel"":      ""results"",
     ""selectedRowsCountLabel"":       ""{0} selected rows"",
-    ""disclaimer"":                   ""Disclaimer / Legal Notice\n\nThis application uses the Qobuz API but is not certified by Qobuz.\n\nThe software and its authors are not affiliated with, endorsed by, or officially connected to Qobuz in any way. Use of this application is at your own risk. The authors make no warranties regarding the accuracy, reliability, or availability of the service, and will not be held liable for any damages or data loss resulting from its use.\n\nBy using this application, you acknowledge and accept that it is provided \""as-is\"", without any express or implied warranty of any kind, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.\n\nUsers are responsible for complying with all applicable laws, terms of service, and usage restrictions when accessing the Qobuz API or any other third-party services.\n\nFor official Qobuz services and support, please refer to Qobuz's official website: https://www.qobuz.com/"",
+    ""disclaimer"":                   ""DISCLAIMER / LEGAL NOTICE\n\nThis application uses the Qobuz API but is not certified by Qobuz.\n\nThe software and its authors are not affiliated with, endorsed by, or officially connected to Qobuz in any way. Use of this application is at your own risk. The authors make no warranties regarding the accuracy, reliability, or availability of the service, and will not be held liable for any damages or data loss resulting from its use.\n\nBy using this application, you acknowledge and accept that it is provided \""as-is\"", without any express or implied warranty of any kind, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.\n\nUsers are responsible for complying with all applicable laws, terms of service, and usage restrictions when accessing the Qobuz API or any other third-party services.\n\nFor official Qobuz services and support, please refer to Qobuz's official website: https://www.qobuz.com/"",
 
     ""_SECTION3_"":                   ""=================== MAIN FORM CHECKBOXES ==================="",
     ""albumArtistCheckbox"":          ""Album Artist"",
@@ -397,7 +397,9 @@ namespace QobuzDownloaderX.Helpers
     ""sortAscendantCheckBox"":        ""Ascendant"",
     ""downloadGoodiesCheckbox"":      ""Download goodies"",
     ""useTLS13Checkbox"":             ""Use TLS 1.3"",
-    ""downloadArtistOther"":          ""Download artist - Other / covers"", 
+    ""downloadArtistOtherCheckBox"":  ""Download artist - Other / covers"",
+    ""clearOldLogsCheckBox"":         ""Clear old logs on startup"",
+    ""dontSaveArtworkToDiskCheckBox"":""Don't save artwork to disk"",
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",

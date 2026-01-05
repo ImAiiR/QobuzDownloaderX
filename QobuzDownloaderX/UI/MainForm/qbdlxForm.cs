@@ -14,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -167,6 +168,7 @@ namespace QobuzDownloaderX
         {
             // Create new log file
             Directory.CreateDirectory("logs");
+
             logger = new BufferedLogger("logs\\QobuzDLX " + DateTime.Now.ToString("yyyy⧸MM⧸dd HH꞉mm꞉ss") + ".log");
             logger.Debug("Logger started, QBDLX form initialized!");
 
@@ -181,6 +183,7 @@ namespace QobuzDownloaderX
         {
             logger.Debug("QBDLX form loading!");
 
+            Miscellaneous.ClearOldLogs();
             Miscellaneous.DeleteFilesFromTempFolder();
 
             this.DoubleBuffered = true;
@@ -1067,6 +1070,19 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void clearOldLogsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.clearOldLogs = clearOldLogsCheckBox.Checked;
+            Settings.Default.Save();
+        }
+
+        private void dontSaveArtworkToDiskCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            savedArtSizeSelect.Enabled = !dontSaveArtworkToDiskCheckBox.Checked;
+            Settings.Default.dontSaveArtworkToDisk = dontSaveArtworkToDiskCheckBox.Checked;
+            Settings.Default.Save();
+        }
+
         private void downloadOutput_TextChanged(object sender, EventArgs e)
         {
             // Deferred to avoid UI update race conditions
@@ -1598,5 +1614,6 @@ namespace QobuzDownloaderX
             Miscellaneous.ShowFloatingImageFromUrl(QoAlbum.Image?.Large);
             this.BringToFront();
         }
+
     }
 }

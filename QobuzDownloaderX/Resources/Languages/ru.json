@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 05, 2026, 01:15AM MSK",
+    "TranslationUpdatedOn":         "January 05, 2026, 02:15AM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -86,7 +86,9 @@
     "sortAscendantCheckBox":        "По возрастанию",
     "downloadGoodiesCheckbox":      "Загружать дополнительные материалы",
     "useTLS13Checkbox":             "Использовать TLS 1.3",
-    "downloadArtistOther":          "Загружать исполнитель - другое / обложки", 
+    "downloadArtistOtherCheckbox":  "Загружать исполнитель - другое / обложки", 
+    "clearOldLogsCheckBox":         "Удалять старые журналы при запуске", // ChatGPT translation
+    "dontSaveArtworkToDiskCheckBox":"Не сохранять иллюстрации на диск", // ChatGPT translation
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",

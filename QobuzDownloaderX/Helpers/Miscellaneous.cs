@@ -44,6 +44,37 @@ namespace QobuzDownloaderX.Helpers
         }
 
         [DebuggerStepThrough]
+        internal static void ClearOldLogs()
+        {
+            if (!Settings.Default.clearOldLogs) return;
+
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string folderPath = Path.Combine(basePath, "logs");
+
+            if (!Directory.Exists(folderPath))
+                return;
+
+            try
+            {
+                foreach (string file in Directory.GetFiles(folderPath, "*.log", SearchOption.TopDirectoryOnly))
+                {
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch
+                    {
+                        // Ignore file deletion errors
+                    }
+                }
+            }
+            catch
+            {
+                // Ignore directory access errors
+            }
+        }
+
+        [DebuggerStepThrough]
         internal static void DeleteFilesFromTempFolder()
         {
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -54,7 +85,7 @@ namespace QobuzDownloaderX.Helpers
 
             try
             {
-                foreach (string file in Directory.GetFiles(folderPath))
+                foreach (string file in Directory.GetFiles(folderPath, "*.*", SearchOption.TopDirectoryOnly))
                 {
                     try
                     {
@@ -355,8 +386,10 @@ namespace QobuzDownloaderX.Helpers
             f.downloadSpeedCheckbox.Text = f.languageManager.GetTranslation("downloadSpeedCheckbox");
             f.sortAscendantCheckBox.Text = f.languageManager.GetTranslation("sortAscendantCheckBox");
             f.downloadGoodiesCheckbox.Text = f.languageManager.GetTranslation("downloadGoodiesCheckbox");
-            f.downloadArtistOtherCheckbox.Text = f.languageManager.GetTranslation("downloadArtistOther");
+            f.downloadArtistOtherCheckbox.Text = f.languageManager.GetTranslation("downloadArtistOtherCheckBox");
             f.useTLS13Checkbox.Text = f.languageManager.GetTranslation("useTLS13Checkbox");
+            f.dontSaveArtworkToDiskCheckBox.Text = f.languageManager.GetTranslation("dontSaveArtworkToDiskCheckBox");
+            f.clearOldLogsCheckBox.Text = f.languageManager.GetTranslation("clearOldLogsCheckBox");
 
             /* Center certain checkboxes in panels */
             f.fixMD5sCheckbox.Location = new Point((f.extraSettingsPanel.Width - f.fixMD5sCheckbox.Width) / 2, f.fixMD5sCheckbox.Location.Y);

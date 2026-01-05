@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 4, 2026, 08:22AM EST",
+    "TranslationUpdatedOn":         "January 05, 2026, 08:22AM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -86,7 +86,9 @@
     "sortAscendantCheckBox":        "Ascendant",
     "downloadGoodiesCheckbox":      "Download goodies",
     "useTLS13Checkbox":             "Use TLS 1.3",
-    "downloadArtistOther":          "Download artist - Other / covers", 
+    "downloadArtistOtherCheckBox":  "Download artist - Other / covers",
+    "clearOldLogsCheckBox":         "Clear old log files on startup",
+    "dontSaveArtworkToDiskCheckBox":"Don't save artwork to disk",
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Welcome to QBDLX!",

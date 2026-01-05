@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 2, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 05, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -86,7 +86,9 @@
     "sortAscendantCheckBox":        "Aufsteigend", // ChatGPT translation.
     "downloadGoodiesCheckbox":      "Goodies herunterladen", // ChatGPT translation.
     "useTLS13Checkbox":             "TLS 1.3 verwenden", // ChatGPT translation.
-    "downloadArtistOther":          "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // ChatGPT translation.
+    "downloadArtistOtherCheckBox":  "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // ChatGPT translation.
+    "clearOldLogsCheckBox":         "Alte Protokolle beim Start löschen", // ChatGPT translation
+    "dontSaveArtworkToDiskCheckBox":"Kunstwerke nicht auf der Festplatte speichern", // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",

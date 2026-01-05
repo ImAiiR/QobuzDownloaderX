@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 2, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 5, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -86,7 +86,9 @@
     "sortAscendantCheckBox":        "Ascendant",
     "downloadGoodiesCheckbox":      "Télécharger les bonus", // ChatGPT translation.
     "useTLS13Checkbox":             "Utiliser TLS 1.3", // ChatGPT translation.
-    "downloadArtistOther":          "Télécharger artiste — Autres / reprises", 
+    "downloadArtistOtherCheckBox":  "Télécharger artiste — Autres / reprises", 
+    "clearOldLogsCheckBox":         "Effacer les anciens journaux au démarrage", // ChatGPT translation
+    "dontSaveArtworkToDiskCheckBox":"Ne pas enregistrer les illustrations sur le disque", // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",
