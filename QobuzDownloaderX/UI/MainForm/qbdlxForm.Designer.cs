@@ -56,6 +56,7 @@ namespace QobuzDownloaderX
             this.batchDownloadButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -112,6 +113,7 @@ namespace QobuzDownloaderX
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
             this.useTLS13Checkbox = new System.Windows.Forms.CheckBox();
             this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
+            this.mergeArtistNamesCheckbox = new System.Windows.Forms.CheckBox();
             this.commentLabel = new System.Windows.Forms.Label();
             this.taggingOptionsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.albumArtistCheckbox = new System.Windows.Forms.CheckBox();
@@ -148,7 +150,6 @@ namespace QobuzDownloaderX
             this.embeddedArtLabel = new System.Windows.Forms.Label();
             this.embeddedArtSizeSelect = new System.Windows.Forms.ComboBox();
             this.extraSettingsLabel = new System.Windows.Forms.Label();
-            this.mergeArtistNamesCheckbox = new System.Windows.Forms.CheckBox();
             this.qualitySelectButton = new System.Windows.Forms.Button();
             this.qualitySelectPanel = new System.Windows.Forms.Panel();
             this.mp3Button2 = new System.Windows.Forms.RadioButton();
@@ -192,7 +193,6 @@ namespace QobuzDownloaderX
             this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -551,6 +551,17 @@ namespace QobuzDownloaderX
             this.abortButton.Text = "ABORT";
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 4;
             // 
             // progressLabel
             // 
@@ -1323,6 +1334,21 @@ namespace QobuzDownloaderX
             this.downloadSpeedCheckbox.UseVisualStyleBackColor = true;
             this.downloadSpeedCheckbox.CheckedChanged += new System.EventHandler(this.downloadSpeedCheckbox_CheckedChanged);
             // 
+            // mergeArtistNamesCheckbox
+            // 
+            this.mergeArtistNamesCheckbox.AutoSize = true;
+            this.mergeArtistNamesCheckbox.Checked = true;
+            this.mergeArtistNamesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mergeArtistNamesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeArtistNamesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.mergeArtistNamesCheckbox.Location = new System.Drawing.Point(3, 26);
+            this.mergeArtistNamesCheckbox.Name = "mergeArtistNamesCheckbox";
+            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(131, 17);
+            this.mergeArtistNamesCheckbox.TabIndex = 15;
+            this.mergeArtistNamesCheckbox.Text = "Merge Artists Names";
+            this.mergeArtistNamesCheckbox.UseVisualStyleBackColor = true;
+            this.mergeArtistNamesCheckbox.CheckedChanged += new System.EventHandler(this.mergeArtistNamesCheckbox_CheckedChanged);
+            // 
             // commentLabel
             // 
             this.commentLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
@@ -1835,21 +1861,6 @@ namespace QobuzDownloaderX
             this.extraSettingsLabel.Text = "ADDITIONAL SETTINGS                                                              " +
     "       ";
             this.extraSettingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.extraSettingsLabel_MouseMove);
-            // 
-            // mergeArtistNamesCheckbox
-            // 
-            this.mergeArtistNamesCheckbox.AutoSize = true;
-            this.mergeArtistNamesCheckbox.Checked = true;
-            this.mergeArtistNamesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mergeArtistNamesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mergeArtistNamesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.mergeArtistNamesCheckbox.Location = new System.Drawing.Point(3, 26);
-            this.mergeArtistNamesCheckbox.Name = "mergeArtistNamesCheckbox";
-            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(131, 17);
-            this.mergeArtistNamesCheckbox.TabIndex = 15;
-            this.mergeArtistNamesCheckbox.Text = "Merge Artists Names";
-            this.mergeArtistNamesCheckbox.UseVisualStyleBackColor = true;
-            this.mergeArtistNamesCheckbox.CheckedChanged += new System.EventHandler(this.mergeArtistNamesCheckbox_CheckedChanged);
             // 
             // qualitySelectButton
             // 
@@ -2437,28 +2448,17 @@ namespace QobuzDownloaderX
             this.closeProgramToolStripMenuItem.Text = "Close program";
             this.closeProgramToolStripMenuItem.Click += new System.EventHandler(this.closeProgramToolStripMenuItem_Click);
             // 
-            // progressBarDownload
-            // 
-            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
-            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
-            this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 4;
-            // 
             // qbdlxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(951, 615);
+            this.Controls.Add(this.qualitySelectPanel);
             this.Controls.Add(this.qualitySelectButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.downloaderPanel);
-            this.Controls.Add(this.qualitySelectPanel);
             this.Controls.Add(this.aboutPanel);
             this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.navigationPanel);
