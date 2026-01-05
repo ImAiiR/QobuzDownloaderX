@@ -28,6 +28,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,15 +40,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\QBDLX-Icon.ico</ApplicationIcon>
@@ -54,41 +58,56 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+    <Reference Include="Ookii.Dialogs.WinForms, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.WinForms.4.0.0\lib\net462\Ookii.Dialogs.WinForms.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Qo%28penAPI%29, Version=0.0.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\QopenAPI.0.0.3.4\lib\net48\Qo(penAPI).dll</HintPath>
+    <Reference Include="Qo%28penAPI%29, Version=0.0.3.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>External References\Qo(penAPI).dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ZetaLongPaths, Version=1.0.17.0, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
+    <Reference Include="ZetaLongPaths, Version=1.0.17.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ZetaLongPaths.1.0.17\lib\net452-full\ZetaLongPaths.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\BufferedLogger.cs" />
     <Compile Include="Helpers\Download\DownloadTrack.cs" />
     <Compile Include="Helpers\Download\DownloadAlbum.cs" />
     <Compile Include="Helpers\Download\DownloadFile.cs" />
+    <Compile Include="Helpers\Miscellaneous.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\InvolvedPersonRoleMapping.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\InvolvedPersonRoleType.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\ParsingHelper.cs" />
+    <Compile Include="Helpers\QobuzDownloaderXMOD\PerformersParser.cs" />
+    <Compile Include="Helpers\NotifyIconHelper.cs" />
+    <Compile Include="Helpers\TaskbarHelper.cs" />
     <Compile Include="Helpers\FixMD5.cs" />
     <Compile Include="Helpers\GetInfo.cs" />
     <Compile Include="Helpers\PaddingNumbers.cs" />
@@ -96,24 +115,38 @@
     <Compile Include="Helpers\SearchPanelHelper.cs" />
     <Compile Include="Helpers\TagFile.cs" />
     <Compile Include="Helpers\Updating.cs" />
-    <Compile Include="LoginForm\LoginForm.cs">
+    <Compile Include="UI\UserControls\DevFloatingPicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\NotifyIconProgressBar.cs" />
+    <Compile Include="UI\LoginForm\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm\LoginForm.Designer.cs">
+    <Compile Include="UI\LoginForm\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Win32\TaskbarList.cs" />
+    <Compile Include="Win32\Constants.cs" />
+    <Compile Include="Win32\CTaskbarList.cs" />
+    <Compile Include="Win32\ITaskbarList4.cs" />
+    <Compile Include="Win32\TaskbarProgressBarState.cs" />
+    <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MainForm\qbdlxForm.cs">
+    <Compile Include="UI\MainForm\qbdlxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm\qbdlxForm.Designer.cs">
+    <Compile Include="UI\MainForm\qbdlxForm.Designer.cs">
       <DependentUpon>qbdlxForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Helpers\Theming.cs" />
-    <EmbeddedResource Include="LoginForm\LoginForm.resx">
+    <Compile Include="UI\UserControls\CustomProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="UI\LoginForm\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,13 +158,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="MainForm\qbdlxForm.resx">
+    <EmbeddedResource Include="UI\MainForm\qbdlxForm.resx">
       <DependentUpon>qbdlxForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>QobuzDownloaderX.Properties</CustomToolNamespace>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -139,8 +175,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\Languages\de.json" />
+    <None Include="Resources\Languages\es.json" />
     <None Include="Resources\Languages\en.json" />
+    <None Include="Resources\Languages\fr.json" />
     <None Include="Resources\Languages\ru.json" />
+    <None Include="Resources\Languages\tr.json" />
     <None Include="Resources\Languages\zh-cn.json" />
     <None Include="Resources\qbdlx_new.png" />
     <None Include="Resources\themes.json" />
@@ -163,6 +202,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ShowWindow.png" />
     <None Include="Resources\search.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\password.png" />
@@ -173,7 +213,11 @@
     <None Include="Resources\logout.png" />
     <None Include="Resources\log_out.png" />
     <None Include="Resources\QBDLX-Icon.png" />
+    <Content Include="External References\Qo%28penAPI%29.dll" />
     <Content Include="Resources\alert.png" />
+    <None Include="Resources\HideWindow.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\clipboard.png" />
     <Content Include="Resources\qbdlx_icon.ico" />
   </ItemGroup>
   <ItemGroup />
@@ -183,6 +227,13 @@
 xcopy /y /i "$(ProjectDir)Resources\themes.json" "$(TargetDir)"
 </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

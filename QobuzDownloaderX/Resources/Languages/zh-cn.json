@@ -1,115 +1,184 @@
 {
-	"TranslationCredit":			"Mxqing",
-	"TranslationUpdatedOn":			"November 21, 2024, 01:15AM GMT+8",
-	"TranslationFont":				"Microsoft YaHei UI",
-	"_SECTION1_":					"=================== 主表单按钮 ===================",
-	"additionalSettingsButton":		"附加设置",
-	"aboutButton": 					"关于",
-	"closeAdditionalButton":		"返回设置",
-	"downloadButton":				"获取",
-	"downloaderButton": 			"下载器",
-	"logoutButton": 				"退出登录",
-	"openFolderButton":				"打开文件夹",
-	"qualitySelectButton":			"音质选择器",
-	"saveTemplatesButton":			"保存",
-	"searchButton": 				"搜索",
-	"searchAlbumsButton":			"搜专辑",
-	"searchTracksButton":			"搜曲目",
-	"selectFolderButton":			"选择文件夹",
-	"settingsButton": 				"设置",
-	"_SECTION2_":					"=================== 主表单标签 ===================",
-	"advancedOptionsLabel":			"高级选项",
-	"albumTemplateLabel":			"专辑模板",
-	"artistTemplateLabel":			"艺术家模板",
-	"commentLabel":					"自定义备注",
-	"downloadFolderLabel":			"下载文件夹",
-	"downloadOptionsLabel":			"下载选项",
-	"embeddedArtLabel":				"嵌入的封面尺寸",
-	"extraSettingsLabel":			"附加设置",
-	"languageLabel":				"当前语言",
-	"playlistTemplateLabel":		"播放列表模板",
-	"favoritesTemplateLabel":		"收藏模板",
-	"savedArtLabel":				"保存的封面尺寸",
-	"searchingLabel":				"搜索中...",
-	"taggingOptionsLabel":			"标签选项",
-	"templatesLabel":				"模板",
-	"templatesListLabel":			"模板列表",
-	"themeLabel":					"当前主题",
-	"themeSectionLabel":			"主题选项",
-	"trackTemplateLabel":			"曲目模板",
-	"userInfoLabel": 				"用户信息",
-	"welcomeLabel": 				"欢迎\r\n{username}",
-	"_SECTION3_":					"=================== 主表单复选框 ===================",
-	"albumArtistCheckbox":			"专辑艺术家",
-	"albumTitleCheckbox":			"专辑标题",
-	"trackArtistCheckbox":			"曲目艺术家",
-	"trackTitleCheckbox":			"曲目标题",
-	"releaseDateCheckbox":			"发行日期",
-	"releaseTypeCheckbox":			"发行类型",
-	"genreCheckbox":				"流派",
-	"trackNumberCheckbox":			"曲目编号",
-	"trackTotalCheckbox":			"总曲目数",
-	"discNumberCheckbox":			"光盘编号",
-	"discTotalCheckbox":			"总光盘数",
-	"composerCheckbox":				"作曲家",
-	"explicitCheckbox":				"Explicit 提示",
-	"coverArtCheckbox":				"专辑封面",
-	"copyrightCheckbox":			"版权",
-	"labelCheckbox":				"唱片公司",
-	"upcCheckbox":					"UPC/条形码",
-	"isrcCheckbox":					"ISRC",
-	"streamableCheckbox":			"歌曲流媒体可播性检查",
-	"fixMD5sCheckbox":				"自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
-	"downloadSpeedCheckbox":		"显示下载速度",
-	"_SECTION4_":					"=================== 主表单占位符 ===================",
-	"albumLabelPlaceholder":		"欢迎使用 QBDLX!",
-	"artistLabelPlaceholder":		"输入你的 Qobuz URL 并点击获取!",
-	"infoLabelPlaceholder":			"发行",
-	"inputTextboxPlaceholder":		"粘贴一个 Qobuz URL...",
-	"searchTextboxPlaceholder":		"输入你的搜索内容...",
-	"downloadFolderPlaceholder":	"未选择文件夹",
-	"userInfoTextboxPlaceholder":	"用户 ID = {user_id}\r\n邮箱 = {user_email}\r\n国家 = {user_country}\r\n订阅 = {user_subscription}\r\n到期 = {user_subscription_expiration}",
-	"downloadOutputWelcome":		"欢迎 {user_display_name}!",
-	"downloadOutputExpired": 		"你的订阅已过期，下载将仅限于 30 秒的片段!",
-	"downloadOutputPath": 			"下载路径",
-	"downloadOutputNoPath": 		"未设置路径! 记得选择一个文件夹!",
-	"downloadOutputAPIError": 		"Qobuz API 错误。可能是该发行版在当前账户地区不可用?",
-	"downloadOutputNotImplemented": "尚未实现或 URL 无法理解。是否有拼写错误?",
-	"downloadOutputCheckLink": 		"正在检查链接...",
-	"downloadOutputTrNotStream": 	"曲目{TrackNumber}不支持流媒体播放。跳过。",
-	"downloadOutputAlNotStream": 	"发行版不支持流媒体播放。",
-	"downloadOutputGoodyFound": 	"找到歌曲，正在下载...",
-	"downloadOutputGoodyExists": 	"歌曲文件已存在",
-	"downloadOutputGoodyNoURL": 	"未找到歌曲的下载 URL，跳过",
-	"downloadOutputFileExists": 	"曲目{TrackNumber}的文件已存在，跳过。",
-	"downloadOutputDownloading": 	"正在下载",
-	"downloadOutputDone": 			"完成",
-	"downloadOutputCompleted": 		"下载完成",
-	"progressLabelInactive": 		"无下载任务",
-	"progressLabelActive": 			"下载进度",
-	"_SECTION5_":					"=================== 登录表单按钮 ===================",
-	"closeAboutButton":				"关闭",
-	"customSaveButton":				"保存",
-	"exitButton":					"退出",
-	"loginButton":					"登录",
-	"_SECTION6_":					"=================== 登录表单标签 ===================",
-	"appidLabel":					"App ID",
-	"appSecretLabel":				"App Secret",
-	"customLabel":					"使用自定义 App ID + Secret",
-	"_SECTION7_":					"=================== 登录表单文本框 ===================",
-	"customInfoTextbox":			"如果想自动获取值，请留空!",
-	"aboutTextbox":					"版本 - {version}\r\n由 AiiR 创建\r\n\r\n受 Qo-DL 启发\r\n(由 Sorrow 和 DashLt 创建)\r\n\r\n感谢 Github 和 Telegram 上的用户提供的错误报告和想法! 还要特别感谢 DJDoubleD，在我忙碌的时候保持了原版的运行!",
-	"_SECTION8_":					"=================== 登录表单占位符 ===================",
-	"emailPlaceholder":				"请输入邮箱",
-	"passwordPlaceholder":			"请输入密码",
-	"tokenPlaceholder":				"Token",
-	"altLoginLabelToken":			"使用 Token 登录",
-	"altLoginLabelEmail":			"使用邮箱和密码登录",
-	"loginTextWaiting":				"等待登录...",
-	"loginTextStart":				"正在登录...",
-	"loginTextError":				"登录失败，已保存错误日志",
-	"loginTextNoEmail":				"输入中没有邮箱",
-	"loginTextNoPassword":			"输入中没有密码/Token",
-	"updateNotification":			"QBDLX 的新版本可用!\r\n\r\n已安装版本 - {currentVersion}\r\n最新版本 - {newVersion}\r\n\r\n更新日志如下\r\n==============\r\n{changelog}\r\n==============\r\n\r\n你是否要更新?",
-	"updateNotificationTitle":		"QBDLX | 有可用更新"
+    "TranslationCredit":            "Mxqing",
+    "TranslationUpdatedOn":         "January 2, 2026, 01:15AM GMT+8",
+    "TranslationFont":              "Microsoft YaHei UI",
+    
+    "_SECTION1_":                   "=================== 主表单按钮 ===================",
+    "additionalSettingsButton":     "附加设置",
+    "aboutButton":                  "关于…",
+    "closeAdditionalButton":        "返回设置",
+    "downloadButton":               "获取",
+    "batchDownloadButton":          "批量获取", // ChatGPT translation.
+    "abortButton":                  "中止", // ChatGPT translation.
+    "skipButton":                   "跳过", // ChatGPT translation.
+    "downloaderButton":             "下载器",
+    "logoutButton":                 "退出登录",
+    "openFolderButton":             "打开文件夹",
+    "qualitySelectButton":          "音质选择器",
+    "saveTemplatesButton":          "保存",
+    "resetTemplatesButton":         "重置", // ChatGPT translation.
+    "searchButton":                 "搜索",
+    "searchAlbumsButton":           "搜专辑",
+    "searchTracksButton":           "搜曲目",
+    "selectFolderButton":           "选择文件夹",
+    "settingsButton":               "设置",
+    "selectAllRowsButton":          "全选行", // ChatGPT translation.
+    "deselectAllRowsButton":        "取消选择所有行", // ChatGPT translation.
+    "batchDownloadRowsButton":      "批量下载选中的行", // ChatGPT translation.
+
+    "_SECTION2_":                   "=================== 主表单标签 ===================",
+    "advancedOptionsLabel":         "高级选项",
+    "albumTemplateLabel":           "专辑模板",
+    "artistTemplateLabel":          "艺术家模板",
+    "commentLabel":                 "自定义备注",
+    "downloadFolderLabel":          "下载文件夹",
+    "downloadOptionsLabel":         "下载选项",
+    "embeddedArtLabel":             "嵌入的封面尺寸",
+    "extraSettingsLabel":           "附加设置",
+    "languageLabel":                "当前语言",
+    "playlistTemplateLabel":        "播放列表模板",
+    "favoritesTemplateLabel":       "收藏模板",
+    "savedArtLabel":                "保存的封面尺寸",
+    "searchingLabel":               "搜索中…",
+    "taggingOptionsLabel":          "标签选项",
+    "templatesLabel":               "模板",
+    "templatesListLabel":           "模板列表",
+    "themeLabel":                   "当前主题",
+    "themeSectionLabel":            "主题选项",
+    "trackTemplateLabel":           "曲目模板",
+    "userInfoLabel":                "用户信息",
+    "welcomeLabel":                 "欢迎\r\n{username}",
+    "limitSearchResultsLabel":      "结果限制：", // ChatGPT translation.
+    "searchSortingLabel":           "排序方式：", // ChatGPT translation.
+    "sortReleaseDateLabel":         "发行日期", // ChatGPT translation.
+    "sortGenreLabel":               "类型", // ChatGPT translation.
+    "sortArtistNameLabel":          "艺术家名称", // ChatGPT translation.
+    "sortAlbumTrackNameLabel":      "专辑 / 曲目名称", // ChatGPT translation.
+    "sortingSearchResultsLabel":    "正在排序…", // ChatGPT translation.
+    "searchResultsCountLabel":      "结果", // ChatGPT translation.
+    "selectedRowsCountLabel":       "已选择 {0} 行", // ChatGPT translation.
+    "disclaimer":                   "免责声明 / 法律声明\n\n此应用程序使用 Qobuz API，但未经过 Qobuz 认证。\n\n本软件及其作者与 Qobuz 没有任何关联、认可或官方关系。使用本应用程序的风险由您自行承担。作者不对服务的准确性、可靠性或可用性提供任何保证，并且不对因使用本应用程序而造成的任何损失或数据丢失承担责任。\n\n使用本应用程序即表示您承认并接受该应用程序按“原样”提供，不附带任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。\n\n用户在访问 Qobuz API 或任何其他第三方服务时，有责任遵守所有适用法律、服务条款和使用限制。\n\n有关官方 Qobuz 服务和支持，请参阅 Qobuz 官方网站: https://www.qobuz.com/", 
+
+    "_SECTION3_":                   "=================== 主表单复选框 ===================",
+    "albumArtistCheckbox":          "专辑艺术家",
+    "albumTitleCheckbox":           "专辑标题",
+    "trackArtistCheckbox":          "曲目艺术家",
+    "trackTitleCheckbox":           "曲目标题",
+    "releaseDateCheckbox":          "发行日期",
+    "releaseTypeCheckbox":          "发行类型",
+    "genreCheckbox":                "流派",
+    "trackNumberCheckbox":          "曲目编号",
+    "trackTotalCheckbox":           "总曲目数",
+    "discNumberCheckbox":           "光盘编号",
+    "discTotalCheckbox":            "总光盘数",
+    "composerCheckbox":             "作曲家",
+    "explicitCheckbox":             "Explicit 提示",
+    "coverArtCheckbox":             "专辑封面",
+    "copyrightCheckbox":            "版权",
+    "labelCheckbox":                "唱片公司",
+    "upcCheckbox":                  "UPC/条形码",
+    "isrcCheckbox":                 "ISRC",
+    "urlCheckbox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckbox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "streamableCheckbox":           "歌曲流媒体可播性检查",
+    "fixMD5sCheckbox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
+    "downloadSpeedCheckbox":        "显示下载速度",
+    "sortAscendantCheckBox":        "升序", // ChatGPT translation.
+    "downloadGoodiesCheckbox":      "下载好礼", // ChatGPT translation.
+    "useTLS13Checkbox":             "使用 TLS 1.3", // ChatGPT translation.
+    "downloadArtistOther":          "下载艺术家 — 其他 / 翻唱歌曲", // ChatGPT translation.
+
+    "_SECTION4_":                   "=================== 主表单占位符 ===================",
+    "albumLabelPlaceholder":        "欢迎使用 QBDLX!",
+    "artistLabelPlaceholder":       "输入你的 Qobuz URL 并点击获取!",
+    "infoLabelPlaceholder":         "发行",
+    "inputTextboxPlaceholder":      "粘贴一个 Qobuz URL…",
+    "searchTextboxPlaceholder":     "输入你的搜索内容…",
+    "downloadFolderPlaceholder":    "未选择文件夹",
+    "userInfoTextboxPlaceholder":   "用户 ID = {user_id}\r\n邮箱 = {user_email}\r\n国家 = {user_country}\r\n订阅 = {user_subscription}\r\n到期 = {user_subscription_expiration}",
+    "downloadOutputWelcome":        "欢迎 {user_display_name}!",
+    "downloadOutputExpired":        "你的订阅已过期，下载将仅限于 30 秒的片段!",
+    "downloadOutputPath":           "下载路径:",
+    "downloadOutputNoPath":         "未设置路径! 记得选择一个文件夹!",
+    "downloadOutputNoUrl":          "曲目 {TrackNumber} 无法下载。正在跳过。", // ChatGPT translation.
+    "downloadOutputAPIError":       "Qobuz API 错误。可能是该发行版在当前账户地区不可用?",
+    "downloadOutputNotImplemented": "尚未实现或 URL 无法理解。是否有拼写错误?",
+    "downloadOutputCheckLink":      "正在检查链接…",
+    "downloadOutputTrNotStream":    "曲目{TrackNumber}不支持流媒体播放。跳过。",
+    "downloadOutputAlNotStream":    "发行版不支持流媒体播放。",
+    "downloadOutputGoodyFound":     "找到歌曲，正在下载…",
+    "downloadOutputGoodyExists":    "歌曲文件已存在",
+    "downloadOutputGoodyNoURL":     "未找到歌曲的下载 URL，跳过",
+    "downloadOutputFileExists":     "曲目{TrackNumber}的文件已存在，跳过。",
+    "downloadOutputDownloading":    "正在下载",
+    "downloadOutputDone":           "完成",
+    "downloadOutputCompleted":      "下载完成",
+    "downloadAborted":              "用户已中止下载。", // ChatGPT translation.
+    "albumSkipped":                 "用户已跳过专辑。", // ChatGPT translation.
+    "progressLabelInactive":        "无下载任务",
+    "progressLabelActive":          "下载进度",
+    "formClosingWarning":           "正在下载，确定要退出吗？", // ChatGPT translation.
+    "artist":                       "艺术家", // ChatGPT translation.
+    "artists":                      "艺术家", // ChatGPT translation.
+    "album":                        "专辑", // ChatGPT translation.
+    "albums":                       "专辑", // ChatGPT translation.
+    "tracks":                       "曲目", // ChatGPT translation.
+    "singleTrack":                  "单曲", // ChatGPT translation.
+    "playlist":                     "播放列表", // ChatGPT translation.
+    "recordLabel":                  "唱片公司", // ChatGPT translation.
+    "user":                         "用户", // ChatGPT translation.
+    "invalidUrl":                   "无效的 URL: {0}", // ChatGPT translation.
+    "copyToClipboard":              "复制到剪贴板", // ChatGPT translation.
+    "copyThisRowToClipboard":       "复制此行到剪贴板", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "复制选中的行到剪贴板", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "复制所有行到剪贴板", // ChatGPT translation.
+
+    "_SECTION5_":                   "=================== 登录表单按钮 ===================",
+    "closeAboutButton":             "关闭",
+    "customSaveButton":             "保存",
+    "exitButton":                   "退出",
+    "loginButton":                  "登录",
+
+    "_SECTION6_":                   "=================== 登录表单标签 ===================",
+    "appidLabel":                   "App ID",
+    "appSecretLabel":               "App Secret",
+    "customLabel":                  "使用自定义 App ID + Secret",
+
+    "_SECTION7_":                   "=================== 登录表单文本框 ===================",
+    "customInfoTextbox":            "如果想自动获取值，请留空!",
+    "aboutTextbox":                 "版本 - {version}\r\n由 AiiR 创建\r\n\r\n受 Qo-DL 启发\r\n(由 Sorrow 和 DashLt 创建)\r\n\r\n感谢 Github 和 Telegram 上的用户提供的错误报告和想法! 还要特别感谢 DJDoubleD，在我忙碌的时候保持了原版的运行!",
+
+    "_SECTION8_":                   "=================== 登录表单占位符 ===================",
+    "emailPlaceholder":             "请输入邮箱",
+    "passwordPlaceholder":          "请输入密码",
+    "tokenPlaceholder":             "Token",
+    "altLoginLabelToken":           "使用 Token 登录",
+    "altLoginLabelEmail":           "使用邮箱和密码登录",
+    "loginTextWaiting":             "等待登录…",
+    "loginTextStart":               "正在登录…",
+    "loginTextError":               "登录失败，已保存错误日志",
+    "loginTextNoEmail":             "输入中没有邮箱",
+    "loginTextNoPassword":          "输入中没有密码/Token",
+    "updateNotification":           "QBDLX 的新版本可用!\r\n\r\n已安装版本 - {currentVersion}\r\n最新版本 - {newVersion}\r\n\r\n更新日志如下\r\n==============\r\n{changelog}\r\n==============\r\n\r\n你是否要更新?",
+    "updateNotificationTitle":      "QBDLX | 有可用更新",
+
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
+    "batchDownloadDlgText":         "批量下载", // ChatGPT translation.
+    "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接…", // ChatGPT translation.
+    "closeBatchDownloadbutton":     "关闭 / 取消", // ChatGPT translation.
+    "getAllBatchDownloadButton":    "全部获取", // ChatGPT translation.
+
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
+    "showWindowCmItem":             "显示窗口", // ChatGPT translation.
+    "hideWindowCmItem":             "隐藏窗口", // ChatGPT translation.
+    "closeProgramCmItem":           "关闭程序", // ChatGPT translation.
+    "batchDownloadFinished":        "批量下载完成！", // ChatGPT translation.
+
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
+    "tagLibSharpMissingMsg":        "文件夹中缺少 taglib-sharp.dll！\r\n请确保该 DLL 与 {exeName} 位于同一文件夹中！", // ChatGPT translation.
+    "themeFileNotFoundMsg":         "未找到主题文件。", // ChatGPT translation.
+    "themeNameNotFoundMsg":         "未找到主题 '{themeName}'。", // ChatGPT translation.
+    "selectedLangFileNotfoundMsg":  "未找到所选语言文件。", // ChatGPT translation.
+    "downloadOutputDontExistMsg":   "指定的路径不存在。", // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'" // ChatGPT translation.
 }

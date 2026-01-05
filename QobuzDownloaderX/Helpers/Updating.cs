@@ -1,23 +1,36 @@
-﻿using System.Collections.Generic;
-using System;
-using Newtonsoft.Json.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Reflection;
-using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+using Newtonsoft.Json.Linq;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
 {
-    public class TranslationUpdater
+    internal sealed class TranslationUpdater
     {
+       static readonly Regex removeTimezoneRegEx = new Regex(@"[A-Z]{2,5}(\+?\d{0,2})?$", RegexOptions.Compiled);
+
         // List of language files
         private static readonly Dictionary<string, string> LanguageFiles = new Dictionary<string, string>
         {
+            { "de.json", "Languages/de.json" },
             { "en.json", "Languages/en.json" },
+            { "es.json", "Languages/es.json" },
+            { "fr.json", "Languages/fr.json" },
             { "ru.json", "Languages/ru.json" },
+            { "tr.json", "Languages/tr.json" },
             { "zh-cn.json", "Languages/zh-cn.json" }
         };
+
+        public static string NormalizeDate(string dateStr)
+        {
+            // Remove any alphabetic timezone part
+            return removeTimezoneRegEx.Replace(dateStr, "").Trim();
+        }
 
         public static async Task CheckAndUpdateLanguageFiles()
         {
@@ -59,14 +72,22 @@ namespace QobuzDownloaderX.Helpers
                                     string localUpdatedOnString = localJson["TranslationUpdatedOn"]?.ToString();
 
                                     // Compare updated date
-                                    if (remoteUpdatedOnString != localUpdatedOnString)
+                                    if (DateTime.TryParse(NormalizeDate(remoteUpdatedOnString), out DateTime remoteDate) &&
+                                        DateTime.TryParse(NormalizeDate(localUpdatedOnString), out DateTime localDate))
                                     {
-                                        ZlpIOHelper.WriteAllText(localFilePath.ToLower(), remoteContent);
-                                        qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} updated successfully.");
+                                        if (remoteDate > localDate)
+                                        {
+                                            ZlpIOHelper.WriteAllText(localFilePath.ToLower(), remoteContent);
+                                            qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} updated successfully.");
+                                        }
+                                        else
+                                        {
+                                            qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} is already up-to-date.");
+                                        }
                                     }
                                     else
                                     {
-                                        qbdlxForm._qbdlxForm.logger.Debug($"File {fileName} is already up-to-date.");
+                                        qbdlxForm._qbdlxForm.logger.Error($"Failed to parse dates for {fileName}. Remote: '{remoteUpdatedOnString}', Local: '{localUpdatedOnString}'");
                                     }
                                 }
                                 else
@@ -95,7 +116,7 @@ namespace QobuzDownloaderX.Helpers
         }
     }
 
-    public static class VersionChecker
+    internal static class VersionChecker
     {
         public static async Task<(bool isUpdateAvailable, string newVersion, string currentVersion, string changes)> CheckForUpdate()
         {
@@ -106,52 +127,54 @@ namespace QobuzDownloaderX.Helpers
 
             try
             {
-                // Initialize HttpClient to grab version number from GitHub
-                using (var versionURLClient = new HttpClient())
+                // Initialize HttpClient to fetch version number from GitHub
+                using (var httpClient = new HttpClient())
                 {
-                    qbdlxForm._qbdlxForm.logger.Debug("versionURLClient initialized");
-
-                    // Configure TLS for secure connection
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                    qbdlxForm._qbdlxForm.logger.Debug("HttpClient initialized");
 
                     // Set user-agent to Firefox
-                    versionURLClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
+                    httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
 
                     // Request the latest release from GitHub
-                    qbdlxForm._qbdlxForm.logger.Debug("Starting request for latest GitHub version");
-                    var versionURL = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
-                    var versionURLResponse = await versionURLClient.GetAsync(versionURL);
-                    string versionURLResponseString = await versionURLResponse.Content.ReadAsStringAsync();
+                    qbdlxForm._qbdlxForm.logger.Debug("Requesting latest GitHub release");
+                    var versionUrl = "https://api.github.com/repos/ImAiiR/QobuzDownloaderX/releases/latest";
+                    var response = await httpClient.GetAsync(versionUrl);
+                    string responseString = await response.Content.ReadAsStringAsync();
 
                     // Parse the JSON response
-                    JObject joVersionResponse = JObject.Parse(versionURLResponseString);
+                    JObject json = JObject.Parse(responseString);
 
                     // Extract version number and changelog
-                    newVersion = (string)joVersionResponse["tag_name"];
+                    newVersion = (string)json["tag_name"];
+                    changes = (string)json["body"];
                     qbdlxForm._qbdlxForm.logger.Debug("Received version from GitHub: " + newVersion);
-                    changes = (string)joVersionResponse["body"];
 
                     // Get the current version from the assembly
                     currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-                    // Compare versions
-                    if (!currentVersion.Contains(newVersion))
+                    // Compare versions numerically
+                    var newVersionObj = new Version(newVersion?.TrimStart('v')); // Remove leading 'v' if present
+                    var currentVersionObj = new Version(currentVersion);
+
+                    isUpdateAvailable = newVersionObj > currentVersionObj;
+
+                    if (isUpdateAvailable)
                     {
-                        isUpdateAvailable = true;
                         qbdlxForm._qbdlxForm.logger.Debug("New version available: " + newVersion);
                     }
                     else
                     {
-                        qbdlxForm._qbdlxForm.logger.Debug("Current version matches the latest version.");
+                        qbdlxForm._qbdlxForm.logger.Debug("Current version matches the latest release.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("Connection to GitHub failed: " + ex.Message);
+                qbdlxForm._qbdlxForm.logger.Error("Failed to connect to GitHub: " + ex.Message);
             }
 
             return (isUpdateAvailable, newVersion, currentVersion, changes);
         }
     }
+
 }

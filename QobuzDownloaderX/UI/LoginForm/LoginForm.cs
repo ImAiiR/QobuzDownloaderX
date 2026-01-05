@@ -1,48 +1,25 @@
-﻿using QobuzDownloaderX.Properties;
+﻿using QobuzDownloaderX.Helpers;
+using QobuzDownloaderX.Properties;
+using QobuzDownloaderX.Win32;
+using QopenAPI;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using QopenAPI;
-using QobuzDownloaderX.Helpers;
+using System.Windows.Forms;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX
 {
     public partial class LoginForm : Form
     {
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
-
-        private void QobuzDownloaderX_FormClosing(Object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
         private readonly Theming themeManager = new Theming();
         private LanguageManager languageManager;
-        qbdlxForm qbdlx = new qbdlxForm();
-        Logger logger = qbdlxForm._qbdlxForm.logger;
-        Service QoService = new Service();
+        readonly qbdlxForm qbdlx = new qbdlxForm();
+        readonly BufferedLogger logger = qbdlxForm._qbdlxForm.logger;
+        readonly Service QoService = new Service();
         User QoUser;
 
         public string currentVersion { get; set; }
@@ -79,8 +56,8 @@ namespace QobuzDownloaderX
             InitializeComponent();
         }
 
-        string errorLog = Path.GetDirectoryName(Application.ExecutablePath) + "\\Latest_Error.log";
-        string dllCheck = Path.GetDirectoryName(Application.ExecutablePath) + "\\taglib-sharp.dll";
+        readonly string errorLog = Path.GetDirectoryName(Application.ExecutablePath) + "\\Latest_Error.log";
+        readonly string dllCheck = Path.GetDirectoryName(Application.ExecutablePath) + "\\taglib-sharp.dll";
 
         private void UpdateUILanguage()
         {
@@ -220,6 +197,10 @@ namespace QobuzDownloaderX
 
         private async void LoginForm_Load(object sender, EventArgs e)
         {
+            // Avoids annoying image transition visuals.
+            this.qbdlxPictureBox.InitialImage = null;
+            this.qbdlxPictureBox.Image = null;
+
             // Upgrade previous settings to current version
             if (Properties.Settings.Default.UpgradeRequired)
             {
@@ -228,20 +209,24 @@ namespace QobuzDownloaderX
                 Properties.Settings.Default.Save();
             }
 
-            // Round corners of form
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            // Load saved TLS negotiation settings
+            Miscellaneous.SetTLSSetting();
 
-            if (!System.IO.File.Exists(dllCheck))
+            // Round corners of form
+            Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+            if (!ZlpIOHelper.FileExists(dllCheck))
             {
                 logger.Error("taglib-sharp.dll is missing from folder. Exiting.");
-                MessageBox.Show("taglib-sharp.dll missing from folder!\r\nPlease Make sure the DLL is in the same folder as QobuzDownloaderX.exe!", "ERROR",
+                string exeName = Path.GetFileName(Application.ExecutablePath);
+                MessageBox.Show(this, qbdlxForm._qbdlxForm.languageManager.GetTranslation("tagLibSharpMissingMsg").Replace("{exeName}", exeName), Application.ProductName,
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
 
             // Center program + Set theme, language, saved values + Check for update on GitHub
             CenterToScreen();
-            InitializeTheme();
+            InitializeTheme(); 
             InitializeLanguage();
             SetSavedValues();
             CheckForNewVersion();
@@ -250,6 +235,8 @@ namespace QobuzDownloaderX
             logger.Info("QobuzDownlaoderX | Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             aboutTextbox.Text = aboutTextbox.Text.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+
+            this.BeginInvoke((Action)(() => loginButton.Focus()));
 
             // Check for language updates
             await TranslationUpdater.CheckAndUpdateLanguageFiles();
@@ -307,7 +294,7 @@ namespace QobuzDownloaderX
                 {
                     passwordTextbox.Text = tokenPlaceholder;
                 }
-                
+
             }
         }
 
@@ -343,7 +330,7 @@ namespace QobuzDownloaderX
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            logger.Debug("Logging in...");
+            logger.Debug("Logging in…");
             #region Check if textboxes are valid
             if (emailTextbox.Text == emailPlaceholder | emailTextbox.Text == null | emailTextbox.Text == "")
             {
@@ -373,7 +360,7 @@ namespace QobuzDownloaderX
             Settings.Default.savedPassword = password;
             Settings.Default.Save();
 
-            logger.Debug("Starting loginBackground...");
+            logger.Debug("Starting loginBackground…");
             loginBackground.RunWorkerAsync();
         }
 
@@ -545,7 +532,7 @@ namespace QobuzDownloaderX
                 emailTextbox.Text = null;
                 emailTextbox_Leave(this, new EventArgs());
             }
-            
+
             // Save choice locally to be used on next launch.
             Settings.Default.Save();
         }
@@ -567,7 +554,7 @@ namespace QobuzDownloaderX
 
         private void customSaveButton_Click(object sender, EventArgs e)
         {
-            logger.Debug("Saving custom app ID and secret...");
+            logger.Debug("Saving custom app ID and secret…");
             Settings.Default.savedAppID = appidTextbox.Text;
             Settings.Default.savedSecret = appSecretTextbox.Text;
             logger.Debug("Custom app ID and secret saved! Hiding custom values panel");
@@ -598,7 +585,7 @@ namespace QobuzDownloaderX
         private void updateButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Opening update information dialog");
-            DialogResult dialogResult = MessageBox.Show(updateNotification.Replace("{currentVersion}", currentVersion).Replace("{newVersion}", newVersion).Replace("{changelog}", changes.Replace("\\r\\n", "\r\n")), updateNotificationTitle, MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show(this, updateNotification.Replace("{currentVersion}", currentVersion).Replace("{newVersion}", newVersion).Replace("{changelog}", changes.Replace("\\r\\n", "\r\n")), updateNotificationTitle, MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 // If "Yes" is clicked, open GitHub page and close QBDLX.
@@ -619,8 +606,8 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Win32.Constants.WM_NCLBUTTONDOWN, Win32.Constants.HT_CAPTION, 0);
             }
         }
 
@@ -628,9 +615,10 @@ namespace QobuzDownloaderX
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, Win32.Constants.WM_NCLBUTTONDOWN, Win32.Constants.HT_CAPTION, 0);
             }
         }
+
     }
 }

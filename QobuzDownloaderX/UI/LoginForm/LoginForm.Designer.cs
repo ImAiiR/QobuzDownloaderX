@@ -84,7 +84,7 @@
             this.versionNumber.Location = new System.Drawing.Point(195, 79);
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(85, 18);
-            this.versionNumber.TabIndex = 31;
+            this.versionNumber.TabIndex = 1;
             this.versionNumber.Text = "#.#.#.#";
             this.versionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -104,7 +104,7 @@
             this.emailPanel.Location = new System.Drawing.Point(12, 134);
             this.emailPanel.Name = "emailPanel";
             this.emailPanel.Size = new System.Drawing.Size(268, 1);
-            this.emailPanel.TabIndex = 33;
+            this.emailPanel.TabIndex = 3;
             // 
             // passwordIcon
             // 
@@ -122,7 +122,7 @@
             this.passwordPanel.Location = new System.Drawing.Point(12, 179);
             this.passwordPanel.Name = "passwordPanel";
             this.passwordPanel.Size = new System.Drawing.Size(268, 1);
-            this.passwordPanel.TabIndex = 33;
+            this.passwordPanel.TabIndex = 5;
             // 
             // loginButton
             // 
@@ -137,7 +137,7 @@
             this.loginButton.Location = new System.Drawing.Point(12, 204);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(268, 48);
-            this.loginButton.TabIndex = 34;
+            this.loginButton.TabIndex = 6;
             this.loginButton.Text = "LOGIN";
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
@@ -151,7 +151,7 @@
             this.emailTextbox.Location = new System.Drawing.Point(55, 107);
             this.emailTextbox.Name = "emailTextbox";
             this.emailTextbox.Size = new System.Drawing.Size(225, 20);
-            this.emailTextbox.TabIndex = 35;
+            this.emailTextbox.TabIndex = 2;
             this.emailTextbox.Text = "e-mail";
             this.emailTextbox.Click += new System.EventHandler(this.emailTextbox_Click);
             this.emailTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.emailTextbox_KeyDown);
@@ -166,7 +166,7 @@
             this.passwordTextbox.Location = new System.Drawing.Point(55, 148);
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.Size = new System.Drawing.Size(225, 20);
-            this.passwordTextbox.TabIndex = 35;
+            this.passwordTextbox.TabIndex = 4;
             this.passwordTextbox.Text = "password";
             this.passwordTextbox.Click += new System.EventHandler(this.passwordTextbox_Click);
             this.passwordTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextbox_KeyDown);
@@ -179,7 +179,7 @@
             this.visableCheckbox.Location = new System.Drawing.Point(268, 154);
             this.visableCheckbox.Name = "visableCheckbox";
             this.visableCheckbox.Size = new System.Drawing.Size(12, 11);
-            this.visableCheckbox.TabIndex = 37;
+            this.visableCheckbox.TabIndex = 13;
             this.visableCheckbox.UseVisualStyleBackColor = true;
             this.visableCheckbox.CheckedChanged += new System.EventHandler(this.visableCheckbox_CheckedChanged);
             // 
@@ -193,7 +193,7 @@
             this.loginText.Name = "loginText";
             this.loginText.Size = new System.Drawing.Size(268, 23);
             this.loginText.TabIndex = 38;
-            this.loginText.Text = "waiting for login...";
+            this.loginText.Text = "waiting for login…";
             this.loginText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // loginBackground
@@ -208,7 +208,7 @@
             this.customLabel.Location = new System.Drawing.Point(12, 333);
             this.customLabel.Name = "customLabel";
             this.customLabel.Size = new System.Drawing.Size(268, 13);
-            this.customLabel.TabIndex = 36;
+            this.customLabel.TabIndex = 10;
             this.customLabel.Text = "USE CUSTOM APP ID + SECRET";
             this.customLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.customLabel.Click += new System.EventHandler(this.cusotmLabel_Click);
@@ -228,7 +228,7 @@
             this.exitButton.Location = new System.Drawing.Point(149, 258);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(131, 32);
-            this.exitButton.TabIndex = 34;
+            this.exitButton.TabIndex = 8;
             this.exitButton.Text = "EXIT";
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
@@ -241,7 +241,7 @@
             this.altLoginLabel.Location = new System.Drawing.Point(15, 306);
             this.altLoginLabel.Name = "altLoginLabel";
             this.altLoginLabel.Size = new System.Drawing.Size(265, 13);
-            this.altLoginLabel.TabIndex = 39;
+            this.altLoginLabel.TabIndex = 9;
             this.altLoginLabel.Text = "LOGIN WITH TOKEN";
             this.altLoginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.altLoginLabel.Click += new System.EventHandler(this.altLoginLabel_Click);
@@ -261,7 +261,7 @@
             this.aboutButton.Location = new System.Drawing.Point(12, 258);
             this.aboutButton.Name = "aboutButton";
             this.aboutButton.Size = new System.Drawing.Size(131, 32);
-            this.aboutButton.TabIndex = 40;
+            this.aboutButton.TabIndex = 7;
             this.aboutButton.Text = "ABOUT";
             this.aboutButton.UseVisualStyleBackColor = false;
             this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
@@ -277,7 +277,7 @@
             this.aboutTextbox.Name = "aboutTextbox";
             this.aboutTextbox.ReadOnly = true;
             this.aboutTextbox.Size = new System.Drawing.Size(268, 240);
-            this.aboutTextbox.TabIndex = 41;
+            this.aboutTextbox.TabIndex = 0;
             this.aboutTextbox.Text = resources.GetString("aboutTextbox.Text");
             this.aboutTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -290,7 +290,7 @@
             this.loginAboutPanel.Location = new System.Drawing.Point(189, 296);
             this.loginAboutPanel.Name = "loginAboutPanel";
             this.loginAboutPanel.Size = new System.Drawing.Size(268, 297);
-            this.loginAboutPanel.TabIndex = 42;
+            this.loginAboutPanel.TabIndex = 14;
             this.loginAboutPanel.Visible = false;
             // 
             // closeAboutButton
@@ -324,7 +324,7 @@
             this.customPanel.Location = new System.Drawing.Point(189, 100);
             this.customPanel.Name = "customPanel";
             this.customPanel.Size = new System.Drawing.Size(268, 170);
-            this.customPanel.TabIndex = 43;
+            this.customPanel.TabIndex = 12;
             this.customPanel.Visible = false;
             // 
             // appSecretLabel
@@ -335,7 +335,7 @@
             this.appSecretLabel.Location = new System.Drawing.Point(18, 52);
             this.appSecretLabel.Name = "appSecretLabel";
             this.appSecretLabel.Size = new System.Drawing.Size(82, 20);
-            this.appSecretLabel.TabIndex = 46;
+            this.appSecretLabel.TabIndex = 2;
             this.appSecretLabel.Text = "App Secret";
             // 
             // appidLabel
@@ -346,7 +346,7 @@
             this.appidLabel.Location = new System.Drawing.Point(18, 4);
             this.appidLabel.Name = "appidLabel";
             this.appidLabel.Size = new System.Drawing.Size(56, 20);
-            this.appidLabel.TabIndex = 45;
+            this.appidLabel.TabIndex = 0;
             this.appidLabel.Text = "App ID";
             // 
             // customInfoTextbox
@@ -360,7 +360,7 @@
             this.customInfoTextbox.Name = "customInfoTextbox";
             this.customInfoTextbox.ReadOnly = true;
             this.customInfoTextbox.Size = new System.Drawing.Size(268, 39);
-            this.customInfoTextbox.TabIndex = 44;
+            this.customInfoTextbox.TabIndex = 5;
             this.customInfoTextbox.Text = "Leave values blank if you would like to automatically grab the values!";
             this.customInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -377,7 +377,7 @@
             this.customSaveButton.Location = new System.Drawing.Point(69, 100);
             this.customSaveButton.Name = "customSaveButton";
             this.customSaveButton.Size = new System.Drawing.Size(131, 32);
-            this.customSaveButton.TabIndex = 43;
+            this.customSaveButton.TabIndex = 4;
             this.customSaveButton.Text = "SAVE";
             this.customSaveButton.UseVisualStyleBackColor = false;
             this.customSaveButton.Click += new System.EventHandler(this.customSaveButton_Click);
@@ -391,7 +391,7 @@
             this.appSecretTextbox.Location = new System.Drawing.Point(22, 75);
             this.appSecretTextbox.Name = "appSecretTextbox";
             this.appSecretTextbox.Size = new System.Drawing.Size(225, 20);
-            this.appSecretTextbox.TabIndex = 36;
+            this.appSecretTextbox.TabIndex = 3;
             // 
             // appidTextbox
             // 
@@ -402,7 +402,7 @@
             this.appidTextbox.Location = new System.Drawing.Point(22, 27);
             this.appidTextbox.Name = "appidTextbox";
             this.appidTextbox.Size = new System.Drawing.Size(225, 20);
-            this.appidTextbox.TabIndex = 37;
+            this.appidTextbox.TabIndex = 1;
             // 
             // updateButton
             // 
@@ -418,7 +418,7 @@
             this.updateButton.Location = new System.Drawing.Point(12, 354);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(25, 25);
-            this.updateButton.TabIndex = 44;
+            this.updateButton.TabIndex = 11;
             this.updateButton.UseVisualStyleBackColor = false;
             this.updateButton.Visible = false;
             this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
@@ -428,7 +428,7 @@
             this.topPanel.Location = new System.Drawing.Point(-1, 0);
             this.topPanel.Name = "topPanel";
             this.topPanel.Size = new System.Drawing.Size(301, 18);
-            this.topPanel.TabIndex = 45;
+            this.topPanel.TabIndex = 0;
             this.topPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseMove);
             // 
             // LoginForm

@@ -1,115 +1,184 @@
 {
-	"TranslationCredit":			"TheParaTiger",
-	"TranslationUpdatedOn":			"November 24, 2024, 09:37AM MET",
-	"TranslationFont":				"Nirmala UI",
-	"_SECTION1_":					"=================== MAIN FORM BUTTONS ===================",
-	"additionalSettingsButton":		"Weitere Optionen",
-	"aboutButton": 					"ÜBER",
-	"closeAdditionalButton":		"Optionen",
-	"downloadButton":				"HOLEN!",
-	"downloaderButton": 			"DOWNLOADER",
-	"logoutButton": 				"AUSLOGGEN",
-	"openFolderButton":				"Ordner Öffnen",
-	"qualitySelectButton":			"Qualität",
-	"saveTemplatesButton":			"Speichern",
-	"searchButton": 				"SUCHE",
-	"searchAlbumsButton":			"ALBUM",
-	"searchTracksButton":			"TRACK",
-	"selectFolderButton":			"Ordner Auswählen",
-	"settingsButton": 				"OPTIONEN",
-	"_SECTION2_":					"=================== MAIN FORM LABELS ===================",
-	"advancedOptionsLabel":			"Weitere Optionen",
-	"albumTemplateLabel":			"ALBUM VORLAGE",
-	"artistTemplateLabel":			"ARTIST VORLAGE",
-	"commentLabel":					"Eigener Kommentar",
-	"downloadFolderLabel":			"DOWNLOAD ORDNER",
-	"downloadOptionsLabel":			"DOWNLOAD OPTIONEN",
-	"embeddedArtLabel":				"Eingebettete Artwork Größe",
-	"extraSettingsLabel":			"WEITERE OPTIONEN",
-	"languageLabel":				"Aktuelle Sprache",
-	"playlistTemplateLabel":		"PLAYLIST VORLAGE",
-	"favoritesTemplateLabel":		"FAVORITEN VORLAGE",
-	"savedArtLabel":				"Gespeicherte Artwork Größe",
-	"searchingLabel":				"Suche...",
-	"taggingOptionsLabel":			"TAG OPTIONEN",
-	"templatesLabel":				"VORLAGEN",
-	"templatesListLabel": "VORLAGEN LISTE",
-	"themeLabel":					"Aktuelles Theme",
-	"themeSectionLabel":			"THEME OPTIONEN",
-	"trackTemplateLabel":			"TRACK VORLAGE",
-	"userInfoLabel": 				"BENUTZERINFO",
-	"welcomeLabel": 				"Willkommen\r\n{username}",
-	"_SECTION3_":					"=================== MAIN FORM CHECKBOXES ===================",
-	"albumArtistCheckbox":			"Album Artist",
-	"albumTitleCheckbox":			"Album Titel",
-	"trackArtistCheckbox":			"Track Artist",
-	"trackTitleCheckbox":			"Track Titel",
-	"releaseDateCheckbox":			"Veröffentlichungsdatum",
-	"releaseTypeCheckbox":			"Veröffentlichungstyp",
-	"genreCheckbox":				"Genre",
-	"trackNumberCheckbox":			"Track Nummer",
-	"trackTotalCheckbox":			"Totale Anzahl Tracks",
-	"discNumberCheckbox":			"CD-Nummer",
-	"discTotalCheckbox":			"Totale Anzahl CDs",
-	"composerCheckbox":				"Komponist",
-	"explicitCheckbox":				"Explizit",
-	"coverArtCheckbox":				"Cover Art",
-	"copyrightCheckbox":			"Copyright",
-	"labelCheckbox":				"Label",
-	"upcCheckbox":					"UPC / Barcode",
-	"isrcCheckbox":					"ISRC",
-	"streamableCheckbox":			"Ist Streamfähig Check",
-	"fixMD5sCheckbox":				"Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
-	"downloadSpeedCheckbox":		"Downloadgeschwindigkeit Anzeigen",
-	"_SECTION4_":					"=================== MAIN FORM PLACEHOLDERS ===================",
-	"albumLabelPlaceholder":		"Willkommen in QBDLX!",
-	"artistLabelPlaceholder":		"Füge einen Qobuz-Link ein und Klicke HOLEN!",
-	"infoLabelPlaceholder":			"Veröffentlicht:",
-	"inputTextboxPlaceholder":		"Qobuz URL Eingeben...",
-	"searchTextboxPlaceholder":		"Suchbegriff eingeben...",
-	"downloadFolderPlaceholder":	"Kein Ordner Ausgewählt",
-	"userInfoTextboxPlaceholder":	"Nutzer ID = {user_id}\r\nE-Mail = {user_email}\r\nLand = {user_country}\r\nAbonnement = {user_subscription}\r\nLäuft ab = {user_subscription_expiration}",
-	"downloadOutputWelcome":		"Willkommen {user_display_name}!",
-	"downloadOutputExpired": 		"DEIN ABONNEMENT IST ABGELAUFEN!, ES WERDEN NUR 30-SEKUNDEN AUSSCHNITTE HERUNTERGELADEN!",
-	"downloadOutputPath": 			"Download Pfad",
-	"downloadOutputNoPath": 		"Es wurde kein Pfad gesetzt! Denke daran einen Ordner auszuwählen!",
-	"downloadOutputAPIError": 		"Qobuz-API Fehler, ist dieses Album in deiner Region verfügbar?",
-	"downloadOutputNotImplemented": "Noch nicht Implementiert oder nicht verstanden, hast du dich vielleicht vertippt?",
-	"downloadOutputCheckLink": 		"Überprüfe Link...",
-	"downloadOutputTrNotStream": 	"Track {TrackNumber} ist nicht fürs Streamen verfügbar und wird Übersprungen",
-	"downloadOutputAlNotStream": 	"Album ist nicht fürs Streaming verfügbar.",
-	"downloadOutputGoodyFound": 	"Zusatzinhalte gefunden. Es wird versucht, sie Herunterzuladen...",
-	"downloadOutputGoodyExists": 	"Die Datei für den Zusatzinhalt existiert bereits.",
-	"downloadOutputGoodyNoURL": 	"Keine Download URL für den Zusatzinhalt gefunden. Er wird Übersprungen",
-	"downloadOutputFileExists": 	"Die Datei für den Track {TrackNumber} existiert bereits und wird Übersprungen",
-	"downloadOutputDownloading": 	"Lädt Herunter",
-	"downloadOutputDone": 			"FERTIG",
-	"downloadOutputCompleted": 		"DOWNLOAD FERTIG!",
-	"progressLabelInactive": 		"Kein Download aktiv",
-	"progressLabelActive": 			"Download Fortschritt",
-	"_SECTION5_":					"=================== LOGIN FORM BUTTONS ===================",
-	"closeAboutButton":				"SCHLIEßEN",
-	"customSaveButton":				"SPEICHERN",
-	"exitButton":					"VERLASSEN",
-	"loginButton":					"EINLOGGEN",
-	"_SECTION6_":					"=================== LOGIN FORM LABELS ===================",
-	"appidLabel":					"App ID",
-	"appSecretLabel":				"App Secret",
-	"customLabel":					"EIGENE APP ID + SECRET NUTZEN",
-	"_SECTION7_":					"=================== LOGIN FORM TEXTBOXES ===================",
-	"customInfoTextbox":			"Felder leerlassen wenn du willst, dass das Programm die Werte selber holt.",
-"aboutTextbox":						"Version - {version}\r\nErstellt von AiiR\r\n\r\nInspiriert von Qo-DL\r\n(Erstellt von Sorrow und DashLt)\r\n\r\nDanke an die Benutzer von GitHub und Telegramm für die Fehlerberichte und Ideen! Und ein großes Dankeschön an DJDoubleD für die Weiterentwicklung des ursprünglichen Programms während ich Beschäftigt war!",
-	"_SECTION8_":					"=================== LOGIN FORM PLACEHOLDERS ===================",
-	"emailPlaceholder":				"E-Mail",
-	"passwordPlaceholder":			"Passwort",
-	"tokenPlaceholder":				"Token",
-	"altLoginLabelToken":			"MIT TOKEN ANMELDEN",
-	"altLoginLabelEmail":			"MIT E-MAIL UND PASSWORT ANMELDEN",
-	"loginTextWaiting":				"Wartet auf das Einloggen...",
-	"loginTextStart":				"Loggt sich ein...",
-	"loginTextError":				"Login fehlgeschlagen. Der Fehler wurde im Fehler-log gespeichert.",
-	"loginTextNoEmail":				"Keine E-Mail in dem Feld",
-	"loginTextNoPassword":			"Kein Passwort/Token in dem Feld",
-	"updateNotification":			"Eine neue Version von QBDLX ist verfügbar!\r\n\r\nInstallierte Version - {currentVersion}\r\nNeueste Version - {newVersion}\r\n\r\nÄnderungsliste\r\n==============\r\n{changelog}\r\n==============\r\n\r\nMöchtest du aktualisieren?",
-	"updateNotificationTitle":		"QBDLX | Update Verfügbar"
+    "TranslationCredit":            "TheParaTiger",
+    "TranslationUpdatedOn":         "January 2, 2026, 09:37AM MET",
+    "TranslationFont":              "Nirmala UI",
+
+    "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
+    "additionalSettingsButton":     "Weitere Optionen",
+    "aboutButton":                  "ÜBER…",
+    "closeAdditionalButton":        "Optionen",
+    "downloadButton":               "HOLEN!",
+    "batchDownloadButton":          "PAKET HERUNTERLADEN", // ChatGPT translation.
+    "abortButton":                  "ABBRECHEN", // ChatGPT translation.
+    "skipButton":                   "ÜBERSPRINGEN", // ChatGPT translation.
+    "downloaderButton":             "DOWNLOADER",
+    "logoutButton":                 "AUSLOGGEN",
+    "openFolderButton":             "Ordner Öffnen",
+    "qualitySelectButton":          "Qualität",
+    "saveTemplatesButton":          "Speichern",
+    "resetTemplatesButton":         "Zurücksetzen", // ChatGPT translation.
+    "searchButton":                 "SUCHE",
+    "searchAlbumsButton":           "ALBUM",
+    "searchTracksButton":           "TRACK",
+    "selectFolderButton":           "Ordner Auswählen",
+    "settingsButton":               "OPTIONEN",
+    "selectAllRowsButton":          "Alles auswählen", // ChatGPT translation.
+    "deselectAllRowsButton":        "Alles abwählen", // ChatGPT translation.
+    "batchDownloadRowsButton":      "AUSGEWÄHLTE ZEILEN STAPELWEISE HERUNTERLADEN", // ChatGPT translation.
+
+    "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
+    "advancedOptionsLabel":         "Weitere Optionen",
+    "albumTemplateLabel":           "ALBUM VORLAGE",
+    "artistTemplateLabel":          "ARTIST VORLAGE",
+    "commentLabel":                 "Eigener Kommentar",
+    "downloadFolderLabel":          "DOWNLOAD ORDNER",
+    "downloadOptionsLabel":         "DOWNLOAD OPTIONEN",
+    "embeddedArtLabel":             "Eingebettete Artwork Größe",
+    "extraSettingsLabel":           "WEITERE OPTIONEN",
+    "languageLabel":                "Aktuelle Sprache",
+    "playlistTemplateLabel":        "PLAYLIST VORLAGE",
+    "favoritesTemplateLabel":       "FAVORITEN VORLAGE",
+    "savedArtLabel":                "Gespeicherte Artwork Größe",
+    "searchingLabel":               "Suche…",
+    "taggingOptionsLabel":          "TAG OPTIONEN",
+    "templatesLabel":               "VORLAGEN",
+    "templatesListLabel":           "VORLAGEN LISTE",
+    "themeLabel":                   "Aktuelles Theme",
+    "themeSectionLabel":            "THEME OPTIONEN",
+    "trackTemplateLabel":           "TRACK VORLAGE",
+    "userInfoLabel":                "BENUTZERINFO",
+    "welcomeLabel":                 "Willkommen\r\n{username}",
+    "limitSearchResultsLabel":      "Ergebnislimit:", // ChatGPT translation.
+    "searchSortingLabel":           "Sortieren nach:", // ChatGPT translation.
+    "sortReleaseDateLabel":         "Veröffentlichungsdatum", // ChatGPT translation.
+    "sortGenreLabel":               "Genre", // ChatGPT translation.
+    "sortArtistNameLabel":          "Künstlername", // ChatGPT translation.
+    "sortAlbumTrackNameLabel":      "Album / Titelname", // ChatGPT translation.
+    "sortingSearchResultsLabel":    "Sortiere…", // ChatGPT translation.
+    "searchResultsCountLabel":      "Ergebnisse", // ChatGPT translation.
+    "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // ChatGPT translation.
+    "disclaimer":                   "Haftungsausschluss / Rechtlicher Hinweis\n\nDiese Anwendung verwendet die Qobuz-API, ist jedoch nicht von Qobuz zertifiziert.\n\nDie Software und ihre Autoren sind in keiner Weise mit Qobuz verbunden, werden von Qobuz nicht unterstützt und stehen nicht in offizieller Verbindung zu Qobuz. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko. Die Autoren übernehmen keine Garantie für die Genauigkeit, Zuverlässigkeit oder Verfügbarkeit des Dienstes und haften nicht für Schäden oder Datenverluste, die aus der Nutzung resultieren.\n\nDurch die Nutzung dieser Anwendung erkennen Sie an und akzeptieren, dass sie „wie besehen“ bereitgestellt wird, ohne ausdrückliche oder stillschweigende Garantien jeglicher Art, einschließlich, aber nicht beschränkt auf Garantien der Marktgängigkeit, Eignung für einen bestimmten Zweck oder Nichtverletzung von Rechten.\n\nDie Nutzer sind verantwortlich für die Einhaltung aller geltenden Gesetze, Nutzungsbedingungen und Einschränkungen beim Zugriff auf die Qobuz-API oder andere Drittanbieterdienste.\n\nFür offizielle Qobuz-Dienste und Support besuchen Sie bitte die offizielle Website von Qobuz: https://www.qobuz.com/",
+
+    "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
+    "albumArtistCheckbox":          "Album Artist",
+    "albumTitleCheckbox":           "Album Titel",
+    "trackArtistCheckbox":          "Track Artist",
+    "trackTitleCheckbox":           "Track Titel",
+    "releaseDateCheckbox":          "Veröffentlichungsdatum",
+    "releaseTypeCheckbox":          "Veröffentlichungstyp",
+    "genreCheckbox":                "Genre",
+    "trackNumberCheckbox":          "Track Nummer",
+    "trackTotalCheckbox":           "Totale Anzahl Tracks",
+    "discNumberCheckbox":           "CD-Nummer",
+    "discTotalCheckbox":            "Totale Anzahl CDs",
+    "composerCheckbox":             "Komponist",
+    "explicitCheckbox":             "Explizit",
+    "coverArtCheckbox":             "Cover Art",
+    "copyrightCheckbox":            "Copyright",
+    "labelCheckbox":                "Label",
+    "upcCheckbox":                  "UPC / Barcode",
+    "isrcCheckbox":                 "ISRC",
+    "urlCheckbox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckbox":     "Track-Künstlernamen zusammenführen.\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "streamableCheckbox":           "Ist Streamfähig Check",
+    "fixMD5sCheckbox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
+    "downloadSpeedCheckbox":        "Downloadgeschwindigkeit Anzeigen",
+    "sortAscendantCheckBox":        "Aufsteigend", // ChatGPT translation.
+    "downloadGoodiesCheckbox":      "Goodies herunterladen", // ChatGPT translation.
+    "useTLS13Checkbox":             "TLS 1.3 verwenden", // ChatGPT translation.
+    "downloadArtistOther":          "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // ChatGPT translation.
+
+    "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
+    "albumLabelPlaceholder":        "Willkommen in QBDLX!",
+    "artistLabelPlaceholder":       "Füge einen Qobuz-Link ein und Klicke HOLEN!",
+    "infoLabelPlaceholder":         "Veröffentlicht:",
+    "inputTextboxPlaceholder":      "Qobuz URL Eingeben…",
+    "searchTextboxPlaceholder":     "Suchbegriff eingeben…",
+    "downloadFolderPlaceholder":    "Kein Ordner Ausgewählt",
+    "userInfoTextboxPlaceholder":   "Nutzer ID = {user_id}\r\nE-Mail = {user_email}\r\nLand = {user_country}\r\nAbonnement = {user_subscription}\r\nLäuft ab = {user_subscription_expiration}",
+    "downloadOutputWelcome":        "Willkommen {user_display_name}!",
+    "downloadOutputExpired":        "DEIN ABONNEMENT IST ABGELAUFEN!, ES WERDEN NUR 30-SEKUNDEN AUSSCHNITTE HERUNTERGELADEN!",
+    "downloadOutputPath":           "Download Pfad:",
+    "downloadOutputNoPath":         "Es wurde kein Pfad gesetzt! Denke daran einen Ordner auszuwählen!",
+    "downloadOutputNoUrl":          "Titel {TrackNumber} steht zum Herunterladen nicht zur Verfügung. Wird übersprungen.", // ChatGPT translation.
+    "downloadOutputAPIError":       "Qobuz-API Fehler, ist dieses Album in deiner Region verfügbar?",
+    "downloadOutputNotImplemented": "Noch nicht Implementiert oder nicht verstanden, hast du dich vielleicht vertippt?",
+    "downloadOutputCheckLink":      "Überprüfe Link…",
+    "downloadOutputTrNotStream":    "Track {TrackNumber} ist nicht fürs Streamen verfügbar und wird Übersprungen",
+    "downloadOutputAlNotStream":    "Album ist nicht fürs Streaming verfügbar.",
+    "downloadOutputGoodyFound":     "Zusatzinhalte gefunden. Es wird versucht, sie Herunterzuladen…",
+    "downloadOutputGoodyExists":    "Die Datei für den Zusatzinhalt existiert bereits.",
+    "downloadOutputGoodyNoURL":     "Keine Download URL für den Zusatzinhalt gefunden. Er wird Übersprungen",
+    "downloadOutputFileExists":     "Die Datei für den Track {TrackNumber} existiert bereits und wird Übersprungen",
+    "downloadOutputDownloading":    "Lädt Herunter",
+    "downloadOutputDone":           "FERTIG",
+    "downloadOutputCompleted":      "DOWNLOAD FERTIG!",
+    "downloadAborted":              "DOWNLOAD VOM BENUTZER ABGEBROCHEN.", // ChatGPT translation.
+    "albumSkipped":                 "ALBUM VOM BENUTZER ÜBERSPRUNGEN.", // ChatGPT translation.
+    "progressLabelInactive":        "Kein Download aktiv",
+    "progressLabelActive":          "Download Fortschritt",
+    "formClosingWarning":           "Ein Download läuft, möchten Sie wirklich beenden?", // ChatGPT translation.
+    "artist":                       "Künstler", // ChatGPT translation.
+    "artists":                      "Künstler", // ChatGPT translation.
+    "album":                        "Album", // ChatGPT translation.
+    "albums":                       "Alben", // ChatGPT translation.
+    "tracks":                       "Tracks", // ChatGPT translation.
+    "singleTrack":                  "Einzeltitel", // ChatGPT translation.
+    "playlist":                     "Wiedergabeliste", // ChatGPT translation.
+    "recordLabel":                  "Plattenlabel", // ChatGPT translation.
+    "user":                         "Benutzer", // ChatGPT translation.
+    "invalidUrl":                   "Ungültige URL: {0}", // ChatGPT translation.
+    "copyToClipboard":              "In die Zwischenablage kopieren", // ChatGPT translation.
+    "copyThisRowToClipboard":       "Diese Zeile in die Zwischenablage kopieren", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "Ausgewählte Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "Alle Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
+
+    "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
+    "closeAboutButton":             "SCHLIEßEN",
+    "customSaveButton":             "SPEICHERN",
+    "exitButton":                   "VERLASSEN",
+    "loginButton":                  "EINLOGGEN",
+
+    "_SECTION6_":                   "=================== LOGIN FORM LABELS ===================",
+    "appidLabel":                   "App ID",
+    "appSecretLabel":               "App Secret",
+    "customLabel":                  "EIGENE APP ID + SECRET NUTZEN",
+    
+    "_SECTION7_":                   "=================== LOGIN FORM TEXTBOXES ===================",
+    "customInfoTextbox":            "Felder leerlassen wenn du willst, dass das Programm die Werte selber holt.",
+    "aboutTextbox":                 "Version - {version}\r\nErstellt von AiiR\r\n\r\nInspiriert von Qo-DL\r\n(Erstellt von Sorrow und DashLt)\r\n\r\nDanke an die Benutzer von GitHub und Telegramm für die Fehlerberichte und Ideen! Und ein großes Dankeschön an DJDoubleD für die Weiterentwicklung des ursprünglichen Programms während ich Beschäftigt war!",
+
+    "_SECTION8_":                   "=================== LOGIN FORM PLACEHOLDERS ===================",
+    "emailPlaceholder":             "E-Mail",
+    "passwordPlaceholder":          "Passwort",
+    "tokenPlaceholder":             "Token",
+    "altLoginLabelToken":           "MIT TOKEN ANMELDEN",
+    "altLoginLabelEmail":           "MIT E-MAIL UND PASSWORT ANMELDEN",
+    "loginTextWaiting":             "Wartet auf das Einloggen…",
+    "loginTextStart":               "Loggt sich ein…",
+    "loginTextError":               "Login fehlgeschlagen. Der Fehler wurde im Fehler-log gespeichert.",
+    "loginTextNoEmail":             "Keine E-Mail in dem Feld",
+    "loginTextNoPassword":          "Kein Passwort/Token in dem Feld",
+    "updateNotification":           "Eine neue Version von QBDLX ist verfügbar!\r\n\r\nInstallierte Version - {currentVersion}\r\nNeueste Version - {newVersion}\r\n\r\nÄnderungsliste\r\n==============\r\n{changelog}\r\n==============\r\n\r\nMöchtest du aktualisieren?",
+    "updateNotificationTitle":      "QBDLX | Update Verfügbar",
+
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
+    "batchDownloadDlgText":         "Stapel-Download", // ChatGPT translation.
+    "batchDownloadLabel":           "Fügen Sie eine oder mehrere Qobuz-URLs ein…", // ChatGPT translation.
+    "closeBatchDownloadbutton":     "SCHLIESSEN / ABBRECHEN", // ChatGPT translation.
+    "getAllBatchDownloadButton":    "ALLES HERUNTERLADEN", // ChatGPT translation.
+
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
+    "showWindowCmItem":             "Fenster anzeigen", // ChatGPT translation.
+    "hideWindowCmItem":             "Fenster ausblenden", // ChatGPT translation.
+    "closeProgramCmItem":           "Programm schließen", // ChatGPT translation.
+    "batchDownloadFinished":        "Stapel-Download abgeschlossen!", // ChatGPT translation.
+
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
+    "tagLibSharpMissingMsg":        "taglib-sharp.dll fehlt im Ordner!\r\nBitte stellen Sie sicher, // ChatGPT translation.dass die DLL sich im gleichen Ordner wie {exeName} befindet!",
+    "themeFileNotFoundMsg":         "Design-Datei nicht gefunden.", // ChatGPT translation.
+    "themeNameNotFoundMsg":         "Design '{themeName}' nicht gefunden.", // ChatGPT translation.
+    "selectedLangFileNotfoundMsg":  "Ausgewählte Sprachdatei nicht gefunden.", // ChatGPT translation.
+    "downloadOutputDontExistMsg":   "Der angegebene Pfad existiert nicht.", // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'" // ChatGPT translation.
 }

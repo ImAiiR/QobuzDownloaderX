@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace QobuzDownloaderX
+namespace QobuzDownloaderX.Helpers
 {
-    class FixMD5
+    internal sealed class FixMD5
     {
-        GetInfo getInfo = new GetInfo();
+        readonly GetInfo getInfo = new GetInfo();
 
         public string outputResult { get; set; }
 
         public void fixMD5(string filePath, string flacEXEPath)
         {
-            qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5...");
-            string driveLetter = filePath.Substring(0, 2);
+            qbdlxForm._qbdlxForm.logger.Debug("Attempting to fix unset MD5…");
+            // string driveLetter = filePath.Substring(0, 2); // UNUSED
             string cmdText = "/C echo Fixing unset MD5s... & \"" + flacEXEPath + "\" -f8 \"" + filePath + "\"";
             qbdlxForm._qbdlxForm.logger.Debug("Commands - " + cmdText);
 

@@ -1,0 +1,184 @@
+﻿{
+    "TranslationCredit":            "bleedfed",
+    "TranslationUpdatedOn":         "January 2, 2026, 01:25PM UTC",
+    "TranslationFont":              "Segoe UI",
+
+    "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
+    "additionalSettingsButton":     "Ek Ayarlar",
+    "aboutButton":                  "HAKKINDA",
+    "closeAdditionalButton":        "Ayarlara Geri Dön",
+    "downloadButton":               "İndir",
+    "batchDownloadButton":          "TOPLU İNDİR", // ChatGPT translation.
+    "abortButton":                  "İPTAL", // ChatGPT translation.
+    "skipButton":                   "ATLA", // ChatGPT translation.
+    "downloaderButton":             "İNDİR",
+    "logoutButton":                 "ÇIKIŞ YAP",
+    "openFolderButton":             "Klasörü Aç",
+    "qualitySelectButton":          "Kalite Seç",
+    "saveTemplatesButton":          "Kaydet",
+    "resetTemplatesButton":         "Sıfırla", // ChatGPT translation.
+    "searchButton":                 "ARA",
+    "searchAlbumsButton":           "ESER",
+    "searchTracksButton":           "PARÇA",
+    "selectFolderButton":           "Klasör Seç",
+    "settingsButton":               "AYARLAR",
+    "selectAllRowsButton":          "Tümünü seç", // ChatGPT translation.
+    "deselectAllRowsButton":        "Tüm seçimi kaldır", // ChatGPT translation.
+    "batchDownloadRowsButton":      "SEÇİLİ SATIRLARI TOPLU İNDİR", // ChatGPT translation.
+
+    "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
+    "advancedOptionsLabel":         "GELİŞMİŞ AYARLAR",
+    "albumTemplateLabel":           "ALBÜM ŞABLONU",
+    "artistTemplateLabel":          "SANATÇI ŞABLONU",
+    "commentLabel":                 "Özel Yorum",
+    "downloadFolderLabel":          "İNDİRİLECEK KLASÖR",
+    "downloadOptionsLabel":         "İNDİRME SEÇENEKLERİ",
+    "embeddedArtLabel":             "GÖMÜLÜ KAPAK BOYUTU (px)",
+    "extraSettingsLabel":           "EK AYARLAR",
+    "languageLabel":                "DİL",
+    "playlistTemplateLabel":        "OYNATMA LİSTESİ ŞABLONU",
+    "favoritesTemplateLabel":       "FAVORİLER ŞABLONU",
+    "savedArtLabel":                "KAYDEDİLEN KAPAK BOYUTU (px)",
+    "searchingLabel":               "Aranıyor…",
+    "taggingOptionsLabel":          "ETİKET AYARLARI",
+    "templatesLabel":               "ŞABLON",
+    "templatesListLabel":           "ŞABLON LİSTESİ",
+    "themeLabel":                   "Aktif Tema",
+    "themeSectionLabel":            "TEMA AYARLARI",
+    "trackTemplateLabel":           "PARÇA ŞABLONU",
+    "userInfoLabel":                "HESAP BİLGİLERİ",
+    "welcomeLabel":                 "Hoşgeldin\r\n{username}",
+    "limitSearchResultsLabel":      "Sonuç Sınırı:", // ChatGPT translation.
+    "searchSortingLabel":           "Sırala:", // ChatGPT translation.
+    "sortGenreLabel":               "Tür", // ChatGPT translation.
+    "sortReleaseDateLabel":         "Yayın Tarihi", // ChatGPT translation.
+    "sortArtistNameLabel":          "Sanatçı Adı", // ChatGPT translation.
+    "sortAlbumTrackNameLabel":      "Albüm / Parça Adı", // ChatGPT translation.
+    "sortingSearchResultsLabel":    "Sıralanıyor…", // ChatGPT translation.
+    "searchResultsCountLabel":      "sonuç", // ChatGPT translation.
+    "selectedRowsCountLabel":       "{0} seçili satır", // ChatGPT translation.
+    "disclaimer":                   "Feragat / Yasal Uyarı\n\nBu uygulama Qobuz API’sini kullanır ancak Qobuz tarafından onaylanmamıştır.\n\nYazılım ve yazarları, Qobuz ile herhangi bir şekilde bağlı, onaylı veya resmi olarak bağlantılı değildir. Bu uygulamanın kullanımı kendi sorumluluğunuzdadır. Yazarlar, hizmetin doğruluğu, güvenilirliği veya kullanılabilirliği konusunda herhangi bir garanti vermez ve kullanımından kaynaklanabilecek herhangi bir zarar veya veri kaybından sorumlu tutulamaz.\n\nBu uygulamayı kullanarak, uygulamanın “olduğu gibi” sağlandığını ve hiçbir açık veya zımni garanti verilmediğini kabul etmiş olursunuz; bu garantiler, ticari uygunluk, belirli bir amaç için uygunluk veya ihlal etmeme garantilerini de kapsar ancak bunlarla sınırlı değildir.\n\nKullanıcılar, Qobuz API’sine veya diğer üçüncü taraf hizmetlerine erişirken geçerli tüm yasa, hizmet şartları ve kullanım kısıtlamalarına uymaktan sorumludur.\n\nResmî Qobuz hizmetleri ve destek için Qobuz’un resmi web sitesine: https://www.qobuz.com/",
+
+    "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
+    "albumArtistCheckbox":          "Albüm Sanatçısı",
+    "albumTitleCheckbox":           "Albüm Başlığı",
+    "trackArtistCheckbox":          "Parça Sanatçısı",
+    "trackTitleCheckbox":           "Parça İsmi",
+    "releaseDateCheckbox":          "Çıkış Tarihi",
+    "releaseTypeCheckbox":          "Çıkış Türü",
+    "genreCheckbox":                "Tür",
+    "trackNumberCheckbox":          "Parça Sırası",
+    "trackTotalCheckbox":           "Toplam Parça Sayısı",
+    "discNumberCheckbox":           "Disk Numarası",
+    "discTotalCheckbox":            "Toplam Disk Sayısı",
+    "composerCheckbox":             "Besteci",
+    "explicitCheckbox":             "Müstehcen İçerik Uyarısı",
+    "coverArtCheckbox":             "Kapak Resmi",
+    "copyrightCheckbox":            "Telif",
+    "labelCheckbox":                "Müzik Şirketi",
+    "upcCheckbox":                  "UPC / Barkod",
+    "isrcCheckbox":                 "ISRC",
+    "urlCheckbox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckbox":     "Parça sanatçı isimlerini birleştir.\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "streamableCheckbox":           "Oynatılabilirlik Doğrulaması",
+    "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
+    "downloadSpeedCheckbox":        "İndirme Hızını Göster",
+    "sortAscendantCheckBox":        "Artan", // ChatGPT translation.
+    "downloadGoodiesCheckbox":      "İkramları indir", // ChatGPT translation.
+    "useTLS13Checkbox":             "TLS 1.3 kullan", // ChatGPT translation.
+    "downloadArtistOther":          "Sanatçıları indir — Diğer / cover parçaları", // ChatGPT translation.
+
+    "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
+    "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",
+    "artistLabelPlaceholder":       "QOBUZ Linkini Yapıştır ve İndir'e Bas!",
+    "infoLabelPlaceholder":         "Çıkış Tarihi",
+    "inputTextboxPlaceholder":      "QOBUZ Linki Yapıştırın…",
+    "searchTextboxPlaceholder":     "Aramanızı Girin…",
+    "downloadFolderPlaceholder":    "Klasör Seçilmemiş",
+    "userInfoTextboxPlaceholder":   "Hesap ID = {user_id}\r\nE-posta = {user_email}\r\nÜlke = {user_country}\r\nAbonelik = {user_subscription}\r\nAbonelik Sona Erme Süresi = {user_subscription_expiration}",
+    "downloadOutputWelcome":        "Hoşgeldin {user_display_name}!",
+    "downloadOutputExpired":        "ABONELİĞİNİZ BİTMİŞ, YÜKLEMELER 30 SANİYELİK PARÇALARLA KISITLI OLACAK!",
+    "downloadOutputPath":           "İndirme Yolu",
+    "downloadOutputNoPath":         "İndirme Yolu seçilmemiş! Bir İndirme Klasörü Seçin!",
+    "downloadOutputNoUrl":          "Parça {TrackNumber} indirilebilir değil. Atlanıyor.", // ChatGPT translation.
+    "downloadOutputAPIError":       "Qobuz API Hatası. Belki Parça / Albüm bu bölgede erişilebilir değildir?",
+    "downloadOutputNotImplemented": "Bu özellik henüz eklenmedi veya URL hatalı. Bir yazım yanlışı mı var?",
+    "downloadOutputCheckLink":      "Link Kontrol Ediliyor…",
+    "downloadOutputTrNotStream":    "Parça {TrackNumber} Oynatılmaya uygun değil. Atlanıyor.",
+    "downloadOutputAlNotStream":    "Albüm / Parça oynatılmaya uygun değil.",
+    "downloadOutputGoodyFound":     "Nâdide Bir Beste Keşfolundu, İndirilmekte…",
+    "downloadOutputGoodyExists":    "Bu Nâdide beste zaten mevcut",
+    "downloadOutputGoodyNoURL":     "bu Nâdide beste için indirme Linki bulunamadı, atlanıyor",
+    "downloadOutputFileExists":     "Parça {TrackNumber} zaten mevcut, atlanıyor.",
+    "downloadOutputDownloading":    "İndiriliyor",
+    "downloadOutputDone":           "İNDİRİLDİ",
+    "downloadOutputCompleted":      "İNDİRME TAMAMLANDI",
+    "downloadAborted":              "İNDİRME KULLANICI TARAFINDAN İPTAL EDİLDİ.", // ChatGPT translation.
+    "albumSkipped":                 "ALBÜM KULLANICI TARAFINDAN ATLANDI.", // ChatGPT translation.
+    "progressLabelInactive":        "Aktif İndirme Yok",
+    "progressLabelActive":          "İndirme İlerlemesi",
+    "formClosingWarning":           "A download is in progress, do you really want to quit?.", // ChatGPT translation.
+    "artist":                       "Sanatçı", // ChatGPT translation.
+    "artists":                      "sanatçılar", // ChatGPT translation.
+    "album":                        "Albüm", // ChatGPT translation.
+    "albums":                       "albümler", // ChatGPT translation.
+    "tracks":                       "parçalar", // ChatGPT translation.
+    "singleTrack":                  "Tek parça", // ChatGPT translation.
+    "playlist":                     "Çalma listesi", // ChatGPT translation.
+    "recordLabel":                  "Plak şirketi", // ChatGPT translation.
+    "user":                         "Kullanıcı", // ChatGPT translation.
+    "invalidUrl":                   "Geçersiz URL: {0}", // ChatGPT translation.
+    "copyToClipboard":              "Panoya kopyala", // ChatGPT translation.
+    "copyThisRowToClipboard":       "Bu satırı panoya kopyala", // ChatGPT translation.
+    "copySelectedRowsToClipboard":  "Seçili satırları panoya kopyala", // ChatGPT translation.
+    "copyAllRowsToClipboard":       "Tüm satırları panoya kopyala", // ChatGPT translation.
+
+    "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
+    "closeAboutButton":             "KAPAT",
+    "customSaveButton":             "KAYDET",
+    "exitButton":                   "ÇIKIŞ",
+    "loginButton":                  "GİRİŞ YAP",
+
+    "_SECTION6_":                   "=================== LOGIN FORM LABELS ===================",
+    "appidLabel":                   "Uygulama ID",
+    "appSecretLabel":               "Uygulama Gizli Kodu (Secret)",
+    "customLabel":                  "ÖZEL UYGULAMA ID + GİZLİ KODU (SECRET) KULLAN",
+
+    "_SECTION7_":                   "=================== LOGIN FORM TEXTBOXES ===================",
+    "customInfoTextbox":            "Otomatik olarak oluşturulması için bu değerleri boş bırak!",
+    "aboutTextbox":                 "Sürüm - {version}\r\nAiiR Tarafından Yapıldı\r\n\r\nQo-DL'den İlham Alındı\r\n(Sorrow ve DashLt) Tarafından Yapılan\r\n\r\nGithub ve Telegram'daki kullanıcılara bug raporları ve verdikleri fikirler için teşekkürler! Aynı zamanda DJDoubleD'ye ben meşgulken programı çalışır halde tuttuğu için kocaman teşekkürler.",
+   
+    "_SECTION8_":                   "=================== LOGIN FORM PLACEHOLDERS ===================",
+    "emailPlaceholder":             "e-posta",
+    "passwordPlaceholder":          "şifre",
+    "tokenPlaceholder":             "token",
+    "altLoginLabelToken":           "TOKEN İLE GİRİŞ YAP",
+    "altLoginLabelEmail":           "E-POSTA VE ŞİFRE İLE GİRİŞ YAP",
+    "loginTextWaiting":             "giriş için bekleniyor…",
+    "loginTextStart":               "giriş yapılıyor…",
+    "loginTextError":               "giriş yapılamadı, hata logu kaydedildi.",
+    "loginTextNoEmail":             "e-posta girilmemiş",
+    "loginTextNoPassword":          "şifre / token girilmemiş",
+    "updateNotification":           "QBDLX'in Yeni sürümü mevcut\r\n\r\nYüklü sürüm - {currentVersion}\r\nSon sürüm - {newVersion}\r\n\r\nDeğişiklikler Aşağıda\r\n==============\r\n{changelog}\r\n==============\r\n\r\nGüncelleme yapmak ister misiniz?",
+    "updateNotificationTitle":      "QBDLX | Güncelleme Yapılabilir",
+
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
+    "batchDownloadDlgText":         "Toplu İndirme", // ChatGPT translation.
+    "batchDownloadLabel":           "Bir veya daha fazla Qobuz URL'si yapıştırın…", // ChatGPT translation.
+    "closeBatchDownloadbutton":     "KAPAT / İPTAL", // ChatGPT translation.
+    "getAllBatchDownloadButton":    "HEPSİNİ AL", // ChatGPT translation.
+
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
+    "showWindowCmItem":             "Pencereyi göster", // ChatGPT translation.
+    "hideWindowCmItem":             "Pencereyi gizle", // ChatGPT translation.
+    "closeProgramCmItem":           "Programı kapat", // ChatGPT translation.
+    "batchDownloadFinished":        "Toplu indirme tamamlandı!", // ChatGPT translation.
+
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
+    "tagLibSharpMissingMsg":        "Klasörde taglib-sharp.dll bulunamadı!\r\nLütfen DLL’in {exeName} ile aynı klasörde olduğundan emin olun!", // ChatGPT translation.
+    "themeFileNotFoundMsg":         "Tema dosyası bulunamadı.", // ChatGPT translation.
+    "themeNameNotFoundMsg":         "Tema '{themeName}' bulunamadı.", // ChatGPT translation.
+    "selectedLangFileNotfoundMsg":  "Seçilen dil dosyası bulunamadı.", // ChatGPT translation.
+    "downloadOutputDontExistMsg":   "Belirtilen yol mevcut değil.", // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "Sürücüde yeterli boş alan yok: '{pathRoot}'" // ChatGPT translation.
+}

@@ -1,4 +1,9 @@
-﻿namespace QobuzDownloaderX
+﻿using QobuzDownloaderX.UserControls;
+using QobuzDownloaderX.Win32;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace QobuzDownloaderX
 {
     partial class qbdlxForm
     {
@@ -28,6 +33,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(qbdlxForm));
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.searchButton = new System.Windows.Forms.Button();
@@ -40,6 +46,17 @@
             this.versionNumber = new System.Windows.Forms.Label();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.downloaderPanel = new System.Windows.Forms.Panel();
+            this.batchDownloadProgressCountLabel = new System.Windows.Forms.Label();
+            this.progressItemsCountLabel = new System.Windows.Forms.Label();
+            this.batchDownloadPanel = new System.Windows.Forms.Panel();
+            this.batchDownloadTextBox = new System.Windows.Forms.TextBox();
+            this.batchDownloadLabel = new System.Windows.Forms.Label();
+            this.getAllBatchDownloadButton = new System.Windows.Forms.Button();
+            this.closeBatchDownloadbutton = new System.Windows.Forms.Button();
+            this.batchDownloadButton = new System.Windows.Forms.Button();
+            this.skipButton = new System.Windows.Forms.Button();
+            this.abortButton = new System.Windows.Forms.Button();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -51,6 +68,7 @@
             this.downloadLabel = new System.Windows.Forms.Label();
             this.settingsPanel = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.resetTemplatesButton = new System.Windows.Forms.Button();
             this.saveTemplatesButton = new System.Windows.Forms.Button();
             this.folderButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.selectFolderButton = new System.Windows.Forms.Button();
@@ -74,12 +92,18 @@
             this.templatesLabel = new System.Windows.Forms.Label();
             this.settingsLabel = new System.Windows.Forms.Label();
             this.userInfoTextbox = new System.Windows.Forms.TextBox();
+            this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyThisRowToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectedRowsToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyAllRowsToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userInfoLabel = new System.Windows.Forms.Label();
+            this.disclaimerLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.aboutPanel = new System.Windows.Forms.Panel();
             this.aboutLabel = new System.Windows.Forms.Label();
-            this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderBrowser = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
             this.extraSettingsPanel = new System.Windows.Forms.Panel();
             this.commentLabel = new System.Windows.Forms.Label();
             this.taggingOptionsPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -101,6 +125,7 @@
             this.labelCheckbox = new System.Windows.Forms.CheckBox();
             this.upcCheckbox = new System.Windows.Forms.CheckBox();
             this.isrcCheckbox = new System.Windows.Forms.CheckBox();
+            this.urlCheckbox = new System.Windows.Forms.CheckBox();
             this.languageLabel = new System.Windows.Forms.Label();
             this.languageComboBox = new System.Windows.Forms.ComboBox();
             this.themeLabel = new System.Windows.Forms.Label();
@@ -111,6 +136,9 @@
             this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
+            this.downloadGoodiesCheckbox = new System.Windows.Forms.CheckBox();
+            this.downloadArtistOtherCheckbox = new System.Windows.Forms.CheckBox();
+            this.useTLS13Checkbox = new System.Windows.Forms.CheckBox();
             this.advancedOptionsLabel = new System.Windows.Forms.Label();
             this.closeAdditionalButton = new System.Windows.Forms.Button();
             this.savedArtLabel = new System.Windows.Forms.Label();
@@ -119,6 +147,7 @@
             this.embeddedArtLabel = new System.Windows.Forms.Label();
             this.embeddedArtSizeSelect = new System.Windows.Forms.ComboBox();
             this.extraSettingsLabel = new System.Windows.Forms.Label();
+            this.mergeArtistNamesCheckbox = new System.Windows.Forms.CheckBox();
             this.qualitySelectButton = new System.Windows.Forms.Button();
             this.qualitySelectPanel = new System.Windows.Forms.Panel();
             this.mp3Button2 = new System.Windows.Forms.RadioButton();
@@ -131,6 +160,23 @@
             this.flacHighLabel2 = new System.Windows.Forms.Label();
             this.movingLabel = new System.Windows.Forms.Label();
             this.searchPanel = new System.Windows.Forms.Panel();
+            this.deselectAllRowsButton = new System.Windows.Forms.Button();
+            this.selectAllRowsButton = new System.Windows.Forms.Button();
+            this.batchDownloadSelectedRowsButton = new System.Windows.Forms.Button();
+            this.selectedRowsCountLabel = new System.Windows.Forms.Label();
+            this.limitSearchResultsLabel = new System.Windows.Forms.Label();
+            this.searchResultsCountLabel = new System.Windows.Forms.Label();
+            this.searchSortingLabel = new System.Windows.Forms.Label();
+            this.searchSortingPanel = new System.Windows.Forms.Panel();
+            this.sortGenreLabel = new System.Windows.Forms.Label();
+            this.sortGenreButton = new System.Windows.Forms.RadioButton();
+            this.sortAlbumTrackNameLabel = new System.Windows.Forms.Label();
+            this.sortArtistNameLabel = new System.Windows.Forms.Label();
+            this.sortAlbumTrackNameButton = new System.Windows.Forms.RadioButton();
+            this.sortArtistNameButton = new System.Windows.Forms.RadioButton();
+            this.sortReleaseDateButton = new System.Windows.Forms.RadioButton();
+            this.sortReleaseDateLabel = new System.Windows.Forms.Label();
+            this.limitSearchResultsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.searchResultsPanel = new System.Windows.Forms.Panel();
             this.searchResultsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.searchAlbumsButton = new System.Windows.Forms.Button();
@@ -138,20 +184,32 @@
             this.searchTextbox = new System.Windows.Forms.TextBox();
             this.searchLabel = new System.Windows.Forms.Label();
             this.searchingLabel = new System.Windows.Forms.Label();
+            this.sortingSearchResultsLabel = new System.Windows.Forms.Label();
+            this.sortAscendantCheckBox = new System.Windows.Forms.CheckBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.sysTrayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.downloaderPanel.SuspendLayout();
+            this.batchDownloadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumPictureBox)).BeginInit();
             this.settingsPanel.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.folderButtonsPanel.SuspendLayout();
+            this.mainContextMenuStrip.SuspendLayout();
             this.aboutPanel.SuspendLayout();
             this.extraSettingsPanel.SuspendLayout();
             this.taggingOptionsPanel.SuspendLayout();
             this.qualitySelectPanel.SuspendLayout();
             this.searchPanel.SuspendLayout();
+            this.searchSortingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.limitSearchResultsNumericUpDown)).BeginInit();
             this.searchResultsPanel.SuspendLayout();
+            this.sysTrayContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // navigationPanel
@@ -167,7 +225,7 @@
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.navigationPanel.Location = new System.Drawing.Point(0, 0);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(180, 577);
+            this.navigationPanel.Size = new System.Drawing.Size(180, 615);
             this.navigationPanel.TabIndex = 0;
             // 
             // searchButton
@@ -183,7 +241,7 @@
             this.searchButton.Location = new System.Drawing.Point(0, 166);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(180, 66);
-            this.searchButton.TabIndex = 33;
+            this.searchButton.TabIndex = 2;
             this.searchButton.Text = "SEARCH";
             this.searchButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchButton.UseVisualStyleBackColor = true;
@@ -196,7 +254,7 @@
             this.welcomeLabel.Location = new System.Drawing.Point(0, 403);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(180, 36);
-            this.welcomeLabel.TabIndex = 32;
+            this.welcomeLabel.TabIndex = 4;
             this.welcomeLabel.Text = "Welcome\r\n{username}";
             this.welcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -213,7 +271,7 @@
             this.settingsButton.Location = new System.Drawing.Point(0, 442);
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.Size = new System.Drawing.Size(180, 66);
-            this.settingsButton.TabIndex = 1;
+            this.settingsButton.TabIndex = 5;
             this.settingsButton.Text = "SETTINGS";
             this.settingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.settingsButton.UseVisualStyleBackColor = true;
@@ -232,7 +290,7 @@
             this.logoutButton.Location = new System.Drawing.Point(0, 508);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(180, 66);
-            this.logoutButton.TabIndex = 1;
+            this.logoutButton.TabIndex = 6;
             this.logoutButton.Text = "LOGOUT";
             this.logoutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logoutButton.UseVisualStyleBackColor = true;
@@ -251,7 +309,7 @@
             this.aboutButton.Location = new System.Drawing.Point(0, 232);
             this.aboutButton.Name = "aboutButton";
             this.aboutButton.Size = new System.Drawing.Size(180, 66);
-            this.aboutButton.TabIndex = 1;
+            this.aboutButton.TabIndex = 3;
             this.aboutButton.Text = "ABOUT";
             this.aboutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.aboutButton.UseVisualStyleBackColor = true;
@@ -294,7 +352,7 @@
             this.versionNumber.Location = new System.Drawing.Point(119, 79);
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(58, 18);
-            this.versionNumber.TabIndex = 32;
+            this.versionNumber.TabIndex = 0;
             this.versionNumber.Text = "#.#.#.#";
             this.versionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -312,6 +370,13 @@
             // 
             // downloaderPanel
             // 
+            this.downloaderPanel.Controls.Add(this.batchDownloadProgressCountLabel);
+            this.downloaderPanel.Controls.Add(this.progressItemsCountLabel);
+            this.downloaderPanel.Controls.Add(this.batchDownloadPanel);
+            this.downloaderPanel.Controls.Add(this.batchDownloadButton);
+            this.downloaderPanel.Controls.Add(this.skipButton);
+            this.downloaderPanel.Controls.Add(this.abortButton);
+            this.downloaderPanel.Controls.Add(this.progressBarDownload);
             this.downloaderPanel.Controls.Add(this.progressLabel);
             this.downloaderPanel.Controls.Add(this.downloadButton);
             this.downloaderPanel.Controls.Add(this.infoLabel);
@@ -324,7 +389,175 @@
             this.downloaderPanel.Location = new System.Drawing.Point(203, 83);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
-            this.downloaderPanel.TabIndex = 1;
+            this.downloaderPanel.TabIndex = 5;
+            // 
+            // batchDownloadProgressCountLabel
+            // 
+            this.batchDownloadProgressCountLabel.AutoSize = true;
+            this.batchDownloadProgressCountLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F);
+            this.batchDownloadProgressCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.batchDownloadProgressCountLabel.Location = new System.Drawing.Point(185, 143);
+            this.batchDownloadProgressCountLabel.Name = "batchDownloadProgressCountLabel";
+            this.batchDownloadProgressCountLabel.Size = new System.Drawing.Size(21, 21);
+            this.batchDownloadProgressCountLabel.TabIndex = 13;
+            this.batchDownloadProgressCountLabel.Text = "…";
+            this.batchDownloadProgressCountLabel.Visible = false;
+            // 
+            // progressItemsCountLabel
+            // 
+            this.progressItemsCountLabel.AutoSize = true;
+            this.progressItemsCountLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F);
+            this.progressItemsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.progressItemsCountLabel.Location = new System.Drawing.Point(185, 118);
+            this.progressItemsCountLabel.Name = "progressItemsCountLabel";
+            this.progressItemsCountLabel.Size = new System.Drawing.Size(21, 21);
+            this.progressItemsCountLabel.TabIndex = 12;
+            this.progressItemsCountLabel.Text = "…";
+            this.progressItemsCountLabel.Visible = false;
+            // 
+            // batchDownloadPanel
+            // 
+            this.batchDownloadPanel.BackColor = System.Drawing.Color.Red;
+            this.batchDownloadPanel.Controls.Add(this.batchDownloadTextBox);
+            this.batchDownloadPanel.Controls.Add(this.batchDownloadLabel);
+            this.batchDownloadPanel.Controls.Add(this.getAllBatchDownloadButton);
+            this.batchDownloadPanel.Controls.Add(this.closeBatchDownloadbutton);
+            this.batchDownloadPanel.Location = new System.Drawing.Point(213, 118);
+            this.batchDownloadPanel.Name = "batchDownloadPanel";
+            this.batchDownloadPanel.Size = new System.Drawing.Size(533, 23);
+            this.batchDownloadPanel.TabIndex = 11;
+            this.batchDownloadPanel.Visible = false;
+            // 
+            // batchDownloadTextBox
+            // 
+            this.batchDownloadTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.batchDownloadTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.batchDownloadTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.batchDownloadTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.batchDownloadTextBox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.batchDownloadTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.batchDownloadTextBox.Location = new System.Drawing.Point(0, 25);
+            this.batchDownloadTextBox.MaxLength = 0;
+            this.batchDownloadTextBox.Multiline = true;
+            this.batchDownloadTextBox.Name = "batchDownloadTextBox";
+            this.batchDownloadTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.batchDownloadTextBox.Size = new System.Drawing.Size(533, 248);
+            this.batchDownloadTextBox.TabIndex = 1;
+            this.batchDownloadTextBox.WordWrap = false;
+            this.batchDownloadTextBox.TextChanged += new System.EventHandler(this.batchDownloadTextBox_TextChanged);
+            // 
+            // batchDownloadLabel
+            // 
+            this.batchDownloadLabel.AutoEllipsis = true;
+            this.batchDownloadLabel.AutoSize = true;
+            this.batchDownloadLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.batchDownloadLabel.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.batchDownloadLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.batchDownloadLabel.Location = new System.Drawing.Point(0, 0);
+            this.batchDownloadLabel.Name = "batchDownloadLabel";
+            this.batchDownloadLabel.Size = new System.Drawing.Size(286, 25);
+            this.batchDownloadLabel.TabIndex = 0;
+            this.batchDownloadLabel.Text = "Paste one or more Qobuz URLs…";
+            // 
+            // getAllBatchDownloadButton
+            // 
+            this.getAllBatchDownloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.getAllBatchDownloadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.getAllBatchDownloadButton.Enabled = false;
+            this.getAllBatchDownloadButton.FlatAppearance.BorderSize = 0;
+            this.getAllBatchDownloadButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.getAllBatchDownloadButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.getAllBatchDownloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.getAllBatchDownloadButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.getAllBatchDownloadButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.getAllBatchDownloadButton.Location = new System.Drawing.Point(393, 282);
+            this.getAllBatchDownloadButton.Name = "getAllBatchDownloadButton";
+            this.getAllBatchDownloadButton.Size = new System.Drawing.Size(130, 31);
+            this.getAllBatchDownloadButton.TabIndex = 3;
+            this.getAllBatchDownloadButton.Text = "DESCARGAR TODO";
+            this.getAllBatchDownloadButton.UseVisualStyleBackColor = false;
+            this.getAllBatchDownloadButton.Click += new System.EventHandler(this.getAllBatchDownloadButton_Click);
+            // 
+            // closeBatchDownloadbutton
+            // 
+            this.closeBatchDownloadbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.closeBatchDownloadbutton.FlatAppearance.BorderSize = 0;
+            this.closeBatchDownloadbutton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.closeBatchDownloadbutton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.closeBatchDownloadbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeBatchDownloadbutton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeBatchDownloadbutton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.closeBatchDownloadbutton.Location = new System.Drawing.Point(8, 282);
+            this.closeBatchDownloadbutton.Name = "closeBatchDownloadbutton";
+            this.closeBatchDownloadbutton.Size = new System.Drawing.Size(130, 31);
+            this.closeBatchDownloadbutton.TabIndex = 2;
+            this.closeBatchDownloadbutton.Text = "CLOSE / CANCEL";
+            this.closeBatchDownloadbutton.UseVisualStyleBackColor = false;
+            this.closeBatchDownloadbutton.Click += new System.EventHandler(this.closeBatchDownloadbutton_Click);
+            // 
+            // batchDownloadButton
+            // 
+            this.batchDownloadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.batchDownloadButton.FlatAppearance.BorderSize = 0;
+            this.batchDownloadButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.batchDownloadButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.batchDownloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.batchDownloadButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.batchDownloadButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.batchDownloadButton.Location = new System.Drawing.Point(638, 48);
+            this.batchDownloadButton.Name = "batchDownloadButton";
+            this.batchDownloadButton.Size = new System.Drawing.Size(110, 31);
+            this.batchDownloadButton.TabIndex = 3;
+            this.batchDownloadButton.Text = "GET BATCH";
+            this.batchDownloadButton.UseVisualStyleBackColor = false;
+            this.batchDownloadButton.Click += new System.EventHandler(this.batchDownloadButton_Click);
+            // 
+            // skipButton
+            // 
+            this.skipButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.skipButton.Enabled = false;
+            this.skipButton.FlatAppearance.BorderSize = 0;
+            this.skipButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.skipButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.skipButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.skipButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.skipButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.skipButton.Location = new System.Drawing.Point(638, 81);
+            this.skipButton.Name = "skipButton";
+            this.skipButton.Size = new System.Drawing.Size(110, 31);
+            this.skipButton.TabIndex = 9;
+            this.skipButton.Text = "SKIP";
+            this.skipButton.UseVisualStyleBackColor = false;
+            this.skipButton.Click += new System.EventHandler(this.skipButton_Click);
+            // 
+            // abortButton
+            // 
+            this.abortButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.abortButton.Enabled = false;
+            this.abortButton.FlatAppearance.BorderSize = 0;
+            this.abortButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.abortButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.abortButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.abortButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.abortButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.abortButton.Location = new System.Drawing.Point(522, 81);
+            this.abortButton.Name = "abortButton";
+            this.abortButton.Size = new System.Drawing.Size(110, 31);
+            this.abortButton.TabIndex = 8;
+            this.abortButton.Text = "ABORT";
+            this.abortButton.UseVisualStyleBackColor = false;
+            this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 4;
             // 
             // progressLabel
             // 
@@ -341,53 +574,55 @@
             // downloadButton
             // 
             this.downloadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.downloadButton.Enabled = false;
             this.downloadButton.FlatAppearance.BorderSize = 0;
             this.downloadButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.downloadButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.downloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.downloadButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadButton.Location = new System.Drawing.Point(649, 46);
+            this.downloadButton.Location = new System.Drawing.Point(522, 48);
             this.downloadButton.Name = "downloadButton";
-            this.downloadButton.Size = new System.Drawing.Size(102, 31);
-            this.downloadButton.TabIndex = 6;
+            this.downloadButton.Size = new System.Drawing.Size(110, 31);
+            this.downloadButton.TabIndex = 2;
             this.downloadButton.Text = "GET";
             this.downloadButton.UseVisualStyleBackColor = false;
+            this.downloadButton.EnabledChanged += new System.EventHandler(this.downloadButton_EnabledChanged);
             this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
             // infoLabel
             // 
-            this.infoLabel.AutoSize = true;
+            this.infoLabel.AutoEllipsis = true;
             this.infoLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.infoLabel.Location = new System.Drawing.Point(186, 222);
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.infoLabel.Size = new System.Drawing.Size(261, 21);
-            this.infoLabel.TabIndex = 5;
+            this.infoLabel.Size = new System.Drawing.Size(560, 21);
+            this.infoLabel.TabIndex = 6;
             this.infoLabel.Text = "Released xxxx-xx-xx • xx Tracks • UPC";
             // 
             // albumLabel
             // 
-            this.albumLabel.AutoSize = true;
+            this.albumLabel.AutoEllipsis = true;
             this.albumLabel.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.albumLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.albumLabel.Location = new System.Drawing.Point(184, 169);
             this.albumLabel.Name = "albumLabel";
             this.albumLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.albumLabel.Size = new System.Drawing.Size(305, 32);
-            this.albumLabel.TabIndex = 5;
+            this.albumLabel.Size = new System.Drawing.Size(562, 32);
+            this.albumLabel.TabIndex = 4;
             this.albumLabel.Text = "Placeholder Album Name";
             // 
             // artistLabel
             // 
-            this.artistLabel.AutoSize = true;
+            this.artistLabel.AutoEllipsis = true;
             this.artistLabel.Font = new System.Drawing.Font("Nirmala UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.artistLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.artistLabel.Location = new System.Drawing.Point(186, 201);
             this.artistLabel.Name = "artistLabel";
             this.artistLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.artistLabel.Size = new System.Drawing.Size(175, 21);
+            this.artistLabel.Size = new System.Drawing.Size(560, 21);
             this.artistLabel.TabIndex = 5;
             this.artistLabel.Text = "Placeholder Artist Name";
             // 
@@ -399,17 +634,19 @@
             this.downloadOutput.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadOutput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadOutput.Location = new System.Drawing.Point(18, 252);
+            this.downloadOutput.MaxLength = 0;
             this.downloadOutput.Multiline = true;
             this.downloadOutput.Name = "downloadOutput";
             this.downloadOutput.ReadOnly = true;
             this.downloadOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.downloadOutput.Size = new System.Drawing.Size(733, 300);
-            this.downloadOutput.TabIndex = 4;
+            this.downloadOutput.TabIndex = 7;
             this.downloadOutput.Text = "Test String";
             this.downloadOutput.TextChanged += new System.EventHandler(this.downloadOutput_TextChanged);
             // 
             // albumPictureBox
             // 
+            this.albumPictureBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.albumPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("albumPictureBox.Image")));
             this.albumPictureBox.Location = new System.Drawing.Point(18, 83);
             this.albumPictureBox.Name = "albumPictureBox";
@@ -417,6 +654,7 @@
             this.albumPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.albumPictureBox.TabIndex = 2;
             this.albumPictureBox.TabStop = false;
+            this.albumPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.albumPictureBox_MouseClick);
             // 
             // inputTextbox
             // 
@@ -426,15 +664,17 @@
             this.inputTextbox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.inputTextbox.Location = new System.Drawing.Point(18, 48);
-            this.inputTextbox.Multiline = true;
+            this.inputTextbox.MaxLength = 1000;
             this.inputTextbox.Name = "inputTextbox";
-            this.inputTextbox.Size = new System.Drawing.Size(625, 27);
+            this.inputTextbox.Size = new System.Drawing.Size(498, 26);
             this.inputTextbox.TabIndex = 1;
-            this.inputTextbox.Text = "Paste a Qobuz URL...";
+            this.inputTextbox.Text = "Paste a Qobuz URL…";
             this.inputTextbox.WordWrap = false;
             this.inputTextbox.Click += new System.EventHandler(this.inputTextbox_Click);
+            this.inputTextbox.TextChanged += new System.EventHandler(this.inputTextbox_TextChanged);
             this.inputTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTextbox_KeyDown);
             this.inputTextbox.Leave += new System.EventHandler(this.inputTextbox_Leave);
+            this.inputTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.inputTextbox_MouseDown);
             // 
             // downloadLabel
             // 
@@ -443,10 +683,9 @@
             this.downloadLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadLabel.Location = new System.Drawing.Point(13, 10);
             this.downloadLabel.Name = "downloadLabel";
-            this.downloadLabel.Size = new System.Drawing.Size(639, 25);
+            this.downloadLabel.Size = new System.Drawing.Size(139, 25);
             this.downloadLabel.TabIndex = 0;
-            this.downloadLabel.Text = "DOWNLOADER                                                                       " +
-    "                             ";
+            this.downloadLabel.Text = "DOWNLOADER";
             this.downloadLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.downloadLabel_MouseMove);
             // 
             // settingsPanel
@@ -478,12 +717,32 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.resetTemplatesButton);
             this.flowLayoutPanel1.Controls.Add(this.saveTemplatesButton);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(248, 345);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(443, 37);
             this.flowLayoutPanel1.TabIndex = 30;
+            // 
+            // resetTemplatesButton
+            // 
+            this.resetTemplatesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetTemplatesButton.AutoSize = true;
+            this.resetTemplatesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.resetTemplatesButton.FlatAppearance.BorderSize = 0;
+            this.resetTemplatesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.resetTemplatesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.resetTemplatesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetTemplatesButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetTemplatesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.resetTemplatesButton.Location = new System.Drawing.Point(356, 3);
+            this.resetTemplatesButton.Name = "resetTemplatesButton";
+            this.resetTemplatesButton.Size = new System.Drawing.Size(84, 31);
+            this.resetTemplatesButton.TabIndex = 1;
+            this.resetTemplatesButton.Text = "Reset";
+            this.resetTemplatesButton.UseVisualStyleBackColor = false;
+            this.resetTemplatesButton.Click += new System.EventHandler(this.resetTemplatesButton_Click);
             // 
             // saveTemplatesButton
             // 
@@ -496,10 +755,10 @@
             this.saveTemplatesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveTemplatesButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveTemplatesButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.saveTemplatesButton.Location = new System.Drawing.Point(356, 3);
+            this.saveTemplatesButton.Location = new System.Drawing.Point(266, 3);
             this.saveTemplatesButton.Name = "saveTemplatesButton";
             this.saveTemplatesButton.Size = new System.Drawing.Size(84, 31);
-            this.saveTemplatesButton.TabIndex = 1;
+            this.saveTemplatesButton.TabIndex = 2;
             this.saveTemplatesButton.Text = "Save";
             this.saveTemplatesButton.UseVisualStyleBackColor = false;
             this.saveTemplatesButton.Click += new System.EventHandler(this.saveTemplatesButton_Click);
@@ -551,6 +810,8 @@
             this.openFolderButton.Text = "Open Folder";
             this.openFolderButton.UseVisualStyleBackColor = false;
             this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
+            this.openFolderButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
+            this.openFolderButton.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
             // 
             // templatesListLabel
             // 
@@ -610,7 +871,7 @@
             this.trackTemplateTextbox.Name = "trackTemplateTextbox";
             this.trackTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.trackTemplateTextbox.TabIndex = 2;
-            this.trackTemplateTextbox.Text = "%TrackNumber% - %TrackTitle%";
+            this.trackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
             this.trackTemplateTextbox.WordWrap = false;
             // 
             // trackTemplateLabel
@@ -635,7 +896,7 @@
             this.playlistTemplateTextbox.Name = "playlistTemplateTextbox";
             this.playlistTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.playlistTemplateTextbox.TabIndex = 2;
-            this.playlistTemplateTextbox.Text = "%PlaylistTitle%";
+            this.playlistTemplateTextbox.Text = "%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%";
             this.playlistTemplateTextbox.WordWrap = false;
             // 
             // playlistTemplateLabel
@@ -688,7 +949,7 @@
             this.albumTemplateTextbox.Name = "albumTemplateTextbox";
             this.albumTemplateTextbox.Size = new System.Drawing.Size(443, 21);
             this.albumTemplateTextbox.TabIndex = 2;
-            this.albumTemplateTextbox.Text = "%AlbumTitle%";
+            this.albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]";
             this.albumTemplateTextbox.WordWrap = false;
             // 
             // downloadFolderTextbox
@@ -703,6 +964,8 @@
             this.downloadFolderTextbox.Size = new System.Drawing.Size(443, 21);
             this.downloadFolderTextbox.TabIndex = 2;
             this.downloadFolderTextbox.Text = "no folder selected";
+            this.downloadFolderTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
+            this.downloadFolderTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
             // 
             // artistTemplateLabel
             // 
@@ -787,17 +1050,64 @@
             // 
             this.userInfoTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.userInfoTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.userInfoTextbox.Enabled = false;
-            this.userInfoTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userInfoTextbox.ContextMenuStrip = this.mainContextMenuStrip;
+            this.userInfoTextbox.Cursor = System.Windows.Forms.Cursors.Help;
+            this.userInfoTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.userInfoTextbox.Location = new System.Drawing.Point(0, 63);
+            this.userInfoTextbox.Location = new System.Drawing.Point(285, 63);
             this.userInfoTextbox.Multiline = true;
             this.userInfoTextbox.Name = "userInfoTextbox";
-            this.userInfoTextbox.Size = new System.Drawing.Size(771, 97);
+            this.userInfoTextbox.ReadOnly = true;
+            this.userInfoTextbox.Size = new System.Drawing.Size(400, 97);
             this.userInfoTextbox.TabIndex = 2;
             this.userInfoTextbox.Text = "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscriptio" +
     "n = {user_subscription}\r\nExpires = {user_subscription_expiration}\r\n";
-            this.userInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.userInfoTextbox.GotFocus += new System.EventHandler(this.userInfoTextbox_GotFocus);
+            this.userInfoTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.userInfoTextbox_MouseDown);
+            this.userInfoTextbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.userInfoTextbox_MouseUp);
+            // 
+            // mainContextMenuStrip
+            // 
+            this.mainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToClipboardToolStripMenuItem,
+            this.copyThisRowToClipboardToolStripMenuItem,
+            this.copySelectedRowsToClipboardToolStripMenuItem,
+            this.copyAllRowsToClipboardToolStripMenuItem});
+            this.mainContextMenuStrip.Name = "mainContextMenuStrip";
+            this.mainContextMenuStrip.Size = new System.Drawing.Size(244, 92);
+            this.mainContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.mainContextMenuStrip_Opening);
+            // 
+            // copyToClipboardToolStripMenuItem
+            // 
+            this.copyToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
+            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copyToClipboardToolStripMenuItem.Text = "Copy to clipboard";
+            this.copyToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyToclipboardToolStripMenuItem_Click);
+            // 
+            // copyThisRowToClipboardToolStripMenuItem
+            // 
+            this.copyThisRowToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copyThisRowToClipboardToolStripMenuItem.Name = "copyThisRowToClipboardToolStripMenuItem";
+            this.copyThisRowToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copyThisRowToClipboardToolStripMenuItem.Text = "Copy this row to clipboard";
+            this.copyThisRowToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyThisRowToClipboardToolStripMenuItem_Click);
+            // 
+            // copySelectedRowsToClipboardToolStripMenuItem
+            // 
+            this.copySelectedRowsToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copySelectedRowsToClipboardToolStripMenuItem.Name = "copySelectedRowsToClipboardToolStripMenuItem";
+            this.copySelectedRowsToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copySelectedRowsToClipboardToolStripMenuItem.Text = "Copy selected rows to clipboard";
+            this.copySelectedRowsToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectedRowsToClipboardToolStripMenuItem_Click);
+            // 
+            // copyAllRowsToClipboardToolStripMenuItem
+            // 
+            this.copyAllRowsToClipboardToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.clipboard;
+            this.copyAllRowsToClipboardToolStripMenuItem.Name = "copyAllRowsToClipboardToolStripMenuItem";
+            this.copyAllRowsToClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.copyAllRowsToClipboardToolStripMenuItem.Text = "Copy all rows to clipboard";
+            this.copyAllRowsToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyAllRowsToClipboardToolStripMenuItem_Click);
             // 
             // userInfoLabel
             // 
@@ -809,6 +1119,17 @@
             this.userInfoLabel.TabIndex = 1;
             this.userInfoLabel.Text = "USER INFO";
             this.userInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // disclaimerLabel
+            // 
+            this.disclaimerLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.disclaimerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.disclaimerLabel.Location = new System.Drawing.Point(0, 150);
+            this.disclaimerLabel.Name = "disclaimerLabel";
+            this.disclaimerLabel.Size = new System.Drawing.Size(771, 450);
+            this.disclaimerLabel.TabIndex = 2;
+            this.disclaimerLabel.Text = "DISCLAIMER / LEGAL ADVICE";
+            this.disclaimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exitButton
             // 
@@ -822,7 +1143,8 @@
             this.exitButton.Location = new System.Drawing.Point(914, 0);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(37, 30);
-            this.exitButton.TabIndex = 1;
+            this.exitButton.TabIndex = 3;
+            this.exitButton.TabStop = false;
             this.exitButton.Text = "X";
             this.exitButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.exitButton.UseVisualStyleBackColor = false;
@@ -840,7 +1162,8 @@
             this.minimizeButton.Location = new System.Drawing.Point(880, 0);
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.Size = new System.Drawing.Size(37, 30);
-            this.minimizeButton.TabIndex = 1;
+            this.minimizeButton.TabIndex = 2;
+            this.minimizeButton.TabStop = false;
             this.minimizeButton.Text = "_";
             this.minimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.minimizeButton.UseVisualStyleBackColor = false;
@@ -851,6 +1174,7 @@
             this.aboutPanel.Controls.Add(this.userInfoTextbox);
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
+            this.aboutPanel.Controls.Add(this.disclaimerLabel);
             this.aboutPanel.Location = new System.Drawing.Point(787, 352);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
@@ -883,6 +1207,9 @@
             this.extraSettingsPanel.Controls.Add(this.downloadSpeedCheckbox);
             this.extraSettingsPanel.Controls.Add(this.fixMD5sCheckbox);
             this.extraSettingsPanel.Controls.Add(this.streamableCheckbox);
+            this.extraSettingsPanel.Controls.Add(this.downloadGoodiesCheckbox);
+            this.extraSettingsPanel.Controls.Add(this.downloadArtistOtherCheckbox);
+            this.extraSettingsPanel.Controls.Add(this.useTLS13Checkbox);
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsLabel);
             this.extraSettingsPanel.Controls.Add(this.closeAdditionalButton);
             this.extraSettingsPanel.Controls.Add(this.savedArtLabel);
@@ -891,6 +1218,7 @@
             this.extraSettingsPanel.Controls.Add(this.embeddedArtLabel);
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
+            this.extraSettingsPanel.Controls.Add(this.mergeArtistNamesCheckbox);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extraSettingsPanel.Location = new System.Drawing.Point(689, 442);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
@@ -928,6 +1256,7 @@
             this.taggingOptionsPanel.Controls.Add(this.labelCheckbox);
             this.taggingOptionsPanel.Controls.Add(this.upcCheckbox);
             this.taggingOptionsPanel.Controls.Add(this.isrcCheckbox);
+            this.taggingOptionsPanel.Controls.Add(this.urlCheckbox);
             this.taggingOptionsPanel.Location = new System.Drawing.Point(79, 63);
             this.taggingOptionsPanel.Name = "taggingOptionsPanel";
             this.taggingOptionsPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -1204,6 +1533,21 @@
             this.isrcCheckbox.UseVisualStyleBackColor = true;
             this.isrcCheckbox.CheckedChanged += new System.EventHandler(this.isrcCheckbox_CheckedChanged);
             // 
+            // urlCheckbox
+            // 
+            this.urlCheckbox.AutoSize = true;
+            this.urlCheckbox.Checked = true;
+            this.urlCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.urlCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.urlCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.urlCheckbox.Location = new System.Drawing.Point(384, 49);
+            this.urlCheckbox.Name = "urlCheckbox";
+            this.urlCheckbox.Size = new System.Drawing.Size(46, 17);
+            this.urlCheckbox.TabIndex = 14;
+            this.urlCheckbox.Text = "URL";
+            this.urlCheckbox.UseVisualStyleBackColor = true;
+            this.urlCheckbox.CheckedChanged += new System.EventHandler(this.urlCheckbox_CheckedChanged);
+            // 
             // languageLabel
             // 
             this.languageLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
@@ -1326,6 +1670,51 @@
             this.streamableCheckbox.UseVisualStyleBackColor = true;
             this.streamableCheckbox.CheckedChanged += new System.EventHandler(this.streamableCheckbox_CheckedChanged);
             // 
+            // downloadGoodiesCheckbox
+            // 
+            this.downloadGoodiesCheckbox.AutoSize = true;
+            this.downloadGoodiesCheckbox.Checked = true;
+            this.downloadGoodiesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.downloadGoodiesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadGoodiesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.downloadGoodiesCheckbox.Location = new System.Drawing.Point(397, 326);
+            this.downloadGoodiesCheckbox.Name = "downloadGoodiesCheckbox";
+            this.downloadGoodiesCheckbox.Size = new System.Drawing.Size(126, 17);
+            this.downloadGoodiesCheckbox.TabIndex = 28;
+            this.downloadGoodiesCheckbox.Text = "Download Goodies";
+            this.downloadGoodiesCheckbox.UseVisualStyleBackColor = true;
+            this.downloadGoodiesCheckbox.CheckedChanged += new System.EventHandler(this.downloadGoodiesCheckbox_CheckedChanged);
+            // 
+            // downloadArtistOtherCheckbox
+            // 
+            this.downloadArtistOtherCheckbox.AutoSize = true;
+            this.downloadArtistOtherCheckbox.Checked = true;
+            this.downloadArtistOtherCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.downloadArtistOtherCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadArtistOtherCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.downloadArtistOtherCheckbox.Location = new System.Drawing.Point(427, 326);
+            this.downloadArtistOtherCheckbox.Name = "downloadArtistOtherCheckbox";
+            this.downloadArtistOtherCheckbox.Size = new System.Drawing.Size(191, 17);
+            this.downloadArtistOtherCheckbox.TabIndex = 29;
+            this.downloadArtistOtherCheckbox.Text = "Download artist - Other / covers";
+            this.downloadArtistOtherCheckbox.UseVisualStyleBackColor = true;
+            this.downloadArtistOtherCheckbox.CheckedChanged += new System.EventHandler(this.downloadArtistOtherCheckbox_CheckedChanged);
+            // 
+            // useTLS13Checkbox
+            // 
+            this.useTLS13Checkbox.AutoSize = true;
+            this.useTLS13Checkbox.Checked = true;
+            this.useTLS13Checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.useTLS13Checkbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useTLS13Checkbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.useTLS13Checkbox.Location = new System.Drawing.Point(297, 326);
+            this.useTLS13Checkbox.Name = "useTLS13Checkbox";
+            this.useTLS13Checkbox.Size = new System.Drawing.Size(82, 17);
+            this.useTLS13Checkbox.TabIndex = 26;
+            this.useTLS13Checkbox.Text = "Use TLS 1.3";
+            this.useTLS13Checkbox.UseVisualStyleBackColor = true;
+            this.useTLS13Checkbox.CheckedChanged += new System.EventHandler(this.useTLS13Checkbox_CheckedChanged);
+            // 
             // advancedOptionsLabel
             // 
             this.advancedOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1375,7 +1764,8 @@
             "300",
             "150",
             "100",
-            "50"});
+            "50",
+            "0"});
             this.savedArtSizeSelect.Location = new System.Drawing.Point(380, 250);
             this.savedArtSizeSelect.Name = "savedArtSizeSelect";
             this.savedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
@@ -1434,6 +1824,20 @@
     "       ";
             this.extraSettingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.extraSettingsLabel_MouseMove);
             // 
+            // mergeArtistNamesCheckbox
+            // 
+            this.mergeArtistNamesCheckbox.Checked = true;
+            this.mergeArtistNamesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mergeArtistNamesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeArtistNamesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.mergeArtistNamesCheckbox.Location = new System.Drawing.Point(10, 376);
+            this.mergeArtistNamesCheckbox.Name = "mergeArtistNamesCheckbox";
+            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(260, 300);
+            this.mergeArtistNamesCheckbox.TabIndex = 15;
+            this.mergeArtistNamesCheckbox.Text = "Merge Artists Names";
+            this.mergeArtistNamesCheckbox.UseVisualStyleBackColor = true;
+            this.mergeArtistNamesCheckbox.CheckedChanged += new System.EventHandler(this.mergeArtistNamesCheckbox_CheckedChanged);
+            // 
             // qualitySelectButton
             // 
             this.qualitySelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1448,7 +1852,7 @@
             this.qualitySelectButton.Location = new System.Drawing.Point(749, -1);
             this.qualitySelectButton.Name = "qualitySelectButton";
             this.qualitySelectButton.Size = new System.Drawing.Size(132, 31);
-            this.qualitySelectButton.TabIndex = 4;
+            this.qualitySelectButton.TabIndex = 1;
             this.qualitySelectButton.Text = "Quality Selector";
             this.qualitySelectButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.qualitySelectButton.UseVisualStyleBackColor = false;
@@ -1468,8 +1872,9 @@
             this.qualitySelectPanel.Location = new System.Drawing.Point(730, 30);
             this.qualitySelectPanel.Name = "qualitySelectPanel";
             this.qualitySelectPanel.Size = new System.Drawing.Size(168, 87);
-            this.qualitySelectPanel.TabIndex = 5;
+            this.qualitySelectPanel.TabIndex = 4;
             this.qualitySelectPanel.Visible = false;
+            this.qualitySelectPanel.VisibleChanged += new System.EventHandler(this.qualitySelectPanel_VisibleChanged);
             // 
             // mp3Button2
             // 
@@ -1477,10 +1882,10 @@
             this.mp3Button2.FlatAppearance.BorderSize = 0;
             this.mp3Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mp3Button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.mp3Button2.Location = new System.Drawing.Point(38, 63);
+            this.mp3Button2.Location = new System.Drawing.Point(15, 63);
             this.mp3Button2.Name = "mp3Button2";
             this.mp3Button2.Size = new System.Drawing.Size(13, 12);
-            this.mp3Button2.TabIndex = 10;
+            this.mp3Button2.TabIndex = 7;
             this.mp3Button2.UseVisualStyleBackColor = true;
             this.mp3Button2.CheckedChanged += new System.EventHandler(this.mp3Button2_CheckedChanged);
             // 
@@ -1490,10 +1895,10 @@
             this.flacLowButton2.FlatAppearance.BorderSize = 0;
             this.flacLowButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.flacLowButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.flacLowButton2.Location = new System.Drawing.Point(38, 45);
+            this.flacLowButton2.Location = new System.Drawing.Point(15, 45);
             this.flacLowButton2.Name = "flacLowButton2";
             this.flacLowButton2.Size = new System.Drawing.Size(13, 12);
-            this.flacLowButton2.TabIndex = 11;
+            this.flacLowButton2.TabIndex = 5;
             this.flacLowButton2.UseVisualStyleBackColor = true;
             this.flacLowButton2.CheckedChanged += new System.EventHandler(this.flacLowButton2_CheckedChanged);
             // 
@@ -1503,10 +1908,10 @@
             this.flacMidButton2.FlatAppearance.BorderSize = 0;
             this.flacMidButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.flacMidButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.flacMidButton2.Location = new System.Drawing.Point(38, 27);
+            this.flacMidButton2.Location = new System.Drawing.Point(15, 27);
             this.flacMidButton2.Name = "flacMidButton2";
             this.flacMidButton2.Size = new System.Drawing.Size(13, 12);
-            this.flacMidButton2.TabIndex = 12;
+            this.flacMidButton2.TabIndex = 3;
             this.flacMidButton2.UseVisualStyleBackColor = true;
             this.flacMidButton2.CheckedChanged += new System.EventHandler(this.flacMidButton2_CheckedChanged);
             // 
@@ -1516,10 +1921,10 @@
             this.flacHighButton2.FlatAppearance.BorderSize = 0;
             this.flacHighButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.flacHighButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.flacHighButton2.Location = new System.Drawing.Point(38, 9);
+            this.flacHighButton2.Location = new System.Drawing.Point(15, 9);
             this.flacHighButton2.Name = "flacHighButton2";
             this.flacHighButton2.Size = new System.Drawing.Size(13, 12);
-            this.flacHighButton2.TabIndex = 13;
+            this.flacHighButton2.TabIndex = 1;
             this.flacHighButton2.UseVisualStyleBackColor = true;
             this.flacHighButton2.CheckedChanged += new System.EventHandler(this.flacHighButton2_CheckedChanged);
             // 
@@ -1528,11 +1933,11 @@
             this.mp3Label2.AutoSize = true;
             this.mp3Label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mp3Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.mp3Label2.Location = new System.Drawing.Point(54, 63);
+            this.mp3Label2.Location = new System.Drawing.Point(31, 64);
             this.mp3Label2.Name = "mp3Label2";
-            this.mp3Label2.Size = new System.Drawing.Size(50, 13);
-            this.mp3Label2.TabIndex = 6;
-            this.mp3Label2.Text = "MP3 320";
+            this.mp3Label2.Size = new System.Drawing.Size(84, 13);
+            this.mp3Label2.TabIndex = 0;
+            this.mp3Label2.Text = "MP3 (320 kbps)";
             this.mp3Label2.Click += new System.EventHandler(this.mp3Label2_Click);
             // 
             // flacLowLabel2
@@ -1540,11 +1945,11 @@
             this.flacLowLabel2.AutoSize = true;
             this.flacLowLabel2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flacLowLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.flacLowLabel2.Location = new System.Drawing.Point(54, 45);
+            this.flacLowLabel2.Location = new System.Drawing.Point(31, 46);
             this.flacLowLabel2.Name = "flacLowLabel2";
-            this.flacLowLabel2.Size = new System.Drawing.Size(78, 13);
-            this.flacLowLabel2.TabIndex = 7;
-            this.flacLowLabel2.Text = "FLAC (16/44.1)";
+            this.flacLowLabel2.Size = new System.Drawing.Size(123, 13);
+            this.flacLowLabel2.TabIndex = 6;
+            this.flacLowLabel2.Text = "FLAC (16 bit / 44.1 kHz)";
             this.flacLowLabel2.Click += new System.EventHandler(this.flacLowLabel2_Click);
             // 
             // flacMidLabel2
@@ -1552,11 +1957,11 @@
             this.flacMidLabel2.AutoSize = true;
             this.flacMidLabel2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flacMidLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.flacMidLabel2.Location = new System.Drawing.Point(54, 27);
+            this.flacMidLabel2.Location = new System.Drawing.Point(31, 28);
             this.flacMidLabel2.Name = "flacMidLabel2";
-            this.flacMidLabel2.Size = new System.Drawing.Size(69, 13);
-            this.flacMidLabel2.TabIndex = 8;
-            this.flacMidLabel2.Text = "FLAC (24/96)";
+            this.flacMidLabel2.Size = new System.Drawing.Size(114, 13);
+            this.flacMidLabel2.TabIndex = 4;
+            this.flacMidLabel2.Text = "FLAC (24 bit / 96 kHz)";
             this.flacMidLabel2.Click += new System.EventHandler(this.flacMidLabel2_Click);
             // 
             // flacHighLabel2
@@ -1564,11 +1969,11 @@
             this.flacHighLabel2.AutoSize = true;
             this.flacHighLabel2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flacHighLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.flacHighLabel2.Location = new System.Drawing.Point(54, 9);
+            this.flacHighLabel2.Location = new System.Drawing.Point(31, 10);
             this.flacHighLabel2.Name = "flacHighLabel2";
-            this.flacHighLabel2.Size = new System.Drawing.Size(75, 13);
-            this.flacHighLabel2.TabIndex = 9;
-            this.flacHighLabel2.Text = "FLAC (24/192)";
+            this.flacHighLabel2.Size = new System.Drawing.Size(120, 13);
+            this.flacHighLabel2.TabIndex = 2;
+            this.flacHighLabel2.Text = "FLAC (24 bit / 192 kHz)";
             this.flacHighLabel2.Click += new System.EventHandler(this.flacHighLabel2_Click);
             // 
             // movingLabel
@@ -1579,34 +1984,286 @@
             this.movingLabel.Location = new System.Drawing.Point(181, -5);
             this.movingLabel.Name = "movingLabel";
             this.movingLabel.Size = new System.Drawing.Size(565, 13);
-            this.movingLabel.TabIndex = 6;
+            this.movingLabel.TabIndex = 0;
             this.movingLabel.Text = "=================================================================================" +
     "============";
             this.movingLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movingLabel_MouseMove);
             // 
             // searchPanel
             // 
+            this.searchPanel.Controls.Add(this.deselectAllRowsButton);
+            this.searchPanel.Controls.Add(this.selectAllRowsButton);
+            this.searchPanel.Controls.Add(this.batchDownloadSelectedRowsButton);
+            this.searchPanel.Controls.Add(this.selectedRowsCountLabel);
+            this.searchPanel.Controls.Add(this.limitSearchResultsLabel);
+            this.searchPanel.Controls.Add(this.searchResultsCountLabel);
+            this.searchPanel.Controls.Add(this.searchSortingLabel);
+            this.searchPanel.Controls.Add(this.searchSortingPanel);
+            this.searchPanel.Controls.Add(this.limitSearchResultsNumericUpDown);
             this.searchPanel.Controls.Add(this.searchResultsPanel);
             this.searchPanel.Controls.Add(this.searchAlbumsButton);
             this.searchPanel.Controls.Add(this.searchTracksButton);
             this.searchPanel.Controls.Add(this.searchTextbox);
             this.searchPanel.Controls.Add(this.searchLabel);
             this.searchPanel.Controls.Add(this.searchingLabel);
+            this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
+            this.searchPanel.Controls.Add(this.sortAscendantCheckBox);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(749, 402);
+            this.searchPanel.Location = new System.Drawing.Point(245, 36);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 29;
-            this.searchPanel.Visible = false;
+            // 
+            // deselectAllRowsButton
+            // 
+            this.deselectAllRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.deselectAllRowsButton.Enabled = false;
+            this.deselectAllRowsButton.FlatAppearance.BorderSize = 0;
+            this.deselectAllRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.deselectAllRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.deselectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deselectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deselectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.deselectAllRowsButton.Location = new System.Drawing.Point(266, 550);
+            this.deselectAllRowsButton.Name = "deselectAllRowsButton";
+            this.deselectAllRowsButton.Size = new System.Drawing.Size(120, 25);
+            this.deselectAllRowsButton.TabIndex = 21;
+            this.deselectAllRowsButton.Text = "Deselect all";
+            this.deselectAllRowsButton.UseVisualStyleBackColor = false;
+            this.deselectAllRowsButton.Click += new System.EventHandler(this.deselectAllRowsButton_Click);
+            // 
+            // selectAllRowsButton
+            // 
+            this.selectAllRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.selectAllRowsButton.Enabled = false;
+            this.selectAllRowsButton.FlatAppearance.BorderSize = 0;
+            this.selectAllRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.selectAllRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.selectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.selectAllRowsButton.Location = new System.Drawing.Point(140, 550);
+            this.selectAllRowsButton.Name = "selectAllRowsButton";
+            this.selectAllRowsButton.Size = new System.Drawing.Size(120, 25);
+            this.selectAllRowsButton.TabIndex = 20;
+            this.selectAllRowsButton.Text = "Select all";
+            this.selectAllRowsButton.UseVisualStyleBackColor = false;
+            this.selectAllRowsButton.Click += new System.EventHandler(this.selectAllRowsButton_Click);
+            // 
+            // batchDownloadSelectedRowsButton
+            // 
+            this.batchDownloadSelectedRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.batchDownloadSelectedRowsButton.Enabled = false;
+            this.batchDownloadSelectedRowsButton.FlatAppearance.BorderSize = 0;
+            this.batchDownloadSelectedRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.batchDownloadSelectedRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.batchDownloadSelectedRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.batchDownloadSelectedRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.batchDownloadSelectedRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.batchDownloadSelectedRowsButton.Location = new System.Drawing.Point(392, 549);
+            this.batchDownloadSelectedRowsButton.Name = "batchDownloadSelectedRowsButton";
+            this.batchDownloadSelectedRowsButton.Size = new System.Drawing.Size(361, 25);
+            this.batchDownloadSelectedRowsButton.TabIndex = 19;
+            this.batchDownloadSelectedRowsButton.Text = "BATCH DOWNLOAD SELECTED ROWS";
+            this.batchDownloadSelectedRowsButton.UseVisualStyleBackColor = false;
+            this.batchDownloadSelectedRowsButton.Click += new System.EventHandler(this.batchDownloadSelectedRowsButton_Click);
+            // 
+            // selectedRowsCountLabel
+            // 
+            this.selectedRowsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 9F);
+            this.selectedRowsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.selectedRowsCountLabel.Location = new System.Drawing.Point(20, 550);
+            this.selectedRowsCountLabel.Name = "selectedRowsCountLabel";
+            this.selectedRowsCountLabel.Size = new System.Drawing.Size(114, 24);
+            this.selectedRowsCountLabel.TabIndex = 18;
+            this.selectedRowsCountLabel.Text = "0 selected rows";
+            this.selectedRowsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // limitSearchResultsLabel
+            // 
+            this.limitSearchResultsLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.limitSearchResultsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.limitSearchResultsLabel.Location = new System.Drawing.Point(392, 84);
+            this.limitSearchResultsLabel.Name = "limitSearchResultsLabel";
+            this.limitSearchResultsLabel.Size = new System.Drawing.Size(132, 27);
+            this.limitSearchResultsLabel.TabIndex = 12;
+            this.limitSearchResultsLabel.Text = "Results Limit:";
+            this.limitSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // searchResultsCountLabel
+            // 
+            this.searchResultsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.searchResultsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchResultsCountLabel.Location = new System.Drawing.Point(585, 87);
+            this.searchResultsCountLabel.Name = "searchResultsCountLabel";
+            this.searchResultsCountLabel.Size = new System.Drawing.Size(168, 28);
+            this.searchResultsCountLabel.TabIndex = 16;
+            this.searchResultsCountLabel.Text = "…";
+            this.searchResultsCountLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // searchSortingLabel
+            // 
+            this.searchSortingLabel.AutoSize = true;
+            this.searchSortingLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.searchSortingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchSortingLabel.Location = new System.Drawing.Point(18, 77);
+            this.searchSortingLabel.Name = "searchSortingLabel";
+            this.searchSortingLabel.Size = new System.Drawing.Size(56, 19);
+            this.searchSortingLabel.TabIndex = 15;
+            this.searchSortingLabel.Text = "Sorting:";
+            this.searchSortingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // searchSortingPanel
+            // 
+            this.searchSortingPanel.Controls.Add(this.sortGenreLabel);
+            this.searchSortingPanel.Controls.Add(this.sortGenreButton);
+            this.searchSortingPanel.Controls.Add(this.sortAlbumTrackNameLabel);
+            this.searchSortingPanel.Controls.Add(this.sortArtistNameLabel);
+            this.searchSortingPanel.Controls.Add(this.sortAlbumTrackNameButton);
+            this.searchSortingPanel.Controls.Add(this.sortArtistNameButton);
+            this.searchSortingPanel.Controls.Add(this.sortReleaseDateButton);
+            this.searchSortingPanel.Controls.Add(this.sortReleaseDateLabel);
+            this.searchSortingPanel.Location = new System.Drawing.Point(117, 78);
+            this.searchSortingPanel.Name = "searchSortingPanel";
+            this.searchSortingPanel.Size = new System.Drawing.Size(290, 38);
+            this.searchSortingPanel.TabIndex = 14;
+            // 
+            // sortGenreLabel
+            // 
+            this.sortGenreLabel.AutoSize = true;
+            this.sortGenreLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortGenreLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sortGenreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortGenreLabel.Location = new System.Drawing.Point(18, 21);
+            this.sortGenreLabel.Name = "sortGenreLabel";
+            this.sortGenreLabel.Size = new System.Drawing.Size(38, 13);
+            this.sortGenreLabel.TabIndex = 10;
+            this.sortGenreLabel.Text = "Genre";
+            this.sortGenreLabel.Click += new System.EventHandler(this.sortGenreLabel_Click);
+            // 
+            // sortGenreButton
+            // 
+            this.sortGenreButton.AutoSize = true;
+            this.sortGenreButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortGenreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortGenreButton.Location = new System.Drawing.Point(4, 21);
+            this.sortGenreButton.Name = "sortGenreButton";
+            this.sortGenreButton.Size = new System.Drawing.Size(14, 13);
+            this.sortGenreButton.TabIndex = 9;
+            this.sortGenreButton.UseVisualStyleBackColor = true;
+            this.sortGenreButton.CheckedChanged += new System.EventHandler(this.sortGenreButton_CheckedChanged);
+            // 
+            // sortAlbumTrackNameLabel
+            // 
+            this.sortAlbumTrackNameLabel.AutoSize = true;
+            this.sortAlbumTrackNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortAlbumTrackNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sortAlbumTrackNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortAlbumTrackNameLabel.Location = new System.Drawing.Point(131, 21);
+            this.sortAlbumTrackNameLabel.Name = "sortAlbumTrackNameLabel";
+            this.sortAlbumTrackNameLabel.Size = new System.Drawing.Size(99, 13);
+            this.sortAlbumTrackNameLabel.TabIndex = 8;
+            this.sortAlbumTrackNameLabel.Text = "Album / Track Title";
+            this.sortAlbumTrackNameLabel.Click += new System.EventHandler(this.sortAlbumTrackNameLabel_Click);
+            // 
+            // sortArtistNameLabel
+            // 
+            this.sortArtistNameLabel.AutoSize = true;
+            this.sortArtistNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortArtistNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sortArtistNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortArtistNameLabel.Location = new System.Drawing.Point(131, 2);
+            this.sortArtistNameLabel.Name = "sortArtistNameLabel";
+            this.sortArtistNameLabel.Size = new System.Drawing.Size(66, 13);
+            this.sortArtistNameLabel.TabIndex = 7;
+            this.sortArtistNameLabel.Text = "Artist Name";
+            this.sortArtistNameLabel.Click += new System.EventHandler(this.sortArtistNameLabel_Click);
+            // 
+            // sortAlbumTrackNameButton
+            // 
+            this.sortAlbumTrackNameButton.AutoSize = true;
+            this.sortAlbumTrackNameButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortAlbumTrackNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortAlbumTrackNameButton.Location = new System.Drawing.Point(116, 21);
+            this.sortAlbumTrackNameButton.Name = "sortAlbumTrackNameButton";
+            this.sortAlbumTrackNameButton.Size = new System.Drawing.Size(14, 13);
+            this.sortAlbumTrackNameButton.TabIndex = 5;
+            this.sortAlbumTrackNameButton.UseVisualStyleBackColor = true;
+            this.sortAlbumTrackNameButton.CheckedChanged += new System.EventHandler(this.sortAlbumTrackNameButton_CheckedChanged);
+            // 
+            // sortArtistNameButton
+            // 
+            this.sortArtistNameButton.AutoSize = true;
+            this.sortArtistNameButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortArtistNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortArtistNameButton.Location = new System.Drawing.Point(116, 3);
+            this.sortArtistNameButton.Name = "sortArtistNameButton";
+            this.sortArtistNameButton.Size = new System.Drawing.Size(14, 13);
+            this.sortArtistNameButton.TabIndex = 4;
+            this.sortArtistNameButton.UseVisualStyleBackColor = true;
+            this.sortArtistNameButton.CheckedChanged += new System.EventHandler(this.sortArtistNameButton_CheckedChanged);
+            // 
+            // sortReleaseDateButton
+            // 
+            this.sortReleaseDateButton.AutoSize = true;
+            this.sortReleaseDateButton.Checked = true;
+            this.sortReleaseDateButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortReleaseDateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortReleaseDateButton.Location = new System.Drawing.Point(4, 3);
+            this.sortReleaseDateButton.Name = "sortReleaseDateButton";
+            this.sortReleaseDateButton.Size = new System.Drawing.Size(14, 13);
+            this.sortReleaseDateButton.TabIndex = 3;
+            this.sortReleaseDateButton.TabStop = true;
+            this.sortReleaseDateButton.UseVisualStyleBackColor = true;
+            this.sortReleaseDateButton.CheckedChanged += new System.EventHandler(this.sortReleaseDateButton_CheckedChanged);
+            // 
+            // sortReleaseDateLabel
+            // 
+            this.sortReleaseDateLabel.AutoSize = true;
+            this.sortReleaseDateLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortReleaseDateLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sortReleaseDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortReleaseDateLabel.Location = new System.Drawing.Point(18, 2);
+            this.sortReleaseDateLabel.Name = "sortReleaseDateLabel";
+            this.sortReleaseDateLabel.Size = new System.Drawing.Size(73, 13);
+            this.sortReleaseDateLabel.TabIndex = 6;
+            this.sortReleaseDateLabel.Text = "Release Date";
+            this.sortReleaseDateLabel.Click += new System.EventHandler(this.sortReleaseDateLabel_Click);
+            // 
+            // limitSearchResultsNumericUpDown
+            // 
+            this.limitSearchResultsNumericUpDown.BackColor = System.Drawing.SystemColors.Window;
+            this.limitSearchResultsNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.limitSearchResultsNumericUpDown.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(525, 86);
+            this.limitSearchResultsNumericUpDown.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.limitSearchResultsNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.limitSearchResultsNumericUpDown.Name = "limitSearchResultsNumericUpDown";
+            this.limitSearchResultsNumericUpDown.Size = new System.Drawing.Size(50, 25);
+            this.limitSearchResultsNumericUpDown.TabIndex = 13;
+            this.limitSearchResultsNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.limitSearchResultsNumericUpDown.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             // 
             // searchResultsPanel
             // 
             this.searchResultsPanel.AutoScroll = true;
             this.searchResultsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.searchResultsPanel.Controls.Add(this.searchResultsTablePanel);
-            this.searchResultsPanel.Location = new System.Drawing.Point(18, 83);
+            this.searchResultsPanel.Location = new System.Drawing.Point(18, 116);
             this.searchResultsPanel.Name = "searchResultsPanel";
-            this.searchResultsPanel.Size = new System.Drawing.Size(733, 482);
+            this.searchResultsPanel.Size = new System.Drawing.Size(733, 431);
             this.searchResultsPanel.TabIndex = 10;
             // 
             // searchResultsTablePanel
@@ -1665,27 +2322,28 @@
             this.searchTextbox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.searchTextbox.Location = new System.Drawing.Point(18, 48);
+            this.searchTextbox.MaxLength = 1000;
             this.searchTextbox.Multiline = true;
             this.searchTextbox.Name = "searchTextbox";
             this.searchTextbox.Size = new System.Drawing.Size(557, 27);
             this.searchTextbox.TabIndex = 7;
-            this.searchTextbox.Text = "Input your search...";
+            this.searchTextbox.Text = "Input your search…";
             this.searchTextbox.WordWrap = false;
             this.searchTextbox.Click += new System.EventHandler(this.searchTextbox_Click);
             this.searchTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyDown);
+            this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp);
             this.searchTextbox.Leave += new System.EventHandler(this.searchTextbox_Leave);
+            this.searchTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.searchTextbox_MouseDown);
             // 
             // searchLabel
             // 
-            this.searchLabel.AutoSize = true;
             this.searchLabel.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.searchLabel.Location = new System.Drawing.Point(13, 10);
             this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(550, 25);
+            this.searchLabel.Size = new System.Drawing.Size(562, 30);
             this.searchLabel.TabIndex = 1;
-            this.searchLabel.Text = "SEARCH                                                                           " +
-    "                   ";
+            this.searchLabel.Text = "SEARCH";
             this.searchLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.searchLabel_MouseMove);
             // 
             // searchingLabel
@@ -1696,16 +2354,82 @@
             this.searchingLabel.Name = "searchingLabel";
             this.searchingLabel.Size = new System.Drawing.Size(170, 25);
             this.searchingLabel.TabIndex = 11;
-            this.searchingLabel.Text = "Searching...";
+            this.searchingLabel.Text = "Searching…";
             this.searchingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.searchingLabel.Visible = false;
+            // 
+            // sortingSearchResultsLabel
+            // 
+            this.sortingSearchResultsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sortingSearchResultsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortingSearchResultsLabel.Location = new System.Drawing.Point(581, 49);
+            this.sortingSearchResultsLabel.Name = "sortingSearchResultsLabel";
+            this.sortingSearchResultsLabel.Size = new System.Drawing.Size(170, 25);
+            this.sortingSearchResultsLabel.TabIndex = 12;
+            this.sortingSearchResultsLabel.Text = "Sorting…";
+            this.sortingSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.sortingSearchResultsLabel.Visible = false;
+            // 
+            // sortAscendantCheckBox
+            // 
+            this.sortAscendantCheckBox.AutoSize = true;
+            this.sortAscendantCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortAscendantCheckBox.Location = new System.Drawing.Point(21, 99);
+            this.sortAscendantCheckBox.Name = "sortAscendantCheckBox";
+            this.sortAscendantCheckBox.Size = new System.Drawing.Size(80, 17);
+            this.sortAscendantCheckBox.TabIndex = 9;
+            this.sortAscendantCheckBox.Text = "Ascendant";
+            this.sortAscendantCheckBox.UseVisualStyleBackColor = true;
+            this.sortAscendantCheckBox.CheckedChanged += new System.EventHandler(this.sortAscendantCheckBox_CheckedChanged);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.ContextMenuStrip = this.sysTrayContextMenuStrip;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "QobuzDLX";
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            // 
+            // sysTrayContextMenuStrip
+            // 
+            this.sysTrayContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showWindowToolStripMenuItem,
+            this.hideWindowToolStripMenuItem,
+            this.closeProgramToolStripMenuItem});
+            this.sysTrayContextMenuStrip.Name = "sysTrayContextMenuStrip";
+            this.sysTrayContextMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.sysTrayContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.sysTrayContextMenuStrip_Opening);
+            // 
+            // showWindowToolStripMenuItem
+            // 
+            this.showWindowToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.ShowWindow;
+            this.showWindowToolStripMenuItem.Name = "showWindowToolStripMenuItem";
+            this.showWindowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showWindowToolStripMenuItem.Text = "Show window";
+            this.showWindowToolStripMenuItem.Click += new System.EventHandler(this.showWindowToolStripMenuItem_Click);
+            // 
+            // hideWindowToolStripMenuItem
+            // 
+            this.hideWindowToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.HideWindow;
+            this.hideWindowToolStripMenuItem.Name = "hideWindowToolStripMenuItem";
+            this.hideWindowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hideWindowToolStripMenuItem.Text = "Hide window";
+            this.hideWindowToolStripMenuItem.Click += new System.EventHandler(this.hideWindowToolStripMenuItem_Click);
+            // 
+            // closeProgramToolStripMenuItem
+            // 
+            this.closeProgramToolStripMenuItem.Image = global::QobuzDownloaderX.Properties.Resources.Exit;
+            this.closeProgramToolStripMenuItem.Name = "closeProgramToolStripMenuItem";
+            this.closeProgramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeProgramToolStripMenuItem.Text = "Close program";
+            this.closeProgramToolStripMenuItem.Click += new System.EventHandler(this.closeProgramToolStripMenuItem_Click);
             // 
             // qbdlxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ClientSize = new System.Drawing.Size(951, 577);
+            this.ClientSize = new System.Drawing.Size(951, 615);
             this.Controls.Add(this.qualitySelectPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
@@ -1715,19 +2439,23 @@
             this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.extraSettingsPanel);
-            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.aboutPanel);
+            this.Controls.Add(this.searchPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "qbdlxForm";
+            this.Text = "QobuzDLX";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.qbdlxForm_FormClosing);
             this.Load += new System.EventHandler(this.qbdlxForm_Load);
+            this.Shown += new System.EventHandler(this.qbdlxForm_Shown);
             this.navigationPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.downloaderPanel.ResumeLayout(false);
             this.downloaderPanel.PerformLayout();
+            this.batchDownloadPanel.ResumeLayout(false);
+            this.batchDownloadPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumPictureBox)).EndInit();
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
@@ -1735,6 +2463,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.folderButtonsPanel.ResumeLayout(false);
             this.folderButtonsPanel.PerformLayout();
+            this.mainContextMenuStrip.ResumeLayout(false);
             this.aboutPanel.ResumeLayout(false);
             this.aboutPanel.PerformLayout();
             this.extraSettingsPanel.ResumeLayout(false);
@@ -1745,7 +2474,11 @@
             this.qualitySelectPanel.PerformLayout();
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
+            this.searchSortingPanel.ResumeLayout(false);
+            this.searchSortingPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.limitSearchResultsNumericUpDown)).EndInit();
             this.searchResultsPanel.ResumeLayout(false);
+            this.sysTrayContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1753,114 +2486,161 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel navigationPanel;
-        private System.Windows.Forms.Panel logoPanel;
-        private System.Windows.Forms.PictureBox logoPictureBox;
-        private System.Windows.Forms.Button downloaderButton;
-        private System.Windows.Forms.Button settingsButton;
-        private System.Windows.Forms.Button aboutButton;
-        private System.Windows.Forms.Panel downloaderPanel;
-        private System.Windows.Forms.Panel settingsPanel;
-        private System.Windows.Forms.Label downloadLabel;
-        private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button minimizeButton;
-        private System.Windows.Forms.Label settingsLabel;
-        private System.Windows.Forms.Label versionNumber;
-        private System.Windows.Forms.Panel aboutPanel;
-        private System.Windows.Forms.Label aboutLabel;
-        private System.Windows.Forms.Button logoutButton;
-        private System.Windows.Forms.Label welcomeLabel;
-        private System.Windows.Forms.PictureBox albumPictureBox;
-        private System.Windows.Forms.Label infoLabel;
-        private System.Windows.Forms.Label albumLabel;
-        private System.Windows.Forms.Label artistLabel;
-        private System.Windows.Forms.TextBox userInfoTextbox;
-        private System.Windows.Forms.Label userInfoLabel;
-        public System.Windows.Forms.FolderBrowserDialog folderBrowser;
-        private System.Windows.Forms.Label downloadOptionsLabel;
-        private System.Windows.Forms.TextBox downloadFolderTextbox;
-        private System.Windows.Forms.Label downloadFolderLabel;
-        private System.Windows.Forms.Button openFolderButton;
-        private System.Windows.Forms.Button selectFolderButton;
-        public System.Windows.Forms.TextBox downloadOutput;
-        private System.Windows.Forms.TextBox trackTemplateTextbox;
-        private System.Windows.Forms.Label trackTemplateLabel;
-        private System.Windows.Forms.Label templatesLabel;
-        private System.Windows.Forms.TextBox playlistTemplateTextbox;
-        private System.Windows.Forms.TextBox albumTemplateTextbox;
-        private System.Windows.Forms.Label playlistTemplateLabel;
-        private System.Windows.Forms.Label albumTemplateLabel;
-        private System.Windows.Forms.Button saveTemplatesButton;
-        private System.Windows.Forms.TextBox favoritesTemplateTextbox;
-        private System.Windows.Forms.Label favoritesTemplateLabel;
-        private System.Windows.Forms.TextBox artistTemplateTextbox;
-        private System.Windows.Forms.Label artistTemplateLabel;
-        private System.Windows.Forms.Panel extraSettingsPanel;
-        private System.Windows.Forms.Label extraSettingsLabel;
-        private System.Windows.Forms.CheckBox albumArtistCheckbox;
-        private System.Windows.Forms.CheckBox explicitCheckbox;
-        private System.Windows.Forms.CheckBox coverArtCheckbox;
-        private System.Windows.Forms.CheckBox discTotalCheckbox;
-        private System.Windows.Forms.CheckBox discNumberCheckbox;
-        private System.Windows.Forms.CheckBox trackNumberCheckbox;
-        private System.Windows.Forms.CheckBox trackTotalCheckbox;
-        private System.Windows.Forms.CheckBox isrcCheckbox;
-        private System.Windows.Forms.CheckBox upcCheckbox;
-        private System.Windows.Forms.CheckBox labelCheckbox;
-        private System.Windows.Forms.CheckBox copyrightCheckbox;
-        private System.Windows.Forms.CheckBox composerCheckbox;
-        private System.Windows.Forms.CheckBox genreCheckbox;
-        private System.Windows.Forms.CheckBox releaseDateCheckbox;
-        private System.Windows.Forms.CheckBox releaseTypeCheckbox;
-        private System.Windows.Forms.CheckBox trackArtistCheckbox;
-        private System.Windows.Forms.CheckBox trackTitleCheckbox;
-        private System.Windows.Forms.CheckBox albumTitleCheckbox;
-        private System.Windows.Forms.ComboBox embeddedArtSizeSelect;
-        private System.Windows.Forms.Label taggingOptionsLabel;
-        private System.Windows.Forms.Label embeddedArtLabel;
-        private System.Windows.Forms.Label savedArtLabel;
-        private System.Windows.Forms.ComboBox savedArtSizeSelect;
-        private System.Windows.Forms.Button closeAdditionalButton;
-        private System.Windows.Forms.Button additionalSettingsButton;
-        private System.Windows.Forms.Button qualitySelectButton;
-        private System.Windows.Forms.Panel qualitySelectPanel;
-        private System.Windows.Forms.RadioButton mp3Button2;
-        private System.Windows.Forms.RadioButton flacLowButton2;
-        private System.Windows.Forms.RadioButton flacMidButton2;
-        private System.Windows.Forms.RadioButton flacHighButton2;
-        private System.Windows.Forms.Label mp3Label2;
-        private System.Windows.Forms.Label flacLowLabel2;
-        private System.Windows.Forms.Label flacMidLabel2;
-        private System.Windows.Forms.Label flacHighLabel2;
-        private System.Windows.Forms.Label advancedOptionsLabel;
-        public System.Windows.Forms.CheckBox streamableCheckbox;
-        public System.Windows.Forms.TextBox templatesListTextbox;
-        private System.Windows.Forms.Label templatesListLabel;
-        public System.Windows.Forms.CheckBox fixMD5sCheckbox;
-        private System.Windows.Forms.Label movingLabel;
-        private System.Windows.Forms.Button searchButton;
-        private System.Windows.Forms.Panel searchPanel;
-        private System.Windows.Forms.Label searchLabel;
-        private System.Windows.Forms.Button searchTracksButton;
-        private System.Windows.Forms.TextBox searchTextbox;
-        private System.Windows.Forms.Button searchAlbumsButton;
-        private System.Windows.Forms.Panel searchResultsPanel;
-        public System.Windows.Forms.TableLayoutPanel searchResultsTablePanel;
-        private System.Windows.Forms.Label searchingLabel;
-        public System.Windows.Forms.TextBox inputTextbox;
-        public System.Windows.Forms.Button downloadButton;
-        public System.Windows.Forms.CheckBox downloadSpeedCheckbox;
-        public System.Windows.Forms.Label progressLabel;
-        private System.Windows.Forms.CheckBox commentCheckbox;
-        private System.Windows.Forms.TextBox commentTextbox;
-        private System.Windows.Forms.Label themeSectionLabel;
-        private System.Windows.Forms.Label themeLabel;
-        public System.Windows.Forms.ComboBox themeComboBox;
-        private System.Windows.Forms.Label languageLabel;
-        public System.Windows.Forms.ComboBox languageComboBox;
-        private System.Windows.Forms.FlowLayoutPanel taggingOptionsPanel;
-        private System.Windows.Forms.Label commentLabel;
-        private System.Windows.Forms.FlowLayoutPanel folderButtonsPanel;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        internal System.Windows.Forms.Panel navigationPanel;
+        internal System.Windows.Forms.Panel logoPanel;
+        internal System.Windows.Forms.PictureBox logoPictureBox;
+        internal System.Windows.Forms.Button downloaderButton;
+        internal System.Windows.Forms.Button settingsButton;
+        internal System.Windows.Forms.Button aboutButton;
+        internal System.Windows.Forms.Panel downloaderPanel;
+        internal System.Windows.Forms.Panel settingsPanel;
+        internal System.Windows.Forms.Label downloadLabel;
+        internal System.Windows.Forms.Button exitButton;
+        internal System.Windows.Forms.Button minimizeButton;
+        internal System.Windows.Forms.Label settingsLabel;
+        internal System.Windows.Forms.Label versionNumber;
+        internal System.Windows.Forms.Panel aboutPanel;
+        internal System.Windows.Forms.Label aboutLabel;
+        internal System.Windows.Forms.Button logoutButton;
+        internal System.Windows.Forms.Label welcomeLabel;
+        internal System.Windows.Forms.PictureBox albumPictureBox;
+        internal System.Windows.Forms.Label infoLabel;
+        internal System.Windows.Forms.Label albumLabel;
+        internal System.Windows.Forms.Label artistLabel;
+        internal System.Windows.Forms.TextBox userInfoTextbox;
+        internal System.Windows.Forms.Label userInfoLabel;
+        internal System.Windows.Forms.Label disclaimerLabel;
+        internal Ookii.Dialogs.WinForms.VistaFolderBrowserDialog folderBrowser;
+        internal System.Windows.Forms.Label downloadOptionsLabel;
+        internal System.Windows.Forms.TextBox downloadFolderTextbox;
+        internal System.Windows.Forms.Label downloadFolderLabel;
+        internal System.Windows.Forms.Button openFolderButton;
+        internal System.Windows.Forms.Button selectFolderButton;
+        internal System.Windows.Forms.TextBox downloadOutput;
+        internal System.Windows.Forms.TextBox trackTemplateTextbox;
+        internal System.Windows.Forms.Label trackTemplateLabel;
+        internal System.Windows.Forms.Label templatesLabel;
+        internal System.Windows.Forms.TextBox playlistTemplateTextbox;
+        internal System.Windows.Forms.TextBox albumTemplateTextbox;
+        internal System.Windows.Forms.Label playlistTemplateLabel;
+        internal System.Windows.Forms.Label albumTemplateLabel;
+        internal System.Windows.Forms.Button resetTemplatesButton;
+        internal System.Windows.Forms.Button saveTemplatesButton;
+        internal System.Windows.Forms.TextBox favoritesTemplateTextbox;
+        internal System.Windows.Forms.Label favoritesTemplateLabel;
+        internal System.Windows.Forms.TextBox artistTemplateTextbox;
+        internal System.Windows.Forms.Label artistTemplateLabel;
+        internal System.Windows.Forms.Panel extraSettingsPanel;
+        internal System.Windows.Forms.Label extraSettingsLabel;
+        internal System.Windows.Forms.CheckBox albumArtistCheckbox;
+        internal System.Windows.Forms.CheckBox explicitCheckbox;
+        internal System.Windows.Forms.CheckBox coverArtCheckbox;
+        internal System.Windows.Forms.CheckBox discTotalCheckbox;
+        internal System.Windows.Forms.CheckBox discNumberCheckbox;
+        internal System.Windows.Forms.CheckBox trackNumberCheckbox;
+        internal System.Windows.Forms.CheckBox trackTotalCheckbox;
+        internal System.Windows.Forms.CheckBox isrcCheckbox;
+        internal System.Windows.Forms.CheckBox urlCheckbox;
+        internal System.Windows.Forms.CheckBox mergeArtistNamesCheckbox;
+        internal System.Windows.Forms.CheckBox upcCheckbox;
+        internal System.Windows.Forms.CheckBox labelCheckbox;
+        internal System.Windows.Forms.CheckBox copyrightCheckbox;
+        internal System.Windows.Forms.CheckBox composerCheckbox;
+        internal System.Windows.Forms.CheckBox genreCheckbox;
+        internal System.Windows.Forms.CheckBox releaseDateCheckbox;
+        internal System.Windows.Forms.CheckBox releaseTypeCheckbox;
+        internal System.Windows.Forms.CheckBox trackArtistCheckbox;
+        internal System.Windows.Forms.CheckBox trackTitleCheckbox;
+        internal System.Windows.Forms.CheckBox albumTitleCheckbox;
+        internal System.Windows.Forms.ComboBox embeddedArtSizeSelect;
+        internal System.Windows.Forms.Label taggingOptionsLabel;
+        internal System.Windows.Forms.Label embeddedArtLabel;
+        internal System.Windows.Forms.Label savedArtLabel;
+        internal System.Windows.Forms.ComboBox savedArtSizeSelect;
+        internal System.Windows.Forms.Button closeAdditionalButton;
+        internal System.Windows.Forms.Button additionalSettingsButton;
+        internal System.Windows.Forms.Button qualitySelectButton;
+        internal System.Windows.Forms.Panel qualitySelectPanel;
+        internal System.Windows.Forms.RadioButton mp3Button2;
+        internal System.Windows.Forms.RadioButton flacLowButton2;
+        internal System.Windows.Forms.RadioButton flacMidButton2;
+        internal System.Windows.Forms.RadioButton flacHighButton2;
+        internal System.Windows.Forms.Label mp3Label2;
+        internal System.Windows.Forms.Label flacLowLabel2;
+        internal System.Windows.Forms.Label flacMidLabel2;
+        internal System.Windows.Forms.Label flacHighLabel2;
+        internal System.Windows.Forms.Label advancedOptionsLabel;
+        internal System.Windows.Forms.CheckBox streamableCheckbox;
+        internal System.Windows.Forms.CheckBox downloadGoodiesCheckbox;
+        internal System.Windows.Forms.CheckBox downloadArtistOtherCheckbox;
+        internal System.Windows.Forms.CheckBox useTLS13Checkbox;
+        internal System.Windows.Forms.TextBox templatesListTextbox;
+        internal System.Windows.Forms.Label templatesListLabel;
+        internal System.Windows.Forms.CheckBox fixMD5sCheckbox;
+        internal System.Windows.Forms.Label movingLabel;
+        internal System.Windows.Forms.Button searchButton;
+        internal System.Windows.Forms.Panel searchPanel;
+        internal System.Windows.Forms.Label searchLabel;
+        internal System.Windows.Forms.Button searchTracksButton;
+        internal System.Windows.Forms.TextBox searchTextbox;
+        internal System.Windows.Forms.Button searchAlbumsButton;
+        internal System.Windows.Forms.Panel searchResultsPanel;
+        internal System.Windows.Forms.TableLayoutPanel searchResultsTablePanel;
+        internal System.Windows.Forms.Label searchingLabel;
+        internal System.Windows.Forms.TextBox inputTextbox;
+        internal System.Windows.Forms.Button downloadButton;
+        internal System.Windows.Forms.CheckBox downloadSpeedCheckbox;
+        internal System.Windows.Forms.Label progressLabel;
+        internal System.Windows.Forms.CheckBox commentCheckbox;
+        internal System.Windows.Forms.TextBox commentTextbox;
+        internal System.Windows.Forms.Label themeSectionLabel;
+        internal System.Windows.Forms.Label themeLabel;
+        internal System.Windows.Forms.ComboBox themeComboBox;
+        internal System.Windows.Forms.Label languageLabel;
+        internal System.Windows.Forms.ComboBox languageComboBox;
+        internal System.Windows.Forms.FlowLayoutPanel taggingOptionsPanel;
+        internal System.Windows.Forms.Label commentLabel;
+        internal System.Windows.Forms.FlowLayoutPanel folderButtonsPanel;
+        internal System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        internal CustomProgressBar progressBarDownload;
+        internal System.Windows.Forms.Button abortButton;
+        internal System.Windows.Forms.Button skipButton;
+        internal System.Windows.Forms.Button batchDownloadButton;
+        internal System.Windows.Forms.Panel batchDownloadPanel;
+        internal System.Windows.Forms.Button getAllBatchDownloadButton;
+        internal System.Windows.Forms.Button closeBatchDownloadbutton;
+        internal System.Windows.Forms.TextBox batchDownloadTextBox;
+        internal System.Windows.Forms.Label batchDownloadLabel;
+        internal System.Windows.Forms.Label progressItemsCountLabel;
+        internal System.Windows.Forms.NumericUpDown limitSearchResultsNumericUpDown;
+        internal System.Windows.Forms.Label limitSearchResultsLabel;
+        internal System.Windows.Forms.Panel searchSortingPanel;
+        internal System.Windows.Forms.Label searchSortingLabel;
+        internal System.Windows.Forms.RadioButton sortAlbumTrackNameButton;
+        internal System.Windows.Forms.RadioButton sortArtistNameButton;
+        internal System.Windows.Forms.RadioButton sortReleaseDateButton;
+        internal System.Windows.Forms.Label sortAlbumTrackNameLabel;
+        internal System.Windows.Forms.Label sortArtistNameLabel;
+        internal System.Windows.Forms.Label sortReleaseDateLabel;
+        internal System.Windows.Forms.CheckBox sortAscendantCheckBox;
+        internal System.Windows.Forms.Label sortingSearchResultsLabel;
+        internal System.Windows.Forms.Label searchResultsCountLabel;
+        internal System.Windows.Forms.Label batchDownloadProgressCountLabel;
+        internal System.Windows.Forms.NotifyIcon notifyIcon1;
+        internal System.Windows.Forms.ContextMenuStrip sysTrayContextMenuStrip;
+        internal System.Windows.Forms.ToolStripMenuItem showWindowToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem hideWindowToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem closeProgramToolStripMenuItem;
+        internal System.Windows.Forms.Label sortGenreLabel;
+        internal System.Windows.Forms.RadioButton sortGenreButton;
+        internal System.Windows.Forms.Label selectedRowsCountLabel;
+        internal System.Windows.Forms.Button batchDownloadSelectedRowsButton;
+        internal System.Windows.Forms.Button deselectAllRowsButton;
+        internal System.Windows.Forms.Button selectAllRowsButton;
+        internal System.Windows.Forms.ContextMenuStrip mainContextMenuStrip;
+        internal System.Windows.Forms.ToolStripMenuItem copyToClipboardToolStripMenuItem;
+        internal ToolStripMenuItem copyThisRowToClipboardToolStripMenuItem;
+        internal ToolStripMenuItem copySelectedRowsToClipboardToolStripMenuItem;
+        internal ToolStripMenuItem copyAllRowsToClipboardToolStripMenuItem;
     }
 }
