@@ -24,7 +24,7 @@
     "settingsButton":               "AJUSTES",
     "selectAllRowsButton":          "Seleccionar todo",
     "deselectAllRowsButton":        "Deseleccionar todo",
-    "batchDownloadRowsButton":      "DESCARGA MASIVA DE LAS FILAS SELECCIONADAS",
+    "batchDownloadRowsButton":      "DESCARGAR LAS FILAS SELECCIONADAS",
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",
@@ -56,7 +56,7 @@
     "sortAlbumTrackNameLabel":      "Nombre de álbum o pista",
     "sortingSearchResultsLabel":    "Ordenando…",
     "searchResultsCountLabel":      "resultados",
-    "selectedRowsCountLabel":       "{0} filas selec.",
+    "selectedRowsCountLabel":       "{0} filas seleccionadas",
     "disclaimer":                   "Aviso Legal / Descargo de Responsabilidad\n\nEsta aplicación utiliza la API de Qobuz, pero no está certificada por Qobuz.\n\nEl software y sus autores no están afiliados, respaldados ni conectados oficialmente con Qobuz de ninguna manera. El uso de esta aplicación es bajo su propio riesgo. Los autores no ofrecen garantías sobre la exactitud, fiabilidad o disponibilidad del servicio, y no serán responsables de daños o pérdida de datos que resulten de su uso.\n\nAl usar esta aplicación, reconoce y acepta que se proporciona \"tal cual\", sin ninguna garantía expresa o implícita de ningún tipo, incluidas, entre otras, garantías de comerciabilidad, idoneidad para un propósito particular o no infracción.\n\nLos usuarios son responsables de cumplir con todas las leyes aplicables, términos de servicio y restricciones de uso al acceder a la API de Qobuz u otros servicios de terceros.\n\nPara servicios oficiales y soporte de Qobuz, consulte el sitio web oficial de Qobuz: https://www.qobuz.com/",
 
     "_SECTION3_":                   "=================== CASILLAS (CHECKBOX) DEL FORM PRINCIPAL ===================",

@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 05, 2026, 08:22AM EST",
+    "TranslationUpdatedOn":         "January 06, 2026, 08:22AM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -17,7 +17,7 @@
     "qualitySelectButton":          "Quality Selector",
     "saveTemplatesButton":          "Save",
     "resetTemplatesButton":         "Reset",
-    "searchButton":                 "SEARCH",
+    "searchButton":                 "SEARCHER",
     "searchAlbumsButton":           "RELEASES",
     "searchTracksButton":           "TRACKS",
     "selectFolderButton":           "Select Folder",

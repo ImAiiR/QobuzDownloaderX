@@ -361,6 +361,7 @@ namespace QobuzDownloaderX.Helpers
             f.sortArtistNameLabel.Text = f.languageManager.GetTranslation("sortArtistNameLabel");
             f.sortAlbumTrackNameLabel.Text = f.languageManager.GetTranslation("sortAlbumTrackNameLabel");
             f.sortingSearchResultsLabel.Text = f.languageManager.GetTranslation("sortingSearchResultsLabel");
+            f.selectedRowsCountLabel.Text = string.Empty;
 
             // Checkboxes
             f.albumArtistCheckbox.Text = f.languageManager.GetTranslation("albumArtistCheckbox");
