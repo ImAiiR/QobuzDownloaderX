@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 06, 2026, 08:51AM UTC",
+    "TranslationUpdatedOn":         "January 06, 2026, 10:17AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -58,6 +58,7 @@
     "searchResultsCountLabel":      "resultados",
     "selectedRowsCountLabel":       "{0} filas seleccionadas",
     "disclaimer":                   "Aviso Legal / Descargo de Responsabilidad\n\nEsta aplicación utiliza la API de Qobuz, pero no está certificada por Qobuz.\n\nEl software y sus autores no están afiliados, respaldados ni conectados oficialmente con Qobuz de ninguna manera. El uso de esta aplicación es bajo su propio riesgo. Los autores no ofrecen garantías sobre la exactitud, fiabilidad o disponibilidad del servicio, y no serán responsables de daños o pérdida de datos que resulten de su uso.\n\nAl usar esta aplicación, reconoce y acepta que se proporciona \"tal cual\", sin ninguna garantía expresa o implícita de ningún tipo, incluidas, entre otras, garantías de comerciabilidad, idoneidad para un propósito particular o no infracción.\n\nLos usuarios son responsables de cumplir con todas las leyes aplicables, términos de servicio y restricciones de uso al acceder a la API de Qobuz u otros servicios de terceros.\n\nPara servicios oficiales y soporte de Qobuz, consulte el sitio web oficial de Qobuz: https://www.qobuz.com/",
+    "downloadFromArtistLabel":      "DESCARGAR DEL ARTISTA",
 
     "_SECTION3_":                   "=================== CASILLAS (CHECKBOX) DEL FORM PRINCIPAL ===================",
     "albumArtistCheckbox":          "Artista de álbum",
@@ -89,6 +90,8 @@
     "downloadArtistOtherCheckBox":  "Descargar artista — Otros / versiones (covers)", 
     "clearOldLogsCheckBox":         "Borrar archivos LOG antiguos al iniciar",
     "dontSaveArtworkToDiskCheckBox":"No guardar portadas en disco",
+    "downloadFromArtistListBox":    "Álbum, EP/Single, En Vivo, Compilación, Descarga, Otro",
+    "downloadAllFromArtistCheckBox":"Descargar todo del artista (puede incluir más)",
 
     "_SECTION4_":                   "=================== CAMPOS DEL FORM PRINCIPAL ===================",
     "albumLabelPlaceholder":        "¡Bienvenido a QBDLX!",
@@ -134,6 +137,7 @@
     "copyThisRowToClipboard":       "Copiar esta fila al portapapeles",
     "copySelectedRowsToClipboard":  "Copiar filas seleccionadas al portapapeles",
     "copyAllRowsToClipboard":       "Copiar todas las filas al portapapeles",
+    "downloadFromArtistWarning":    "Por favor, selecciona al menos un tipo de descarga para los artistas",
 
     "_SECTION5_":                   "=================== BOTONES (BUTTON) DEL FORM DE INICIO DE SESIÓN ===================",
     "closeAboutButton":             "CERRAR",

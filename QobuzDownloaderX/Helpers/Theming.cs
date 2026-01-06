@@ -134,6 +134,11 @@ namespace QobuzDownloaderX.Helpers
                         ? ColorTranslator.FromHtml(_currentTheme.MainPanelBackground)
                         : ColorTranslator.FromHtml(_currentTheme.LabelText);
                 }
+                else if (control is CheckedListBox clb)
+                {
+                    clb.BackColor = ColorTranslator.FromHtml(_currentTheme.FormBackground);
+                    clb.ForeColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                }
                 else if (control is TextBox textBox)
                 {
                     textBox.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
@@ -311,7 +316,7 @@ namespace QobuzDownloaderX.Helpers
         // Default English translation if no files are avaialble
         public const string defaultLanguage = @"{
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 05, 2026, 08:22AM EST"",
+    ""TranslationUpdatedOn"":         ""January 06, 2026, 09:22AM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -328,7 +333,7 @@ namespace QobuzDownloaderX.Helpers
     ""qualitySelectButton"":          ""Quality Selector"",
     ""saveTemplatesButton"":          ""Save"",
     ""resetTemplatesButton"":         ""Reset"",
-    ""searchButton"":                 ""SEARCH"",
+    ""searchButton"":                 ""SEARCHER"",
     ""searchAlbumsButton"":           ""RELEASES"",
     ""searchTracksButton"":           ""TRACKS"",
     ""selectFolderButton"":           ""Select Folder"",
@@ -369,7 +374,8 @@ namespace QobuzDownloaderX.Helpers
     ""searchResultsCountLabel"":      ""results"",
     ""selectedRowsCountLabel"":       ""{0} selected rows"",
     ""disclaimer"":                   ""DISCLAIMER / LEGAL NOTICE\n\nThis application uses the Qobuz API but is not certified by Qobuz.\n\nThe software and its authors are not affiliated with, endorsed by, or officially connected to Qobuz in any way. Use of this application is at your own risk. The authors make no warranties regarding the accuracy, reliability, or availability of the service, and will not be held liable for any damages or data loss resulting from its use.\n\nBy using this application, you acknowledge and accept that it is provided \""as-is\"", without any express or implied warranty of any kind, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.\n\nUsers are responsible for complying with all applicable laws, terms of service, and usage restrictions when accessing the Qobuz API or any other third-party services.\n\nFor official Qobuz services and support, please refer to Qobuz's official website: https://www.qobuz.com/"",
-
+    ""downloadFromArtistLabel"":      ""DOWNLOAD FROM ARTIST"",
+    
     ""_SECTION3_"":                   ""=================== MAIN FORM CHECKBOXES ==================="",
     ""albumArtistCheckbox"":          ""Album Artist"",
     ""albumTitleCheckbox"":           ""Album Title"",
@@ -396,10 +402,12 @@ namespace QobuzDownloaderX.Helpers
     ""downloadSpeedCheckbox"":        ""Print Download Speed"",
     ""sortAscendantCheckBox"":        ""Ascendant"",
     ""downloadGoodiesCheckbox"":      ""Download goodies"",
-    ""useTLS13Checkbox"":             ""Use TLS 1.3"",
+    ""useTLS13Checkbox"":             ""Enable TLS 1.3"",
     ""downloadArtistOtherCheckBox"":  ""Download artist - Other / covers"",
-    ""clearOldLogsCheckBox"":         ""Clear old logs on startup"",
+    ""clearOldLogsCheckBox"":         ""Clear old log files on startup"",
     ""dontSaveArtworkToDiskCheckBox"":""Don't save artwork to disk"",
+    ""downloadFromArtistListBox"":    ""Album, EP/Single, Live, Compilation, Download, Other"",
+    ""downloadAllFromArtistCheckBox"":""Download all from artist (it can include more)"",
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",
@@ -445,6 +453,7 @@ namespace QobuzDownloaderX.Helpers
     ""copyThisRowToClipboard"":       ""Copy this row to clipboard"",
     ""copySelectedRowsToClipboard"":  ""Copy selected rows to clipboard"",
     ""copyAllRowsToClipboard"":       ""Copy all rows to clipboard"",
+    ""downloadFromArtistWarning"":    ""Please, select at least one download type for artists"",
 
     ""_SECTION5_"":                   ""=================== LOGIN FORM BUTTONS ==================="",
     ""closeAboutButton"":             ""CLOSE"",

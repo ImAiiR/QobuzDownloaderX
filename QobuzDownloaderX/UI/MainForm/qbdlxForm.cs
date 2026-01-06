@@ -1,7 +1,6 @@
 ﻿using QobuzDownloaderX.Helpers;
 using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.UI;
-using QobuzDownloaderX.UI.DevCase.UI.Components;
 using QobuzDownloaderX.Win32;
 using QopenAPI;
 using System;
@@ -12,9 +11,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Reflection;
-using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -404,7 +401,9 @@ namespace QobuzDownloaderX
                     downloadLocation = path + @"\";
                 } else
                 {
-                    MessageBox.Show(this, languageManager.GetTranslation("downloadOutputDontExistMsg"), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(this, languageManager.GetTranslation("downloadOutputDontExistMsg"), 
+                        Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                     // Restore previous path text only if it's not null or empty.
                     if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
                     {
@@ -877,6 +876,8 @@ namespace QobuzDownloaderX
         #region Navigation Buttons
         private void logoutButton_Click(object sender, EventArgs e)
         {
+            if (Miscellaneous.ShowDownloadFromArtistWarningIfNeeded()) return;
+
             logger.Debug("Restarting program to logout");
             // Could use some work, but this works.
             string exePath = Application.ExecutablePath;
@@ -886,6 +887,8 @@ namespace QobuzDownloaderX
 
         private void aboutButton_Click(object sender, EventArgs e)
         {
+            if (Miscellaneous.ShowDownloadFromArtistWarningIfNeeded()) return;
+
             logger.Debug("Opening about panel");
             // Make other panels invisable, make about panel visible
             downloaderPanel.Visible = false;
@@ -908,6 +911,8 @@ namespace QobuzDownloaderX
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
+            if (extraSettingsPanel.Visible && Miscellaneous.ShowDownloadFromArtistWarningIfNeeded()) return;
+
             logger.Debug("Opening settings panel");
             // Make other panels invisable, make settings panel visible
             downloaderPanel.Visible = false;
@@ -930,6 +935,8 @@ namespace QobuzDownloaderX
 
         internal void downloaderButton_Click(object sender, EventArgs e)
         {
+            if (Miscellaneous.ShowDownloadFromArtistWarningIfNeeded()) return;
+
             logger.Debug("Opening download panel");
             // Make other panels invisable, make settings panel visible
             aboutPanel.Visible = false;
@@ -952,6 +959,8 @@ namespace QobuzDownloaderX
 
         private void searchButton_Click(object sender, EventArgs e)
         {
+            if (Miscellaneous.ShowDownloadFromArtistWarningIfNeeded()) return;
+
             logger.Debug("Opening search panel");
             // Make other panels invisable, make settings panel visible
             aboutPanel.Visible = false;
@@ -996,6 +1005,8 @@ namespace QobuzDownloaderX
 
         private void closeAdditionalButton_Click(object sender, EventArgs e)
         {
+            if (Miscellaneous.ShowDownloadFromArtistWarningIfNeeded()) return;
+
             logger.Debug("Closing extra settings panel");
             // Make other panels invisable, make settings panel visible
             aboutPanel.Visible = false;
@@ -1052,12 +1063,6 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
-        private void downloadArtistOtherCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.downloadArtistOther = downloadArtistOtherCheckbox.Checked;
-            Settings.Default.Save();
-        }
-
         private void downloadSpeedCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.showDownloadSpeed = downloadSpeedCheckbox.Checked;
@@ -1080,6 +1085,27 @@ namespace QobuzDownloaderX
         {
             savedArtSizeSelect.Enabled = !dontSaveArtworkToDiskCheckBox.Checked;
             Settings.Default.dontSaveArtworkToDisk = dontSaveArtworkToDiskCheckBox.Checked;
+            Settings.Default.Save();
+        }
+
+        private void downloadFromArtistListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Miscellaneous.SaveDownloadFromArtistSelectedIndices();
+        }
+
+        private void downloadAllFromArtistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            var lb = downloadAllFromArtistCheckBox;
+            downloadFromArtistListBox.Enabled = !lb.Checked;
+
+            if (lb.Checked)
+            {
+                for (int i = 0; i < downloadFromArtistListBox.Items.Count; i++)
+                {
+                    downloadFromArtistListBox.SetItemChecked(i, true);
+                }
+            }
+            Settings.Default.downloadAllFromArtist = lb.Checked;
             Settings.Default.Save();
         }
 

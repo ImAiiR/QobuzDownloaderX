@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 5, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 06, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -58,6 +58,7 @@
     "searchResultsCountLabel":      "résultats",
     "selectedRowsCountLabel":       "{0} lignes sélectionnées", // ChatGPT translation.
     "disclaimer":                   "Avis de Non-Responsabilité / Mentions Légales\n\nCette application utilise l'API Qobuz, mais n'est pas certifiée par Qobuz.\n\nLe logiciel et ses auteurs ne sont affiliés, approuvés ou officiellement liés à Qobuz d'aucune manière. L'utilisation de cette application se fait à vos propres risques. Les auteurs ne garantissent pas l'exactitude, la fiabilité ou la disponibilité du service et ne peuvent être tenus responsables de tout dommage ou perte de données résultant de son utilisation.\n\nEn utilisant cette application, vous reconnaissez et acceptez qu'elle est fournie \"telle quelle\", sans aucune garantie expresse ou implicite, y compris, mais sans s'y limiter, les garanties de qualité marchande, d'adéquation à un usage particulier ou de non-contrefaçon.\n\nLes utilisateurs sont responsables de se conformer à toutes les lois applicables, aux conditions de service et aux restrictions d'utilisation lors de l'accès à l'API Qobuz ou à tout autre service tiers.\n\nPour les services officiels et le support Qobuz, veuillez consulter le site officiel de Qobuz: https://www.qobuz.com/",
+    "downloadFromArtistLabel":      "TÉLÉCHARGER DEPUIS L’ARTISTE", // ChatGPT translation.
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Artiste de l'album",
@@ -89,7 +90,9 @@
     "downloadArtistOtherCheckBox":  "Télécharger artiste — Autres / reprises", 
     "clearOldLogsCheckBox":         "Effacer les anciens journaux au démarrage", // ChatGPT translation
     "dontSaveArtworkToDiskCheckBox":"Ne pas enregistrer les illustrations sur le disque", // ChatGPT translation
-
+    "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Téléchargement, Autre", // ChatGPT translation
+    "downloadAllFromArtistCheckBox":"Télécharger tout de l'artiste (peut en inclure plus)",  // ChatGPT translation
+    
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",
     "artistLabelPlaceholder":       "Saisissez votre lien Qobuz puis cliquez sur Télécharger !",
@@ -134,6 +137,7 @@
     "copyThisRowToClipboard":       "Copier cette ligne dans le presse-papiers", // ChatGPT translation.
     "copySelectedRowsToClipboard":  "Copier les lignes sélectionnées dans le presse-papiers", // ChatGPT translation.
     "copyAllRowsToClipboard":       "Copier toutes les lignes dans le presse-papiers", // ChatGPT translation.
+    "downloadFromArtistWarning":    "Veuillez sélectionner au moins un type de téléchargement pour les artistes", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "Fermer",

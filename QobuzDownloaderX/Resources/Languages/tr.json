@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "January 05, 2026, 01:25PM UTC",
+    "TranslationUpdatedOn":         "January 06, 2026, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -58,6 +58,7 @@
     "searchResultsCountLabel":      "sonuç", // ChatGPT translation.
     "selectedRowsCountLabel":       "{0} seçili satır", // ChatGPT translation.
     "disclaimer":                   "Feragat / Yasal Uyarı\n\nBu uygulama Qobuz API’sini kullanır ancak Qobuz tarafından onaylanmamıştır.\n\nYazılım ve yazarları, Qobuz ile herhangi bir şekilde bağlı, onaylı veya resmi olarak bağlantılı değildir. Bu uygulamanın kullanımı kendi sorumluluğunuzdadır. Yazarlar, hizmetin doğruluğu, güvenilirliği veya kullanılabilirliği konusunda herhangi bir garanti vermez ve kullanımından kaynaklanabilecek herhangi bir zarar veya veri kaybından sorumlu tutulamaz.\n\nBu uygulamayı kullanarak, uygulamanın “olduğu gibi” sağlandığını ve hiçbir açık veya zımni garanti verilmediğini kabul etmiş olursunuz; bu garantiler, ticari uygunluk, belirli bir amaç için uygunluk veya ihlal etmeme garantilerini de kapsar ancak bunlarla sınırlı değildir.\n\nKullanıcılar, Qobuz API’sine veya diğer üçüncü taraf hizmetlerine erişirken geçerli tüm yasa, hizmet şartları ve kullanım kısıtlamalarına uymaktan sorumludur.\n\nResmî Qobuz hizmetleri ve destek için Qobuz’un resmi web sitesine: https://www.qobuz.com/",
+    "downloadFromArtistLabel":      "SANATÇIDAN İNDİR",
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumArtistCheckbox":          "Albüm Sanatçısı",
@@ -89,6 +90,8 @@
     "downloadArtistOther":          "Sanatçıları indir — Diğer / cover parçaları", // ChatGPT translation.
     "clearOldLogsCheckBox":         "Başlangıçta eski günlükleri temizle", // ChatGPT translation
     "dontSaveArtworkToDiskCheckBox":"Sanat çalışmalarını diskte kaydetme", // ChatGPT translation
+    "downloadFromArtistListBox":    "Albüm, EP/Single, Canlı, Derleme, İndirme, Diğer", // ChatGPT translation
+    "downloadAllFromArtistCheckBox":"Sanatçıdan hepsini indir (daha fazla içerebilir)", // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",
@@ -134,6 +137,7 @@
     "copyThisRowToClipboard":       "Bu satırı panoya kopyala", // ChatGPT translation.
     "copySelectedRowsToClipboard":  "Seçili satırları panoya kopyala", // ChatGPT translation.
     "copyAllRowsToClipboard":       "Tüm satırları panoya kopyala", // ChatGPT translation.
+    "downloadFromArtistWarning":    "Lütfen sanatçılar için en az bir indirme türü seçin", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "KAPAT",

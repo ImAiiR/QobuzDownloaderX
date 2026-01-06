@@ -574,21 +574,7 @@ namespace QobuzDownloaderX.Properties {
                 this["streamableCheck"] = value;
             }
         }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool downloadArtistOther
-        {
-            get
-            {
-                return ((bool)(this["downloadArtistOther"]));
-            }
-            set
-            {
-                this["downloadArtistOther"] = value;
-            }
-        }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
@@ -598,36 +584,6 @@ namespace QobuzDownloaderX.Properties {
             }
             set {
                 this["fixMD5s"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool clearOldLogs
-        {
-            get
-            {
-                return ((bool)(this["clearOldLogs"]));
-            }
-            set
-            {
-                this["clearOldLogs"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool dontSaveArtworkToDisk
-        {
-            get
-            {
-                return ((bool)(this["dontSaveArtworkToDisk"]));
-            }
-            set
-            {
-                this["dontSaveArtworkToDisk"] = value;
             }
         }
         
@@ -736,6 +692,54 @@ namespace QobuzDownloaderX.Properties {
             }
             set {
                 this["useTLS13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool dontSaveArtworkToDisk {
+            get {
+                return ((bool)(this["dontSaveArtworkToDisk"]));
+            }
+            set {
+                this["dontSaveArtworkToDisk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool downloadAllFromArtist {
+            get {
+                return ((bool)(this["downloadAllFromArtist"]));
+            }
+            set {
+                this["downloadAllFromArtist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool clearOldLogs {
+            get {
+                return ((bool)(this["clearOldLogs"]));
+            }
+            set {
+                this["clearOldLogs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string downloadFromArtistSelectedIndices {
+            get {
+                return ((string)(this["downloadFromArtistSelectedIndices"]));
+            }
+            set {
+                this["downloadFromArtistSelectedIndices"] = value;
             }
         }
     }

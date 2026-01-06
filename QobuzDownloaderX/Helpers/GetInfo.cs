@@ -1,9 +1,7 @@
-﻿using QobuzDownloaderX.Properties;
-using QopenAPI;
+﻿using QopenAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace QobuzDownloaderX.Helpers
 {
@@ -20,30 +18,55 @@ namespace QobuzDownloaderX.Helpers
 
         public string outputText { get; set; }
 
-        public void updateDownloadOutput(string text)
+        public HashSet<string> GetArtistReleaseTypeIds(string app_id, string artist_id, string selectedTypes, string user_auth_token)
         {
-            if (outputText == "Test String" | outputText == null)
+            if (string.IsNullOrEmpty(selectedTypes))
             {
-                Miscellaneous.update(qbdlxForm._qbdlxForm, null);
-                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
-                Miscellaneous.update(qbdlxForm._qbdlxForm, text);
-                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                qbdlxForm._qbdlxForm.logger.Error("No release types selected.");
+                return new HashSet<string>();
             }
-            else if (text == null)
+
+            var allIds = new HashSet<string>();
+            try
             {
-                Miscellaneous.update(qbdlxForm._qbdlxForm, null);
-                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                outputText = null;
+                qbdlxForm._qbdlxForm.logger.Debug("Fetching selected release types IDs…");
+
+                int limit = 100;
+                int offset = 0;
+
+                ReleasesList list;
+
+                do
+                {
+                    list = QoService.GetReleaseListWithAuth(app_id, artist_id, selectedTypes, user_auth_token, track_size: 1, limit: limit, offset: offset);
+
+                    if (list == null || list.Items == null || list.Items.Count == 0)
+                        break;
+
+                    foreach (var r in list.Items)
+                        allIds.Add(r.Id);
+
+                    offset += limit;
+
+                    if (offset > 100000) break;
+
+                } while (list.HasMore);
+
+                return allIds;
             }
-            else
+            catch (Exception ex)
             {
-                Miscellaneous.update(qbdlxForm._qbdlxForm, outputText + text);
-                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                updateDownloadOutput("\r\n" + ex.ToString());
+                qbdlxForm._qbdlxForm.logger.Error("Failed to fetch artist release types IDs, error below:\r\n" + ex);
+                return new HashSet<string>();
             }
         }
 
         public Artist getArtistInfo(string app_id, string artist_id, string user_auth_token)
         {
             try
+
             {
                 // Grab artist info with auth
                 outputText = null;
@@ -53,7 +76,7 @@ namespace QobuzDownloaderX.Helpers
                 int offset = 0;
 
                 // 1) First request (initial page)
-                QoArtist = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, limit, offset);
+                QoArtist = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, "albums%2Calbums_with_last_release", limit, offset);
 
                 if (QoArtist == null || QoArtist.Albums == null || QoArtist.Albums.Items == null)
                 {
@@ -69,7 +92,7 @@ namespace QobuzDownloaderX.Helpers
                 // 2) Pagination loop - keep requesting pages until all albums are collected
                 while (allItems.Count < total)
                 {
-                    var page = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, limit, offset);
+                    var page = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, "albums%2Calbums_with_last_release", limit, offset);
 
                     if (page == null || page.Albums == null || page.Albums.Items == null || page.Albums.Items.Count == 0)
                         break;
@@ -81,14 +104,19 @@ namespace QobuzDownloaderX.Helpers
                     if (offset > 100000) break;
                 }
 
-                if (!Settings.Default.downloadArtistOther)
+                string selectedTypes = Miscellaneous.GetCheckedDownloadFromArtistTypes();
+                if (selectedTypes == "all")
                 {
                     QoArtist.Albums.Items = allItems.Cast<Item>()
-                                                    .Where(a => a.Artist?.Id.ToString() == artist_id)
+                                                    .OrderByDescending(a => a.Artist?.Id.ToString() == artist_id)
                                                     .ToList();
-                } else
+                }
+                else
                 {
+                    var allowedIds = GetArtistReleaseTypeIds(app_id, artist_id, selectedTypes, user_auth_token);
+
                     QoArtist.Albums.Items = allItems.Cast<Item>()
+                                                    .Where(a => allowedIds.Contains(a.Id.ToString()))
                                                     .OrderByDescending(a => a.Artist?.Id.ToString() == artist_id)
                                                     .ToList();
                 }
@@ -102,6 +130,74 @@ namespace QobuzDownloaderX.Helpers
                 return null;
             }
         }
+
+        // PREVIOUS IMPLEMENTATION, JUST IN CASE.
+        //
+        //   Note: This gets everything from artist if 'Settings.Default.downloadArtistOther' is true,
+        //         that is like passing release type "all" to 'QoService.GetReleaseListWithAuth' function.
+        //
+        //public Artist getArtistInfo(string app_id, string artist_id, string user_auth_token)
+        //{
+        //    try
+        //    {
+        //        // Grab artist info with auth
+        //        outputText = null;
+        //        qbdlxForm._qbdlxForm.logger.Debug("Getting artist Info…");
+        //
+        //        int limit = 500;
+        //        int offset = 0;
+        //
+        //        // 1) First request (initial page)
+        //        QoArtist = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, "albums%2Calbums_with_last_release", limit, offset);
+        //
+        //        if (QoArtist == null || QoArtist.Albums == null || QoArtist.Albums.Items == null)
+        //        {
+        //            qbdlxForm._qbdlxForm.logger.Warning("Artist has no albums or retrieval failed.");
+        //            return QoArtist; // return what we have (possibly null)
+        //        }
+        //
+        //        var allItems = QoArtist.Albums.Items.Cast<object>().ToList();
+        //        int total = QoArtist.Albums.Total;
+        //
+        //        offset += limit;
+        //
+        //        // 2) Pagination loop - keep requesting pages until all albums are collected
+        //        while (allItems.Count < total)
+        //        {
+        //            var page = QoService.ArtistGetWithAuth(app_id, artist_id, user_auth_token, "albums%2Calbums_with_last_release", limit, offset);
+        //
+        //            if (page == null || page.Albums == null || page.Albums.Items == null || page.Albums.Items.Count == 0)
+        //                break;
+        //
+        //            allItems.AddRange(page.Albums.Items.Cast<object>());
+        //            offset += limit;
+        //
+        //            // Safety break to prevent infinite loop
+        //            if (offset > 100000) break;
+        //        }
+        //
+        //        if (!Settings.Default.downloadArtistOther)
+        //        {
+        //            QoArtist.Albums.Items = allItems.Cast<Item>()
+        //                                            .Where(a => a.Artist?.Id.ToString() == artist_id)
+        //                                            .ToList();
+        //        }
+        //        else
+        //        {
+        //            QoArtist.Albums.Items = allItems.Cast<Item>()
+        //                                            .OrderByDescending(a => a.Artist?.Id.ToString() == artist_id)
+        //                                            .ToList();
+        //        }
+        //
+        //        return QoArtist;
+        //    }
+        //    catch (Exception getArtistInfoEx)
+        //    {
+        //        updateDownloadOutput("\r\n" + getArtistInfoEx.ToString());
+        //        qbdlxForm._qbdlxForm.logger.Error("Failed to get artist info, error below:\r\n" + getArtistInfoEx);
+        //        return null;
+        //    }
+        //}
 
         public QopenAPI.Label getLabelInfo(string app_id, string label_id, string user_auth_token)
         {
@@ -414,5 +510,27 @@ namespace QobuzDownloaderX.Helpers
                 return null;
             }
         }
+
+        public void updateDownloadOutput(string text)
+        {
+            if (outputText == "Test String" | outputText == null)
+            {
+                Miscellaneous.update(qbdlxForm._qbdlxForm, null);
+                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+                Miscellaneous.update(qbdlxForm._qbdlxForm, text);
+                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+            }
+            else if (text == null)
+            {
+                Miscellaneous.update(qbdlxForm._qbdlxForm, null);
+                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+            }
+            else
+            {
+                Miscellaneous.update(qbdlxForm._qbdlxForm, outputText + text);
+                outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
+            }
+        }
+
     }
 }

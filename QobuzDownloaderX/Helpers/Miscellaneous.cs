@@ -218,6 +218,7 @@ namespace QobuzDownloaderX.Helpers
             f.embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize;
             f.savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
             f.dontSaveArtworkToDiskCheckBox.Checked = Settings.Default.dontSaveArtworkToDisk;
+            f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
         }
 
         internal static void LoadOtherSettings(qbdlxForm f)
@@ -226,9 +227,49 @@ namespace QobuzDownloaderX.Helpers
             f.useTLS13Checkbox.Checked = Settings.Default.useTLS13;
             f.fixMD5sCheckbox.Checked = Settings.Default.fixMD5s;
             f.downloadGoodiesCheckbox.Checked = Settings.Default.downloadGoodies;
-            f.downloadArtistOtherCheckbox.Checked = Settings.Default.downloadArtistOther;
             f.downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
             f.clearOldLogsCheckBox.Checked = Settings.Default.clearOldLogs;
+            f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
+            RestoreDownloadFromArtistSelectedIndices();
+
+        }
+
+        internal static void SaveDownloadFromArtistSelectedIndices()
+        {
+            var lb = qbdlxForm._qbdlxForm.downloadFromArtistListBox;
+
+            var selectedIndices = lb.CheckedIndices.Cast<int>();
+
+            string indicesString = string.Join(",", selectedIndices);
+
+            Settings.Default.downloadFromArtistSelectedIndices = indicesString;
+            Settings.Default.Save();
+        }
+
+        private static void RestoreDownloadFromArtistSelectedIndices()
+        {
+            if (Settings.Default.downloadAllFromArtist) return;
+
+            var lb = qbdlxForm._qbdlxForm.downloadFromArtistListBox;
+
+            string indicesString = Settings.Default.downloadFromArtistSelectedIndices;
+
+            if (!string.IsNullOrEmpty(indicesString))
+            {
+                var indices = indicesString.Split(',')
+                                           .Select(s => int.TryParse(s, out int i) ? i : -1)
+                                           .Where(i => i >= 0 && i < lb.Items.Count);
+
+                foreach (int i in indices)
+                {
+                    lb.SetItemChecked(i, true);
+                }
+            }
+
+            if (lb.CheckedItems.Count == 0 && lb.Items.Count > 0)
+            {
+                lb.SetItemChecked(0, true);
+            }
         }
 
         internal static void SetDownloadPath(qbdlxForm f)
@@ -349,6 +390,7 @@ namespace QobuzDownloaderX.Helpers
             f.templatesListLabel.Text = f.languageManager.GetTranslation("templatesListLabel");
             f.themeLabel.Text = f.languageManager.GetTranslation("themeLabel");
             f.themeSectionLabel.Text = f.languageManager.GetTranslation("themeSectionLabel");
+            f.downloadFromArtistLabel.Text = f.languageManager.GetTranslation("downloadFromArtistLabel");
             f.trackTemplateLabel.Text = f.languageManager.GetTranslation("trackTemplateLabel");
             f.userInfoLabel.Text = f.languageManager.GetTranslation("userInfoLabel");
             f.disclaimerLabel.Text = f.languageManager.GetTranslation("disclaimer");
@@ -389,10 +431,18 @@ namespace QobuzDownloaderX.Helpers
             f.downloadSpeedCheckbox.Text = f.languageManager.GetTranslation("downloadSpeedCheckbox");
             f.sortAscendantCheckBox.Text = f.languageManager.GetTranslation("sortAscendantCheckBox");
             f.downloadGoodiesCheckbox.Text = f.languageManager.GetTranslation("downloadGoodiesCheckbox");
-            f.downloadArtistOtherCheckbox.Text = f.languageManager.GetTranslation("downloadArtistOtherCheckBox");
             f.useTLS13Checkbox.Text = f.languageManager.GetTranslation("useTLS13Checkbox");
             f.dontSaveArtworkToDiskCheckBox.Text = f.languageManager.GetTranslation("dontSaveArtworkToDiskCheckBox");
+            f.downloadAllFromArtistCheckBox.Text = f.languageManager.GetTranslation("downloadAllFromArtistCheckBox");
             f.clearOldLogsCheckBox.Text = f.languageManager.GetTranslation("clearOldLogsCheckBox");
+
+            // downloadFromArtistListBox
+            string translatedNames = f.languageManager.GetTranslation("downloadFromArtistListBox");
+            string[] names = translatedNames.Split(',');
+            for (int i = 0; i < names.Length && i < f.downloadFromArtistListBox.Items.Count; i++)
+            {
+                f.downloadFromArtistListBox.Items[i] = names[i].Trim();
+            }
 
             /* Center certain checkboxes in panels */
             f.fixMD5sCheckbox.Location = new Point((f.extraSettingsPanel.Width - f.fixMD5sCheckbox.Width) / 2, f.fixMD5sCheckbox.Location.Y);
@@ -401,7 +451,6 @@ namespace QobuzDownloaderX.Helpers
             f.streamableCheckbox.Location = new Point(f.fixMD5sCheckbox.Left - 100, f.streamableCheckbox.Location.Y);
             f.useTLS13Checkbox.Location = new Point(f.streamableCheckbox.Right + 16, f.streamableCheckbox.Location.Y);
             f.downloadGoodiesCheckbox.Location = new Point(f.useTLS13Checkbox.Right + 16, f.streamableCheckbox.Location.Y);
-            f.downloadArtistOtherCheckbox.Location = new Point(f.downloadGoodiesCheckbox.Right + 16, f.streamableCheckbox.Location.Y);
 
             // Context menu items
             f.showWindowToolStripMenuItem.Text = f.languageManager.GetTranslation("showWindowCmItem");
@@ -639,6 +688,39 @@ namespace QobuzDownloaderX.Helpers
             f.sortingSearchResultsLabel.Visible = false;
             f.sortingSearchResultsLabel.Update();
             return;
+        }
+
+        internal static string GetCheckedDownloadFromArtistTypes()
+        {
+            if (Settings.Default.downloadAllFromArtist)
+                return "all";
+
+            string[] fixedNames = { "album", "epSingle", "live", "compilation", "download", "other" };
+
+            var result = new List<string>();
+
+            for (int i = 0; i < qbdlxForm._qbdlxForm.downloadFromArtistListBox.Items.Count; i++)
+            {
+                if (qbdlxForm._qbdlxForm.downloadFromArtistListBox.GetItemChecked(i))
+                {
+                    result.Add(fixedNames[i]);
+                }
+            }
+
+            return string.Join(",", result);
+        }
+
+        internal static bool ShowDownloadFromArtistWarningIfNeeded()
+        {
+            string selectedDownloadFromArtistTypes = Miscellaneous.GetCheckedDownloadFromArtistTypes();
+            if (string.IsNullOrEmpty(selectedDownloadFromArtistTypes))
+            {
+                qbdlxForm._qbdlxForm.extraSettingsPanel.Show();
+                MessageBox.Show(qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadFromArtistWarning"),
+                                Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return true;
+            }
+            return false;
         }
 
         internal static async Task downloadButtonAsyncWork(qbdlxForm f)
@@ -896,7 +978,7 @@ namespace QobuzDownloaderX.Helpers
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
                     await Task.Run(() => f.getInfo.getArtistInfo(f.app_id, f.qobuz_id, f.user_auth_token));
                     f.QoArtist = f.getInfo.QoArtist;
-                    if (f.QoArtist == null)
+                    if (f.QoArtist == null || f.QoArtist.Albums == null || f.QoArtist.Albums.Items == null)
                     {
                         string msg = string.Format(f.languageManager.GetTranslation("invalidUrl"), albumLink);
                         f.logger.Error(msg);
@@ -1191,6 +1273,5 @@ namespace QobuzDownloaderX.Helpers
                     return;
             }
         }
-
     }
 }

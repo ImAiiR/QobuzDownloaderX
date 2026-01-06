@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 05, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 06, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -58,6 +58,7 @@
     "searchResultsCountLabel":      "Ergebnisse", // ChatGPT translation.
     "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // ChatGPT translation.
     "disclaimer":                   "Haftungsausschluss / Rechtlicher Hinweis\n\nDiese Anwendung verwendet die Qobuz-API, ist jedoch nicht von Qobuz zertifiziert.\n\nDie Software und ihre Autoren sind in keiner Weise mit Qobuz verbunden, werden von Qobuz nicht unterstützt und stehen nicht in offizieller Verbindung zu Qobuz. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko. Die Autoren übernehmen keine Garantie für die Genauigkeit, Zuverlässigkeit oder Verfügbarkeit des Dienstes und haften nicht für Schäden oder Datenverluste, die aus der Nutzung resultieren.\n\nDurch die Nutzung dieser Anwendung erkennen Sie an und akzeptieren, dass sie „wie besehen“ bereitgestellt wird, ohne ausdrückliche oder stillschweigende Garantien jeglicher Art, einschließlich, aber nicht beschränkt auf Garantien der Marktgängigkeit, Eignung für einen bestimmten Zweck oder Nichtverletzung von Rechten.\n\nDie Nutzer sind verantwortlich für die Einhaltung aller geltenden Gesetze, Nutzungsbedingungen und Einschränkungen beim Zugriff auf die Qobuz-API oder andere Drittanbieterdienste.\n\nFür offizielle Qobuz-Dienste und Support besuchen Sie bitte die offizielle Website von Qobuz: https://www.qobuz.com/",
+    "downloadFromArtistLabel":      "VOM KÜNSTLER HERUNTERLADEN",  // ChatGPT translation.
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Album Artist",
@@ -89,6 +90,8 @@
     "downloadArtistOtherCheckBox":  "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // ChatGPT translation.
     "clearOldLogsCheckBox":         "Alte Protokolle beim Start löschen", // ChatGPT translation
     "dontSaveArtworkToDiskCheckBox":"Kunstwerke nicht auf der Festplatte speichern", // ChatGPT translation
+    "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Download, Andere", // ChatGPT translation
+    "downloadAllFromArtistCheckBox":"Alles vom Künstler herunterladen (kann mehr enthalten)",  // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",
@@ -134,6 +137,7 @@
     "copyThisRowToClipboard":       "Diese Zeile in die Zwischenablage kopieren", // ChatGPT translation.
     "copySelectedRowsToClipboard":  "Ausgewählte Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
     "copyAllRowsToClipboard":       "Alle Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
+    "downloadFromArtistWarning":    "Bitte wählen Sie mindestens einen Download-Typ für Künstler aus", // ChatGPT translation.
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "SCHLIEßEN",
