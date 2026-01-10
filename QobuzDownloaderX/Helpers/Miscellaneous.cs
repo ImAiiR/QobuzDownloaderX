@@ -183,12 +183,44 @@ namespace QobuzDownloaderX.Helpers
 
         internal static void LoadQualitySettings(qbdlxForm f)
         {
+            f.format_id = Settings.Default.qualityFormat;
+            f.audio_format = Settings.Default.audioType;
+
             f.mp3Button2.Checked = Settings.Default.quality1;
             f.flacLowButton2.Checked = Settings.Default.quality2;
             f.flacMidButton2.Checked = Settings.Default.quality3;
             f.flacHighButton2.Checked = Settings.Default.quality4;
-            f.format_id = Settings.Default.qualityFormat;
-            f.audio_format = Settings.Default.audioType;
+
+            UpdateQualitySelectButtonText(f);
+        }
+
+
+        internal static void UpdateQualitySelectButtonText(qbdlxForm f)
+        {
+            string baseText = f.languageManager?.GetTranslation("qualitySelectButton");
+
+            switch (true)
+            {
+                case var _ when f.mp3Button2.Checked:
+                    f.qualitySelectButton.Text = baseText + " (MP3 320)";
+                    break;
+
+                case var _ when f.flacLowButton2.Checked:
+                    f.qualitySelectButton.Text = baseText + " (FLAC LOW)";
+                    break;
+
+                case var _ when f.flacMidButton2.Checked:
+                    f.qualitySelectButton.Text = baseText + " (FLAC MID)";
+                    break;
+
+                case var _ when f.flacHighButton2.Checked:
+                    f.qualitySelectButton.Text = baseText + " (FLAC HIGH)";
+                    break;
+
+                default:
+                    break;
+            }
+
         }
 
         internal static void LoadTaggingSettings(qbdlxForm f)
@@ -350,7 +382,7 @@ namespace QobuzDownloaderX.Helpers
             f.downloaderButton.Text = f.languageManager.GetTranslation("downloaderButton");
             f.logoutButton.Text = f.languageManager.GetTranslation("logoutButton");
             f.openFolderButton.Text = f.languageManager.GetTranslation("openFolderButton");
-            f.qualitySelectButton.Text = f.languageManager.GetTranslation("qualitySelectButton");
+            f.qualitySelectButton.Text = f.qualitySelectButton.Text.Insert(0, f.languageManager.GetTranslation("qualitySelectButton"));
             f.resetTemplatesButton.Text = f.languageManager.GetTranslation("resetTemplatesButton");
             f.saveTemplatesButton.Text = f.languageManager.GetTranslation("saveTemplatesButton");
             f.searchButton.Text = f.languageManager.GetTranslation("searchButton");

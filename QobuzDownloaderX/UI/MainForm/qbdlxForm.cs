@@ -617,6 +617,7 @@ namespace QobuzDownloaderX
                 audio_format = ".flac";
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
+                Miscellaneous.UpdateQualitySelectButtonText(this);
             }
         }
 
@@ -632,6 +633,7 @@ namespace QobuzDownloaderX
                 audio_format = ".flac";
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
+                Miscellaneous.UpdateQualitySelectButtonText(this);
             }
         }
 
@@ -647,6 +649,7 @@ namespace QobuzDownloaderX
                 audio_format = ".flac";
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
+                Miscellaneous.UpdateQualitySelectButtonText(this);
             }
         }
 
@@ -662,6 +665,7 @@ namespace QobuzDownloaderX
                 audio_format = ".mp3";
                 Settings.Default.qualityFormat = format_id;
                 Settings.Default.audioType = audio_format;
+                Miscellaneous.UpdateQualitySelectButtonText(this);
             }
         }
 

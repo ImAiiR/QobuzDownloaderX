@@ -56,7 +56,6 @@ namespace QobuzDownloaderX
             this.batchDownloadButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
-            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -202,6 +201,7 @@ namespace QobuzDownloaderX
             this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -561,17 +561,6 @@ namespace QobuzDownloaderX
             this.abortButton.Text = "ABORT";
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
-            // 
-            // progressBarDownload
-            // 
-            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
-            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
-            this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 4;
             // 
             // progressLabel
             // 
@@ -1998,9 +1987,9 @@ namespace QobuzDownloaderX
             this.qualitySelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.qualitySelectButton.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qualitySelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.qualitySelectButton.Location = new System.Drawing.Point(749, -1);
+            this.qualitySelectButton.Location = new System.Drawing.Point(709, -1);
             this.qualitySelectButton.Name = "qualitySelectButton";
-            this.qualitySelectButton.Size = new System.Drawing.Size(132, 31);
+            this.qualitySelectButton.Size = new System.Drawing.Size(172, 31);
             this.qualitySelectButton.TabIndex = 1;
             this.qualitySelectButton.Text = "Quality Selector";
             this.qualitySelectButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -2572,6 +2561,17 @@ namespace QobuzDownloaderX
             this.closeProgramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeProgramToolStripMenuItem.Text = "Close program";
             this.closeProgramToolStripMenuItem.Click += new System.EventHandler(this.closeProgramToolStripMenuItem_Click);
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 4;
             // 
             // qbdlxForm
             // 
