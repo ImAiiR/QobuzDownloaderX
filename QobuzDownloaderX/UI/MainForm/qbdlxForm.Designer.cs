@@ -56,6 +56,7 @@ namespace QobuzDownloaderX
             this.batchDownloadButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -104,6 +105,7 @@ namespace QobuzDownloaderX
             this.aboutLabel = new System.Windows.Forms.Label();
             this.folderBrowser = new Ookii.Dialogs.WinForms.VistaFolderBrowserDialog();
             this.extraSettingsPanel = new System.Windows.Forms.Panel();
+            this.playlistSectionLabel = new System.Windows.Forms.Label();
             this.downloadFromArtistLabel = new System.Windows.Forms.Label();
             this.downloadFromArtistListBox = new System.Windows.Forms.CheckedListBox();
             this.advancedOptionsPanelRight = new System.Windows.Forms.FlowLayoutPanel();
@@ -120,6 +122,7 @@ namespace QobuzDownloaderX
             this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
             this.clearOldLogsCheckBox = new System.Windows.Forms.CheckBox();
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
+            this.useItemPosInPlaylistCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadAllFromArtistCheckBox = new System.Windows.Forms.CheckBox();
             this.commentLabel = new System.Windows.Forms.Label();
             this.dontSaveArtworkToDiskCheckBox = new System.Windows.Forms.CheckBox();
@@ -201,9 +204,6 @@ namespace QobuzDownloaderX
             this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useItemPosInPlaylistCheckbox = new System.Windows.Forms.CheckBox();
-            this.playlistSectionLabel = new System.Windows.Forms.Label();
-            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -563,6 +563,17 @@ namespace QobuzDownloaderX
             this.abortButton.Text = "ABORT";
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 4;
             // 
             // progressLabel
             // 
@@ -1232,6 +1243,17 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.TabIndex = 3;
             this.extraSettingsPanel.Visible = false;
             // 
+            // playlistSectionLabel
+            // 
+            this.playlistSectionLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playlistSectionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.playlistSectionLabel.Location = new System.Drawing.Point(389, 186);
+            this.playlistSectionLabel.Name = "playlistSectionLabel";
+            this.playlistSectionLabel.Size = new System.Drawing.Size(362, 25);
+            this.playlistSectionLabel.TabIndex = 44;
+            this.playlistSectionLabel.Text = "PLAYLIST OPTIONS";
+            this.playlistSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // downloadFromArtistLabel
             // 
             this.downloadFromArtistLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1437,6 +1459,18 @@ namespace QobuzDownloaderX
             this.fixMD5sCheckbox.Text = "Auto-Fix Unset MD5s (must have FLAC in PATH variables)";
             this.fixMD5sCheckbox.UseVisualStyleBackColor = true;
             this.fixMD5sCheckbox.CheckedChanged += new System.EventHandler(this.fixMD5sCheckbox_CheckedChanged);
+            // 
+            // useItemPosInPlaylistCheckbox
+            // 
+            this.useItemPosInPlaylistCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useItemPosInPlaylistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.useItemPosInPlaylistCheckbox.Location = new System.Drawing.Point(393, 215);
+            this.useItemPosInPlaylistCheckbox.Name = "useItemPosInPlaylistCheckbox";
+            this.useItemPosInPlaylistCheckbox.Size = new System.Drawing.Size(358, 40);
+            this.useItemPosInPlaylistCheckbox.TabIndex = 31;
+            this.useItemPosInPlaylistCheckbox.Text = "Use item positions instead of album track numbers in file names";
+            this.useItemPosInPlaylistCheckbox.UseVisualStyleBackColor = true;
+            this.useItemPosInPlaylistCheckbox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckbox_CheckedChanged);
             // 
             // downloadAllFromArtistCheckBox
             // 
@@ -2565,40 +2599,6 @@ namespace QobuzDownloaderX
             this.closeProgramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeProgramToolStripMenuItem.Text = "Close program";
             this.closeProgramToolStripMenuItem.Click += new System.EventHandler(this.closeProgramToolStripMenuItem_Click);
-            // 
-            // useItemPosInPlaylistCheckbox
-            // 
-            this.useItemPosInPlaylistCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useItemPosInPlaylistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.useItemPosInPlaylistCheckbox.Location = new System.Drawing.Point(393, 215);
-            this.useItemPosInPlaylistCheckbox.Name = "useItemPosInPlaylistCheckbox";
-            this.useItemPosInPlaylistCheckbox.Size = new System.Drawing.Size(358, 40);
-            this.useItemPosInPlaylistCheckbox.TabIndex = 31;
-            this.useItemPosInPlaylistCheckbox.Text = "Use item positions instead of album track numbers in file names";
-            this.useItemPosInPlaylistCheckbox.UseVisualStyleBackColor = true;
-            this.useItemPosInPlaylistCheckbox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckbox_CheckedChanged);
-            // 
-            // playlistSectionLabel
-            // 
-            this.playlistSectionLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playlistSectionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.playlistSectionLabel.Location = new System.Drawing.Point(389, 186);
-            this.playlistSectionLabel.Name = "playlistSectionLabel";
-            this.playlistSectionLabel.Size = new System.Drawing.Size(362, 25);
-            this.playlistSectionLabel.TabIndex = 44;
-            this.playlistSectionLabel.Text = "PLAYLIST OPTIONS";
-            this.playlistSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // progressBarDownload
-            // 
-            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
-            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
-            this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 4;
             // 
             // qbdlxForm
             // 

@@ -214,9 +214,7 @@
     <None Include="Resources\logout.png" />
     <None Include="Resources\log_out.png" />
     <None Include="Resources\QBDLX-Icon.png" />
-    <Content Include="External References\Qo%28penAPI%29.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="External References\Qo%28penAPI%29.dll" />
     <Content Include="Resources\alert.png" />
     <None Include="Resources\HideWindow.png" />
     <None Include="Resources\Exit.png" />
