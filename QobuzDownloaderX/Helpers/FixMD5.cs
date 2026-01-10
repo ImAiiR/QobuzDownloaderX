@@ -18,7 +18,7 @@ namespace QobuzDownloaderX.Helpers
 
             try
             {
-                qbdlxForm._qbdlxForm.logger.Debug("Running cmd command to fix MD5");
+                qbdlxForm._qbdlxForm.logger.Debug("Running CMD command to fix MD5…");
                 Process cmd = new Process();
                 cmd.StartInfo.FileName = "cmd.exe";
                 cmd.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
