@@ -9,6 +9,7 @@ using ZetaLongPaths;
 
 using QobuzDownloaderX.Helpers;
 using QobuzDownloaderX.Properties;
+using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
@@ -111,6 +112,8 @@ namespace QobuzDownloaderX
                         "album", app_id, album_id, format_id, audio_format, 
                         user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, 
                         trackTemplate, album, trackInfo, trackProgress, stats, abortToken);
+                   
+                    qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.progressBarDownload.Refresh()));
                 }
                 catch (Exception ex)
                 {
