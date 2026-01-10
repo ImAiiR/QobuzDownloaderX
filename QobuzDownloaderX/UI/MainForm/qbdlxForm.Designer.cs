@@ -239,7 +239,7 @@ namespace QobuzDownloaderX
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.navigationPanel.Location = new System.Drawing.Point(0, 0);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(180, 615);
+            this.navigationPanel.Size = new System.Drawing.Size(180, 590);
             this.navigationPanel.TabIndex = 0;
             // 
             // searchButton
@@ -642,7 +642,7 @@ namespace QobuzDownloaderX
             this.downloadOutput.Name = "downloadOutput";
             this.downloadOutput.ReadOnly = true;
             this.downloadOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.downloadOutput.Size = new System.Drawing.Size(733, 300);
+            this.downloadOutput.Size = new System.Drawing.Size(733, 295);
             this.downloadOutput.TabIndex = 7;
             this.downloadOutput.Text = "Test String";
             this.downloadOutput.TextChanged += new System.EventHandler(this.downloadOutput_TextChanged);
@@ -2578,7 +2578,7 @@ namespace QobuzDownloaderX
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ClientSize = new System.Drawing.Size(951, 615);
+            this.ClientSize = new System.Drawing.Size(951, 590);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
