@@ -204,7 +204,6 @@ namespace QobuzDownloaderX.Helpers
             f.genreCheckbox.Checked = Settings.Default.genreTag;
             f.isrcCheckbox.Checked = Settings.Default.isrcTag;
             f.urlCheckbox.Checked = Settings.Default.urlTag;
-            f.mergeArtistNamesCheckbox.Checked = Settings.Default.mergeArtistNames;
             f.releaseTypeCheckbox.Checked = Settings.Default.typeTag;
             f.explicitCheckbox.Checked = Settings.Default.explicitTag;
             f.trackTitleCheckbox.Checked = Settings.Default.trackTitleTag;
@@ -219,6 +218,8 @@ namespace QobuzDownloaderX.Helpers
             f.savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
             f.dontSaveArtworkToDiskCheckBox.Checked = Settings.Default.dontSaveArtworkToDisk;
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
+            f.primaryListSeparatorTextBox.Text = Settings.Default.primaryListSeparator;
+            f.listEndSeparatorTextBox.Text = Settings.Default.listEndSeparator;
         }
 
         internal static void LoadOtherSettings(qbdlxForm f)
@@ -230,6 +231,8 @@ namespace QobuzDownloaderX.Helpers
             f.downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
             f.clearOldLogsCheckBox.Checked = Settings.Default.clearOldLogs;
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
+            f.mergeArtistNamesCheckbox.Checked = Settings.Default.mergeArtistNames;
+            f.artistNamesSeparatorsPanel.Enabled = f.mergeArtistNamesCheckbox.Checked;
             RestoreDownloadFromArtistSelectedIndices();
 
         }
@@ -404,6 +407,8 @@ namespace QobuzDownloaderX.Helpers
             f.sortAlbumTrackNameLabel.Text = f.languageManager.GetTranslation("sortAlbumTrackNameLabel");
             f.sortingSearchResultsLabel.Text = f.languageManager.GetTranslation("sortingSearchResultsLabel");
             f.selectedRowsCountLabel.Text = string.Empty;
+            f.primaryListSeparatorLabel.Text = f.languageManager.GetTranslation("primaryListSeparatorLabel");
+            f.listEndSeparatorLabel.Text = f.languageManager.GetTranslation("listEndSeparatorLabel");
 
             // Checkboxes
             f.albumArtistCheckbox.Text = f.languageManager.GetTranslation("albumArtistCheckbox");

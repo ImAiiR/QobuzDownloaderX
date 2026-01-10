@@ -742,5 +742,29 @@ namespace QobuzDownloaderX.Properties {
                 this["downloadFromArtistSelectedIndices"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(", ")]
+        public string primaryListSeparator {
+            get {
+                return ((string)(this["primaryListSeparator"]));
+            }
+            set {
+                this["primaryListSeparator"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" & ")]
+        public string listEndSeparator {
+            get {
+                return ((string)(this["listEndSeparator"]));
+            }
+            set {
+                this["listEndSeparator"] = value;
+            }
+        }
     }
 }

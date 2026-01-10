@@ -316,7 +316,7 @@ namespace QobuzDownloaderX.Helpers
         // Default English translation if no files are avaialble
         public const string defaultLanguage = @"{
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 06, 2026, 09:22AM EST"",
+    ""TranslationUpdatedOn"":         ""January 10, 2026, 09:22AM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -407,7 +407,7 @@ namespace QobuzDownloaderX.Helpers
     ""clearOldLogsCheckBox"":         ""Clear old log files on startup"",
     ""dontSaveArtworkToDiskCheckBox"":""Don't save artwork to disk"",
     ""downloadFromArtistListBox"":    ""Album, EP/Single, Live, Compilation, Download, Other"",
-    ""downloadAllFromArtistCheckBox"":""Download all from artist (it can include more)"",
+    ""downloadAllFromArtistCheckBox"":""Download all from artist (it may include more)"",
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",

@@ -10,8 +10,8 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
     // https://github.com/DJDoubleD/QobuzDownloaderX-MOD
     internal sealed class ParsingHelper
     {
-        static readonly string primaryListSeparator = ", ";
-        static readonly string listEndSeparator = " & ";
+        public static string primaryListSeparator = ", ";
+        public static string listEndSeparator = " & ";
 
         private static readonly Regex unicodeRegex = new Regex(@"\\u(?<Value>[0-9A-Fa-f]{4})", RegexOptions.Compiled );
 

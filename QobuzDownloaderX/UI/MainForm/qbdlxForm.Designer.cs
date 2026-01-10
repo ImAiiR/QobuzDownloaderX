@@ -107,14 +107,19 @@ namespace QobuzDownloaderX
             this.downloadFromArtistLabel = new System.Windows.Forms.Label();
             this.downloadFromArtistListBox = new System.Windows.Forms.CheckedListBox();
             this.advancedOptionsPanelRight = new System.Windows.Forms.FlowLayoutPanel();
-            this.downloadGoodiesCheckbox = new System.Windows.Forms.CheckBox();
-            this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
-            this.clearOldLogsCheckBox = new System.Windows.Forms.CheckBox();
+            this.mergeArtistNamesCheckbox = new System.Windows.Forms.CheckBox();
+            this.artistNamesSeparatorsPanel = new System.Windows.Forms.Panel();
+            this.primaryListSeparatorLabel = new System.Windows.Forms.Label();
+            this.primaryListSeparatorTextBox = new System.Windows.Forms.TextBox();
+            this.listEndSeparatorLabel = new System.Windows.Forms.Label();
+            this.listEndSeparatorTextBox = new System.Windows.Forms.TextBox();
             this.advancedOptionsPanelLeft = new System.Windows.Forms.FlowLayoutPanel();
             this.useTLS13Checkbox = new System.Windows.Forms.CheckBox();
             this.streamableCheckbox = new System.Windows.Forms.CheckBox();
+            this.downloadGoodiesCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadSpeedCheckbox = new System.Windows.Forms.CheckBox();
-            this.mergeArtistNamesCheckbox = new System.Windows.Forms.CheckBox();
+            this.clearOldLogsCheckBox = new System.Windows.Forms.CheckBox();
+            this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.downloadAllFromArtistCheckBox = new System.Windows.Forms.CheckBox();
             this.commentLabel = new System.Windows.Forms.Label();
             this.dontSaveArtworkToDiskCheckBox = new System.Windows.Forms.CheckBox();
@@ -210,6 +215,7 @@ namespace QobuzDownloaderX
             this.aboutPanel.SuspendLayout();
             this.extraSettingsPanel.SuspendLayout();
             this.advancedOptionsPanelRight.SuspendLayout();
+            this.artistNamesSeparatorsPanel.SuspendLayout();
             this.advancedOptionsPanelLeft.SuspendLayout();
             this.taggingOptionsPanel.SuspendLayout();
             this.qualitySelectPanel.SuspendLayout();
@@ -1256,66 +1262,91 @@ namespace QobuzDownloaderX
             // 
             // advancedOptionsPanelRight
             // 
-            this.advancedOptionsPanelRight.Controls.Add(this.downloadGoodiesCheckbox);
-            this.advancedOptionsPanelRight.Controls.Add(this.fixMD5sCheckbox);
-            this.advancedOptionsPanelRight.Controls.Add(this.clearOldLogsCheckBox);
-            this.advancedOptionsPanelRight.Location = new System.Drawing.Point(386, 289);
+            this.advancedOptionsPanelRight.Controls.Add(this.mergeArtistNamesCheckbox);
+            this.advancedOptionsPanelRight.Controls.Add(this.artistNamesSeparatorsPanel);
+            this.advancedOptionsPanelRight.Location = new System.Drawing.Point(392, 284);
             this.advancedOptionsPanelRight.Name = "advancedOptionsPanelRight";
-            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(365, 110);
+            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(359, 125);
             this.advancedOptionsPanelRight.TabIndex = 41;
             // 
-            // downloadGoodiesCheckbox
+            // mergeArtistNamesCheckbox
             // 
-            this.downloadGoodiesCheckbox.AutoSize = true;
-            this.downloadGoodiesCheckbox.Checked = true;
-            this.downloadGoodiesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.downloadGoodiesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.downloadGoodiesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadGoodiesCheckbox.Location = new System.Drawing.Point(3, 3);
-            this.downloadGoodiesCheckbox.Name = "downloadGoodiesCheckbox";
-            this.downloadGoodiesCheckbox.Size = new System.Drawing.Size(126, 17);
-            this.downloadGoodiesCheckbox.TabIndex = 28;
-            this.downloadGoodiesCheckbox.Text = "Download Goodies";
-            this.downloadGoodiesCheckbox.UseVisualStyleBackColor = true;
-            this.downloadGoodiesCheckbox.CheckedChanged += new System.EventHandler(this.downloadGoodiesCheckbox_CheckedChanged);
+            this.mergeArtistNamesCheckbox.AutoSize = true;
+            this.mergeArtistNamesCheckbox.Checked = true;
+            this.mergeArtistNamesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mergeArtistNamesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeArtistNamesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.mergeArtistNamesCheckbox.Location = new System.Drawing.Point(3, 3);
+            this.mergeArtistNamesCheckbox.Name = "mergeArtistNamesCheckbox";
+            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(131, 17);
+            this.mergeArtistNamesCheckbox.TabIndex = 15;
+            this.mergeArtistNamesCheckbox.Text = "Merge Artists Names";
+            this.mergeArtistNamesCheckbox.UseVisualStyleBackColor = true;
+            this.mergeArtistNamesCheckbox.CheckedChanged += new System.EventHandler(this.mergeArtistNamesCheckbox_CheckedChanged);
             // 
-            // fixMD5sCheckbox
+            // artistNamesSeparatorsPanel
             // 
-            this.fixMD5sCheckbox.AutoSize = true;
-            this.fixMD5sCheckbox.Checked = true;
-            this.fixMD5sCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.fixMD5sCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fixMD5sCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.fixMD5sCheckbox.Location = new System.Drawing.Point(3, 26);
-            this.fixMD5sCheckbox.Name = "fixMD5sCheckbox";
-            this.fixMD5sCheckbox.Size = new System.Drawing.Size(311, 17);
-            this.fixMD5sCheckbox.TabIndex = 28;
-            this.fixMD5sCheckbox.Text = "Auto-Fix Unset MD5s (must have FLAC in PATH variables)";
-            this.fixMD5sCheckbox.UseVisualStyleBackColor = true;
-            this.fixMD5sCheckbox.CheckedChanged += new System.EventHandler(this.fixMD5sCheckbox_CheckedChanged);
+            this.artistNamesSeparatorsPanel.Controls.Add(this.primaryListSeparatorLabel);
+            this.artistNamesSeparatorsPanel.Controls.Add(this.primaryListSeparatorTextBox);
+            this.artistNamesSeparatorsPanel.Controls.Add(this.listEndSeparatorLabel);
+            this.artistNamesSeparatorsPanel.Controls.Add(this.listEndSeparatorTextBox);
+            this.artistNamesSeparatorsPanel.Enabled = false;
+            this.artistNamesSeparatorsPanel.Location = new System.Drawing.Point(3, 26);
+            this.artistNamesSeparatorsPanel.Name = "artistNamesSeparatorsPanel";
+            this.artistNamesSeparatorsPanel.Size = new System.Drawing.Size(221, 55);
+            this.artistNamesSeparatorsPanel.TabIndex = 44;
             // 
-            // clearOldLogsCheckBox
+            // primaryListSeparatorLabel
             // 
-            this.clearOldLogsCheckBox.AutoSize = true;
-            this.clearOldLogsCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearOldLogsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.clearOldLogsCheckBox.Location = new System.Drawing.Point(3, 49);
-            this.clearOldLogsCheckBox.Name = "clearOldLogsCheckBox";
-            this.clearOldLogsCheckBox.Size = new System.Drawing.Size(154, 17);
-            this.clearOldLogsCheckBox.TabIndex = 30;
-            this.clearOldLogsCheckBox.Text = "Clear old logs on startup";
-            this.clearOldLogsCheckBox.UseVisualStyleBackColor = true;
-            this.clearOldLogsCheckBox.CheckedChanged += new System.EventHandler(this.clearOldLogsCheckBox_CheckedChanged);
+            this.primaryListSeparatorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.primaryListSeparatorLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.primaryListSeparatorLabel.Location = new System.Drawing.Point(3, 7);
+            this.primaryListSeparatorLabel.Name = "primaryListSeparatorLabel";
+            this.primaryListSeparatorLabel.Size = new System.Drawing.Size(166, 13);
+            this.primaryListSeparatorLabel.TabIndex = 31;
+            this.primaryListSeparatorLabel.Text = "Primary list separator";
+            this.primaryListSeparatorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // primaryListSeparatorTextBox
+            // 
+            this.primaryListSeparatorTextBox.Location = new System.Drawing.Point(169, 4);
+            this.primaryListSeparatorTextBox.Name = "primaryListSeparatorTextBox";
+            this.primaryListSeparatorTextBox.Size = new System.Drawing.Size(45, 22);
+            this.primaryListSeparatorTextBox.TabIndex = 33;
+            this.primaryListSeparatorTextBox.Text = " & ";
+            this.primaryListSeparatorTextBox.Leave += new System.EventHandler(this.primaryListSeparatorTextBox_Leave);
+            // 
+            // listEndSeparatorLabel
+            // 
+            this.listEndSeparatorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.listEndSeparatorLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.listEndSeparatorLabel.Location = new System.Drawing.Point(3, 35);
+            this.listEndSeparatorLabel.Name = "listEndSeparatorLabel";
+            this.listEndSeparatorLabel.Size = new System.Drawing.Size(166, 13);
+            this.listEndSeparatorLabel.TabIndex = 32;
+            this.listEndSeparatorLabel.Text = "List end separator";
+            this.listEndSeparatorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // listEndSeparatorTextBox
+            // 
+            this.listEndSeparatorTextBox.Location = new System.Drawing.Point(169, 30);
+            this.listEndSeparatorTextBox.Name = "listEndSeparatorTextBox";
+            this.listEndSeparatorTextBox.Size = new System.Drawing.Size(45, 22);
+            this.listEndSeparatorTextBox.TabIndex = 30;
+            this.listEndSeparatorTextBox.Text = ", ";
+            this.listEndSeparatorTextBox.Leave += new System.EventHandler(this.listEndSeparatorTextBox_Leave);
             // 
             // advancedOptionsPanelLeft
             // 
             this.advancedOptionsPanelLeft.Controls.Add(this.useTLS13Checkbox);
             this.advancedOptionsPanelLeft.Controls.Add(this.streamableCheckbox);
+            this.advancedOptionsPanelLeft.Controls.Add(this.downloadGoodiesCheckbox);
             this.advancedOptionsPanelLeft.Controls.Add(this.downloadSpeedCheckbox);
-            this.advancedOptionsPanelLeft.Controls.Add(this.mergeArtistNamesCheckbox);
-            this.advancedOptionsPanelLeft.Location = new System.Drawing.Point(18, 289);
+            this.advancedOptionsPanelLeft.Controls.Add(this.clearOldLogsCheckBox);
+            this.advancedOptionsPanelLeft.Controls.Add(this.fixMD5sCheckbox);
+            this.advancedOptionsPanelLeft.Location = new System.Drawing.Point(18, 284);
             this.advancedOptionsPanelLeft.Name = "advancedOptionsPanelLeft";
-            this.advancedOptionsPanelLeft.Size = new System.Drawing.Size(365, 110);
+            this.advancedOptionsPanelLeft.Size = new System.Drawing.Size(352, 125);
             this.advancedOptionsPanelLeft.TabIndex = 40;
             // 
             // useTLS13Checkbox
@@ -1348,12 +1379,27 @@ namespace QobuzDownloaderX
             this.streamableCheckbox.UseVisualStyleBackColor = true;
             this.streamableCheckbox.CheckedChanged += new System.EventHandler(this.streamableCheckbox_CheckedChanged);
             // 
+            // downloadGoodiesCheckbox
+            // 
+            this.downloadGoodiesCheckbox.AutoSize = true;
+            this.downloadGoodiesCheckbox.Checked = true;
+            this.downloadGoodiesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.downloadGoodiesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadGoodiesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.downloadGoodiesCheckbox.Location = new System.Drawing.Point(3, 26);
+            this.downloadGoodiesCheckbox.Name = "downloadGoodiesCheckbox";
+            this.downloadGoodiesCheckbox.Size = new System.Drawing.Size(126, 17);
+            this.downloadGoodiesCheckbox.TabIndex = 28;
+            this.downloadGoodiesCheckbox.Text = "Download Goodies";
+            this.downloadGoodiesCheckbox.UseVisualStyleBackColor = true;
+            this.downloadGoodiesCheckbox.CheckedChanged += new System.EventHandler(this.downloadGoodiesCheckbox_CheckedChanged);
+            // 
             // downloadSpeedCheckbox
             // 
             this.downloadSpeedCheckbox.AutoSize = true;
             this.downloadSpeedCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadSpeedCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(3, 26);
+            this.downloadSpeedCheckbox.Location = new System.Drawing.Point(135, 26);
             this.downloadSpeedCheckbox.Name = "downloadSpeedCheckbox";
             this.downloadSpeedCheckbox.Size = new System.Drawing.Size(142, 17);
             this.downloadSpeedCheckbox.TabIndex = 29;
@@ -1361,20 +1407,32 @@ namespace QobuzDownloaderX
             this.downloadSpeedCheckbox.UseVisualStyleBackColor = true;
             this.downloadSpeedCheckbox.CheckedChanged += new System.EventHandler(this.downloadSpeedCheckbox_CheckedChanged);
             // 
-            // mergeArtistNamesCheckbox
+            // clearOldLogsCheckBox
             // 
-            this.mergeArtistNamesCheckbox.AutoSize = true;
-            this.mergeArtistNamesCheckbox.Checked = true;
-            this.mergeArtistNamesCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mergeArtistNamesCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mergeArtistNamesCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.mergeArtistNamesCheckbox.Location = new System.Drawing.Point(151, 26);
-            this.mergeArtistNamesCheckbox.Name = "mergeArtistNamesCheckbox";
-            this.mergeArtistNamesCheckbox.Size = new System.Drawing.Size(131, 17);
-            this.mergeArtistNamesCheckbox.TabIndex = 15;
-            this.mergeArtistNamesCheckbox.Text = "Merge Artists Names";
-            this.mergeArtistNamesCheckbox.UseVisualStyleBackColor = true;
-            this.mergeArtistNamesCheckbox.CheckedChanged += new System.EventHandler(this.mergeArtistNamesCheckbox_CheckedChanged);
+            this.clearOldLogsCheckBox.AutoSize = true;
+            this.clearOldLogsCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearOldLogsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.clearOldLogsCheckBox.Location = new System.Drawing.Point(3, 49);
+            this.clearOldLogsCheckBox.Name = "clearOldLogsCheckBox";
+            this.clearOldLogsCheckBox.Size = new System.Drawing.Size(154, 17);
+            this.clearOldLogsCheckBox.TabIndex = 30;
+            this.clearOldLogsCheckBox.Text = "Clear old logs on startup";
+            this.clearOldLogsCheckBox.UseVisualStyleBackColor = true;
+            this.clearOldLogsCheckBox.CheckedChanged += new System.EventHandler(this.clearOldLogsCheckBox_CheckedChanged);
+            // 
+            // fixMD5sCheckbox
+            // 
+            this.fixMD5sCheckbox.Checked = true;
+            this.fixMD5sCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fixMD5sCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fixMD5sCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.fixMD5sCheckbox.Location = new System.Drawing.Point(3, 72);
+            this.fixMD5sCheckbox.Name = "fixMD5sCheckbox";
+            this.fixMD5sCheckbox.Size = new System.Drawing.Size(346, 31);
+            this.fixMD5sCheckbox.TabIndex = 28;
+            this.fixMD5sCheckbox.Text = "Auto-Fix Unset MD5s (must have FLAC in PATH variables)";
+            this.fixMD5sCheckbox.UseVisualStyleBackColor = true;
+            this.fixMD5sCheckbox.CheckedChanged += new System.EventHandler(this.fixMD5sCheckbox_CheckedChanged);
             // 
             // downloadAllFromArtistCheckBox
             // 
@@ -1383,9 +1441,9 @@ namespace QobuzDownloaderX
             this.downloadAllFromArtistCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadAllFromArtistCheckBox.Location = new System.Drawing.Point(390, 492);
             this.downloadAllFromArtistCheckBox.Name = "downloadAllFromArtistCheckBox";
-            this.downloadAllFromArtistCheckBox.Size = new System.Drawing.Size(258, 17);
+            this.downloadAllFromArtistCheckBox.Size = new System.Drawing.Size(260, 17);
             this.downloadAllFromArtistCheckBox.TabIndex = 30;
-            this.downloadAllFromArtistCheckBox.Text = "Download all from artist (it can include more)";
+            this.downloadAllFromArtistCheckBox.Text = "Download all from artist (it may include more)";
             this.downloadAllFromArtistCheckBox.UseVisualStyleBackColor = true;
             this.downloadAllFromArtistCheckBox.CheckedChanged += new System.EventHandler(this.downloadAllFromArtistCheckBox_CheckedChanged);
             // 
@@ -1436,7 +1494,7 @@ namespace QobuzDownloaderX
             this.taggingOptionsPanel.Location = new System.Drawing.Point(18, 63);
             this.taggingOptionsPanel.Name = "taggingOptionsPanel";
             this.taggingOptionsPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.taggingOptionsPanel.Size = new System.Drawing.Size(733, 91);
+            this.taggingOptionsPanel.Size = new System.Drawing.Size(733, 82);
             this.taggingOptionsPanel.TabIndex = 38;
             // 
             // albumArtistCheckbox
@@ -1811,7 +1869,7 @@ namespace QobuzDownloaderX
             // 
             this.advancedOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.advancedOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.advancedOptionsLabel.Location = new System.Drawing.Point(0, 256);
+            this.advancedOptionsLabel.Location = new System.Drawing.Point(0, 251);
             this.advancedOptionsLabel.Name = "advancedOptionsLabel";
             this.advancedOptionsLabel.Size = new System.Drawing.Size(771, 25);
             this.advancedOptionsLabel.TabIndex = 26;
@@ -2524,6 +2582,7 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
+            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.qualitySelectPanel);
             this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.aboutPanel);
@@ -2531,7 +2590,6 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.searchPanel);
-            this.Controls.Add(this.extraSettingsPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";
@@ -2561,6 +2619,8 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.PerformLayout();
             this.advancedOptionsPanelRight.ResumeLayout(false);
             this.advancedOptionsPanelRight.PerformLayout();
+            this.artistNamesSeparatorsPanel.ResumeLayout(false);
+            this.artistNamesSeparatorsPanel.PerformLayout();
             this.advancedOptionsPanelLeft.ResumeLayout(false);
             this.advancedOptionsPanelLeft.PerformLayout();
             this.taggingOptionsPanel.ResumeLayout(false);
@@ -2743,5 +2803,10 @@ namespace QobuzDownloaderX
         internal Label downloadFromArtistLabel;
         internal CheckedListBox downloadFromArtistListBox;
         internal CheckBox downloadAllFromArtistCheckBox;
+        internal Label primaryListSeparatorLabel;
+        internal TextBox listEndSeparatorTextBox;
+        internal Label listEndSeparatorLabel;
+        internal TextBox primaryListSeparatorTextBox;
+        internal Panel artistNamesSeparatorsPanel;
     }
 }

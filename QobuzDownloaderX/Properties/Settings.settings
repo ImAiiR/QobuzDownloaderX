@@ -182,5 +182,11 @@
     <Setting Name="downloadFromArtistSelectedIndices" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="primaryListSeparator" Type="System.String" Scope="User">
+      <Value Profile="(Default)">, </Value>
+    </Setting>
+    <Setting Name="listEndSeparator" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> &amp; </Value>
+    </Setting>
   </Settings>
 </SettingsFile>

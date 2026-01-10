@@ -1,4 +1,5 @@
 ﻿using QobuzDownloaderX.Helpers;
+using QobuzDownloaderX.Helpers.QobuzDownloaderXMOD;
 using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.UI;
 using QobuzDownloaderX.Win32;
@@ -779,7 +780,10 @@ namespace QobuzDownloaderX
 
         private void mergeArtistNamesCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.mergeArtistNames = mergeArtistNamesCheckbox.Checked;
+            CheckBox cb = (CheckBox)sender;
+
+            artistNamesSeparatorsPanel.Enabled = cb.Checked;
+            Settings.Default.mergeArtistNames = cb.Checked;
             Settings.Default.Save();
         }
 
@@ -1639,6 +1643,36 @@ namespace QobuzDownloaderX
 
             Miscellaneous.ShowFloatingImageFromUrl(QoAlbum.Image?.Large);
             this.BringToFront();
+        }
+
+        private void primaryListSeparatorTextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+
+            if (string.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = ", ";
+                tb.SelectionStart = tb.Text.Length;
+            }
+
+            ParsingHelper.primaryListSeparator = tb.Text;
+            Settings.Default.primaryListSeparator = tb.Text;
+            Settings.Default.Save();
+        }
+
+        private void listEndSeparatorTextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+
+            if (string.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = " & ";
+                tb.SelectionStart = tb.Text.Length;
+            }
+
+            ParsingHelper.listEndSeparator = tb.Text;
+            Settings.Default.listEndSeparator = tb.Text;
+            Settings.Default.Save();
         }
 
     }
