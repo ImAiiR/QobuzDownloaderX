@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
@@ -34,7 +35,7 @@ namespace QobuzDownloaderX.Helpers
         public string GetSafeFilename(string filename)
         {
             string safe = RenameTemplates.MakeValidWindowsFileName(filename);
-            string safeTruncated = RenameTemplates.TruncateLongName(safe, (Byte)"flac".Length); // "flac" = largest possible known file extension length on this application.
+            string safeTruncated = RenameTemplates.TruncateLongName(safe, (Byte)".flac".Length); // "flac" = largest possible known file extension length on this application.
             return safeTruncated;
         }
 
