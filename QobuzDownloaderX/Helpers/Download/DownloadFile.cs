@@ -55,8 +55,9 @@ namespace QobuzDownloaderX
             });
         }
 
-        public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem, GetInfo getInfo, CancellationToken abortToken)
+        public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem, GetInfo getInfo, CancellationToken abortToken, DownloadStats stats)
         {
+
             const string tempDir = @"qbdlx-temp";
             string tempFile = ZlpPathHelper.Combine(tempDir, $"qbdlx_downloading-{QoItem.Id}{audio_format}");
 
@@ -88,7 +89,14 @@ namespace QobuzDownloaderX
 
             qbdlxForm._qbdlxForm.logger.Debug($"Writing temp file to {tempFile}");
 
-            qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {0}%"; }));
+            if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked && stats?.SpeedWatch != null && !string.IsNullOrEmpty(stats.LastSpeedText))
+            {
+                qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - 0% [{stats.LastSpeedText}]"; }));
+            }
+            else
+            {
+                qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - 0%"; }));
+            }
 
             // Set path for downloaded artwork
             artworkPath = downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg";
@@ -127,14 +135,14 @@ namespace QobuzDownloaderX
                     long totalBytesRead = 0;
                     int bufferLength = 81920; // 80 kb - Stream.cs: const int DefaultCopyBufferSize = 81920
                     byte[] buffer = new byte[bufferLength];
-                    DateTime lastUpdateTime = DateTime.Now;
-                    long previousBytesRead = 0;
 
                     // Open file stream for writing and get the HTTP response stream
                     using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync: true))
                     using (var stream = await response.Content.ReadAsStreamAsync())
                     using (var downloadTimeoutCts = new CancellationTokenSource(trackDownloadCompletionTimeout)) // Total download timeout
                     {
+                        if (stats?.SpeedWatch != null && !stats.SpeedWatch.IsRunning) stats.SpeedWatch.Start();
+                       
                         int bytesRead;
                         while (true)
                         {
@@ -144,44 +152,62 @@ namespace QobuzDownloaderX
                             using (var readTimeoutLinkedCts = CancellationTokenSource.CreateLinkedTokenSource(downloadTimeoutCts.Token, readTimeoutCts.Token))
                             {
                                 // Read from the stream with the linked token (total + inactivity timeout)
+                                stats?.SpeedWatch?.Stop();
                                 bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, readTimeoutLinkedCts.Token);
                                 if (bytesRead == 0) break; // End of stream
+
+                                if (stats?.SpeedWatch != null && !stats.SpeedWatch.IsRunning) stats.SpeedWatch.Start();
 
                                 // Write the bytes to the file stream using the same linked token
                                 await fs.WriteAsync(buffer, 0, bytesRead, readTimeoutLinkedCts.Token);
                                 totalBytesRead += bytesRead;
 
-                                int progressPercentage = totalBytes > 0 ? (int)(totalBytesRead * 100L / totalBytes) : -1;
-
-                                if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked)
+                                if (stats != null)
                                 {
-                                    DateTime currentTime = DateTime.Now;
-                                    double timeDiff = (currentTime - lastUpdateTime).TotalSeconds;
 
-                                    if (timeDiff > 0)
+                                    // accumulate across multiple DownloadStream calls
+                                    stats.CumulativeBytesRead += bytesRead;
+                                }
+
+                                int progressPercentage = (int)(totalBytesRead * 100L / totalBytes);
+
+                                if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked && stats?.SpeedWatch != null && stats.SpeedWatch.IsRunning)
+                                {
+                                    long elapsedMs = stats.SpeedWatch.ElapsedMilliseconds;
+
+                                    if (elapsedMs - stats.LastUiTimeMs >= 250)
                                     {
-                                        long bytesDiff = totalBytesRead - previousBytesRead;
-                                        double speed = bytesDiff / timeDiff;
-                                        string speedText = speed > 1024 * 1024
+                                        long bytesDelta = stats.CumulativeBytesRead - stats.LastUiBytes;
+                                        double seconds = (elapsedMs - stats.LastUiTimeMs) / 1000.0;
+                                        double speed = seconds > 0 ? bytesDelta / seconds : 0.0;
+
+                                        string speedText = speed >= 1024 * 1024
                                             ? $"{speed / (1024 * 1024):F2} MB/s"
                                             : $"{speed / 1024:F2} KB/s";
 
-                                        // Update progress label with speed
-                                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
-                                            qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{speedText}]"));
+                                        stats.LastUiBytes = stats.CumulativeBytesRead;
+                                        stats.LastUiTimeMs = elapsedMs;
 
-                                        previousBytesRead = totalBytesRead;
-                                        lastUpdateTime = currentTime;
+                                        stats.LastSpeedText = speedText;
+                                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
+                                            qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{stats.LastSpeedText}]"));
+                                    }
+                                    else
+                                    {
+                                        qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
+                                            qbdlxForm._qbdlxForm.progressLabel.Text =
+                                                $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}% [{stats.LastSpeedText}]"));
                                     }
                                 }
                                 else
                                 {
-                                    // Update progress label without speed
                                     qbdlxForm._qbdlxForm.BeginInvoke(new Action(() =>
-                                        qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"));
+                                        qbdlxForm._qbdlxForm.progressLabel.Text =
+                                            $"{qbdlxForm._qbdlxForm.progressLabelActive} - {progressPercentage}%"));
                                 }
                             } 
                         }
+                        stats?.SpeedWatch?.Stop();
                     }
                 }
 

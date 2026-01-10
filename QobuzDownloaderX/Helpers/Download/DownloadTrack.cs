@@ -71,7 +71,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private async Task DownloadAndSaveTrack(string app_id, string format_id, string user_auth_token, string app_secret, Album QoAlbum, Item QoItem, Playlist QoPlaylist, string downloadPath, string filePath, string audio_format, int paddedTrackLength, CancellationToken abortToken)
+        private async Task DownloadAndSaveTrack(string app_id, string format_id, string user_auth_token, string app_secret, Album QoAlbum, Item QoItem, Playlist QoPlaylist, string downloadPath, string filePath, string audio_format, int paddedTrackLength, DownloadStats stats, CancellationToken abortToken)
         {
             var QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
             string streamURL = QoStream?.StreamURL;
@@ -92,10 +92,10 @@ namespace QobuzDownloaderX
             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
 
             // Download stream
-            await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem, getInfo, abortToken);
+            await downloadFile.DownloadStream(streamURL, downloadPath, filePath, audio_format, QoAlbum, QoItem, getInfo, abortToken, stats);
         }
 
-        public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem, IProgress<int> progress, CancellationToken abortToken)
+        public async Task DownloadTrackAsync(string downloadType, string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, Item QoItem, IProgress<int> progress, DownloadStats stats, CancellationToken abortToken)
         {
             // Empty output on main form if individual track download
             if (downloadType == "track") { getInfo.outputText = null; }
@@ -157,7 +157,7 @@ namespace QobuzDownloaderX
                     }
 
                     // Download and Save Track
-                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, null, downloadPath, filePath, audio_format, paddedTrackLength, abortToken);
+                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, null, downloadPath, filePath, audio_format, paddedTrackLength, stats, abortToken);
                     progress?.Report(100);
                 }
                 catch (OperationCanceledException ex)
@@ -182,7 +182,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        public async Task DownloadPlaylistTrackAsync(string app_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist, IProgress<int> progress, CancellationToken abortToken)
+        public async Task DownloadPlaylistTrackAsync(string app_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string trackTemplate, string playlistTemplate, Album QoAlbum, Item QoItem, Playlist QoPlaylist, IProgress<int> progress, DownloadStats stats, CancellationToken abortToken)
         {
             try
             {
@@ -222,7 +222,7 @@ namespace QobuzDownloaderX
                     catch { }
 
                     // Download and Save Track
-                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength, abortToken);
+                    await DownloadAndSaveTrack(app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, QoPlaylist, downloadPath, filePath, audio_format, paddedTrackLength, stats, abortToken);
 
                     // Delete image used for embedded artwork
                     CleanupArtwork();
