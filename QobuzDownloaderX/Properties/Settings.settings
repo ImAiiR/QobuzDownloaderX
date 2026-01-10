@@ -188,5 +188,8 @@
     <Setting Name="listEndSeparator" Type="System.String" Scope="User">
       <Value Profile="(Default)"> &amp; </Value>
     </Setting>
+    <Setting Name="useItemPosInPlaylist" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

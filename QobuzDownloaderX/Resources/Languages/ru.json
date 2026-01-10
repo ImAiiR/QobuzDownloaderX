@@ -61,7 +61,8 @@
     "downloadFromArtistLabel":      "ПОЛУЧИТЬ РЕЛИЗЫ ИСПОЛНИТЕЛЯ",
     "primaryListSeparatorLabel":    "Основной разделитель списка", // ChatGPT translation.
     "listEndSeparatorLabel":        "Разделитель конца списка", // ChatGPT translation.
-    
+    "playlistSectionLabel":         "НАСТРОЙКИ ПЛЕЙЛИСТА", // ChatGPT translation.
+
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumArtistCheckbox":          "Исполнитель альбома",
     "albumTitleCheckbox":           "Название альбома",
@@ -94,6 +95,7 @@
     "dontSaveArtworkToDiskCheckBox":"Не сохранять обложки на диск",
     "downloadFromArtistListBox":    "Альбомы, EP и синглы, Концерты, Сборники, Цифровые издания, Прочее",
     "downloadAllFromArtistCheckBox":"Загрузить всё у исполнителя (может включать доп. контент)",
+    "useItemPosInPlaylistCheckbox": "Использовать позиции элементов вместо номеров треков альбома в именах файлов", // ChatGPT translation
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",

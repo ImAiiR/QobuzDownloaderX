@@ -201,6 +201,8 @@ namespace QobuzDownloaderX
             this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useItemPosInPlaylistCheckbox = new System.Windows.Forms.CheckBox();
+            this.playlistSectionLabel = new System.Windows.Forms.Label();
             this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
@@ -239,7 +241,7 @@ namespace QobuzDownloaderX
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.navigationPanel.Location = new System.Drawing.Point(0, 0);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(180, 580);
+            this.navigationPanel.Size = new System.Drawing.Size(180, 582);
             this.navigationPanel.TabIndex = 0;
             // 
             // searchButton
@@ -1198,10 +1200,12 @@ namespace QobuzDownloaderX
             // 
             // extraSettingsPanel
             // 
+            this.extraSettingsPanel.Controls.Add(this.playlistSectionLabel);
             this.extraSettingsPanel.Controls.Add(this.downloadFromArtistLabel);
             this.extraSettingsPanel.Controls.Add(this.downloadFromArtistListBox);
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsPanelRight);
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsPanelLeft);
+            this.extraSettingsPanel.Controls.Add(this.useItemPosInPlaylistCheckbox);
             this.extraSettingsPanel.Controls.Add(this.downloadAllFromArtistCheckBox);
             this.extraSettingsPanel.Controls.Add(this.commentLabel);
             this.extraSettingsPanel.Controls.Add(this.dontSaveArtworkToDiskCheckBox);
@@ -1232,7 +1236,7 @@ namespace QobuzDownloaderX
             // 
             this.downloadFromArtistLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadFromArtistLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadFromArtistLabel.Location = new System.Drawing.Point(389, 412);
+            this.downloadFromArtistLabel.Location = new System.Drawing.Point(389, 424);
             this.downloadFromArtistLabel.Name = "downloadFromArtistLabel";
             this.downloadFromArtistLabel.Size = new System.Drawing.Size(382, 25);
             this.downloadFromArtistLabel.TabIndex = 43;
@@ -1253,7 +1257,7 @@ namespace QobuzDownloaderX
             "Compilation",
             "Download",
             "Other"});
-            this.downloadFromArtistListBox.Location = new System.Drawing.Point(389, 448);
+            this.downloadFromArtistListBox.Location = new System.Drawing.Point(389, 460);
             this.downloadFromArtistListBox.MultiColumn = true;
             this.downloadFromArtistListBox.Name = "downloadFromArtistListBox";
             this.downloadFromArtistListBox.Size = new System.Drawing.Size(362, 34);
@@ -1264,9 +1268,9 @@ namespace QobuzDownloaderX
             // 
             this.advancedOptionsPanelRight.Controls.Add(this.mergeArtistNamesCheckbox);
             this.advancedOptionsPanelRight.Controls.Add(this.artistNamesSeparatorsPanel);
-            this.advancedOptionsPanelRight.Location = new System.Drawing.Point(392, 284);
+            this.advancedOptionsPanelRight.Location = new System.Drawing.Point(392, 294);
             this.advancedOptionsPanelRight.Name = "advancedOptionsPanelRight";
-            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(359, 125);
+            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(359, 124);
             this.advancedOptionsPanelRight.TabIndex = 41;
             // 
             // mergeArtistNamesCheckbox
@@ -1344,9 +1348,9 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelLeft.Controls.Add(this.downloadSpeedCheckbox);
             this.advancedOptionsPanelLeft.Controls.Add(this.clearOldLogsCheckBox);
             this.advancedOptionsPanelLeft.Controls.Add(this.fixMD5sCheckbox);
-            this.advancedOptionsPanelLeft.Location = new System.Drawing.Point(18, 284);
+            this.advancedOptionsPanelLeft.Location = new System.Drawing.Point(18, 294);
             this.advancedOptionsPanelLeft.Name = "advancedOptionsPanelLeft";
-            this.advancedOptionsPanelLeft.Size = new System.Drawing.Size(352, 125);
+            this.advancedOptionsPanelLeft.Size = new System.Drawing.Size(352, 124);
             this.advancedOptionsPanelLeft.TabIndex = 40;
             // 
             // useTLS13Checkbox
@@ -1439,7 +1443,7 @@ namespace QobuzDownloaderX
             this.downloadAllFromArtistCheckBox.AutoSize = true;
             this.downloadAllFromArtistCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadAllFromArtistCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadAllFromArtistCheckBox.Location = new System.Drawing.Point(390, 492);
+            this.downloadAllFromArtistCheckBox.Location = new System.Drawing.Point(390, 504);
             this.downloadAllFromArtistCheckBox.Name = "downloadAllFromArtistCheckBox";
             this.downloadAllFromArtistCheckBox.Size = new System.Drawing.Size(260, 17);
             this.downloadAllFromArtistCheckBox.TabIndex = 30;
@@ -1462,7 +1466,7 @@ namespace QobuzDownloaderX
             this.dontSaveArtworkToDiskCheckBox.AutoSize = true;
             this.dontSaveArtworkToDiskCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dontSaveArtworkToDiskCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.dontSaveArtworkToDiskCheckBox.Location = new System.Drawing.Point(389, 219);
+            this.dontSaveArtworkToDiskCheckBox.Location = new System.Drawing.Point(21, 241);
             this.dontSaveArtworkToDiskCheckBox.Name = "dontSaveArtworkToDiskCheckBox";
             this.dontSaveArtworkToDiskCheckBox.Size = new System.Drawing.Size(160, 17);
             this.dontSaveArtworkToDiskCheckBox.TabIndex = 31;
@@ -1786,7 +1790,7 @@ namespace QobuzDownloaderX
             // 
             this.languageLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.languageLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.languageLabel.Location = new System.Drawing.Point(22, 487);
+            this.languageLabel.Location = new System.Drawing.Point(22, 499);
             this.languageLabel.Name = "languageLabel";
             this.languageLabel.Size = new System.Drawing.Size(220, 13);
             this.languageLabel.TabIndex = 37;
@@ -1798,9 +1802,9 @@ namespace QobuzDownloaderX
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.languageComboBox.FormattingEnabled = true;
-            this.languageComboBox.Location = new System.Drawing.Point(248, 484);
+            this.languageComboBox.Location = new System.Drawing.Point(248, 496);
             this.languageComboBox.Name = "languageComboBox";
-            this.languageComboBox.Size = new System.Drawing.Size(121, 21);
+            this.languageComboBox.Size = new System.Drawing.Size(60, 21);
             this.languageComboBox.TabIndex = 36;
             this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.languageComboBox_SelectedIndexChanged);
             // 
@@ -1808,9 +1812,9 @@ namespace QobuzDownloaderX
             // 
             this.themeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.themeLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.themeLabel.Location = new System.Drawing.Point(22, 455);
+            this.themeLabel.Location = new System.Drawing.Point(22, 467);
             this.themeLabel.Name = "themeLabel";
-            this.themeLabel.Size = new System.Drawing.Size(220, 13);
+            this.themeLabel.Size = new System.Drawing.Size(159, 13);
             this.themeLabel.TabIndex = 35;
             this.themeLabel.Text = "Current Theme";
             this.themeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1820,7 +1824,7 @@ namespace QobuzDownloaderX
             this.themeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.themeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.themeComboBox.FormattingEnabled = true;
-            this.themeComboBox.Location = new System.Drawing.Point(248, 452);
+            this.themeComboBox.Location = new System.Drawing.Point(187, 464);
             this.themeComboBox.Name = "themeComboBox";
             this.themeComboBox.Size = new System.Drawing.Size(121, 21);
             this.themeComboBox.TabIndex = 34;
@@ -1830,7 +1834,7 @@ namespace QobuzDownloaderX
             // 
             this.themeSectionLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.themeSectionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.themeSectionLabel.Location = new System.Drawing.Point(0, 412);
+            this.themeSectionLabel.Location = new System.Drawing.Point(0, 424);
             this.themeSectionLabel.Name = "themeSectionLabel";
             this.themeSectionLabel.Size = new System.Drawing.Size(383, 25);
             this.themeSectionLabel.TabIndex = 33;
@@ -1869,7 +1873,7 @@ namespace QobuzDownloaderX
             // 
             this.advancedOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.advancedOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.advancedOptionsLabel.Location = new System.Drawing.Point(0, 251);
+            this.advancedOptionsLabel.Location = new System.Drawing.Point(0, 261);
             this.advancedOptionsLabel.Name = "advancedOptionsLabel";
             this.advancedOptionsLabel.Size = new System.Drawing.Size(771, 25);
             this.advancedOptionsLabel.TabIndex = 26;
@@ -1885,7 +1889,7 @@ namespace QobuzDownloaderX
             this.closeAdditionalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeAdditionalButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeAdditionalButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.closeAdditionalButton.Location = new System.Drawing.Point(327, 523);
+            this.closeAdditionalButton.Location = new System.Drawing.Point(327, 533);
             this.closeAdditionalButton.Name = "closeAdditionalButton";
             this.closeAdditionalButton.Size = new System.Drawing.Size(117, 31);
             this.closeAdditionalButton.TabIndex = 25;
@@ -1919,7 +1923,7 @@ namespace QobuzDownloaderX
             "50"});
             this.savedArtSizeSelect.Location = new System.Drawing.Point(248, 215);
             this.savedArtSizeSelect.Name = "savedArtSizeSelect";
-            this.savedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
+            this.savedArtSizeSelect.Size = new System.Drawing.Size(60, 21);
             this.savedArtSizeSelect.TabIndex = 23;
             this.savedArtSizeSelect.SelectedIndexChanged += new System.EventHandler(this.savedArtSizeSelect_SelectedIndexChanged);
             // 
@@ -1960,7 +1964,7 @@ namespace QobuzDownloaderX
             "50"});
             this.embeddedArtSizeSelect.Location = new System.Drawing.Point(248, 183);
             this.embeddedArtSizeSelect.Name = "embeddedArtSizeSelect";
-            this.embeddedArtSizeSelect.Size = new System.Drawing.Size(121, 21);
+            this.embeddedArtSizeSelect.Size = new System.Drawing.Size(60, 21);
             this.embeddedArtSizeSelect.TabIndex = 20;
             this.embeddedArtSizeSelect.SelectedIndexChanged += new System.EventHandler(this.embeddedArtSizeSelect_SelectedIndexChanged);
             // 
@@ -2562,6 +2566,29 @@ namespace QobuzDownloaderX
             this.closeProgramToolStripMenuItem.Text = "Close program";
             this.closeProgramToolStripMenuItem.Click += new System.EventHandler(this.closeProgramToolStripMenuItem_Click);
             // 
+            // useItemPosInPlaylistCheckbox
+            // 
+            this.useItemPosInPlaylistCheckbox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.useItemPosInPlaylistCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.useItemPosInPlaylistCheckbox.Location = new System.Drawing.Point(393, 215);
+            this.useItemPosInPlaylistCheckbox.Name = "useItemPosInPlaylistCheckbox";
+            this.useItemPosInPlaylistCheckbox.Size = new System.Drawing.Size(358, 40);
+            this.useItemPosInPlaylistCheckbox.TabIndex = 31;
+            this.useItemPosInPlaylistCheckbox.Text = "Use item positions instead of album track numbers in file names";
+            this.useItemPosInPlaylistCheckbox.UseVisualStyleBackColor = true;
+            this.useItemPosInPlaylistCheckbox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckbox_CheckedChanged);
+            // 
+            // playlistSectionLabel
+            // 
+            this.playlistSectionLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playlistSectionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.playlistSectionLabel.Location = new System.Drawing.Point(389, 186);
+            this.playlistSectionLabel.Name = "playlistSectionLabel";
+            this.playlistSectionLabel.Size = new System.Drawing.Size(362, 25);
+            this.playlistSectionLabel.TabIndex = 44;
+            this.playlistSectionLabel.Text = "PLAYLIST OPTIONS";
+            this.playlistSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // progressBarDownload
             // 
             this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
@@ -2578,7 +2605,8 @@ namespace QobuzDownloaderX
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ClientSize = new System.Drawing.Size(951, 580);
+            this.ClientSize = new System.Drawing.Size(951, 582);
+            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
@@ -2589,7 +2617,6 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.searchPanel);
-            this.Controls.Add(this.extraSettingsPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";
@@ -2808,5 +2835,7 @@ namespace QobuzDownloaderX
         internal Label listEndSeparatorLabel;
         internal TextBox primaryListSeparatorTextBox;
         internal Panel artistNamesSeparatorsPanel;
+        internal CheckBox useItemPosInPlaylistCheckbox;
+        internal Label playlistSectionLabel;
     }
 }

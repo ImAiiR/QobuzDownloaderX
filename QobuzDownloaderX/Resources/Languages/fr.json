@@ -61,6 +61,7 @@
     "downloadFromArtistLabel":      "Télécharger De L'Artiste",
     "primaryListSeparatorLabel":    "Séparateur de liste principal", // ChatGPT translation.
     "listEndSeparatorLabel":        "Séparateur de fin de liste", // ChatGPT translation.
+    "playlistSectionLabel":         "Options de playlist", // ChatGPT translation.
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Artiste de l'album",
@@ -94,6 +95,7 @@
     "dontSaveArtworkToDiskCheckBox":"Ne pas enregistrer les illustrations sur le disque",
     "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Téléchargement, Autre",
     "downloadAllFromArtistCheckBox":"Tout télécharger de l'artiste (peut en inclure plus)",
+    "useItemPosInPlaylistCheckbox": "Utiliser les positions des éléments au lieu des numéros de piste de l'album dans les noms de fichiers", // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",

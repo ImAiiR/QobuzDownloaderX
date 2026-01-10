@@ -57,10 +57,11 @@
     "sortingSearchResultsLabel":    "正在排序…", // ChatGPT translation.
     "searchResultsCountLabel":      "结果", // ChatGPT translation.
     "selectedRowsCountLabel":       "已选择 {0} 行", // ChatGPT translation.
-    "disclaimer":                   "免责声明 / 法律声明\n\n此应用程序使用 Qobuz API，但未经过 Qobuz 认证。\n\n本软件及其作者与 Qobuz 没有任何关联、认可或官方关系。使用本应用程序的风险由您自行承担。作者不对服务的准确性、可靠性或可用性提供任何保证，并且不对因使用本应用程序而造成的任何损失或数据丢失承担责任。\n\n使用本应用程序即表示您承认并接受该应用程序按“原样”提供，不附带任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。\n\n用户在访问 Qobuz API 或任何其他第三方服务时，有责任遵守所有适用法律、服务条款和使用限制。\n\n有关官方 Qobuz 服务和支持，请参阅 Qobuz 官方网站: https://www.qobuz.com/",
-    "downloadFromArtistLabel":      "从艺术家下载",
+    "disclaimer":                   "免责声明 / 法律声明\n\n此应用程序使用 Qobuz API，但未经过 Qobuz 认证。\n\n本软件及其作者与 Qobuz 没有任何关联、认可或官方关系。使用本应用程序的风险由您自行承担。作者不对服务的准确性、可靠性或可用性提供任何保证，并且不对因使用本应用程序而造成的任何损失或数据丢失承担责任。\n\n使用本应用程序即表示您承认并接受该应用程序按“原样”提供，不附带任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。\n\n用户在访问 Qobuz API 或任何其他第三方服务时，有责任遵守所有适用法律、服务条款和使用限制。\n\n有关官方 Qobuz 服务和支持，请参阅 Qobuz 官方网站: https://www.qobuz.com/", // ChatGPT translation.
+    "downloadFromArtistLabel":      "从艺术家下载", // ChatGPT translation.
     "primaryListSeparatorLabel":    "主列表分隔符", // ChatGPT translation.
     "listEndSeparatorLabel":        "列表结束分隔符", // ChatGPT translation.
+    "playlistSectionLabel":         "播放列表选项", // ChatGPT translation.
 
     "_SECTION3_":                   "=================== 主表单复选框 ===================",
     "albumArtistCheckbox":          "专辑艺术家",
@@ -94,6 +95,7 @@
     "dontSaveArtworkToDiskCheckBox":"不要将艺术作品保存到磁盘", // ChatGPT translation
     "downloadFromArtistListBox":    "专辑, EP/单曲, 现场, 合辑, 下载, 其他", // ChatGPT translation
     "downloadAllFromArtistCheckBox":"从艺术家下载全部（可能包含更多）", // ChatGPT translation
+    "useItemPosInPlaylistCheckbox": "在文件名中使用项目位置而不是专辑曲目编号", // ChatGPT translation
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",

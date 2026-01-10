@@ -265,6 +265,7 @@ namespace QobuzDownloaderX.Helpers
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
             f.mergeArtistNamesCheckbox.Checked = Settings.Default.mergeArtistNames;
             f.artistNamesSeparatorsPanel.Enabled = f.mergeArtistNamesCheckbox.Checked;
+            f.useItemPosInPlaylistCheckbox.Checked = Settings.Default.useItemPosInPlaylist;
             RestoreDownloadFromArtistSelectedIndices();
 
         }
@@ -441,6 +442,7 @@ namespace QobuzDownloaderX.Helpers
             f.selectedRowsCountLabel.Text = string.Empty;
             f.primaryListSeparatorLabel.Text = f.languageManager.GetTranslation("primaryListSeparatorLabel");
             f.listEndSeparatorLabel.Text = f.languageManager.GetTranslation("listEndSeparatorLabel");
+            f.playlistSectionLabel.Text = f.languageManager.GetTranslation("playlistSectionLabel");
 
             // Checkboxes
             f.albumArtistCheckbox.Text = f.languageManager.GetTranslation("albumArtistCheckbox");
@@ -472,6 +474,7 @@ namespace QobuzDownloaderX.Helpers
             f.dontSaveArtworkToDiskCheckBox.Text = f.languageManager.GetTranslation("dontSaveArtworkToDiskCheckBox");
             f.downloadAllFromArtistCheckBox.Text = f.languageManager.GetTranslation("downloadAllFromArtistCheckBox");
             f.clearOldLogsCheckBox.Text = f.languageManager.GetTranslation("clearOldLogsCheckBox");
+            f.useItemPosInPlaylistCheckbox.Text = f.languageManager.GetTranslation("useItemPosInPlaylistCheckbox");
 
             // downloadFromArtistListBox
             string translatedNames = f.languageManager.GetTranslation("downloadFromArtistListBox");
@@ -979,6 +982,11 @@ namespace QobuzDownloaderX.Helpers
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexPlaylist, totalTracksPlaylist);
                         f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {f.languageManager.GetTranslation("tracks")}";
+
+                        if (Settings.Default.useItemPosInPlaylist)
+                        {
+                            item.TrackNumber = item.Position;
+                        }
 
                         trackIndexPlaylist++;
                         try

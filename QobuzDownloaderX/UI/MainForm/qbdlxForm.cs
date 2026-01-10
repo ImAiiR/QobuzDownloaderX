@@ -827,6 +827,12 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void useItemPosInPlaylistCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.useItemPosInPlaylist = useItemPosInPlaylistCheckbox.Checked;
+            Settings.Default.Save();
+        }
+
         private void embeddedArtSizeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Set artSize to selected value, and save selected option to settings.

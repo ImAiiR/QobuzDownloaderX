@@ -57,10 +57,11 @@
     "sortingSearchResultsLabel":    "Sortiere…", // ChatGPT translation.
     "searchResultsCountLabel":      "Ergebnisse", // ChatGPT translation.
     "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // ChatGPT translation.
-    "disclaimer":                   "Haftungsausschluss / Rechtlicher Hinweis\n\nDiese Anwendung verwendet die Qobuz-API, ist jedoch nicht von Qobuz zertifiziert.\n\nDie Software und ihre Autoren sind in keiner Weise mit Qobuz verbunden, werden von Qobuz nicht unterstützt und stehen nicht in offizieller Verbindung zu Qobuz. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko. Die Autoren übernehmen keine Garantie für die Genauigkeit, Zuverlässigkeit oder Verfügbarkeit des Dienstes und haften nicht für Schäden oder Datenverluste, die aus der Nutzung resultieren.\n\nDurch die Nutzung dieser Anwendung erkennen Sie an und akzeptieren, dass sie „wie besehen“ bereitgestellt wird, ohne ausdrückliche oder stillschweigende Garantien jeglicher Art, einschließlich, aber nicht beschränkt auf Garantien der Marktgängigkeit, Eignung für einen bestimmten Zweck oder Nichtverletzung von Rechten.\n\nDie Nutzer sind verantwortlich für die Einhaltung aller geltenden Gesetze, Nutzungsbedingungen und Einschränkungen beim Zugriff auf die Qobuz-API oder andere Drittanbieterdienste.\n\nFür offizielle Qobuz-Dienste und Support besuchen Sie bitte die offizielle Website von Qobuz: https://www.qobuz.com/",
+    "disclaimer":                   "Haftungsausschluss / Rechtlicher Hinweis\n\nDiese Anwendung verwendet die Qobuz-API, ist jedoch nicht von Qobuz zertifiziert.\n\nDie Software und ihre Autoren sind in keiner Weise mit Qobuz verbunden, werden von Qobuz nicht unterstützt und stehen nicht in offizieller Verbindung zu Qobuz. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko. Die Autoren übernehmen keine Garantie für die Genauigkeit, Zuverlässigkeit oder Verfügbarkeit des Dienstes und haften nicht für Schäden oder Datenverluste, die aus der Nutzung resultieren.\n\nDurch die Nutzung dieser Anwendung erkennen Sie an und akzeptieren, dass sie „wie besehen“ bereitgestellt wird, ohne ausdrückliche oder stillschweigende Garantien jeglicher Art, einschließlich, aber nicht beschränkt auf Garantien der Marktgängigkeit, Eignung für einen bestimmten Zweck oder Nichtverletzung von Rechten.\n\nDie Nutzer sind verantwortlich für die Einhaltung aller geltenden Gesetze, Nutzungsbedingungen und Einschränkungen beim Zugriff auf die Qobuz-API oder andere Drittanbieterdienste.\n\nFür offizielle Qobuz-Dienste und Support besuchen Sie bitte die offizielle Website von Qobuz: https://www.qobuz.com/", // ChatGPT translation.
     "downloadFromArtistLabel":      "VOM KÜNSTLER HERUNTERLADEN", // ChatGPT translation.
     "primaryListSeparatorLabel":    "Primärer Listentrenner", // ChatGPT translation.
     "listEndSeparatorLabel":        "Listenendtrenner", // ChatGPT translation.
+    "playlistSectionLabel":         "PLAYLIST-OPTIONEN", // ChatGPT translation.
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Album Artist",
@@ -94,6 +95,7 @@
     "dontSaveArtworkToDiskCheckBox":"Kunstwerke nicht auf der Festplatte speichern", // ChatGPT translation
     "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Download, Andere", // ChatGPT translation
     "downloadAllFromArtistCheckBox":"Alles vom Künstler herunterladen (kann mehr enthalten)",  // ChatGPT translation
+    "useItemPosInPlaylistCheckbox": "Elementpositionen anstelle der Album-Tracknummern in Dateinamen verwenden", // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",

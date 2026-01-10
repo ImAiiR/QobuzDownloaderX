@@ -61,6 +61,7 @@
     "downloadFromArtistLabel":      "DOWNLOAD FROM ARTIST",
     "primaryListSeparatorLabel":    "Primary list separator",
     "listEndSeparatorLabel":        "List end separator",
+    "playlistSectionLabel":         "PLAYLIST OPTIONS",
     
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckbox":          "Album Artist",
@@ -94,6 +95,7 @@
     "dontSaveArtworkToDiskCheckBox":"Don't save artwork to disk",
     "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Download, Other",
     "downloadAllFromArtistCheckBox":"Download all from artist (it may include more)",
+    "useItemPosInPlaylistCheckbox": "Use item positions instead of album track numbers in file names",
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Welcome to QBDLX!",

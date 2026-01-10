@@ -766,5 +766,17 @@ namespace QobuzDownloaderX.Properties {
                 this["listEndSeparator"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useItemPosInPlaylist {
+            get {
+                return ((bool)(this["useItemPosInPlaylist"]));
+            }
+            set {
+                this["useItemPosInPlaylist"] = value;
+            }
+        }
     }
 }
