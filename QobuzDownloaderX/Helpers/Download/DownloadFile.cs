@@ -57,7 +57,6 @@ namespace QobuzDownloaderX
 
         public async Task DownloadStream(string streamUrl, string downloadPath, string filePath, string audio_format, Album QoAlbum, Item QoItem, GetInfo getInfo, CancellationToken abortToken, DownloadStats stats)
         {
-
             const string tempDir = @"qbdlx-temp";
             string tempFile = ZlpPathHelper.Combine(tempDir, $"qbdlx_downloading-{QoItem.Id}{audio_format}");
 
@@ -104,7 +103,7 @@ namespace QobuzDownloaderX
 
             // Handle subfolders if more than 1 volume
             string finalDownloadPath = downloadPath;
-            if (QoAlbum.MediaCount > 1)
+            if (QoItem.PlaylistTrackId is null && QoAlbum.MediaCount > 1)
             {
                 qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
                 finalDownloadPath = ZlpPathHelper.Combine(downloadPath, "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0'));
