@@ -219,9 +219,9 @@ namespace QobuzDownloaderX
                 file.Tag.Pictures = new IPicture[] { pic };
                 qbdlxForm._qbdlxForm.logger.Debug("Artwork embed complete");
             }
-            catch
+            catch (Exception ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("Unable to write embedded artwork");
+                qbdlxForm._qbdlxForm.logger.Error($"Unable to write embedded artwork. Error: {ex.Message}");
             }
         }
     }
