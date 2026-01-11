@@ -231,6 +231,14 @@ namespace QobuzDownloaderX
                     CleanupArtwork();
                     progress?.Report(100);
                 }
+                catch (OperationCanceledException ex)
+                {
+                    if (!abortToken.IsCancellationRequested)
+                    {
+                        qbdlxForm._qbdlxForm.logger.Error("Download canceled: " + ex.Message);
+                        throw;
+                    }
+                }
                 catch (Exception downloadAlbumEx)
                 {
                     getInfo.updateDownloadOutput("\r\n\r\n" + downloadAlbumEx + "\r\n\r\n");
