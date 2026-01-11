@@ -13,6 +13,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
 {
@@ -786,6 +787,24 @@ namespace QobuzDownloaderX.Helpers
             return false;
         }
 
+        internal static void DeleteTempEmbeddedArtwork()
+        {
+            string embeddedArtworkPath = Path.Combine(Path.GetTempPath(), qbdlxForm._qbdlxForm.embeddedArtSize + ".jpg");
+            try
+            {
+                if (!string.IsNullOrEmpty(embeddedArtworkPath) &&
+                    ZlpIOHelper.FileExists(embeddedArtworkPath))
+                {
+                    qbdlxForm._qbdlxForm.logger.Debug("Deleting embedded artwork");
+                    ZlpIOHelper.DeleteFile(embeddedArtworkPath);
+                }
+            }
+            catch
+            {
+                qbdlxForm._qbdlxForm.logger.Warning("Unable to delete embedded artwork");
+            }
+        }
+
         internal static async Task downloadButtonAsyncWork(qbdlxForm f, DownloadStats stats = null)
         {
             qbdlxForm.getLinkTypeIsBusy = true;
@@ -797,6 +816,8 @@ namespace QobuzDownloaderX.Helpers
             f.albumPictureBox.Tag = "";
             f.albumPictureBox.ImageLocation = "";
             if (f.albumPictureBox.Image == null) f.albumPictureBox.Image = Resources.QBDLX_PictureBox;
+
+            Miscellaneous.DeleteTempEmbeddedArtwork();
 
             if (stats == null)
             {

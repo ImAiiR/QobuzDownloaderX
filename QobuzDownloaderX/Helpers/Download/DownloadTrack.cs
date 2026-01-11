@@ -50,7 +50,7 @@ namespace QobuzDownloaderX
 
         private void CleanupArtwork()
         {
-            string artworkPath = downloadFile.artworkPath;
+            string artworkPath = downloadFile.embeddedArtworkPath;
             if (ZlpIOHelper.FileExists(artworkPath))
             {
                 ZlpIOHelper.DeleteFile(artworkPath);
@@ -178,7 +178,7 @@ namespace QobuzDownloaderX
                 {
                     if (!(downloadType == "album")){
                         // Delete image used for embedded artwork
-                        DeleteEmbeddedArtwork(downloadPath);
+                        Miscellaneous.DeleteTempEmbeddedArtwork();
                     }
                 }
             }
@@ -257,19 +257,5 @@ namespace QobuzDownloaderX
                 return;
             }
         }
-
-        private void DeleteEmbeddedArtwork(string downloadPath)
-        {
-            try
-            {
-                qbdlxForm._qbdlxForm.logger.Debug("Deleting embedded artwork…");
-                ZlpIOHelper.DeleteFile($"{downloadPath}{qbdlxForm._qbdlxForm.embeddedArtSize}.jpg");
-            }
-            catch
-            {
-                qbdlxForm._qbdlxForm.logger.Warning("Unable to delete embedded artwork");
-            }
-        }
     }
-
 }

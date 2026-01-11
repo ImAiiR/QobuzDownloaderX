@@ -45,19 +45,6 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void DeleteEmbeddedArtwork(string downloadPath)
-        {
-            try
-            {
-                qbdlxForm._qbdlxForm.logger.Debug("Deleting embedded artwork…");
-                ZlpIOHelper.DeleteFile($"{downloadPath}{qbdlxForm._qbdlxForm.embeddedArtSize}.jpg");
-            }
-            catch
-            {
-                qbdlxForm._qbdlxForm.logger.Warning("Unable to delete embedded artwork");
-            }
-        }
-
         private async Task DownloadGoodiesAsync(string downloadPath, Album album, CancellationToken abortToken)
         {
             foreach (var goody in album.Goodies)
@@ -206,7 +193,7 @@ namespace QobuzDownloaderX
             finally
             {
                 // Delete image used for embedding artwork
-                DeleteEmbeddedArtwork(downloadPath);
+                Miscellaneous.DeleteTempEmbeddedArtwork();
             }
         }
 

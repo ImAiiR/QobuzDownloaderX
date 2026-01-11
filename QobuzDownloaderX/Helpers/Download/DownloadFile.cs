@@ -29,7 +29,7 @@ namespace QobuzDownloaderX
         // Static flag to ensure temp directory check runs only once per application run
         private static bool tempDirChecked = false;
 
-        public string artworkPath { get; set; }
+        public string embeddedArtworkPath { get; set; }
 
         [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "I don’t feel like changing this and it doesn’t matter")]
         public async Task<string> createPath(string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, string playlistTemplate, string favoritesTemplate, int paddedTrackLength, int paddedDiscLength, Album QoAlbum, Item QoItem, Playlist QoPlaylist)
@@ -97,9 +97,9 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - 0%"; }));
             }
 
-            // Set path for downloaded artwork
-            artworkPath = downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg";
-            qbdlxForm._qbdlxForm.logger.Debug("Artwork path: " + artworkPath);
+            // Set path for downloaded embedded artwork
+            embeddedArtworkPath = Path.Combine(Path.GetTempPath(), qbdlxForm._qbdlxForm.embeddedArtSize + ".jpg");
+            qbdlxForm._qbdlxForm.logger.Debug("Embedded artwork path: " + embeddedArtworkPath);
 
             // Handle subfolders if more than 1 volume
             string finalDownloadPath = downloadPath;
@@ -217,7 +217,7 @@ namespace QobuzDownloaderX
                 }
 
                 qbdlxForm._qbdlxForm.logger.Debug("Starting file metadata tagging");
-                TagFile.WriteToFile(tempFile, artworkPath, QoAlbum, QoItem);
+                TagFile.WriteToFile(tempFile, embeddedArtworkPath, QoAlbum, QoItem);
 
                 // Move the file to final destination
                 qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
@@ -325,16 +325,16 @@ namespace QobuzDownloaderX
                     }
                 }
 
-                // Embedded art
-                if (!ZlpIOHelper.FileExists(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg"))
+                // Embedded art (TEMP directory)
+                embeddedArtworkPath = Path.Combine(Path.GetTempPath(), qbdlxForm._qbdlxForm.embeddedArtSize + ".jpg");
+                if (!File.Exists(embeddedArtworkPath))
                 {
-                    qbdlxForm._qbdlxForm.logger.Debug("Saved artwork for embedding not found, downloading");
+                    qbdlxForm._qbdlxForm.logger.Debug("Embedded artwork not found in temp directory, downloading");
+
                     string url = QoAlbum.Image.Large.Replace("_600", "_" + qbdlxForm._qbdlxForm.embeddedArtSize);
-                    string dest = ZlpPathHelper.GetFullPath(downloadPath + qbdlxForm._qbdlxForm.embeddedArtSize + @".jpg");
-                    await DownloadWithTimeoutAsync(url, dest);
+                    await DownloadWithTimeoutAsync(url, embeddedArtworkPath);
                 }
             }
-
         }
 
         public async Task DownloadGoody(string downloadPath, Album QoAlbum, Goody QoGoody, GetInfo getInfo, CancellationToken abortToken)
