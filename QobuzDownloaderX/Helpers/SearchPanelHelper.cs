@@ -143,7 +143,7 @@ namespace QobuzDownloaderX.Helpers
                         TextAlign = ContentAlignment.MiddleCenter, // Center text horizontally and vertically
                         Anchor = AnchorStyles.None, // Center within the cell
                         ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.LabelText), // Set text color
-                        Font = new Font(fontName, 10F, FontStyle.Regular) // Set font size and style
+                        Font = new Font(fontName, 10F, FontStyle.Regular), // Set font size and style
                     };
                     innerRow.Controls.Add(artistName, 1, 0);
 
@@ -200,9 +200,9 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ClickedButtonBackground); // Set background color when clicked
                     string albumLink = "https://play.qobuz.com/album/" + album.Id.ToString(); // Store the album link
                     selectButton.Tag = albumLink;
-                    selectButton.Click += (sender, e) => SendURL(mainForm, albumLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
                     selectButton.Enabled = !qbdlxForm.getLinkTypeIsBusy;
+                    selectButton.Click += (sender, e) => SendURL(mainForm, albumLink);
                     innerRow.Controls.Add(selectButton, 4, 0);
 
                     void downloadButtonHandler(object s, EventArgs e)
@@ -396,9 +396,9 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.FlatAppearance.MouseDownBackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ClickedButtonBackground); // Set background color when clicked
                     string trackLink = "https://open.qobuz.com/track/" + track.Id.ToString(); // Store the track link
                     selectButton.Tag = trackLink;
-                    selectButton.Click += (sender, e) => SendURL(mainForm, trackLink);
                     selectButton.Anchor = AnchorStyles.None; // Center the button
                     selectButton.Enabled = !qbdlxForm.getLinkTypeIsBusy;
+                    selectButton.Click += (sender, e) => SendURL(mainForm, trackLink);
                     innerRow.Controls.Add(selectButton, 4, 0);
 
                     void downloadButtonHandler(object s, EventArgs e)
@@ -522,8 +522,22 @@ namespace QobuzDownloaderX.Helpers
         /// </summary>
         private static void AttachClickRecursive(Control parent, EventHandler handler)
         {
+            if (parent == null) return;
+
+            // No queremos que PictureBox ni Button disparen esto
             if (!(parent is Button) && !(parent is PictureBox))
-                parent.Click += handler;
+            {
+                parent.Click += (s, e) =>
+                {
+                    // If click is over a button, ignore
+                    Point mousePos = parent.PointToClient(Control.MousePosition);
+                    Control hit = parent.GetChildAtPoint(mousePos);
+                    if (hit is Button)
+                        return;
+
+                    handler?.Invoke(s, e);
+                };
+            }
 
             foreach (Control child in parent.Controls)
                 AttachClickRecursive(child, handler);
@@ -539,6 +553,15 @@ namespace QobuzDownloaderX.Helpers
 
             rowPanel.Paint += (sender, e) =>
             {
+                Color gridLineColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.FormBackground);
+
+                // Grid line
+                using (Pen gridPen = new Pen(gridLineColor, 2))
+                {
+                    int y = rowPanel.Height - 1;
+                    e.Graphics.DrawLine(gridPen, 0, y, rowPanel.Width, y);
+                }
+
                 if (rowPanel.Tag is RowInfo info && info.Selected)
                 {
                     // Get the current theme color dynamically
@@ -640,6 +663,9 @@ namespace QobuzDownloaderX.Helpers
         {
             try
             {
+                mainForm.searchAlbumsButton.Focus();
+                SetAllGetButtonsEnabledState(mainForm.searchResultsTablePanel, false);
+
                 // Send URL to the input textbox, and start download
                 mainForm.logger.Debug("Sending URL to downloader panel, and starting download");
                 TextBox inputTextbox = mainForm.inputTextbox;
@@ -713,13 +739,13 @@ namespace QobuzDownloaderX.Helpers
 
             if (qbdlxForm._qbdlxForm.sortArtistNameButton.Checked)
                 query = descending ? query.OrderByDescending(i => i.Artist?.Name) : query.OrderBy(i => i.Artist?.Name);
-            
+
             else if (qbdlxForm._qbdlxForm.sortAlbumTrackNameButton.Checked)
                 query = descending ? query.OrderByDescending(i => i.Title) : query.OrderBy(i => i.Title);
-            
+
             else if (qbdlxForm._qbdlxForm.sortGenreButton.Checked)
                 query = descending ? query.OrderByDescending(i => Miscellaneous.GetShortenedGenreName(i.Genre.Name)) : query.OrderBy(i => Miscellaneous.GetShortenedGenreName(i.Genre.Name));
-            
+
             else if (qbdlxForm._qbdlxForm.sortReleaseDateButton.Checked)
                 query = descending
                     ? query.OrderByDescending(i => parseDate(i))
@@ -769,6 +795,37 @@ namespace QobuzDownloaderX.Helpers
                 Items = query.ToList(),
                 Total = tracks.Total
             };
+        }
+
+        /// <summary>
+        /// Enables or disables all "GET" buttons in the search results panel.
+        /// </summary>
+        /// <param name="searchResultsPanel">The TableLayoutPanel containing all rows.</param>
+        /// <param name="enabled">Whether the buttons should be enabled or disabled.</param>
+        private static void SetAllGetButtonsEnabledState(Panel searchResultsPanel, bool enabled)
+        {
+            if (searchResultsPanel == null) return;
+
+            string downloadButtonText = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton");
+            foreach (Control rowCtrl in searchResultsPanel.Controls)
+            {
+                if (rowCtrl is Panel rowPanel)
+                {
+                    foreach (Control innerCtrl in rowPanel.Controls)
+                    {
+                        if (innerCtrl is TableLayoutPanel innerTable)
+                        {
+                            foreach (Control c in innerTable.Controls)
+                            {
+                                if (c is Button btn && btn.Text == downloadButtonText)
+                                {
+                                    btn.Enabled = enabled;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
