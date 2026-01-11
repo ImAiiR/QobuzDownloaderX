@@ -1018,7 +1018,7 @@ namespace QobuzDownloaderX.Helpers
                             await Task.Run(() => f.getInfo.getTrackInfoLabels(f.app_id, track_id, f.user_auth_token));
                             f.QoItem = item;
                             f.QoAlbum = f.getInfo.QoAlbum;
-                            await Task.Run(() => f.downloadTrack.DownloadPlaylistTrackAsync(
+                            await Task.Run(() => f.downloadTrack.DownloadPlaylistTrackAsync(linkType,
                                 f.app_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret,
                                 f.downloadLocation, f.trackTemplate, f.playlistTemplate, f.QoAlbum, f.QoItem, f.QoPlaylist,
                                 new Progress<int>(value =>
