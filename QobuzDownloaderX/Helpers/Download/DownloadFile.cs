@@ -224,12 +224,12 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
                 ZlpIOHelper.MoveFile(tempFile, filePath);
 
-                qbdlxForm._qbdlxForm.logger.Debug("Download complete.");
+                qbdlxForm._qbdlxForm.logger.Debug("DownloadStream complete.");
                 getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
             }
             catch (TaskCanceledException ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("Download timed out (TaskCanceledException): " + ex.Message);
+                qbdlxForm._qbdlxForm.logger.Error("DownloadStream timed out (TaskCanceledException): " + ex.Message);
                 throw;
 
             }
@@ -237,13 +237,13 @@ namespace QobuzDownloaderX
             {
                 if (!abortToken.IsCancellationRequested)
                 {
-                    qbdlxForm._qbdlxForm.logger.Error("Download canceled (OperationCanceledException): " + ex.Message);
+                    qbdlxForm._qbdlxForm.logger.Error("DownloadStream canceled (OperationCanceledException): " + ex.Message);
                     throw;
                 }
             }
             catch (WebException webEx)
             {
-                getInfo.updateDownloadOutput($"Download failed (WebException): {webEx.Message}\r\n");
+                getInfo.updateDownloadOutput($"DownloadStream failed (WebException): {webEx.Message}\r\n");
                 qbdlxForm._qbdlxForm.logger.Error("WebException caught: " + webEx.Message);
             }
             catch (Exception ex) when (
@@ -258,7 +258,7 @@ namespace QobuzDownloaderX
             }
             catch (Exception ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("Download failed (Exception): " + ex.Message);
+                qbdlxForm._qbdlxForm.logger.Error("DownloadStream failed (Exception): " + ex.Message);
                 throw;
             }
         }
