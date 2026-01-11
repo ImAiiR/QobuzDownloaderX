@@ -185,17 +185,17 @@ namespace QobuzDownloaderX
                     }
                 }
 
-                progress?.Report(100);
-
-                // Tell user that download is completed
-                qbdlxForm._qbdlxForm.logger.Debug("All downloads completed!");
-
 #if DEBUG
                 // Write post template
                 bool callWritePostTemplate = true;
                 if (callWritePostTemplate)
                     WritePostTemplate(QoAlbum);
 #endif
+
+                // Tell user that download is completed
+                qbdlxForm._qbdlxForm.logger.Debug("All downloads completed!");
+
+                progress?.Report(100);
             }
             catch (Exception downloadAlbumEx)
             {
