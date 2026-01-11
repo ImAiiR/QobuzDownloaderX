@@ -169,10 +169,8 @@ namespace QobuzDownloaderX
                     app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, 
                     artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress, stats, abortToken);
 
-                // Delete image used for embedding artwork
                 if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
-                DeleteEmbeddedArtwork(downloadPath);
-
+             
                 // Set current output text
                 getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
 
@@ -204,6 +202,11 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.logger.Error("Error occured during downloadAlbum, error below:\r\n" + downloadAlbumEx);
                 Debug.WriteLine(downloadAlbumEx);
                 return;
+            }
+            finally
+            {
+                // Delete image used for embedding artwork
+                DeleteEmbeddedArtwork(downloadPath);
             }
         }
 
