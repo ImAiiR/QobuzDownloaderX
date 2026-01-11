@@ -76,7 +76,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Qo%28penAPI%29, Version=0.0.3.7, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>External References\Qo(penAPI).dll</HintPath>
     </Reference>
     <Reference Include="System">
