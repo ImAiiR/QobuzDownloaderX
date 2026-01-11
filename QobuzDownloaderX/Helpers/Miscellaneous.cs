@@ -1,4 +1,5 @@
-﻿using QobuzDownloaderX.Properties;
+﻿using QobuzDownloaderX.Helpers.QobuzDownloaderXMOD;
+using QobuzDownloaderX.Properties;
 using QobuzDownloaderX.UI.DevCase.UI.Components;
 using QobuzDownloaderX.Win32;
 using QopenAPI;
@@ -252,6 +253,8 @@ namespace QobuzDownloaderX.Helpers
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
             f.primaryListSeparatorTextBox.Text = Settings.Default.primaryListSeparator;
             f.listEndSeparatorTextBox.Text = Settings.Default.listEndSeparator;
+            ParsingHelper.primaryListSeparator = Settings.Default.primaryListSeparator;
+            ParsingHelper.listEndSeparator = Settings.Default.listEndSeparator;
         }
 
         internal static void LoadOtherSettings(qbdlxForm f)
