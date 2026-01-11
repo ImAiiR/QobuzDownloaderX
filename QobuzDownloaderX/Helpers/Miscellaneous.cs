@@ -793,10 +793,10 @@ namespace QobuzDownloaderX.Helpers
             f.abortTokenSource = null;
             f.abortTokenSource = new CancellationTokenSource();
 
-            f.albumPictureBox.Image = Resources.QBDLX_PictureBox;
-            f.albumPictureBox.ImageLocation = "";
-            f.albumPictureBox.Tag = "";
             f.albumPictureBox.Cursor = default;
+            f.albumPictureBox.Tag = "";
+            f.albumPictureBox.ImageLocation = "";
+            if (f.albumPictureBox.Image == null) f.albumPictureBox.Image = Resources.QBDLX_PictureBox;
 
             if (stats == null)
             {
