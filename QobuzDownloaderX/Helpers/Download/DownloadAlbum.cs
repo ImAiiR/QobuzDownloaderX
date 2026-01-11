@@ -9,7 +9,6 @@ using ZetaLongPaths;
 
 using QobuzDownloaderX.Helpers;
 using QobuzDownloaderX.Properties;
-using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
