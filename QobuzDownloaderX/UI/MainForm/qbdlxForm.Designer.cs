@@ -663,7 +663,7 @@ namespace QobuzDownloaderX
             // albumPictureBox
             // 
             this.albumPictureBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.albumPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("albumPictureBox.Image")));
+            this.albumPictureBox.Image = global::QobuzDownloaderX.Properties.Resources.QBDLX_PictureBox;
             this.albumPictureBox.Location = new System.Drawing.Point(18, 83);
             this.albumPictureBox.Name = "albumPictureBox";
             this.albumPictureBox.Size = new System.Drawing.Size(160, 160);

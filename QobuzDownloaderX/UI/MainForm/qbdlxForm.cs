@@ -1651,8 +1651,19 @@ namespace QobuzDownloaderX
             if (e.Button != MouseButtons.Left)
                 return;
 
-            Miscellaneous.ShowFloatingImageFromUrl(QoAlbum.Image?.Large);
-            this.BringToFront();
+            if (!string.IsNullOrEmpty(albumPictureBox.ImageLocation))
+            {
+                if ((string)albumPictureBox.Tag == "playlist")
+                {
+                    Miscellaneous.ShowFloatingImageFromUrl(QoPlaylist.ImageRectangle[0]);
+                }
+                else
+                {
+                    Miscellaneous.ShowFloatingImageFromUrl(QoAlbum.Image?.Large);
+                }
+
+                this.BringToFront();
+            }
         }
 
         private void primaryListSeparatorTextBox_Leave(object sender, EventArgs e)

@@ -542,11 +542,20 @@ namespace QobuzDownloaderX.Helpers
             f.artistLabel.Text = f.renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
             if (QoAlbum.Version == null) { f.albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&"); } else { f.albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&").TrimEnd() + " (" + QoAlbum.Version + ")"; }
             f.infoLabel.Text = $"{f.infoLabelPlaceholder} {QoAlbum.ReleaseDateOriginal} • {QoAlbum.TracksCount} {trackOrTracks} • {QoAlbum.UPC}";
-            try { 
-                f.albumPictureBox.ImageLocation = QoAlbum.Image?.Small;
-                f.albumPictureBox.Cursor = Cursors.Hand;
-            } catch { 
-                f.albumPictureBox.Cursor = Cursors.Default; 
+
+            try
+            {
+                string newImageLocation = QoAlbum.Image?.Small;
+                if (!((string)f.albumPictureBox.Tag == "playlist") && 
+                    !string.Equals(f.albumPictureBox.ImageLocation, newImageLocation, StringComparison.Ordinal))
+                {
+                    f.albumPictureBox.ImageLocation = newImageLocation;
+                    f.albumPictureBox.Cursor = Cursors.Hand;
+                }
+            }
+            catch
+            {
+                f.albumPictureBox.Cursor = Cursors.Default;
             }
         }
 
@@ -555,7 +564,19 @@ namespace QobuzDownloaderX.Helpers
             f.artistLabel.Text = QoPlaylist.Owner.Name.Replace(@"&", @"&&") + "'s Playlist";
             f.albumLabel.Text = QoPlaylist.Name.Replace(@"&", @"&&");
             f.infoLabel.Text = "";
-            try { f.albumPictureBox.ImageLocation = QoPlaylist.Images300[0]; } catch { }
+
+            try
+            {
+                string newImageLocation = QoPlaylist.ImageRectangle[0];
+                if (!string.Equals(f.albumPictureBox.ImageLocation, newImageLocation, StringComparison.Ordinal))
+                {
+                    f.albumPictureBox.ImageLocation = newImageLocation;
+                    f.albumPictureBox.Cursor = Cursors.Hand;
+                }
+            } catch
+            {
+                f.albumPictureBox.Cursor = Cursors.Default;
+            }
         }
 
         internal static void SetPlaceholder(qbdlxForm f, TextBox textBox, string placeholderText, bool isFocused)
@@ -954,6 +975,10 @@ namespace QobuzDownloaderX.Helpers
             f.progressItemsCountLabel.Text = "";
             f.progressItemsCountLabel.Visible = true;
 
+            f.albumPictureBox.Image = Resources.QBDLX_PictureBox;
+            f.albumPictureBox.ImageLocation = "";
+            f.albumPictureBox.Tag = "";
+
             switch (linkType)
             {
                 case "album":
@@ -993,6 +1018,7 @@ namespace QobuzDownloaderX.Helpers
                     f.progressBarDownload.Invoke(new Action(() => f.progressBarDownload.Value = f.progressBarDownload.Maximum));
                     break;
                 case "playlist":
+                    f.albumPictureBox.Tag = "playlist";
                     f.skipButton.Enabled = false;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
                     await Task.Run(() => f.getInfo.getPlaylistInfoLabels(f.app_id, f.qobuz_id, f.user_auth_token));
