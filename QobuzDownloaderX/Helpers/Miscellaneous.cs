@@ -195,7 +195,6 @@ namespace QobuzDownloaderX.Helpers
             UpdateQualitySelectButtonText(f);
         }
 
-
         internal static void UpdateQualitySelectButtonText(qbdlxForm f)
         {
             string baseText = f.languageManager?.GetTranslation("qualitySelectButton");
