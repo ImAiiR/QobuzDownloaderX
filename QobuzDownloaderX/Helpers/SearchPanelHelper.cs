@@ -61,6 +61,8 @@ namespace QobuzDownloaderX.Helpers
             // Load the font name from the translation file
             string fontName = qbdlxForm._qbdlxForm.languageManager.GetTranslation("TranslationFont");
 
+            string downloadButtonText = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton");
+
             mainForm.Invoke((MethodInvoker)delegate ()
             {
                 qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = false;
@@ -135,7 +137,7 @@ namespace QobuzDownloaderX.Helpers
                     // Add Label for artist name
                     System.Windows.Forms.Label artistName = new System.Windows.Forms.Label
                     {
-                        Text = album.Artist.Name.ToString(),
+                        Text = album.Artist.Name.Replace(@"&", @"&&").Trim(),
                         AutoSize = true, // Disable auto-sizing to allow wrapping
                         /*artistName.MaximumSize = new Size(0, 0);*/ // Word-wrap if needed
                         TextAlign = ContentAlignment.MiddleCenter, // Center text horizontally and vertically
@@ -148,7 +150,7 @@ namespace QobuzDownloaderX.Helpers
                     // Add Label for album title
                     System.Windows.Forms.Label albumTitle = new System.Windows.Forms.Label
                     {
-                        Text = album.Title.ToString().TrimEnd()
+                        Text = album.Title.Replace(@"&", @"&&").Trim()
                     };
                     if (album.Version != null) { albumTitle.Text = albumTitle.Text + " (" + album.Version + ")"; }
                     if (album.ParentalWarning == true) { albumTitle.Text = "[E] " + albumTitle.Text; } // Add "[E]" if Qobuz lists the release with a parental warning
@@ -187,7 +189,7 @@ namespace QobuzDownloaderX.Helpers
                     // Add Button for selecting album ID
                     Button selectButton = new Button
                     {
-                        Text = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton"),
+                        Text = downloadButtonText,
                         ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText), // Set button text color
                         BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground), // Set button background color
                         Font = new Font(fontName, 8F, FontStyle.Regular), // Set font size and style
@@ -254,6 +256,8 @@ namespace QobuzDownloaderX.Helpers
 
             // Load the font name from the translation file
             string fontName = qbdlxForm._qbdlxForm.languageManager.GetTranslation("TranslationFont");
+
+            string downloadButtonText = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton");
 
             mainForm.Invoke((MethodInvoker)delegate ()
             {
@@ -330,7 +334,7 @@ namespace QobuzDownloaderX.Helpers
                     // Add Label for artist name
                     System.Windows.Forms.Label artistName = new System.Windows.Forms.Label
                     {
-                        Text = track.Performer.Name.ToString(),
+                        Text = track.Performer.Name.Replace(@"&", @"&&").Trim(),
                         AutoSize = true, // Disable auto-sizing to allow wrapping
                         /*artistName.MaximumSize = new Size(0, 0);*/ // Word-wrap if needed
                         TextAlign = ContentAlignment.MiddleCenter, // Center text horizontally and vertically
@@ -343,7 +347,7 @@ namespace QobuzDownloaderX.Helpers
                     // Add Label for track title
                     System.Windows.Forms.Label trackTitle = new System.Windows.Forms.Label
                     {
-                        Text = track.Title.ToString().TrimEnd()
+                        Text = track.Title.Replace(@"&", @"&&").Trim()
                     };
                     if (track.Version != null) { trackTitle.Text = trackTitle.Text + " (" + track.Version + ")"; }
                     if (track.ParentalWarning == true) { trackTitle.Text = "[E] " + trackTitle.Text; } // Add "[E]" if Qobuz lists the track with a parental warning
@@ -381,7 +385,7 @@ namespace QobuzDownloaderX.Helpers
                     // Add Button for selecting track ID
                     Button selectButton = new Button
                     {
-                        Text = qbdlxForm._qbdlxForm.languageManager.GetTranslation("downloadButton"),
+                        Text = downloadButtonText,
                         ForeColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonText), // Set button text color
                         BackColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.ButtonBackground), // Set button background color
                         Font = new Font(fontName, 8F, FontStyle.Regular), // Set font size and style
