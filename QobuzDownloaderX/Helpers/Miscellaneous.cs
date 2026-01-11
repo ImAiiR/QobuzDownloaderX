@@ -793,6 +793,11 @@ namespace QobuzDownloaderX.Helpers
             f.abortTokenSource = null;
             f.abortTokenSource = new CancellationTokenSource();
 
+            f.albumPictureBox.Image = Resources.QBDLX_PictureBox;
+            f.albumPictureBox.ImageLocation = "";
+            f.albumPictureBox.Tag = "";
+            f.albumPictureBox.Cursor = default;
+
             if (stats == null)
             {
                 stats = new DownloadStats
@@ -974,10 +979,6 @@ namespace QobuzDownloaderX.Helpers
 
             f.progressItemsCountLabel.Text = "";
             f.progressItemsCountLabel.Visible = true;
-
-            f.albumPictureBox.Image = Resources.QBDLX_PictureBox;
-            f.albumPictureBox.ImageLocation = "";
-            f.albumPictureBox.Tag = "";
 
             switch (linkType)
             {
