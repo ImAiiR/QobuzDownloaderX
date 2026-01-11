@@ -144,9 +144,6 @@ namespace QobuzDownloaderX
                         filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
                     }
 
-                    // Download cover art
-                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
-
                     // Check for Existing File
                     if (CheckForExistingFile(filePath, paddedTrackLength, QoItem))
                     {
@@ -154,13 +151,13 @@ namespace QobuzDownloaderX
                         return;
                     }
 
+                    // Download cover art
+                    try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
+
                     // Download and Save Track
                     await DownloadAndSaveTrack(downloadType, app_id, format_id, user_auth_token, app_secret, QoAlbum, QoItem, null, downloadPath, filePath, audio_format, paddedTrackLength, stats, abortToken);
 
-                    // Delete image used for embedded artwork
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
-                    DeleteEmbeddedArtwork(downloadPath);
-
                     progress?.Report(100);
                 }
                 catch (OperationCanceledException ex)
@@ -176,6 +173,11 @@ namespace QobuzDownloaderX
                     getInfo.updateDownloadOutput("\r\n\r\n" + downloadAlbumEx + "\r\n\r\n");
                     Debug.WriteLine(downloadAlbumEx);
                     return;
+                }
+                finally
+                {
+                    // Delete image used for embedded artwork
+                    DeleteEmbeddedArtwork(downloadPath); 
                 }
             }
             catch (Exception downloadAlbumEx)

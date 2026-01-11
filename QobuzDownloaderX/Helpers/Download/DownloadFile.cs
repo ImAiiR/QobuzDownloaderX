@@ -264,7 +264,7 @@ namespace QobuzDownloaderX
 
         public async Task DownloadArtwork(string downloadPath, Album QoAlbum)
         {
-            // Download cover art (600x600) to the download path
+            // Download cover art to the download path
             using (var httpClient = new HttpClient { Timeout = artworkDownloadCompletionTimeout })
             using (var downloadTimeoutCts = new CancellationTokenSource(artworkDownloadCompletionTimeout))
             {
