@@ -176,8 +176,10 @@ namespace QobuzDownloaderX
                 }
                 finally
                 {
-                    // Delete image used for embedded artwork
-                    DeleteEmbeddedArtwork(downloadPath); 
+                    if (!(downloadType == "album")){
+                        // Delete image used for embedded artwork
+                        DeleteEmbeddedArtwork(downloadPath);
+                    }
                 }
             }
             catch (Exception downloadAlbumEx)
