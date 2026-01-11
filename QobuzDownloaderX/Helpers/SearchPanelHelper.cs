@@ -107,7 +107,8 @@ namespace QobuzDownloaderX.Helpers
                         Dock = DockStyle.Fill,
                         BackColor = Color.Transparent,
                         Cursor = Cursors.Default,
-                        Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
+                        Tag = new RowInfo { RowIndex = rowIndex, Selected = false },
+                        Margin = new Padding(0, 1, 0, 0)
                     };
 
                     // Create a inner table for proper column alignment
@@ -303,7 +304,8 @@ namespace QobuzDownloaderX.Helpers
                         Dock = DockStyle.Fill,
                         BackColor = Color.Transparent,
                         Cursor = Cursors.Default,
-                        Tag = new RowInfo { RowIndex = rowIndex, Selected = false }
+                        Tag = new RowInfo { RowIndex = rowIndex, Selected = false },
+                        Margin = new Padding(0, 1, 0, 0)
                     };
 
                     // Create a inner table for proper column alignment
@@ -556,7 +558,7 @@ namespace QobuzDownloaderX.Helpers
                 Color gridLineColor = ColorTranslator.FromHtml(qbdlxForm._qbdlxForm._themeManager._currentTheme.FormBackground);
 
                 // Grid line
-                using (Pen gridPen = new Pen(gridLineColor, 2))
+                using (Pen gridPen = new Pen(gridLineColor, 1))
                 {
                     int y = rowPanel.Height - 1;
                     e.Graphics.DrawLine(gridPen, 0, y, rowPanel.Width, y);
