@@ -147,7 +147,9 @@ namespace QobuzDownloaderX
                     // Download cover art
                     try { await downloadFile.DownloadArtwork(downloadPath, QoAlbum); } catch (Exception ex) { qbdlxForm._qbdlxForm.logger.Error($"Failed to Download Cover Art. Error below:\r\n{ex}"); }
 
+                    // Delete image used for embedded artwork
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                    DeleteEmbeddedArtwork(downloadPath);
 
                     // Check for Existing File
                     if (CheckForExistingFile(filePath, paddedTrackLength, QoItem))
@@ -242,5 +244,19 @@ namespace QobuzDownloaderX
                 return;
             }
         }
+
+        private void DeleteEmbeddedArtwork(string downloadPath)
+        {
+            try
+            {
+                qbdlxForm._qbdlxForm.logger.Debug("Deleting embedded artwork…");
+                ZlpIOHelper.DeleteFile($"{downloadPath}{qbdlxForm._qbdlxForm.embeddedArtSize}.jpg");
+            }
+            catch
+            {
+                qbdlxForm._qbdlxForm.logger.Warning("Unable to delete embedded artwork");
+            }
+        }
     }
+
 }
