@@ -259,8 +259,12 @@ namespace QobuzDownloaderX
 
         private void qbdlxForm_Shown(object sender, EventArgs e)
         {
-            Miscellaneous.ToggleStatusStripVisibility(this);
             this.notifyIcon1.Visible = true;
+
+            if (showTipsCheckBox.Checked)
+            {
+                Miscellaneous.ToggleStatusStripVisibility(this);
+            }
         }
 
         private async void qbdlxForm_FormClosing(object sender, FormClosingEventArgs e)

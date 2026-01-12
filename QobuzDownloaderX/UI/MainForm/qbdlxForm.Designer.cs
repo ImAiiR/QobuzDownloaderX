@@ -249,7 +249,7 @@ namespace QobuzDownloaderX
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.navigationPanel.Location = new System.Drawing.Point(0, 0);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(180, 563);
+            this.navigationPanel.Size = new System.Drawing.Size(180, 585);
             this.navigationPanel.TabIndex = 0;
             // 
             // searchButton
@@ -2677,7 +2677,7 @@ namespace QobuzDownloaderX
             // 
             // timerTip
             // 
-            this.timerTip.Interval = 200;
+            this.timerTip.Interval = 225;
             this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick_1);
             // 
             // progressBarDownload
