@@ -602,7 +602,6 @@ namespace QobuzDownloaderX.Helpers
                 }
             }
         }
-
         internal static void InitTipTicker(qbdlxForm f)
         {
             // current state of the statusstrip BEFORE changing anything
@@ -653,8 +652,6 @@ namespace QobuzDownloaderX.Helpers
                 f.timerTip.Enabled = false;
             }
         }
-
-
 
         internal static void SetNextTip(qbdlxForm f, bool forward)
         {

@@ -249,7 +249,6 @@ namespace QobuzDownloaderX
                 .Replace("{user_subscription}", subscription)
                 .Replace("{user_subscription_expiration}", endDate);
 
-
             downloadOutput.AppendText(QoUser.UserInfo.Credential.Label == null
                 ? $"\r\n\r\n{downloadOutputExpired}\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}"
                 : $"\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}");
@@ -1132,6 +1131,44 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void primaryListSeparatorTextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+
+            if (string.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = ", ";
+                tb.SelectionStart = tb.Text.Length;
+            }
+
+            ParsingHelper.primaryListSeparator = tb.Text;
+            Settings.Default.primaryListSeparator = tb.Text;
+            Settings.Default.Save();
+        }
+
+        private void listEndSeparatorTextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+
+            if (string.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = " & ";
+                tb.SelectionStart = tb.Text.Length;
+            }
+
+            ParsingHelper.listEndSeparator = tb.Text;
+            Settings.Default.listEndSeparator = tb.Text;
+            Settings.Default.Save();
+        }
+
+        private void showTipsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.showTips = showTipsCheckBox.Checked;
+            Settings.Default.Save();
+
+            Miscellaneous.InitTipTicker(this);
+        }
+
         private void downloadOutput_TextChanged(object sender, EventArgs e)
         {
             // Deferred to avoid UI update race conditions
@@ -1675,36 +1712,6 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void primaryListSeparatorTextBox_Leave(object sender, EventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-
-            if (string.IsNullOrEmpty(tb.Text))
-            {
-                tb.Text = ", ";
-                tb.SelectionStart = tb.Text.Length;
-            }
-
-            ParsingHelper.primaryListSeparator = tb.Text;
-            Settings.Default.primaryListSeparator = tb.Text;
-            Settings.Default.Save();
-        }
-
-        private void listEndSeparatorTextBox_Leave(object sender, EventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-
-            if (string.IsNullOrEmpty(tb.Text))
-            {
-                tb.Text = " & ";
-                tb.SelectionStart = tb.Text.Length;
-            }
-
-            ParsingHelper.listEndSeparator = tb.Text;
-            Settings.Default.listEndSeparator = tb.Text;
-            Settings.Default.Save();
-        }
-
         private void nextTipButton_Click(object sender, EventArgs e)
         {
             Miscellaneous.SetNextTip(this, forward: true);
@@ -1716,6 +1723,7 @@ namespace QobuzDownloaderX
             Miscellaneous.SetNextTip(this, forward: false);
             tipScroll = currentTipText;
         }
+
         private void timerTip_Tick_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(tipScroll))
@@ -1734,12 +1742,5 @@ namespace QobuzDownloaderX
             tipLabel.Text = tipScroll;
         }
 
-        private void showTipsCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.showTips = showTipsCheckBox.Checked;
-            Settings.Default.Save();
-
-            Miscellaneous.InitTipTicker(this);
-        }
     }
 }

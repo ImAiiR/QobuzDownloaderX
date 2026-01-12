@@ -123,6 +123,7 @@ namespace QobuzDownloaderX
             this.clearOldLogsCheckBox = new System.Windows.Forms.CheckBox();
             this.fixMD5sCheckbox = new System.Windows.Forms.CheckBox();
             this.useItemPosInPlaylistCheckbox = new System.Windows.Forms.CheckBox();
+            this.showTipsCheckBox = new System.Windows.Forms.CheckBox();
             this.downloadAllFromArtistCheckBox = new System.Windows.Forms.CheckBox();
             this.commentLabel = new System.Windows.Forms.Label();
             this.dontSaveArtworkToDiskCheckBox = new System.Windows.Forms.CheckBox();
@@ -210,7 +211,6 @@ namespace QobuzDownloaderX
             this.tipEmojiLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tipLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTip = new System.Windows.Forms.Timer(this.components);
-            this.showTipsCheckBox = new System.Windows.Forms.CheckBox();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -1481,6 +1481,21 @@ namespace QobuzDownloaderX
             this.useItemPosInPlaylistCheckbox.UseVisualStyleBackColor = true;
             this.useItemPosInPlaylistCheckbox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckbox_CheckedChanged);
             // 
+            // showTipsCheckBox
+            // 
+            this.showTipsCheckBox.AutoSize = true;
+            this.showTipsCheckBox.Checked = true;
+            this.showTipsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showTipsCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showTipsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.showTipsCheckBox.Location = new System.Drawing.Point(25, 529);
+            this.showTipsCheckBox.Name = "showTipsCheckBox";
+            this.showTipsCheckBox.Size = new System.Drawing.Size(78, 17);
+            this.showTipsCheckBox.TabIndex = 31;
+            this.showTipsCheckBox.Text = "Show Tips";
+            this.showTipsCheckBox.UseVisualStyleBackColor = true;
+            this.showTipsCheckBox.CheckedChanged += new System.EventHandler(this.showTipsCheckBox_CheckedChanged);
+            // 
             // downloadAllFromArtistCheckBox
             // 
             this.downloadAllFromArtistCheckBox.AutoSize = true;
@@ -2674,21 +2689,6 @@ namespace QobuzDownloaderX
             // 
             this.timerTip.Interval = 200;
             this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick_1);
-            // 
-            // showTipsCheckBox
-            // 
-            this.showTipsCheckBox.AutoSize = true;
-            this.showTipsCheckBox.Checked = true;
-            this.showTipsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showTipsCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showTipsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.showTipsCheckBox.Location = new System.Drawing.Point(25, 529);
-            this.showTipsCheckBox.Name = "showTipsCheckBox";
-            this.showTipsCheckBox.Size = new System.Drawing.Size(78, 17);
-            this.showTipsCheckBox.TabIndex = 31;
-            this.showTipsCheckBox.Text = "Show Tips";
-            this.showTipsCheckBox.UseVisualStyleBackColor = true;
-            this.showTipsCheckBox.CheckedChanged += new System.EventHandler(this.showTipsCheckBox_CheckedChanged);
             // 
             // qbdlxForm
             // 
