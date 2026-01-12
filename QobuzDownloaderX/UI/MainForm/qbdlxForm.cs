@@ -597,11 +597,12 @@ namespace QobuzDownloaderX
 
         private void resetTemplatesButton_Click(object sender, EventArgs e)
         {
-            artistTemplateTextbox.Text = "%ArtistName%";
-            albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]";
-            trackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
-            playlistTemplateTextbox.Text = "%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%";
-            favoritesTemplateTextbox.Text = "- Favorites";
+            artistTemplateTextbox.Text = Settings.Default.Properties["savedArtistTemplate"].DefaultValue.ToString();
+            albumTemplateTextbox.Text = Settings.Default.Properties["savedAlbumTemplate"].DefaultValue.ToString();
+            trackTemplateTextbox.Text = Settings.Default.Properties["savedTrackTemplate"].DefaultValue.ToString();
+            vaTrackTemplateTextbox.Text = Settings.Default.Properties["savedVaTrackTemplate"].DefaultValue.ToString();
+            playlistTemplateTextbox.Text = Settings.Default.Properties["savedPlaylistTemplate"].DefaultValue.ToString();
+            favoritesTemplateTextbox.Text = Settings.Default.Properties["savedFavoritesTemplate"].DefaultValue.ToString();
         }
 
         private void saveTemplatesButton_Click(object sender, EventArgs e)
@@ -609,6 +610,7 @@ namespace QobuzDownloaderX
             Settings.Default.savedArtistTemplate = artistTemplateTextbox.Text;
             Settings.Default.savedAlbumTemplate = albumTemplateTextbox.Text;
             Settings.Default.savedTrackTemplate = trackTemplateTextbox.Text;
+            Settings.Default.savedVaTrackTemplate = vaTrackTemplateTextbox.Text;
             Settings.Default.savedPlaylistTemplate = playlistTemplateTextbox.Text;
             Settings.Default.savedFavoritesTemplate = favoritesTemplateTextbox.Text;
             Settings.Default.Save();

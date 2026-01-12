@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX.Helpers
@@ -181,6 +182,9 @@ namespace QobuzDownloaderX.Helpers
                     string artistsNames = GetReleaseArtists(QoAlbum) ?? "";
                     if (variousArtistsNames.Any(name => artistsNames.Equals(name, StringComparison.OrdinalIgnoreCase)))
                     {
+                        // Convert all text between % symbols to lowercase
+                        template = percentRegex.Replace(Settings.Default.savedVaTrackTemplate, match => match.Value.ToLower());
+
                         template = template.Replace("%artistname%", "%trackartist%");
                     }
                 }
@@ -255,6 +259,8 @@ namespace QobuzDownloaderX.Helpers
 
                 if (QoItem != null)
                 {
+
+
                     // Album Template for playlist path
                     template = template
                         .Replace("%albumid%", QoAlbum.Id?.ToString() ?? "")

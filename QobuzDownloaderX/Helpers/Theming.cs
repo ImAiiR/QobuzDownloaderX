@@ -366,7 +366,8 @@ namespace QobuzDownloaderX.Helpers
     ""templatesListLabel"":           ""TEMPLATES LIST"",
     ""themeLabel"":                   ""Current Theme"",
     ""themeSectionLabel"":            ""VISUAL OPTIONS"",
-    ""trackTemplateLabel"":           ""TRACK TEMPLATE"",
+    ""trackTemplateLabel"":           ""(DEFAULT) TRACK TEMPLATE"",
+    ""vaTrackTemplateLabel"":         ""(V/A) TRACK TEMPLATE"",
     ""userInfoLabel"":                ""USER INFO"",
     ""welcomeLabel"":                 ""Welcome\r\n{username}"",
     ""limitSearchResultsLabel"":      ""Results Limit:"",
@@ -515,8 +516,8 @@ namespace QobuzDownloaderX.Helpers
 
     ""_SECTION12_"":                  ""=================== TIPS ==================="",
     ""showTips"":                     ""Show tips"",
-    ""nextTip"":                      ""Next tip"",
-    ""prevTip"":                      ""Previous tip"",
+    ""nextTip"":                      ""Next tip ⭢"",
+    ""prevTip"":                      ""⭠ Previous tip"",
     ""tip1"":                         ""Tip #1: Did you know you can right-click on the rows of search results to copy the links of the selected items?"",
     ""tip2"":                         ""Tip #2: Did you know that when you use a link from a record label, the program can fetch up to 10,000 albums from that label? We didn’t set that limit! But it’s more than enough, right? 👍"",
     ""tip3"":                         ""Tip #3: Did you know you can customize your favorite visual theme by editing the themes.json file in Notepad? What are you waiting for?!"",
@@ -535,6 +536,7 @@ namespace QobuzDownloaderX.Helpers
     ""tip16"":                        ""Curiosity #3: Did you know that staring at the “Download” button for 10 seconds could make downloads go faster… in your imagination? 👀"",
     ""tip17"":                        ""Curiosity #4: Did you know that clapping after each successful download helps motivate the program for the next song? 👏"",
     ""tip18"":                        ""Curiosity #5: Did you know that if you search for \""Terrorcore\"" in the searcher, the authors of this program are not responsible for any brain or hearing damage it may cause you? 😵💉""
+
 }
 ";
 

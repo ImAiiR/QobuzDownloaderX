@@ -45,7 +45,8 @@
     "templatesListLabel":           "Liste des modèles",
     "themeLabel":                   "Thème",
     "themeSectionLabel":            "OPTIONS VISUELLES", // ChatGPT translation
-    "trackTemplateLabel":           "Modèle de piste",
+    "trackTemplateLabel":           "(PAR DÉFAUT) Modèle de piste", // ChatGPT translation
+    "vaTrackTemplateLabel":         "(V/A) Modèle de piste", // ChatGPT translation
     "userInfoLabel":                "Informations Utilisateur",
     "welcomeLabel":                 "Bienvenue\r\n{username}",
     "limitSearchResultsLabel":      "Limite :",

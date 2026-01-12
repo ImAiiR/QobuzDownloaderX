@@ -194,5 +194,8 @@
     <Setting Name="showTips" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="savedVaTrackTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%TrackNumber%. %ArtistName% - %TrackTitle%</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

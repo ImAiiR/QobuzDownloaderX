@@ -178,6 +178,7 @@ namespace QobuzDownloaderX.Helpers
             f.artistTemplateTextbox.Text = Settings.Default.savedArtistTemplate;
             f.albumTemplateTextbox.Text = Settings.Default.savedAlbumTemplate;
             f.trackTemplateTextbox.Text = Settings.Default.savedTrackTemplate;
+            f.vaTrackTemplateTextbox.Text = Settings.Default.savedVaTrackTemplate;
             f.playlistTemplateTextbox.Text = Settings.Default.savedPlaylistTemplate;
             f.favoritesTemplateTextbox.Text = Settings.Default.savedFavoritesTemplate;
             updateTemplates(f);
@@ -431,6 +432,7 @@ namespace QobuzDownloaderX.Helpers
             f.themeSectionLabel.Text = f.languageManager.GetTranslation("themeSectionLabel");
             f.downloadFromArtistLabel.Text = f.languageManager.GetTranslation("downloadFromArtistLabel");
             f.trackTemplateLabel.Text = f.languageManager.GetTranslation("trackTemplateLabel");
+            f.vaTrackTemplateLabel.Text = f.languageManager.GetTranslation("vaTrackTemplateLabel");
             f.userInfoLabel.Text = f.languageManager.GetTranslation("userInfoLabel");
             f.disclaimerLabel.Text = f.languageManager.GetTranslation("disclaimer");
             f.welcomeLabel.Text = f.languageManager.GetTranslation("welcomeLabel");

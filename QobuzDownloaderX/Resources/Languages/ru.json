@@ -45,7 +45,8 @@
     "templatesListLabel":           "СПИСОК ШАБЛОНОВ",
     "themeLabel":                   "Тема оформления",
     "themeSectionLabel":            "ВИЗУАЛЬНЫЕ НАСТРОЙКИ", // ChatGPT translation
-    "trackTemplateLabel":           "ШАБЛОН ТРЕКА",
+    "trackTemplateLabel":           "(ПО УМОЛЧАНИЮ) ШАБЛОН ТРЕКА", // ChatGPT translation
+    "vaTrackTemplateLabel":         "(V/A) ШАБЛОН ТРЕКА", // ChatGPT translation
     "userInfoLabel":                "ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ",
     "welcomeLabel":                 "Добро пожаловать,\r\n{username}",
     "limitSearchResultsLabel":      "Показать:",

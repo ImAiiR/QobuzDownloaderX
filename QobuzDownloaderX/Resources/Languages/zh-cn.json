@@ -45,7 +45,8 @@
     "templatesListLabel":           "模板列表",
     "themeLabel":                   "当前主题",
     "themeSectionLabel":            "视觉选项", // ChatGPT translation
-    "trackTemplateLabel":           "曲目模板",
+    "trackTemplateLabel":           "(默认) 曲目模板", // ChatGPT translation
+    "vaTrackTemplateLabel":         "(V/A) 曲目模板", // ChatGPT translation
     "userInfoLabel":                "用户信息",
     "welcomeLabel":                 "欢迎\r\n{username}",
     "limitSearchResultsLabel":      "结果限制：", // ChatGPT translation.

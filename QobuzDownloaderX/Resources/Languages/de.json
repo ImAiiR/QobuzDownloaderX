@@ -45,7 +45,8 @@
     "templatesListLabel":           "VORLAGEN LISTE",
     "themeLabel":                   "Aktuelles Theme",
     "themeSectionLabel":            "VISUELLE OPTIONEN", // ChatGPT translation
-    "trackTemplateLabel":           "TRACK VORLAGE",
+    "trackTemplateLabel":           "(STANDARD) TRACK-VORLAGE", // ChatGPT translation
+    "vaTrackTemplateLabel":         "(V/A) TRACK-VORLAGE", // ChatGPT translation
     "userInfoLabel":                "BENUTZERINFO",
     "welcomeLabel":                 "Willkommen\r\n{username}",
     "limitSearchResultsLabel":      "Ergebnislimit:", // ChatGPT translation.

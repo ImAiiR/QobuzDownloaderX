@@ -45,7 +45,8 @@
     "templatesListLabel":           "ŞABLON LİSTESİ",
     "themeLabel":                   "Aktif Tema",
     "themeSectionLabel":            "GÖRSEL SEÇENEKLER", // ChatGPT translation
-    "trackTemplateLabel":           "PARÇA ŞABLONU",
+    "trackTemplateLabel":           "(VARSAYILAN) PARÇA ŞABLONU", // ChatGPT translation
+    "vaTrackTemplateLabel":         "(V/A) PARÇA ŞABLONU", // ChatGPT translation
     "userInfoLabel":                "HESAP BİLGİLERİ",
     "welcomeLabel":                 "Hoşgeldin\r\n{username}",
     "limitSearchResultsLabel":      "Sonuç Sınırı:", // ChatGPT translation.

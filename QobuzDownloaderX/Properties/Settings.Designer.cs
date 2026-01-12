@@ -790,5 +790,17 @@ namespace QobuzDownloaderX.Properties {
                 this["showTips"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("%TrackNumber%. %ArtistName% - %TrackTitle%")]
+        public string savedVaTrackTemplate {
+            get {
+                return ((string)(this["savedVaTrackTemplate"]));
+            }
+            set {
+                this["savedVaTrackTemplate"] = value;
+            }
+        }
     }
 }
