@@ -21,6 +21,7 @@ namespace QobuzDownloaderX.Helpers
     internal sealed class SearchPanelHelper
     {
         private static int? lastAnchorRowIndex = null;
+        private static Tuple<int, int> lastShiftRange = null;
 
         public static readonly List<int> selectedRowindices = new List<int>();
 
@@ -74,6 +75,8 @@ namespace QobuzDownloaderX.Helpers
                 NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
 
                 // Restore related selection row controls
+                lastAnchorRowIndex = 0;
+                lastShiftRange = null;
                 selectedRowindices.Clear();
                 qbdlxForm._qbdlxForm.selectedRowsCountLabel.Text =
                     string.Format(qbdlxForm._qbdlxForm.languageManager.GetTranslation("selectedRowsCountLabel"),
@@ -271,6 +274,8 @@ namespace QobuzDownloaderX.Helpers
                 NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
 
                 // Restore related selection row controls
+                lastAnchorRowIndex = 0;
+                lastShiftRange = null;
                 selectedRowindices.Clear();
                 qbdlxForm._qbdlxForm.selectedRowsCountLabel.Text =
                     string.Format(qbdlxForm._qbdlxForm.languageManager.GetTranslation("selectedRowsCountLabel"),
@@ -590,13 +595,13 @@ namespace QobuzDownloaderX.Helpers
             };
         }
 
-        ///// <summary>
-        ///// Handles a row panel click.
-        ///// </summary>
-        ///// <param name="clickedControl">The control that was clicked (sender).</param>
-        ///// <param name="searchResultsPanel">The parent panel containing all row panels.</param>
-        ///// <param name="selectedRowIndices">The list tracking selected row indices.</param>
-        ///// <param name="parentForm">The form containing buttons and labels to update.</param>
+        /// <summary>
+        /// Handles a row panel click.
+        /// </summary>
+        /// <param name="clickedControl">The control that was clicked (sender).</param>
+        /// <param name="searchResultsPanel">The parent panel containing all row panels.</param>
+        /// <param name="selectedRowIndices">The list tracking selected row indices.</param>
+        /// <param name="parentForm">The form containing buttons and labels to update.</param>
         private static void RowClickHandler(Control clickedControl, Panel searchResultsPanel, List<int> selectedRowIndices, qbdlxForm parentForm)
         {
             if (clickedControl == null) return;
@@ -621,26 +626,57 @@ namespace QobuzDownloaderX.Helpers
             bool shift = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
 
             // ===== SHIFT =====
-            if (shift && lastAnchorRowIndex.HasValue)
+            if (shift)
             {
+                // If there is no anchor, set it to the current click (convenience)
+                if (!lastAnchorRowIndex.HasValue)
+                    lastAnchorRowIndex = clickedIndex;
+
                 int start = Math.Min(lastAnchorRowIndex.Value, clickedIndex);
                 int end = Math.Max(lastAnchorRowIndex.Value, clickedIndex);
 
+                // Deselect rows from the previous range that are no longer in the new range
+                if (lastShiftRange != null)
+                {
+                    int prevStart = lastShiftRange.Item1;
+                    int prevEnd = lastShiftRange.Item2;
+
+                    for (int i = prevStart; i <= prevEnd; i++)
+                    {
+                        if (i < start || i > end)
+                        {
+                            // Only deselect if it was selected
+                            if (selectedRowIndices.Contains(i))
+                                SelectRow(searchResultsPanel, selectedRowIndices, i, false);
+                        }
+                    }
+                }
+
+                // Select all rows in the new range
                 for (int i = start; i <= end; i++)
                 {
                     if (!selectedRowIndices.Contains(i))
                         SelectRow(searchResultsPanel, selectedRowIndices, i, true);
                 }
+
+                // Store the current Shift range for the next Shift click
+                lastShiftRange = Tuple.Create(start, end);
             }
             // ===== CTRL =====
             else if (ctrl)
             {
+                // Break the "Shift chain"
+                lastShiftRange = null;
+
                 ToggleRow(searchResultsPanel, selectedRowIndices, clickedIndex);
                 lastAnchorRowIndex = clickedIndex;
             }
             // ===== NORMAL CLICK =====
             else
             {
+                // Break the "Shift chain"
+                lastShiftRange = null;
+
                 ToggleRow(searchResultsPanel, selectedRowIndices, clickedIndex);
                 lastAnchorRowIndex = clickedIndex;
             }
