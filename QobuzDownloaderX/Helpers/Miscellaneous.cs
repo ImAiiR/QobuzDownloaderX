@@ -602,55 +602,74 @@ namespace QobuzDownloaderX.Helpers
                 }
             }
         }
-        internal static void InitTipTicker(qbdlxForm f)
+
+        internal static void ToggleStatusStripVisibility(qbdlxForm f)
         {
-            // current state of the statusstrip BEFORE changing anything
+            if (f.Tag == null) f.Tag = f.ClientSize.Height; // Save original ClientSize height
+            int originalClientHeight = (int)f.Tag;
             bool statusWasVisible = f.statusStrip1.Visible;
+
+            f.SuspendLayout();
+            NativeMethods.SendMessage(f.Handle, Constants.WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
+
+            f.FormBorderStyle = FormBorderStyle.None;
 
             if (f.showTipsCheckBox.Checked)
             {
-                // Show StatusStrip only if it was hidden
                 if (!statusWasVisible)
                 {
-                    int add = f.statusStrip1.Height;
-                    Rectangle workingArea = Screen.FromControl(f).WorkingArea;
-
-                    // compute desired height and cap it to not go below the taskbar
-                    int desiredHeight = f.Height + add;
-                    int maxAllowedHeight = workingArea.Bottom - f.Top;
-                    f.Height = Math.Min(desiredHeight, maxAllowedHeight);
-
                     f.statusStrip1.Visible = true;
-                    f.PerformLayout();
+
+                    int borderHeight = f.Height - f.ClientSize.Height;
+                    f.Height = originalClientHeight + f.statusStrip1.Height + borderHeight;
+
+                    // Adjust position if bottom exceeds the taskbar
+                    Rectangle workingArea = Screen.FromControl(f).WorkingArea;
+                    int overflow = f.Bottom - workingArea.Bottom;
+                    if (overflow > 0)
+                    {
+                        f.Top -= overflow; // move form up so the extended part is visible
+                        if (f.Top < workingArea.Top) f.Top = workingArea.Top; // never move above screen
+                    }
                 }
 
                 f.tipLabel.AutoSize = false;
-                f.tipLabel.Spring = false;
-                f.tipLabel.Width = f.statusStrip1.Width - f.prevTipButton.Width - f.nextTipButton.Width - f.tipEmojiLabel.Width - 20;
+                f.tipLabel.Spring = true;
+                f.tipLabel.Width = f.statusStrip1.Width - f.prevTipButton.Width - f.nextTipButton.Width - f.tipEmojiLabel.Width - 30;
                 f.tipLabel.Overflow = ToolStripItemOverflow.Never;
                 f.tipLabel.TextAlign = ContentAlignment.MiddleLeft;
 
-                f.timerTip.Interval = 200;
                 f.timerTip.Enabled = true;
                 f.timerTip.Start();
             }
             else
             {
-                // Hide StatusStrip only if it was visible
                 if (statusWasVisible)
                 {
-                    int sub = f.statusStrip1.Height;
                     f.statusStrip1.Visible = false;
 
-                    // Reduce height but keep a sensible minimum (avoid negative heights)
-                    int minHeight = 100; // ajusta según tu UI
-                    f.Height = Math.Max(f.Height - sub, minHeight);
-                    f.PerformLayout();
+                    int borderHeight = f.Height - f.ClientSize.Height;
+                    f.Height = originalClientHeight + borderHeight;
+
+                    // Adjust position again if necessary
+                    Rectangle workingArea = Screen.FromControl(f).WorkingArea;
+                    if (f.Bottom > workingArea.Bottom)
+                    {
+                        f.Top = workingArea.Bottom - f.Height;
+                        if (f.Top < workingArea.Top) f.Top = workingArea.Top;
+                    }
                 }
 
                 f.timerTip.Stop();
                 f.timerTip.Enabled = false;
             }
+
+            // Round corners
+            f.Region = Region.FromHrgn(NativeMethods.CreateRoundRectRgn(0, 0, f.Width, f.Height, 20, 20));
+
+            NativeMethods.SendMessage(f.Handle, Constants.WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
+            f.ResumeLayout(true);
+            f.PerformLayout();
         }
 
         internal static void SetNextTip(qbdlxForm f, bool forward)

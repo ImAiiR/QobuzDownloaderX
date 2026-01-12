@@ -259,7 +259,7 @@ namespace QobuzDownloaderX
 
         private void qbdlxForm_Shown(object sender, EventArgs e)
         {
-            Miscellaneous.InitTipTicker(this);
+            Miscellaneous.ToggleStatusStripVisibility(this);
             this.notifyIcon1.Visible = true;
         }
 
@@ -1166,7 +1166,7 @@ namespace QobuzDownloaderX
             Settings.Default.showTips = showTipsCheckBox.Checked;
             Settings.Default.Save();
 
-            Miscellaneous.InitTipTicker(this);
+            Miscellaneous.ToggleStatusStripVisibility(this);
         }
 
         private void downloadOutput_TextChanged(object sender, EventArgs e)
