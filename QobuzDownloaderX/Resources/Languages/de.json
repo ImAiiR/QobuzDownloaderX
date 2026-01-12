@@ -44,7 +44,7 @@
     "templatesLabel":               "VORLAGEN",
     "templatesListLabel":           "VORLAGEN LISTE",
     "themeLabel":                   "Aktuelles Theme",
-    "themeSectionLabel":            "THEME OPTIONEN",
+    "themeSectionLabel":            "VISUELLE OPTIONEN", // ChatGPT translation
     "trackTemplateLabel":           "TRACK VORLAGE",
     "userInfoLabel":                "BENUTZERINFO",
     "welcomeLabel":                 "Willkommen\r\n{username}",
@@ -194,8 +194,8 @@
 
     "_SECTION12_":                  "=================== TIPS ===================",
     "showTips":                     "Tipps anzeigen", // ChatGPT translation.
-    "nextTip":                      "Nächster Tipp", // ChatGPT translation
-    "prevTip":                      "Vorheriger Tipp", // ChatGPT translation
+    "nextTip":                      "Nächster Tipp ⭢", // ChatGPT translation
+    "prevTip":                      "⭠ Vorheriger Tipp", // ChatGPT translation
     "tip1":                         "Tipp Nr. 1: Wusstest du, dass du mit der rechten Maustaste auf die Zeilen der Suchergebnisse klicken kannst, um die Links der ausgewählten Elemente zu kopieren?", // ChatGPT translation
     "tip2":                         "Tipp Nr. 2: Wusstest du, dass das Programm beim Verwenden eines Links eines Plattenlabels bis zu 10.000 Alben dieses Labels abrufen kann? Dieses Limit haben nicht wir festgelegt! Aber das ist doch mehr als genug, oder? 👍", // ChatGPT translation
     "tip3":                         "Tipp Nr. 3: Wusstest du, dass du dein bevorzugtes visuelles Design anpassen kannst, indem du die Datei themes.json mit dem Editor bearbeitest? Worauf wartest du noch?!", // ChatGPT translation

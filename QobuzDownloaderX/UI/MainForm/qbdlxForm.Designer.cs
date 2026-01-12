@@ -2677,7 +2677,7 @@ namespace QobuzDownloaderX
             // 
             // timerTip
             // 
-            this.timerTip.Interval = 225;
+            this.timerTip.Interval = 200;
             this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick_1);
             // 
             // progressBarDownload

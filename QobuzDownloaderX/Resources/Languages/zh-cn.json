@@ -44,7 +44,7 @@
     "templatesLabel":               "模板",
     "templatesListLabel":           "模板列表",
     "themeLabel":                   "当前主题",
-    "themeSectionLabel":            "主题选项",
+    "themeSectionLabel":            "视觉选项", // ChatGPT translation
     "trackTemplateLabel":           "曲目模板",
     "userInfoLabel":                "用户信息",
     "welcomeLabel":                 "欢迎\r\n{username}",
@@ -194,8 +194,8 @@
 
     "_SECTION12_":                  "=================== 提示 ===================",
     "showTips":                     "显示提示", // ChatGPT translation.
-    "nextTip":                      "下一个提示", // ChatGPT translation
-    "prevTip":                      "上一个提示", // ChatGPT translation
+    "nextTip":                      "下一个提示 ⭢", // ChatGPT translation
+    "prevTip":                      "⭠ 上一个提示", // ChatGPT translation
     "tip1":                         "提示 #1：您知道可以右键点击搜索结果的行来复制所选项目的链接吗？", // ChatGPT translation
     "tip2":                         "提示 #2：您知道当您使用唱片公司链接时，程序最多可以获取该公司 10,000 张专辑吗？我们没有设置这个限制！但这已经绰绰有余，对吧？ 👍", // ChatGPT translation
     "tip3":                         "提示 #3：您知道可以通过编辑 Notepad 中的 themes.json 文件来自定义您最喜欢的视觉主题吗？还等什么？！", // ChatGPT translation

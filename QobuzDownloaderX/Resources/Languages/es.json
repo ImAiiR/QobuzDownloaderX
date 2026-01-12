@@ -44,7 +44,7 @@
     "templatesLabel":               "PLANTILLAS",
     "templatesListLabel":           "LISTA DE PLANTILLAS",
     "themeLabel":                   "Tema actual",
-    "themeSectionLabel":            "OPCIONES DE TEMA VISUAL",
+    "themeSectionLabel":            "OPCIONES VISUALES",
     "trackTemplateLabel":           "PLANTILLA DE PISTA",
     "userInfoLabel":                "INFORMACIÓN DE USUARIO",
     "welcomeLabel":                 "Bienvenido\r\n{username}",
@@ -194,8 +194,8 @@
     
     "_SECTION12_":                  "=================== CONSEJOS Y CURIOSIDADES ===================",
     "showTips":                     "Mostrar consejos",
-    "nextTip":                      "Siguiente",
-    "prevTip":                      "Anterior",
+    "nextTip":                      "Siguiente ⭢",
+    "prevTip":                      "⭠ Anterior",
     "tip1":                         "Consejo nº 1, ¿Sabías que puedes hacer clic con el botón derecho del ratón sobre las filas de los resultados de búsqueda para copiar los enlaces de los elementos seleccionados?.",
     "tip2":                         "Consejo nº 2, ¿Sabías que cuando usas un enlace de un sello discográfico, el programa puede obtener hasta 10.000 álbumes de ese sello?. ¡Nosotros no fijamos ese límite! Pero es más que suficiente, ¿verdad?. 👍",
     "tip3":                         "Consejo nº 3, ¿Sabías que puedes personalizar tu tema visual favorito editando el archivo themes.json en el bloc de notas?. ¡¿A qué esperas?!.",
@@ -213,5 +213,5 @@
     "tip15":                        "Curiosidad nº 2, ¿Sabías que hay personas que han muerto mientras usaban este programa?😱… de aburrimiento mientras esperaban que se descargara todo un sello discográfico al completo. 👻",
     "tip16":                        "Curiosidad nº 3, ¿Sabías que mirar fijamente el botón de “Descargar” durante 10 segundos, podría hacer que las descargas vayan más rápido… en tu imaginación?. 👀",
     "tip17":                        "Curiosidad nº 4, ¿Sabías que aplaudir después de cada descarga exitosa ayuda a motivar al programa para la siguiente canción?. 👏",
-    "tip18":                        "Curiosidad nº 5: ¿Sabías que si buscas \"Terrorcore\" en el buscador, los autores de este programa no se hacen responsables de los daños cerebrales y auditivos que te pueda ocasionar? 😵💉"
+    "tip18":                        "Curiosidad nº 5, ¿Sabías que si buscas \"Terrorcore\" en el buscador, los autores de este programa no se hacen responsables de los daños cerebrales y auditivos que te pueda ocasionar? 😵💉"
 }

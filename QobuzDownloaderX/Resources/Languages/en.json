@@ -44,7 +44,7 @@
     "templatesLabel":               "TEMPLATES",
     "templatesListLabel":           "TEMPLATES LIST",
     "themeLabel":                   "Current Theme",
-    "themeSectionLabel":            "THEMING OPTIONS",
+    "themeSectionLabel":            "VISUAL OPTIONS",
     "trackTemplateLabel":           "TRACK TEMPLATE",
     "userInfoLabel":                "USER INFO",
     "welcomeLabel":                 "Welcome\r\n{username}",
@@ -193,26 +193,26 @@
     "notEnoughFreeSpaceMsg":        "Not enough free space on drive: '{pathRoot}'",
 
     "_SECTION12_":                  "=================== TIPS ===================",
-    "showTips":                     "Show tips", // ChatGPT translation.
-    "nextTip":                      "Next tip", // ChatGPT translation
-    "prevTip":                      "Previous tip", // ChatGPT translation
-    "tip1":                         "Tip #1: Did you know you can right-click on the rows of search results to copy the links of the selected items?", // ChatGPT translation
-    "tip2":                         "Tip #2: Did you know that when you use a link from a record label, the program can fetch up to 10,000 albums from that label? We didn’t set that limit! But it’s more than enough, right? 👍", // ChatGPT translation
-    "tip3":                         "Tip #3: Did you know you can customize your favorite visual theme by editing the themes.json file in Notepad? What are you waiting for?!", // ChatGPT translation
-    "tip4":                         "Tip #4: Did you know that if you leave the artist and album template text empty, all files will download into a single folder? But be careful with the cover.jpg file!", // ChatGPT translation
-    "tip5":                         "Tip #5: Did you know you can click on a cover in the downloader or searcher to view it in full size?", // ChatGPT translation
-    "tip6":                         "Tip #6: Did you know you can use a track or album ID in the searcher to get a single exact result?", // ChatGPT translation
-    "tip7":                         "Tip #7: Did you know you can open multiple instances of the program to download content in parallel and to different locations at the same time?", // ChatGPT translation
-    "tip8":                         "Tip #8: Did you know that an album can contain songs with identical names? To avoid conflicts, don’t forget to use the %TrackNumber% or %TrackId% tags.", // ChatGPT translation
-    "tip9":                         "Tip #9: Did you know you can create separate folders by artist, year, or record label using the download path templates? This way your library stays automatically organized.", // ChatGPT translation
-    "tip10":                        "Tip #10: Did you know you can put your search terms in double quotes in the searcher to find results that exactly match the phrase?", // ChatGPT translation
-    "tip11":                        "Tip #11: Did you know you can disable these tips in the program’s advanced settings?", // ChatGPT translation
-    "tip12":                        "Tip #12: Did you know that talking to the album cover for 5 seconds before downloading it can help you burn about 0.08 calories to feel a little more muscular? 💪", // ChatGPT translation
-    "tip13":                        "Tip #13: Did you know you should focus more on downloading your favorite music than reading these stupid tips? But then you’d miss out on the fun… 😏", // ChatGPT translation
-    "tip14":                        "Curiosity #1: Did you know that Elvis Presley and Michael Jackson approve the use of this program? And if you don’t believe me, ask them! 😜", // ChatGPT translation
-    "tip15":                        "Curiosity #2: Did you know that some people have died while using this program? 😱 … from boredom while waiting for a whole record label to fully download. 👻", // ChatGPT translation
-    "tip16":                        "Curiosity #3: Did you know that staring at the “Download” button for 10 seconds could make downloads go faster… in your imagination? 👀", // ChatGPT translation
-    "tip17":                        "Curiosity #4: Did you know that clapping after each successful download helps motivate the program for the next song? 👏", // ChatGPT translation
-    "tip18":                        "Curiosity #5: Did you know that if you search for \"Terrorcore\" in the searcher, the authors of this program are not responsible for any brain or hearing damage it may cause you? 😵💉" // ChatGPT translation
+    "showTips":                     "Show tips",
+    "nextTip":                      "Next tip ⭢",
+    "prevTip":                      "⭠ Previous tip",
+    "tip1":                         "Tip #1: Did you know you can right-click on the rows of search results to copy the links of the selected items?",
+    "tip2":                         "Tip #2: Did you know that when you use a link from a record label, the program can fetch up to 10,000 albums from that label? We didn’t set that limit! But it’s more than enough, right? 👍",
+    "tip3":                         "Tip #3: Did you know you can customize your favorite visual theme by editing the themes.json file in Notepad? What are you waiting for?!",
+    "tip4":                         "Tip #4: Did you know that if you leave the artist and album template text empty, all files will download into a single folder? But be careful with the cover.jpg file!",
+    "tip5":                         "Tip #5: Did you know you can click on a cover in the downloader or searcher to view it in full size?",
+    "tip6":                         "Tip #6: Did you know you can use a track or album ID in the searcher to get a single exact result?",
+    "tip7":                         "Tip #7: Did you know you can open multiple instances of the program to download content in parallel and to different locations at the same time?",
+    "tip8":                         "Tip #8: Did you know that an album can contain songs with identical names? To avoid conflicts, don’t forget to use the %TrackNumber% or %TrackId% tags.",
+    "tip9":                         "Tip #9: Did you know you can create separate folders by artist, year, or record label using the download path templates? This way your library stays automatically organized.",
+    "tip10":                        "Tip #10: Did you know you can put your search terms in double quotes in the searcher to find results that exactly match the phrase?",
+    "tip11":                        "Tip #11: Did you know you can disable these tips in the program’s advanced settings?",
+    "tip12":                        "Tip #12: Did you know that talking to the album cover for 5 seconds before downloading it can help you burn about 0.08 calories to feel a little more muscular? 💪",
+    "tip13":                        "Tip #13: Did you know you should focus more on downloading your favorite music than reading these stupid tips? But then you’d miss out on the fun… 😏",
+    "tip14":                        "Curiosity #1: Did you know that Elvis Presley and Michael Jackson approve the use of this program? And if you don’t believe me, ask them! 😜",
+    "tip15":                        "Curiosity #2: Did you know that some people have died while using this program? 😱 … from boredom while waiting for a whole record label to fully download. 👻",
+    "tip16":                        "Curiosity #3: Did you know that staring at the “Download” button for 10 seconds could make downloads go faster… in your imagination? 👀",
+    "tip17":                        "Curiosity #4: Did you know that clapping after each successful download helps motivate the program for the next song? 👏",
+    "tip18":                        "Curiosity #5: Did you know that if you search for \"Terrorcore\" in the searcher, the authors of this program are not responsible for any brain or hearing damage it may cause you? 😵💉"
 
 }

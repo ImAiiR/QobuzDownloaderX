@@ -44,7 +44,7 @@
     "templatesLabel":               "ŞABLON",
     "templatesListLabel":           "ŞABLON LİSTESİ",
     "themeLabel":                   "Aktif Tema",
-    "themeSectionLabel":            "TEMA AYARLARI",
+    "themeSectionLabel":            "GÖRSEL SEÇENEKLER", // ChatGPT translation
     "trackTemplateLabel":           "PARÇA ŞABLONU",
     "userInfoLabel":                "HESAP BİLGİLERİ",
     "welcomeLabel":                 "Hoşgeldin\r\n{username}",
@@ -194,8 +194,8 @@
 
     "_SECTION12_":                  "=================== İPUÇLARI ===================",
     "showTips":                     "İpuçlarını göster", // ChatGPT translation.
-    "nextTip":                      "Sonraki ipucu", // ChatGPT translation
-    "prevTip":                      "Önceki ipucu", // ChatGPT translation
+    "nextTip":                      "Sonraki ipucu ⭢", // ChatGPT translation
+    "prevTip":                      "⭠ Önceki ipucu", // ChatGPT translation
     "tip1":                         "İpucu #1: Arama sonuçlarındaki satırlara sağ tıklayarak seçili öğelerin bağlantılarını kopyalayabileceğinizi biliyor muydunuz?", // ChatGPT translation
     "tip2":                         "İpucu #2: Bir plak şirketi bağlantısı kullandığınızda, programın o şirketten 10.000 albüme kadar alabileceğini biliyor muydunuz? Bu limiti biz belirlemedik! Ama bu fazlasıyla yeterli, değil mi? 👍", // ChatGPT translation
     "tip3":                         "İpucu #3: Favori görsel temanızı, themes.json dosyasını Not Defteri ile düzenleyerek özelleştirebileceğinizi biliyor muydunuz? Ne bekliyorsunuz?!", // ChatGPT translation

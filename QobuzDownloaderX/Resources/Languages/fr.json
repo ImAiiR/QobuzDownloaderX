@@ -44,7 +44,7 @@
     "templatesLabel":               "Modèles",
     "templatesListLabel":           "Liste des modèles",
     "themeLabel":                   "Thème",
-    "themeSectionLabel":            "Paramètres du thème",
+    "themeSectionLabel":            "OPTIONS VISUELLES", // ChatGPT translation
     "trackTemplateLabel":           "Modèle de piste",
     "userInfoLabel":                "Informations Utilisateur",
     "welcomeLabel":                 "Bienvenue\r\n{username}",
@@ -194,25 +194,25 @@
 
     "_SECTION12_":                  "=================== TIPS ===================",
     "showTips":                     "Afficher les conseils", // ChatGPT translation.
-    "nextTip":                      "Astuce suivante", // ChatGPT translation
-    "prevTip":                      "Astuce précédente", // ChatGPT translation
-    "tip1":                         "Astuce n°1 : Saviez-vous que vous pouvez cliquer avec le bouton droit de la souris sur les lignes des résultats de recherche pour copier les liens des éléments sélectionnés ?", // ChatGPT translation
-    "tip2":                         "Astuce n°2 : Saviez-vous que lorsque vous utilisez un lien d’un label, le programme peut récupérer jusqu’à 10 000 albums de ce label ? Nous n’avons pas fixé cette limite ! Mais c’est largement suffisant, non ? 👍", // ChatGPT translation
-    "tip3":                         "Astuce n°3 : Saviez-vous que vous pouvez personnaliser votre thème visuel préféré en modifiant le fichier themes.json dans le Bloc-notes ? Qu’attendez-vous ?!", // ChatGPT translation
-    "tip4":                         "Astuce n°4 : Saviez-vous que si vous laissez le texte du modèle d’artiste et du modèle d’album vide, tous les fichiers seront téléchargés dans un seul dossier ? Mais faites attention au fichier cover.jpg !", // ChatGPT translation
-    "tip5":                         "Astuce n°5 : Saviez-vous que vous pouvez cliquer sur une pochette dans le téléchargeur ou le moteur de recherche pour la voir en taille réelle ?", // ChatGPT translation
-    "tip6":                         "Astuce n°6 : Saviez-vous que vous pouvez utiliser l’identifiant d’un morceau ou d’un album dans le moteur de recherche pour obtenir un résultat exact unique ?", // ChatGPT translation
-    "tip7":                         "Astuce n°7 : Saviez-vous que vous pouvez ouvrir plusieurs instances du programme pour télécharger du contenu en parallèle et à différents emplacements en même temps ?", // ChatGPT translation
-    "tip8":                         "Astuce n°8 : Saviez-vous qu’un album peut contenir des chansons portant des noms identiques ? Pour éviter les conflits, n’oubliez pas d’utiliser les balises %TrackNumber% ou %TrackId%.", // ChatGPT translation
-    "tip9":                         "Astuce n°9 : Saviez-vous que vous pouvez créer des dossiers distincts par artiste, année ou label en utilisant les modèles de chemin de téléchargement ? Ainsi, votre bibliothèque restera toujours automatiquement organisée.", // ChatGPT translation
-    "tip10":                        "Astuce n°10 : Saviez-vous que vous pouvez mettre vos mots-clés entre guillemets dans le moteur de recherche pour trouver des résultats correspondant exactement à la phrase ?", // ChatGPT translation
-    "tip11":                        "Astuce n°11 : Saviez-vous que vous pouvez désactiver ces astuces dans les paramètres avancés du programme ?", // ChatGPT translation
-    "tip12":                        "Astuce n°12 : Saviez-vous que parler pendant 5 secondes à la pochette d’un album avant de le télécharger peut vous aider à brûler environ 0,08 calories pour vous sentir un peu plus musclé ? 💪", // ChatGPT translation
-    "tip13":                        "Astuce n°13 : Saviez-vous que vous devriez vous concentrer davantage sur le téléchargement de votre musique préférée que sur la lecture de ces stupides astuces ? Mais sinon, vous manqueriez tout le plaisir… 😏", // ChatGPT translation
-    "tip14":                        "Curiosité n°1 : Saviez-vous qu’Elvis Presley et Michael Jackson approuvent l’utilisation de ce programme ? Et si vous ne me croyez pas, demandez-leur ! 😜", // ChatGPT translation
-    "tip15":                        "Curiosité n°2 : Saviez-vous que certaines personnes sont mortes en utilisant ce programme ? 😱 … d’ennui en attendant que tout un label soit complètement téléchargé. 👻", // ChatGPT translation
-    "tip16":                        "Curiosité n°3 : Saviez-vous que fixer le bouton “Télécharger” pendant 10 secondes pourrait faire que les téléchargements aillent plus vite… dans votre imagination ? 👀", // ChatGPT translation
-    "tip17":                        "Curiosité n°4 : Saviez-vous qu’applaudir après chaque téléchargement réussi aide à motiver le programme pour la chanson suivante ? 👏", // ChatGPT translation
-    "tip18":                        "Curiosité n°5 : Saviez-vous que si vous recherchez \"Terrorcore\" dans le moteur de recherche, les auteurs de ce programme ne sont pas responsables des dommages cérébraux et auditifs que cela pourrait vous causer ? 😵💉" // ChatGPT translation
+    "nextTip":                      "Astuce suivante ⭢", // ChatGPT translation
+    "prevTip":                      "⭠ Astuce précédente", // ChatGPT translation
+    "tip1":                         "Astuce n°1: Saviez-vous que vous pouvez cliquer avec le bouton droit de la souris sur les lignes des résultats de recherche pour copier les liens des éléments sélectionnés ?", // ChatGPT translation
+    "tip2":                         "Astuce n°2: Saviez-vous que lorsque vous utilisez un lien d’un label, le programme peut récupérer jusqu’à 10 000 albums de ce label ? Nous n’avons pas fixé cette limite ! Mais c’est largement suffisant, non ? 👍", // ChatGPT translation
+    "tip3":                         "Astuce n°3: Saviez-vous que vous pouvez personnaliser votre thème visuel préféré en modifiant le fichier themes.json dans le Bloc-notes ? Qu’attendez-vous ?!", // ChatGPT translation
+    "tip4":                         "Astuce n°4: Saviez-vous que si vous laissez le texte du modèle d’artiste et du modèle d’album vide, tous les fichiers seront téléchargés dans un seul dossier ? Mais faites attention au fichier cover.jpg !", // ChatGPT translation
+    "tip5":                         "Astuce n°5: Saviez-vous que vous pouvez cliquer sur une pochette dans le téléchargeur ou le moteur de recherche pour la voir en taille réelle ?", // ChatGPT translation
+    "tip6":                         "Astuce n°6: Saviez-vous que vous pouvez utiliser l’identifiant d’un morceau ou d’un album dans le moteur de recherche pour obtenir un résultat exact unique ?", // ChatGPT translation
+    "tip7":                         "Astuce n°7: Saviez-vous que vous pouvez ouvrir plusieurs instances du programme pour télécharger du contenu en parallèle et à différents emplacements en même temps ?", // ChatGPT translation
+    "tip8":                         "Astuce n°8: Saviez-vous qu’un album peut contenir des chansons portant des noms identiques ? Pour éviter les conflits, n’oubliez pas d’utiliser les balises %TrackNumber% ou %TrackId%.", // ChatGPT translation
+    "tip9":                         "Astuce n°9: Saviez-vous que vous pouvez créer des dossiers distincts par artiste, année ou label en utilisant les modèles de chemin de téléchargement ? Ainsi, votre bibliothèque restera toujours automatiquement organisée.", // ChatGPT translation
+    "tip10":                        "Astuce n°10: Saviez-vous que vous pouvez mettre vos mots-clés entre guillemets dans le moteur de recherche pour trouver des résultats correspondant exactement à la phrase ?", // ChatGPT translation
+    "tip11":                        "Astuce n°11: Saviez-vous que vous pouvez désactiver ces astuces dans les paramètres avancés du programme ?", // ChatGPT translation
+    "tip12":                        "Astuce n°12: Saviez-vous que parler pendant 5 secondes à la pochette d’un album avant de le télécharger peut vous aider à brûler environ 0,08 calories pour vous sentir un peu plus musclé ? 💪", // ChatGPT translation
+    "tip13":                        "Astuce n°13: Saviez-vous que vous devriez vous concentrer davantage sur le téléchargement de votre musique préférée que sur la lecture de ces stupides astuces ? Mais sinon, vous manqueriez tout le plaisir… 😏", // ChatGPT translation
+    "tip14":                        "Curiosité n°1: Saviez-vous qu’Elvis Presley et Michael Jackson approuvent l’utilisation de ce programme ? Et si vous ne me croyez pas, demandez-leur ! 😜", // ChatGPT translation
+    "tip15":                        "Curiosité n°2: Saviez-vous que certaines personnes sont mortes en utilisant ce programme ? 😱 … d’ennui en attendant que tout un label soit complètement téléchargé. 👻", // ChatGPT translation
+    "tip16":                        "Curiosité n°3: Saviez-vous que fixer le bouton “Télécharger” pendant 10 secondes pourrait faire que les téléchargements aillent plus vite… dans votre imagination ? 👀", // ChatGPT translation
+    "tip17":                        "Curiosité n°4: Saviez-vous qu’applaudir après chaque téléchargement réussi aide à motiver le programme pour la chanson suivante ? 👏", // ChatGPT translation
+    "tip18":                        "Curiosité n°5: Saviez-vous que si vous recherchez \"Terrorcore\" dans le moteur de recherche, les auteurs de ce programme ne sont pas responsables des dommages cérébraux et auditifs que cela pourrait vous causer ? 😵💉" // ChatGPT translation
 
 }
