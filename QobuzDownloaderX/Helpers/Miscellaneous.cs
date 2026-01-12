@@ -269,8 +269,8 @@ namespace QobuzDownloaderX.Helpers
             f.mergeArtistNamesCheckbox.Checked = Settings.Default.mergeArtistNames;
             f.artistNamesSeparatorsPanel.Enabled = f.mergeArtistNamesCheckbox.Checked;
             f.useItemPosInPlaylistCheckbox.Checked = Settings.Default.useItemPosInPlaylist;
+            f.showTipsCheckBox.Checked = Settings.Default.showTips;
             RestoreDownloadFromArtistSelectedIndices();
-
         }
 
         internal static void SaveDownloadFromArtistSelectedIndices()
@@ -446,6 +446,8 @@ namespace QobuzDownloaderX.Helpers
             f.primaryListSeparatorLabel.Text = f.languageManager.GetTranslation("primaryListSeparatorLabel");
             f.listEndSeparatorLabel.Text = f.languageManager.GetTranslation("listEndSeparatorLabel");
             f.playlistSectionLabel.Text = f.languageManager.GetTranslation("playlistSectionLabel");
+            f.prevTipButton.Text = f.languageManager.GetTranslation("prevTip");
+            f.nextTipButton.Text = f.languageManager.GetTranslation("nextTip");
 
             // Checkboxes
             f.albumArtistCheckbox.Text = f.languageManager.GetTranslation("albumArtistCheckbox");
@@ -478,6 +480,7 @@ namespace QobuzDownloaderX.Helpers
             f.downloadAllFromArtistCheckBox.Text = f.languageManager.GetTranslation("downloadAllFromArtistCheckBox");
             f.clearOldLogsCheckBox.Text = f.languageManager.GetTranslation("clearOldLogsCheckBox");
             f.useItemPosInPlaylistCheckbox.Text = f.languageManager.GetTranslation("useItemPosInPlaylistCheckbox");
+            f.showTipsCheckBox.Text = f.languageManager.GetTranslation("showTips");
 
             // downloadFromArtistListBox
             string translatedNames = f.languageManager.GetTranslation("downloadFromArtistListBox");
@@ -598,6 +601,99 @@ namespace QobuzDownloaderX.Helpers
                     textBox.Text = placeholderText;
                 }
             }
+        }
+
+        internal static void InitTipTicker(qbdlxForm f)
+        {
+            // current state of the statusstrip BEFORE changing anything
+            bool statusWasVisible = f.statusStrip1.Visible;
+
+            if (f.showTipsCheckBox.Checked)
+            {
+                // Show StatusStrip only if it was hidden
+                if (!statusWasVisible)
+                {
+                    int add = f.statusStrip1.Height;
+                    Rectangle workingArea = Screen.FromControl(f).WorkingArea;
+
+                    // compute desired height and cap it to not go below the taskbar
+                    int desiredHeight = f.Height + add;
+                    int maxAllowedHeight = workingArea.Bottom - f.Top;
+                    f.Height = Math.Min(desiredHeight, maxAllowedHeight);
+
+                    f.statusStrip1.Visible = true;
+                    f.PerformLayout();
+                }
+
+                f.tipLabel.AutoSize = false;
+                f.tipLabel.Spring = false;
+                f.tipLabel.Width = f.statusStrip1.Width - f.prevTipButton.Width - f.nextTipButton.Width - f.tipEmojiLabel.Width - 20;
+                f.tipLabel.Overflow = ToolStripItemOverflow.Never;
+                f.tipLabel.TextAlign = ContentAlignment.MiddleLeft;
+
+                f.timerTip.Interval = 200;
+                f.timerTip.Enabled = true;
+                f.timerTip.Start();
+            }
+            else
+            {
+                // Hide StatusStrip only if it was visible
+                if (statusWasVisible)
+                {
+                    int sub = f.statusStrip1.Height;
+                    f.statusStrip1.Visible = false;
+
+                    // Reduce height but keep a sensible minimum (avoid negative heights)
+                    int minHeight = 100; // ajusta según tu UI
+                    f.Height = Math.Max(f.Height - sub, minHeight);
+                    f.PerformLayout();
+                }
+
+                f.timerTip.Stop();
+                f.timerTip.Enabled = false;
+            }
+        }
+
+
+
+        internal static void SetNextTip(qbdlxForm f, bool forward)
+        {
+            // Adjust the index based on the forward parameter
+            if (forward)
+            {
+                f.currentTipIndex++;
+            }
+            else
+            {
+                f.currentTipIndex--;
+            }
+
+            // Try to get the translation for the tip
+            string tipKey = $"tip{f.currentTipIndex}";
+            string tipText = f.languageManager.GetTranslation(tipKey);
+
+            // If the tip doesn't exist, reset or loop around
+            if (tipText == tipKey) // Translation not found
+            {
+                if (forward)
+                {
+                    f.currentTipIndex = 1; // Reset to the first tip
+                }
+                else
+                {
+                    // Go to the last tip if we go back past the first
+                    int lastTipIndex = 1;
+                    while (f.languageManager.GetTranslation($"tip{lastTipIndex}") != $"tip{lastTipIndex}")
+                    {
+                        lastTipIndex++;
+                    }
+                    f.currentTipIndex = lastTipIndex - 1;
+                }
+                tipText = f.languageManager.GetTranslation($"tip{f.currentTipIndex}");
+            }
+
+            // Finally, assign the formatted tip text
+            f.currentTipText = "                    " + tipText.PadRight(200, ' ');
         }
 
         internal static string GetShortenedGenreName(string genre)

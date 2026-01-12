@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "January 10, 2026, 01:25PM UTC",
+    "TranslationUpdatedOn":         "January 12, 2026, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -190,5 +190,29 @@
     "themeNameNotFoundMsg":         "Tema '{themeName}' bulunamadı.", // ChatGPT translation.
     "selectedLangFileNotfoundMsg":  "Seçilen dil dosyası bulunamadı.", // ChatGPT translation.
     "downloadOutputDontExistMsg":   "Belirtilen yol mevcut değil.", // ChatGPT translation.
-    "notEnoughFreeSpaceMsg":        "Sürücüde yeterli boş alan yok: '{pathRoot}'" // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "Sürücüde yeterli boş alan yok: '{pathRoot}'", // ChatGPT translation.
+
+    "_SECTION12_":                  "=================== İPUÇLARI ===================",
+    "showTips":                     "İpuçlarını göster", // ChatGPT translation.
+    "nextTip":                      "Sonraki ipucu", // ChatGPT translation
+    "prevTip":                      "Önceki ipucu", // ChatGPT translation
+    "tip1":                         "İpucu #1: Arama sonuçlarındaki satırlara sağ tıklayarak seçili öğelerin bağlantılarını kopyalayabileceğinizi biliyor muydunuz?", // ChatGPT translation
+    "tip2":                         "İpucu #2: Bir plak şirketi bağlantısı kullandığınızda, programın o şirketten 10.000 albüme kadar alabileceğini biliyor muydunuz? Bu limiti biz belirlemedik! Ama bu fazlasıyla yeterli, değil mi? 👍", // ChatGPT translation
+    "tip3":                         "İpucu #3: Favori görsel temanızı, themes.json dosyasını Not Defteri ile düzenleyerek özelleştirebileceğinizi biliyor muydunuz? Ne bekliyorsunuz?!", // ChatGPT translation
+    "tip4":                         "İpucu #4: Sanatçı ve albüm şablonlarının metinlerini boş bırakırsanız, tüm dosyaların tek bir klasöre indirileceğini biliyor muydunuz? Ama cover.jpg dosyasına dikkat edin!", // ChatGPT translation
+    "tip5":                         "İpucu #5: Downloader veya aramada bir albüm kapağına tıklayarak tam boyutunu görüntüleyebileceğinizi biliyor muydunuz?", // ChatGPT translation
+    "tip6":                         "İpucu #6: Bir şarkı veya albüm kimliğini aramada kullanarak tek ve kesin bir sonuç alabileceğinizi biliyor muydunuz?", // ChatGPT translation
+    "tip7":                         "İpucu #7: Programın birden fazla örneğini açarak içerikleri paralel ve farklı konumlara aynı anda indirebileceğinizi biliyor muydunuz?", // ChatGPT translation
+    "tip8":                         "İpucu #8: Bir albümün aynı ada sahip şarkılar içerebileceğini biliyor muydunuz? Çakışmaları önlemek için %TrackNumber% veya %TrackId% etiketlerini kullanmayı unutmayın.", // ChatGPT translation
+    "tip9":                         "İpucu #9: İndirme yol şablonlarını kullanarak sanatçı, yıl veya plak şirketine göre farklı klasörler oluşturabileceğinizi biliyor muydunuz? Böylece kütüphaneniz her zaman otomatik olarak düzenli kalır.", // ChatGPT translation
+    "tip10":                        "İpucu #10: Aramada arama terimlerinizi çift tırnak içine alarak, ifadeyle tam olarak eşleşen sonuçları bulabileceğinizi biliyor muydunuz?", // ChatGPT translation
+    "tip11":                        "İpucu #11: Bu ipuçlarını programın gelişmiş ayarlarından devre dışı bırakabileceğinizi biliyor muydunuz?", // ChatGPT translation
+    "tip12":                        "İpucu #12: Albüm kapağıyla indirirken 5 saniye konuşmanın yaklaşık 0,08 kalori yakmanıza ve biraz daha kaslı hissetmenize yardımcı olduğunu biliyor muydunuz? 💪", // ChatGPT translation
+    "tip13":                        "İpucu #13: Bu aptal ipuçlarını okumaktan ziyade favori müziğinizi indirmeye odaklanmanız gerektiğini biliyor muydunuz? Ama o zaman eğlenceyi kaçırırsınız… 😏", // ChatGPT translation
+    "tip14":                        "Merak #1: Elvis Presley ve Michael Jackson’ın bu programın kullanımını onayladığını biliyor muydunuz? Ve bana inanmazsanız, onlara sorun! 😜", // ChatGPT translation
+    "tip15":                        "Merak #2: Bazı insanların bu programı kullanırken öldüğünü biliyor muydunuz? 😱 … tüm bir plak şirketinin indirilmesini beklerken sıkıntıdan. 👻", // ChatGPT translation
+    "tip16":                        "Merak #3: “İndir” düğmesine 10 saniye boyunca bakmanın indirmelerin daha hızlı gitmesini sağlayabileceğini biliyor muydunuz… hayalinizde? 👀", // ChatGPT translation
+    "tip17":                        "Merak #4: Her başarılı indirmeden sonra alkışlamanın programı bir sonraki şarkı için motive etmeye yardımcı olduğunu biliyor muydunuz? 👏", // ChatGPT translation
+    "tip18":                        "Merak #5: Aramada \"Terrorcore\" ararsanız, bu programın yazarlarının beyninize veya işitmenize gelebilecek zararlardan sorumlu olmadığını biliyor muydunuz? 😵💉" // ChatGPT translation
+
 }

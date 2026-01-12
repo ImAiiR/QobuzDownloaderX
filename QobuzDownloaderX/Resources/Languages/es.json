@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 10, 2026, 10:17AM UTC",
+    "TranslationUpdatedOn":         "January 12, 2026, 10:17AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -190,5 +190,28 @@
     "themeNameNotFoundMsg":         "No se encontró el tema visual '{themeName}'.",
     "selectedLangFileNotfoundMsg":  "No se encontró el archivo de idioma seleccionado.",
     "downloadOutputDontExistMsg":   "La ruta especificada no existe.",
-    "notEnoughFreeSpaceMsg":        "No hay suficiente espacio libre en el disco: '{pathRoot}'"
+    "notEnoughFreeSpaceMsg":        "No hay suficiente espacio libre en el disco: '{pathRoot}'",
+    
+    "_SECTION12_":                  "=================== CONSEJOS Y CURIOSIDADES ===================",
+    "showTips":                     "Mostrar consejos",
+    "nextTip":                      "Siguiente",
+    "prevTip":                      "Anterior",
+    "tip1":                         "Consejo nº 1, ¿Sabías que puedes hacer clic con el botón derecho del ratón sobre las filas de los resultados de búsqueda para copiar los enlaces de los elementos seleccionados?.",
+    "tip2":                         "Consejo nº 2, ¿Sabías que cuando usas un enlace de un sello discográfico, el programa puede obtener hasta 10.000 álbumes de ese sello?. ¡Nosotros no fijamos ese límite! Pero es más que suficiente, ¿verdad?. 👍",
+    "tip3":                         "Consejo nº 3, ¿Sabías que puedes personalizar tu tema visual favorito editando el archivo themes.json en el bloc de notas?. ¡¿A qué esperas?!.",
+    "tip4":                         "Consejo nº 4, ¿Sabías que si dejas vacío el texto de la plantilla de artista y de la plantilla de álbum, todos los archivos se descargarán en una sola carpeta? ¡Pero ten cuidado con el archivo cover.jpg!.",
+    "tip5":                         "Consejo nº 5, ¿Sabías que puedes hacer clic sobre una portada en el descargador o en el buscador para visualizarla a tamaño completo?.",
+    "tip6":                         "Consejo nº 6, ¿Sabías que puedes usar el identificador de una canción o un álbum en el buscador para obtener un único resultado exacto?.",
+    "tip7":                         "Consejo nº 7, ¿Sabías que puedes abrir varias instancias del programa para descargar contenido en paralelo y en diferentes ubicaciones al mismo tiempo?.",
+    "tip8":                         "Consejo nº 8, ¿Sabías que un álbum puede contener canciones con nombres idénticos?. Para evitar conflictos, no olvides usar las etiquetas %TrackNumber% o %TrackId%.",
+    "tip9":                         "Consejo nº 9, ¿Sabías que puedes crear carpetas diferentes por artista, año o sello discográfico usando las plantillas de ruta de descarga? Así tu biblioteca siempre estará organizada automáticamente.",
+    "tip10":                        "Consejo nº 10, ¿Sabías que en el buscador puedes poner tus palabras de búsqueda entre comillas dobles para encontrar resultados que coincidan exactamente con la frase?.",
+    "tip11":                        "Consejo nº 11, ¿Sabías que puedes desactivar estos consejos en los ajustes avanzados del programa?.",
+    "tip12":                        "Consejo nº 12. ¿Sabías que hablar durante 5 segundos con la portada del álbum antes de descargarlo te ayuda a quemar unas 0.08 calorías para sentirte un poco más musculoso?. 💪",
+    "tip13":                        "Consejo nº 13, ¿Sabías que deberías concentrarte más en descargar tu música favorita que en leer estos estúpidos consejos? Pero entonces te perderías la diversión… 😏",
+    "tip14":                        "Curiosidad nº 1, ¿Sabías que Elvis Presley y Michael Jackson aprueban el uso de este programa?. ¡Y si no me crees, pregúntales!. 😜",
+    "tip15":                        "Curiosidad nº 2, ¿Sabías que hay personas que han muerto mientras usaban este programa?😱… de aburrimiento mientras esperaban que se descargara todo un sello discográfico al completo. 👻",
+    "tip16":                        "Curiosidad nº 3, ¿Sabías que mirar fijamente el botón de “Descargar” durante 10 segundos, podría hacer que las descargas vayan más rápido… en tu imaginación?. 👀",
+    "tip17":                        "Curiosidad nº 4, ¿Sabías que aplaudir después de cada descarga exitosa ayuda a motivar al programa para la siguiente canción?. 👏",
+    "tip18":                        "Curiosidad nº 5: ¿Sabías que si buscas \"Terrorcore\" en el buscador, los autores de este programa no se hacen responsables de los daños cerebrales y auditivos que te pueda ocasionar? 😵💉"
 }

@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 10, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 12, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -190,5 +190,29 @@
     "themeNameNotFoundMsg":         "Design '{themeName}' nicht gefunden.", // ChatGPT translation.
     "selectedLangFileNotfoundMsg":  "Ausgewählte Sprachdatei nicht gefunden.", // ChatGPT translation.
     "downloadOutputDontExistMsg":   "Der angegebene Pfad existiert nicht.", // ChatGPT translation.
-    "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'" // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'", // ChatGPT translation.
+
+    "_SECTION12_":                  "=================== TIPS ===================",
+    "showTips":                     "Tipps anzeigen", // ChatGPT translation.
+    "nextTip":                      "Nächster Tipp", // ChatGPT translation
+    "prevTip":                      "Vorheriger Tipp", // ChatGPT translation
+    "tip1":                         "Tipp Nr. 1: Wusstest du, dass du mit der rechten Maustaste auf die Zeilen der Suchergebnisse klicken kannst, um die Links der ausgewählten Elemente zu kopieren?", // ChatGPT translation
+    "tip2":                         "Tipp Nr. 2: Wusstest du, dass das Programm beim Verwenden eines Links eines Plattenlabels bis zu 10.000 Alben dieses Labels abrufen kann? Dieses Limit haben nicht wir festgelegt! Aber das ist doch mehr als genug, oder? 👍", // ChatGPT translation
+    "tip3":                         "Tipp Nr. 3: Wusstest du, dass du dein bevorzugtes visuelles Design anpassen kannst, indem du die Datei themes.json mit dem Editor bearbeitest? Worauf wartest du noch?!", // ChatGPT translation
+    "tip4":                         "Tipp Nr. 4: Wusstest du, dass alle Dateien in einen einzigen Ordner heruntergeladen werden, wenn du den Text der Künstler- und Albumvorlage leer lässt? Aber Vorsicht mit der Datei cover.jpg!", // ChatGPT translation
+    "tip5":                         "Tipp Nr. 5: Wusstest du, dass du im Downloader oder im Sucher auf ein Cover klicken kannst, um es in voller Größe anzuzeigen?", // ChatGPT translation
+    "tip6":                         "Tipp Nr. 6: Wusstest du, dass du im Sucher die Kennung eines Songs oder eines Albums verwenden kannst, um genau ein exaktes Ergebnis zu erhalten?", // ChatGPT translation
+    "tip7":                         "Tipp Nr. 7: Wusstest du, dass du mehrere Instanzen des Programms öffnen kannst, um Inhalte parallel und gleichzeitig an verschiedenen Speicherorten herunterzuladen?", // ChatGPT translation
+    "tip8":                         "Tipp Nr. 8: Wusstest du, dass ein Album Songs mit identischen Namen enthalten kann? Um Konflikte zu vermeiden, vergiss nicht, die Platzhalter %TrackNumber% oder %TrackId% zu verwenden.", // ChatGPT translation
+    "tip9":                         "Tipp Nr. 9: Wusstest du, dass du mithilfe der Download-Pfadvorlagen unterschiedliche Ordner nach Künstler, Jahr oder Plattenlabel erstellen kannst? So bleibt deine Bibliothek automatisch immer ordentlich.", // ChatGPT translation
+    "tip10":                        "Tipp Nr. 10: Wusstest du, dass du im Sucher deine Suchbegriffe in doppelte Anführungszeichen setzen kannst, um Ergebnisse zu finden, die exakt mit der Phrase übereinstimmen?", // ChatGPT translation
+    "tip11":                        "Tipp Nr. 11: Wusstest du, dass du diese Tipps in den erweiterten Einstellungen des Programms deaktivieren kannst?", // ChatGPT translation
+    "tip12":                        "Tipp Nr. 12: Wusstest du, dass es dir hilft, etwa 0,08 Kalorien zu verbrennen, wenn du vor dem Download 5 Sekunden lang mit dem Albumcover sprichst, um dich ein wenig muskulöser zu fühlen? 💪", // ChatGPT translation
+    "tip13":                        "Tipp Nr. 13: Wusstest du, dass du dich lieber darauf konzentrieren solltest, deine Lieblingsmusik herunterzuladen, anstatt diese dummen Tipps zu lesen? Aber dann würdest du den Spaß verpassen … 😏", // ChatGPT translation
+    "tip14":                        "Kuriosität Nr. 1: Wusstest du, dass Elvis Presley und Michael Jackson die Nutzung dieses Programms gutheißen? Und wenn du mir nicht glaubst, frag sie selbst! 😜", // ChatGPT translation
+    "tip15":                        "Kuriosität Nr. 2: Wusstest du, dass es Menschen gibt, die während der Nutzung dieses Programms gestorben sind? 😱 … vor Langeweile, während sie darauf warteten, dass ein komplettes Plattenlabel vollständig heruntergeladen wird. 👻", // ChatGPT translation
+    "tip16":                        "Kuriosität Nr. 3: Wusstest du, dass es helfen könnte, wenn du 10 Sekunden lang den Button „Herunterladen“ anstarrst, damit die Downloads schneller werden … zumindest in deiner Vorstellung? 👀", // ChatGPT translation
+    "tip17":                        "Kuriosität Nr. 4: Wusstest du, dass Applaus nach jedem erfolgreichen Download dabei hilft, das Programm für den nächsten Song zu motivieren? 👏", // ChatGPT translation
+    "tip18":                        "Kuriosität Nr. 5: Wusstest du, dass die Autoren dieses Programms keine Verantwortung für mögliche Gehirn- und Hörschäden übernehmen, wenn du im Sucher nach \"Terrorcore\" suchst? 😵💉" // ChatGPT translation
+
 }

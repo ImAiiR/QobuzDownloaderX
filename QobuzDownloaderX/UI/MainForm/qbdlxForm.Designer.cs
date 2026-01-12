@@ -204,6 +204,13 @@ namespace QobuzDownloaderX
             this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.prevTipButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.nextTipButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tipEmojiLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tipLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timerTip = new System.Windows.Forms.Timer(this.components);
+            this.showTipsCheckBox = new System.Windows.Forms.CheckBox();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -226,6 +233,7 @@ namespace QobuzDownloaderX
             ((System.ComponentModel.ISupportInitialize)(this.limitSearchResultsNumericUpDown)).BeginInit();
             this.searchResultsPanel.SuspendLayout();
             this.sysTrayContextMenuStrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // navigationPanel
@@ -241,7 +249,7 @@ namespace QobuzDownloaderX
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.navigationPanel.Location = new System.Drawing.Point(0, 0);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(180, 582);
+            this.navigationPanel.Size = new System.Drawing.Size(180, 588);
             this.navigationPanel.TabIndex = 0;
             // 
             // searchButton
@@ -1217,6 +1225,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsPanelRight);
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsPanelLeft);
             this.extraSettingsPanel.Controls.Add(this.useItemPosInPlaylistCheckbox);
+            this.extraSettingsPanel.Controls.Add(this.showTipsCheckBox);
             this.extraSettingsPanel.Controls.Add(this.downloadAllFromArtistCheckBox);
             this.extraSettingsPanel.Controls.Add(this.commentLabel);
             this.extraSettingsPanel.Controls.Add(this.dontSaveArtworkToDiskCheckBox);
@@ -1826,7 +1835,7 @@ namespace QobuzDownloaderX
             this.languageLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.languageLabel.Location = new System.Drawing.Point(22, 499);
             this.languageLabel.Name = "languageLabel";
-            this.languageLabel.Size = new System.Drawing.Size(220, 13);
+            this.languageLabel.Size = new System.Drawing.Size(159, 13);
             this.languageLabel.TabIndex = 37;
             this.languageLabel.Text = "Current Language";
             this.languageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1836,9 +1845,9 @@ namespace QobuzDownloaderX
             this.languageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.languageComboBox.FormattingEnabled = true;
-            this.languageComboBox.Location = new System.Drawing.Point(248, 496);
+            this.languageComboBox.Location = new System.Drawing.Point(187, 496);
             this.languageComboBox.Name = "languageComboBox";
-            this.languageComboBox.Size = new System.Drawing.Size(60, 21);
+            this.languageComboBox.Size = new System.Drawing.Size(121, 21);
             this.languageComboBox.TabIndex = 36;
             this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.languageComboBox_SelectedIndexChanged);
             // 
@@ -1872,7 +1881,7 @@ namespace QobuzDownloaderX
             this.themeSectionLabel.Name = "themeSectionLabel";
             this.themeSectionLabel.Size = new System.Drawing.Size(383, 25);
             this.themeSectionLabel.TabIndex = 33;
-            this.themeSectionLabel.Text = "THEMING OPTIONS";
+            this.themeSectionLabel.Text = "VISUAL OPTIONS";
             this.themeSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // commentCheckbox
@@ -2600,12 +2609,94 @@ namespace QobuzDownloaderX
             this.closeProgramToolStripMenuItem.Text = "Close program";
             this.closeProgramToolStripMenuItem.Click += new System.EventHandler(this.closeProgramToolStripMenuItem_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.AllowMerge = false;
+            this.statusStrip1.AutoSize = false;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.prevTipButton,
+            this.nextTipButton,
+            this.tipEmojiLabel,
+            this.tipLabel});
+            this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.statusStrip1.Location = new System.Drawing.Point(0, 588);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(951, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 7;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // prevTipButton
+            // 
+            this.prevTipButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.prevTipButton.Image = ((System.Drawing.Image)(resources.GetObject("prevTipButton.Image")));
+            this.prevTipButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.prevTipButton.Name = "prevTipButton";
+            this.prevTipButton.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.prevTipButton.ShowDropDownArrow = false;
+            this.prevTipButton.Size = new System.Drawing.Size(73, 19);
+            this.prevTipButton.Text = "Previous tip";
+            this.prevTipButton.Click += new System.EventHandler(this.prevTipButton_Click);
+            // 
+            // nextTipButton
+            // 
+            this.nextTipButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.nextTipButton.Image = ((System.Drawing.Image)(resources.GetObject("nextTipButton.Image")));
+            this.nextTipButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.nextTipButton.Name = "nextTipButton";
+            this.nextTipButton.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.nextTipButton.ShowDropDownArrow = false;
+            this.nextTipButton.Size = new System.Drawing.Size(53, 19);
+            this.nextTipButton.Text = "Next tip";
+            this.nextTipButton.Click += new System.EventHandler(this.nextTipButton_Click);
+            // 
+            // tipEmojiLabel
+            // 
+            this.tipEmojiLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tipEmojiLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tipEmojiLabel.Name = "tipEmojiLabel";
+            this.tipEmojiLabel.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tipEmojiLabel.Size = new System.Drawing.Size(16, 15);
+            this.tipEmojiLabel.Text = "💡";
+            // 
+            // tipLabel
+            // 
+            this.tipLabel.AutoSize = false;
+            this.tipLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tipLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tipLabel.Name = "tipLabel";
+            this.tipLabel.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tipLabel.Size = new System.Drawing.Size(47, 15);
+            this.tipLabel.Spring = true;
+            this.tipLabel.Text = "Tip Text";
+            // 
+            // timerTip
+            // 
+            this.timerTip.Interval = 200;
+            this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick_1);
+            // 
+            // showTipsCheckBox
+            // 
+            this.showTipsCheckBox.AutoSize = true;
+            this.showTipsCheckBox.Checked = true;
+            this.showTipsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showTipsCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showTipsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.showTipsCheckBox.Location = new System.Drawing.Point(25, 529);
+            this.showTipsCheckBox.Name = "showTipsCheckBox";
+            this.showTipsCheckBox.Size = new System.Drawing.Size(78, 17);
+            this.showTipsCheckBox.TabIndex = 31;
+            this.showTipsCheckBox.Text = "Show Tips";
+            this.showTipsCheckBox.UseVisualStyleBackColor = true;
+            this.showTipsCheckBox.CheckedChanged += new System.EventHandler(this.showTipsCheckBox_CheckedChanged);
+            // 
             // qbdlxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ClientSize = new System.Drawing.Size(951, 582);
+            this.ClientSize = new System.Drawing.Size(951, 610);
+            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
@@ -2616,7 +2707,7 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.searchPanel);
-            this.Controls.Add(this.extraSettingsPanel);
+            this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";
@@ -2661,6 +2752,8 @@ namespace QobuzDownloaderX
             ((System.ComponentModel.ISupportInitialize)(this.limitSearchResultsNumericUpDown)).EndInit();
             this.searchResultsPanel.ResumeLayout(false);
             this.sysTrayContextMenuStrip.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2837,5 +2930,12 @@ namespace QobuzDownloaderX
         internal Panel artistNamesSeparatorsPanel;
         internal CheckBox useItemPosInPlaylistCheckbox;
         internal Label playlistSectionLabel;
+        internal StatusStrip statusStrip1;
+        internal Timer timerTip;
+        internal ToolStripStatusLabel tipLabel;
+        internal ToolStripStatusLabel tipEmojiLabel;
+        internal ToolStripDropDownButton nextTipButton;
+        internal ToolStripDropDownButton prevTipButton;
+        internal CheckBox showTipsCheckBox;
     }
 }

@@ -92,7 +92,8 @@ namespace QobuzDownloaderX
         // Global flag that keeps track of the last taskbar progress state to restore it when minimizing and restoring the main form.
         internal static TaskbarProgressState lastTaskBarProgressState;
 
-        internal static NotifyIconProgressBar ntfyProgressBar = new NotifyIconProgressBar { 
+        internal static NotifyIconProgressBar ntfyProgressBar = new NotifyIconProgressBar
+        {
             Height = 8,
             BorderColor = Color.Black,
             BorderWidth = 1
@@ -134,6 +135,10 @@ namespace QobuzDownloaderX
         internal string downloadAborted { get; set; }
         internal string albumSkipped { get; set; }
         #endregion
+
+        internal int currentTipIndex = 0;
+        internal string currentTipText = "";
+        private string tipScroll = "";
 
         internal readonly GetInfo getInfo = new GetInfo();
         internal readonly RenameTemplates renameTemplates = new RenameTemplates();
@@ -255,6 +260,7 @@ namespace QobuzDownloaderX
 
         private void qbdlxForm_Shown(object sender, EventArgs e)
         {
+            Miscellaneous.InitTipTicker(this);
             this.notifyIcon1.Visible = true;
         }
 
@@ -265,8 +271,8 @@ namespace QobuzDownloaderX
             {
                 if (e.CloseReason == CloseReason.UserClosing)
                 {
-                    DialogResult dr = 
-                        MessageBox.Show(this, formClosingWarning, Application.ProductName, 
+                    DialogResult dr =
+                        MessageBox.Show(this, formClosingWarning, Application.ProductName,
                                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     if (dr == DialogResult.No)
@@ -274,11 +280,12 @@ namespace QobuzDownloaderX
                         e.Cancel = true;
                         logger.Debug($"Form closing was cancelled by user.");
                         return;
-                    } else
+                    }
+                    else
                     {
                         if (getLinkTypeIsBusy)
                         {
-                            e.Cancel = true; 
+                            e.Cancel = true;
                             logger.Debug($"Form closing delayed/cancelled because {nameof(getLinkTypeIsBusy)} is {getLinkTypeIsBusy}");
                             abortButton.PerformClick();
 
@@ -295,7 +302,7 @@ namespace QobuzDownloaderX
                             await Task.Delay(100);
                         }
                     }
-                } 
+                }
             }
             logger?.Dispose();
             Application.Exit(); // Triggers 'qbdlxForm_FormClosing' with CloseReason.ApplicationExitCall
@@ -369,7 +376,7 @@ namespace QobuzDownloaderX
                 qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = true;
             }
         }
-       
+
         private void downloadFolderTextbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
@@ -400,9 +407,10 @@ namespace QobuzDownloaderX
 
                     folderBrowser.SelectedPath = path + @"\";
                     downloadLocation = path + @"\";
-                } else
+                }
+                else
                 {
-                    MessageBox.Show(this, languageManager.GetTranslation("downloadOutputDontExistMsg"), 
+                    MessageBox.Show(this, languageManager.GetTranslation("downloadOutputDontExistMsg"),
                         Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     // Restore previous path text only if it's not null or empty.
@@ -421,7 +429,8 @@ namespace QobuzDownloaderX
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                if (downloadButton.Enabled) {
+                if (downloadButton.Enabled)
+                {
                     downloadButton.PerformClick();
                 }
             }
@@ -488,7 +497,7 @@ namespace QobuzDownloaderX
                 HashSet<string> batchUrls = new HashSet<string>(
                     batchDownloadTextBox.Lines
                                         .Select(l => l.Trim())
-                                        .Where(l => !string.IsNullOrWhiteSpace(l)), 
+                                        .Where(l => !string.IsNullOrWhiteSpace(l)),
                     StringComparer.OrdinalIgnoreCase
                 );
 
@@ -524,7 +533,7 @@ namespace QobuzDownloaderX
 
         private void inputTextbox_Leave(object sender, EventArgs e)
         {
-           Miscellaneous.SetPlaceholder(this, inputTextbox, inputTextboxPlaceholder, false);
+            Miscellaneous.SetPlaceholder(this, inputTextbox, inputTextboxPlaceholder, false);
         }
 
         private void searchTextbox_Click(object sender, EventArgs e)
@@ -577,7 +586,7 @@ namespace QobuzDownloaderX
             t.Join();
 
             if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
-            { 
+            {
                 downloadFolderTextbox.Text = folderBrowser.SelectedPath;
                 downloadLocation = folderBrowser.SelectedPath;
             }
@@ -814,7 +823,7 @@ namespace QobuzDownloaderX
             Settings.Default.imageTag = coverArtCheckbox.Checked;
             Settings.Default.Save();
         }
-        
+
         private void commentCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.commentTag = commentCheckbox.Checked;
@@ -1371,7 +1380,7 @@ namespace QobuzDownloaderX
         {
             if (!this.Visible)
             {
-               Miscellaneous.ToggleMainFormVisibility(this);
+                Miscellaneous.ToggleMainFormVisibility(this);
             }
         }
 
@@ -1643,7 +1652,7 @@ namespace QobuzDownloaderX
                 }
             }
 
-           Miscellaneous.SafeSetClipboardText(sb.ToString());
+            Miscellaneous.SafeSetClipboardText(sb.ToString());
         }
 
         private void albumPictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -1696,5 +1705,41 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void nextTipButton_Click(object sender, EventArgs e)
+        {
+            Miscellaneous.SetNextTip(this, forward: true);
+            tipScroll = currentTipText;
+        }
+
+        private void prevTipButton_Click(object sender, EventArgs e)
+        {
+            Miscellaneous.SetNextTip(this, forward: false);
+            tipScroll = currentTipText;
+        }
+        private void timerTip_Tick_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tipScroll))
+            {
+                Miscellaneous.SetNextTip(this, forward: true);
+                tipScroll = currentTipText;
+            }
+
+            if (string.IsNullOrEmpty(tipScroll) || tipScroll.Length < 2)
+            {
+                tipLabel.Text = tipScroll;
+                return;
+            }
+
+            tipScroll = tipScroll.Substring(1) + tipScroll[0];
+            tipLabel.Text = tipScroll;
+        }
+
+        private void showTipsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.showTips = showTipsCheckBox.Checked;
+            Settings.Default.Save();
+
+            Miscellaneous.InitTipTicker(this);
+        }
     }
 }

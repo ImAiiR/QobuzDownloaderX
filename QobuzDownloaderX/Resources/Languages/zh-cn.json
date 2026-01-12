@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 10, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 12, 2026, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -190,5 +190,29 @@
     "themeNameNotFoundMsg":         "未找到主题 '{themeName}'。", // ChatGPT translation.
     "selectedLangFileNotfoundMsg":  "未找到所选语言文件。", // ChatGPT translation.
     "downloadOutputDontExistMsg":   "指定的路径不存在。", // ChatGPT translation.
-    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'" // ChatGPT translation.
+    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'", // ChatGPT translation.
+
+    "_SECTION12_":                  "=================== 提示 ===================",
+    "showTips":                     "显示提示", // ChatGPT translation.
+    "nextTip":                      "下一个提示", // ChatGPT translation
+    "prevTip":                      "上一个提示", // ChatGPT translation
+    "tip1":                         "提示 #1：您知道可以右键点击搜索结果的行来复制所选项目的链接吗？", // ChatGPT translation
+    "tip2":                         "提示 #2：您知道当您使用唱片公司链接时，程序最多可以获取该公司 10,000 张专辑吗？我们没有设置这个限制！但这已经绰绰有余，对吧？ 👍", // ChatGPT translation
+    "tip3":                         "提示 #3：您知道可以通过编辑 Notepad 中的 themes.json 文件来自定义您最喜欢的视觉主题吗？还等什么？！", // ChatGPT translation
+    "tip4":                         "提示 #4：您知道如果将艺术家模板和专辑模板的文本留空，所有文件都会下载到同一个文件夹吗？但要注意 cover.jpg 文件！", // ChatGPT translation
+    "tip5":                         "提示 #5：您知道可以点击下载器或搜索器中的专辑封面来查看完整大小吗？", // ChatGPT translation
+    "tip6":                         "提示 #6：您知道可以在搜索器中使用歌曲或专辑的 ID 来获得唯一精确的结果吗？", // ChatGPT translation
+    "tip7":                         "提示 #7：您知道可以打开程序的多个实例，同时在不同位置并行下载内容吗？", // ChatGPT translation
+    "tip8":                         "提示 #8：您知道一个专辑中可能包含名称相同的歌曲吗？为避免冲突，请使用 %TrackNumber% 或 %TrackId% 标签。", // ChatGPT translation
+    "tip9":                         "提示 #9：您知道可以使用下载路径模板按艺术家、年份或唱片公司创建不同的文件夹吗？这样您的音乐库会自动保持有序。", // ChatGPT translation
+    "tip10":                        "提示 #10：您知道在搜索器中将搜索词用双引号括起来可以找到与短语完全匹配的结果吗？", // ChatGPT translation
+    "tip11":                        "提示 #11：您知道可以在程序的高级设置中关闭这些提示吗？", // ChatGPT translation
+    "tip12":                        "提示 #12：您知道在下载专辑前与封面交谈 5 秒钟可以燃烧约 0.08 卡路里，让自己感觉更结实吗？ 💪", // ChatGPT translation
+    "tip13":                        "提示 #13：您知道应该更多地专注于下载您喜欢的音乐，而不是阅读这些愚蠢的提示吗？否则您会错过乐趣… 😏", // ChatGPT translation
+    "tip14":                        "趣闻 #1：您知道 Elvis Presley 和 Michael Jackson 认可使用此程序吗？如果不信，可以问问他们！ 😜", // ChatGPT translation
+    "tip15":                        "趣闻 #2：您知道有人在使用此程序时死掉了吗？😱…因为等待整个唱片公司完全下载太无聊。 👻", // ChatGPT translation
+    "tip16":                        "趣闻 #3：您知道盯着“下载”按钮 10 秒钟，下载速度可能会在您的想象中加快吗？ 👀", // ChatGPT translation
+    "tip17":                        "趣闻 #4：您知道每次成功下载后鼓掌可以激励程序下载下一首歌吗？ 👏", // ChatGPT translation
+    "tip18":                        "趣闻 #5：您知道如果在搜索器中搜索 \"Terrorcore\"，本程序作者不对可能造成的大脑或听力损伤负责吗？ 😵💉" // ChatGPT translation
+
 }
