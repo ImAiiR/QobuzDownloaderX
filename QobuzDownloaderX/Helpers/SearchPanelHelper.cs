@@ -23,6 +23,9 @@ namespace QobuzDownloaderX.Helpers
         private static int? lastAnchorRowIndex = null;
         private static Tuple<int, int> lastShiftRange = null;
 
+        // Stores the first GET button created during table population
+        private Button firstGetButton = null;
+
         public static readonly List<int> selectedRowindices = new List<int>();
 
         private readonly Service QoService = new Service();
@@ -100,6 +103,7 @@ namespace QobuzDownloaderX.Helpers
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F)); // Quality and Genre
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // "GET" Button
 
+                firstGetButton = null;
                 int rowIndex = 0;
 
                 foreach (var album in albums)
@@ -113,7 +117,8 @@ namespace QobuzDownloaderX.Helpers
                         BackColor = Color.Transparent,
                         Cursor = Cursors.Default,
                         Tag = new RowInfo { RowIndex = rowIndex, Selected = false },
-                        Margin = new Padding(0, 1, 0, 0)
+                        Margin = new Padding(0, 1, 0, 0),
+                        TabStop = false
                     };
 
                     // Create a inner table for proper column alignment
@@ -210,6 +215,10 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.Enabled = !qbdlxForm.getLinkTypeIsBusy;
                     selectButton.Click += (sender, e) => SendURL(mainForm, albumLink);
                     innerRow.Controls.Add(selectButton, 4, 0);
+                    if (firstGetButton == null)
+                    {
+                        firstGetButton = selectButton;
+                    }
 
                     void downloadButtonHandler(object s, EventArgs e)
                     {
@@ -247,9 +256,18 @@ namespace QobuzDownloaderX.Helpers
                 }
                 NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
                 searchResultsTablePanel.ResumeLayout();
-
+                qbdlxForm._qbdlxForm.searchResultsPanel.AutoScrollPosition = new Point(0, 0);
                 qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = rowIndex > 0;
                 qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = rowIndex > 0;
+
+                if (firstGetButton != null)
+                {
+                    mainForm.BeginInvoke((Action)(() =>
+                    {
+                        mainForm.ActiveControl = firstGetButton;
+                        firstGetButton.Focus();
+                    }));
+                }
             });
 
             lastSearchType = "releases";
@@ -299,6 +317,7 @@ namespace QobuzDownloaderX.Helpers
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F)); // Quality
                 searchResultsTablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));  // "GET" Button
 
+                firstGetButton = null;
                 int rowIndex = 0;
 
                 foreach (var track in tracks)
@@ -312,7 +331,8 @@ namespace QobuzDownloaderX.Helpers
                         BackColor = Color.Transparent,
                         Cursor = Cursors.Default,
                         Tag = new RowInfo { RowIndex = rowIndex, Selected = false },
-                        Margin = new Padding(0, 1, 0, 0)
+                        Margin = new Padding(0, 1, 0, 0),
+                        TabStop = false
                     };
 
                     // Create a inner table for proper column alignment
@@ -409,6 +429,10 @@ namespace QobuzDownloaderX.Helpers
                     selectButton.Enabled = !qbdlxForm.getLinkTypeIsBusy;
                     selectButton.Click += (sender, e) => SendURL(mainForm, trackLink);
                     innerRow.Controls.Add(selectButton, 4, 0);
+                    if (firstGetButton == null)
+                    {
+                        firstGetButton = selectButton;
+                    }
 
                     void downloadButtonHandler(object s, EventArgs e)
                     {
@@ -447,8 +471,18 @@ namespace QobuzDownloaderX.Helpers
 
                 NativeMethods.SendMessage(searchResultsTablePanel.Handle, Constants.WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
                 searchResultsTablePanel.ResumeLayout();
+                qbdlxForm._qbdlxForm.searchResultsPanel.AutoScrollPosition = new Point(0, 0);
                 qbdlxForm._qbdlxForm.searchSortingPanel.Enabled = rowIndex > 0;
-                qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = rowIndex > 0;
+                qbdlxForm._qbdlxForm.selectAllRowsButton.Enabled = rowIndex > 0; 
+                
+                if (firstGetButton != null)
+                {
+                    mainForm.BeginInvoke((Action)(() =>
+                    {
+                        mainForm.ActiveControl = firstGetButton;
+                        firstGetButton.Focus();
+                    }));
+                }
             });
 
             lastSearchType = "tracks";
@@ -511,7 +545,8 @@ namespace QobuzDownloaderX.Helpers
                 Dock = DockStyle.Fill,
                 ColumnCount = 5,
                 RowCount = 1,
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                TabStop = false
             };
 
             // Define column widths
