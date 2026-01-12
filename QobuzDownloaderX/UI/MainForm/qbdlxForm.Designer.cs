@@ -93,7 +93,7 @@ namespace QobuzDownloaderX
             this.downloadOptionsLabel = new System.Windows.Forms.Label();
             this.templatesLabel = new System.Windows.Forms.Label();
             this.settingsLabel = new System.Windows.Forms.Label();
-            this.userInfoTextBox = new System.Windows.Forms.TextBox();
+            this.userInfoTextBox = new System.Windows.Forms.RichTextBox();
             this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyThisRowToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -411,7 +411,7 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextBox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(184, 275);
+            this.downloaderPanel.Location = new System.Drawing.Point(184, 274);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 0;
@@ -737,7 +737,7 @@ namespace QobuzDownloaderX
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(468, 201);
+            this.settingsPanel.Location = new System.Drawing.Point(468, 197);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 0;
@@ -1067,9 +1067,9 @@ namespace QobuzDownloaderX
             // 
             this.downloadOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadOptionsLabel.Location = new System.Drawing.Point(0, 35);
+            this.downloadOptionsLabel.Location = new System.Drawing.Point(3, 35);
             this.downloadOptionsLabel.Name = "downloadOptionsLabel";
-            this.downloadOptionsLabel.Size = new System.Drawing.Size(771, 25);
+            this.downloadOptionsLabel.Size = new System.Drawing.Size(768, 25);
             this.downloadOptionsLabel.TabIndex = 1;
             this.downloadOptionsLabel.Text = "DOWNLOAD OPTIONS";
             this.downloadOptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1106,14 +1106,14 @@ namespace QobuzDownloaderX
             this.userInfoTextBox.Cursor = System.Windows.Forms.Cursors.Help;
             this.userInfoTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userInfoTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.userInfoTextBox.Location = new System.Drawing.Point(285, 63);
-            this.userInfoTextBox.Multiline = true;
+            this.userInfoTextBox.Location = new System.Drawing.Point(18, 63);
             this.userInfoTextBox.Name = "userInfoTextBox";
             this.userInfoTextBox.ReadOnly = true;
-            this.userInfoTextBox.Size = new System.Drawing.Size(400, 97);
+            this.userInfoTextBox.Size = new System.Drawing.Size(734, 97);
             this.userInfoTextBox.TabIndex = 2;
-            this.userInfoTextBox.Text = "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscriptio" +
-    "n = {user_subscription}\r\nExpires = {user_subscription_expiration}\r\n";
+            this.userInfoTextBox.Text = "User ID = {user_id}\nE-mail = {user_email}\nCountry = {user_country}\nSubscription =" +
+    " {user_subscription}\nExpires = {user_subscription_expiration}\n";
+            this.userInfoTextBox.WordWrap = false;
             this.userInfoTextBox.GotFocus += new System.EventHandler(this.userInfoTextBox_GotFocus);
             this.userInfoTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.userInfoTextBox_MouseDown);
             this.userInfoTextBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.userInfoTextBox_MouseUp);
@@ -1165,9 +1165,9 @@ namespace QobuzDownloaderX
             // 
             this.userInfoLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userInfoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.userInfoLabel.Location = new System.Drawing.Point(0, 35);
+            this.userInfoLabel.Location = new System.Drawing.Point(3, 35);
             this.userInfoLabel.Name = "userInfoLabel";
-            this.userInfoLabel.Size = new System.Drawing.Size(771, 25);
+            this.userInfoLabel.Size = new System.Drawing.Size(768, 25);
             this.userInfoLabel.TabIndex = 1;
             this.userInfoLabel.Text = "USER INFO";
             this.userInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1227,7 +1227,7 @@ namespace QobuzDownloaderX
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
             this.aboutPanel.Controls.Add(this.disclaimerLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(807, 126);
+            this.aboutPanel.Location = new System.Drawing.Point(805, 122);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
             this.aboutPanel.TabIndex = 0;
@@ -1273,7 +1273,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(583, 166);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(583, 159);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -2005,9 +2005,9 @@ namespace QobuzDownloaderX
             // 
             this.taggingOptionsLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.taggingOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.taggingOptionsLabel.Location = new System.Drawing.Point(0, 35);
+            this.taggingOptionsLabel.Location = new System.Drawing.Point(3, 35);
             this.taggingOptionsLabel.Name = "taggingOptionsLabel";
-            this.taggingOptionsLabel.Size = new System.Drawing.Size(771, 25);
+            this.taggingOptionsLabel.Size = new System.Drawing.Size(768, 25);
             this.taggingOptionsLabel.TabIndex = 1;
             this.taggingOptionsLabel.Text = "TAGGING OPTIONS";
             this.taggingOptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2225,7 +2225,7 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Controls.Add(this.sortAscendantCheckBox);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(344, 239);
+            this.searchPanel.Location = new System.Drawing.Point(344, 235);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 0;
@@ -2799,7 +2799,7 @@ namespace QobuzDownloaderX
         internal System.Windows.Forms.Label infoLabel;
         internal System.Windows.Forms.Label albumLabel;
         internal System.Windows.Forms.Label artistLabel;
-        internal System.Windows.Forms.TextBox userInfoTextBox;
+        internal System.Windows.Forms.RichTextBox userInfoTextBox;
         internal System.Windows.Forms.Label userInfoLabel;
         internal System.Windows.Forms.Label disclaimerLabel;
         internal Ookii.Dialogs.WinForms.VistaFolderBrowserDialog folderBrowser;

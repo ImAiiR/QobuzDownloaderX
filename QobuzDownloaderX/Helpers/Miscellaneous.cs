@@ -714,6 +714,46 @@ namespace QobuzDownloaderX.Helpers
             f.currentTipText = "                    " + tipText.PadRight(200, ' ');
         }
 
+        internal static void CenterLeftAlignedRichTextBoxText(RichTextBox rtb)
+        {
+            if (string.IsNullOrEmpty(rtb.Text))
+                return;
+
+            // Get all lines
+            string[] lines = rtb.Lines;
+
+            int maxLineWidth = 0;
+
+            using (Graphics g = rtb.CreateGraphics())
+            {
+                foreach (string line in lines)
+                {
+                    // Measure real pixel width of the line
+                    Size size = TextRenderer.MeasureText(
+                        g,
+                        line,
+                        rtb.Font,
+                        new Size(int.MaxValue, int.MaxValue),
+                        TextFormatFlags.NoPadding
+                    );
+
+                    if (size.Width > maxLineWidth)
+                        maxLineWidth = size.Width;
+                }
+            }
+
+            // Usable width of the RichTextBox (no scrollbars)
+            int usableWidth = rtb.ClientSize.Width;
+
+            int indent = Math.Max(0, (usableWidth - maxLineWidth) / 2);
+
+            // Apply indentation
+            rtb.SelectAll();
+            rtb.SelectionIndent = indent;
+            rtb.SelectionRightIndent = indent;
+            rtb.DeselectAll();
+        }
+
         internal static string GetShortenedGenreName(string genre)
         {
             if (string.IsNullOrEmpty(genre))

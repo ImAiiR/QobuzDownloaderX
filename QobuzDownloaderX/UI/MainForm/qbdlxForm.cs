@@ -232,6 +232,8 @@ namespace QobuzDownloaderX
                 .Replace("{user_subscription}", subscription)
                 .Replace("{user_subscription_expiration}", endDate);
 
+            Miscellaneous.CenterLeftAlignedRichTextBoxText(userInfoTextBox);
+
             downloadOutput.AppendText(QoUser.UserInfo.Credential.Label == null
                 ? $"\r\n\r\n{downloadOutputExpired}\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}"
                 : $"\r\n\r\n{downloadOutputPath}\r\n{folderBrowser.SelectedPath}");

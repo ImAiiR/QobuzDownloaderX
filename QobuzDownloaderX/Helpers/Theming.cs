@@ -142,9 +142,13 @@ namespace QobuzDownloaderX.Helpers
                 else if (control is StatusStrip ss)
                 {
                     ss.BackColor = ColorTranslator.FromHtml(_currentTheme.FormBackground);
-                    ss.ForeColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                    ss.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
+                    foreach (ToolStripItem item in ss.Items)
+                    {
+                        item.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
+                    }
                 }
-                else if (control is TextBox textBox)
+                else if (control is TextBoxBase textBox)
                 {
                     textBox.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
 
