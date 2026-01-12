@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 using ZetaLongPaths;
 
@@ -109,50 +111,112 @@ namespace QobuzDownloaderX
 
         private void SetSavedValues()
         {
-            // Set saved settings to correct places.
-            username = Settings.Default.savedEmail.ToString();
-            password = Settings.Default.savedPassword.ToString();
-            emailTextBox.Text = username;
-            passwordTextBox.Text = password;
-            appidTextBox.Text = Settings.Default.savedAppID.ToString();
-            appSecretTextBox.Text = Settings.Default.savedSecret.ToString();
+            // Email
+            if (!string.IsNullOrEmpty(Settings.Default.savedEmail) &&
+                Settings.Default.savedEmail != emailPlaceholder)
+            {
+                try
+                {
+                    byte[] encryptedEmailBytes = Convert.FromBase64String(Settings.Default.savedEmail);
+                    string decryptedEmail = Encoding.UTF8.GetString(
+                        ProtectedData.Unprotect(encryptedEmailBytes, null, DataProtectionScope.CurrentUser));
+                    username = decryptedEmail;
+                    emailTextBox.Text = decryptedEmail;
+                }
+                catch (FormatException)
+                {
+                    // Old plain text or invalid Base64
+                    username = Settings.Default.savedEmail;
+                    emailTextBox.Text = username;
+                }
+                catch (CryptographicException)
+                {
+                    // Cannot decrypt (wrong user/PC)
+                    username = "";
+                    emailTextBox.Text = emailPlaceholder;
+                    emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                }
+            }
+            else
+            {
+                emailTextBox.Text = emailPlaceholder;
+                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+            }
 
-            logger.Info("Currently saved username: " + username);
-            logger.Info("Currently saved app ID: " + Settings.Default.savedAppID.ToString());
-            logger.Info("Currently saved app secret: " + Settings.Default.savedSecret.ToString());
+            // Password
+            if (!string.IsNullOrEmpty(Settings.Default.savedPassword) &&
+                Settings.Default.savedPassword != passwordPlaceholder &&
+                Settings.Default.savedPassword != tokenPlaceholder)
+            {
+                try
+                {
+                    byte[] encryptedPasswordBytes = Convert.FromBase64String(Settings.Default.savedPassword);
+                    string decryptedPassword = Encoding.UTF8.GetString(
+                        ProtectedData.Unprotect(encryptedPasswordBytes, null, DataProtectionScope.CurrentUser));
 
-            if (Settings.Default.savedAltLoginValue == true)
+                    password = decryptedPassword;
+                    passwordTextBox.Text = decryptedPassword;
+                    passwordTextBox.PasswordChar = '*';
+                    passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
+                }
+                catch (FormatException)
+                {
+                    passwordTextBox.Text = passwordPlaceholder;
+                    passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                    passwordTextBox.PasswordChar = '\0';
+                }
+                catch (CryptographicException)
+                {
+                    // Cannot decrypt (wrong user/PC)
+                    password = "";
+                    passwordTextBox.Text = passwordPlaceholder;
+                    passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                    passwordTextBox.PasswordChar = '\0';
+                }
+            }
+            else
+            {
+                passwordTextBox.Text = passwordPlaceholder;
+                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                passwordTextBox.PasswordChar = '\0';
+            }
+
+            // App ID / Secret
+            appidTextBox.Text = Settings.Default.savedAppID;
+            appSecretTextBox.Text = Settings.Default.savedSecret;
+
+            // Alt login handling
+            if (Settings.Default.savedAltLoginValue)
             {
                 emailIcon.Visible = false;
                 emailPanel.Visible = false;
                 emailTextBox.Visible = false;
-
                 altLoginLabel.Text = altLoginLabelEmail;
             }
-
-            // Set values for email textbox.
-            if (emailTextBox.Text != emailPlaceholder)
+            else
             {
-                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
+                altLoginLabel.Text = altLoginLabelToken;
             }
-            if (emailTextBox.Text == null | emailTextBox.Text == "" | emailTextBox.Text == "\r\n")
+
+            // Final placeholder fixes
+            if (emailTextBox.Text == null || emailTextBox.Text == "" || emailTextBox.Text == "\r\n")
             {
-                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
                 emailTextBox.Text = emailPlaceholder;
+                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
             }
 
-            // Set values for password textbox.
-            if (passwordTextBox.Text != passwordPlaceholder | passwordTextBox.Text != tokenPlaceholder)
+            if (passwordTextBox.Text == null || passwordTextBox.Text == "" || passwordTextBox.Text == "\r\n")
             {
-                passwordTextBox.PasswordChar = '*';
-                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
-            }
-            if (passwordTextBox.Text == null | passwordTextBox.Text == "" | passwordTextBox.Text == "\r\n")
-            {
-                passwordTextBox.PasswordChar = '\0';
-                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
                 passwordTextBox.Text = passwordPlaceholder;
+                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                passwordTextBox.PasswordChar = '\0';
             }
+
+#if DEBUG
+            logger.Info("Currently saved username: " + username);
+            logger.Info("Currently saved app ID: " + Settings.Default.savedAppID);
+            logger.Info("Currently saved app secret: " + Settings.Default.savedSecret);
+#endif
         }
 
         private void InitializeTheme()
@@ -331,11 +395,13 @@ namespace QobuzDownloaderX
         private void loginButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Logging in…");
+
             #region Check if textboxes are valid
-            if (emailTextBox.Text == emailPlaceholder | emailTextBox.Text == null | emailTextBox.Text == "")
+            if (emailTextBox.Text == emailPlaceholder || emailTextBox.Text == null || emailTextBox.Text == "")
             {
                 // If there's no email typed in. Ignore if using token to login.
                 logger.Warning("emailTextBox does not contain proper values for logging in.");
+
                 if (!altLoginLabel.Text.Contains(altLoginLabelEmail))
                 {
                     loginText.Invoke(new Action(() => loginText.Text = loginTextNoEmail));
@@ -343,7 +409,7 @@ namespace QobuzDownloaderX
                 }
             }
 
-            if (passwordTextBox.Text == passwordPlaceholder | passwordTextBox.Text == tokenPlaceholder)
+            if (passwordTextBox.Text == passwordPlaceholder || passwordTextBox.Text == tokenPlaceholder)
             {
                 // If there's no password typed in.
                 logger.Warning("passwordTextBox does not contain proper values for logging in.");
@@ -352,12 +418,19 @@ namespace QobuzDownloaderX
             }
             #endregion
 
+            // Assign values from textboxes
             username = emailTextBox.Text;
             password = passwordTextBox.Text;
 
-            // Save info locally to be used on next launch.
-            Settings.Default.savedEmail = username;
-            Settings.Default.savedPassword = password;
+            // Encrypt username
+            byte[] encryptedEmail = ProtectedData.Protect(Encoding.UTF8.GetBytes(username), null, DataProtectionScope.CurrentUser);
+            Settings.Default.savedEmail = Convert.ToBase64String(encryptedEmail);
+
+            // Encrypt password
+            byte[] encryptedPassword = ProtectedData.Protect(Encoding.UTF8.GetBytes(password), null, DataProtectionScope.CurrentUser);
+            Settings.Default.savedPassword = Convert.ToBase64String(encryptedPassword);
+
+            // Save to settings
             Settings.Default.Save();
 
             logger.Debug("Starting loginBackground…");
