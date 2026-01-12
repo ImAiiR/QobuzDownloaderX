@@ -43,6 +43,7 @@ namespace QobuzDownloaderX
             this.aboutButton = new System.Windows.Forms.Button();
             this.downloaderButton = new System.Windows.Forms.Button();
             this.logoPanel = new System.Windows.Forms.Panel();
+            this.gitHubLinkLabel = new System.Windows.Forms.LinkLabel();
             this.versionNumber = new System.Windows.Forms.Label();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.downloaderPanel = new System.Windows.Forms.Panel();
@@ -266,7 +267,7 @@ namespace QobuzDownloaderX
             this.searchButton.Location = new System.Drawing.Point(0, 166);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(180, 66);
-            this.searchButton.TabIndex = 2;
+            this.searchButton.TabIndex = 1;
             this.searchButton.Text = "SEARCHER";
             this.searchButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchButton.UseVisualStyleBackColor = true;
@@ -279,7 +280,7 @@ namespace QobuzDownloaderX
             this.welcomeLabel.Location = new System.Drawing.Point(0, 403);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(180, 36);
-            this.welcomeLabel.TabIndex = 4;
+            this.welcomeLabel.TabIndex = 3;
             this.welcomeLabel.Text = "Welcome\r\n{username}";
             this.welcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -296,7 +297,7 @@ namespace QobuzDownloaderX
             this.settingsButton.Location = new System.Drawing.Point(0, 442);
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.Size = new System.Drawing.Size(180, 66);
-            this.settingsButton.TabIndex = 5;
+            this.settingsButton.TabIndex = 4;
             this.settingsButton.Text = "SETTINGS";
             this.settingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.settingsButton.UseVisualStyleBackColor = true;
@@ -315,7 +316,7 @@ namespace QobuzDownloaderX
             this.logoutButton.Location = new System.Drawing.Point(0, 508);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(180, 66);
-            this.logoutButton.TabIndex = 6;
+            this.logoutButton.TabIndex = 5;
             this.logoutButton.Text = "LOGOUT";
             this.logoutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logoutButton.UseVisualStyleBackColor = true;
@@ -334,7 +335,7 @@ namespace QobuzDownloaderX
             this.aboutButton.Location = new System.Drawing.Point(0, 232);
             this.aboutButton.Name = "aboutButton";
             this.aboutButton.Size = new System.Drawing.Size(180, 66);
-            this.aboutButton.TabIndex = 3;
+            this.aboutButton.TabIndex = 2;
             this.aboutButton.Text = "ABOUT";
             this.aboutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.aboutButton.UseVisualStyleBackColor = true;
@@ -353,7 +354,7 @@ namespace QobuzDownloaderX
             this.downloaderButton.Location = new System.Drawing.Point(0, 100);
             this.downloaderButton.Name = "downloaderButton";
             this.downloaderButton.Size = new System.Drawing.Size(180, 66);
-            this.downloaderButton.TabIndex = 1;
+            this.downloaderButton.TabIndex = 0;
             this.downloaderButton.Text = "DOWNLOADER";
             this.downloaderButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.downloaderButton.UseVisualStyleBackColor = true;
@@ -361,14 +362,27 @@ namespace QobuzDownloaderX
             // 
             // logoPanel
             // 
+            this.logoPanel.Controls.Add(this.gitHubLinkLabel);
             this.logoPanel.Controls.Add(this.versionNumber);
             this.logoPanel.Controls.Add(this.logoPictureBox);
             this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.logoPanel.Location = new System.Drawing.Point(0, 0);
             this.logoPanel.Name = "logoPanel";
             this.logoPanel.Size = new System.Drawing.Size(180, 100);
-            this.logoPanel.TabIndex = 0;
+            this.logoPanel.TabIndex = 6;
             this.logoPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.logoPanel_MouseMove);
+            // 
+            // gitHubLinkLabel
+            // 
+            this.gitHubLinkLabel.AutoSize = true;
+            this.gitHubLinkLabel.Font = new System.Drawing.Font("Nirmala UI", 9.25F);
+            this.gitHubLinkLabel.Location = new System.Drawing.Point(5, 79);
+            this.gitHubLinkLabel.Name = "gitHubLinkLabel";
+            this.gitHubLinkLabel.Size = new System.Drawing.Size(48, 17);
+            this.gitHubLinkLabel.TabIndex = 0;
+            this.gitHubLinkLabel.TabStop = true;
+            this.gitHubLinkLabel.Text = "GitHub";
+            this.gitHubLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.gitHubLinkLabel_LinkClicked);
             // 
             // versionNumber
             // 
@@ -377,7 +391,7 @@ namespace QobuzDownloaderX
             this.versionNumber.Location = new System.Drawing.Point(119, 79);
             this.versionNumber.Name = "versionNumber";
             this.versionNumber.Size = new System.Drawing.Size(58, 18);
-            this.versionNumber.TabIndex = 0;
+            this.versionNumber.TabIndex = 1;
             this.versionNumber.Text = "#.#.#.#";
             this.versionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -2735,6 +2749,7 @@ namespace QobuzDownloaderX
             this.Shown += new System.EventHandler(this.qbdlxForm_Shown);
             this.navigationPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
+            this.logoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.downloaderPanel.ResumeLayout(false);
             this.downloaderPanel.PerformLayout();
@@ -2955,5 +2970,6 @@ namespace QobuzDownloaderX
         internal CheckBox showTipsCheckBox;
         internal TextBox vaTrackTemplateTextBox;
         internal Label vaTrackTemplateLabel;
+        private LinkLabel gitHubLinkLabel;
     }
 }

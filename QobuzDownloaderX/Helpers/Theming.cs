@@ -125,6 +125,12 @@ namespace QobuzDownloaderX.Helpers
                         ? ColorTranslator.FromHtml(_currentTheme.TextBoxBackground)
                         : ColorTranslator.FromHtml(_currentTheme.ButtonBackground);
                 }
+                else if (control is LinkLabel ll)
+                {
+                    ll.LinkColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                    ll.ActiveLinkColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                    ll.VisitedLinkColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                }
                 else if (control is Label label)
                 {
                     if (label.Name == "versionNumber") { if (parent.Name == "LoginForm") { label.BackColor = ColorTranslator.FromHtml(_currentTheme.MainPanelBackground); } else { label.BackColor = ColorTranslator.FromHtml(_currentTheme.SidePanelBackground); } }
