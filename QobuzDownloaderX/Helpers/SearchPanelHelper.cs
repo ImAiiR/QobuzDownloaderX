@@ -20,6 +20,8 @@ namespace QobuzDownloaderX.Helpers
 
     internal sealed class SearchPanelHelper
     {
+        private static int? lastAnchorRowIndex = null;
+
         public static readonly List<int> selectedRowindices = new List<int>();
 
         private readonly Service QoService = new Service();
@@ -526,7 +528,6 @@ namespace QobuzDownloaderX.Helpers
         {
             if (parent == null) return;
 
-            // No queremos que PictureBox ni Button disparen esto
             if (!(parent is Button) && !(parent is PictureBox))
             {
                 parent.Click += (s, e) =>
@@ -589,22 +590,17 @@ namespace QobuzDownloaderX.Helpers
             };
         }
 
-        /// <summary>
-        /// Handles a row panel click: toggles selection, updates buttons, label, and repaints the row.
-        /// </summary>
-        /// <param name="clickedControl">The control that was clicked (sender).</param>
-        /// <param name="searchResultsPanel">The parent panel containing all row panels.</param>
-        /// <param name="selectedRowIndices">The list tracking selected row indices.</param>
-        /// <param name="parentForm">The form containing buttons and labels to update.</param>
-        private static void RowClickHandler(
-            Control clickedControl,
-            Panel searchResultsPanel,
-            List<int> selectedRowIndices,
-            qbdlxForm parentForm)
+        ///// <summary>
+        ///// Handles a row panel click.
+        ///// </summary>
+        ///// <param name="clickedControl">The control that was clicked (sender).</param>
+        ///// <param name="searchResultsPanel">The parent panel containing all row panels.</param>
+        ///// <param name="selectedRowIndices">The list tracking selected row indices.</param>
+        ///// <param name="parentForm">The form containing buttons and labels to update.</param>
+        private static void RowClickHandler(Control clickedControl, Panel searchResultsPanel, List<int> selectedRowIndices, qbdlxForm parentForm)
         {
             if (clickedControl == null) return;
 
-            // Find the top-level row panel (the one that has RowInfo in its Tag)
             Panel rowPanel = null;
             Control current = clickedControl;
             while (current != null)
@@ -618,47 +614,106 @@ namespace QobuzDownloaderX.Helpers
             }
             if (rowPanel == null) return;
 
-            var info = (RowInfo)rowPanel.Tag;
-            info.Selected = !info.Selected;
+            int clickedIndex = searchResultsPanel.Controls.IndexOf(rowPanel);
+            if (clickedIndex < 0) return;
 
-            // Find the select button anywhere inside rowPanel recursively
-            Button selectButton = null;
-            Queue<Control> queue = new Queue<Control>();
-            queue.Enqueue(rowPanel);
-            while (queue.Count > 0)
+            bool ctrl = (Control.ModifierKeys & Keys.Control) == Keys.Control;
+            bool shift = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+
+            // ===== SHIFT =====
+            if (shift && lastAnchorRowIndex.HasValue)
             {
-                var ctrl = queue.Dequeue();
-                if (ctrl is Button btn) // first button found, assume it's the select button
+                int start = Math.Min(lastAnchorRowIndex.Value, clickedIndex);
+                int end = Math.Max(lastAnchorRowIndex.Value, clickedIndex);
+
+                for (int i = start; i <= end; i++)
                 {
-                    selectButton = btn;
-                    break;
+                    if (!selectedRowIndices.Contains(i))
+                        SelectRow(searchResultsPanel, selectedRowIndices, i, true);
                 }
-                foreach (Control child in ctrl.Controls)
-                    queue.Enqueue(child);
             }
-            // Toggle button visibility if found
-            if (selectButton != null)
-                selectButton.Visible = !info.Selected;
+            // ===== CTRL =====
+            else if (ctrl)
+            {
+                ToggleRow(searchResultsPanel, selectedRowIndices, clickedIndex);
+                lastAnchorRowIndex = clickedIndex;
+            }
+            // ===== NORMAL CLICK =====
+            else
+            {
+                ToggleRow(searchResultsPanel, selectedRowIndices, clickedIndex);
+                lastAnchorRowIndex = clickedIndex;
+            }
 
-            // Track selected row index
-            int currentRowIndex = searchResultsPanel.Controls.IndexOf(rowPanel);
-            if (info.Selected && !selectedRowIndices.Contains(currentRowIndex))
-                selectedRowIndices.Add(currentRowIndex);
-            else if (!info.Selected)
-                selectedRowIndices.Remove(currentRowIndex);
+            UpdateSelectionUI(searchResultsPanel, selectedRowIndices, parentForm);
+        }
 
-            // Update parent form buttons
-            parentForm.selectAllRowsButton.Enabled = selectedRowIndices.Count < searchResultsPanel.Controls.Count;
-            parentForm.deselectAllRowsButton.Enabled = selectedRowIndices.Any();
-            parentForm.batchDownloadSelectedRowsButton.Enabled = selectedRowIndices.Any() && !qbdlxForm.getLinkTypeIsBusy;
+        private static void ToggleRow(Panel panel, List<int> selected, int index)
+        {
+            if (index < 0 || index >= panel.Controls.Count) return;
 
-            // Update label showing number of selected rows
-            parentForm.selectedRowsCountLabel.Text = string.Format(
-                parentForm.languageManager.GetTranslation("selectedRowsCountLabel"),
-                selectedRowIndices.Count);
+            var row = panel.Controls[index] as Panel;
+            if (row?.Tag is RowInfo info)
+            {
+                info.Selected = !info.Selected;
 
-            // Repaint the row to reflect highlight/checkmark
-            rowPanel.Invalidate();
+                if (info.Selected)
+                    selected.Add(index);
+                else
+                    selected.Remove(index);
+
+                ToggleGetButton(row, !info.Selected);
+                row.Invalidate();
+            }
+        }
+
+        private static void ToggleGetButton(Panel rowPanel, bool visible)
+        {
+            foreach (Control c in rowPanel.Controls)
+            {
+                if (c is TableLayoutPanel t)
+                {
+                    foreach (Control inner in t.Controls)
+                    {
+                        if (inner is Button btn)
+                        {
+                            btn.Visible = visible;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void UpdateSelectionUI(Panel panel, List<int> selected, qbdlxForm form)
+        {
+            form.selectAllRowsButton.Enabled = selected.Count < panel.Controls.Count;
+            form.deselectAllRowsButton.Enabled = selected.Any();
+            form.batchDownloadSelectedRowsButton.Enabled =
+                selected.Any() && !qbdlxForm.getLinkTypeIsBusy;
+
+            form.selectedRowsCountLabel.Text = string.Format(
+                form.languageManager.GetTranslation("selectedRowsCountLabel"),
+                selected.Count);
+        }
+
+        private static void SelectRow(Panel panel, List<int> selected, int index, bool selectedState)
+        {
+            if (index < 0 || index >= panel.Controls.Count) return;
+
+            var row = panel.Controls[index] as Panel;
+            if (row?.Tag is RowInfo info)
+            {
+                info.Selected = selectedState;
+
+                if (selectedState && !selected.Contains(index))
+                    selected.Add(index);
+                else if (!selectedState)
+                    selected.Remove(index);
+
+                ToggleGetButton(row, !selectedState);
+                row.Invalidate();
+            }
         }
 
         private void SendURL(qbdlxForm mainForm, string url)
