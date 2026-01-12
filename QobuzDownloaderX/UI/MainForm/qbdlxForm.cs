@@ -204,23 +204,6 @@ namespace QobuzDownloaderX
             Miscellaneous.InitializeLanguage(this);
             Miscellaneous.SetDownloadPath(this);
 
-            // Fix hidden controls tab-order
-            // --- SEARCH PAGE
-            searchAlbumsButton.TabIndex = 0;
-            searchTracksButton.TabIndex = 1;
-            // --- SETTINGS PAGE
-            downloadFolderTextbox.TabIndex = 0;
-            openFolderButton.TabIndex = 1;
-            selectFolderButton.TabIndex = 2;
-            artistTemplateTextbox.TabIndex = 3;
-            albumTemplateTextbox.TabIndex = 4;
-            trackTemplateTextbox.TabIndex = 5;
-            playlistTemplateTextbox.TabIndex = 6;
-            favoritesTemplateTextbox.TabIndex = 7;
-            saveTemplatesButton.TabIndex = 8;
-            resetTemplatesButton.TabIndex = 9;
-            templatesListTextbox.TabIndex = 10;
-
             // Get and display version number.
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 

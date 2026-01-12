@@ -411,10 +411,10 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextbox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(186, 166);
+            this.downloaderPanel.Location = new System.Drawing.Point(184, 275);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
-            this.downloaderPanel.TabIndex = 5;
+            this.downloaderPanel.TabIndex = 0;
             // 
             // batchDownloadProgressCountLabel
             // 
@@ -424,7 +424,7 @@ namespace QobuzDownloaderX
             this.batchDownloadProgressCountLabel.Location = new System.Drawing.Point(185, 143);
             this.batchDownloadProgressCountLabel.Name = "batchDownloadProgressCountLabel";
             this.batchDownloadProgressCountLabel.Size = new System.Drawing.Size(21, 21);
-            this.batchDownloadProgressCountLabel.TabIndex = 13;
+            this.batchDownloadProgressCountLabel.TabIndex = 8;
             this.batchDownloadProgressCountLabel.Text = "…";
             this.batchDownloadProgressCountLabel.Visible = false;
             // 
@@ -436,7 +436,7 @@ namespace QobuzDownloaderX
             this.progressItemsCountLabel.Location = new System.Drawing.Point(185, 118);
             this.progressItemsCountLabel.Name = "progressItemsCountLabel";
             this.progressItemsCountLabel.Size = new System.Drawing.Size(21, 21);
-            this.progressItemsCountLabel.TabIndex = 12;
+            this.progressItemsCountLabel.TabIndex = 7;
             this.progressItemsCountLabel.Text = "…";
             this.progressItemsCountLabel.Visible = false;
             // 
@@ -550,7 +550,7 @@ namespace QobuzDownloaderX
             this.skipButton.Location = new System.Drawing.Point(638, 81);
             this.skipButton.Name = "skipButton";
             this.skipButton.Size = new System.Drawing.Size(110, 31);
-            this.skipButton.TabIndex = 9;
+            this.skipButton.TabIndex = 5;
             this.skipButton.Text = "SKIP";
             this.skipButton.UseVisualStyleBackColor = false;
             this.skipButton.Click += new System.EventHandler(this.skipButton_Click);
@@ -568,7 +568,7 @@ namespace QobuzDownloaderX
             this.abortButton.Location = new System.Drawing.Point(522, 81);
             this.abortButton.Name = "abortButton";
             this.abortButton.Size = new System.Drawing.Size(110, 31);
-            this.abortButton.TabIndex = 8;
+            this.abortButton.TabIndex = 4;
             this.abortButton.Text = "ABORT";
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
@@ -582,7 +582,7 @@ namespace QobuzDownloaderX
             this.progressBarDownload.Name = "progressBarDownload";
             this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
             this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 4;
+            this.progressBarDownload.TabIndex = 6;
             // 
             // progressLabel
             // 
@@ -593,7 +593,7 @@ namespace QobuzDownloaderX
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.progressLabel.Size = new System.Drawing.Size(130, 19);
-            this.progressLabel.TabIndex = 7;
+            this.progressLabel.TabIndex = 13;
             this.progressLabel.Text = "No download active";
             // 
             // downloadButton
@@ -624,7 +624,7 @@ namespace QobuzDownloaderX
             this.infoLabel.Name = "infoLabel";
             this.infoLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.infoLabel.Size = new System.Drawing.Size(560, 21);
-            this.infoLabel.TabIndex = 6;
+            this.infoLabel.TabIndex = 11;
             this.infoLabel.Text = "Released xxxx-xx-xx • xx Tracks • UPC";
             // 
             // albumLabel
@@ -636,7 +636,7 @@ namespace QobuzDownloaderX
             this.albumLabel.Name = "albumLabel";
             this.albumLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.albumLabel.Size = new System.Drawing.Size(562, 32);
-            this.albumLabel.TabIndex = 4;
+            this.albumLabel.TabIndex = 9;
             this.albumLabel.Text = "Placeholder Album Name";
             // 
             // artistLabel
@@ -648,7 +648,7 @@ namespace QobuzDownloaderX
             this.artistLabel.Name = "artistLabel";
             this.artistLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.artistLabel.Size = new System.Drawing.Size(560, 21);
-            this.artistLabel.TabIndex = 5;
+            this.artistLabel.TabIndex = 10;
             this.artistLabel.Text = "Placeholder Artist Name";
             // 
             // downloadOutput
@@ -665,7 +665,7 @@ namespace QobuzDownloaderX
             this.downloadOutput.ReadOnly = true;
             this.downloadOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.downloadOutput.Size = new System.Drawing.Size(733, 295);
-            this.downloadOutput.TabIndex = 7;
+            this.downloadOutput.TabIndex = 12;
             this.downloadOutput.Text = "Test String";
             this.downloadOutput.TextChanged += new System.EventHandler(this.downloadOutput_TextChanged);
             // 
@@ -737,10 +737,10 @@ namespace QobuzDownloaderX
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(380, 80);
+            this.settingsPanel.Location = new System.Drawing.Point(468, 201);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
-            this.settingsPanel.TabIndex = 1;
+            this.settingsPanel.TabIndex = 0;
             // 
             // vaTrackTemplateTextbox
             // 
@@ -752,7 +752,7 @@ namespace QobuzDownloaderX
             this.vaTrackTemplateTextbox.Multiline = true;
             this.vaTrackTemplateTextbox.Name = "vaTrackTemplateTextbox";
             this.vaTrackTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.vaTrackTemplateTextbox.TabIndex = 32;
+            this.vaTrackTemplateTextbox.TabIndex = 13;
             this.vaTrackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
             this.vaTrackTemplateTextbox.WordWrap = false;
             // 
@@ -763,7 +763,7 @@ namespace QobuzDownloaderX
             this.vaTrackTemplateLabel.Location = new System.Drawing.Point(0, 279);
             this.vaTrackTemplateLabel.Name = "vaTrackTemplateLabel";
             this.vaTrackTemplateLabel.Size = new System.Drawing.Size(242, 25);
-            this.vaTrackTemplateLabel.TabIndex = 31;
+            this.vaTrackTemplateLabel.TabIndex = 12;
             this.vaTrackTemplateLabel.Text = "(V/A) TRACK TEMPLATE";
             this.vaTrackTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -775,7 +775,7 @@ namespace QobuzDownloaderX
             this.flowLayoutPanel1.Location = new System.Drawing.Point(248, 374);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(443, 37);
-            this.flowLayoutPanel1.TabIndex = 30;
+            this.flowLayoutPanel1.TabIndex = 18;
             // 
             // resetTemplatesButton
             // 
@@ -810,7 +810,7 @@ namespace QobuzDownloaderX
             this.saveTemplatesButton.Location = new System.Drawing.Point(266, 3);
             this.saveTemplatesButton.Name = "saveTemplatesButton";
             this.saveTemplatesButton.Size = new System.Drawing.Size(84, 31);
-            this.saveTemplatesButton.TabIndex = 2;
+            this.saveTemplatesButton.TabIndex = 0;
             this.saveTemplatesButton.Text = "Save";
             this.saveTemplatesButton.UseVisualStyleBackColor = false;
             this.saveTemplatesButton.Click += new System.EventHandler(this.saveTemplatesButton_Click);
@@ -823,7 +823,7 @@ namespace QobuzDownloaderX
             this.folderButtonsPanel.Location = new System.Drawing.Point(248, 101);
             this.folderButtonsPanel.Name = "folderButtonsPanel";
             this.folderButtonsPanel.Size = new System.Drawing.Size(443, 37);
-            this.folderButtonsPanel.TabIndex = 29;
+            this.folderButtonsPanel.TabIndex = 4;
             // 
             // selectFolderButton
             // 
@@ -858,7 +858,7 @@ namespace QobuzDownloaderX
             this.openFolderButton.Location = new System.Drawing.Point(268, 3);
             this.openFolderButton.Name = "openFolderButton";
             this.openFolderButton.Size = new System.Drawing.Size(82, 31);
-            this.openFolderButton.TabIndex = 1;
+            this.openFolderButton.TabIndex = 0;
             this.openFolderButton.Text = "Open Folder";
             this.openFolderButton.UseVisualStyleBackColor = false;
             this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
@@ -872,7 +872,7 @@ namespace QobuzDownloaderX
             this.templatesListLabel.Location = new System.Drawing.Point(0, 413);
             this.templatesListLabel.Name = "templatesListLabel";
             this.templatesListLabel.Size = new System.Drawing.Size(771, 25);
-            this.templatesListLabel.TabIndex = 28;
+            this.templatesListLabel.TabIndex = 19;
             this.templatesListLabel.Text = "TEMPLATES LIST";
             this.templatesListLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -890,7 +890,7 @@ namespace QobuzDownloaderX
             this.templatesListTextbox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.templatesListTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.templatesListTextbox.Size = new System.Drawing.Size(595, 77);
-            this.templatesListTextbox.TabIndex = 27;
+            this.templatesListTextbox.TabIndex = 20;
             this.templatesListTextbox.Text = resources.GetString("templatesListTextbox.Text");
             this.templatesListTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -907,7 +907,7 @@ namespace QobuzDownloaderX
             this.additionalSettingsButton.Location = new System.Drawing.Point(327, 533);
             this.additionalSettingsButton.Name = "additionalSettingsButton";
             this.additionalSettingsButton.Size = new System.Drawing.Size(117, 31);
-            this.additionalSettingsButton.TabIndex = 26;
+            this.additionalSettingsButton.TabIndex = 21;
             this.additionalSettingsButton.Text = "Additional Settings";
             this.additionalSettingsButton.UseVisualStyleBackColor = false;
             this.additionalSettingsButton.Click += new System.EventHandler(this.additionalSettingsButton_Click);
@@ -922,7 +922,7 @@ namespace QobuzDownloaderX
             this.trackTemplateTextbox.Multiline = true;
             this.trackTemplateTextbox.Name = "trackTemplateTextbox";
             this.trackTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.trackTemplateTextbox.TabIndex = 2;
+            this.trackTemplateTextbox.TabIndex = 11;
             this.trackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
             this.trackTemplateTextbox.WordWrap = false;
             // 
@@ -933,7 +933,7 @@ namespace QobuzDownloaderX
             this.trackTemplateLabel.Location = new System.Drawing.Point(0, 246);
             this.trackTemplateLabel.Name = "trackTemplateLabel";
             this.trackTemplateLabel.Size = new System.Drawing.Size(242, 25);
-            this.trackTemplateLabel.TabIndex = 1;
+            this.trackTemplateLabel.TabIndex = 10;
             this.trackTemplateLabel.Text = "(DEFAULT) TRACK TEMPLATE";
             this.trackTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -947,7 +947,7 @@ namespace QobuzDownloaderX
             this.playlistTemplateTextbox.Multiline = true;
             this.playlistTemplateTextbox.Name = "playlistTemplateTextbox";
             this.playlistTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.playlistTemplateTextbox.TabIndex = 2;
+            this.playlistTemplateTextbox.TabIndex = 15;
             this.playlistTemplateTextbox.Text = "%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%";
             this.playlistTemplateTextbox.WordWrap = false;
             // 
@@ -958,7 +958,7 @@ namespace QobuzDownloaderX
             this.playlistTemplateLabel.Location = new System.Drawing.Point(0, 309);
             this.playlistTemplateLabel.Name = "playlistTemplateLabel";
             this.playlistTemplateLabel.Size = new System.Drawing.Size(242, 25);
-            this.playlistTemplateLabel.TabIndex = 1;
+            this.playlistTemplateLabel.TabIndex = 14;
             this.playlistTemplateLabel.Text = "PLAYLIST TEMPLATE";
             this.playlistTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -972,7 +972,7 @@ namespace QobuzDownloaderX
             this.artistTemplateTextbox.Multiline = true;
             this.artistTemplateTextbox.Name = "artistTemplateTextbox";
             this.artistTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.artistTemplateTextbox.TabIndex = 2;
+            this.artistTemplateTextbox.TabIndex = 7;
             this.artistTemplateTextbox.Text = "%ArtistName%";
             this.artistTemplateTextbox.WordWrap = false;
             // 
@@ -986,7 +986,7 @@ namespace QobuzDownloaderX
             this.favoritesTemplateTextbox.Multiline = true;
             this.favoritesTemplateTextbox.Name = "favoritesTemplateTextbox";
             this.favoritesTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.favoritesTemplateTextbox.TabIndex = 2;
+            this.favoritesTemplateTextbox.TabIndex = 17;
             this.favoritesTemplateTextbox.Text = "- Favorites";
             this.favoritesTemplateTextbox.WordWrap = false;
             // 
@@ -1000,7 +1000,7 @@ namespace QobuzDownloaderX
             this.albumTemplateTextbox.Multiline = true;
             this.albumTemplateTextbox.Name = "albumTemplateTextbox";
             this.albumTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.albumTemplateTextbox.TabIndex = 2;
+            this.albumTemplateTextbox.TabIndex = 9;
             this.albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]";
             this.albumTemplateTextbox.WordWrap = false;
             // 
@@ -1014,7 +1014,7 @@ namespace QobuzDownloaderX
             this.downloadFolderTextbox.Multiline = true;
             this.downloadFolderTextbox.Name = "downloadFolderTextbox";
             this.downloadFolderTextbox.Size = new System.Drawing.Size(443, 21);
-            this.downloadFolderTextbox.TabIndex = 2;
+            this.downloadFolderTextbox.TabIndex = 3;
             this.downloadFolderTextbox.Text = "no folder selected";
             this.downloadFolderTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
             this.downloadFolderTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
@@ -1026,7 +1026,7 @@ namespace QobuzDownloaderX
             this.artistTemplateLabel.Location = new System.Drawing.Point(0, 176);
             this.artistTemplateLabel.Name = "artistTemplateLabel";
             this.artistTemplateLabel.Size = new System.Drawing.Size(242, 25);
-            this.artistTemplateLabel.TabIndex = 1;
+            this.artistTemplateLabel.TabIndex = 6;
             this.artistTemplateLabel.Text = "ARTIST TEMPLATE";
             this.artistTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1037,7 +1037,7 @@ namespace QobuzDownloaderX
             this.favoritesTemplateLabel.Location = new System.Drawing.Point(0, 344);
             this.favoritesTemplateLabel.Name = "favoritesTemplateLabel";
             this.favoritesTemplateLabel.Size = new System.Drawing.Size(242, 25);
-            this.favoritesTemplateLabel.TabIndex = 1;
+            this.favoritesTemplateLabel.TabIndex = 16;
             this.favoritesTemplateLabel.Text = "FAVORITES TEMPLATE";
             this.favoritesTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1048,7 +1048,7 @@ namespace QobuzDownloaderX
             this.albumTemplateLabel.Location = new System.Drawing.Point(0, 211);
             this.albumTemplateLabel.Name = "albumTemplateLabel";
             this.albumTemplateLabel.Size = new System.Drawing.Size(242, 25);
-            this.albumTemplateLabel.TabIndex = 1;
+            this.albumTemplateLabel.TabIndex = 8;
             this.albumTemplateLabel.Text = "ALBUM TEMPLATE";
             this.albumTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1059,7 +1059,7 @@ namespace QobuzDownloaderX
             this.downloadFolderLabel.Location = new System.Drawing.Point(0, 71);
             this.downloadFolderLabel.Name = "downloadFolderLabel";
             this.downloadFolderLabel.Size = new System.Drawing.Size(242, 25);
-            this.downloadFolderLabel.TabIndex = 1;
+            this.downloadFolderLabel.TabIndex = 2;
             this.downloadFolderLabel.Text = "DOWNLOAD FOLDER";
             this.downloadFolderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1081,7 +1081,7 @@ namespace QobuzDownloaderX
             this.templatesLabel.Location = new System.Drawing.Point(0, 141);
             this.templatesLabel.Name = "templatesLabel";
             this.templatesLabel.Size = new System.Drawing.Size(771, 25);
-            this.templatesLabel.TabIndex = 1;
+            this.templatesLabel.TabIndex = 5;
             this.templatesLabel.Text = "TEMPLATES";
             this.templatesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1093,7 +1093,7 @@ namespace QobuzDownloaderX
             this.settingsLabel.Location = new System.Drawing.Point(13, 10);
             this.settingsLabel.Name = "settingsLabel";
             this.settingsLabel.Size = new System.Drawing.Size(554, 25);
-            this.settingsLabel.TabIndex = 1;
+            this.settingsLabel.TabIndex = 0;
             this.settingsLabel.Text = "SETTINGS                                                                         " +
     "                   ";
             this.settingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.settingsLabel_MouseMove);
@@ -1179,7 +1179,7 @@ namespace QobuzDownloaderX
             this.disclaimerLabel.Location = new System.Drawing.Point(18, 150);
             this.disclaimerLabel.Name = "disclaimerLabel";
             this.disclaimerLabel.Size = new System.Drawing.Size(733, 450);
-            this.disclaimerLabel.TabIndex = 2;
+            this.disclaimerLabel.TabIndex = 3;
             this.disclaimerLabel.Text = "DISCLAIMER / LEGAL ADVICE";
             this.disclaimerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1227,10 +1227,10 @@ namespace QobuzDownloaderX
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
             this.aboutPanel.Controls.Add(this.disclaimerLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(787, 352);
+            this.aboutPanel.Location = new System.Drawing.Point(807, 126);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
-            this.aboutPanel.TabIndex = 1;
+            this.aboutPanel.TabIndex = 0;
             // 
             // aboutLabel
             // 
@@ -1240,7 +1240,7 @@ namespace QobuzDownloaderX
             this.aboutLabel.Location = new System.Drawing.Point(13, 10);
             this.aboutLabel.Name = "aboutLabel";
             this.aboutLabel.Size = new System.Drawing.Size(552, 25);
-            this.aboutLabel.TabIndex = 1;
+            this.aboutLabel.TabIndex = 0;
             this.aboutLabel.Text = "ABOUT                                                                            " +
     "                    ";
             this.aboutLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.aboutLabel_MouseMove);
@@ -1273,10 +1273,10 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(509, 40);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(583, 166);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
-            this.extraSettingsPanel.TabIndex = 3;
+            this.extraSettingsPanel.TabIndex = 0;
             this.extraSettingsPanel.Visible = false;
             // 
             // playlistSectionLabel
@@ -1286,7 +1286,7 @@ namespace QobuzDownloaderX
             this.playlistSectionLabel.Location = new System.Drawing.Point(389, 186);
             this.playlistSectionLabel.Name = "playlistSectionLabel";
             this.playlistSectionLabel.Size = new System.Drawing.Size(362, 25);
-            this.playlistSectionLabel.TabIndex = 44;
+            this.playlistSectionLabel.TabIndex = 10;
             this.playlistSectionLabel.Text = "PLAYLIST OPTIONS";
             this.playlistSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1297,7 +1297,7 @@ namespace QobuzDownloaderX
             this.downloadFromArtistLabel.Location = new System.Drawing.Point(389, 424);
             this.downloadFromArtistLabel.Name = "downloadFromArtistLabel";
             this.downloadFromArtistLabel.Size = new System.Drawing.Size(382, 25);
-            this.downloadFromArtistLabel.TabIndex = 43;
+            this.downloadFromArtistLabel.TabIndex = 21;
             this.downloadFromArtistLabel.Text = "DOWNLOAD FROM ARTIST";
             this.downloadFromArtistLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1319,7 +1319,7 @@ namespace QobuzDownloaderX
             this.downloadFromArtistListBox.MultiColumn = true;
             this.downloadFromArtistListBox.Name = "downloadFromArtistListBox";
             this.downloadFromArtistListBox.Size = new System.Drawing.Size(362, 34);
-            this.downloadFromArtistListBox.TabIndex = 42;
+            this.downloadFromArtistListBox.TabIndex = 22;
             this.downloadFromArtistListBox.SelectedIndexChanged += new System.EventHandler(this.downloadFromArtistListBox_SelectedIndexChanged);
             // 
             // advancedOptionsPanelRight
@@ -1329,7 +1329,7 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelRight.Location = new System.Drawing.Point(392, 294);
             this.advancedOptionsPanelRight.Name = "advancedOptionsPanelRight";
             this.advancedOptionsPanelRight.Size = new System.Drawing.Size(359, 124);
-            this.advancedOptionsPanelRight.TabIndex = 41;
+            this.advancedOptionsPanelRight.TabIndex = 14;
             // 
             // mergeArtistNamesCheckBox
             // 
@@ -1341,7 +1341,7 @@ namespace QobuzDownloaderX
             this.mergeArtistNamesCheckBox.Location = new System.Drawing.Point(3, 3);
             this.mergeArtistNamesCheckBox.Name = "mergeArtistNamesCheckBox";
             this.mergeArtistNamesCheckBox.Size = new System.Drawing.Size(131, 17);
-            this.mergeArtistNamesCheckBox.TabIndex = 15;
+            this.mergeArtistNamesCheckBox.TabIndex = 0;
             this.mergeArtistNamesCheckBox.Text = "Merge Artists Names";
             this.mergeArtistNamesCheckBox.UseVisualStyleBackColor = true;
             this.mergeArtistNamesCheckBox.CheckedChanged += new System.EventHandler(this.mergeArtistNamesCheckBox_CheckedChanged);
@@ -1356,7 +1356,7 @@ namespace QobuzDownloaderX
             this.artistNamesSeparatorsPanel.Location = new System.Drawing.Point(3, 26);
             this.artistNamesSeparatorsPanel.Name = "artistNamesSeparatorsPanel";
             this.artistNamesSeparatorsPanel.Size = new System.Drawing.Size(221, 55);
-            this.artistNamesSeparatorsPanel.TabIndex = 44;
+            this.artistNamesSeparatorsPanel.TabIndex = 1;
             // 
             // primaryListSeparatorLabel
             // 
@@ -1365,7 +1365,7 @@ namespace QobuzDownloaderX
             this.primaryListSeparatorLabel.Location = new System.Drawing.Point(3, 7);
             this.primaryListSeparatorLabel.Name = "primaryListSeparatorLabel";
             this.primaryListSeparatorLabel.Size = new System.Drawing.Size(166, 13);
-            this.primaryListSeparatorLabel.TabIndex = 31;
+            this.primaryListSeparatorLabel.TabIndex = 0;
             this.primaryListSeparatorLabel.Text = "Primary list separator";
             this.primaryListSeparatorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1374,7 +1374,7 @@ namespace QobuzDownloaderX
             this.primaryListSeparatorTextBox.Location = new System.Drawing.Point(169, 4);
             this.primaryListSeparatorTextBox.Name = "primaryListSeparatorTextBox";
             this.primaryListSeparatorTextBox.Size = new System.Drawing.Size(45, 22);
-            this.primaryListSeparatorTextBox.TabIndex = 33;
+            this.primaryListSeparatorTextBox.TabIndex = 1;
             this.primaryListSeparatorTextBox.Text = " & ";
             this.primaryListSeparatorTextBox.Leave += new System.EventHandler(this.primaryListSeparatorTextBox_Leave);
             // 
@@ -1385,7 +1385,7 @@ namespace QobuzDownloaderX
             this.listEndSeparatorLabel.Location = new System.Drawing.Point(3, 35);
             this.listEndSeparatorLabel.Name = "listEndSeparatorLabel";
             this.listEndSeparatorLabel.Size = new System.Drawing.Size(166, 13);
-            this.listEndSeparatorLabel.TabIndex = 32;
+            this.listEndSeparatorLabel.TabIndex = 2;
             this.listEndSeparatorLabel.Text = "List end separator";
             this.listEndSeparatorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1394,7 +1394,7 @@ namespace QobuzDownloaderX
             this.listEndSeparatorTextBox.Location = new System.Drawing.Point(169, 30);
             this.listEndSeparatorTextBox.Name = "listEndSeparatorTextBox";
             this.listEndSeparatorTextBox.Size = new System.Drawing.Size(45, 22);
-            this.listEndSeparatorTextBox.TabIndex = 30;
+            this.listEndSeparatorTextBox.TabIndex = 3;
             this.listEndSeparatorTextBox.Text = ", ";
             this.listEndSeparatorTextBox.Leave += new System.EventHandler(this.listEndSeparatorTextBox_Leave);
             // 
@@ -1409,7 +1409,7 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelLeft.Location = new System.Drawing.Point(18, 294);
             this.advancedOptionsPanelLeft.Name = "advancedOptionsPanelLeft";
             this.advancedOptionsPanelLeft.Size = new System.Drawing.Size(352, 124);
-            this.advancedOptionsPanelLeft.TabIndex = 40;
+            this.advancedOptionsPanelLeft.TabIndex = 13;
             // 
             // useTLS13CheckBox
             // 
@@ -1421,7 +1421,7 @@ namespace QobuzDownloaderX
             this.useTLS13CheckBox.Location = new System.Drawing.Point(3, 3);
             this.useTLS13CheckBox.Name = "useTLS13CheckBox";
             this.useTLS13CheckBox.Size = new System.Drawing.Size(98, 17);
-            this.useTLS13CheckBox.TabIndex = 26;
+            this.useTLS13CheckBox.TabIndex = 0;
             this.useTLS13CheckBox.Text = "Enable TLS 1.3";
             this.useTLS13CheckBox.UseVisualStyleBackColor = true;
             this.useTLS13CheckBox.CheckedChanged += new System.EventHandler(this.useTLS13CheckBox_CheckedChanged);
@@ -1436,7 +1436,7 @@ namespace QobuzDownloaderX
             this.streamableCheckBox.Location = new System.Drawing.Point(107, 3);
             this.streamableCheckBox.Name = "streamableCheckBox";
             this.streamableCheckBox.Size = new System.Drawing.Size(117, 17);
-            this.streamableCheckBox.TabIndex = 27;
+            this.streamableCheckBox.TabIndex = 1;
             this.streamableCheckBox.Text = "Streamable Check";
             this.streamableCheckBox.UseVisualStyleBackColor = true;
             this.streamableCheckBox.CheckedChanged += new System.EventHandler(this.streamableCheckBox_CheckedChanged);
@@ -1451,7 +1451,7 @@ namespace QobuzDownloaderX
             this.downloadGoodiesCheckBox.Location = new System.Drawing.Point(3, 26);
             this.downloadGoodiesCheckBox.Name = "downloadGoodiesCheckBox";
             this.downloadGoodiesCheckBox.Size = new System.Drawing.Size(126, 17);
-            this.downloadGoodiesCheckBox.TabIndex = 28;
+            this.downloadGoodiesCheckBox.TabIndex = 2;
             this.downloadGoodiesCheckBox.Text = "Download Goodies";
             this.downloadGoodiesCheckBox.UseVisualStyleBackColor = true;
             this.downloadGoodiesCheckBox.CheckedChanged += new System.EventHandler(this.downloadGoodiesCheckBox_CheckedChanged);
@@ -1464,7 +1464,7 @@ namespace QobuzDownloaderX
             this.downloadSpeedCheckBox.Location = new System.Drawing.Point(135, 26);
             this.downloadSpeedCheckBox.Name = "downloadSpeedCheckBox";
             this.downloadSpeedCheckBox.Size = new System.Drawing.Size(142, 17);
-            this.downloadSpeedCheckBox.TabIndex = 29;
+            this.downloadSpeedCheckBox.TabIndex = 3;
             this.downloadSpeedCheckBox.Text = "Print Download Speed";
             this.downloadSpeedCheckBox.UseVisualStyleBackColor = true;
             this.downloadSpeedCheckBox.CheckedChanged += new System.EventHandler(this.downloadSpeedCheckBox_CheckedChanged);
@@ -1477,7 +1477,7 @@ namespace QobuzDownloaderX
             this.clearOldLogsCheckBox.Location = new System.Drawing.Point(3, 49);
             this.clearOldLogsCheckBox.Name = "clearOldLogsCheckBox";
             this.clearOldLogsCheckBox.Size = new System.Drawing.Size(154, 17);
-            this.clearOldLogsCheckBox.TabIndex = 30;
+            this.clearOldLogsCheckBox.TabIndex = 4;
             this.clearOldLogsCheckBox.Text = "Clear old logs on startup";
             this.clearOldLogsCheckBox.UseVisualStyleBackColor = true;
             this.clearOldLogsCheckBox.CheckedChanged += new System.EventHandler(this.clearOldLogsCheckBox_CheckedChanged);
@@ -1491,7 +1491,7 @@ namespace QobuzDownloaderX
             this.fixMD5sCheckBox.Location = new System.Drawing.Point(3, 72);
             this.fixMD5sCheckBox.Name = "fixMD5sCheckBox";
             this.fixMD5sCheckBox.Size = new System.Drawing.Size(346, 31);
-            this.fixMD5sCheckBox.TabIndex = 28;
+            this.fixMD5sCheckBox.TabIndex = 5;
             this.fixMD5sCheckBox.Text = "Auto-Fix Unset MD5s (must have FLAC in PATH variables)";
             this.fixMD5sCheckBox.UseVisualStyleBackColor = true;
             this.fixMD5sCheckBox.CheckedChanged += new System.EventHandler(this.fixMD5sCheckBox_CheckedChanged);
@@ -1503,7 +1503,7 @@ namespace QobuzDownloaderX
             this.useItemPosInPlaylistCheckBox.Location = new System.Drawing.Point(393, 215);
             this.useItemPosInPlaylistCheckBox.Name = "useItemPosInPlaylistCheckBox";
             this.useItemPosInPlaylistCheckBox.Size = new System.Drawing.Size(358, 40);
-            this.useItemPosInPlaylistCheckBox.TabIndex = 31;
+            this.useItemPosInPlaylistCheckBox.TabIndex = 11;
             this.useItemPosInPlaylistCheckBox.Text = "Use item positions instead of album track numbers in file names";
             this.useItemPosInPlaylistCheckBox.UseVisualStyleBackColor = true;
             this.useItemPosInPlaylistCheckBox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckBox_CheckedChanged);
@@ -1518,7 +1518,7 @@ namespace QobuzDownloaderX
             this.showTipsCheckBox.Location = new System.Drawing.Point(25, 529);
             this.showTipsCheckBox.Name = "showTipsCheckBox";
             this.showTipsCheckBox.Size = new System.Drawing.Size(78, 17);
-            this.showTipsCheckBox.TabIndex = 31;
+            this.showTipsCheckBox.TabIndex = 20;
             this.showTipsCheckBox.Text = "Show Tips";
             this.showTipsCheckBox.UseVisualStyleBackColor = true;
             this.showTipsCheckBox.CheckedChanged += new System.EventHandler(this.showTipsCheckBox_CheckedChanged);
@@ -1531,7 +1531,7 @@ namespace QobuzDownloaderX
             this.downloadAllFromArtistCheckBox.Location = new System.Drawing.Point(390, 504);
             this.downloadAllFromArtistCheckBox.Name = "downloadAllFromArtistCheckBox";
             this.downloadAllFromArtistCheckBox.Size = new System.Drawing.Size(260, 17);
-            this.downloadAllFromArtistCheckBox.TabIndex = 30;
+            this.downloadAllFromArtistCheckBox.TabIndex = 23;
             this.downloadAllFromArtistCheckBox.Text = "Download all from artist (it may include more)";
             this.downloadAllFromArtistCheckBox.UseVisualStyleBackColor = true;
             this.downloadAllFromArtistCheckBox.CheckedChanged += new System.EventHandler(this.downloadAllFromArtistCheckBox_CheckedChanged);
@@ -1544,7 +1544,7 @@ namespace QobuzDownloaderX
             this.dontSaveArtworkToDiskCheckBox.Location = new System.Drawing.Point(21, 241);
             this.dontSaveArtworkToDiskCheckBox.Name = "dontSaveArtworkToDiskCheckBox";
             this.dontSaveArtworkToDiskCheckBox.Size = new System.Drawing.Size(160, 17);
-            this.dontSaveArtworkToDiskCheckBox.TabIndex = 31;
+            this.dontSaveArtworkToDiskCheckBox.TabIndex = 9;
             this.dontSaveArtworkToDiskCheckBox.Text = "Don\'t save artwork to disk";
             this.dontSaveArtworkToDiskCheckBox.UseVisualStyleBackColor = true;
             this.dontSaveArtworkToDiskCheckBox.CheckedChanged += new System.EventHandler(this.dontSaveArtworkToDiskCheckBox_CheckedChanged);
@@ -1574,7 +1574,7 @@ namespace QobuzDownloaderX
             this.taggingOptionsPanel.Name = "taggingOptionsPanel";
             this.taggingOptionsPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.taggingOptionsPanel.Size = new System.Drawing.Size(733, 82);
-            this.taggingOptionsPanel.TabIndex = 38;
+            this.taggingOptionsPanel.TabIndex = 2;
             // 
             // albumArtistCheckBox
             // 
@@ -1586,7 +1586,7 @@ namespace QobuzDownloaderX
             this.albumArtistCheckBox.Location = new System.Drawing.Point(3, 3);
             this.albumArtistCheckBox.Name = "albumArtistCheckBox";
             this.albumArtistCheckBox.Size = new System.Drawing.Size(89, 17);
-            this.albumArtistCheckBox.TabIndex = 2;
+            this.albumArtistCheckBox.TabIndex = 0;
             this.albumArtistCheckBox.Text = "Album Artist";
             this.albumArtistCheckBox.UseVisualStyleBackColor = true;
             this.albumArtistCheckBox.CheckedChanged += new System.EventHandler(this.albumArtistCheckBox_CheckedChanged);
@@ -1601,7 +1601,7 @@ namespace QobuzDownloaderX
             this.albumTitleCheckBox.Location = new System.Drawing.Point(98, 3);
             this.albumTitleCheckBox.Name = "albumTitleCheckBox";
             this.albumTitleCheckBox.Size = new System.Drawing.Size(83, 17);
-            this.albumTitleCheckBox.TabIndex = 3;
+            this.albumTitleCheckBox.TabIndex = 1;
             this.albumTitleCheckBox.Text = "Album Title";
             this.albumTitleCheckBox.UseVisualStyleBackColor = true;
             this.albumTitleCheckBox.CheckedChanged += new System.EventHandler(this.albumTitleCheckBox_CheckedChanged);
@@ -1616,7 +1616,7 @@ namespace QobuzDownloaderX
             this.trackArtistCheckBox.Location = new System.Drawing.Point(187, 3);
             this.trackArtistCheckBox.Name = "trackArtistCheckBox";
             this.trackArtistCheckBox.Size = new System.Drawing.Size(81, 17);
-            this.trackArtistCheckBox.TabIndex = 5;
+            this.trackArtistCheckBox.TabIndex = 2;
             this.trackArtistCheckBox.Text = "Track Artist";
             this.trackArtistCheckBox.UseVisualStyleBackColor = true;
             this.trackArtistCheckBox.CheckedChanged += new System.EventHandler(this.trackArtistCheckBox_CheckedChanged);
@@ -1631,7 +1631,7 @@ namespace QobuzDownloaderX
             this.trackTitleCheckBox.Location = new System.Drawing.Point(274, 3);
             this.trackTitleCheckBox.Name = "trackTitleCheckBox";
             this.trackTitleCheckBox.Size = new System.Drawing.Size(75, 17);
-            this.trackTitleCheckBox.TabIndex = 4;
+            this.trackTitleCheckBox.TabIndex = 3;
             this.trackTitleCheckBox.Text = "Track Title";
             this.trackTitleCheckBox.UseVisualStyleBackColor = true;
             this.trackTitleCheckBox.CheckedChanged += new System.EventHandler(this.trackTitleCheckBox_CheckedChanged);
@@ -1646,7 +1646,7 @@ namespace QobuzDownloaderX
             this.releaseDateCheckBox.Location = new System.Drawing.Point(355, 3);
             this.releaseDateCheckBox.Name = "releaseDateCheckBox";
             this.releaseDateCheckBox.Size = new System.Drawing.Size(92, 17);
-            this.releaseDateCheckBox.TabIndex = 7;
+            this.releaseDateCheckBox.TabIndex = 4;
             this.releaseDateCheckBox.Text = "Release Date";
             this.releaseDateCheckBox.UseVisualStyleBackColor = true;
             this.releaseDateCheckBox.CheckedChanged += new System.EventHandler(this.releaseDateCheckBox_CheckedChanged);
@@ -1661,7 +1661,7 @@ namespace QobuzDownloaderX
             this.releaseTypeCheckBox.Location = new System.Drawing.Point(453, 3);
             this.releaseTypeCheckBox.Name = "releaseTypeCheckBox";
             this.releaseTypeCheckBox.Size = new System.Drawing.Size(90, 17);
-            this.releaseTypeCheckBox.TabIndex = 6;
+            this.releaseTypeCheckBox.TabIndex = 5;
             this.releaseTypeCheckBox.Text = "Release Type";
             this.releaseTypeCheckBox.UseVisualStyleBackColor = true;
             this.releaseTypeCheckBox.CheckedChanged += new System.EventHandler(this.releaseTypeCheckBox_CheckedChanged);
@@ -1676,7 +1676,7 @@ namespace QobuzDownloaderX
             this.genreCheckBox.Location = new System.Drawing.Point(549, 3);
             this.genreCheckBox.Name = "genreCheckBox";
             this.genreCheckBox.Size = new System.Drawing.Size(57, 17);
-            this.genreCheckBox.TabIndex = 8;
+            this.genreCheckBox.TabIndex = 6;
             this.genreCheckBox.Text = "Genre";
             this.genreCheckBox.UseVisualStyleBackColor = true;
             this.genreCheckBox.CheckedChanged += new System.EventHandler(this.genreCheckBox_CheckedChanged);
@@ -1691,7 +1691,7 @@ namespace QobuzDownloaderX
             this.trackNumberCheckBox.Location = new System.Drawing.Point(612, 3);
             this.trackNumberCheckBox.Name = "trackNumberCheckBox";
             this.trackNumberCheckBox.Size = new System.Drawing.Size(95, 17);
-            this.trackNumberCheckBox.TabIndex = 15;
+            this.trackNumberCheckBox.TabIndex = 7;
             this.trackNumberCheckBox.Text = "Track Number";
             this.trackNumberCheckBox.UseVisualStyleBackColor = true;
             this.trackNumberCheckBox.CheckedChanged += new System.EventHandler(this.trackNumberCheckBox_CheckedChanged);
@@ -1706,7 +1706,7 @@ namespace QobuzDownloaderX
             this.trackTotalCheckBox.Location = new System.Drawing.Point(3, 26);
             this.trackTotalCheckBox.Name = "trackTotalCheckBox";
             this.trackTotalCheckBox.Size = new System.Drawing.Size(83, 17);
-            this.trackTotalCheckBox.TabIndex = 14;
+            this.trackTotalCheckBox.TabIndex = 8;
             this.trackTotalCheckBox.Text = "Total Tracks";
             this.trackTotalCheckBox.UseVisualStyleBackColor = true;
             this.trackTotalCheckBox.CheckedChanged += new System.EventHandler(this.trackTotalCheckBox_CheckedChanged);
@@ -1721,7 +1721,7 @@ namespace QobuzDownloaderX
             this.discNumberCheckBox.Location = new System.Drawing.Point(92, 26);
             this.discNumberCheckBox.Name = "discNumberCheckBox";
             this.discNumberCheckBox.Size = new System.Drawing.Size(91, 17);
-            this.discNumberCheckBox.TabIndex = 16;
+            this.discNumberCheckBox.TabIndex = 9;
             this.discNumberCheckBox.Text = "Disc Number";
             this.discNumberCheckBox.UseVisualStyleBackColor = true;
             this.discNumberCheckBox.CheckedChanged += new System.EventHandler(this.discNumberCheckBox_CheckedChanged);
@@ -1736,7 +1736,7 @@ namespace QobuzDownloaderX
             this.discTotalCheckBox.Location = new System.Drawing.Point(189, 26);
             this.discTotalCheckBox.Name = "discTotalCheckBox";
             this.discTotalCheckBox.Size = new System.Drawing.Size(79, 17);
-            this.discTotalCheckBox.TabIndex = 17;
+            this.discTotalCheckBox.TabIndex = 10;
             this.discTotalCheckBox.Text = "Total Discs";
             this.discTotalCheckBox.UseVisualStyleBackColor = true;
             this.discTotalCheckBox.CheckedChanged += new System.EventHandler(this.discTotalCheckBox_CheckedChanged);
@@ -1751,7 +1751,7 @@ namespace QobuzDownloaderX
             this.composerCheckBox.Location = new System.Drawing.Point(274, 26);
             this.composerCheckBox.Name = "composerCheckBox";
             this.composerCheckBox.Size = new System.Drawing.Size(78, 17);
-            this.composerCheckBox.TabIndex = 9;
+            this.composerCheckBox.TabIndex = 11;
             this.composerCheckBox.Text = "Composer";
             this.composerCheckBox.UseVisualStyleBackColor = true;
             this.composerCheckBox.CheckedChanged += new System.EventHandler(this.composerCheckBox_CheckedChanged);
@@ -1766,7 +1766,7 @@ namespace QobuzDownloaderX
             this.explicitCheckBox.Location = new System.Drawing.Point(358, 26);
             this.explicitCheckBox.Name = "explicitCheckBox";
             this.explicitCheckBox.Size = new System.Drawing.Size(108, 17);
-            this.explicitCheckBox.TabIndex = 19;
+            this.explicitCheckBox.TabIndex = 12;
             this.explicitCheckBox.Text = "Explicit Advisory";
             this.explicitCheckBox.UseVisualStyleBackColor = true;
             this.explicitCheckBox.CheckedChanged += new System.EventHandler(this.explicitCheckBox_CheckedChanged);
@@ -1781,7 +1781,7 @@ namespace QobuzDownloaderX
             this.coverArtCheckBox.Location = new System.Drawing.Point(472, 26);
             this.coverArtCheckBox.Name = "coverArtCheckBox";
             this.coverArtCheckBox.Size = new System.Drawing.Size(73, 17);
-            this.coverArtCheckBox.TabIndex = 18;
+            this.coverArtCheckBox.TabIndex = 13;
             this.coverArtCheckBox.Text = "Cover Art";
             this.coverArtCheckBox.UseVisualStyleBackColor = true;
             this.coverArtCheckBox.CheckedChanged += new System.EventHandler(this.coverArtCheckBox_CheckedChanged);
@@ -1796,7 +1796,7 @@ namespace QobuzDownloaderX
             this.copyrightCheckBox.Location = new System.Drawing.Point(551, 26);
             this.copyrightCheckBox.Name = "copyrightCheckBox";
             this.copyrightCheckBox.Size = new System.Drawing.Size(77, 17);
-            this.copyrightCheckBox.TabIndex = 10;
+            this.copyrightCheckBox.TabIndex = 14;
             this.copyrightCheckBox.Text = "Copyright";
             this.copyrightCheckBox.UseVisualStyleBackColor = true;
             this.copyrightCheckBox.CheckedChanged += new System.EventHandler(this.copyrightCheckBox_CheckedChanged);
@@ -1811,7 +1811,7 @@ namespace QobuzDownloaderX
             this.labelCheckBox.Location = new System.Drawing.Point(634, 26);
             this.labelCheckBox.Name = "labelCheckBox";
             this.labelCheckBox.Size = new System.Drawing.Size(53, 17);
-            this.labelCheckBox.TabIndex = 11;
+            this.labelCheckBox.TabIndex = 15;
             this.labelCheckBox.Text = "Label";
             this.labelCheckBox.UseVisualStyleBackColor = true;
             this.labelCheckBox.CheckedChanged += new System.EventHandler(this.labelCheckBox_CheckedChanged);
@@ -1826,7 +1826,7 @@ namespace QobuzDownloaderX
             this.upcCheckBox.Location = new System.Drawing.Point(3, 49);
             this.upcCheckBox.Name = "upcCheckBox";
             this.upcCheckBox.Size = new System.Drawing.Size(99, 17);
-            this.upcCheckBox.TabIndex = 12;
+            this.upcCheckBox.TabIndex = 16;
             this.upcCheckBox.Text = "UPC / Barcode";
             this.upcCheckBox.UseVisualStyleBackColor = true;
             this.upcCheckBox.CheckedChanged += new System.EventHandler(this.upcCheckBox_CheckedChanged);
@@ -1841,7 +1841,7 @@ namespace QobuzDownloaderX
             this.isrcCheckBox.Location = new System.Drawing.Point(108, 49);
             this.isrcCheckBox.Name = "isrcCheckBox";
             this.isrcCheckBox.Size = new System.Drawing.Size(49, 17);
-            this.isrcCheckBox.TabIndex = 13;
+            this.isrcCheckBox.TabIndex = 17;
             this.isrcCheckBox.Text = "ISRC";
             this.isrcCheckBox.UseVisualStyleBackColor = true;
             this.isrcCheckBox.CheckedChanged += new System.EventHandler(this.isrcCheckBox_CheckedChanged);
@@ -1856,7 +1856,7 @@ namespace QobuzDownloaderX
             this.urlCheckBox.Location = new System.Drawing.Point(163, 49);
             this.urlCheckBox.Name = "urlCheckBox";
             this.urlCheckBox.Size = new System.Drawing.Size(46, 17);
-            this.urlCheckBox.TabIndex = 14;
+            this.urlCheckBox.TabIndex = 18;
             this.urlCheckBox.Text = "URL";
             this.urlCheckBox.UseVisualStyleBackColor = true;
             this.urlCheckBox.CheckedChanged += new System.EventHandler(this.urlCheckBox_CheckedChanged);
@@ -1868,7 +1868,7 @@ namespace QobuzDownloaderX
             this.languageLabel.Location = new System.Drawing.Point(22, 499);
             this.languageLabel.Name = "languageLabel";
             this.languageLabel.Size = new System.Drawing.Size(159, 13);
-            this.languageLabel.TabIndex = 37;
+            this.languageLabel.TabIndex = 18;
             this.languageLabel.Text = "Current Language";
             this.languageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1880,7 +1880,7 @@ namespace QobuzDownloaderX
             this.languageComboBox.Location = new System.Drawing.Point(187, 496);
             this.languageComboBox.Name = "languageComboBox";
             this.languageComboBox.Size = new System.Drawing.Size(121, 21);
-            this.languageComboBox.TabIndex = 36;
+            this.languageComboBox.TabIndex = 19;
             this.languageComboBox.SelectedIndexChanged += new System.EventHandler(this.languageComboBox_SelectedIndexChanged);
             // 
             // themeLabel
@@ -1890,7 +1890,7 @@ namespace QobuzDownloaderX
             this.themeLabel.Location = new System.Drawing.Point(22, 467);
             this.themeLabel.Name = "themeLabel";
             this.themeLabel.Size = new System.Drawing.Size(159, 13);
-            this.themeLabel.TabIndex = 35;
+            this.themeLabel.TabIndex = 16;
             this.themeLabel.Text = "Current Theme";
             this.themeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1902,7 +1902,7 @@ namespace QobuzDownloaderX
             this.themeComboBox.Location = new System.Drawing.Point(187, 464);
             this.themeComboBox.Name = "themeComboBox";
             this.themeComboBox.Size = new System.Drawing.Size(121, 21);
-            this.themeComboBox.TabIndex = 34;
+            this.themeComboBox.TabIndex = 17;
             this.themeComboBox.SelectedIndexChanged += new System.EventHandler(this.themeComboBox_SelectedIndexChanged);
             // 
             // themeSectionLabel
@@ -1912,7 +1912,7 @@ namespace QobuzDownloaderX
             this.themeSectionLabel.Location = new System.Drawing.Point(0, 424);
             this.themeSectionLabel.Name = "themeSectionLabel";
             this.themeSectionLabel.Size = new System.Drawing.Size(383, 25);
-            this.themeSectionLabel.TabIndex = 33;
+            this.themeSectionLabel.TabIndex = 15;
             this.themeSectionLabel.Text = "VISUAL OPTIONS";
             this.themeSectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1924,7 +1924,7 @@ namespace QobuzDownloaderX
             this.commentCheckBox.Location = new System.Drawing.Point(21, 155);
             this.commentCheckBox.Name = "commentCheckBox";
             this.commentCheckBox.Size = new System.Drawing.Size(115, 17);
-            this.commentCheckBox.TabIndex = 32;
+            this.commentCheckBox.TabIndex = 3;
             this.commentCheckBox.Text = "Custom comment";
             this.commentCheckBox.UseVisualStyleBackColor = true;
             this.commentCheckBox.CheckedChanged += new System.EventHandler(this.commentCheckBox_CheckedChanged);
@@ -1939,7 +1939,7 @@ namespace QobuzDownloaderX
             this.commentTextbox.Multiline = true;
             this.commentTextbox.Name = "commentTextbox";
             this.commentTextbox.Size = new System.Drawing.Size(503, 21);
-            this.commentTextbox.TabIndex = 31;
+            this.commentTextbox.TabIndex = 4;
             this.commentTextbox.WordWrap = false;
             this.commentTextbox.TextChanged += new System.EventHandler(this.commentTextbox_TextChanged);
             // 
@@ -1950,7 +1950,7 @@ namespace QobuzDownloaderX
             this.advancedOptionsLabel.Location = new System.Drawing.Point(0, 261);
             this.advancedOptionsLabel.Name = "advancedOptionsLabel";
             this.advancedOptionsLabel.Size = new System.Drawing.Size(771, 25);
-            this.advancedOptionsLabel.TabIndex = 26;
+            this.advancedOptionsLabel.TabIndex = 12;
             this.advancedOptionsLabel.Text = "ADVANCED OPTIONS";
             this.advancedOptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1966,7 +1966,7 @@ namespace QobuzDownloaderX
             this.closeAdditionalButton.Location = new System.Drawing.Point(327, 533);
             this.closeAdditionalButton.Name = "closeAdditionalButton";
             this.closeAdditionalButton.Size = new System.Drawing.Size(117, 31);
-            this.closeAdditionalButton.TabIndex = 25;
+            this.closeAdditionalButton.TabIndex = 24;
             this.closeAdditionalButton.Text = "Back to Settings";
             this.closeAdditionalButton.UseVisualStyleBackColor = false;
             this.closeAdditionalButton.Click += new System.EventHandler(this.closeAdditionalButton_Click);
@@ -1978,7 +1978,7 @@ namespace QobuzDownloaderX
             this.savedArtLabel.Location = new System.Drawing.Point(18, 218);
             this.savedArtLabel.Name = "savedArtLabel";
             this.savedArtLabel.Size = new System.Drawing.Size(224, 13);
-            this.savedArtLabel.TabIndex = 24;
+            this.savedArtLabel.TabIndex = 7;
             this.savedArtLabel.Text = "Saved Artwork Size On Disk";
             this.savedArtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1998,7 +1998,7 @@ namespace QobuzDownloaderX
             this.savedArtSizeSelect.Location = new System.Drawing.Point(248, 215);
             this.savedArtSizeSelect.Name = "savedArtSizeSelect";
             this.savedArtSizeSelect.Size = new System.Drawing.Size(60, 21);
-            this.savedArtSizeSelect.TabIndex = 23;
+            this.savedArtSizeSelect.TabIndex = 8;
             this.savedArtSizeSelect.SelectedIndexChanged += new System.EventHandler(this.savedArtSizeSelect_SelectedIndexChanged);
             // 
             // taggingOptionsLabel
@@ -2008,7 +2008,7 @@ namespace QobuzDownloaderX
             this.taggingOptionsLabel.Location = new System.Drawing.Point(0, 35);
             this.taggingOptionsLabel.Name = "taggingOptionsLabel";
             this.taggingOptionsLabel.Size = new System.Drawing.Size(771, 25);
-            this.taggingOptionsLabel.TabIndex = 22;
+            this.taggingOptionsLabel.TabIndex = 1;
             this.taggingOptionsLabel.Text = "TAGGING OPTIONS";
             this.taggingOptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -2019,7 +2019,7 @@ namespace QobuzDownloaderX
             this.embeddedArtLabel.Location = new System.Drawing.Point(18, 186);
             this.embeddedArtLabel.Name = "embeddedArtLabel";
             this.embeddedArtLabel.Size = new System.Drawing.Size(224, 13);
-            this.embeddedArtLabel.TabIndex = 21;
+            this.embeddedArtLabel.TabIndex = 5;
             this.embeddedArtLabel.Text = "Embedded Artwork Size";
             this.embeddedArtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -2039,7 +2039,7 @@ namespace QobuzDownloaderX
             this.embeddedArtSizeSelect.Location = new System.Drawing.Point(248, 183);
             this.embeddedArtSizeSelect.Name = "embeddedArtSizeSelect";
             this.embeddedArtSizeSelect.Size = new System.Drawing.Size(60, 21);
-            this.embeddedArtSizeSelect.TabIndex = 20;
+            this.embeddedArtSizeSelect.TabIndex = 6;
             this.embeddedArtSizeSelect.SelectedIndexChanged += new System.EventHandler(this.embeddedArtSizeSelect_SelectedIndexChanged);
             // 
             // extraSettingsLabel
@@ -2049,7 +2049,7 @@ namespace QobuzDownloaderX
             this.extraSettingsLabel.Location = new System.Drawing.Point(13, 10);
             this.extraSettingsLabel.Name = "extraSettingsLabel";
             this.extraSettingsLabel.Size = new System.Drawing.Size(752, 25);
-            this.extraSettingsLabel.TabIndex = 1;
+            this.extraSettingsLabel.TabIndex = 0;
             this.extraSettingsLabel.Text = "ADDITIONAL SETTINGS                                                              " +
     "       ";
             this.extraSettingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.extraSettingsLabel_MouseMove);
@@ -2225,10 +2225,10 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Controls.Add(this.sortAscendantCheckBox);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(264, 123);
+            this.searchPanel.Location = new System.Drawing.Point(344, 239);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
-            this.searchPanel.TabIndex = 29;
+            this.searchPanel.TabIndex = 0;
             // 
             // deselectAllRowsButton
             // 
@@ -2243,7 +2243,7 @@ namespace QobuzDownloaderX
             this.deselectAllRowsButton.Location = new System.Drawing.Point(287, 550);
             this.deselectAllRowsButton.Name = "deselectAllRowsButton";
             this.deselectAllRowsButton.Size = new System.Drawing.Size(120, 25);
-            this.deselectAllRowsButton.TabIndex = 21;
+            this.deselectAllRowsButton.TabIndex = 14;
             this.deselectAllRowsButton.Text = "Deselect all";
             this.deselectAllRowsButton.UseVisualStyleBackColor = false;
             this.deselectAllRowsButton.Click += new System.EventHandler(this.deselectAllRowsButton_Click);
@@ -2261,7 +2261,7 @@ namespace QobuzDownloaderX
             this.selectAllRowsButton.Location = new System.Drawing.Point(161, 550);
             this.selectAllRowsButton.Name = "selectAllRowsButton";
             this.selectAllRowsButton.Size = new System.Drawing.Size(120, 25);
-            this.selectAllRowsButton.TabIndex = 20;
+            this.selectAllRowsButton.TabIndex = 12;
             this.selectAllRowsButton.Text = "Select all";
             this.selectAllRowsButton.UseVisualStyleBackColor = false;
             this.selectAllRowsButton.Click += new System.EventHandler(this.selectAllRowsButton_Click);
@@ -2279,7 +2279,7 @@ namespace QobuzDownloaderX
             this.batchDownloadSelectedRowsButton.Location = new System.Drawing.Point(413, 549);
             this.batchDownloadSelectedRowsButton.Name = "batchDownloadSelectedRowsButton";
             this.batchDownloadSelectedRowsButton.Size = new System.Drawing.Size(340, 25);
-            this.batchDownloadSelectedRowsButton.TabIndex = 19;
+            this.batchDownloadSelectedRowsButton.TabIndex = 15;
             this.batchDownloadSelectedRowsButton.Text = "BATCH DOWNLOAD SELECTED ROWS";
             this.batchDownloadSelectedRowsButton.UseVisualStyleBackColor = false;
             this.batchDownloadSelectedRowsButton.Click += new System.EventHandler(this.batchDownloadSelectedRowsButton_Click);
@@ -2291,7 +2291,7 @@ namespace QobuzDownloaderX
             this.selectedRowsCountLabel.Location = new System.Drawing.Point(20, 550);
             this.selectedRowsCountLabel.Name = "selectedRowsCountLabel";
             this.selectedRowsCountLabel.Size = new System.Drawing.Size(135, 24);
-            this.selectedRowsCountLabel.TabIndex = 18;
+            this.selectedRowsCountLabel.TabIndex = 11;
             this.selectedRowsCountLabel.Text = "0 selected rows";
             this.selectedRowsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -2302,7 +2302,7 @@ namespace QobuzDownloaderX
             this.limitSearchResultsLabel.Location = new System.Drawing.Point(408, 84);
             this.limitSearchResultsLabel.Name = "limitSearchResultsLabel";
             this.limitSearchResultsLabel.Size = new System.Drawing.Size(116, 27);
-            this.limitSearchResultsLabel.TabIndex = 12;
+            this.limitSearchResultsLabel.TabIndex = 7;
             this.limitSearchResultsLabel.Text = "Results Limit:";
             this.limitSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -2313,7 +2313,7 @@ namespace QobuzDownloaderX
             this.searchResultsCountLabel.Location = new System.Drawing.Point(585, 87);
             this.searchResultsCountLabel.Name = "searchResultsCountLabel";
             this.searchResultsCountLabel.Size = new System.Drawing.Size(168, 28);
-            this.searchResultsCountLabel.TabIndex = 16;
+            this.searchResultsCountLabel.TabIndex = 10;
             this.searchResultsCountLabel.Text = "…";
             this.searchResultsCountLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -2325,7 +2325,7 @@ namespace QobuzDownloaderX
             this.searchSortingLabel.Location = new System.Drawing.Point(18, 77);
             this.searchSortingLabel.Name = "searchSortingLabel";
             this.searchSortingLabel.Size = new System.Drawing.Size(56, 19);
-            this.searchSortingLabel.TabIndex = 15;
+            this.searchSortingLabel.TabIndex = 4;
             this.searchSortingLabel.Text = "Sorting:";
             this.searchSortingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -2342,7 +2342,7 @@ namespace QobuzDownloaderX
             this.searchSortingPanel.Location = new System.Drawing.Point(120, 78);
             this.searchSortingPanel.Name = "searchSortingPanel";
             this.searchSortingPanel.Size = new System.Drawing.Size(290, 38);
-            this.searchSortingPanel.TabIndex = 14;
+            this.searchSortingPanel.TabIndex = 6;
             // 
             // sortGenreLabel
             // 
@@ -2353,7 +2353,7 @@ namespace QobuzDownloaderX
             this.sortGenreLabel.Location = new System.Drawing.Point(18, 21);
             this.sortGenreLabel.Name = "sortGenreLabel";
             this.sortGenreLabel.Size = new System.Drawing.Size(38, 13);
-            this.sortGenreLabel.TabIndex = 10;
+            this.sortGenreLabel.TabIndex = 3;
             this.sortGenreLabel.Text = "Genre";
             this.sortGenreLabel.Click += new System.EventHandler(this.sortGenreLabel_Click);
             // 
@@ -2365,7 +2365,7 @@ namespace QobuzDownloaderX
             this.sortGenreButton.Location = new System.Drawing.Point(4, 21);
             this.sortGenreButton.Name = "sortGenreButton";
             this.sortGenreButton.Size = new System.Drawing.Size(14, 13);
-            this.sortGenreButton.TabIndex = 9;
+            this.sortGenreButton.TabIndex = 2;
             this.sortGenreButton.UseVisualStyleBackColor = true;
             this.sortGenreButton.CheckedChanged += new System.EventHandler(this.sortGenreButton_CheckedChanged);
             // 
@@ -2378,7 +2378,7 @@ namespace QobuzDownloaderX
             this.sortAlbumTrackNameLabel.Location = new System.Drawing.Point(150, 21);
             this.sortAlbumTrackNameLabel.Name = "sortAlbumTrackNameLabel";
             this.sortAlbumTrackNameLabel.Size = new System.Drawing.Size(99, 13);
-            this.sortAlbumTrackNameLabel.TabIndex = 8;
+            this.sortAlbumTrackNameLabel.TabIndex = 7;
             this.sortAlbumTrackNameLabel.Text = "Album / Track Title";
             this.sortAlbumTrackNameLabel.Click += new System.EventHandler(this.sortAlbumTrackNameLabel_Click);
             // 
@@ -2391,7 +2391,7 @@ namespace QobuzDownloaderX
             this.sortArtistNameLabel.Location = new System.Drawing.Point(150, 2);
             this.sortArtistNameLabel.Name = "sortArtistNameLabel";
             this.sortArtistNameLabel.Size = new System.Drawing.Size(66, 13);
-            this.sortArtistNameLabel.TabIndex = 7;
+            this.sortArtistNameLabel.TabIndex = 5;
             this.sortArtistNameLabel.Text = "Artist Name";
             this.sortArtistNameLabel.Click += new System.EventHandler(this.sortArtistNameLabel_Click);
             // 
@@ -2403,7 +2403,7 @@ namespace QobuzDownloaderX
             this.sortAlbumTrackNameButton.Location = new System.Drawing.Point(135, 21);
             this.sortAlbumTrackNameButton.Name = "sortAlbumTrackNameButton";
             this.sortAlbumTrackNameButton.Size = new System.Drawing.Size(14, 13);
-            this.sortAlbumTrackNameButton.TabIndex = 5;
+            this.sortAlbumTrackNameButton.TabIndex = 6;
             this.sortAlbumTrackNameButton.UseVisualStyleBackColor = true;
             this.sortAlbumTrackNameButton.CheckedChanged += new System.EventHandler(this.sortAlbumTrackNameButton_CheckedChanged);
             // 
@@ -2428,7 +2428,7 @@ namespace QobuzDownloaderX
             this.sortReleaseDateButton.Location = new System.Drawing.Point(4, 3);
             this.sortReleaseDateButton.Name = "sortReleaseDateButton";
             this.sortReleaseDateButton.Size = new System.Drawing.Size(14, 13);
-            this.sortReleaseDateButton.TabIndex = 3;
+            this.sortReleaseDateButton.TabIndex = 0;
             this.sortReleaseDateButton.TabStop = true;
             this.sortReleaseDateButton.UseVisualStyleBackColor = true;
             this.sortReleaseDateButton.CheckedChanged += new System.EventHandler(this.sortReleaseDateButton_CheckedChanged);
@@ -2442,7 +2442,7 @@ namespace QobuzDownloaderX
             this.sortReleaseDateLabel.Location = new System.Drawing.Point(18, 2);
             this.sortReleaseDateLabel.Name = "sortReleaseDateLabel";
             this.sortReleaseDateLabel.Size = new System.Drawing.Size(73, 13);
-            this.sortReleaseDateLabel.TabIndex = 6;
+            this.sortReleaseDateLabel.TabIndex = 1;
             this.sortReleaseDateLabel.Text = "Release Date";
             this.sortReleaseDateLabel.Click += new System.EventHandler(this.sortReleaseDateLabel_Click);
             // 
@@ -2464,7 +2464,7 @@ namespace QobuzDownloaderX
             0});
             this.limitSearchResultsNumericUpDown.Name = "limitSearchResultsNumericUpDown";
             this.limitSearchResultsNumericUpDown.Size = new System.Drawing.Size(50, 25);
-            this.limitSearchResultsNumericUpDown.TabIndex = 13;
+            this.limitSearchResultsNumericUpDown.TabIndex = 8;
             this.limitSearchResultsNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.limitSearchResultsNumericUpDown.Value = new decimal(new int[] {
             20,
@@ -2508,7 +2508,7 @@ namespace QobuzDownloaderX
             this.searchAlbumsButton.Location = new System.Drawing.Point(581, 46);
             this.searchAlbumsButton.Name = "searchAlbumsButton";
             this.searchAlbumsButton.Size = new System.Drawing.Size(82, 31);
-            this.searchAlbumsButton.TabIndex = 9;
+            this.searchAlbumsButton.TabIndex = 2;
             this.searchAlbumsButton.Text = "RELEASES";
             this.searchAlbumsButton.UseVisualStyleBackColor = false;
             this.searchAlbumsButton.Click += new System.EventHandler(this.searchAlbumsButton_Click);
@@ -2525,7 +2525,7 @@ namespace QobuzDownloaderX
             this.searchTracksButton.Location = new System.Drawing.Point(669, 46);
             this.searchTracksButton.Name = "searchTracksButton";
             this.searchTracksButton.Size = new System.Drawing.Size(82, 31);
-            this.searchTracksButton.TabIndex = 8;
+            this.searchTracksButton.TabIndex = 3;
             this.searchTracksButton.Text = "TRACKS";
             this.searchTracksButton.UseVisualStyleBackColor = false;
             this.searchTracksButton.Click += new System.EventHandler(this.searchTracksButton_Click);
@@ -2542,7 +2542,7 @@ namespace QobuzDownloaderX
             this.searchTextbox.Multiline = true;
             this.searchTextbox.Name = "searchTextbox";
             this.searchTextbox.Size = new System.Drawing.Size(557, 27);
-            this.searchTextbox.TabIndex = 7;
+            this.searchTextbox.TabIndex = 1;
             this.searchTextbox.Text = "Input your search…";
             this.searchTextbox.WordWrap = false;
             this.searchTextbox.Click += new System.EventHandler(this.searchTextbox_Click);
@@ -2558,7 +2558,7 @@ namespace QobuzDownloaderX
             this.searchLabel.Location = new System.Drawing.Point(13, 10);
             this.searchLabel.Name = "searchLabel";
             this.searchLabel.Size = new System.Drawing.Size(562, 30);
-            this.searchLabel.TabIndex = 1;
+            this.searchLabel.TabIndex = 0;
             this.searchLabel.Text = "SEARCHER";
             this.searchLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.searchLabel_MouseMove);
             // 
@@ -2593,7 +2593,7 @@ namespace QobuzDownloaderX
             this.sortAscendantCheckBox.Location = new System.Drawing.Point(21, 99);
             this.sortAscendantCheckBox.Name = "sortAscendantCheckBox";
             this.sortAscendantCheckBox.Size = new System.Drawing.Size(80, 17);
-            this.sortAscendantCheckBox.TabIndex = 9;
+            this.sortAscendantCheckBox.TabIndex = 5;
             this.sortAscendantCheckBox.Text = "Ascendant";
             this.sortAscendantCheckBox.UseVisualStyleBackColor = true;
             this.sortAscendantCheckBox.CheckedChanged += new System.EventHandler(this.sortAscendantCheckBox_CheckedChanged);
@@ -2717,14 +2717,14 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
             this.Controls.Add(this.qualitySelectPanel);
-            this.Controls.Add(this.downloaderPanel);
-            this.Controls.Add(this.aboutPanel);
             this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.navigationPanel);
-            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.downloaderPanel);
+            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.extraSettingsPanel);
+            this.Controls.Add(this.aboutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";
