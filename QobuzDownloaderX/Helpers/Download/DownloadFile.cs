@@ -88,7 +88,7 @@ namespace QobuzDownloaderX
 
             qbdlxForm._qbdlxForm.logger.Debug($"Writing temp file to {tempFile}");
 
-            if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked && stats?.SpeedWatch != null && !string.IsNullOrEmpty(stats.LastSpeedText))
+            if (qbdlxForm._qbdlxForm.downloadSpeedCheckBox.Checked && stats?.SpeedWatch != null && !string.IsNullOrEmpty(stats.LastSpeedText))
             {
                 qbdlxForm._qbdlxForm.BeginInvoke(new Action(() => { qbdlxForm._qbdlxForm.progressLabel.Text = $"{qbdlxForm._qbdlxForm.progressLabelActive} - 0% [{stats.LastSpeedText}]"; }));
             }
@@ -170,7 +170,7 @@ namespace QobuzDownloaderX
 
                                 int progressPercentage = (int)(totalBytesRead * 100L / totalBytes);
 
-                                if (qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked && stats?.SpeedWatch != null && stats.SpeedWatch.IsRunning)
+                                if (qbdlxForm._qbdlxForm.downloadSpeedCheckBox.Checked && stats?.SpeedWatch != null && stats.SpeedWatch.IsRunning)
                                 {
                                     long elapsedMs = stats.SpeedWatch.ElapsedMilliseconds;
 

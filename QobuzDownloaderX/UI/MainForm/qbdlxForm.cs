@@ -706,97 +706,97 @@ namespace QobuzDownloaderX
         #endregion
 
         #region Tagging Options
-        private void albumTitleCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void albumTitleCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.albumTag = albumTitleCheckbox.Checked;
+            Settings.Default.albumTag = albumTitleCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void albumArtistCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void albumArtistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.albumArtistTag = albumArtistCheckbox.Checked;
+            Settings.Default.albumArtistTag = albumArtistCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void trackTitleCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void trackTitleCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.trackTitleTag = trackTitleCheckbox.Checked;
+            Settings.Default.trackTitleTag = trackTitleCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void trackArtistCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void trackArtistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.artistTag = trackArtistCheckbox.Checked;
+            Settings.Default.artistTag = trackArtistCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void trackNumberCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void trackNumberCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.trackTag = trackTitleCheckbox.Checked;
+            Settings.Default.trackTag = trackTitleCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void trackTotalCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void trackTotalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.totalTracksTag = trackTotalCheckbox.Checked;
+            Settings.Default.totalTracksTag = trackTotalCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void discNumberCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void discNumberCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.discTag = discNumberCheckbox.Checked;
+            Settings.Default.discTag = discNumberCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void discTotalCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void discTotalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.totalDiscsTag = discTotalCheckbox.Checked;
+            Settings.Default.totalDiscsTag = discTotalCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void releaseDateCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void releaseDateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.yearTag = releaseDateCheckbox.Checked;
+            Settings.Default.yearTag = releaseDateCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void genreCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void genreCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.genreTag = genreCheckbox.Checked;
+            Settings.Default.genreTag = genreCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void composerCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void composerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.composerTag = composerCheckbox.Checked;
+            Settings.Default.composerTag = composerCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void copyrightCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void copyrightCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.copyrightTag = copyrightCheckbox.Checked;
+            Settings.Default.copyrightTag = copyrightCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void labelCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void labelCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.labelTag = labelCheckbox.Checked;
+            Settings.Default.labelTag = labelCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void isrcCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void isrcCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.isrcTag = isrcCheckbox.Checked;
+            Settings.Default.isrcTag = isrcCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void urlCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void urlCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.urlTag = urlCheckbox.Checked;
+            Settings.Default.urlTag = urlCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void mergeArtistNamesCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void mergeArtistNamesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
 
@@ -805,33 +805,33 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
-        private void releaseTypeCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void releaseTypeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.typeTag = releaseTypeCheckbox.Checked;
+            Settings.Default.typeTag = releaseTypeCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void upcCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void upcCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.upcTag = upcCheckbox.Checked;
+            Settings.Default.upcTag = upcCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void explicitCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void explicitCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.explicitTag = explicitCheckbox.Checked;
+            Settings.Default.explicitTag = explicitCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void coverArtCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void coverArtCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.imageTag = coverArtCheckbox.Checked;
+            Settings.Default.imageTag = coverArtCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void commentCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void commentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.commentTag = commentCheckbox.Checked;
+            Settings.Default.commentTag = commentCheckBox.Checked;
             Settings.Default.Save();
         }
 
@@ -841,9 +841,9 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
-        private void useItemPosInPlaylistCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void useItemPosInPlaylistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.useItemPosInPlaylist = useItemPosInPlaylistCheckbox.Checked;
+            Settings.Default.useItemPosInPlaylist = useItemPosInPlaylistCheckBox.Checked;
             Settings.Default.Save();
         }
 
@@ -1072,34 +1072,34 @@ namespace QobuzDownloaderX
             NativeMethods.HideCaret(this.userInfoTextbox.Handle);
         }
 
-        private void streamableCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void streamableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.streamableCheck = streamableCheckbox.Checked;
+            Settings.Default.streamableCheck = streamableCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void useTLS13Checkbox_CheckedChanged(object sender, EventArgs e)
+        private void useTLS13CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.useTLS13 = useTLS13Checkbox.Checked;
+            Settings.Default.useTLS13 = useTLS13CheckBox.Checked;
             Settings.Default.Save();
             Miscellaneous.SetTLSSetting();
         }
 
-        private void downloadGoodiesCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void downloadGoodiesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.downloadGoodies = downloadGoodiesCheckbox.Checked;
+            Settings.Default.downloadGoodies = downloadGoodiesCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void downloadSpeedCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void downloadSpeedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.showDownloadSpeed = downloadSpeedCheckbox.Checked;
+            Settings.Default.showDownloadSpeed = downloadSpeedCheckBox.Checked;
             Settings.Default.Save();
         }
 
-        private void fixMD5sCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void fixMD5sCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.fixMD5s = fixMD5sCheckbox.Checked;
+            Settings.Default.fixMD5s = fixMD5sCheckBox.Checked;
             Settings.Default.Save();
         }
 

@@ -298,9 +298,9 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void visableCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void visableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (visableCheckbox.Checked == true)
+            if (visableCheckBox.Checked == true)
             {
                 passwordTextbox.PasswordChar = '\0';
             }

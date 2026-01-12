@@ -227,26 +227,26 @@ namespace QobuzDownloaderX.Helpers
 
         internal static void LoadTaggingSettings(qbdlxForm f)
         {
-            f.albumTitleCheckbox.Checked = Settings.Default.albumTag;
-            f.albumArtistCheckbox.Checked = Settings.Default.albumArtistTag;
-            f.trackArtistCheckbox.Checked = Settings.Default.artistTag;
-            f.composerCheckbox.Checked = Settings.Default.composerTag;
-            f.copyrightCheckbox.Checked = Settings.Default.copyrightTag;
-            f.labelCheckbox.Checked = Settings.Default.labelTag;
-            f.discNumberCheckbox.Checked = Settings.Default.discTag;
-            f.discTotalCheckbox.Checked = Settings.Default.totalDiscsTag;
-            f.genreCheckbox.Checked = Settings.Default.genreTag;
-            f.isrcCheckbox.Checked = Settings.Default.isrcTag;
-            f.urlCheckbox.Checked = Settings.Default.urlTag;
-            f.releaseTypeCheckbox.Checked = Settings.Default.typeTag;
-            f.explicitCheckbox.Checked = Settings.Default.explicitTag;
-            f.trackTitleCheckbox.Checked = Settings.Default.trackTitleTag;
-            f.trackNumberCheckbox.Checked = Settings.Default.trackTag;
-            f.trackTotalCheckbox.Checked = Settings.Default.totalTracksTag;
-            f.upcCheckbox.Checked = Settings.Default.upcTag;
-            f.releaseDateCheckbox.Checked = Settings.Default.yearTag;
-            f.coverArtCheckbox.Checked = Settings.Default.imageTag;
-            f.commentCheckbox.Checked = Settings.Default.commentTag;
+            f.albumTitleCheckBox.Checked = Settings.Default.albumTag;
+            f.albumArtistCheckBox.Checked = Settings.Default.albumArtistTag;
+            f.trackArtistCheckBox.Checked = Settings.Default.artistTag;
+            f.composerCheckBox.Checked = Settings.Default.composerTag;
+            f.copyrightCheckBox.Checked = Settings.Default.copyrightTag;
+            f.labelCheckBox.Checked = Settings.Default.labelTag;
+            f.discNumberCheckBox.Checked = Settings.Default.discTag;
+            f.discTotalCheckBox.Checked = Settings.Default.totalDiscsTag;
+            f.genreCheckBox.Checked = Settings.Default.genreTag;
+            f.isrcCheckBox.Checked = Settings.Default.isrcTag;
+            f.urlCheckBox.Checked = Settings.Default.urlTag;
+            f.releaseTypeCheckBox.Checked = Settings.Default.typeTag;
+            f.explicitCheckBox.Checked = Settings.Default.explicitTag;
+            f.trackTitleCheckBox.Checked = Settings.Default.trackTitleTag;
+            f.trackNumberCheckBox.Checked = Settings.Default.trackTag;
+            f.trackTotalCheckBox.Checked = Settings.Default.totalTracksTag;
+            f.upcCheckBox.Checked = Settings.Default.upcTag;
+            f.releaseDateCheckBox.Checked = Settings.Default.yearTag;
+            f.coverArtCheckBox.Checked = Settings.Default.imageTag;
+            f.commentCheckBox.Checked = Settings.Default.commentTag;
             f.commentTextbox.Text = Settings.Default.commentText;
             f.embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize;
             f.savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
@@ -260,16 +260,16 @@ namespace QobuzDownloaderX.Helpers
 
         internal static void LoadOtherSettings(qbdlxForm f)
         {
-            f.streamableCheckbox.Checked = Settings.Default.streamableCheck;
-            f.useTLS13Checkbox.Checked = Settings.Default.useTLS13;
-            f.fixMD5sCheckbox.Checked = Settings.Default.fixMD5s;
-            f.downloadGoodiesCheckbox.Checked = Settings.Default.downloadGoodies;
-            f.downloadSpeedCheckbox.Checked = Settings.Default.showDownloadSpeed;
+            f.streamableCheckBox.Checked = Settings.Default.streamableCheck;
+            f.useTLS13CheckBox.Checked = Settings.Default.useTLS13;
+            f.fixMD5sCheckBox.Checked = Settings.Default.fixMD5s;
+            f.downloadGoodiesCheckBox.Checked = Settings.Default.downloadGoodies;
+            f.downloadSpeedCheckBox.Checked = Settings.Default.showDownloadSpeed;
             f.clearOldLogsCheckBox.Checked = Settings.Default.clearOldLogs;
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
-            f.mergeArtistNamesCheckbox.Checked = Settings.Default.mergeArtistNames;
-            f.artistNamesSeparatorsPanel.Enabled = f.mergeArtistNamesCheckbox.Checked;
-            f.useItemPosInPlaylistCheckbox.Checked = Settings.Default.useItemPosInPlaylist;
+            f.mergeArtistNamesCheckBox.Checked = Settings.Default.mergeArtistNames;
+            f.artistNamesSeparatorsPanel.Enabled = f.mergeArtistNamesCheckBox.Checked;
+            f.useItemPosInPlaylistCheckBox.Checked = Settings.Default.useItemPosInPlaylist;
             f.showTipsCheckBox.Checked = Settings.Default.showTips;
             RestoreDownloadFromArtistSelectedIndices();
         }
@@ -412,7 +412,6 @@ namespace QobuzDownloaderX.Helpers
             f.advancedOptionsLabel.Text = f.languageManager.GetTranslation("advancedOptionsLabel");
             f.albumTemplateLabel.Text = f.languageManager.GetTranslation("albumTemplateLabel");
             f.artistTemplateLabel.Text = f.languageManager.GetTranslation("artistTemplateLabel");
-            f.commentLabel.Text = f.languageManager.GetTranslation("commentLabel");
             f.downloadLabel.Text = f.languageManager.GetTranslation("downloaderButton") + "                                                                                         ";
             f.downloadFolderLabel.Text = f.languageManager.GetTranslation("downloadFolderLabel");
             f.downloadOptionsLabel.Text = f.languageManager.GetTranslation("downloadOptionsLabel");
@@ -448,41 +447,42 @@ namespace QobuzDownloaderX.Helpers
             f.primaryListSeparatorLabel.Text = f.languageManager.GetTranslation("primaryListSeparatorLabel");
             f.listEndSeparatorLabel.Text = f.languageManager.GetTranslation("listEndSeparatorLabel");
             f.playlistSectionLabel.Text = f.languageManager.GetTranslation("playlistSectionLabel");
-            f.prevTipButton.Text = f.languageManager.GetTranslation("prevTip");
-            f.nextTipButton.Text = f.languageManager.GetTranslation("nextTip");
+            f.prevTipButton.Text = f.languageManager.GetTranslation("prevTipLabel");
+            f.nextTipButton.Text = f.languageManager.GetTranslation("nextTipLabel");
 
-            // Checkboxes
-            f.albumArtistCheckbox.Text = f.languageManager.GetTranslation("albumArtistCheckbox");
-            f.albumTitleCheckbox.Text = f.languageManager.GetTranslation("albumTitleCheckbox");
-            f.trackArtistCheckbox.Text = f.languageManager.GetTranslation("trackArtistCheckbox");
-            f.trackTitleCheckbox.Text = f.languageManager.GetTranslation("trackTitleCheckbox");
-            f.releaseDateCheckbox.Text = f.languageManager.GetTranslation("releaseDateCheckbox");
-            f.releaseTypeCheckbox.Text = f.languageManager.GetTranslation("releaseTypeCheckbox");
-            f.genreCheckbox.Text = f.languageManager.GetTranslation("genreCheckbox");
-            f.trackNumberCheckbox.Text = f.languageManager.GetTranslation("trackNumberCheckbox");
-            f.trackTotalCheckbox.Text = f.languageManager.GetTranslation("trackTotalCheckbox");
-            f.discNumberCheckbox.Text = f.languageManager.GetTranslation("discNumberCheckbox");
-            f.discTotalCheckbox.Text = f.languageManager.GetTranslation("discTotalCheckbox");
-            f.composerCheckbox.Text = f.languageManager.GetTranslation("composerCheckbox");
-            f.explicitCheckbox.Text = f.languageManager.GetTranslation("explicitCheckbox");
-            f.coverArtCheckbox.Text = f.languageManager.GetTranslation("coverArtCheckbox");
-            f.copyrightCheckbox.Text = f.languageManager.GetTranslation("copyrightCheckbox");
-            f.labelCheckbox.Text = f.languageManager.GetTranslation("labelCheckbox");
-            f.upcCheckbox.Text = f.languageManager.GetTranslation("upcCheckbox");
-            f.isrcCheckbox.Text = f.languageManager.GetTranslation("isrcCheckbox");
-            f.urlCheckbox.Text = f.languageManager.GetTranslation("urlCheckbox");
-            f.mergeArtistNamesCheckbox.Text = f.languageManager.GetTranslation("mergeArtistNamesCheckbox");
-            f.streamableCheckbox.Text = f.languageManager.GetTranslation("streamableCheckbox");
-            f.fixMD5sCheckbox.Text = f.languageManager.GetTranslation("fixMD5sCheckbox");
-            f.downloadSpeedCheckbox.Text = f.languageManager.GetTranslation("downloadSpeedCheckbox");
+            // CheckBoxes
+            f.albumArtistCheckBox.Text = f.languageManager.GetTranslation("albumArtistCheckBox");
+            f.albumTitleCheckBox.Text = f.languageManager.GetTranslation("albumTitleCheckBox");
+            f.commentCheckBox.Text = f.languageManager.GetTranslation("commentCheckBox");
+            f.trackArtistCheckBox.Text = f.languageManager.GetTranslation("trackArtistCheckBox");
+            f.trackTitleCheckBox.Text = f.languageManager.GetTranslation("trackTitleCheckBox");
+            f.releaseDateCheckBox.Text = f.languageManager.GetTranslation("releaseDateCheckBox");
+            f.releaseTypeCheckBox.Text = f.languageManager.GetTranslation("releaseTypeCheckBox");
+            f.genreCheckBox.Text = f.languageManager.GetTranslation("genreCheckBox");
+            f.trackNumberCheckBox.Text = f.languageManager.GetTranslation("trackNumberCheckBox");
+            f.trackTotalCheckBox.Text = f.languageManager.GetTranslation("trackTotalCheckBox");
+            f.discNumberCheckBox.Text = f.languageManager.GetTranslation("discNumberCheckBox");
+            f.discTotalCheckBox.Text = f.languageManager.GetTranslation("discTotalCheckBox");
+            f.composerCheckBox.Text = f.languageManager.GetTranslation("composerCheckBox");
+            f.explicitCheckBox.Text = f.languageManager.GetTranslation("explicitCheckBox");
+            f.coverArtCheckBox.Text = f.languageManager.GetTranslation("coverArtCheckBox");
+            f.copyrightCheckBox.Text = f.languageManager.GetTranslation("copyrightCheckBox");
+            f.labelCheckBox.Text = f.languageManager.GetTranslation("labelCheckBox");
+            f.upcCheckBox.Text = f.languageManager.GetTranslation("upcCheckBox");
+            f.isrcCheckBox.Text = f.languageManager.GetTranslation("isrcCheckBox");
+            f.urlCheckBox.Text = f.languageManager.GetTranslation("urlCheckBox");
+            f.mergeArtistNamesCheckBox.Text = f.languageManager.GetTranslation("mergeArtistNamesCheckBox");
+            f.streamableCheckBox.Text = f.languageManager.GetTranslation("streamableCheckBox");
+            f.fixMD5sCheckBox.Text = f.languageManager.GetTranslation("fixMD5sCheckBox");
+            f.downloadSpeedCheckBox.Text = f.languageManager.GetTranslation("downloadSpeedCheckBox");
             f.sortAscendantCheckBox.Text = f.languageManager.GetTranslation("sortAscendantCheckBox");
-            f.downloadGoodiesCheckbox.Text = f.languageManager.GetTranslation("downloadGoodiesCheckbox");
-            f.useTLS13Checkbox.Text = f.languageManager.GetTranslation("useTLS13Checkbox");
+            f.downloadGoodiesCheckBox.Text = f.languageManager.GetTranslation("downloadGoodiesCheckBox");
+            f.useTLS13CheckBox.Text = f.languageManager.GetTranslation("useTLS13CheckBox");
             f.dontSaveArtworkToDiskCheckBox.Text = f.languageManager.GetTranslation("dontSaveArtworkToDiskCheckBox");
             f.downloadAllFromArtistCheckBox.Text = f.languageManager.GetTranslation("downloadAllFromArtistCheckBox");
             f.clearOldLogsCheckBox.Text = f.languageManager.GetTranslation("clearOldLogsCheckBox");
-            f.useItemPosInPlaylistCheckbox.Text = f.languageManager.GetTranslation("useItemPosInPlaylistCheckbox");
-            f.showTipsCheckBox.Text = f.languageManager.GetTranslation("showTips");
+            f.useItemPosInPlaylistCheckBox.Text = f.languageManager.GetTranslation("useItemPosInPlaylistCheckBox");
+            f.showTipsCheckBox.Text = f.languageManager.GetTranslation("showTipsCheckBox");
 
             // downloadFromArtistListBox
             string translatedNames = f.languageManager.GetTranslation("downloadFromArtistListBox");
@@ -493,12 +493,12 @@ namespace QobuzDownloaderX.Helpers
             }
 
             /* Center certain checkboxes in panels */
-            f.fixMD5sCheckbox.Location = new Point((f.extraSettingsPanel.Width - f.fixMD5sCheckbox.Width) / 2, f.fixMD5sCheckbox.Location.Y);
-            f.downloadSpeedCheckbox.Location = new Point((f.extraSettingsPanel.Width - f.downloadSpeedCheckbox.Width) / 2, f.downloadSpeedCheckbox.Location.Y);
+            f.fixMD5sCheckBox.Location = new Point((f.extraSettingsPanel.Width - f.fixMD5sCheckBox.Width) / 2, f.fixMD5sCheckBox.Location.Y);
+            f.downloadSpeedCheckBox.Location = new Point((f.extraSettingsPanel.Width - f.downloadSpeedCheckBox.Width) / 2, f.downloadSpeedCheckBox.Location.Y);
 
-            f.streamableCheckbox.Location = new Point(f.fixMD5sCheckbox.Left - 100, f.streamableCheckbox.Location.Y);
-            f.useTLS13Checkbox.Location = new Point(f.streamableCheckbox.Right + 16, f.streamableCheckbox.Location.Y);
-            f.downloadGoodiesCheckbox.Location = new Point(f.useTLS13Checkbox.Right + 16, f.streamableCheckbox.Location.Y);
+            f.streamableCheckBox.Location = new Point(f.fixMD5sCheckBox.Left - 100, f.streamableCheckBox.Location.Y);
+            f.useTLS13CheckBox.Location = new Point(f.streamableCheckBox.Right + 16, f.streamableCheckBox.Location.Y);
+            f.downloadGoodiesCheckBox.Location = new Point(f.useTLS13CheckBox.Right + 16, f.streamableCheckBox.Location.Y);
 
             // Context menu items
             f.showWindowToolStripMenuItem.Text = f.languageManager.GetTranslation("showWindowCmItem");
@@ -937,7 +937,7 @@ namespace QobuzDownloaderX.Helpers
             {
                 stats = new DownloadStats
                 {
-                    SpeedWatch = qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked ? Stopwatch.StartNew() : null,
+                    SpeedWatch = qbdlxForm._qbdlxForm.downloadSpeedCheckBox.Checked ? Stopwatch.StartNew() : null,
                     CumulativeBytesRead = 0,
                     LastUiBytes = 0,
                     LastUiTimeMs = 0
@@ -994,7 +994,7 @@ namespace QobuzDownloaderX.Helpers
 
             var stats = new DownloadStats
             {
-                SpeedWatch = qbdlxForm._qbdlxForm.downloadSpeedCheckbox.Checked ? Stopwatch.StartNew() : null,
+                SpeedWatch = qbdlxForm._qbdlxForm.downloadSpeedCheckBox.Checked ? Stopwatch.StartNew() : null,
                 CumulativeBytesRead = 0,
                 LastUiBytes = 0,
                 LastUiTimeMs = 0

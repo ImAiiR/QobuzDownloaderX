@@ -47,7 +47,7 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
             bool writeperformersFullString = false;
             if (writeperformersFullString)
             {
-                File.AppendAllText(@".\_DEBUG_performersFullString.txt", Environment.NewLine + performersFullString);
+                System.IO.File.AppendAllText(@".\_DEBUG_performersFullString.txt", Environment.NewLine + performersFullString);
             }
 #endif
 
@@ -240,10 +240,10 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
             bool showMessageBoxStrings = false;
             if (showMessageBoxStrings)
             {
-                 MessageBox.Show(performersFullString, "performersFullString");
-                 MessageBox.Show(QoItem.Performer.Name, "QoItem.Performer.Name");
-                 MessageBox.Show(string.Join(Environment.NewLine, mainArtists), "main artists");
-                 MessageBox.Show(string.Join(Environment.NewLine, featuredArtists), "featuredArtists");
+                System.Windows.Forms.MessageBox.Show(performersFullString, "performersFullString");
+                System.Windows.Forms.MessageBox.Show(QoItem.Performer.Name, "QoItem.Performer.Name");
+                System.Windows.Forms.MessageBox.Show(string.Join(Environment.NewLine, mainArtists), "main artists");
+                System.Windows.Forms.MessageBox.Show(string.Join(Environment.NewLine, featuredArtists), "featuredArtists");
             }
 #endif
 

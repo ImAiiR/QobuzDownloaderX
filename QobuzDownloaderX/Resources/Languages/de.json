@@ -30,7 +30,6 @@
     "advancedOptionsLabel":         "Weitere Optionen",
     "albumTemplateLabel":           "ALBUM VORLAGE",
     "artistTemplateLabel":          "ARTIST VORLAGE",
-    "commentLabel":                 "Eigener Kommentar",
     "downloadFolderLabel":          "DOWNLOAD ORDNER",
     "downloadOptionsLabel":         "DOWNLOAD OPTIONEN",
     "embeddedArtLabel":             "Eingebettete Artwork Größe",
@@ -65,38 +64,40 @@
     "playlistSectionLabel":         "PLAYLIST-OPTIONEN", // ChatGPT translation.
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
-    "albumArtistCheckbox":          "Album Artist",
-    "albumTitleCheckbox":           "Album Titel",
-    "trackArtistCheckbox":          "Track Artist",
-    "trackTitleCheckbox":           "Track Titel",
-    "releaseDateCheckbox":          "Veröffentlichungsdatum",
-    "releaseTypeCheckbox":          "Veröffentlichungstyp",
-    "genreCheckbox":                "Genre",
-    "trackNumberCheckbox":          "Track Nummer",
-    "trackTotalCheckbox":           "Totale Anzahl Tracks",
-    "discNumberCheckbox":           "CD-Nummer",
-    "discTotalCheckbox":            "Totale Anzahl CDs",
-    "composerCheckbox":             "Komponist",
-    "explicitCheckbox":             "Explizit",
-    "coverArtCheckbox":             "Cover Art",
-    "copyrightCheckbox":            "Copyright",
-    "labelCheckbox":                "Label",
-    "upcCheckbox":                  "UPC / Barcode",
-    "isrcCheckbox":                 "ISRC",
-    "urlCheckbox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckbox":     "Track-Künstlernamen zusammenführen.\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
-    "streamableCheckbox":           "Ist Streamfähig Check",
-    "fixMD5sCheckbox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
-    "downloadSpeedCheckbox":        "Downloadgeschwindigkeit Anzeigen",
+    "albumArtistCheckBox":          "Album Artist",
+    "albumTitleCheckBox":           "Album Titel",
+    "commentCheckBox":              "Eigener Kommentar",
+    "trackArtistCheckBox":          "Track Artist",
+    "trackTitleCheckBox":           "Track Titel",
+    "releaseDateCheckBox":          "Veröffentlichungsdatum",
+    "releaseTypeCheckBox":          "Veröffentlichungstyp",
+    "genreCheckBox":                "Genre",
+    "trackNumberCheckBox":          "Track Nummer",
+    "trackTotalCheckBox":           "Totale Anzahl Tracks",
+    "discNumberCheckBox":           "CD-Nummer",
+    "discTotalCheckBox":            "Totale Anzahl CDs",
+    "composerCheckBox":             "Komponist",
+    "explicitCheckBox":             "Explizit",
+    "coverArtCheckBox":             "Cover Art",
+    "copyrightCheckBox":            "Copyright",
+    "labelCheckBox":                "Label",
+    "upcCheckBox":                  "UPC / Barcode",
+    "isrcCheckBox":                 "ISRC",
+    "urlCheckBox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckBox":     "Track-Künstlernamen zusammenführen.\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "streamableCheckBox":           "Ist Streamfähig Check",
+    "fixMD5sCheckBox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
+    "downloadSpeedCheckBox":        "Downloadgeschwindigkeit Anzeigen",
     "sortAscendantCheckBox":        "Aufsteigend", // ChatGPT translation.
-    "downloadGoodiesCheckbox":      "Goodies herunterladen", // ChatGPT translation.
-    "useTLS13Checkbox":             "TLS 1.3 verwenden", // ChatGPT translation.
+    "downloadGoodiesCheckBox":      "Goodies herunterladen", // ChatGPT translation.
+    "useTLS13CheckBox":             "TLS 1.3 verwenden", // ChatGPT translation.
     "downloadArtistOtherCheckBox":  "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // ChatGPT translation.
     "clearOldLogsCheckBox":         "Alte Protokolle beim Start löschen", // ChatGPT translation
     "dontSaveArtworkToDiskCheckBox":"Kunstwerke nicht auf der Festplatte speichern", // ChatGPT translation
     "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Download, Andere", // ChatGPT translation
     "downloadAllFromArtistCheckBox":"Alles vom Künstler herunterladen (kann mehr enthalten)",  // ChatGPT translation
-    "useItemPosInPlaylistCheckbox": "Elementpositionen anstelle der Album-Tracknummern in Dateinamen verwenden", // ChatGPT translation
+    "useItemPosInPlaylistCheckBox": "Elementpositionen anstelle der Album-Tracknummern in Dateinamen verwenden", // ChatGPT translation
+    "showTipsCheckBox":             "Tipps anzeigen", // ChatGPT translation.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",
@@ -194,9 +195,8 @@
     "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'", // ChatGPT translation.
 
     "_SECTION12_":                  "=================== TIPS ===================",
-    "showTips":                     "Tipps anzeigen", // ChatGPT translation.
-    "nextTip":                      "Nächster Tipp ⭢", // ChatGPT translation
-    "prevTip":                      "⭠ Vorheriger Tipp", // ChatGPT translation
+    "nextTipLabel":                 "Nächster Tipp ⭢", // ChatGPT translation
+    "prevTipLabel":                 "⭠ Vorheriger Tipp", // ChatGPT translation
     "tip1":                         "Tipp Nr. 1: Wusstest du, dass du mit der rechten Maustaste auf die Zeilen der Suchergebnisse klicken kannst, um die Links der ausgewählten Elemente zu kopieren?", // ChatGPT translation
     "tip2":                         "Tipp Nr. 2: Wusstest du, dass das Programm beim Verwenden eines Links eines Plattenlabels bis zu 10.000 Alben dieses Labels abrufen kann? Dieses Limit haben nicht wir festgelegt! Aber das ist doch mehr als genug, oder? 👍", // ChatGPT translation
     "tip3":                         "Tipp Nr. 3: Wusstest du, dass du dein bevorzugtes visuelles Design anpassen kannst, indem du die Datei themes.json mit dem Editor bearbeitest? Worauf wartest du noch?!", // ChatGPT translation

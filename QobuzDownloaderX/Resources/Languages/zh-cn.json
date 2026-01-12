@@ -30,7 +30,6 @@
     "advancedOptionsLabel":         "高级选项",
     "albumTemplateLabel":           "专辑模板",
     "artistTemplateLabel":          "艺术家模板",
-    "commentLabel":                 "自定义备注",
     "downloadFolderLabel":          "下载文件夹",
     "downloadOptionsLabel":         "下载选项",
     "embeddedArtLabel":             "嵌入的封面尺寸",
@@ -65,38 +64,40 @@
     "playlistSectionLabel":         "播放列表选项", // ChatGPT translation.
 
     "_SECTION3_":                   "=================== 主表单复选框 ===================",
-    "albumArtistCheckbox":          "专辑艺术家",
-    "albumTitleCheckbox":           "专辑标题",
-    "trackArtistCheckbox":          "曲目艺术家",
-    "trackTitleCheckbox":           "曲目标题",
-    "releaseDateCheckbox":          "发行日期",
-    "releaseTypeCheckbox":          "发行类型",
-    "genreCheckbox":                "流派",
-    "trackNumberCheckbox":          "曲目编号",
-    "trackTotalCheckbox":           "总曲目数",
-    "discNumberCheckbox":           "光盘编号",
-    "discTotalCheckbox":            "总光盘数",
-    "composerCheckbox":             "作曲家",
-    "explicitCheckbox":             "Explicit 提示",
-    "coverArtCheckbox":             "专辑封面",
-    "copyrightCheckbox":            "版权",
-    "labelCheckbox":                "唱片公司",
-    "upcCheckbox":                  "UPC/条形码",
-    "isrcCheckbox":                 "ISRC",
-    "urlCheckbox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckbox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
-    "streamableCheckbox":           "歌曲流媒体可播性检查",
-    "fixMD5sCheckbox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
-    "downloadSpeedCheckbox":        "显示下载速度",
+    "albumArtistCheckBox":          "专辑艺术家",
+    "albumTitleCheckBox":           "专辑标题",
+    "commentCheckBox":              "自定义备注",
+    "trackArtistCheckBox":          "曲目艺术家",
+    "trackTitleCheckBox":           "曲目标题",
+    "releaseDateCheckBox":          "发行日期",
+    "releaseTypeCheckBox":          "发行类型",
+    "genreCheckBox":                "流派",
+    "trackNumberCheckBox":          "曲目编号",
+    "trackTotalCheckBox":           "总曲目数",
+    "discNumberCheckBox":           "光盘编号",
+    "discTotalCheckBox":            "总光盘数",
+    "composerCheckBox":             "作曲家",
+    "explicitCheckBox":             "Explicit 提示",
+    "coverArtCheckBox":             "专辑封面",
+    "copyrightCheckBox":            "版权",
+    "labelCheckBox":                "唱片公司",
+    "upcCheckBox":                  "UPC/条形码",
+    "isrcCheckBox":                 "ISRC",
+    "urlCheckBox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckBox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "streamableCheckBox":           "歌曲流媒体可播性检查",
+    "fixMD5sCheckBox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
+    "downloadSpeedCheckBox":        "显示下载速度",
     "sortAscendantCheckBox":        "升序", // ChatGPT translation.
-    "downloadGoodiesCheckbox":      "下载好礼", // ChatGPT translation.
-    "useTLS13Checkbox":             "使用 TLS 1.3", // ChatGPT translation.
+    "downloadGoodiesCheckBox":      "下载好礼", // ChatGPT translation.
+    "useTLS13CheckBox":             "使用 TLS 1.3", // ChatGPT translation.
     "downloadArtistOther":          "下载艺术家 — 其他 / 翻唱歌曲", // ChatGPT translation.
     "clearOldLogsCheckBox":         "启动时清除旧日志", // ChatGPT translation
     "dontSaveArtworkToDiskCheckBox":"不要将艺术作品保存到磁盘", // ChatGPT translation
     "downloadFromArtistListBox":    "专辑, EP/单曲, 现场, 合辑, 下载, 其他", // ChatGPT translation
     "downloadAllFromArtistCheckBox":"从艺术家下载全部（可能包含更多）", // ChatGPT translation
-    "useItemPosInPlaylistCheckbox": "在文件名中使用项目位置而不是专辑曲目编号", // ChatGPT translation
+    "useItemPosInPlaylistCheckBox": "在文件名中使用项目位置而不是专辑曲目编号", // ChatGPT translation
+    "showTipsCheckBox":             "显示提示", // ChatGPT translation.
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",
@@ -194,9 +195,8 @@
     "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'", // ChatGPT translation.
 
     "_SECTION12_":                  "=================== 提示 ===================",
-    "showTips":                     "显示提示", // ChatGPT translation.
-    "nextTip":                      "下一个提示 ⭢", // ChatGPT translation
-    "prevTip":                      "⭠ 上一个提示", // ChatGPT translation
+    "nextTipLabel":                 "下一个提示 ⭢", // ChatGPT translation
+    "prevTipLabel":                 "⭠ 上一个提示", // ChatGPT translation
     "tip1":                         "提示 #1：您知道可以右键点击搜索结果的行来复制所选项目的链接吗？", // ChatGPT translation
     "tip2":                         "提示 #2：您知道当您使用唱片公司链接时，程序最多可以获取该公司 10,000 张专辑吗？我们没有设置这个限制！但这已经绰绰有余，对吧？ 👍", // ChatGPT translation
     "tip3":                         "提示 #3：您知道可以通过编辑 Notepad 中的 themes.json 文件来自定义您最喜欢的视觉主题吗？还等什么？！", // ChatGPT translation

@@ -30,7 +30,6 @@
     "advancedOptionsLabel":         "GELİŞMİŞ AYARLAR",
     "albumTemplateLabel":           "ALBÜM ŞABLONU",
     "artistTemplateLabel":          "SANATÇI ŞABLONU",
-    "commentLabel":                 "Özel Yorum",
     "downloadFolderLabel":          "İNDİRİLECEK KLASÖR",
     "downloadOptionsLabel":         "İNDİRME SEÇENEKLERİ",
     "embeddedArtLabel":             "GÖMÜLÜ KAPAK BOYUTU (px)",
@@ -65,38 +64,40 @@
     "playlistSectionLabel":         "PLAYLIST SEÇENEKLERİ", // ChatGPT translation.
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
-    "albumArtistCheckbox":          "Albüm Sanatçısı",
-    "albumTitleCheckbox":           "Albüm Başlığı",
-    "trackArtistCheckbox":          "Parça Sanatçısı",
-    "trackTitleCheckbox":           "Parça İsmi",
-    "releaseDateCheckbox":          "Çıkış Tarihi",
-    "releaseTypeCheckbox":          "Çıkış Türü",
-    "genreCheckbox":                "Tür",
-    "trackNumberCheckbox":          "Parça Sırası",
-    "trackTotalCheckbox":           "Toplam Parça Sayısı",
-    "discNumberCheckbox":           "Disk Numarası",
-    "discTotalCheckbox":            "Toplam Disk Sayısı",
-    "composerCheckbox":             "Besteci",
-    "explicitCheckbox":             "Müstehcen İçerik Uyarısı",
-    "coverArtCheckbox":             "Kapak Resmi",
-    "copyrightCheckbox":            "Telif",
-    "labelCheckbox":                "Müzik Şirketi",
-    "upcCheckbox":                  "UPC / Barkod",
-    "isrcCheckbox":                 "ISRC",
-    "urlCheckbox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckbox":     "Parça sanatçı isimlerini birleştir.\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
-    "streamableCheckbox":           "Oynatılabilirlik Doğrulaması",
-    "fixMD5sCheckbox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
-    "downloadSpeedCheckbox":        "İndirme Hızını Göster",
+    "albumArtistCheckBox":          "Albüm Sanatçısı",
+    "albumTitleCheckBox":           "Albüm Başlığı",
+    "commentCheckBox":              "Özel Yorum",
+    "trackArtistCheckBox":          "Parça Sanatçısı",
+    "trackTitleCheckBox":           "Parça İsmi",
+    "releaseDateCheckBox":          "Çıkış Tarihi",
+    "releaseTypeCheckBox":          "Çıkış Türü",
+    "genreCheckBox":                "Tür",
+    "trackNumberCheckBox":          "Parça Sırası",
+    "trackTotalCheckBox":           "Toplam Parça Sayısı",
+    "discNumberCheckBox":           "Disk Numarası",
+    "discTotalCheckBox":            "Toplam Disk Sayısı",
+    "composerCheckBox":             "Besteci",
+    "explicitCheckBox":             "Müstehcen İçerik Uyarısı",
+    "coverArtCheckBox":             "Kapak Resmi",
+    "copyrightCheckBox":            "Telif",
+    "labelCheckBox":                "Müzik Şirketi",
+    "upcCheckBox":                  "UPC / Barkod",
+    "isrcCheckBox":                 "ISRC",
+    "urlCheckBox":                  "URL", // ChatGPT translation.
+    "mergeArtistNamesCheckBox":     "Parça sanatçı isimlerini birleştir.\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "streamableCheckBox":           "Oynatılabilirlik Doğrulaması",
+    "fixMD5sCheckBox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
+    "downloadSpeedCheckBox":        "İndirme Hızını Göster",
     "sortAscendantCheckBox":        "Artan", // ChatGPT translation.
-    "downloadGoodiesCheckbox":      "İkramları indir", // ChatGPT translation.
-    "useTLS13Checkbox":             "TLS 1.3 kullan", // ChatGPT translation.
+    "downloadGoodiesCheckBox":      "İkramları indir", // ChatGPT translation.
+    "useTLS13CheckBox":             "TLS 1.3 kullan", // ChatGPT translation.
     "downloadArtistOther":          "Sanatçıları indir — Diğer / cover parçaları", // ChatGPT translation.
     "clearOldLogsCheckBox":         "Başlangıçta eski günlükleri temizle", // ChatGPT translation
     "dontSaveArtworkToDiskCheckBox":"Sanat çalışmalarını diskte kaydetme", // ChatGPT translation
     "downloadFromArtistListBox":    "Albüm, EP/Single, Canlı, Derleme, İndirme, Diğer", // ChatGPT translation
     "downloadAllFromArtistCheckBox":"Sanatçıdan hepsini indir (daha fazla içerebilir)", // ChatGPT translation
-    "useItemPosInPlaylistCheckbox": "Dosya adlarında albüm parça numaraları yerine öğe konumlarını kullan", // ChatGPT translation
+    "useItemPosInPlaylistCheckBox": "Dosya adlarında albüm parça numaraları yerine öğe konumlarını kullan", // ChatGPT translation
+    "showTipsCheckBox":             "İpuçlarını göster", // ChatGPT translation.
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",
@@ -194,9 +195,8 @@
     "notEnoughFreeSpaceMsg":        "Sürücüde yeterli boş alan yok: '{pathRoot}'", // ChatGPT translation.
 
     "_SECTION12_":                  "=================== İPUÇLARI ===================",
-    "showTips":                     "İpuçlarını göster", // ChatGPT translation.
-    "nextTip":                      "Sonraki ipucu ⭢", // ChatGPT translation
-    "prevTip":                      "⭠ Önceki ipucu", // ChatGPT translation
+    "nextTipLabel":                 "Sonraki ipucu ⭢", // ChatGPT translation
+    "prevTipLabel":                 "⭠ Önceki ipucu", // ChatGPT translation
     "tip1":                         "İpucu #1: Arama sonuçlarındaki satırlara sağ tıklayarak seçili öğelerin bağlantılarını kopyalayabileceğinizi biliyor muydunuz?", // ChatGPT translation
     "tip2":                         "İpucu #2: Bir plak şirketi bağlantısı kullandığınızda, programın o şirketten 10.000 albüme kadar alabileceğini biliyor muydunuz? Bu limiti biz belirlemedik! Ama bu fazlasıyla yeterli, değil mi? 👍", // ChatGPT translation
     "tip3":                         "İpucu #3: Favori görsel temanızı, themes.json dosyasını Not Defteri ile düzenleyerek özelleştirebileceğinizi biliyor muydunuz? Ne bekliyorsunuz?!", // ChatGPT translation

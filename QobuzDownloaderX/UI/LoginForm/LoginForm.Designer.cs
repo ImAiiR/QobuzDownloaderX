@@ -38,7 +38,7 @@
             this.loginButton = new System.Windows.Forms.Button();
             this.emailTextbox = new System.Windows.Forms.TextBox();
             this.passwordTextbox = new System.Windows.Forms.TextBox();
-            this.visableCheckbox = new System.Windows.Forms.CheckBox();
+            this.visableCheckBox = new System.Windows.Forms.CheckBox();
             this.loginText = new System.Windows.Forms.Label();
             this.loginBackground = new System.ComponentModel.BackgroundWorker();
             this.customLabel = new System.Windows.Forms.Label();
@@ -172,16 +172,16 @@
             this.passwordTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextbox_KeyDown);
             this.passwordTextbox.Leave += new System.EventHandler(this.passwordTextbox_Leave);
             // 
-            // visableCheckbox
+            // visableCheckBox
             // 
-            this.visableCheckbox.AutoSize = true;
-            this.visableCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.visableCheckbox.Location = new System.Drawing.Point(268, 154);
-            this.visableCheckbox.Name = "visableCheckbox";
-            this.visableCheckbox.Size = new System.Drawing.Size(12, 11);
-            this.visableCheckbox.TabIndex = 13;
-            this.visableCheckbox.UseVisualStyleBackColor = true;
-            this.visableCheckbox.CheckedChanged += new System.EventHandler(this.visableCheckbox_CheckedChanged);
+            this.visableCheckBox.AutoSize = true;
+            this.visableCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.visableCheckBox.Location = new System.Drawing.Point(268, 154);
+            this.visableCheckBox.Name = "visableCheckBox";
+            this.visableCheckBox.Size = new System.Drawing.Size(12, 11);
+            this.visableCheckBox.TabIndex = 13;
+            this.visableCheckBox.UseVisualStyleBackColor = true;
+            this.visableCheckBox.CheckedChanged += new System.EventHandler(this.visableCheckBox_CheckedChanged);
             // 
             // loginText
             // 
@@ -443,7 +443,7 @@
             this.Controls.Add(this.aboutButton);
             this.Controls.Add(this.altLoginLabel);
             this.Controls.Add(this.loginText);
-            this.Controls.Add(this.visableCheckbox);
+            this.Controls.Add(this.visableCheckBox);
             this.Controls.Add(this.customLabel);
             this.Controls.Add(this.emailPanel);
             this.Controls.Add(this.passwordTextbox);
@@ -485,7 +485,7 @@
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.TextBox emailTextbox;
         private System.Windows.Forms.TextBox passwordTextbox;
-        private System.Windows.Forms.CheckBox visableCheckbox;
+        private System.Windows.Forms.CheckBox visableCheckBox;
         private System.Windows.Forms.Label loginText;
         private System.ComponentModel.BackgroundWorker loginBackground;
         private System.Windows.Forms.Label customLabel;
