@@ -111,7 +111,7 @@ namespace QobuzDownloaderX
 
         private void SetSavedValues()
         {
-            // Email
+            // Email/usrname
             if (!string.IsNullOrEmpty(Settings.Default.savedEmail) &&
                 Settings.Default.savedEmail != emailPlaceholder)
             {
@@ -181,9 +181,37 @@ namespace QobuzDownloaderX
                 passwordTextBox.PasswordChar = '\0';
             }
 
-            // App ID / Secret
-            appidTextBox.Text = Settings.Default.savedAppID;
-            appSecretTextBox.Text = Settings.Default.savedSecret;
+            // App ID
+            try
+            {
+                byte[] encryptedAppIDBytes = Convert.FromBase64String(Settings.Default.savedAppID);
+                string decryptedAppID = Encoding.UTF8.GetString(
+                    ProtectedData.Unprotect(encryptedAppIDBytes, null, DataProtectionScope.CurrentUser));
+                app_id = decryptedAppID;
+                appidTextBox.Text = decryptedAppID;
+            }
+            catch
+            {
+                // fallback: plain text
+                app_id = Settings.Default.savedAppID;
+                appidTextBox.Text = app_id;
+            }
+
+            // App Secret
+            try
+            {
+                byte[] encryptedAppSecretBytes = Convert.FromBase64String(Settings.Default.savedSecret);
+                string decryptedAppSecret = Encoding.UTF8.GetString(
+                    ProtectedData.Unprotect(encryptedAppSecretBytes, null, DataProtectionScope.CurrentUser));
+                app_secret = decryptedAppSecret;
+                appSecretTextBox.Text = decryptedAppSecret;
+            }
+            catch
+            {
+                // fallback: plain text
+                app_secret = Settings.Default.savedSecret;
+                appSecretTextBox.Text = app_secret;
+            }
 
             // Alt login handling
             if (Settings.Default.savedAltLoginValue)
@@ -469,7 +497,6 @@ namespace QobuzDownloaderX
                     logger.Info("User ID: " + user_id);
                     logger.Info("User display name: " + user_display_name);
 
-
                     // Grab user details & send to QBDLX
                     logger.Debug("Sending values to main form");
                     qbdlx.user_id = user_id;
@@ -490,11 +517,18 @@ namespace QobuzDownloaderX
                     qbdlx.user_auth_token = user_auth_token;
                     qbdlx.QoUser = QoUser;
 
-                    // Save App ID and Secret to use later on
+                    // Encrypt AppID
+                    byte[] encryptedAppID = ProtectedData.Protect(Encoding.UTF8.GetBytes(app_id), null, DataProtectionScope.CurrentUser);
+                    Settings.Default.savedAppID = Convert.ToBase64String(encryptedAppID);
+
+                    // Encrypt AppSecret
+                    byte[] encryptedAppSecret = ProtectedData.Protect(Encoding.UTF8.GetBytes(app_secret), null, DataProtectionScope.CurrentUser);
+                    Settings.Default.savedSecret = Convert.ToBase64String(encryptedAppSecret);
+
+                    // Update textboxes
                     appidTextBox.Invoke(new Action(() => appidTextBox.Text = app_id));
                     appSecretTextBox.Invoke(new Action(() => appSecretTextBox.Text = app_secret));
-                    Settings.Default.savedAppID = app_id;
-                    Settings.Default.savedSecret = app_secret;
+                    Settings.Default.Save();
                 }
                 else
                 {
@@ -628,8 +662,16 @@ namespace QobuzDownloaderX
         private void customSaveButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Saving custom app ID and secret…");
-            Settings.Default.savedAppID = appidTextBox.Text;
-            Settings.Default.savedSecret = appSecretTextBox.Text;
+
+            // Encrypt custom AppID & Secret
+            byte[] encryptedAppID = ProtectedData.Protect(Encoding.UTF8.GetBytes(appidTextBox.Text), null, DataProtectionScope.CurrentUser);
+            Settings.Default.savedAppID = Convert.ToBase64String(encryptedAppID);
+
+            byte[] encryptedAppSecret = ProtectedData.Protect(Encoding.UTF8.GetBytes(appSecretTextBox.Text), null, DataProtectionScope.CurrentUser);
+            Settings.Default.savedSecret = Convert.ToBase64String(encryptedAppSecret);
+
+            Settings.Default.Save();
+
             logger.Debug("Custom app ID and secret saved! Hiding custom values panel");
             customPanel.Enabled = false;
             customPanel.Visible = false;
