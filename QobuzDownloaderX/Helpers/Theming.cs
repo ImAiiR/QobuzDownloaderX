@@ -418,6 +418,7 @@ namespace QobuzDownloaderX.Helpers
     ""downloadFromArtistListBox"":    ""Album, EP/Single, Live, Compilation, Download, Other"",
     ""downloadAllFromArtistCheckBox"":""Download all from artist (it may include more)"",
     ""useItemPosInPlaylistCheckBox"": ""Use item positions instead of album track numbers in file names"",
+    ""showTipsCheckBox"":             ""Show tips"",
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",
@@ -515,7 +516,6 @@ namespace QobuzDownloaderX.Helpers
     ""notEnoughFreeSpaceMsg"":        ""Not enough free space on drive: '{pathRoot}'"",
 
     ""_SECTION12_"":                  ""=================== TIPS ==================="",
-    ""showTipsCheckBox"":             ""Show tips"",
     ""nextTipLabel"":                 ""Next tip ⭢"",
     ""prevTipLabel"":                 ""⭠ Previous tip"",
     ""tip1"":                         ""Tip #1: Did you know you can right-click on the rows of search results to copy the links of the selected items?"",
