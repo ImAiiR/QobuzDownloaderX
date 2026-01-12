@@ -268,7 +268,7 @@ namespace QobuzDownloaderX
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(180, 66);
             this.searchButton.TabIndex = 2;
-            this.searchButton.Text = "SEARCH";
+            this.searchButton.Text = "SEARCHER";
             this.searchButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
@@ -2536,7 +2536,7 @@ namespace QobuzDownloaderX
             this.searchLabel.Name = "searchLabel";
             this.searchLabel.Size = new System.Drawing.Size(562, 30);
             this.searchLabel.TabIndex = 1;
-            this.searchLabel.Text = "SEARCH";
+            this.searchLabel.Text = "SEARCHER";
             this.searchLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.searchLabel_MouseMove);
             // 
             // searchingLabel
