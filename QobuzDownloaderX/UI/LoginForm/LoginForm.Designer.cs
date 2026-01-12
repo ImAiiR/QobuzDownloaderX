@@ -36,8 +36,8 @@
             this.passwordIcon = new System.Windows.Forms.PictureBox();
             this.passwordPanel = new System.Windows.Forms.Panel();
             this.loginButton = new System.Windows.Forms.Button();
-            this.emailTextbox = new System.Windows.Forms.TextBox();
-            this.passwordTextbox = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.visableCheckBox = new System.Windows.Forms.CheckBox();
             this.loginText = new System.Windows.Forms.Label();
             this.loginBackground = new System.ComponentModel.BackgroundWorker();
@@ -46,16 +46,16 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.altLoginLabel = new System.Windows.Forms.Label();
             this.aboutButton = new System.Windows.Forms.Button();
-            this.aboutTextbox = new System.Windows.Forms.TextBox();
+            this.aboutTextBox = new System.Windows.Forms.TextBox();
             this.loginAboutPanel = new System.Windows.Forms.Panel();
             this.closeAboutButton = new System.Windows.Forms.Button();
             this.customPanel = new System.Windows.Forms.Panel();
             this.appSecretLabel = new System.Windows.Forms.Label();
             this.appidLabel = new System.Windows.Forms.Label();
-            this.customInfoTextbox = new System.Windows.Forms.TextBox();
+            this.customInfoTextBox = new System.Windows.Forms.TextBox();
             this.customSaveButton = new System.Windows.Forms.Button();
-            this.appSecretTextbox = new System.Windows.Forms.TextBox();
-            this.appidTextbox = new System.Windows.Forms.TextBox();
+            this.appSecretTextBox = new System.Windows.Forms.TextBox();
+            this.appidTextBox = new System.Windows.Forms.TextBox();
             this.updateButton = new System.Windows.Forms.Button();
             this.topPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.qbdlxPictureBox)).BeginInit();
@@ -142,35 +142,35 @@
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
-            // emailTextbox
+            // emailTextBox
             // 
-            this.emailTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.emailTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.emailTextbox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.emailTextbox.Location = new System.Drawing.Point(55, 107);
-            this.emailTextbox.Name = "emailTextbox";
-            this.emailTextbox.Size = new System.Drawing.Size(225, 20);
-            this.emailTextbox.TabIndex = 2;
-            this.emailTextbox.Text = "e-mail";
-            this.emailTextbox.Click += new System.EventHandler(this.emailTextbox_Click);
-            this.emailTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.emailTextbox_KeyDown);
-            this.emailTextbox.Leave += new System.EventHandler(this.emailTextbox_Leave);
+            this.emailTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.emailTextBox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.emailTextBox.Location = new System.Drawing.Point(55, 107);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(225, 20);
+            this.emailTextBox.TabIndex = 2;
+            this.emailTextBox.Text = "e-mail";
+            this.emailTextBox.Click += new System.EventHandler(this.emailTextBox_Click);
+            this.emailTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.emailTextBox_KeyDown);
+            this.emailTextBox.Leave += new System.EventHandler(this.emailTextBox_Leave);
             // 
-            // passwordTextbox
+            // passwordTextBox
             // 
-            this.passwordTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.passwordTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.passwordTextbox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.passwordTextbox.Location = new System.Drawing.Point(55, 148);
-            this.passwordTextbox.Name = "passwordTextbox";
-            this.passwordTextbox.Size = new System.Drawing.Size(225, 20);
-            this.passwordTextbox.TabIndex = 4;
-            this.passwordTextbox.Text = "password";
-            this.passwordTextbox.Click += new System.EventHandler(this.passwordTextbox_Click);
-            this.passwordTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextbox_KeyDown);
-            this.passwordTextbox.Leave += new System.EventHandler(this.passwordTextbox_Leave);
+            this.passwordTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.passwordTextBox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.passwordTextBox.Location = new System.Drawing.Point(55, 148);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(225, 20);
+            this.passwordTextBox.TabIndex = 4;
+            this.passwordTextBox.Text = "password";
+            this.passwordTextBox.Click += new System.EventHandler(this.passwordTextBox_Click);
+            this.passwordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextBox_KeyDown);
+            this.passwordTextBox.Leave += new System.EventHandler(this.passwordTextBox_Leave);
             // 
             // visableCheckBox
             // 
@@ -266,26 +266,26 @@
             this.aboutButton.UseVisualStyleBackColor = false;
             this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
             // 
-            // aboutTextbox
+            // aboutTextBox
             // 
-            this.aboutTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.aboutTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.aboutTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.aboutTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.aboutTextbox.Location = new System.Drawing.Point(0, 7);
-            this.aboutTextbox.Multiline = true;
-            this.aboutTextbox.Name = "aboutTextbox";
-            this.aboutTextbox.ReadOnly = true;
-            this.aboutTextbox.Size = new System.Drawing.Size(268, 240);
-            this.aboutTextbox.TabIndex = 0;
-            this.aboutTextbox.Text = resources.GetString("aboutTextbox.Text");
-            this.aboutTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.aboutTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.aboutTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.aboutTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.aboutTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.aboutTextBox.Location = new System.Drawing.Point(0, 7);
+            this.aboutTextBox.Multiline = true;
+            this.aboutTextBox.Name = "aboutTextBox";
+            this.aboutTextBox.ReadOnly = true;
+            this.aboutTextBox.Size = new System.Drawing.Size(268, 240);
+            this.aboutTextBox.TabIndex = 0;
+            this.aboutTextBox.Text = resources.GetString("aboutTextBox.Text");
+            this.aboutTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // loginAboutPanel
             // 
             this.loginAboutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.loginAboutPanel.Controls.Add(this.closeAboutButton);
-            this.loginAboutPanel.Controls.Add(this.aboutTextbox);
+            this.loginAboutPanel.Controls.Add(this.aboutTextBox);
             this.loginAboutPanel.Enabled = false;
             this.loginAboutPanel.Location = new System.Drawing.Point(189, 296);
             this.loginAboutPanel.Name = "loginAboutPanel";
@@ -316,10 +316,10 @@
             this.customPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.customPanel.Controls.Add(this.appSecretLabel);
             this.customPanel.Controls.Add(this.appidLabel);
-            this.customPanel.Controls.Add(this.customInfoTextbox);
+            this.customPanel.Controls.Add(this.customInfoTextBox);
             this.customPanel.Controls.Add(this.customSaveButton);
-            this.customPanel.Controls.Add(this.appSecretTextbox);
-            this.customPanel.Controls.Add(this.appidTextbox);
+            this.customPanel.Controls.Add(this.appSecretTextBox);
+            this.customPanel.Controls.Add(this.appidTextBox);
             this.customPanel.Enabled = false;
             this.customPanel.Location = new System.Drawing.Point(189, 100);
             this.customPanel.Name = "customPanel";
@@ -349,20 +349,20 @@
             this.appidLabel.TabIndex = 0;
             this.appidLabel.Text = "App ID";
             // 
-            // customInfoTextbox
+            // customInfoTextBox
             // 
-            this.customInfoTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.customInfoTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customInfoTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.customInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.customInfoTextbox.Location = new System.Drawing.Point(3, 135);
-            this.customInfoTextbox.Multiline = true;
-            this.customInfoTextbox.Name = "customInfoTextbox";
-            this.customInfoTextbox.ReadOnly = true;
-            this.customInfoTextbox.Size = new System.Drawing.Size(268, 39);
-            this.customInfoTextbox.TabIndex = 5;
-            this.customInfoTextbox.Text = "Leave values blank if you would like to automatically grab the values!";
-            this.customInfoTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.customInfoTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.customInfoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.customInfoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.customInfoTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.customInfoTextBox.Location = new System.Drawing.Point(3, 135);
+            this.customInfoTextBox.Multiline = true;
+            this.customInfoTextBox.Name = "customInfoTextBox";
+            this.customInfoTextBox.ReadOnly = true;
+            this.customInfoTextBox.Size = new System.Drawing.Size(268, 39);
+            this.customInfoTextBox.TabIndex = 5;
+            this.customInfoTextBox.Text = "Leave values blank if you would like to automatically grab the values!";
+            this.customInfoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // customSaveButton
             // 
@@ -382,27 +382,27 @@
             this.customSaveButton.UseVisualStyleBackColor = false;
             this.customSaveButton.Click += new System.EventHandler(this.customSaveButton_Click);
             // 
-            // appSecretTextbox
+            // appSecretTextBox
             // 
-            this.appSecretTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.appSecretTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.appSecretTextbox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appSecretTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
-            this.appSecretTextbox.Location = new System.Drawing.Point(22, 75);
-            this.appSecretTextbox.Name = "appSecretTextbox";
-            this.appSecretTextbox.Size = new System.Drawing.Size(225, 20);
-            this.appSecretTextbox.TabIndex = 3;
+            this.appSecretTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.appSecretTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.appSecretTextBox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appSecretTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
+            this.appSecretTextBox.Location = new System.Drawing.Point(22, 75);
+            this.appSecretTextBox.Name = "appSecretTextBox";
+            this.appSecretTextBox.Size = new System.Drawing.Size(225, 20);
+            this.appSecretTextBox.TabIndex = 3;
             // 
-            // appidTextbox
+            // appidTextBox
             // 
-            this.appidTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.appidTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.appidTextbox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appidTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
-            this.appidTextbox.Location = new System.Drawing.Point(22, 27);
-            this.appidTextbox.Name = "appidTextbox";
-            this.appidTextbox.Size = new System.Drawing.Size(225, 20);
-            this.appidTextbox.TabIndex = 1;
+            this.appidTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.appidTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.appidTextBox.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appidTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
+            this.appidTextBox.Location = new System.Drawing.Point(22, 27);
+            this.appidTextBox.Name = "appidTextBox";
+            this.appidTextBox.Size = new System.Drawing.Size(225, 20);
+            this.appidTextBox.TabIndex = 1;
             // 
             // updateButton
             // 
@@ -446,8 +446,8 @@
             this.Controls.Add(this.visableCheckBox);
             this.Controls.Add(this.customLabel);
             this.Controls.Add(this.emailPanel);
-            this.Controls.Add(this.passwordTextbox);
-            this.Controls.Add(this.emailTextbox);
+            this.Controls.Add(this.passwordTextBox);
+            this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordPanel);
             this.Controls.Add(this.passwordIcon);
@@ -483,8 +483,8 @@
         private System.Windows.Forms.PictureBox passwordIcon;
         private System.Windows.Forms.Panel passwordPanel;
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.TextBox emailTextbox;
-        private System.Windows.Forms.TextBox passwordTextbox;
+        private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.CheckBox visableCheckBox;
         private System.Windows.Forms.Label loginText;
         private System.ComponentModel.BackgroundWorker loginBackground;
@@ -493,14 +493,14 @@
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Label altLoginLabel;
         private System.Windows.Forms.Button aboutButton;
-        private System.Windows.Forms.TextBox aboutTextbox;
+        private System.Windows.Forms.TextBox aboutTextBox;
         private System.Windows.Forms.Panel loginAboutPanel;
         private System.Windows.Forms.Button closeAboutButton;
         private System.Windows.Forms.Panel customPanel;
-        private System.Windows.Forms.TextBox customInfoTextbox;
+        private System.Windows.Forms.TextBox customInfoTextBox;
         private System.Windows.Forms.Button customSaveButton;
-        private System.Windows.Forms.TextBox appSecretTextbox;
-        private System.Windows.Forms.TextBox appidTextbox;
+        private System.Windows.Forms.TextBox appSecretTextBox;
+        private System.Windows.Forms.TextBox appidTextBox;
         private System.Windows.Forms.Label appSecretLabel;
         private System.Windows.Forms.Label appidLabel;
         private System.Windows.Forms.Button updateButton;

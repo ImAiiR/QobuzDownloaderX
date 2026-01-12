@@ -64,10 +64,10 @@ namespace QobuzDownloaderX
             this.artistLabel = new System.Windows.Forms.Label();
             this.downloadOutput = new System.Windows.Forms.TextBox();
             this.albumPictureBox = new System.Windows.Forms.PictureBox();
-            this.inputTextbox = new System.Windows.Forms.TextBox();
+            this.inputTextBox = new System.Windows.Forms.TextBox();
             this.downloadLabel = new System.Windows.Forms.Label();
             this.settingsPanel = new System.Windows.Forms.Panel();
-            this.vaTrackTemplateTextbox = new System.Windows.Forms.TextBox();
+            this.vaTrackTemplateTextBox = new System.Windows.Forms.TextBox();
             this.vaTrackTemplateLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.resetTemplatesButton = new System.Windows.Forms.Button();
@@ -76,16 +76,16 @@ namespace QobuzDownloaderX
             this.selectFolderButton = new System.Windows.Forms.Button();
             this.openFolderButton = new System.Windows.Forms.Button();
             this.templatesListLabel = new System.Windows.Forms.Label();
-            this.templatesListTextbox = new System.Windows.Forms.TextBox();
+            this.templatesListTextBox = new System.Windows.Forms.TextBox();
             this.additionalSettingsButton = new System.Windows.Forms.Button();
-            this.trackTemplateTextbox = new System.Windows.Forms.TextBox();
+            this.trackTemplateTextBox = new System.Windows.Forms.TextBox();
             this.trackTemplateLabel = new System.Windows.Forms.Label();
-            this.playlistTemplateTextbox = new System.Windows.Forms.TextBox();
+            this.playlistTemplateTextBox = new System.Windows.Forms.TextBox();
             this.playlistTemplateLabel = new System.Windows.Forms.Label();
-            this.artistTemplateTextbox = new System.Windows.Forms.TextBox();
-            this.favoritesTemplateTextbox = new System.Windows.Forms.TextBox();
-            this.albumTemplateTextbox = new System.Windows.Forms.TextBox();
-            this.downloadFolderTextbox = new System.Windows.Forms.TextBox();
+            this.artistTemplateTextBox = new System.Windows.Forms.TextBox();
+            this.favoritesTemplateTextBox = new System.Windows.Forms.TextBox();
+            this.albumTemplateTextBox = new System.Windows.Forms.TextBox();
+            this.downloadFolderTextBox = new System.Windows.Forms.TextBox();
             this.artistTemplateLabel = new System.Windows.Forms.Label();
             this.favoritesTemplateLabel = new System.Windows.Forms.Label();
             this.albumTemplateLabel = new System.Windows.Forms.Label();
@@ -93,7 +93,7 @@ namespace QobuzDownloaderX
             this.downloadOptionsLabel = new System.Windows.Forms.Label();
             this.templatesLabel = new System.Windows.Forms.Label();
             this.settingsLabel = new System.Windows.Forms.Label();
-            this.userInfoTextbox = new System.Windows.Forms.TextBox();
+            this.userInfoTextBox = new System.Windows.Forms.TextBox();
             this.mainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyThisRowToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,7 +154,7 @@ namespace QobuzDownloaderX
             this.themeComboBox = new System.Windows.Forms.ComboBox();
             this.themeSectionLabel = new System.Windows.Forms.Label();
             this.commentCheckBox = new System.Windows.Forms.CheckBox();
-            this.commentTextbox = new System.Windows.Forms.TextBox();
+            this.commentTextBox = new System.Windows.Forms.TextBox();
             this.advancedOptionsLabel = new System.Windows.Forms.Label();
             this.closeAdditionalButton = new System.Windows.Forms.Button();
             this.savedArtLabel = new System.Windows.Forms.Label();
@@ -196,7 +196,7 @@ namespace QobuzDownloaderX
             this.searchResultsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.searchAlbumsButton = new System.Windows.Forms.Button();
             this.searchTracksButton = new System.Windows.Forms.Button();
-            this.searchTextbox = new System.Windows.Forms.TextBox();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchLabel = new System.Windows.Forms.Label();
             this.searchingLabel = new System.Windows.Forms.Label();
             this.sortingSearchResultsLabel = new System.Windows.Forms.Label();
@@ -409,7 +409,7 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Controls.Add(this.artistLabel);
             this.downloaderPanel.Controls.Add(this.downloadOutput);
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
-            this.downloaderPanel.Controls.Add(this.inputTextbox);
+            this.downloaderPanel.Controls.Add(this.inputTextBox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
             this.downloaderPanel.Location = new System.Drawing.Point(184, 275);
             this.downloaderPanel.Name = "downloaderPanel";
@@ -681,25 +681,25 @@ namespace QobuzDownloaderX
             this.albumPictureBox.TabStop = false;
             this.albumPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.albumPictureBox_MouseClick);
             // 
-            // inputTextbox
+            // inputTextBox
             // 
-            this.inputTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.inputTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.inputTextbox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.inputTextbox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.inputTextbox.Location = new System.Drawing.Point(18, 48);
-            this.inputTextbox.MaxLength = 1000;
-            this.inputTextbox.Name = "inputTextbox";
-            this.inputTextbox.Size = new System.Drawing.Size(498, 26);
-            this.inputTextbox.TabIndex = 1;
-            this.inputTextbox.Text = "Paste a Qobuz URL…";
-            this.inputTextbox.WordWrap = false;
-            this.inputTextbox.Click += new System.EventHandler(this.inputTextbox_Click);
-            this.inputTextbox.TextChanged += new System.EventHandler(this.inputTextbox_TextChanged);
-            this.inputTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTextbox_KeyDown);
-            this.inputTextbox.Leave += new System.EventHandler(this.inputTextbox_Leave);
-            this.inputTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.inputTextbox_MouseDown);
+            this.inputTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.inputTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.inputTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.inputTextBox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.inputTextBox.Location = new System.Drawing.Point(18, 48);
+            this.inputTextBox.MaxLength = 1000;
+            this.inputTextBox.Name = "inputTextBox";
+            this.inputTextBox.Size = new System.Drawing.Size(498, 26);
+            this.inputTextBox.TabIndex = 1;
+            this.inputTextBox.Text = "Paste a Qobuz URL…";
+            this.inputTextBox.WordWrap = false;
+            this.inputTextBox.Click += new System.EventHandler(this.inputTextBox_Click);
+            this.inputTextBox.TextChanged += new System.EventHandler(this.inputTextBox_TextChanged);
+            this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTextBox_KeyDown);
+            this.inputTextBox.Leave += new System.EventHandler(this.inputTextBox_Leave);
+            this.inputTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.inputTextBox_MouseDown);
             // 
             // downloadLabel
             // 
@@ -715,21 +715,21 @@ namespace QobuzDownloaderX
             // 
             // settingsPanel
             // 
-            this.settingsPanel.Controls.Add(this.vaTrackTemplateTextbox);
+            this.settingsPanel.Controls.Add(this.vaTrackTemplateTextBox);
             this.settingsPanel.Controls.Add(this.vaTrackTemplateLabel);
             this.settingsPanel.Controls.Add(this.flowLayoutPanel1);
             this.settingsPanel.Controls.Add(this.folderButtonsPanel);
             this.settingsPanel.Controls.Add(this.templatesListLabel);
-            this.settingsPanel.Controls.Add(this.templatesListTextbox);
+            this.settingsPanel.Controls.Add(this.templatesListTextBox);
             this.settingsPanel.Controls.Add(this.additionalSettingsButton);
-            this.settingsPanel.Controls.Add(this.trackTemplateTextbox);
+            this.settingsPanel.Controls.Add(this.trackTemplateTextBox);
             this.settingsPanel.Controls.Add(this.trackTemplateLabel);
-            this.settingsPanel.Controls.Add(this.playlistTemplateTextbox);
+            this.settingsPanel.Controls.Add(this.playlistTemplateTextBox);
             this.settingsPanel.Controls.Add(this.playlistTemplateLabel);
-            this.settingsPanel.Controls.Add(this.artistTemplateTextbox);
-            this.settingsPanel.Controls.Add(this.favoritesTemplateTextbox);
-            this.settingsPanel.Controls.Add(this.albumTemplateTextbox);
-            this.settingsPanel.Controls.Add(this.downloadFolderTextbox);
+            this.settingsPanel.Controls.Add(this.artistTemplateTextBox);
+            this.settingsPanel.Controls.Add(this.favoritesTemplateTextBox);
+            this.settingsPanel.Controls.Add(this.albumTemplateTextBox);
+            this.settingsPanel.Controls.Add(this.downloadFolderTextBox);
             this.settingsPanel.Controls.Add(this.artistTemplateLabel);
             this.settingsPanel.Controls.Add(this.favoritesTemplateLabel);
             this.settingsPanel.Controls.Add(this.albumTemplateLabel);
@@ -742,19 +742,19 @@ namespace QobuzDownloaderX
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 0;
             // 
-            // vaTrackTemplateTextbox
+            // vaTrackTemplateTextBox
             // 
-            this.vaTrackTemplateTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.vaTrackTemplateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.vaTrackTemplateTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vaTrackTemplateTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.vaTrackTemplateTextbox.Location = new System.Drawing.Point(248, 282);
-            this.vaTrackTemplateTextbox.Multiline = true;
-            this.vaTrackTemplateTextbox.Name = "vaTrackTemplateTextbox";
-            this.vaTrackTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.vaTrackTemplateTextbox.TabIndex = 13;
-            this.vaTrackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
-            this.vaTrackTemplateTextbox.WordWrap = false;
+            this.vaTrackTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.vaTrackTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.vaTrackTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vaTrackTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.vaTrackTemplateTextBox.Location = new System.Drawing.Point(248, 282);
+            this.vaTrackTemplateTextBox.Multiline = true;
+            this.vaTrackTemplateTextBox.Name = "vaTrackTemplateTextBox";
+            this.vaTrackTemplateTextBox.Size = new System.Drawing.Size(443, 21);
+            this.vaTrackTemplateTextBox.TabIndex = 13;
+            this.vaTrackTemplateTextBox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
+            this.vaTrackTemplateTextBox.WordWrap = false;
             // 
             // vaTrackTemplateLabel
             // 
@@ -862,8 +862,8 @@ namespace QobuzDownloaderX
             this.openFolderButton.Text = "Open Folder";
             this.openFolderButton.UseVisualStyleBackColor = false;
             this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
-            this.openFolderButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
-            this.openFolderButton.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
+            this.openFolderButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextBox_KeyDown);
+            this.openFolderButton.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextBox_KeyUp);
             // 
             // templatesListLabel
             // 
@@ -876,23 +876,23 @@ namespace QobuzDownloaderX
             this.templatesListLabel.Text = "TEMPLATES LIST";
             this.templatesListLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // templatesListTextbox
+            // templatesListTextBox
             // 
-            this.templatesListTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.templatesListTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.templatesListTextbox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.templatesListTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatesListTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.templatesListTextbox.Location = new System.Drawing.Point(96, 440);
-            this.templatesListTextbox.Multiline = true;
-            this.templatesListTextbox.Name = "templatesListTextbox";
-            this.templatesListTextbox.ReadOnly = true;
-            this.templatesListTextbox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.templatesListTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.templatesListTextbox.Size = new System.Drawing.Size(595, 77);
-            this.templatesListTextbox.TabIndex = 20;
-            this.templatesListTextbox.Text = resources.GetString("templatesListTextbox.Text");
-            this.templatesListTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.templatesListTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.templatesListTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.templatesListTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.templatesListTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.templatesListTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.templatesListTextBox.Location = new System.Drawing.Point(96, 440);
+            this.templatesListTextBox.Multiline = true;
+            this.templatesListTextBox.Name = "templatesListTextBox";
+            this.templatesListTextBox.ReadOnly = true;
+            this.templatesListTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.templatesListTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.templatesListTextBox.Size = new System.Drawing.Size(595, 77);
+            this.templatesListTextBox.TabIndex = 20;
+            this.templatesListTextBox.Text = resources.GetString("templatesListTextBox.Text");
+            this.templatesListTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // additionalSettingsButton
             // 
@@ -912,19 +912,19 @@ namespace QobuzDownloaderX
             this.additionalSettingsButton.UseVisualStyleBackColor = false;
             this.additionalSettingsButton.Click += new System.EventHandler(this.additionalSettingsButton_Click);
             // 
-            // trackTemplateTextbox
+            // trackTemplateTextBox
             // 
-            this.trackTemplateTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.trackTemplateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.trackTemplateTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trackTemplateTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.trackTemplateTextbox.Location = new System.Drawing.Point(248, 249);
-            this.trackTemplateTextbox.Multiline = true;
-            this.trackTemplateTextbox.Name = "trackTemplateTextbox";
-            this.trackTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.trackTemplateTextbox.TabIndex = 11;
-            this.trackTemplateTextbox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
-            this.trackTemplateTextbox.WordWrap = false;
+            this.trackTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.trackTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.trackTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.trackTemplateTextBox.Location = new System.Drawing.Point(248, 249);
+            this.trackTemplateTextBox.Multiline = true;
+            this.trackTemplateTextBox.Name = "trackTemplateTextBox";
+            this.trackTemplateTextBox.Size = new System.Drawing.Size(443, 21);
+            this.trackTemplateTextBox.TabIndex = 11;
+            this.trackTemplateTextBox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
+            this.trackTemplateTextBox.WordWrap = false;
             // 
             // trackTemplateLabel
             // 
@@ -937,19 +937,19 @@ namespace QobuzDownloaderX
             this.trackTemplateLabel.Text = "(DEFAULT) TRACK TEMPLATE";
             this.trackTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // playlistTemplateTextbox
+            // playlistTemplateTextBox
             // 
-            this.playlistTemplateTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.playlistTemplateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.playlistTemplateTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playlistTemplateTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.playlistTemplateTextbox.Location = new System.Drawing.Point(248, 312);
-            this.playlistTemplateTextbox.Multiline = true;
-            this.playlistTemplateTextbox.Name = "playlistTemplateTextbox";
-            this.playlistTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.playlistTemplateTextbox.TabIndex = 15;
-            this.playlistTemplateTextbox.Text = "%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%";
-            this.playlistTemplateTextbox.WordWrap = false;
+            this.playlistTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.playlistTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playlistTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playlistTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.playlistTemplateTextBox.Location = new System.Drawing.Point(248, 312);
+            this.playlistTemplateTextBox.Multiline = true;
+            this.playlistTemplateTextBox.Name = "playlistTemplateTextBox";
+            this.playlistTemplateTextBox.Size = new System.Drawing.Size(443, 21);
+            this.playlistTemplateTextBox.TabIndex = 15;
+            this.playlistTemplateTextBox.Text = "%PlaylistTitle% [ID%PlaylistID%]\\%ArtistName%";
+            this.playlistTemplateTextBox.WordWrap = false;
             // 
             // playlistTemplateLabel
             // 
@@ -962,62 +962,62 @@ namespace QobuzDownloaderX
             this.playlistTemplateLabel.Text = "PLAYLIST TEMPLATE";
             this.playlistTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // artistTemplateTextbox
+            // artistTemplateTextBox
             // 
-            this.artistTemplateTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.artistTemplateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.artistTemplateTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.artistTemplateTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.artistTemplateTextbox.Location = new System.Drawing.Point(248, 179);
-            this.artistTemplateTextbox.Multiline = true;
-            this.artistTemplateTextbox.Name = "artistTemplateTextbox";
-            this.artistTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.artistTemplateTextbox.TabIndex = 7;
-            this.artistTemplateTextbox.Text = "%ArtistName%";
-            this.artistTemplateTextbox.WordWrap = false;
+            this.artistTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.artistTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.artistTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.artistTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.artistTemplateTextBox.Location = new System.Drawing.Point(248, 179);
+            this.artistTemplateTextBox.Multiline = true;
+            this.artistTemplateTextBox.Name = "artistTemplateTextBox";
+            this.artistTemplateTextBox.Size = new System.Drawing.Size(443, 21);
+            this.artistTemplateTextBox.TabIndex = 7;
+            this.artistTemplateTextBox.Text = "%ArtistName%";
+            this.artistTemplateTextBox.WordWrap = false;
             // 
-            // favoritesTemplateTextbox
+            // favoritesTemplateTextBox
             // 
-            this.favoritesTemplateTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.favoritesTemplateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.favoritesTemplateTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.favoritesTemplateTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.favoritesTemplateTextbox.Location = new System.Drawing.Point(248, 347);
-            this.favoritesTemplateTextbox.Multiline = true;
-            this.favoritesTemplateTextbox.Name = "favoritesTemplateTextbox";
-            this.favoritesTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.favoritesTemplateTextbox.TabIndex = 17;
-            this.favoritesTemplateTextbox.Text = "- Favorites";
-            this.favoritesTemplateTextbox.WordWrap = false;
+            this.favoritesTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.favoritesTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.favoritesTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.favoritesTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.favoritesTemplateTextBox.Location = new System.Drawing.Point(248, 347);
+            this.favoritesTemplateTextBox.Multiline = true;
+            this.favoritesTemplateTextBox.Name = "favoritesTemplateTextBox";
+            this.favoritesTemplateTextBox.Size = new System.Drawing.Size(443, 21);
+            this.favoritesTemplateTextBox.TabIndex = 17;
+            this.favoritesTemplateTextBox.Text = "- Favorites";
+            this.favoritesTemplateTextBox.WordWrap = false;
             // 
-            // albumTemplateTextbox
+            // albumTemplateTextBox
             // 
-            this.albumTemplateTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.albumTemplateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.albumTemplateTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumTemplateTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.albumTemplateTextbox.Location = new System.Drawing.Point(248, 214);
-            this.albumTemplateTextbox.Multiline = true;
-            this.albumTemplateTextbox.Name = "albumTemplateTextbox";
-            this.albumTemplateTextbox.Size = new System.Drawing.Size(443, 21);
-            this.albumTemplateTextbox.TabIndex = 9;
-            this.albumTemplateTextbox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]";
-            this.albumTemplateTextbox.WordWrap = false;
+            this.albumTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.albumTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.albumTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.albumTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.albumTemplateTextBox.Location = new System.Drawing.Point(248, 214);
+            this.albumTemplateTextBox.Multiline = true;
+            this.albumTemplateTextBox.Name = "albumTemplateTextBox";
+            this.albumTemplateTextBox.Size = new System.Drawing.Size(443, 21);
+            this.albumTemplateTextBox.TabIndex = 9;
+            this.albumTemplateTextBox.Text = "%AlbumTitle% (%Year%) (%AlbumPA%) [UPC%UPC%]";
+            this.albumTemplateTextBox.WordWrap = false;
             // 
-            // downloadFolderTextbox
+            // downloadFolderTextBox
             // 
-            this.downloadFolderTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.downloadFolderTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.downloadFolderTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.downloadFolderTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadFolderTextbox.Location = new System.Drawing.Point(248, 74);
-            this.downloadFolderTextbox.Multiline = true;
-            this.downloadFolderTextbox.Name = "downloadFolderTextbox";
-            this.downloadFolderTextbox.Size = new System.Drawing.Size(443, 21);
-            this.downloadFolderTextbox.TabIndex = 3;
-            this.downloadFolderTextbox.Text = "no folder selected";
-            this.downloadFolderTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyDown);
-            this.downloadFolderTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextbox_KeyUp);
+            this.downloadFolderTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.downloadFolderTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.downloadFolderTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadFolderTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.downloadFolderTextBox.Location = new System.Drawing.Point(248, 74);
+            this.downloadFolderTextBox.Multiline = true;
+            this.downloadFolderTextBox.Name = "downloadFolderTextBox";
+            this.downloadFolderTextBox.Size = new System.Drawing.Size(443, 21);
+            this.downloadFolderTextBox.TabIndex = 3;
+            this.downloadFolderTextBox.Text = "no folder selected";
+            this.downloadFolderTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextBox_KeyDown);
+            this.downloadFolderTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadFolderTextBox_KeyUp);
             // 
             // artistTemplateLabel
             // 
@@ -1098,25 +1098,25 @@ namespace QobuzDownloaderX
     "                   ";
             this.settingsLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.settingsLabel_MouseMove);
             // 
-            // userInfoTextbox
+            // userInfoTextBox
             // 
-            this.userInfoTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.userInfoTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.userInfoTextbox.ContextMenuStrip = this.mainContextMenuStrip;
-            this.userInfoTextbox.Cursor = System.Windows.Forms.Cursors.Help;
-            this.userInfoTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userInfoTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.userInfoTextbox.Location = new System.Drawing.Point(285, 63);
-            this.userInfoTextbox.Multiline = true;
-            this.userInfoTextbox.Name = "userInfoTextbox";
-            this.userInfoTextbox.ReadOnly = true;
-            this.userInfoTextbox.Size = new System.Drawing.Size(400, 97);
-            this.userInfoTextbox.TabIndex = 2;
-            this.userInfoTextbox.Text = "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscriptio" +
+            this.userInfoTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.userInfoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.userInfoTextBox.ContextMenuStrip = this.mainContextMenuStrip;
+            this.userInfoTextBox.Cursor = System.Windows.Forms.Cursors.Help;
+            this.userInfoTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userInfoTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.userInfoTextBox.Location = new System.Drawing.Point(285, 63);
+            this.userInfoTextBox.Multiline = true;
+            this.userInfoTextBox.Name = "userInfoTextBox";
+            this.userInfoTextBox.ReadOnly = true;
+            this.userInfoTextBox.Size = new System.Drawing.Size(400, 97);
+            this.userInfoTextBox.TabIndex = 2;
+            this.userInfoTextBox.Text = "User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscriptio" +
     "n = {user_subscription}\r\nExpires = {user_subscription_expiration}\r\n";
-            this.userInfoTextbox.GotFocus += new System.EventHandler(this.userInfoTextbox_GotFocus);
-            this.userInfoTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.userInfoTextbox_MouseDown);
-            this.userInfoTextbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.userInfoTextbox_MouseUp);
+            this.userInfoTextBox.GotFocus += new System.EventHandler(this.userInfoTextBox_GotFocus);
+            this.userInfoTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.userInfoTextBox_MouseDown);
+            this.userInfoTextBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.userInfoTextBox_MouseUp);
             // 
             // mainContextMenuStrip
             // 
@@ -1223,7 +1223,7 @@ namespace QobuzDownloaderX
             // 
             // aboutPanel
             // 
-            this.aboutPanel.Controls.Add(this.userInfoTextbox);
+            this.aboutPanel.Controls.Add(this.userInfoTextBox);
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
             this.aboutPanel.Controls.Add(this.disclaimerLabel);
@@ -1263,7 +1263,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.themeComboBox);
             this.extraSettingsPanel.Controls.Add(this.themeSectionLabel);
             this.extraSettingsPanel.Controls.Add(this.commentCheckBox);
-            this.extraSettingsPanel.Controls.Add(this.commentTextbox);
+            this.extraSettingsPanel.Controls.Add(this.commentTextBox);
             this.extraSettingsPanel.Controls.Add(this.advancedOptionsLabel);
             this.extraSettingsPanel.Controls.Add(this.closeAdditionalButton);
             this.extraSettingsPanel.Controls.Add(this.savedArtLabel);
@@ -1929,19 +1929,19 @@ namespace QobuzDownloaderX
             this.commentCheckBox.UseVisualStyleBackColor = true;
             this.commentCheckBox.CheckedChanged += new System.EventHandler(this.commentCheckBox_CheckedChanged);
             // 
-            // commentTextbox
+            // commentTextBox
             // 
-            this.commentTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.commentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.commentTextbox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.commentTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.commentTextbox.Location = new System.Drawing.Point(248, 153);
-            this.commentTextbox.Multiline = true;
-            this.commentTextbox.Name = "commentTextbox";
-            this.commentTextbox.Size = new System.Drawing.Size(503, 21);
-            this.commentTextbox.TabIndex = 4;
-            this.commentTextbox.WordWrap = false;
-            this.commentTextbox.TextChanged += new System.EventHandler(this.commentTextbox_TextChanged);
+            this.commentTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.commentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.commentTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commentTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.commentTextBox.Location = new System.Drawing.Point(248, 153);
+            this.commentTextBox.Multiline = true;
+            this.commentTextBox.Name = "commentTextBox";
+            this.commentTextBox.Size = new System.Drawing.Size(503, 21);
+            this.commentTextBox.TabIndex = 4;
+            this.commentTextBox.WordWrap = false;
+            this.commentTextBox.TextChanged += new System.EventHandler(this.commentTextBox_TextChanged);
             // 
             // advancedOptionsLabel
             // 
@@ -2219,7 +2219,7 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchResultsPanel);
             this.searchPanel.Controls.Add(this.searchAlbumsButton);
             this.searchPanel.Controls.Add(this.searchTracksButton);
-            this.searchPanel.Controls.Add(this.searchTextbox);
+            this.searchPanel.Controls.Add(this.searchTextBox);
             this.searchPanel.Controls.Add(this.searchLabel);
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
@@ -2530,26 +2530,26 @@ namespace QobuzDownloaderX
             this.searchTracksButton.UseVisualStyleBackColor = false;
             this.searchTracksButton.Click += new System.EventHandler(this.searchTracksButton_Click);
             // 
-            // searchTextbox
+            // searchTextBox
             // 
-            this.searchTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.searchTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.searchTextbox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.searchTextbox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.searchTextbox.Location = new System.Drawing.Point(18, 48);
-            this.searchTextbox.MaxLength = 1000;
-            this.searchTextbox.Multiline = true;
-            this.searchTextbox.Name = "searchTextbox";
-            this.searchTextbox.Size = new System.Drawing.Size(557, 27);
-            this.searchTextbox.TabIndex = 1;
-            this.searchTextbox.Text = "Input your search…";
-            this.searchTextbox.WordWrap = false;
-            this.searchTextbox.Click += new System.EventHandler(this.searchTextbox_Click);
-            this.searchTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyDown);
-            this.searchTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextbox_KeyUp);
-            this.searchTextbox.Leave += new System.EventHandler(this.searchTextbox_Leave);
-            this.searchTextbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.searchTextbox_MouseDown);
+            this.searchTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.searchTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchTextBox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.searchTextBox.Location = new System.Drawing.Point(18, 48);
+            this.searchTextBox.MaxLength = 1000;
+            this.searchTextBox.Multiline = true;
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(557, 27);
+            this.searchTextBox.TabIndex = 1;
+            this.searchTextBox.Text = "Input your search…";
+            this.searchTextBox.WordWrap = false;
+            this.searchTextBox.Click += new System.EventHandler(this.searchTextBox_Click);
+            this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
+            this.searchTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyUp);
+            this.searchTextBox.Leave += new System.EventHandler(this.searchTextBox_Leave);
+            this.searchTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.searchTextBox_MouseDown);
             // 
             // searchLabel
             // 
@@ -2799,28 +2799,28 @@ namespace QobuzDownloaderX
         internal System.Windows.Forms.Label infoLabel;
         internal System.Windows.Forms.Label albumLabel;
         internal System.Windows.Forms.Label artistLabel;
-        internal System.Windows.Forms.TextBox userInfoTextbox;
+        internal System.Windows.Forms.TextBox userInfoTextBox;
         internal System.Windows.Forms.Label userInfoLabel;
         internal System.Windows.Forms.Label disclaimerLabel;
         internal Ookii.Dialogs.WinForms.VistaFolderBrowserDialog folderBrowser;
         internal System.Windows.Forms.Label downloadOptionsLabel;
-        internal System.Windows.Forms.TextBox downloadFolderTextbox;
+        internal System.Windows.Forms.TextBox downloadFolderTextBox;
         internal System.Windows.Forms.Label downloadFolderLabel;
         internal System.Windows.Forms.Button openFolderButton;
         internal System.Windows.Forms.Button selectFolderButton;
         internal System.Windows.Forms.TextBox downloadOutput;
-        internal System.Windows.Forms.TextBox trackTemplateTextbox;
+        internal System.Windows.Forms.TextBox trackTemplateTextBox;
         internal System.Windows.Forms.Label trackTemplateLabel;
         internal System.Windows.Forms.Label templatesLabel;
-        internal System.Windows.Forms.TextBox playlistTemplateTextbox;
-        internal System.Windows.Forms.TextBox albumTemplateTextbox;
+        internal System.Windows.Forms.TextBox playlistTemplateTextBox;
+        internal System.Windows.Forms.TextBox albumTemplateTextBox;
         internal System.Windows.Forms.Label playlistTemplateLabel;
         internal System.Windows.Forms.Label albumTemplateLabel;
         internal System.Windows.Forms.Button resetTemplatesButton;
         internal System.Windows.Forms.Button saveTemplatesButton;
-        internal System.Windows.Forms.TextBox favoritesTemplateTextbox;
+        internal System.Windows.Forms.TextBox favoritesTemplateTextBox;
         internal System.Windows.Forms.Label favoritesTemplateLabel;
-        internal System.Windows.Forms.TextBox artistTemplateTextbox;
+        internal System.Windows.Forms.TextBox artistTemplateTextBox;
         internal System.Windows.Forms.Label artistTemplateLabel;
         internal System.Windows.Forms.Panel extraSettingsPanel;
         internal System.Windows.Forms.Label extraSettingsLabel;
@@ -2865,7 +2865,7 @@ namespace QobuzDownloaderX
         internal System.Windows.Forms.CheckBox streamableCheckBox;
         internal System.Windows.Forms.CheckBox downloadGoodiesCheckBox;
         internal System.Windows.Forms.CheckBox useTLS13CheckBox;
-        internal System.Windows.Forms.TextBox templatesListTextbox;
+        internal System.Windows.Forms.TextBox templatesListTextBox;
         internal System.Windows.Forms.Label templatesListLabel;
         internal System.Windows.Forms.CheckBox fixMD5sCheckBox;
         internal System.Windows.Forms.Label movingLabel;
@@ -2873,17 +2873,17 @@ namespace QobuzDownloaderX
         internal System.Windows.Forms.Panel searchPanel;
         internal System.Windows.Forms.Label searchLabel;
         internal System.Windows.Forms.Button searchTracksButton;
-        internal System.Windows.Forms.TextBox searchTextbox;
+        internal System.Windows.Forms.TextBox searchTextBox;
         internal System.Windows.Forms.Button searchAlbumsButton;
         internal System.Windows.Forms.Panel searchResultsPanel;
         internal System.Windows.Forms.TableLayoutPanel searchResultsTablePanel;
         internal System.Windows.Forms.Label searchingLabel;
-        internal System.Windows.Forms.TextBox inputTextbox;
+        internal System.Windows.Forms.TextBox inputTextBox;
         internal System.Windows.Forms.Button downloadButton;
         internal System.Windows.Forms.CheckBox downloadSpeedCheckBox;
         internal System.Windows.Forms.Label progressLabel;
         internal System.Windows.Forms.CheckBox commentCheckBox;
-        internal System.Windows.Forms.TextBox commentTextbox;
+        internal System.Windows.Forms.TextBox commentTextBox;
         internal System.Windows.Forms.Label themeSectionLabel;
         internal System.Windows.Forms.Label themeLabel;
         internal System.Windows.Forms.ComboBox themeComboBox;
@@ -2953,7 +2953,7 @@ namespace QobuzDownloaderX
         internal ToolStripDropDownButton nextTipButton;
         internal ToolStripDropDownButton prevTipButton;
         internal CheckBox showTipsCheckBox;
-        internal TextBox vaTrackTemplateTextbox;
+        internal TextBox vaTrackTemplateTextBox;
         internal Label vaTrackTemplateLabel;
     }
 }

@@ -85,9 +85,9 @@ namespace QobuzDownloaderX
             customLabel.Text = languageManager.GetTranslation("customLabel");
             loginText.Text = languageManager.GetTranslation("loginTextWaiting");
 
-            // Textboxes
-            customInfoTextbox.Text = languageManager.GetTranslation("customInfoTextbox");
-            aboutTextbox.Text = languageManager.GetTranslation("aboutTextbox");
+            // TextBoxes
+            customInfoTextBox.Text = languageManager.GetTranslation("customInfoTextBox");
+            aboutTextBox.Text = languageManager.GetTranslation("aboutTextBox");
 
             // Placeholders
             emailPlaceholder = languageManager.GetTranslation("emailPlaceholder");
@@ -112,10 +112,10 @@ namespace QobuzDownloaderX
             // Set saved settings to correct places.
             username = Settings.Default.savedEmail.ToString();
             password = Settings.Default.savedPassword.ToString();
-            emailTextbox.Text = username;
-            passwordTextbox.Text = password;
-            appidTextbox.Text = Settings.Default.savedAppID.ToString();
-            appSecretTextbox.Text = Settings.Default.savedSecret.ToString();
+            emailTextBox.Text = username;
+            passwordTextBox.Text = password;
+            appidTextBox.Text = Settings.Default.savedAppID.ToString();
+            appSecretTextBox.Text = Settings.Default.savedSecret.ToString();
 
             logger.Info("Currently saved username: " + username);
             logger.Info("Currently saved app ID: " + Settings.Default.savedAppID.ToString());
@@ -125,33 +125,33 @@ namespace QobuzDownloaderX
             {
                 emailIcon.Visible = false;
                 emailPanel.Visible = false;
-                emailTextbox.Visible = false;
+                emailTextBox.Visible = false;
 
                 altLoginLabel.Text = altLoginLabelEmail;
             }
 
             // Set values for email textbox.
-            if (emailTextbox.Text != emailPlaceholder)
+            if (emailTextBox.Text != emailPlaceholder)
             {
-                emailTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
+                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
             }
-            if (emailTextbox.Text == null | emailTextbox.Text == "" | emailTextbox.Text == "\r\n")
+            if (emailTextBox.Text == null | emailTextBox.Text == "" | emailTextBox.Text == "\r\n")
             {
-                emailTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
-                emailTextbox.Text = emailPlaceholder;
+                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                emailTextBox.Text = emailPlaceholder;
             }
 
             // Set values for password textbox.
-            if (passwordTextbox.Text != passwordPlaceholder | passwordTextbox.Text != tokenPlaceholder)
+            if (passwordTextBox.Text != passwordPlaceholder | passwordTextBox.Text != tokenPlaceholder)
             {
-                passwordTextbox.PasswordChar = '*';
-                passwordTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
+                passwordTextBox.PasswordChar = '*';
+                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
             }
-            if (passwordTextbox.Text == null | passwordTextbox.Text == "" | passwordTextbox.Text == "\r\n")
+            if (passwordTextBox.Text == null | passwordTextBox.Text == "" | passwordTextBox.Text == "\r\n")
             {
-                passwordTextbox.PasswordChar = '\0';
-                passwordTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
-                passwordTextbox.Text = passwordPlaceholder;
+                passwordTextBox.PasswordChar = '\0';
+                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                passwordTextBox.Text = passwordPlaceholder;
             }
         }
 
@@ -234,7 +234,7 @@ namespace QobuzDownloaderX
             // Get and display version number.
             logger.Info("QobuzDownlaoderX | Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString());
             versionNumber.Text = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            aboutTextbox.Text = aboutTextbox.Text.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            aboutTextBox.Text = aboutTextBox.Text.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
             this.BeginInvoke((Action)(() => loginButton.Focus()));
 
@@ -248,51 +248,51 @@ namespace QobuzDownloaderX
             Application.Exit();
         }
 
-        private void emailTextbox_Click(object sender, EventArgs e)
+        private void emailTextBox_Click(object sender, EventArgs e)
         {
-            if (emailTextbox.Text == emailPlaceholder)
+            if (emailTextBox.Text == emailPlaceholder)
             {
-                emailTextbox.Text = null;
-                emailTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
+                emailTextBox.Text = null;
+                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
             }
         }
 
-        private void emailTextbox_Leave(object sender, EventArgs e)
+        private void emailTextBox_Leave(object sender, EventArgs e)
         {
-            if (emailTextbox.Text == null | emailTextbox.Text == "")
+            if (emailTextBox.Text == null | emailTextBox.Text == "")
             {
-                emailTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
                 if (Settings.Default.savedAltLoginValue == false)
                 {
-                    emailTextbox.Text = emailPlaceholder;
+                    emailTextBox.Text = emailPlaceholder;
                 }
             }
         }
 
-        private void passwordTextbox_Click(object sender, EventArgs e)
+        private void passwordTextBox_Click(object sender, EventArgs e)
         {
-            if (passwordTextbox.Text == passwordPlaceholder | passwordTextbox.Text == tokenPlaceholder)
+            if (passwordTextBox.Text == passwordPlaceholder | passwordTextBox.Text == tokenPlaceholder)
             {
-                passwordTextbox.Text = null;
-                passwordTextbox.PasswordChar = '*';
-                passwordTextbox.UseSystemPasswordChar = false;
-                passwordTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
+                passwordTextBox.Text = null;
+                passwordTextBox.PasswordChar = '*';
+                passwordTextBox.UseSystemPasswordChar = false;
+                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
             }
         }
 
-        private void passwordTextbox_Leave(object sender, EventArgs e)
+        private void passwordTextBox_Leave(object sender, EventArgs e)
         {
-            if (passwordTextbox.Text == null | passwordTextbox.Text == "")
+            if (passwordTextBox.Text == null | passwordTextBox.Text == "")
             {
-                passwordTextbox.PasswordChar = '\0';
-                passwordTextbox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                passwordTextBox.PasswordChar = '\0';
+                passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
                 if (Settings.Default.savedAltLoginValue == false)
                 {
-                    passwordTextbox.Text = passwordPlaceholder;
+                    passwordTextBox.Text = passwordPlaceholder;
                 }
                 else
                 {
-                    passwordTextbox.Text = tokenPlaceholder;
+                    passwordTextBox.Text = tokenPlaceholder;
                 }
 
             }
@@ -302,15 +302,15 @@ namespace QobuzDownloaderX
         {
             if (visableCheckBox.Checked == true)
             {
-                passwordTextbox.PasswordChar = '\0';
+                passwordTextBox.PasswordChar = '\0';
             }
             else
             {
-                passwordTextbox.PasswordChar = '*';
+                passwordTextBox.PasswordChar = '*';
             }
         }
 
-        private void emailTextbox_KeyDown(object sender, KeyEventArgs e)
+        private void emailTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -319,7 +319,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void passwordTextbox_KeyDown(object sender, KeyEventArgs e)
+        private void passwordTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -332,10 +332,10 @@ namespace QobuzDownloaderX
         {
             logger.Debug("Logging in…");
             #region Check if textboxes are valid
-            if (emailTextbox.Text == emailPlaceholder | emailTextbox.Text == null | emailTextbox.Text == "")
+            if (emailTextBox.Text == emailPlaceholder | emailTextBox.Text == null | emailTextBox.Text == "")
             {
                 // If there's no email typed in. Ignore if using token to login.
-                logger.Warning("emailTextbox does not contain proper values for logging in.");
+                logger.Warning("emailTextBox does not contain proper values for logging in.");
                 if (!altLoginLabel.Text.Contains(altLoginLabelEmail))
                 {
                     loginText.Invoke(new Action(() => loginText.Text = loginTextNoEmail));
@@ -343,17 +343,17 @@ namespace QobuzDownloaderX
                 }
             }
 
-            if (passwordTextbox.Text == passwordPlaceholder | passwordTextbox.Text == tokenPlaceholder)
+            if (passwordTextBox.Text == passwordPlaceholder | passwordTextBox.Text == tokenPlaceholder)
             {
                 // If there's no password typed in.
-                logger.Warning("passwordTextbox does not contain proper values for logging in.");
+                logger.Warning("passwordTextBox does not contain proper values for logging in.");
                 loginText.Invoke(new Action(() => loginText.Text = loginTextNoPassword));
                 return;
             }
             #endregion
 
-            username = emailTextbox.Text;
-            password = passwordTextbox.Text;
+            username = emailTextBox.Text;
+            password = passwordTextBox.Text;
 
             // Save info locally to be used on next launch.
             Settings.Default.savedEmail = username;
@@ -371,7 +371,7 @@ namespace QobuzDownloaderX
                 loginText.Invoke(new Action(() => loginText.Text = loginTextStart));
                 loginButton.Invoke(new Action(() => loginButton.Enabled = false));
 
-                if (appidTextbox.Text == null | appidTextbox.Text == "" | appSecretTextbox.Text == null | appSecretTextbox.Text == "")
+                if (appidTextBox.Text == null | appidTextBox.Text == "" | appSecretTextBox.Text == null | appSecretTextBox.Text == "")
                 {
                     logger.Debug("No saved/custom app ID given, will get a new ID from Qobuz");
                     // Grab app_id & login
@@ -418,8 +418,8 @@ namespace QobuzDownloaderX
                     qbdlx.QoUser = QoUser;
 
                     // Save App ID and Secret to use later on
-                    appidTextbox.Invoke(new Action(() => appidTextbox.Text = app_id));
-                    appSecretTextbox.Invoke(new Action(() => appSecretTextbox.Text = app_secret));
+                    appidTextBox.Invoke(new Action(() => appidTextBox.Text = app_id));
+                    appSecretTextBox.Invoke(new Action(() => appSecretTextBox.Text = app_secret));
                     Settings.Default.savedAppID = app_id;
                     Settings.Default.savedSecret = app_secret;
                 }
@@ -427,7 +427,7 @@ namespace QobuzDownloaderX
                 {
                     logger.Debug("Using saved/custom app ID and secret");
                     // Use user-provided app_id & login
-                    app_id = appidTextbox.Text;
+                    app_id = appidTextBox.Text;
                     logger.Info("App ID: " + app_id);
 
                     if (Settings.Default.savedAltLoginValue == false)
@@ -459,7 +459,7 @@ namespace QobuzDownloaderX
                     try { qbdlx.user_avatar = QoUser.UserInfo.Avatar.Replace(@"\", null).Replace("s=50", "s=20"); } catch { logger.Warning("Attempt to grab user's avatar from API has failed. Continuing."); }
 
                     // Set user-provided app_secret
-                    app_secret = appSecretTextbox.Text;
+                    app_secret = appSecretTextBox.Text;
                     logger.Info("App secret: " + app_secret);
 
                     // Re-enable login button, and send app_id & app_secret to QBDLX
@@ -470,8 +470,8 @@ namespace QobuzDownloaderX
                     qbdlx.QoUser = QoUser;
 
                     // Save App ID and Secret to use later on
-                    appidTextbox.Invoke(new Action(() => appidTextbox.Text = app_id));
-                    appSecretTextbox.Invoke(new Action(() => appSecretTextbox.Text = app_secret));
+                    appidTextBox.Invoke(new Action(() => appidTextBox.Text = app_id));
+                    appSecretTextBox.Invoke(new Action(() => appSecretTextBox.Text = app_secret));
                     Settings.Default.savedAppID = app_id;
                     Settings.Default.savedSecret = app_secret;
                 }
@@ -512,10 +512,10 @@ namespace QobuzDownloaderX
 
                 emailIcon.Visible = false;
                 emailPanel.Visible = false;
-                emailTextbox.Visible = false;
+                emailTextBox.Visible = false;
 
-                passwordTextbox.Text = null;
-                passwordTextbox_Leave(this, new EventArgs());
+                passwordTextBox.Text = null;
+                passwordTextBox_Leave(this, new EventArgs());
             }
             else
             {
@@ -525,12 +525,12 @@ namespace QobuzDownloaderX
 
                 emailIcon.Visible = true;
                 emailPanel.Visible = true;
-                emailTextbox.Visible = true;
+                emailTextBox.Visible = true;
 
-                passwordTextbox.Text = null;
-                passwordTextbox_Leave(this, new EventArgs());
-                emailTextbox.Text = null;
-                emailTextbox_Leave(this, new EventArgs());
+                passwordTextBox.Text = null;
+                passwordTextBox_Leave(this, new EventArgs());
+                emailTextBox.Text = null;
+                emailTextBox_Leave(this, new EventArgs());
             }
 
             // Save choice locally to be used on next launch.
@@ -555,8 +555,8 @@ namespace QobuzDownloaderX
         private void customSaveButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Saving custom app ID and secret…");
-            Settings.Default.savedAppID = appidTextbox.Text;
-            Settings.Default.savedSecret = appSecretTextbox.Text;
+            Settings.Default.savedAppID = appidTextBox.Text;
+            Settings.Default.savedSecret = appSecretTextBox.Text;
             logger.Debug("Custom app ID and secret saved! Hiding custom values panel");
             customPanel.Enabled = false;
             customPanel.Visible = false;

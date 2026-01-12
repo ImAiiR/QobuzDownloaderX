@@ -149,7 +149,7 @@ namespace QobuzDownloaderX.Helpers
                     textBox.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
 
                     // Apply specific colors for specific panels if needed
-                    textBox.BackColor = (textBox.Name == "userInfoTextbox" || textBox.Name == "emailTextbox" || textBox.Name == "passwordTextbox" || textBox.Name == "appidTextbox" || textBox.Name == "appSecretTextbox")
+                    textBox.BackColor = (textBox.Name == "userInfoTextBox" || textBox.Name == "emailTextBox" || textBox.Name == "passwordTextBox" || textBox.Name == "appidTextBox" || textBox.Name == "appSecretTextBox")
                         ? ColorTranslator.FromHtml(_currentTheme.MainPanelBackground)
                         : ColorTranslator.FromHtml(_currentTheme.TextBoxBackground);
 
@@ -423,10 +423,10 @@ namespace QobuzDownloaderX.Helpers
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",
     ""artistLabelPlaceholder"":       ""Input your Qobuz link and hit GET!"",
     ""infoLabelPlaceholder"":         ""Released"",
-    ""inputTextboxPlaceholder"":      ""Paste a Qobuz URL…"",
-    ""searchTextboxPlaceholder"":     ""Input your search…"",
+    ""inputTextBoxPlaceholder"":      ""Paste a Qobuz URL…"",
+    ""searchTextBoxPlaceholder"":     ""Input your search…"",
     ""downloadFolderPlaceholder"":    ""No folder selected"",
-    ""userInfoTextboxPlaceholder"":   ""User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}"",
+    ""userInfoTextBoxPlaceholder"":   ""User ID = {user_id}\r\nE-mail = {user_email}\r\nCountry = {user_country}\r\nSubscription = {user_subscription}\r\nExpires = {user_subscription_expiration}"",
     ""downloadOutputWelcome"":        ""Welcome {user_display_name}!"",
     ""downloadOutputExpired"":        ""YOUR SUBSCRIPTION HAS EXPIRED, DOWNLOADS WILL BE LIMITED TO 30 SECOND SNIPPETS!"",
     ""downloadOutputPath"":           ""Download Path:"",
@@ -477,8 +477,8 @@ namespace QobuzDownloaderX.Helpers
     ""customLabel"":                  ""USE CUSTOM APP ID + SECRET"",
 
     ""_SECTION7_"":                   ""=================== LOGIN FORM TEXTBOXES ==================="",
-    ""customInfoTextbox"":            ""Leave values blank if you would like to automatically grab the values!"",
-    ""aboutTextbox"":                 ""Version - {version}\r\nCreated by AiiR\r\n\r\nInspired By Qo-DL\r\n(Created by Sorrow and DashLt)\r\n\r\nThanks to the users on Github and Telegram for offering bug reports and ideas! And huge shoutout to DJDoubleD for keeping the original running since I've been busy!"",
+    ""customInfoTextBox"":            ""Leave values blank if you would like to automatically grab the values!"",
+    ""aboutTextBox"":                 ""Version - {version}\r\nCreated by AiiR\r\n\r\nInspired By Qo-DL\r\n(Created by Sorrow and DashLt)\r\n\r\nThanks to the users on Github and Telegram for offering bug reports and ideas! And huge shoutout to DJDoubleD for keeping the original running since I've been busy!"",
 
     ""_SECTION8_"":                   ""=================== LOGIN FORM PLACEHOLDERS ==================="",
     ""emailPlaceholder"":             ""e-mail"",

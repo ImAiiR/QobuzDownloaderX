@@ -130,7 +130,7 @@
         LjULYgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="templatesListTextbox.Text" xml:space="preserve">
+  <data name="templatesListTextBox.Text" xml:space="preserve">
     <value>=== RELEASE SPECIFIC ===
 %AlbumID%, %AlbumURL%, %AlbumGenre%, %AlbumComposer%, %AlbumTitle%, %Label%, %Copyright%, %UPC%, %ReleaseDate%, %Year%, %ReleaseType%, %ArtistName%, %Format%, %FormatWithQuality%, %FormatWithHiResQuality%, %BitDepth%, %SampleRate%
 // Parental warning templates //

@@ -166,21 +166,21 @@ namespace QobuzDownloaderX.Helpers
         internal static void updateTemplates(qbdlxForm f)
         {
             f.logger.Debug("Updating templates");
-            f.artistTemplate = f.artistTemplateTextbox.Text;
-            f.albumTemplate = f.albumTemplateTextbox.Text;
-            f.trackTemplate = f.trackTemplateTextbox.Text;
-            f.playlistTemplate = f.playlistTemplateTextbox.Text;
-            f.favoritesTemplate = f.favoritesTemplateTextbox.Text;
+            f.artistTemplate = f.artistTemplateTextBox.Text;
+            f.albumTemplate = f.albumTemplateTextBox.Text;
+            f.trackTemplate = f.trackTemplateTextBox.Text;
+            f.playlistTemplate = f.playlistTemplateTextBox.Text;
+            f.favoritesTemplate = f.favoritesTemplateTextBox.Text;
         }
 
         internal static void LoadSavedTemplates(qbdlxForm f)
         {
-            f.artistTemplateTextbox.Text = Settings.Default.savedArtistTemplate;
-            f.albumTemplateTextbox.Text = Settings.Default.savedAlbumTemplate;
-            f.trackTemplateTextbox.Text = Settings.Default.savedTrackTemplate;
-            f.vaTrackTemplateTextbox.Text = Settings.Default.savedVaTrackTemplate;
-            f.playlistTemplateTextbox.Text = Settings.Default.savedPlaylistTemplate;
-            f.favoritesTemplateTextbox.Text = Settings.Default.savedFavoritesTemplate;
+            f.artistTemplateTextBox.Text = Settings.Default.savedArtistTemplate;
+            f.albumTemplateTextBox.Text = Settings.Default.savedAlbumTemplate;
+            f.trackTemplateTextBox.Text = Settings.Default.savedTrackTemplate;
+            f.vaTrackTemplateTextBox.Text = Settings.Default.savedVaTrackTemplate;
+            f.playlistTemplateTextBox.Text = Settings.Default.savedPlaylistTemplate;
+            f.favoritesTemplateTextBox.Text = Settings.Default.savedFavoritesTemplate;
             updateTemplates(f);
         }
 
@@ -247,7 +247,7 @@ namespace QobuzDownloaderX.Helpers
             f.releaseDateCheckBox.Checked = Settings.Default.yearTag;
             f.coverArtCheckBox.Checked = Settings.Default.imageTag;
             f.commentCheckBox.Checked = Settings.Default.commentTag;
-            f.commentTextbox.Text = Settings.Default.commentText;
+            f.commentTextBox.Text = Settings.Default.commentText;
             f.embeddedArtSizeSelect.SelectedIndex = Settings.Default.savedEmbeddedArtSize;
             f.savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
             f.dontSaveArtworkToDiskCheckBox.Checked = Settings.Default.dontSaveArtworkToDisk;
@@ -315,7 +315,7 @@ namespace QobuzDownloaderX.Helpers
         internal static void SetDownloadPath(qbdlxForm f)
         {
             f.downloadLocation = Settings.Default.savedFolder;
-            f.downloadFolderTextbox.Text = !string.IsNullOrEmpty(f.downloadLocation) ? f.downloadLocation : f.downloadFolderPlaceholder;
+            f.downloadFolderTextBox.Text = !string.IsNullOrEmpty(f.downloadLocation) ? f.downloadLocation : f.downloadFolderPlaceholder;
             f.folderBrowser.SelectedPath = f.downloadLocation;
             f.logger.Info("Saved download path: " + f.folderBrowser.SelectedPath);
         }
@@ -509,10 +509,10 @@ namespace QobuzDownloaderX.Helpers
             f.albumLabelPlaceholder = f.languageManager.GetTranslation("albumLabelPlaceholder");
             f.artistLabelPlaceholder = f.languageManager.GetTranslation("artistLabelPlaceholder");
             f.infoLabelPlaceholder = f.languageManager.GetTranslation("infoLabelPlaceholder");
-            f.inputTextboxPlaceholder = f.languageManager.GetTranslation("inputTextboxPlaceholder");
-            f.searchTextboxPlaceholder = f.languageManager.GetTranslation("searchTextboxPlaceholder");
+            f.inputTextBoxPlaceholder = f.languageManager.GetTranslation("inputTextBoxPlaceholder");
+            f.searchTextBoxPlaceholder = f.languageManager.GetTranslation("searchTextBoxPlaceholder");
             f.downloadFolderPlaceholder = f.languageManager.GetTranslation("downloadFolderPlaceholder");
-            f.userInfoTextboxPlaceholder = f.languageManager.GetTranslation("userInfoTextboxPlaceholder");
+            f.userInfoTextBoxPlaceholder = f.languageManager.GetTranslation("userInfoTextBoxPlaceholder");
             f.downloadOutputWelcome = f.languageManager.GetTranslation("downloadOutputWelcome");
             f.downloadOutputExpired = f.languageManager.GetTranslation("downloadOutputExpired");
             f.downloadOutputPath = f.languageManager.GetTranslation("downloadOutputPath");
@@ -537,8 +537,8 @@ namespace QobuzDownloaderX.Helpers
             f.albumSkipped = f.languageManager.GetTranslation("albumSkipped");
 
             // Set the placeholders as needed
-            f.inputTextbox.Text = f.inputTextboxPlaceholder;
-            f.searchTextbox.Text = f.searchTextboxPlaceholder;
+            f.inputTextBox.Text = f.inputTextBoxPlaceholder;
+            f.searchTextBox.Text = f.searchTextBoxPlaceholder;
         }
 
         internal static void updateAlbumInfoLabels(qbdlxForm f, Album QoAlbum)
@@ -946,7 +946,7 @@ namespace QobuzDownloaderX.Helpers
 
             try
             {
-                f.inputTextbox.Enabled = false;
+                f.inputTextBox.Enabled = false;
                 f.downloadButton.Enabled = false;
                 f.batchDownloadButton.Enabled = false;
                 f.abortButton.Enabled = true;
@@ -968,7 +968,7 @@ namespace QobuzDownloaderX.Helpers
             {
                 f.skipButton.Enabled = false;
                 f.abortButton.Enabled = false;
-                f.inputTextbox.Enabled = true;
+                f.inputTextBox.Enabled = true;
                 f.downloadButton.Enabled = true;
                 f.batchDownloadButton.Enabled = true;
                 qbdlxForm.skipCurrentAlbum = false;
@@ -1010,8 +1010,8 @@ namespace QobuzDownloaderX.Helpers
                     break;
                 }
 
-                f.inputTextbox.Text = url;
-                f.inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
+                f.inputTextBox.Text = url;
+                f.inputTextBox.ForeColor = Color.FromArgb(200, 200, 200);
 
                 await downloadButtonAsyncWork(f, stats);
 
@@ -1063,7 +1063,7 @@ namespace QobuzDownloaderX.Helpers
                 return;
             }
 
-            string albumLink = f.inputTextbox.Text.Trim();
+            string albumLink = f.inputTextBox.Text.Trim();
             if (albumLink.EndsWith("/releases", StringComparison.OrdinalIgnoreCase))
             {
                 albumLink = albumLink.Substring(0, albumLink.Length - "/releases".Length);

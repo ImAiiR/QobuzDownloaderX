@@ -211,7 +211,7 @@ namespace QobuzDownloaderX.Helpers
                         selectButton.Enabled =
                             mainForm.downloadButton.Enabled ||
                             !qbdlxForm.getLinkTypeIsBusy ||
-                            string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
+                            string.IsNullOrWhiteSpace(mainForm.inputTextBox.Text);
                     }
                     mainForm.downloadButton.EnabledChanged += downloadButtonHandler;
 
@@ -408,7 +408,7 @@ namespace QobuzDownloaderX.Helpers
                         selectButton.Enabled =
                             mainForm.downloadButton.Enabled ||
                             !qbdlxForm.getLinkTypeIsBusy ||
-                            string.IsNullOrWhiteSpace(mainForm.inputTextbox.Text);
+                            string.IsNullOrWhiteSpace(mainForm.inputTextBox.Text);
                     }
                     mainForm.downloadButton.EnabledChanged += downloadButtonHandler;
 
@@ -670,9 +670,9 @@ namespace QobuzDownloaderX.Helpers
 
                 // Send URL to the input textbox, and start download
                 mainForm.logger.Debug("Sending URL to downloader panel, and starting download");
-                TextBox inputTextbox = mainForm.inputTextbox;
-                inputTextbox.Text = url;
-                inputTextbox.ForeColor = Color.FromArgb(200, 200, 200);
+                TextBox inputTextBox = mainForm.inputTextBox;
+                inputTextBox.Text = url;
+                inputTextBox.ForeColor = Color.FromArgb(200, 200, 200);
 
                 NativeMethods.SendMessage(mainForm.Handle, Constants.WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero);
                 mainForm.downloaderButton_Click(this, EventArgs.Empty);

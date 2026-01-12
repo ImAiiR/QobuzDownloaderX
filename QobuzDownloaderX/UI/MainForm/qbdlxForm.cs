@@ -105,12 +105,12 @@ namespace QobuzDownloaderX
         private readonly TimeSpan tripleClickThreshold = TimeSpan.FromMilliseconds(SystemInformation.DoubleClickTime);
 
         #region Language
-        internal string userInfoTextboxPlaceholder { get; set; }
+        internal string userInfoTextBoxPlaceholder { get; set; }
         internal string albumLabelPlaceholder { get; set; }
         internal string artistLabelPlaceholder { get; set; }
         internal string infoLabelPlaceholder { get; set; }
-        internal string inputTextboxPlaceholder { get; set; }
-        internal string searchTextboxPlaceholder { get; set; }
+        internal string inputTextBoxPlaceholder { get; set; }
+        internal string searchTextBoxPlaceholder { get; set; }
         internal string downloadFolderPlaceholder { get; set; }
         internal string downloadOutputWelcome { get; set; }
         internal string downloadOutputExpired { get; set; }
@@ -225,7 +225,7 @@ namespace QobuzDownloaderX
                 ? textInfo.ToTitleCase(QoUser?.UserInfo?.Credential?.Label?.ToString().ToLower().Replace("-", " ")).Replace("Hifi", "HiFi")
                 : "N/A - Expired";
 
-            userInfoTextbox.Text = userInfoTextboxPlaceholder
+            userInfoTextBox.Text = userInfoTextBoxPlaceholder
                 .Replace("{user_id}", user_id)
                 .Replace("{user_email}", QoUser?.UserInfo?.Email)
                 .Replace("{user_country}", QoUser?.UserInfo?.Country)
@@ -344,7 +344,7 @@ namespace QobuzDownloaderX
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void searchTextbox_KeyDown(object sender, KeyEventArgs e)
+        private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
             {
@@ -352,7 +352,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void searchTextbox_KeyUp(object sender, KeyEventArgs e)
+        private void searchTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -363,7 +363,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void downloadFolderTextbox_KeyDown(object sender, KeyEventArgs e)
+        private void downloadFolderTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
             {
@@ -371,11 +371,11 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void downloadFolderTextbox_KeyUp(object sender, KeyEventArgs e)
+        private void downloadFolderTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                string path = downloadFolderTextbox.Text?.TrimEnd('\\');
+                string path = downloadFolderTextBox.Text?.TrimEnd('\\');
 
                 if (ZlpIOHelper.DirectoryExists(path))
                 {
@@ -402,15 +402,15 @@ namespace QobuzDownloaderX
                     // Restore previous path text only if it's not null or empty.
                     if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
                     {
-                        downloadFolderTextbox.Text = folderBrowser.SelectedPath;
+                        downloadFolderTextBox.Text = folderBrowser.SelectedPath;
                     }
-                    downloadFolderTextbox.SelectionStart = downloadFolderTextbox.Text.Length;
-                    downloadFolderTextbox.SelectionLength = 0;
+                    downloadFolderTextBox.SelectionStart = downloadFolderTextBox.Text.Length;
+                    downloadFolderTextBox.SelectionLength = 0;
                 }
             }
         }
 
-        private void inputTextbox_KeyDown(object sender, KeyEventArgs e)
+        private void inputTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -422,9 +422,9 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void inputTextbox_TextChanged(object sender, EventArgs e)
+        private void inputTextBox_TextChanged(object sender, EventArgs e)
         {
-            string text = inputTextbox.Text.TrimStart();
+            string text = inputTextBox.Text.TrimStart();
             downloadButton.Enabled = (text.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
                                       text.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ||
                                       text.StartsWith("www.", StringComparison.OrdinalIgnoreCase));
@@ -512,24 +512,24 @@ namespace QobuzDownloaderX
                 text.IndexOf("www.", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
-        private void inputTextbox_Click(object sender, EventArgs e)
+        private void inputTextBox_Click(object sender, EventArgs e)
         {
-            Miscellaneous.SetPlaceholder(this, inputTextbox, inputTextboxPlaceholder, true);
+            Miscellaneous.SetPlaceholder(this, inputTextBox, inputTextBoxPlaceholder, true);
         }
 
-        private void inputTextbox_Leave(object sender, EventArgs e)
+        private void inputTextBox_Leave(object sender, EventArgs e)
         {
-            Miscellaneous.SetPlaceholder(this, inputTextbox, inputTextboxPlaceholder, false);
+            Miscellaneous.SetPlaceholder(this, inputTextBox, inputTextBoxPlaceholder, false);
         }
 
-        private void searchTextbox_Click(object sender, EventArgs e)
+        private void searchTextBox_Click(object sender, EventArgs e)
         {
-            Miscellaneous.SetPlaceholder(this, searchTextbox, searchTextboxPlaceholder, true);
+            Miscellaneous.SetPlaceholder(this, searchTextBox, searchTextBoxPlaceholder, true);
         }
 
-        private void searchTextbox_Leave(object sender, EventArgs e)
+        private void searchTextBox_Leave(object sender, EventArgs e)
         {
-            Miscellaneous.SetPlaceholder(this, searchTextbox, searchTextboxPlaceholder, false);
+            Miscellaneous.SetPlaceholder(this, searchTextBox, searchTextBoxPlaceholder, false);
         }
 
         private void openFolderButton_Click(object sender, EventArgs e)
@@ -573,29 +573,29 @@ namespace QobuzDownloaderX
 
             if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
             {
-                downloadFolderTextbox.Text = folderBrowser.SelectedPath;
+                downloadFolderTextBox.Text = folderBrowser.SelectedPath;
                 downloadLocation = folderBrowser.SelectedPath;
             }
         }
 
         private void resetTemplatesButton_Click(object sender, EventArgs e)
         {
-            artistTemplateTextbox.Text = Settings.Default.Properties["savedArtistTemplate"].DefaultValue.ToString();
-            albumTemplateTextbox.Text = Settings.Default.Properties["savedAlbumTemplate"].DefaultValue.ToString();
-            trackTemplateTextbox.Text = Settings.Default.Properties["savedTrackTemplate"].DefaultValue.ToString();
-            vaTrackTemplateTextbox.Text = Settings.Default.Properties["savedVaTrackTemplate"].DefaultValue.ToString();
-            playlistTemplateTextbox.Text = Settings.Default.Properties["savedPlaylistTemplate"].DefaultValue.ToString();
-            favoritesTemplateTextbox.Text = Settings.Default.Properties["savedFavoritesTemplate"].DefaultValue.ToString();
+            artistTemplateTextBox.Text = Settings.Default.Properties["savedArtistTemplate"].DefaultValue.ToString();
+            albumTemplateTextBox.Text = Settings.Default.Properties["savedAlbumTemplate"].DefaultValue.ToString();
+            trackTemplateTextBox.Text = Settings.Default.Properties["savedTrackTemplate"].DefaultValue.ToString();
+            vaTrackTemplateTextBox.Text = Settings.Default.Properties["savedVaTrackTemplate"].DefaultValue.ToString();
+            playlistTemplateTextBox.Text = Settings.Default.Properties["savedPlaylistTemplate"].DefaultValue.ToString();
+            favoritesTemplateTextBox.Text = Settings.Default.Properties["savedFavoritesTemplate"].DefaultValue.ToString();
         }
 
         private void saveTemplatesButton_Click(object sender, EventArgs e)
         {
-            Settings.Default.savedArtistTemplate = artistTemplateTextbox.Text;
-            Settings.Default.savedAlbumTemplate = albumTemplateTextbox.Text;
-            Settings.Default.savedTrackTemplate = trackTemplateTextbox.Text;
-            Settings.Default.savedVaTrackTemplate = vaTrackTemplateTextbox.Text;
-            Settings.Default.savedPlaylistTemplate = playlistTemplateTextbox.Text;
-            Settings.Default.savedFavoritesTemplate = favoritesTemplateTextbox.Text;
+            Settings.Default.savedArtistTemplate = artistTemplateTextBox.Text;
+            Settings.Default.savedAlbumTemplate = albumTemplateTextBox.Text;
+            Settings.Default.savedTrackTemplate = trackTemplateTextBox.Text;
+            Settings.Default.savedVaTrackTemplate = vaTrackTemplateTextBox.Text;
+            Settings.Default.savedPlaylistTemplate = playlistTemplateTextBox.Text;
+            Settings.Default.savedFavoritesTemplate = favoritesTemplateTextBox.Text;
             Settings.Default.Save();
             Miscellaneous.updateTemplates(this);
         }
@@ -818,9 +818,9 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
-        private void commentTextbox_TextChanged(object sender, EventArgs e)
+        private void commentTextBox_TextChanged(object sender, EventArgs e)
         {
-            Settings.Default.commentText = commentTextbox.Text;
+            Settings.Default.commentText = commentTextBox.Text;
             Settings.Default.Save();
         }
 
@@ -1040,19 +1040,19 @@ namespace QobuzDownloaderX
 
         #endregion
 
-        private void userInfoTextbox_GotFocus(object sender, EventArgs e)
+        private void userInfoTextBox_GotFocus(object sender, EventArgs e)
         {
-            NativeMethods.HideCaret(this.userInfoTextbox.Handle);
+            NativeMethods.HideCaret(this.userInfoTextBox.Handle);
         }
 
-        private void userInfoTextbox_MouseDown(object sender, MouseEventArgs e)
+        private void userInfoTextBox_MouseDown(object sender, MouseEventArgs e)
         {
-            NativeMethods.HideCaret(this.userInfoTextbox.Handle);
+            NativeMethods.HideCaret(this.userInfoTextBox.Handle);
         }
 
-        private void userInfoTextbox_MouseUp(object sender, MouseEventArgs e)
+        private void userInfoTextBox_MouseUp(object sender, MouseEventArgs e)
         {
-            NativeMethods.HideCaret(this.userInfoTextbox.Handle);
+            NativeMethods.HideCaret(this.userInfoTextBox.Handle);
         }
 
         private void streamableCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -1254,9 +1254,9 @@ namespace QobuzDownloaderX
             searchingLabel.Visible = true;
             searchResultsPanel.Hide();
 
-            string searchQuery = searchTextbox.Text;
+            string searchQuery = searchTextBox.Text;
 
-            if (string.IsNullOrEmpty(searchQuery) | searchQuery == searchTextboxPlaceholder)
+            if (string.IsNullOrEmpty(searchQuery) | searchQuery == searchTextBoxPlaceholder)
             {
                 logger.Debug("Search query was null, canceling");
                 searchResultsPanel.Show();
@@ -1297,9 +1297,9 @@ namespace QobuzDownloaderX
             searchingLabel.Update();
             searchResultsPanel.Hide();
 
-            string searchQuery = searchTextbox.Text;
+            string searchQuery = searchTextBox.Text;
 
-            if (string.IsNullOrEmpty(searchQuery) | searchQuery == searchTextboxPlaceholder)
+            if (string.IsNullOrEmpty(searchQuery) | searchQuery == searchTextBoxPlaceholder)
             {
                 logger.Debug("Search query was null, canceling");
                 searchResultsPanel.Show();
@@ -1424,7 +1424,7 @@ namespace QobuzDownloaderX
             this.Close();
         }
 
-        private void inputTextbox_MouseDown(object sender, MouseEventArgs e)
+        private void inputTextBox_MouseDown(object sender, MouseEventArgs e)
         {
             var now = DateTime.Now;
 
@@ -1437,12 +1437,12 @@ namespace QobuzDownloaderX
 
             if (clickCount == 3)
             {
-                inputTextbox.SelectAll();
+                inputTextBox.SelectAll();
                 clickCount = 0;
             }
         }
 
-        private void searchTextbox_MouseDown(object sender, MouseEventArgs e)
+        private void searchTextBox_MouseDown(object sender, MouseEventArgs e)
         {
             var now = DateTime.Now;
 
@@ -1455,7 +1455,7 @@ namespace QobuzDownloaderX
 
             if (clickCount == 3)
             {
-                searchTextbox.SelectAll();
+                searchTextBox.SelectAll();
                 clickCount = 0;
             }
         }
