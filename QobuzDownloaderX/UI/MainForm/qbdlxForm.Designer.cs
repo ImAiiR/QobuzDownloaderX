@@ -865,7 +865,7 @@ namespace QobuzDownloaderX
             this.additionalSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.additionalSettingsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.additionalSettingsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.additionalSettingsButton.Location = new System.Drawing.Point(327, 523);
+            this.additionalSettingsButton.Location = new System.Drawing.Point(327, 533);
             this.additionalSettingsButton.Name = "additionalSettingsButton";
             this.additionalSettingsButton.Size = new System.Drawing.Size(117, 31);
             this.additionalSettingsButton.TabIndex = 26;
