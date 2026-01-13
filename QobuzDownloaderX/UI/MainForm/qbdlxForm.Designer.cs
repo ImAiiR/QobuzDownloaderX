@@ -175,23 +175,19 @@ namespace QobuzDownloaderX
             this.flacHighLabel2 = new System.Windows.Forms.Label();
             this.movingLabel = new System.Windows.Forms.Label();
             this.searchPanel = new System.Windows.Forms.Panel();
+            this.searchSortingPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.searchSortingLabel = new System.Windows.Forms.Label();
+            this.sortReleaseDateButton = new System.Windows.Forms.RadioButton();
+            this.sortArtistNameButton = new System.Windows.Forms.RadioButton();
+            this.sortAlbumTrackNameButton = new System.Windows.Forms.RadioButton();
+            this.sortGenreButton = new System.Windows.Forms.RadioButton();
+            this.sortAscendantCheckBox = new System.Windows.Forms.CheckBox();
+            this.limitSearchResultsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.deselectAllRowsButton = new System.Windows.Forms.Button();
             this.selectAllRowsButton = new System.Windows.Forms.Button();
             this.batchDownloadSelectedRowsButton = new System.Windows.Forms.Button();
             this.selectedRowsCountLabel = new System.Windows.Forms.Label();
-            this.limitSearchResultsLabel = new System.Windows.Forms.Label();
             this.searchResultsCountLabel = new System.Windows.Forms.Label();
-            this.searchSortingLabel = new System.Windows.Forms.Label();
-            this.searchSortingPanel = new System.Windows.Forms.Panel();
-            this.sortGenreLabel = new System.Windows.Forms.Label();
-            this.sortGenreButton = new System.Windows.Forms.RadioButton();
-            this.sortAlbumTrackNameLabel = new System.Windows.Forms.Label();
-            this.sortArtistNameLabel = new System.Windows.Forms.Label();
-            this.sortAlbumTrackNameButton = new System.Windows.Forms.RadioButton();
-            this.sortArtistNameButton = new System.Windows.Forms.RadioButton();
-            this.sortReleaseDateButton = new System.Windows.Forms.RadioButton();
-            this.sortReleaseDateLabel = new System.Windows.Forms.Label();
-            this.limitSearchResultsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.searchResultsPanel = new System.Windows.Forms.Panel();
             this.searchResultsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.searchAlbumsButton = new System.Windows.Forms.Button();
@@ -200,7 +196,6 @@ namespace QobuzDownloaderX
             this.searchLabel = new System.Windows.Forms.Label();
             this.searchingLabel = new System.Windows.Forms.Label();
             this.sortingSearchResultsLabel = new System.Windows.Forms.Label();
-            this.sortAscendantCheckBox = new System.Windows.Forms.CheckBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.sysTrayContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -706,12 +701,11 @@ namespace QobuzDownloaderX
             // 
             // downloadLabel
             // 
-            this.downloadLabel.AutoSize = true;
             this.downloadLabel.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.downloadLabel.Location = new System.Drawing.Point(13, 10);
             this.downloadLabel.Name = "downloadLabel";
-            this.downloadLabel.Size = new System.Drawing.Size(139, 25);
+            this.downloadLabel.Size = new System.Drawing.Size(503, 25);
             this.downloadLabel.TabIndex = 0;
             this.downloadLabel.Text = "DOWNLOADER";
             this.downloadLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.downloadLabel_MouseMove);
@@ -2210,15 +2204,14 @@ namespace QobuzDownloaderX
             // 
             // searchPanel
             // 
+            this.searchPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.searchPanel.Controls.Add(this.limitSearchResultsNumericUpDown);
+            this.searchPanel.Controls.Add(this.searchSortingPanel);
             this.searchPanel.Controls.Add(this.deselectAllRowsButton);
             this.searchPanel.Controls.Add(this.selectAllRowsButton);
             this.searchPanel.Controls.Add(this.batchDownloadSelectedRowsButton);
             this.searchPanel.Controls.Add(this.selectedRowsCountLabel);
-            this.searchPanel.Controls.Add(this.limitSearchResultsLabel);
             this.searchPanel.Controls.Add(this.searchResultsCountLabel);
-            this.searchPanel.Controls.Add(this.searchSortingLabel);
-            this.searchPanel.Controls.Add(this.searchSortingPanel);
-            this.searchPanel.Controls.Add(this.limitSearchResultsNumericUpDown);
             this.searchPanel.Controls.Add(this.searchResultsPanel);
             this.searchPanel.Controls.Add(this.searchAlbumsButton);
             this.searchPanel.Controls.Add(this.searchTracksButton);
@@ -2226,201 +2219,36 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchLabel);
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
-            this.searchPanel.Controls.Add(this.sortAscendantCheckBox);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(344, 235);
+            this.searchPanel.Location = new System.Drawing.Point(338, 234);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 0;
             // 
-            // deselectAllRowsButton
+            // searchSortingPanel
             // 
-            this.deselectAllRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.deselectAllRowsButton.Enabled = false;
-            this.deselectAllRowsButton.FlatAppearance.BorderSize = 0;
-            this.deselectAllRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.deselectAllRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.deselectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deselectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deselectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.deselectAllRowsButton.Location = new System.Drawing.Point(287, 550);
-            this.deselectAllRowsButton.Name = "deselectAllRowsButton";
-            this.deselectAllRowsButton.Size = new System.Drawing.Size(120, 25);
-            this.deselectAllRowsButton.TabIndex = 14;
-            this.deselectAllRowsButton.Text = "Deselect all";
-            this.deselectAllRowsButton.UseVisualStyleBackColor = false;
-            this.deselectAllRowsButton.Click += new System.EventHandler(this.deselectAllRowsButton_Click);
-            // 
-            // selectAllRowsButton
-            // 
-            this.selectAllRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.selectAllRowsButton.Enabled = false;
-            this.selectAllRowsButton.FlatAppearance.BorderSize = 0;
-            this.selectAllRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.selectAllRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.selectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.selectAllRowsButton.Location = new System.Drawing.Point(161, 550);
-            this.selectAllRowsButton.Name = "selectAllRowsButton";
-            this.selectAllRowsButton.Size = new System.Drawing.Size(120, 25);
-            this.selectAllRowsButton.TabIndex = 12;
-            this.selectAllRowsButton.Text = "Select all";
-            this.selectAllRowsButton.UseVisualStyleBackColor = false;
-            this.selectAllRowsButton.Click += new System.EventHandler(this.selectAllRowsButton_Click);
-            // 
-            // batchDownloadSelectedRowsButton
-            // 
-            this.batchDownloadSelectedRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.batchDownloadSelectedRowsButton.Enabled = false;
-            this.batchDownloadSelectedRowsButton.FlatAppearance.BorderSize = 0;
-            this.batchDownloadSelectedRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.batchDownloadSelectedRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.batchDownloadSelectedRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.batchDownloadSelectedRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.batchDownloadSelectedRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.batchDownloadSelectedRowsButton.Location = new System.Drawing.Point(413, 549);
-            this.batchDownloadSelectedRowsButton.Name = "batchDownloadSelectedRowsButton";
-            this.batchDownloadSelectedRowsButton.Size = new System.Drawing.Size(340, 25);
-            this.batchDownloadSelectedRowsButton.TabIndex = 15;
-            this.batchDownloadSelectedRowsButton.Text = "BATCH DOWNLOAD SELECTED ROWS";
-            this.batchDownloadSelectedRowsButton.UseVisualStyleBackColor = false;
-            this.batchDownloadSelectedRowsButton.Click += new System.EventHandler(this.batchDownloadSelectedRowsButton_Click);
-            // 
-            // selectedRowsCountLabel
-            // 
-            this.selectedRowsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 9F);
-            this.selectedRowsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.selectedRowsCountLabel.Location = new System.Drawing.Point(20, 550);
-            this.selectedRowsCountLabel.Name = "selectedRowsCountLabel";
-            this.selectedRowsCountLabel.Size = new System.Drawing.Size(135, 24);
-            this.selectedRowsCountLabel.TabIndex = 11;
-            this.selectedRowsCountLabel.Text = "0 selected rows";
-            this.selectedRowsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // limitSearchResultsLabel
-            // 
-            this.limitSearchResultsLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.limitSearchResultsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.limitSearchResultsLabel.Location = new System.Drawing.Point(408, 84);
-            this.limitSearchResultsLabel.Name = "limitSearchResultsLabel";
-            this.limitSearchResultsLabel.Size = new System.Drawing.Size(116, 27);
-            this.limitSearchResultsLabel.TabIndex = 7;
-            this.limitSearchResultsLabel.Text = "Results Limit:";
-            this.limitSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // searchResultsCountLabel
-            // 
-            this.searchResultsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 12F);
-            this.searchResultsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.searchResultsCountLabel.Location = new System.Drawing.Point(585, 87);
-            this.searchResultsCountLabel.Name = "searchResultsCountLabel";
-            this.searchResultsCountLabel.Size = new System.Drawing.Size(168, 28);
-            this.searchResultsCountLabel.TabIndex = 10;
-            this.searchResultsCountLabel.Text = "…";
-            this.searchResultsCountLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.searchSortingPanel.Controls.Add(this.searchSortingLabel);
+            this.searchSortingPanel.Controls.Add(this.sortReleaseDateButton);
+            this.searchSortingPanel.Controls.Add(this.sortArtistNameButton);
+            this.searchSortingPanel.Controls.Add(this.sortAlbumTrackNameButton);
+            this.searchSortingPanel.Controls.Add(this.sortGenreButton);
+            this.searchSortingPanel.Controls.Add(this.sortAscendantCheckBox);
+            this.searchSortingPanel.Location = new System.Drawing.Point(12, 83);
+            this.searchSortingPanel.Name = "searchSortingPanel";
+            this.searchSortingPanel.Size = new System.Drawing.Size(740, 28);
+            this.searchSortingPanel.TabIndex = 7;
             // 
             // searchSortingLabel
             // 
             this.searchSortingLabel.AutoSize = true;
-            this.searchSortingLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.searchSortingLabel.Font = new System.Drawing.Font("Nirmala UI", 12F);
             this.searchSortingLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.searchSortingLabel.Location = new System.Drawing.Point(18, 77);
+            this.searchSortingLabel.Location = new System.Drawing.Point(3, 0);
             this.searchSortingLabel.Name = "searchSortingLabel";
-            this.searchSortingLabel.Size = new System.Drawing.Size(56, 19);
+            this.searchSortingLabel.Size = new System.Drawing.Size(64, 21);
             this.searchSortingLabel.TabIndex = 4;
             this.searchSortingLabel.Text = "Sorting:";
-            this.searchSortingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // searchSortingPanel
-            // 
-            this.searchSortingPanel.Controls.Add(this.sortGenreLabel);
-            this.searchSortingPanel.Controls.Add(this.sortGenreButton);
-            this.searchSortingPanel.Controls.Add(this.sortAlbumTrackNameLabel);
-            this.searchSortingPanel.Controls.Add(this.sortArtistNameLabel);
-            this.searchSortingPanel.Controls.Add(this.sortAlbumTrackNameButton);
-            this.searchSortingPanel.Controls.Add(this.sortArtistNameButton);
-            this.searchSortingPanel.Controls.Add(this.sortReleaseDateButton);
-            this.searchSortingPanel.Controls.Add(this.sortReleaseDateLabel);
-            this.searchSortingPanel.Location = new System.Drawing.Point(120, 78);
-            this.searchSortingPanel.Name = "searchSortingPanel";
-            this.searchSortingPanel.Size = new System.Drawing.Size(290, 38);
-            this.searchSortingPanel.TabIndex = 6;
-            // 
-            // sortGenreLabel
-            // 
-            this.sortGenreLabel.AutoSize = true;
-            this.sortGenreLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sortGenreLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sortGenreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortGenreLabel.Location = new System.Drawing.Point(18, 21);
-            this.sortGenreLabel.Name = "sortGenreLabel";
-            this.sortGenreLabel.Size = new System.Drawing.Size(38, 13);
-            this.sortGenreLabel.TabIndex = 3;
-            this.sortGenreLabel.Text = "Genre";
-            this.sortGenreLabel.Click += new System.EventHandler(this.sortGenreLabel_Click);
-            // 
-            // sortGenreButton
-            // 
-            this.sortGenreButton.AutoSize = true;
-            this.sortGenreButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sortGenreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortGenreButton.Location = new System.Drawing.Point(4, 21);
-            this.sortGenreButton.Name = "sortGenreButton";
-            this.sortGenreButton.Size = new System.Drawing.Size(14, 13);
-            this.sortGenreButton.TabIndex = 2;
-            this.sortGenreButton.UseVisualStyleBackColor = true;
-            this.sortGenreButton.CheckedChanged += new System.EventHandler(this.sortGenreButton_CheckedChanged);
-            // 
-            // sortAlbumTrackNameLabel
-            // 
-            this.sortAlbumTrackNameLabel.AutoSize = true;
-            this.sortAlbumTrackNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sortAlbumTrackNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sortAlbumTrackNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortAlbumTrackNameLabel.Location = new System.Drawing.Point(150, 21);
-            this.sortAlbumTrackNameLabel.Name = "sortAlbumTrackNameLabel";
-            this.sortAlbumTrackNameLabel.Size = new System.Drawing.Size(99, 13);
-            this.sortAlbumTrackNameLabel.TabIndex = 7;
-            this.sortAlbumTrackNameLabel.Text = "Album / Track Title";
-            this.sortAlbumTrackNameLabel.Click += new System.EventHandler(this.sortAlbumTrackNameLabel_Click);
-            // 
-            // sortArtistNameLabel
-            // 
-            this.sortArtistNameLabel.AutoSize = true;
-            this.sortArtistNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sortArtistNameLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sortArtistNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortArtistNameLabel.Location = new System.Drawing.Point(150, 2);
-            this.sortArtistNameLabel.Name = "sortArtistNameLabel";
-            this.sortArtistNameLabel.Size = new System.Drawing.Size(66, 13);
-            this.sortArtistNameLabel.TabIndex = 5;
-            this.sortArtistNameLabel.Text = "Artist Name";
-            this.sortArtistNameLabel.Click += new System.EventHandler(this.sortArtistNameLabel_Click);
-            // 
-            // sortAlbumTrackNameButton
-            // 
-            this.sortAlbumTrackNameButton.AutoSize = true;
-            this.sortAlbumTrackNameButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sortAlbumTrackNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortAlbumTrackNameButton.Location = new System.Drawing.Point(135, 21);
-            this.sortAlbumTrackNameButton.Name = "sortAlbumTrackNameButton";
-            this.sortAlbumTrackNameButton.Size = new System.Drawing.Size(14, 13);
-            this.sortAlbumTrackNameButton.TabIndex = 6;
-            this.sortAlbumTrackNameButton.UseVisualStyleBackColor = true;
-            this.sortAlbumTrackNameButton.CheckedChanged += new System.EventHandler(this.sortAlbumTrackNameButton_CheckedChanged);
-            // 
-            // sortArtistNameButton
-            // 
-            this.sortArtistNameButton.AutoSize = true;
-            this.sortArtistNameButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sortArtistNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortArtistNameButton.Location = new System.Drawing.Point(135, 3);
-            this.sortArtistNameButton.Name = "sortArtistNameButton";
-            this.sortArtistNameButton.Size = new System.Drawing.Size(14, 13);
-            this.sortArtistNameButton.TabIndex = 4;
-            this.sortArtistNameButton.UseVisualStyleBackColor = true;
-            this.sortArtistNameButton.CheckedChanged += new System.EventHandler(this.sortArtistNameButton_CheckedChanged);
+            this.searchSortingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // sortReleaseDateButton
             // 
@@ -2428,33 +2256,72 @@ namespace QobuzDownloaderX
             this.sortReleaseDateButton.Checked = true;
             this.sortReleaseDateButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.sortReleaseDateButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortReleaseDateButton.Location = new System.Drawing.Point(4, 3);
+            this.sortReleaseDateButton.Location = new System.Drawing.Point(73, 3);
             this.sortReleaseDateButton.Name = "sortReleaseDateButton";
-            this.sortReleaseDateButton.Size = new System.Drawing.Size(14, 13);
+            this.sortReleaseDateButton.Size = new System.Drawing.Size(91, 17);
             this.sortReleaseDateButton.TabIndex = 0;
             this.sortReleaseDateButton.TabStop = true;
+            this.sortReleaseDateButton.Text = "Release Date";
             this.sortReleaseDateButton.UseVisualStyleBackColor = true;
             this.sortReleaseDateButton.CheckedChanged += new System.EventHandler(this.sortReleaseDateButton_CheckedChanged);
             // 
-            // sortReleaseDateLabel
+            // sortArtistNameButton
             // 
-            this.sortReleaseDateLabel.AutoSize = true;
-            this.sortReleaseDateLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sortReleaseDateLabel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sortReleaseDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortReleaseDateLabel.Location = new System.Drawing.Point(18, 2);
-            this.sortReleaseDateLabel.Name = "sortReleaseDateLabel";
-            this.sortReleaseDateLabel.Size = new System.Drawing.Size(73, 13);
-            this.sortReleaseDateLabel.TabIndex = 1;
-            this.sortReleaseDateLabel.Text = "Release Date";
-            this.sortReleaseDateLabel.Click += new System.EventHandler(this.sortReleaseDateLabel_Click);
+            this.sortArtistNameButton.AutoSize = true;
+            this.sortArtistNameButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortArtistNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortArtistNameButton.Location = new System.Drawing.Point(170, 3);
+            this.sortArtistNameButton.Name = "sortArtistNameButton";
+            this.sortArtistNameButton.Size = new System.Drawing.Size(84, 17);
+            this.sortArtistNameButton.TabIndex = 4;
+            this.sortArtistNameButton.Text = "Artist Name";
+            this.sortArtistNameButton.UseVisualStyleBackColor = true;
+            this.sortArtistNameButton.CheckedChanged += new System.EventHandler(this.sortArtistNameButton_CheckedChanged);
+            // 
+            // sortAlbumTrackNameButton
+            // 
+            this.sortAlbumTrackNameButton.AutoSize = true;
+            this.sortAlbumTrackNameButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortAlbumTrackNameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortAlbumTrackNameButton.Location = new System.Drawing.Point(260, 3);
+            this.sortAlbumTrackNameButton.Name = "sortAlbumTrackNameButton";
+            this.sortAlbumTrackNameButton.Size = new System.Drawing.Size(117, 17);
+            this.sortAlbumTrackNameButton.TabIndex = 6;
+            this.sortAlbumTrackNameButton.Text = "Album / Track Title";
+            this.sortAlbumTrackNameButton.UseVisualStyleBackColor = true;
+            this.sortAlbumTrackNameButton.CheckedChanged += new System.EventHandler(this.sortAlbumTrackNameButton_CheckedChanged);
+            // 
+            // sortGenreButton
+            // 
+            this.sortGenreButton.AutoSize = true;
+            this.sortGenreButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sortGenreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortGenreButton.Location = new System.Drawing.Point(383, 3);
+            this.sortGenreButton.Name = "sortGenreButton";
+            this.sortGenreButton.Size = new System.Drawing.Size(56, 17);
+            this.sortGenreButton.TabIndex = 2;
+            this.sortGenreButton.Text = "Genre";
+            this.sortGenreButton.UseVisualStyleBackColor = true;
+            this.sortGenreButton.CheckedChanged += new System.EventHandler(this.sortGenreButton_CheckedChanged);
+            // 
+            // sortAscendantCheckBox
+            // 
+            this.sortAscendantCheckBox.AutoSize = true;
+            this.sortAscendantCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.sortAscendantCheckBox.Location = new System.Drawing.Point(445, 3);
+            this.sortAscendantCheckBox.Name = "sortAscendantCheckBox";
+            this.sortAscendantCheckBox.Size = new System.Drawing.Size(80, 17);
+            this.sortAscendantCheckBox.TabIndex = 5;
+            this.sortAscendantCheckBox.Text = "Ascendant";
+            this.sortAscendantCheckBox.UseVisualStyleBackColor = true;
+            this.sortAscendantCheckBox.CheckedChanged += new System.EventHandler(this.sortAscendantCheckBox_CheckedChanged);
             // 
             // limitSearchResultsNumericUpDown
             // 
             this.limitSearchResultsNumericUpDown.BackColor = System.Drawing.SystemColors.Window;
             this.limitSearchResultsNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.limitSearchResultsNumericUpDown.Font = new System.Drawing.Font("Nirmala UI", 12F);
-            this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(525, 86);
+            this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(525, 49);
             this.limitSearchResultsNumericUpDown.Maximum = new decimal(new int[] {
             500,
             0,
@@ -2475,14 +2342,90 @@ namespace QobuzDownloaderX
             0,
             0});
             // 
+            // deselectAllRowsButton
+            // 
+            this.deselectAllRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.deselectAllRowsButton.Enabled = false;
+            this.deselectAllRowsButton.FlatAppearance.BorderSize = 0;
+            this.deselectAllRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.deselectAllRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.deselectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deselectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deselectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.deselectAllRowsButton.Location = new System.Drawing.Point(285, 531);
+            this.deselectAllRowsButton.Name = "deselectAllRowsButton";
+            this.deselectAllRowsButton.Size = new System.Drawing.Size(120, 41);
+            this.deselectAllRowsButton.TabIndex = 14;
+            this.deselectAllRowsButton.Text = "Deselect all";
+            this.deselectAllRowsButton.UseVisualStyleBackColor = false;
+            this.deselectAllRowsButton.Click += new System.EventHandler(this.deselectAllRowsButton_Click);
+            // 
+            // selectAllRowsButton
+            // 
+            this.selectAllRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.selectAllRowsButton.Enabled = false;
+            this.selectAllRowsButton.FlatAppearance.BorderSize = 0;
+            this.selectAllRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.selectAllRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.selectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.selectAllRowsButton.Location = new System.Drawing.Point(159, 531);
+            this.selectAllRowsButton.Name = "selectAllRowsButton";
+            this.selectAllRowsButton.Size = new System.Drawing.Size(120, 41);
+            this.selectAllRowsButton.TabIndex = 12;
+            this.selectAllRowsButton.Text = "Select all";
+            this.selectAllRowsButton.UseVisualStyleBackColor = false;
+            this.selectAllRowsButton.Click += new System.EventHandler(this.selectAllRowsButton_Click);
+            // 
+            // batchDownloadSelectedRowsButton
+            // 
+            this.batchDownloadSelectedRowsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
+            this.batchDownloadSelectedRowsButton.Enabled = false;
+            this.batchDownloadSelectedRowsButton.FlatAppearance.BorderSize = 0;
+            this.batchDownloadSelectedRowsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.batchDownloadSelectedRowsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.batchDownloadSelectedRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.batchDownloadSelectedRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.batchDownloadSelectedRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.batchDownloadSelectedRowsButton.Location = new System.Drawing.Point(411, 530);
+            this.batchDownloadSelectedRowsButton.Name = "batchDownloadSelectedRowsButton";
+            this.batchDownloadSelectedRowsButton.Size = new System.Drawing.Size(340, 42);
+            this.batchDownloadSelectedRowsButton.TabIndex = 15;
+            this.batchDownloadSelectedRowsButton.Text = "BATCH DOWNLOAD SELECTED ROWS";
+            this.batchDownloadSelectedRowsButton.UseVisualStyleBackColor = false;
+            this.batchDownloadSelectedRowsButton.Click += new System.EventHandler(this.batchDownloadSelectedRowsButton_Click);
+            // 
+            // selectedRowsCountLabel
+            // 
+            this.selectedRowsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.selectedRowsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.selectedRowsCountLabel.Location = new System.Drawing.Point(16, 552);
+            this.selectedRowsCountLabel.Name = "selectedRowsCountLabel";
+            this.selectedRowsCountLabel.Size = new System.Drawing.Size(140, 16);
+            this.selectedRowsCountLabel.TabIndex = 11;
+            this.selectedRowsCountLabel.Text = "0 selected rows";
+            this.selectedRowsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // searchResultsCountLabel
+            // 
+            this.searchResultsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.searchResultsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.searchResultsCountLabel.Location = new System.Drawing.Point(16, 530);
+            this.searchResultsCountLabel.Name = "searchResultsCountLabel";
+            this.searchResultsCountLabel.Size = new System.Drawing.Size(140, 16);
+            this.searchResultsCountLabel.TabIndex = 10;
+            this.searchResultsCountLabel.Text = "…";
+            this.searchResultsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // searchResultsPanel
             // 
             this.searchResultsPanel.AutoScroll = true;
             this.searchResultsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.searchResultsPanel.Controls.Add(this.searchResultsTablePanel);
-            this.searchResultsPanel.Location = new System.Drawing.Point(18, 116);
+            this.searchResultsPanel.Location = new System.Drawing.Point(18, 117);
             this.searchResultsPanel.Name = "searchResultsPanel";
-            this.searchResultsPanel.Size = new System.Drawing.Size(733, 431);
+            this.searchResultsPanel.Size = new System.Drawing.Size(733, 408);
             this.searchResultsPanel.TabIndex = 10;
             // 
             // searchResultsTablePanel
@@ -2544,7 +2487,7 @@ namespace QobuzDownloaderX
             this.searchTextBox.MaxLength = 1000;
             this.searchTextBox.Multiline = true;
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(557, 27);
+            this.searchTextBox.Size = new System.Drawing.Size(498, 26);
             this.searchTextBox.TabIndex = 1;
             this.searchTextBox.Text = "Input your search…";
             this.searchTextBox.WordWrap = false;
@@ -2560,7 +2503,7 @@ namespace QobuzDownloaderX
             this.searchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.searchLabel.Location = new System.Drawing.Point(13, 10);
             this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(562, 30);
+            this.searchLabel.Size = new System.Drawing.Size(503, 30);
             this.searchLabel.TabIndex = 0;
             this.searchLabel.Text = "SEARCHER";
             this.searchLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.searchLabel_MouseMove);
@@ -2588,18 +2531,6 @@ namespace QobuzDownloaderX
             this.sortingSearchResultsLabel.Text = "Sorting…";
             this.sortingSearchResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.sortingSearchResultsLabel.Visible = false;
-            // 
-            // sortAscendantCheckBox
-            // 
-            this.sortAscendantCheckBox.AutoSize = true;
-            this.sortAscendantCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.sortAscendantCheckBox.Location = new System.Drawing.Point(21, 99);
-            this.sortAscendantCheckBox.Name = "sortAscendantCheckBox";
-            this.sortAscendantCheckBox.Size = new System.Drawing.Size(80, 17);
-            this.sortAscendantCheckBox.TabIndex = 5;
-            this.sortAscendantCheckBox.Text = "Ascendant";
-            this.sortAscendantCheckBox.UseVisualStyleBackColor = true;
-            this.sortAscendantCheckBox.CheckedChanged += new System.EventHandler(this.sortAscendantCheckBox_CheckedChanged);
             // 
             // notifyIcon1
             // 
@@ -2727,8 +2658,6 @@ namespace QobuzDownloaderX
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(951, 580);
-            this.Controls.Add(this.extraSettingsPanel);
-            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
@@ -2737,7 +2666,9 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.downloaderPanel);
+            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.settingsPanel);
+            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.aboutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2918,15 +2849,10 @@ namespace QobuzDownloaderX
         internal System.Windows.Forms.Label batchDownloadLabel;
         internal System.Windows.Forms.Label progressItemsCountLabel;
         internal System.Windows.Forms.NumericUpDown limitSearchResultsNumericUpDown;
-        internal System.Windows.Forms.Label limitSearchResultsLabel;
-        internal System.Windows.Forms.Panel searchSortingPanel;
         internal System.Windows.Forms.Label searchSortingLabel;
         internal System.Windows.Forms.RadioButton sortAlbumTrackNameButton;
         internal System.Windows.Forms.RadioButton sortArtistNameButton;
         internal System.Windows.Forms.RadioButton sortReleaseDateButton;
-        internal System.Windows.Forms.Label sortAlbumTrackNameLabel;
-        internal System.Windows.Forms.Label sortArtistNameLabel;
-        internal System.Windows.Forms.Label sortReleaseDateLabel;
         internal System.Windows.Forms.CheckBox sortAscendantCheckBox;
         internal System.Windows.Forms.Label sortingSearchResultsLabel;
         internal System.Windows.Forms.Label searchResultsCountLabel;
@@ -2936,7 +2862,6 @@ namespace QobuzDownloaderX
         internal System.Windows.Forms.ToolStripMenuItem showWindowToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem hideWindowToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem closeProgramToolStripMenuItem;
-        internal System.Windows.Forms.Label sortGenreLabel;
         internal System.Windows.Forms.RadioButton sortGenreButton;
         internal System.Windows.Forms.Label selectedRowsCountLabel;
         internal System.Windows.Forms.Button batchDownloadSelectedRowsButton;
@@ -2970,6 +2895,7 @@ namespace QobuzDownloaderX
         internal CheckBox showTipsCheckBox;
         internal TextBox vaTrackTemplateTextBox;
         internal Label vaTrackTemplateLabel;
-        private LinkLabel gitHubLinkLabel;
+        internal LinkLabel gitHubLinkLabel;
+        internal FlowLayoutPanel searchSortingPanel;
     }
 }

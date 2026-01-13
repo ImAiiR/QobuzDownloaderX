@@ -436,13 +436,14 @@ namespace QobuzDownloaderX.Helpers
             f.disclaimerLabel.Text = f.languageManager.GetTranslation("disclaimer");
             f.welcomeLabel.Text = f.languageManager.GetTranslation("welcomeLabel");
             f.batchDownloadLabel.Text = f.languageManager.GetTranslation("batchDownloadLabel");
-            f.limitSearchResultsLabel.Text = f.languageManager.GetTranslation("limitSearchResultsLabel");
             f.searchSortingLabel.Text = f.languageManager.GetTranslation("searchSortingLabel");
-            f.sortReleaseDateLabel.Text = f.languageManager.GetTranslation("sortReleaseDateLabel");
-            f.sortGenreLabel.Text = f.languageManager.GetTranslation("sortGenreLabel");
-            f.sortArtistNameLabel.Text = f.languageManager.GetTranslation("sortArtistNameLabel");
-            f.sortAlbumTrackNameLabel.Text = f.languageManager.GetTranslation("sortAlbumTrackNameLabel");
+            
+            f.sortReleaseDateButton.Text = f.languageManager.GetTranslation("sortReleaseDateLabel");
+            f.sortGenreButton.Text = f.languageManager.GetTranslation("sortGenreLabel");
+            f.sortArtistNameButton.Text = f.languageManager.GetTranslation("sortArtistNameLabel");
+            f.sortAlbumTrackNameButton.Text = f.languageManager.GetTranslation("sortAlbumTrackNameLabel");
             f.sortingSearchResultsLabel.Text = f.languageManager.GetTranslation("sortingSearchResultsLabel");
+           
             f.selectedRowsCountLabel.Text = string.Empty;
             f.primaryListSeparatorLabel.Text = f.languageManager.GetTranslation("primaryListSeparatorLabel");
             f.listEndSeparatorLabel.Text = f.languageManager.GetTranslation("listEndSeparatorLabel");

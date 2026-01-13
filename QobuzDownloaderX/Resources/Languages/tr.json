@@ -48,7 +48,6 @@
     "vaTrackTemplateLabel":         "(V/A) PARÇA ŞABLONU", // ChatGPT translation
     "userInfoLabel":                "HESAP BİLGİLERİ",
     "welcomeLabel":                 "Hoşgeldin\r\n{username}",
-    "limitSearchResultsLabel":      "Sonuç Sınırı:", // ChatGPT translation.
     "searchSortingLabel":           "Sırala:", // ChatGPT translation.
     "sortGenreLabel":               "Tür", // ChatGPT translation.
     "sortReleaseDateLabel":         "Yayın Tarihi", // ChatGPT translation.

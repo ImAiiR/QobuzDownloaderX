@@ -48,7 +48,6 @@
     "vaTrackTemplateLabel":         "(V/A) ШАБЛОН ТРЕКА", // ChatGPT translation
     "userInfoLabel":                "ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ",
     "welcomeLabel":                 "Добро пожаловать,\r\n{username}",
-    "limitSearchResultsLabel":      "Показать:",
     "searchSortingLabel":           "Сорт. по:",
     "sortReleaseDateLabel":         "Дата релиза",
     "sortGenreLabel":               "Жанр",

@@ -48,7 +48,6 @@
     "vaTrackTemplateLabel":         "(V/A) 曲目模板", // ChatGPT translation
     "userInfoLabel":                "用户信息",
     "welcomeLabel":                 "欢迎\r\n{username}",
-    "limitSearchResultsLabel":      "结果限制：", // ChatGPT translation.
     "searchSortingLabel":           "排序方式：", // ChatGPT translation.
     "sortReleaseDateLabel":         "发行日期", // ChatGPT translation.
     "sortGenreLabel":               "类型", // ChatGPT translation.

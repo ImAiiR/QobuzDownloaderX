@@ -48,7 +48,6 @@
     "vaTrackTemplateLabel":         "(V/A) TRACK-VORLAGE", // ChatGPT translation
     "userInfoLabel":                "BENUTZERINFO",
     "welcomeLabel":                 "Willkommen\r\n{username}",
-    "limitSearchResultsLabel":      "Ergebnislimit:", // ChatGPT translation.
     "searchSortingLabel":           "Sortieren nach:", // ChatGPT translation.
     "sortReleaseDateLabel":         "Veröffentlichungsdatum", // ChatGPT translation.
     "sortGenreLabel":               "Genre", // ChatGPT translation.

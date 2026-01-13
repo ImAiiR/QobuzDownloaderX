@@ -48,7 +48,6 @@
     "vaTrackTemplateLabel":         "(V/A) Modèle de piste", // ChatGPT translation
     "userInfoLabel":                "Informations Utilisateur",
     "welcomeLabel":                 "Bienvenue\r\n{username}",
-    "limitSearchResultsLabel":      "Limite :",
     "searchSortingLabel":           "Trier par :",
     "sortReleaseDateLabel":         "Date de sortie",
     "sortGenreLabel":               "Genre",

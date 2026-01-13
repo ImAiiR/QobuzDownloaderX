@@ -379,7 +379,6 @@ namespace QobuzDownloaderX.Helpers
     ""vaTrackTemplateLabel"":         ""(V/A) TRACK TEMPLATE"",
     ""userInfoLabel"":                ""USER INFO"",
     ""welcomeLabel"":                 ""Welcome\r\n{username}"",
-    ""limitSearchResultsLabel"":      ""Results Limit:"",
     ""searchSortingLabel"":           ""Sort By:"",
     ""sortReleaseDateLabel"":         ""Release Date"",
     ""sortGenreLabel"":               ""Genre"",
