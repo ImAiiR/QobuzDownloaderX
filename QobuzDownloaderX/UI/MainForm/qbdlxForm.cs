@@ -1096,8 +1096,12 @@ namespace QobuzDownloaderX
 
         private void dontSaveArtworkToDiskCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            savedArtSizeSelect.Enabled = !dontSaveArtworkToDiskCheckBox.Checked;
-            Settings.Default.dontSaveArtworkToDisk = dontSaveArtworkToDiskCheckBox.Checked;
+            bool isChecked = dontSaveArtworkToDiskCheckBox.Checked;
+
+            savedArtLabel.Enabled = !isChecked;
+            savedArtSizeSelect.Enabled = !isChecked;
+
+            Settings.Default.dontSaveArtworkToDisk = isChecked;
             Settings.Default.Save();
         }
 
