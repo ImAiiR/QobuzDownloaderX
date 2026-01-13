@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -112,12 +113,12 @@ namespace QobuzDownloaderX
         private void SetSavedValues()
         {
             // Email/usrname
-            if (!string.IsNullOrEmpty(Settings.Default.savedEmail) &&
-                Settings.Default.savedEmail != emailPlaceholder)
+            string savedEmail = Settings.Default.savedEmail ?? "";
+            if (!string.IsNullOrEmpty(savedEmail) && savedEmail != emailPlaceholder)
             {
                 try
                 {
-                    byte[] encryptedEmailBytes = Convert.FromBase64String(Settings.Default.savedEmail);
+                    byte[] encryptedEmailBytes = Convert.FromBase64String(savedEmail);
                     string decryptedEmail = Encoding.UTF8.GetString(
                         ProtectedData.Unprotect(encryptedEmailBytes, null, DataProtectionScope.CurrentUser));
                     username = decryptedEmail;
@@ -126,7 +127,7 @@ namespace QobuzDownloaderX
                 catch (FormatException)
                 {
                     // Old plain text or invalid Base64
-                    username = Settings.Default.savedEmail;
+                    username = savedEmail;
                     emailTextBox.Text = username;
                 }
                 catch (CryptographicException)
@@ -144,13 +145,15 @@ namespace QobuzDownloaderX
             }
 
             // Password
-            if (!string.IsNullOrEmpty(Settings.Default.savedPassword) &&
-                Settings.Default.savedPassword != passwordPlaceholder &&
-                Settings.Default.savedPassword != tokenPlaceholder)
+            string savedPassword = Settings.Default.savedPassword ?? "";
+
+            if (!string.IsNullOrEmpty(savedPassword) &&
+                savedPassword != passwordPlaceholder &&
+                savedPassword != tokenPlaceholder)
             {
                 try
                 {
-                    byte[] encryptedPasswordBytes = Convert.FromBase64String(Settings.Default.savedPassword);
+                    byte[] encryptedPasswordBytes = Convert.FromBase64String(savedPassword);
                     string decryptedPassword = Encoding.UTF8.GetString(
                         ProtectedData.Unprotect(encryptedPasswordBytes, null, DataProtectionScope.CurrentUser));
 
@@ -182,35 +185,69 @@ namespace QobuzDownloaderX
             }
 
             // App ID
+            string savedAppID = Settings.Default.savedAppID ?? ""; // avoid null
             try
             {
-                byte[] encryptedAppIDBytes = Convert.FromBase64String(Settings.Default.savedAppID);
-                string decryptedAppID = Encoding.UTF8.GetString(
-                    ProtectedData.Unprotect(encryptedAppIDBytes, null, DataProtectionScope.CurrentUser));
-                app_id = decryptedAppID;
-                appidTextBox.Text = decryptedAppID;
+                if (!string.IsNullOrEmpty(savedAppID))
+                {
+                    byte[] encryptedAppIDBytes = Convert.FromBase64String(savedAppID);
+                    string decryptedAppID = Encoding.UTF8.GetString(
+                        ProtectedData.Unprotect(encryptedAppIDBytes, null, DataProtectionScope.CurrentUser));
+
+                    app_id = decryptedAppID;
+                    appidTextBox.Text = decryptedAppID;
+                }
+                else
+                {
+                    // fallback if empty
+                    app_id = savedAppID;
+                    appidTextBox.Text = app_id;
+                }
             }
-            catch
+            catch (FormatException)
             {
-                // fallback: plain text
-                app_id = Settings.Default.savedAppID;
+                // saved value is plain text or invalid Base64
+                app_id = savedAppID;
                 appidTextBox.Text = app_id;
+            }
+            catch (CryptographicException)
+            {
+                // cannot decrypt (different machine/user)
+                app_id = "";
+                appidTextBox.Text = "";
             }
 
             // App Secret
+            string savedAppSecret = Settings.Default.savedSecret ?? ""; // avoid null
             try
             {
-                byte[] encryptedAppSecretBytes = Convert.FromBase64String(Settings.Default.savedSecret);
-                string decryptedAppSecret = Encoding.UTF8.GetString(
-                    ProtectedData.Unprotect(encryptedAppSecretBytes, null, DataProtectionScope.CurrentUser));
-                app_secret = decryptedAppSecret;
-                appSecretTextBox.Text = decryptedAppSecret;
+                if (!string.IsNullOrEmpty(savedAppSecret))
+                {
+                    byte[] encryptedAppSecretBytes = Convert.FromBase64String(savedAppSecret);
+                    string decryptedAppSecret = Encoding.UTF8.GetString(
+                        ProtectedData.Unprotect(encryptedAppSecretBytes, null, DataProtectionScope.CurrentUser));
+
+                    app_secret = decryptedAppSecret;
+                    appSecretTextBox.Text = decryptedAppSecret;
+                }
+                else
+                {
+                    // fallback if empty
+                    app_secret = savedAppSecret;
+                    appSecretTextBox.Text = app_secret;
+                }
             }
-            catch
+            catch (FormatException)
             {
-                // fallback: plain text
-                app_secret = Settings.Default.savedSecret;
+                // saved value is plain text or invalid Base64
+                app_secret = savedAppSecret;
                 appSecretTextBox.Text = app_secret;
+            }
+            catch (CryptographicException)
+            {
+                // cannot decrypt (different machine/user)
+                app_secret = "";
+                appSecretTextBox.Text = "";
             }
 
             // Alt login handling
@@ -264,21 +301,36 @@ namespace QobuzDownloaderX
         {
             try
             {
-                var (isUpdateAvailable, _newVersion, _currentVersion, _changes) = await VersionChecker.CheckForUpdate();
-
-                changes = _changes;
-                newVersion = _newVersion;
-                currentVersion = _currentVersion;
-
-                if (isUpdateAvailable)
+                var result = await VersionChecker.CheckForUpdate();
+                if (result != default) 
                 {
-                    logger.Warning("An update is available.");
-                    updateButton.Enabled = true;
-                    updateButton.Visible = true;
+                    bool isUpdateAvailable = result.isUpdateAvailable;
+                    string _newVersion = result.newVersion ?? "";
+                    string _currentVersion = result.currentVersion ?? "";
+                    string _changes = result.changes ?? "";
+
+                    changes = _changes;
+                    newVersion = _newVersion;
+                    currentVersion = _currentVersion;
+
+                    if (isUpdateAvailable)
+                    {
+                        logger.Warning("An update is available.");
+                        updateButton.Enabled = true;
+                        updateButton.Visible = true;
+                    }
+                    else
+                    {
+                        logger.Debug("No update needed.");
+                    }
                 }
                 else
                 {
-                    logger.Debug("No update needed.");
+                    // result is null, just use defaults
+                    changes = "";
+                    newVersion = "";
+                    currentVersion = "";
+                    logger.Debug("Version check returned null.");
                 }
             }
             catch (Exception ex)
@@ -467,6 +519,14 @@ namespace QobuzDownloaderX
 
         private void loginBackground_DoWork(object sender, DoWorkEventArgs e)
         {
+            // Set up a StringWriter and attach it to Debug listener.
+            // This allows capturing all debug/log output from the third-party DLL Q(Open)API, 
+            // so we can inspect errors and messages that would normally only appear in the Immediate Window.
+            StringWriter sw = new StringWriter();
+            var twListener = new TextWriterTraceListener(sw);
+            Debug.Listeners.Add(twListener);
+            TextWriter originalConsoleOut = Console.Out;
+
             try
             {
                 loginText.Invoke(new Action(() => loginText.Text = loginTextStart));
@@ -588,16 +648,122 @@ namespace QobuzDownloaderX
                 this.Invoke(new Action(() => this.Hide()));
                 Application.Run(qbdlx);
             }
-            catch (Exception loginException)
+            catch (Exception ex)
             {
-                // If obtaining bundle.js info fails, show error info.
-                string loginError = loginException.ToString();
+                // Flush listeners and gather what was captured
+                try { twListener.Flush(); Trace.Flush(); Debug.Flush(); } catch { /* ignore */ }
+                string captured = "";
+                try { captured = sw.ToString(); } catch { captured = ""; }
+
+                // Remove consecutive duplicate lines and filter out unwanted "shit aint work" line
+                string deduped = "";
+                try
+                {
+                    var lines = captured
+                        .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)
+                        .Where(line => line.ToLowerInvariant().Trim() != "shit aint work") // ignore this line
+                        .ToArray();
+
+                    var sb = new StringBuilder();
+                    string prev = null;
+                    foreach (var line in lines)
+                    {
+                        if (line == prev) continue;
+                        if (sb.Length > 0) sb.AppendLine();
+                        sb.Append(line);
+                        prev = line;
+                    }
+                    deduped = sb.ToString();
+                }
+                catch
+                {
+                    deduped = captured; // fallback
+                }
+
+                string loginError = ex.ToString();
                 logger.Error("Login failed, error listed below.");
-                logger.Error("Error:\r\n" + loginException);
-                loginText.Invoke(new Action(() => loginText.Text = loginTextError));
-                System.IO.File.WriteAllText(errorLog, loginError);
-                loginButton.Invoke(new Action(() => loginButton.Enabled = true));
+                logger.Error("Error:\r\n" + ex);
+                if (!string.IsNullOrWhiteSpace(deduped))
+                    logger.Error("Captured output:\r\n" + deduped);
+
+                try
+                {
+                    File.WriteAllText(errorLog, loginError + "\r\nDLL output:\r\n" + deduped);
+                }
+                catch
+                {
+                    /* ignore */
+                }
+
+                // Restore listeners and console BEFORE touching the UI
+                try
+                {
+                    if (Debug.Listeners.Contains(twListener)) Debug.Listeners.Remove(twListener);
+                    Console.SetOut(originalConsoleOut);
+                }
+                catch { /* ignore */ }
+
+                // Try to parse the last line as JSON to extract error & message
+                string messageToShow = loginError; // default fallback
+                if (!string.IsNullOrWhiteSpace(deduped))
+                {
+                    var lines = deduped.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    string lastLine = lines.LastOrDefault()?.Trim();
+
+                    if (!string.IsNullOrEmpty(lastLine))
+                    {
+                        try
+                        {
+                            var json = Newtonsoft.Json.Linq.JObject.Parse(lastLine);
+                            string status = json["status"]?.ToString();
+                            string code = json["code"]?.ToString();
+                            string message = json["message"]?.ToString();
+
+                            if (!string.IsNullOrEmpty(status) && !string.IsNullOrEmpty(message))
+                            {
+                                messageToShow = $"Error {code}\n\n{message}";
+                            }
+                            else
+                            {
+                                messageToShow = deduped; // fallback to captured output
+                            }
+                        }
+                        catch
+                        {
+                            // not JSON, just show captured output
+                            messageToShow = deduped;
+                        }
+                    }
+                }
+
+                // Update UI and show MessageBox on the UI thread (safe)
+                if (this.IsHandleCreated && this.InvokeRequired)
+                {
+                    this.Invoke((Action)(() =>
+                    {
+                        loginText.Text = loginTextError;
+                        loginButton.Enabled = true;
+                        MessageBox.Show(this, messageToShow, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }));
+                }
+                else
+                {
+                    loginText.Text = loginTextError;
+                    loginButton.Enabled = true;
+                    MessageBox.Show(this, messageToShow, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 return;
+            }
+            finally
+            {
+                try
+                {
+                    if (Debug.Listeners.Contains(twListener)) Debug.Listeners.Remove(twListener);
+                    if (Trace.Listeners.Contains(twListener)) Trace.Listeners.Remove(twListener);
+                    Console.SetOut(originalConsoleOut);
+                }
+                catch { /* ignore */ }
             }
         }
 
@@ -700,7 +866,7 @@ namespace QobuzDownloaderX
         private void updateButton_Click(object sender, EventArgs e)
         {
             logger.Debug("Opening update information dialog");
-            DialogResult dialogResult = MessageBox.Show(this, updateNotification.Replace("{currentVersion}", currentVersion).Replace("{newVersion}", newVersion).Replace("{changelog}", changes.Replace("\\r\\n", "\r\n")), updateNotificationTitle, MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show(this, updateNotification.Replace("{currentVersion}", currentVersion).Replace("{newVersion}", newVersion).Replace("{changelog}", changes.Replace("\\r\\n", "\r\n")), updateNotificationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
                 // If "Yes" is clicked, open GitHub page and close QBDLX.
