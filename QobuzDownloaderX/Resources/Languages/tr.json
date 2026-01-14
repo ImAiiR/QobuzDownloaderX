@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "January 12, 2026, 01:25PM UTC",
+    "TranslationUpdatedOn":         "January 14, 2026, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -97,6 +97,7 @@
     "downloadAllFromArtistCheckBox":"Sanatçıdan hepsini indir (daha fazla içerebilir)", // ChatGPT translation
     "useItemPosInPlaylistCheckBox": "Dosya adlarında albüm parça numaraları yerine öğe konumlarını kullan", // ChatGPT translation
     "showTipsCheckBox":             "İpuçlarını göster", // ChatGPT translation.
+    "logFailedDownloadsCheckBox":   "Başarısız indirmeleri indirme klasöründeki 'error.txt' dosyasına kaydet", // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",

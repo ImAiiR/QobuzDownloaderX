@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 12, 2026, 09:22AM EST",
+    "TranslationUpdatedOn":         "January 14, 2026, 09:22AM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -97,6 +97,7 @@
     "downloadAllFromArtistCheckBox":"Download all from artist (it may include more)",
     "useItemPosInPlaylistCheckBox": "Use item positions instead of album track numbers in file names",
     "showTipsCheckBox":             "Show tips",
+    "logFailedDownloadsCheckBox":   "Log failed downloads to 'error.txt' in the download folder", 
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Welcome to QBDLX!",

@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 13, 2026, 11:06PM MSK",
+    "TranslationUpdatedOn":         "January 14, 2026, 11:06PM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -97,6 +97,7 @@
     "downloadAllFromArtistCheckBox":"Загрузить всё у исполнителя (может включать доп. контент)",
     "useItemPosInPlaylistCheckBox": "В именах файлов использовать нумерацию из плейлиста (вместо нумерации из альбома)",
     "showTipsCheckBox":             "Показать советы",
+    "logFailedDownloadsCheckBox":   "Записывать неудачные загрузки в 'error.txt' в папке загрузки", // ChatGPT translation
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",

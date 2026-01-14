@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 12, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 14, 2026, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -97,6 +97,7 @@
     "downloadAllFromArtistCheckBox":"从艺术家下载全部（可能包含更多）", // ChatGPT translation
     "useItemPosInPlaylistCheckBox": "在文件名中使用项目位置而不是专辑曲目编号", // ChatGPT translation
     "showTipsCheckBox":             "显示提示", // ChatGPT translation.
+    "logFailedDownloadsCheckBox":   "将失败的下载记录到下载文件夹中的 'error.txt'", // ChatGPT translation
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",

@@ -33,8 +33,9 @@ namespace QobuzDownloaderX
         private bool VerifyStreamable(Item QoItem, int paddedTrackLength)
         {
             if (QoItem.Streamable || !Settings.Default.streamableCheck) return true;
-
-            getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputTrNotStream.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n");
+            string msg = $"{qbdlxForm._qbdlxForm.downloadOutputTrNotStream.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n";
+            getInfo.updateDownloadOutput(msg);
+            Miscellaneous.LogNotStreamableTrackEntry(downloadPath, QoItem, msg);
             return false;
         }
 
@@ -76,7 +77,10 @@ namespace QobuzDownloaderX
             var QoStream = QoService.TrackGetFileUrl(QoItem.Id.ToString(), format_id, app_id, user_auth_token, app_secret);
             string streamURL = QoStream?.StreamURL;
             if (string.IsNullOrWhiteSpace(streamURL)) {
-                getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputNoUrl.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n");
+                string msg = $"{qbdlxForm._qbdlxForm.downloadOutputNoUrl.Replace("{TrackNumber}", QoItem.TrackNumber.ToString().PadLeft(paddedTrackLength, '0'))}\r\n";
+                getInfo.updateDownloadOutput(msg);
+                Miscellaneous.LogNotDownloadableTrackEntry(downloadPath, QoItem, msg);
+                qbdlxForm._qbdlxForm.logger.Error(msg);
                 return;
             }
 
@@ -113,7 +117,9 @@ namespace QobuzDownloaderX
                     // Check if QoItem is still null. If so, skip.
                     if (QoItem == null)
                     {
-                        getInfo.updateDownloadOutput($"{qbdlxForm._qbdlxForm.downloadOutputAPIError}\r\n");
+                        string msg = $"{qbdlxForm._qbdlxForm.downloadOutputAPIError}\r\n";
+                        getInfo.updateDownloadOutput(msg);
+                        Miscellaneous.LogFailedDownloadEntry(downloadLocation, "", msg);
                         progress?.Report(100);
                         return;
                     }

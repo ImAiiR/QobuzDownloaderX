@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 12, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 14, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -97,6 +97,7 @@
     "downloadAllFromArtistCheckBox":"Tout télécharger de l'artiste (peut en inclure plus)",
     "useItemPosInPlaylistCheckBox": "Utiliser les positions des éléments au lieu des numéros de piste de l'album dans les noms de fichiers", // ChatGPT translation
     "showTipsCheckBox":             "Afficher les conseils", // ChatGPT translation.
+    "logFailedDownloadsCheckBox":   "Enregistrer les téléchargements échoués dans 'error.txt' dans le dossier de téléchargement", // ChatGPT translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",

@@ -126,6 +126,7 @@ namespace QobuzDownloaderX
                 {
                     qbdlxForm._qbdlxForm.logger.Debug("Streamable tag is set to false on Qobuz, and streamable check is enabled, skipping download");
                     getInfo.updateDownloadOutput(qbdlxForm._qbdlxForm.downloadOutputAlNotStream);
+                    Miscellaneous.LogNotStreamableAlbumEntry(downloadLocation, QoAlbum, qbdlxForm._qbdlxForm.downloadOutputAlNotStream);
                     getInfo.updateDownloadOutput("\r\n" + qbdlxForm._qbdlxForm.downloadOutputCompleted);
                     progress?.Report(100);
                     return;

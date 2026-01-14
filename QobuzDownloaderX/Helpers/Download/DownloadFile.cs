@@ -236,28 +236,66 @@ namespace QobuzDownloaderX
             {
                 if (!abortToken.IsCancellationRequested)
                 {
-                    qbdlxForm._qbdlxForm.logger.Error("DownloadStream canceled (OperationCanceledException): " + ex.Message);
+                    string msg = "DownloadStream canceled (OperationCanceledException): " + ex.Message;
+                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
+                    qbdlxForm._qbdlxForm.logger.Error(msg);
                     throw;
                 }
             }
             catch (WebException webEx)
             {
-                getInfo.updateDownloadOutput($"DownloadStream failed (WebException): {webEx.Message}\r\n");
-                qbdlxForm._qbdlxForm.logger.Error("WebException caught: " + webEx.Message);
+                string msg = $"DownloadStream failed (WebException): {webEx.Message}\r\n";
+                Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
+                qbdlxForm._qbdlxForm.logger.Error(msg);
+                getInfo.updateDownloadOutput(msg);
             }
             catch (Exception ex) when (
                   (ex is IOException ioEx && ioEx.HResult == unchecked((int)0x80070070)) ||
                   (ex is Win32Exception winEx && winEx.HResult == unchecked((int)0x80004005))) // Error 112
             {
+                // Determine which path we were trying to write to
                 string selectedPath = !ZlpIOHelper.FileExists(filePath) ? filePath : tempFile;
                 string pathRoot = Path.GetPathRoot(selectedPath);
-                MessageBox.Show(qbdlxForm._qbdlxForm.languageManager.GetTranslation("notEnoughFreeSpaceMsg").Replace("{pathRoot}", pathRoot), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                qbdlxForm._qbdlxForm.logger.Error($"Not enough free space on drive '{pathRoot}': " + ex.Message);
-                throw;
+
+                // Get drive info
+                DriveInfo drive = new DriveInfo(pathRoot);
+                long availableFreeSpace = drive.AvailableFreeSpace;
+
+                // Check if there is enough space
+                FileInfo fileInfo = new FileInfo(tempFile);
+                if (fileInfo.Exists)
+                {
+                    if (availableFreeSpace < fileInfo.Length)
+                    {
+                        string msg = qbdlxForm._qbdlxForm.languageManager
+                                     .GetTranslation("notEnoughFreeSpaceMsg")
+                                     .Replace("{pathRoot}", pathRoot);
+
+                        Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
+                        qbdlxForm._qbdlxForm.logger.Error(msg);
+                        MessageBox.Show(msg, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        // If there is enough space, log the actual exception message
+                        string msg = $"DownloadStream failed (IOException): {ex.Message}";
+                        Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
+                        qbdlxForm._qbdlxForm.logger.Error(msg);
+                    }
+                }
+                else
+                {
+                    string msg = $"DownloadStream failed (IOException): {ex.Message}";
+                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
+                    qbdlxForm._qbdlxForm.logger.Error(msg);
+                }
+                throw; // rethrow original exception
             }
             catch (Exception ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("DownloadStream failed (Exception): " + ex.Message);
+                string msg = "DownloadStream failed (Exception): " + ex.Message;
+                Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
+                qbdlxForm._qbdlxForm.logger.Error(msg);
                 throw;
             }
         }

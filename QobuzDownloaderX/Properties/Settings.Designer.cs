@@ -8,12 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using QobuzDownloaderX.Helpers;
-
 namespace QobuzDownloaderX.Properties {
-
-
-    [global::System.Configuration.SettingsProvider(typeof(FlexibleSettingsProvider))]
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
@@ -803,6 +800,18 @@ namespace QobuzDownloaderX.Properties {
             }
             set {
                 this["savedVaTrackTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool logFailedDownloadsToErrorTxt {
+            get {
+                return ((bool)(this["logFailedDownloadsToErrorTxt"]));
+            }
+            set {
+                this["logFailedDownloadsToErrorTxt"] = value;
             }
         }
     }

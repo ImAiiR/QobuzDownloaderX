@@ -271,6 +271,7 @@ namespace QobuzDownloaderX.Helpers
             f.artistNamesSeparatorsPanel.Enabled = f.mergeArtistNamesCheckBox.Checked;
             f.useItemPosInPlaylistCheckBox.Checked = Settings.Default.useItemPosInPlaylist;
             f.showTipsCheckBox.Checked = Settings.Default.showTips;
+            f.logFailedDownloadsCheckBox.Checked = Settings.Default.logFailedDownloadsToErrorTxt;
             RestoreDownloadFromArtistSelectedIndices();
         }
 
@@ -402,7 +403,7 @@ namespace QobuzDownloaderX.Helpers
             f.batchDownloadSelectedRowsButton.Text = f.languageManager.GetTranslation("batchDownloadRowsButton");
 
             /* Center additional settings button to center of panel */
-            f.additionalSettingsButton.Location = new Point((f.settingsPanel.Width - f.additionalSettingsButton.Width) / 2, f.additionalSettingsButton.Location.Y);
+            //f.additionalSettingsButton.Location = new Point((f.settingsPanel.Width - f.additionalSettingsButton.Width) / 2, f.additionalSettingsButton.Location.Y);
 
             /* Center quality panel to center of quality button */
             f.qualitySelectPanel.Location = new Point(f.qualitySelectButton.Left + (f.qualitySelectButton.Width / 2) - (f.qualitySelectPanel.Width / 2), f.qualitySelectPanel.Location.Y);
@@ -482,6 +483,7 @@ namespace QobuzDownloaderX.Helpers
             f.dontSaveArtworkToDiskCheckBox.Text = f.languageManager.GetTranslation("dontSaveArtworkToDiskCheckBox");
             f.downloadAllFromArtistCheckBox.Text = f.languageManager.GetTranslation("downloadAllFromArtistCheckBox");
             f.clearOldLogsCheckBox.Text = f.languageManager.GetTranslation("clearOldLogsCheckBox");
+            f.logFailedDownloadsCheckBox.Text = f.languageManager.GetTranslation("logFailedDownloadsCheckBox");
             f.useItemPosInPlaylistCheckBox.Text = f.languageManager.GetTranslation("useItemPosInPlaylistCheckBox");
             f.showTipsCheckBox.Text = f.languageManager.GetTranslation("showTipsCheckBox");
 
@@ -960,6 +962,65 @@ namespace QobuzDownloaderX.Helpers
             }
         }
 
+        internal static void LogNotStreamableAlbumEntry(string downloadLocation, Album QoAlbum, string msg)
+        {
+            // Artist - Album Title (Date) [Album ID] [UPC]
+            string entryTitle = $"{QoAlbum?.Artist?.Name} - {QoAlbum?.Title} ({QoAlbum?.ReleaseDateOriginal ?? QoAlbum?.ReleaseDateStream}) [ID:{QoAlbum?.Id}] [UPC-{QoAlbum?.UPC}]";
+
+            Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
+        }
+
+        internal static void LogNotStreamableTrackEntry(string downloadLocation, Item QoItem, string msg)
+        {
+            // Artist - Album Title (Date) -> Track Number. Track Title [Track ID] [UPC]
+            string entryTitle =
+                $"{QoItem?.Artist?.Name ?? QoItem?.Album?.Artist?.Name} - {QoItem?.Album?.Title} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title} [ID:{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
+
+            Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
+        }
+
+        internal static void LogNotDownloadableTrackEntry(string downloadLocation, Item QoItem, string msg)
+        {
+            // Artist - Album Title (Date) -> Track Number. Track Title [Track ID] [UPC]
+            string entryTitle =
+                $"{QoItem?.Artist?.Name ?? QoItem?.Album?.Artist?.Name} - {QoItem?.Album?.Title} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title} [ID:{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
+
+            Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
+        }
+
+        internal static void LogFailedDownloadStreamEntry(string downloadLocation, Item QoItem, string msg)
+        {
+            // Artist - Album Title (Date) -> Track Number. Track Title [Track ID] [UPC]
+            string entryTitle = 
+                $"{QoItem?.Artist?.Name ?? QoItem?.Album?.Artist?.Name} - {QoItem?.Album?.Title} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title} [ID:{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
+
+            Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
+        }
+
+        internal static void LogFailedDownloadEntry(string downloadLocation, string entryTitle, string msg)
+        {
+            if (Settings.Default.logFailedDownloadsToErrorTxt)
+            {
+                try
+                {
+                    if (msg.Contains(':'))
+                    {
+                        msg = msg.Substring(0, msg.IndexOf(':'));
+                    }
+                    msg = msg?.TrimEnd(' ', '.', '\r', '\n');
+
+                    using (StreamWriter sw = File.AppendText(Path.Combine(downloadLocation, qbdlxForm.failedDownloadsLogFilename)))
+                    {
+                        sw.WriteLine($"{msg}: {entryTitle}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error writing to file: " + ex.Message);
+                }
+            }
+        }
+
         internal static async Task downloadButtonAsyncWork(qbdlxForm f, DownloadStats stats = null)
         {
             qbdlxForm.getLinkTypeIsBusy = true;
@@ -1166,6 +1227,7 @@ namespace QobuzDownloaderX.Helpers
                     if (f.QoAlbum == null)
                     {
                         f.getInfo.updateDownloadOutput($"{f.downloadOutputAPIError}");
+                        //Miscellaneous.LogMissingTracksEntry(QoItem, $"{f.downloadOutputAPIError}");
                         f.progressLabel.Invoke(new Action(() => f.progressLabel.Text = f.progressLabelInactive));
                         break;
                     }

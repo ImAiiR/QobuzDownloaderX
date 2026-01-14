@@ -104,6 +104,8 @@ namespace QobuzDownloaderX
         private DateTime lastClickTime = DateTime.MinValue;
         private readonly TimeSpan tripleClickThreshold = TimeSpan.FromMilliseconds(SystemInformation.DoubleClickTime);
 
+        internal const string failedDownloadsLogFilename = "error.txt";
+
         #region Language
         internal string userInfoTextBoxPlaceholder { get; set; }
         internal string albumLabelPlaceholder { get; set; }
@@ -816,7 +818,10 @@ namespace QobuzDownloaderX
 
         private void commentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.commentTag = commentCheckBox.Checked;
+            bool isChecked = commentCheckBox.Checked;
+
+            commentTextBox.Enabled = isChecked;
+            Settings.Default.commentTag = isChecked;
             Settings.Default.Save();
         }
 
@@ -1091,6 +1096,12 @@ namespace QobuzDownloaderX
         private void clearOldLogsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.clearOldLogs = clearOldLogsCheckBox.Checked;
+            Settings.Default.Save();
+        }
+
+        private void logFailedDownloadsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.logFailedDownloadsToErrorTxt = logFailedDownloadsCheckBox.Checked;
             Settings.Default.Save();
         }
 
@@ -1719,7 +1730,7 @@ namespace QobuzDownloaderX
             tipScroll = currentTipText;
         }
 
-        private void timerTip_Tick_1(object sender, EventArgs e)
+        private void timerTip_Tick(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(tipScroll))
             {
@@ -1753,5 +1764,6 @@ namespace QobuzDownloaderX
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
