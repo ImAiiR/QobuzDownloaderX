@@ -103,6 +103,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\BufferedLogger.cs" />
     <Compile Include="Helpers\DeterministicFileSettingsProvider.cs" />
+    <Compile Include="Helpers\Download\DuplicateFileMode.cs" />
     <Compile Include="Helpers\Download\DownloadStats.cs" />
     <Compile Include="Helpers\Download\DownloadTrack.cs" />
     <Compile Include="Helpers\Download\DownloadAlbum.cs" />

@@ -272,6 +272,21 @@ namespace QobuzDownloaderX.Helpers
             f.useItemPosInPlaylistCheckBox.Checked = Settings.Default.useItemPosInPlaylist;
             f.showTipsCheckBox.Checked = Settings.Default.showTips;
             f.logFailedDownloadsCheckBox.Checked = Settings.Default.logFailedDownloadsToErrorTxt;
+
+            int duplicateFileMode = Settings.Default.duplicateFileMode;
+            switch (duplicateFileMode)
+            {
+                case 1: // AutoRename
+                    f.autoRenameDuplicatesRadioButton.Checked = true;
+                    break;
+                case 2: // Overwrite Existing Files
+                    f.overwriteDuplicatesRadioButton.Checked = true;
+                    break;
+                default: // Skip downloads
+                    f.skipDuplicatesRadioButton.Checked = true;
+                    break;
+            }
+
             RestoreDownloadFromArtistSelectedIndices();
         }
 

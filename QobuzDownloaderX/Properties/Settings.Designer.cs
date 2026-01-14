@@ -814,5 +814,17 @@ namespace QobuzDownloaderX.Properties {
                 this["logFailedDownloadsToErrorTxt"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int duplicateFileMode {
+            get {
+                return ((int)(this["duplicateFileMode"]));
+            }
+            set {
+                this["duplicateFileMode"] = value;
+            }
+        }
     }
 }

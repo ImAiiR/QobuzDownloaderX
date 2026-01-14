@@ -428,7 +428,7 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextBox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(186, 277);
+            this.downloaderPanel.Location = new System.Drawing.Point(187, 271);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 0;
@@ -743,7 +743,7 @@ namespace QobuzDownloaderX
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(416, 197);
+            this.settingsPanel.Location = new System.Drawing.Point(459, 193);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 0;
@@ -1233,7 +1233,7 @@ namespace QobuzDownloaderX
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
             this.aboutPanel.Controls.Add(this.disclaimerLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(730, 121);
+            this.aboutPanel.Location = new System.Drawing.Point(791, 117);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
             this.aboutPanel.TabIndex = 0;
@@ -1279,7 +1279,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(523, 159);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(569, 154);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1542,6 +1542,7 @@ namespace QobuzDownloaderX
             this.skipDuplicatesRadioButton.TabStop = true;
             this.skipDuplicatesRadioButton.Text = "Skip download";
             this.skipDuplicatesRadioButton.UseVisualStyleBackColor = true;
+            this.skipDuplicatesRadioButton.CheckedChanged += new System.EventHandler(this.skipDuplicatesRadioButton_CheckedChanged);
             // 
             // autoRenameDuplicatesRadioButton
             // 
@@ -1553,6 +1554,7 @@ namespace QobuzDownloaderX
             this.autoRenameDuplicatesRadioButton.TabIndex = 4;
             this.autoRenameDuplicatesRadioButton.Text = "Auto-rename";
             this.autoRenameDuplicatesRadioButton.UseVisualStyleBackColor = true;
+            this.autoRenameDuplicatesRadioButton.CheckedChanged += new System.EventHandler(this.autoRenameDuplicatesRadioButton_CheckedChanged);
             // 
             // overwriteDuplicatesRadioButton
             // 
@@ -1564,6 +1566,7 @@ namespace QobuzDownloaderX
             this.overwriteDuplicatesRadioButton.TabIndex = 6;
             this.overwriteDuplicatesRadioButton.Text = "Overwrite";
             this.overwriteDuplicatesRadioButton.UseVisualStyleBackColor = true;
+            this.overwriteDuplicatesRadioButton.CheckedChanged += new System.EventHandler(this.overwriteDuplicatesRadioButton_CheckedChanged);
             // 
             // showTipsCheckBox
             // 
@@ -2305,7 +2308,7 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(336, 235);
+            this.searchPanel.Location = new System.Drawing.Point(342, 231);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 0;

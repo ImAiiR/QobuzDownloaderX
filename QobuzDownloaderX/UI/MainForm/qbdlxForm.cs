@@ -106,6 +106,8 @@ namespace QobuzDownloaderX
 
         internal const string failedDownloadsLogFilename = "error.txt";
 
+        DuplicateFileMode duplicateFileMode = DuplicateFileMode.SkipDownloads;
+
         #region Language
         internal string userInfoTextBoxPlaceholder { get; set; }
         internal string albumLabelPlaceholder { get; set; }
@@ -602,6 +604,36 @@ namespace QobuzDownloaderX
             Settings.Default.savedFavoritesTemplate = favoritesTemplateTextBox.Text;
             Settings.Default.Save();
             Miscellaneous.updateTemplates(this);
+        }
+
+        private void skipDuplicatesRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (skipDuplicatesRadioButton.Checked)
+            {
+                this.duplicateFileMode = DuplicateFileMode.SkipDownloads;
+            }
+            Settings.Default.duplicateFileMode = (int)this.duplicateFileMode;
+            Settings.Default.Save();
+        }
+
+        private void autoRenameDuplicatesRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoRenameDuplicatesRadioButton.Checked)
+            {
+                this.duplicateFileMode = DuplicateFileMode.AutoRename;
+            }
+            Settings.Default.duplicateFileMode = (int)this.duplicateFileMode;
+            Settings.Default.Save();
+        }
+
+        private void overwriteDuplicatesRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (overwriteDuplicatesRadioButton.Checked)
+            {
+                this.duplicateFileMode = DuplicateFileMode.OverwriteExistingFiles;
+            }
+            Settings.Default.duplicateFileMode = (int)this.duplicateFileMode;
+            Settings.Default.Save();
         }
 
         #region Quality Selection
@@ -1766,4 +1798,5 @@ namespace QobuzDownloaderX
         }
 
     }
+
 }
