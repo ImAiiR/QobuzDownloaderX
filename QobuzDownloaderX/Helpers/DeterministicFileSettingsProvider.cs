@@ -24,7 +24,7 @@ using System.Diagnostics;
 /// Supports optional deterministic directory hashing and version-based folder organization
 /// to keep configuration stable and predictable across updates.
 /// </summary>
-public class DeterministicFileSettingsProvider : SettingsProvider
+public class FlexibleSettingsProvider : SettingsProvider
 {
     #region Public Fields
 
@@ -97,10 +97,10 @@ public class DeterministicFileSettingsProvider : SettingsProvider
     #region Constructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="DeterministicFileSettingsProvider"/> class.
+    /// Initializes a new instance of the <see cref="FlexibleSettingsProvider"/> class.
     /// Ensures default values for file name and directory are set.
     /// </summary>
-    public DeterministicFileSettingsProvider()
+    public FlexibleSettingsProvider()
     {
         // Allow the readonly fields to be assigned only in the constructor if needed.
         // If a consumer changes the default at compile-time, they can modify the field initializer above.
@@ -130,7 +130,7 @@ public class DeterministicFileSettingsProvider : SettingsProvider
     {
         if (string.IsNullOrEmpty(name))
         {
-            name = nameof(DeterministicFileSettingsProvider);
+            name = nameof(FlexibleSettingsProvider);
         }
         base.Initialize(name, config);
     }
