@@ -743,7 +743,7 @@ namespace QobuzDownloaderX
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(189, 10);
+            this.settingsPanel.Location = new System.Drawing.Point(416, 197);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 0;
@@ -1279,7 +1279,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(523, 131);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(523, 159);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -2305,7 +2305,7 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(341, 238);
+            this.searchPanel.Location = new System.Drawing.Point(336, 235);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 0;
@@ -2437,9 +2437,9 @@ namespace QobuzDownloaderX
             this.deselectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deselectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deselectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.deselectAllRowsButton.Location = new System.Drawing.Point(285, 531);
+            this.deselectAllRowsButton.Location = new System.Drawing.Point(285, 541);
             this.deselectAllRowsButton.Name = "deselectAllRowsButton";
-            this.deselectAllRowsButton.Size = new System.Drawing.Size(120, 41);
+            this.deselectAllRowsButton.Size = new System.Drawing.Size(120, 31);
             this.deselectAllRowsButton.TabIndex = 14;
             this.deselectAllRowsButton.Text = "Deselect all";
             this.deselectAllRowsButton.UseVisualStyleBackColor = false;
@@ -2455,9 +2455,9 @@ namespace QobuzDownloaderX
             this.selectAllRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectAllRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectAllRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.selectAllRowsButton.Location = new System.Drawing.Point(159, 531);
+            this.selectAllRowsButton.Location = new System.Drawing.Point(159, 541);
             this.selectAllRowsButton.Name = "selectAllRowsButton";
-            this.selectAllRowsButton.Size = new System.Drawing.Size(120, 41);
+            this.selectAllRowsButton.Size = new System.Drawing.Size(120, 31);
             this.selectAllRowsButton.TabIndex = 12;
             this.selectAllRowsButton.Text = "Select all";
             this.selectAllRowsButton.UseVisualStyleBackColor = false;
@@ -2473,9 +2473,9 @@ namespace QobuzDownloaderX
             this.batchDownloadSelectedRowsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.batchDownloadSelectedRowsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.batchDownloadSelectedRowsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.batchDownloadSelectedRowsButton.Location = new System.Drawing.Point(411, 530);
+            this.batchDownloadSelectedRowsButton.Location = new System.Drawing.Point(411, 541);
             this.batchDownloadSelectedRowsButton.Name = "batchDownloadSelectedRowsButton";
-            this.batchDownloadSelectedRowsButton.Size = new System.Drawing.Size(340, 42);
+            this.batchDownloadSelectedRowsButton.Size = new System.Drawing.Size(340, 31);
             this.batchDownloadSelectedRowsButton.TabIndex = 15;
             this.batchDownloadSelectedRowsButton.Text = "BATCH DOWNLOAD SELECTED ROWS";
             this.batchDownloadSelectedRowsButton.UseVisualStyleBackColor = false;
@@ -2485,7 +2485,7 @@ namespace QobuzDownloaderX
             // 
             this.selectedRowsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.selectedRowsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.selectedRowsCountLabel.Location = new System.Drawing.Point(16, 552);
+            this.selectedRowsCountLabel.Location = new System.Drawing.Point(16, 554);
             this.selectedRowsCountLabel.Name = "selectedRowsCountLabel";
             this.selectedRowsCountLabel.Size = new System.Drawing.Size(140, 16);
             this.selectedRowsCountLabel.TabIndex = 11;
@@ -2496,7 +2496,7 @@ namespace QobuzDownloaderX
             // 
             this.searchResultsCountLabel.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.searchResultsCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.searchResultsCountLabel.Location = new System.Drawing.Point(16, 530);
+            this.searchResultsCountLabel.Location = new System.Drawing.Point(16, 532);
             this.searchResultsCountLabel.Name = "searchResultsCountLabel";
             this.searchResultsCountLabel.Size = new System.Drawing.Size(140, 16);
             this.searchResultsCountLabel.TabIndex = 10;
@@ -2743,8 +2743,6 @@ namespace QobuzDownloaderX
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(951, 580);
-            this.Controls.Add(this.settingsPanel);
-            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
@@ -2754,6 +2752,8 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.searchPanel);
+            this.Controls.Add(this.settingsPanel);
+            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.aboutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
