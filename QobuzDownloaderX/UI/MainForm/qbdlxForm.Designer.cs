@@ -737,7 +737,7 @@ namespace QobuzDownloaderX
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(453, 201);
+            this.settingsPanel.Location = new System.Drawing.Point(435, 199);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 0;
@@ -903,7 +903,7 @@ namespace QobuzDownloaderX
             this.additionalSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.additionalSettingsButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.additionalSettingsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.additionalSettingsButton.Location = new System.Drawing.Point(602, 533);
+            this.additionalSettingsButton.Location = new System.Drawing.Point(541, 533);
             this.additionalSettingsButton.Name = "additionalSettingsButton";
             this.additionalSettingsButton.Size = new System.Drawing.Size(150, 31);
             this.additionalSettingsButton.TabIndex = 21;
@@ -1273,7 +1273,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(559, 160);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(509, 158);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1535,8 +1535,7 @@ namespace QobuzDownloaderX
             this.useItemPosInPlaylistCheckBox.Name = "useItemPosInPlaylistCheckBox";
             this.useItemPosInPlaylistCheckBox.Size = new System.Drawing.Size(356, 40);
             this.useItemPosInPlaylistCheckBox.TabIndex = 14;
-            this.useItemPosInPlaylistCheckBox.Text = "Use item positions instead of album track numbers in file names" +
-    "s";
+            this.useItemPosInPlaylistCheckBox.Text = "Use item positions instead of album track numbers in file namess";
             this.useItemPosInPlaylistCheckBox.UseVisualStyleBackColor = true;
             this.useItemPosInPlaylistCheckBox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckBox_CheckedChanged);
             // 
@@ -1980,7 +1979,7 @@ namespace QobuzDownloaderX
             this.closeAdditionalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeAdditionalButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeAdditionalButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.closeAdditionalButton.Location = new System.Drawing.Point(602, 533);
+            this.closeAdditionalButton.Location = new System.Drawing.Point(541, 533);
             this.closeAdditionalButton.Name = "closeAdditionalButton";
             this.closeAdditionalButton.Size = new System.Drawing.Size(150, 31);
             this.closeAdditionalButton.TabIndex = 23;
