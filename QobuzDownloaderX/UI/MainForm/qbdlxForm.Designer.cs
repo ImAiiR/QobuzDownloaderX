@@ -1535,7 +1535,7 @@ namespace QobuzDownloaderX
             this.useItemPosInPlaylistCheckBox.Name = "useItemPosInPlaylistCheckBox";
             this.useItemPosInPlaylistCheckBox.Size = new System.Drawing.Size(356, 40);
             this.useItemPosInPlaylistCheckBox.TabIndex = 14;
-            this.useItemPosInPlaylistCheckBox.Text = "Use item positions for playlist links instead of album track numbers in file name" +
+            this.useItemPosInPlaylistCheckBox.Text = "Use item positions instead of album track numbers in file names" +
     "s";
             this.useItemPosInPlaylistCheckBox.UseVisualStyleBackColor = true;
             this.useItemPosInPlaylistCheckBox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckBox_CheckedChanged);
