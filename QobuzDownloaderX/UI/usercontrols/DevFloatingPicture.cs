@@ -5,7 +5,7 @@
     // Modified : 20-January-2024
     // ***********************************************************************
 
-    // ChatGPT code conversion from VB.NET to C# 7.3
+    // Note: ChatGPT code conversion from VB.NET to C# 7.3
 
     #region Public Members Summary
 
