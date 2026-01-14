@@ -25,6 +25,9 @@
     "selectAllRowsButton":          "Tümünü seç", // ChatGPT translation.
     "deselectAllRowsButton":        "Tüm seçimi kaldır", // ChatGPT translation.
     "batchDownloadRowsButton":      "SEÇİLİ SATIRLARI TOPLU İNDİR", // ChatGPT translation.
+    "skipDuplicatesButton":         "Yoksay / İndirmeyi atla", // ChatGPT translation
+    "autoRenameDuplicatesButton":   "Otomatik olarak yeniden adlandır", // ChatGPT translation
+    "overwriteDuplicatesButton":    "Mevcut dosyaların üzerine yaz", // ChatGPT translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "GELİŞMİŞ AYARLAR",
@@ -61,6 +64,7 @@
     "primaryListSeparatorLabel":    "Birincil liste ayırıcı", // ChatGPT translation.
     "listEndSeparatorLabel":        "Liste sonu ayırıcı", // ChatGPT translation.
     "playlistSectionLabel":         "PLAYLIST SEÇENEKLERİ", // ChatGPT translation.
+    "duplicateFilesLabel":          "Yinelenen dosyalar", // ChatGPT translation
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumArtistCheckBox":          "Albüm Sanatçısı",

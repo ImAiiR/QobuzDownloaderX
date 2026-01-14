@@ -124,6 +124,11 @@ namespace QobuzDownloaderX
             this.primaryListSeparatorTextBox = new System.Windows.Forms.TextBox();
             this.listEndSeparatorLabel = new System.Windows.Forms.Label();
             this.listEndSeparatorTextBox = new System.Windows.Forms.TextBox();
+            this.duplicateFilesFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.duplicateFilesLabel = new System.Windows.Forms.Label();
+            this.skipDuplicatesRadioButton = new System.Windows.Forms.RadioButton();
+            this.autoRenameDuplicatesRadioButton = new System.Windows.Forms.RadioButton();
+            this.overwriteDuplicatesRadioButton = new System.Windows.Forms.RadioButton();
             this.showTipsCheckBox = new System.Windows.Forms.CheckBox();
             this.dontSaveArtworkToDiskCheckBox = new System.Windows.Forms.CheckBox();
             this.useItemPosInPlaylistCheckBox = new System.Windows.Forms.CheckBox();
@@ -224,6 +229,7 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelLeft.SuspendLayout();
             this.advancedOptionsPanelRight.SuspendLayout();
             this.artistNamesSeparatorsPanel.SuspendLayout();
+            this.duplicateFilesFlowLayoutPanel.SuspendLayout();
             this.taggingOptionsPanel.SuspendLayout();
             this.qualitySelectPanel.SuspendLayout();
             this.searchPanel.SuspendLayout();
@@ -1273,7 +1279,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(509, 159);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(186, 3);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1292,7 +1298,7 @@ namespace QobuzDownloaderX
             "Compilation",
             "Download",
             "Other"});
-            this.downloadFromArtistListBox.Location = new System.Drawing.Point(22, 316);
+            this.downloadFromArtistListBox.Location = new System.Drawing.Point(22, 317);
             this.downloadFromArtistListBox.MultiColumn = true;
             this.downloadFromArtistListBox.Name = "downloadFromArtistListBox";
             this.downloadFromArtistListBox.Size = new System.Drawing.Size(361, 34);
@@ -1320,9 +1326,10 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelLeft.Controls.Add(this.logFailedDownloadsCheckBox);
             this.advancedOptionsPanelLeft.Controls.Add(this.fixMD5sCheckBox);
             this.advancedOptionsPanelLeft.Controls.Add(this.advancedOptionsPanelRight);
+            this.advancedOptionsPanelLeft.Controls.Add(this.duplicateFilesFlowLayoutPanel);
             this.advancedOptionsPanelLeft.Location = new System.Drawing.Point(390, 172);
             this.advancedOptionsPanelLeft.Name = "advancedOptionsPanelLeft";
-            this.advancedOptionsPanelLeft.Size = new System.Drawing.Size(363, 351);
+            this.advancedOptionsPanelLeft.Size = new System.Drawing.Size(363, 355);
             this.advancedOptionsPanelLeft.TabIndex = 22;
             // 
             // useTLS13CheckBox
@@ -1429,7 +1436,7 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelRight.Controls.Add(this.artistNamesSeparatorsPanel);
             this.advancedOptionsPanelRight.Location = new System.Drawing.Point(3, 123);
             this.advancedOptionsPanelRight.Name = "advancedOptionsPanelRight";
-            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(355, 119);
+            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(355, 110);
             this.advancedOptionsPanelRight.TabIndex = 7;
             // 
             // mergeArtistNamesCheckBox
@@ -1449,6 +1456,7 @@ namespace QobuzDownloaderX
             // 
             // artistNamesSeparatorsPanel
             // 
+            this.artistNamesSeparatorsPanel.AutoScroll = true;
             this.artistNamesSeparatorsPanel.Controls.Add(this.primaryListSeparatorLabel);
             this.artistNamesSeparatorsPanel.Controls.Add(this.primaryListSeparatorTextBox);
             this.artistNamesSeparatorsPanel.Controls.Add(this.listEndSeparatorLabel);
@@ -1499,6 +1507,64 @@ namespace QobuzDownloaderX
             this.listEndSeparatorTextBox.Text = ", ";
             this.listEndSeparatorTextBox.Leave += new System.EventHandler(this.listEndSeparatorTextBox_Leave);
             // 
+            // duplicateFilesFlowLayoutPanel
+            // 
+            this.duplicateFilesFlowLayoutPanel.AutoScroll = true;
+            this.duplicateFilesFlowLayoutPanel.Controls.Add(this.duplicateFilesLabel);
+            this.duplicateFilesFlowLayoutPanel.Controls.Add(this.skipDuplicatesRadioButton);
+            this.duplicateFilesFlowLayoutPanel.Controls.Add(this.autoRenameDuplicatesRadioButton);
+            this.duplicateFilesFlowLayoutPanel.Controls.Add(this.overwriteDuplicatesRadioButton);
+            this.duplicateFilesFlowLayoutPanel.Location = new System.Drawing.Point(3, 239);
+            this.duplicateFilesFlowLayoutPanel.Name = "duplicateFilesFlowLayoutPanel";
+            this.duplicateFilesFlowLayoutPanel.Size = new System.Drawing.Size(224, 91);
+            this.duplicateFilesFlowLayoutPanel.TabIndex = 9;
+            // 
+            // duplicateFilesLabel
+            // 
+            this.duplicateFilesLabel.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.duplicateFilesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.duplicateFilesLabel.Location = new System.Drawing.Point(3, 0);
+            this.duplicateFilesLabel.Name = "duplicateFilesLabel";
+            this.duplicateFilesLabel.Size = new System.Drawing.Size(214, 21);
+            this.duplicateFilesLabel.TabIndex = 4;
+            this.duplicateFilesLabel.Text = "Duplicate files";
+            this.duplicateFilesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // skipDuplicatesRadioButton
+            // 
+            this.skipDuplicatesRadioButton.Checked = true;
+            this.skipDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.skipDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.skipDuplicatesRadioButton.Location = new System.Drawing.Point(3, 24);
+            this.skipDuplicatesRadioButton.Name = "skipDuplicatesRadioButton";
+            this.skipDuplicatesRadioButton.Size = new System.Drawing.Size(214, 17);
+            this.skipDuplicatesRadioButton.TabIndex = 0;
+            this.skipDuplicatesRadioButton.TabStop = true;
+            this.skipDuplicatesRadioButton.Text = "Skip download";
+            this.skipDuplicatesRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // autoRenameDuplicatesRadioButton
+            // 
+            this.autoRenameDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.autoRenameDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.autoRenameDuplicatesRadioButton.Location = new System.Drawing.Point(3, 47);
+            this.autoRenameDuplicatesRadioButton.Name = "autoRenameDuplicatesRadioButton";
+            this.autoRenameDuplicatesRadioButton.Size = new System.Drawing.Size(214, 17);
+            this.autoRenameDuplicatesRadioButton.TabIndex = 4;
+            this.autoRenameDuplicatesRadioButton.Text = "Auto-rename";
+            this.autoRenameDuplicatesRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // overwriteDuplicatesRadioButton
+            // 
+            this.overwriteDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.overwriteDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.overwriteDuplicatesRadioButton.Location = new System.Drawing.Point(3, 70);
+            this.overwriteDuplicatesRadioButton.Name = "overwriteDuplicatesRadioButton";
+            this.overwriteDuplicatesRadioButton.Size = new System.Drawing.Size(214, 17);
+            this.overwriteDuplicatesRadioButton.TabIndex = 6;
+            this.overwriteDuplicatesRadioButton.Text = "Overwrite";
+            this.overwriteDuplicatesRadioButton.UseVisualStyleBackColor = true;
+            // 
             // showTipsCheckBox
             // 
             this.showTipsCheckBox.AutoSize = true;
@@ -1506,7 +1572,7 @@ namespace QobuzDownloaderX
             this.showTipsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showTipsCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showTipsCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.showTipsCheckBox.Location = new System.Drawing.Point(23, 548);
+            this.showTipsCheckBox.Location = new System.Drawing.Point(23, 547);
             this.showTipsCheckBox.Name = "showTipsCheckBox";
             this.showTipsCheckBox.Size = new System.Drawing.Size(78, 17);
             this.showTipsCheckBox.TabIndex = 20;
@@ -1531,11 +1597,11 @@ namespace QobuzDownloaderX
             // 
             this.useItemPosInPlaylistCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.useItemPosInPlaylistCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.useItemPosInPlaylistCheckBox.Location = new System.Drawing.Point(22, 412);
+            this.useItemPosInPlaylistCheckBox.Location = new System.Drawing.Point(22, 414);
             this.useItemPosInPlaylistCheckBox.Name = "useItemPosInPlaylistCheckBox";
-            this.useItemPosInPlaylistCheckBox.Size = new System.Drawing.Size(356, 40);
+            this.useItemPosInPlaylistCheckBox.Size = new System.Drawing.Size(361, 40);
             this.useItemPosInPlaylistCheckBox.TabIndex = 14;
-            this.useItemPosInPlaylistCheckBox.Text = "Use item positions instead of album track numbers in file namess";
+            this.useItemPosInPlaylistCheckBox.Text = "Use item positions instead of album track numbers in file names";
             this.useItemPosInPlaylistCheckBox.UseVisualStyleBackColor = true;
             this.useItemPosInPlaylistCheckBox.CheckedChanged += new System.EventHandler(this.useItemPosInPlaylistCheckBox_CheckedChanged);
             // 
@@ -1879,7 +1945,7 @@ namespace QobuzDownloaderX
             // 
             this.downloadFromArtistLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadFromArtistLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadFromArtistLabel.Location = new System.Drawing.Point(4, 284);
+            this.downloadFromArtistLabel.Location = new System.Drawing.Point(4, 282);
             this.downloadFromArtistLabel.Name = "downloadFromArtistLabel";
             this.downloadFromArtistLabel.Size = new System.Drawing.Size(373, 25);
             this.downloadFromArtistLabel.TabIndex = 10;
@@ -1891,7 +1957,7 @@ namespace QobuzDownloaderX
             this.downloadAllFromArtistCheckBox.AutoSize = true;
             this.downloadAllFromArtistCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadAllFromArtistCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadAllFromArtistCheckBox.Location = new System.Drawing.Point(23, 358);
+            this.downloadAllFromArtistCheckBox.Location = new System.Drawing.Point(23, 359);
             this.downloadAllFromArtistCheckBox.Name = "downloadAllFromArtistCheckBox";
             this.downloadAllFromArtistCheckBox.Size = new System.Drawing.Size(260, 17);
             this.downloadAllFromArtistCheckBox.TabIndex = 12;
@@ -1925,7 +1991,7 @@ namespace QobuzDownloaderX
             // 
             this.themeSectionLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.themeSectionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.themeSectionLabel.Location = new System.Drawing.Point(3, 458);
+            this.themeSectionLabel.Location = new System.Drawing.Point(3, 459);
             this.themeSectionLabel.Name = "themeSectionLabel";
             this.themeSectionLabel.Size = new System.Drawing.Size(374, 25);
             this.themeSectionLabel.TabIndex = 15;
@@ -2677,6 +2743,7 @@ namespace QobuzDownloaderX
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(951, 580);
+            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
@@ -2684,10 +2751,9 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.downloaderPanel);
-            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.settingsPanel);
-            this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.aboutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2723,6 +2789,7 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelRight.PerformLayout();
             this.artistNamesSeparatorsPanel.ResumeLayout(false);
             this.artistNamesSeparatorsPanel.PerformLayout();
+            this.duplicateFilesFlowLayoutPanel.ResumeLayout(false);
             this.taggingOptionsPanel.ResumeLayout(false);
             this.taggingOptionsPanel.PerformLayout();
             this.qualitySelectPanel.ResumeLayout(false);
@@ -2917,5 +2984,10 @@ namespace QobuzDownloaderX
         internal LinkLabel gitHubLinkLabel;
         internal FlowLayoutPanel searchSortingPanel;
         internal CheckBox logFailedDownloadsCheckBox;
+        internal FlowLayoutPanel duplicateFilesFlowLayoutPanel;
+        internal Label duplicateFilesLabel;
+        internal RadioButton skipDuplicatesRadioButton;
+        internal RadioButton autoRenameDuplicatesRadioButton;
+        internal RadioButton overwriteDuplicatesRadioButton;
     }
 }

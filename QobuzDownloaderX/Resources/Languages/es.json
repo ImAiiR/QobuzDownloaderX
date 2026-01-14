@@ -25,6 +25,9 @@
     "selectAllRowsButton":          "Seleccionar todo",
     "deselectAllRowsButton":        "Deseleccionar todo",
     "batchDownloadRowsButton":      "DESCARGAR LAS FILAS SELECCIONADAS",
+    "skipDuplicatesButton":         "Ignorar / Omitir descarga", // ChatGPT translation
+    "autoRenameDuplicatesButton":   "Renombrar automáticamente", // ChatGPT translation
+    "overwriteDuplicatesButton":    "Sobrescribir archivos existentes", // ChatGPT translation
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",
@@ -61,6 +64,7 @@
     "primaryListSeparatorLabel":    "Separador principal de lista",
     "listEndSeparatorLabel":        "Separador final de lista",
     "playlistSectionLabel":         "OPCIONES DE LISTA DE REPRODUCCIÓN",
+    "duplicateFilesLabel":          "Archivos duplicados", // ChatGPT translation
 
     "_SECTION3_":                   "=================== CASILLAS (CHECKBOX) DEL FORM PRINCIPAL ===================",
     "albumArtistCheckBox":          "Artista de álbum",

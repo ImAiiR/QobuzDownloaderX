@@ -25,6 +25,9 @@
     "selectAllRowsButton":          "Выбрать все строки",
     "deselectAllRowsButton":        "Отменить выбор",
     "batchDownloadRowsButton":      "ПАКЕТНАЯ ЗАГРУЗКА ВЫБРАННЫХ СТРОК",
+    "skipDuplicatesButton":         "Игнорировать / Пропустить загрузку", // ChatGPT translation
+    "autoRenameDuplicatesButton":   "Автоматически переименовывать", // ChatGPT translation
+    "overwriteDuplicatesButton":    "Перезаписать существующие файлы", // ChatGPT translation
 
     "_SECTION2_":                   "=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",
     "advancedOptionsLabel":         "РАСШИРЕННЫЕ НАСТРОЙКИ",
@@ -61,7 +64,8 @@
     "primaryListSeparatorLabel":    "Основной разделит. списка",
     "listEndSeparatorLabel":        "Разделитель в конце списка",
     "playlistSectionLabel":         "ПАРАМЕТРЫ ПЛЕЙЛИСТА",
-    
+    "duplicateFilesLabel":          "Дубликаты файлов", // ChatGPT translation
+
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumArtistCheckBox":          "Исполнитель альбома",
     "albumTitleCheckBox":           "Название альбома",

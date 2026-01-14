@@ -401,6 +401,9 @@ namespace QobuzDownloaderX.Helpers
             f.selectAllRowsButton.Text = f.languageManager.GetTranslation("selectAllRowsButton");
             f.deselectAllRowsButton.Text = f.languageManager.GetTranslation("deselectAllRowsButton");
             f.batchDownloadSelectedRowsButton.Text = f.languageManager.GetTranslation("batchDownloadRowsButton");
+            f.skipDuplicatesRadioButton.Text = f.languageManager.GetTranslation("skipDuplicatesButton");
+            f.autoRenameDuplicatesRadioButton.Text = f.languageManager.GetTranslation("autoRenameDuplicatesButton");
+            f.overwriteDuplicatesRadioButton.Text = f.languageManager.GetTranslation("overwriteDuplicatesButton");
 
             /* Center additional settings button to center of panel */
             //f.additionalSettingsButton.Location = new Point((f.settingsPanel.Width - f.additionalSettingsButton.Width) / 2, f.additionalSettingsButton.Location.Y);
@@ -438,19 +441,18 @@ namespace QobuzDownloaderX.Helpers
             f.welcomeLabel.Text = f.languageManager.GetTranslation("welcomeLabel");
             f.batchDownloadLabel.Text = f.languageManager.GetTranslation("batchDownloadLabel");
             f.searchSortingLabel.Text = f.languageManager.GetTranslation("searchSortingLabel");
-            
             f.sortReleaseDateButton.Text = f.languageManager.GetTranslation("sortReleaseDateLabel");
             f.sortGenreButton.Text = f.languageManager.GetTranslation("sortGenreLabel");
             f.sortArtistNameButton.Text = f.languageManager.GetTranslation("sortArtistNameLabel");
             f.sortAlbumTrackNameButton.Text = f.languageManager.GetTranslation("sortAlbumTrackNameLabel");
             f.sortingSearchResultsLabel.Text = f.languageManager.GetTranslation("sortingSearchResultsLabel");
-           
             f.selectedRowsCountLabel.Text = string.Empty;
             f.primaryListSeparatorLabel.Text = f.languageManager.GetTranslation("primaryListSeparatorLabel");
             f.listEndSeparatorLabel.Text = f.languageManager.GetTranslation("listEndSeparatorLabel");
             f.playlistSectionLabel.Text = f.languageManager.GetTranslation("playlistSectionLabel");
             f.prevTipButton.Text = f.languageManager.GetTranslation("prevTipLabel");
             f.nextTipButton.Text = f.languageManager.GetTranslation("nextTipLabel");
+            f.duplicateFilesLabel.Text= f.languageManager.GetTranslation("duplicateFilesLabel");
 
             // CheckBoxes
             f.albumArtistCheckBox.Text = f.languageManager.GetTranslation("albumArtistCheckBox");

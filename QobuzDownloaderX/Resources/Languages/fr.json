@@ -24,7 +24,10 @@
     "settingsButton":               "Paramètres",
     "selectAllRowsButton":          "Tout Sélectionner",
     "deselectAllRowsButton":        "Tout Désélectionner",
-    "batchDownloadRowsButton":      "Télécharger Les Lignes Sélectionnées En Lot",
+    "batchDownloadRowsButton":      "Télécharger Les Lignes Sélectionnées En Lot",   
+    "skipDuplicatesButton":         "Ignorer / Ne pas télécharger", // ChatGPT translation
+    "autoRenameDuplicatesButton":   "Renommer automatiquement", // ChatGPT translation
+    "overwriteDuplicatesButton":    "Écraser les fichiers existants", // ChatGPT translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Paramètres Avancés",
@@ -60,7 +63,9 @@
     "downloadFromArtistLabel":      "Télécharger De L'Artiste",
     "primaryListSeparatorLabel":    "Séparateur de liste principal", // ChatGPT translation.
     "listEndSeparatorLabel":        "Séparateur de fin de liste", // ChatGPT translation.
-    "playlistSectionLabel":         "Options de playlist", // ChatGPT translation.
+    "playlistSectionLabel":         "Options de playlist", // ChatGPT translation.   
+    "duplicateFilesLabel":          "Fichiers en double", // ChatGPT translation
+
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckBox":          "Artiste de l'album",

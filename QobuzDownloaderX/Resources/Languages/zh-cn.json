@@ -25,6 +25,9 @@
     "selectAllRowsButton":          "全选行", // ChatGPT translation.
     "deselectAllRowsButton":        "取消选择所有行", // ChatGPT translation.
     "batchDownloadRowsButton":      "批量下载选中的行", // ChatGPT translation.
+    "skipDuplicatesButton":         "忽略 / 跳过下载", // ChatGPT translation
+    "autoRenameDuplicatesButton":   "自动重命名", // ChatGPT translation
+    "overwriteDuplicatesButton":    "覆盖现有文件", // ChatGPT translation
 
     "_SECTION2_":                   "=================== 主表单标签 ===================",
     "advancedOptionsLabel":         "高级选项",
@@ -61,6 +64,7 @@
     "primaryListSeparatorLabel":    "主列表分隔符", // ChatGPT translation.
     "listEndSeparatorLabel":        "列表结束分隔符", // ChatGPT translation.
     "playlistSectionLabel":         "播放列表选项", // ChatGPT translation.
+    "duplicateFilesLabel":          "重复文件", // ChatGPT translation
 
     "_SECTION3_":                   "=================== 主表单复选框 ===================",
     "albumArtistCheckBox":          "专辑艺术家",
