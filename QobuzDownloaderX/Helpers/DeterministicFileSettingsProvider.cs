@@ -3,7 +3,7 @@
 // Modified : 14-January-2026
 // ***********************************************************************
 
-// Note: ChatGPT code conversion from VB.NET to C# 7.3
+// Note: ChatGPT code conversion from VB.NET to C# 7.3 (it may be not equal than original VB.NET implementation)
 
 using System;
 using System.Collections.Generic;
