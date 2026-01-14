@@ -221,7 +221,7 @@ namespace QobuzDownloaderX
 
                 // Move the file to final destination
                 qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
-                ZlpIOHelper.MoveFile(tempFile, filePath);
+                ZlpIOHelper.MoveFile(tempFile, filePath, overwriteExisting: qbdlxForm.duplicateFileMode == DuplicateFileMode.OverwriteExistingFiles);
 
                 qbdlxForm._qbdlxForm.logger.Debug("DownloadStream complete.");
                 getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");

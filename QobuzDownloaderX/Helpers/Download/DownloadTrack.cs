@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ZetaLongPaths;
 
 namespace QobuzDownloaderX
@@ -150,11 +151,14 @@ namespace QobuzDownloaderX
                         filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
                     }
 
-                    // Check for Existing File
-                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem))
+                    if (qbdlxForm.duplicateFileMode == DuplicateFileMode.SkipDownloads)
                     {
-                        progress?.Report(100);
-                        return;
+                        // Check for Existing File
+                        if (CheckForExistingFile(filePath, paddedTrackLength, QoItem))
+                        {
+                            progress?.Report(100);
+                            return;
+                        }
                     }
 
                     // Download cover art
@@ -220,11 +224,15 @@ namespace QobuzDownloaderX
 
                     filePath = downloadPath + trackTemplateConverted.TrimEnd() + audio_format;
 
-                    // Check for Existing File
-                    if (CheckForExistingFile(filePath, paddedTrackLength, QoItem))
+
+                    if (qbdlxForm.duplicateFileMode == DuplicateFileMode.SkipDownloads)
                     {
-                        progress?.Report(100);
-                        return;
+                        // Check for Existing File
+                        if (CheckForExistingFile(filePath, paddedTrackLength, QoItem))
+                        {
+                            progress?.Report(100);
+                            return;
+                        }
                     }
 
                     // Download cover art
