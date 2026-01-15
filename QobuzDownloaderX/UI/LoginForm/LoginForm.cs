@@ -823,6 +823,7 @@ namespace QobuzDownloaderX
                 emailTextBox_Leave(this, new EventArgs());
             }
 
+            // Ensure the AppId/AppSecret panel gets hide.
             customPanel.Visible = false;
 
             // Save choice locally to be used on next launch.
