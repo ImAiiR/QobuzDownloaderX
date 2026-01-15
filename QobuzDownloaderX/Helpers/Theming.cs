@@ -142,8 +142,13 @@ namespace QobuzDownloaderX.Helpers
                 }
                 else if (control is CheckedListBox clb)
                 {
-                    clb.BackColor = ColorTranslator.FromHtml(_currentTheme.FormBackground);
+                    clb.BackColor = ColorTranslator.FromHtml(_currentTheme.MainPanelBackground);
                     clb.ForeColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                }
+                else if (control is CheckBox cb)
+                {
+                    cb.BackColor = ColorTranslator.FromHtml(_currentTheme.MainPanelBackground);
+                    cb.ForeColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
                 }
                 else if (control is StatusStrip ss)
                 {
