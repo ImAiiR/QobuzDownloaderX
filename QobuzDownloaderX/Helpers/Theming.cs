@@ -349,7 +349,7 @@ namespace QobuzDownloaderX.Helpers
     ""qualitySelectButton"":          ""Quality Selector"",
     ""saveTemplatesButton"":          ""Save"",
     ""resetTemplatesButton"":         ""Reset"",
-    ""searchButton"":                 ""SEARCHER"",
+    ""searchButton"":                 ""SEARCH"",
     ""searchAlbumsButton"":           ""RELEASES"",
     ""searchTracksButton"":           ""TRACKS"",
     ""selectFolderButton"":           ""Select Folder"",
