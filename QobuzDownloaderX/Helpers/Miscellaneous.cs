@@ -986,7 +986,7 @@ namespace QobuzDownloaderX.Helpers
         internal static void LogNotStreamableAlbumEntry(string downloadLocation, Album QoAlbum, string msg)
         {
             // Artist - Album Title (Date) [Album ID] [UPC]
-            string entryTitle = $"{QoAlbum?.Artist?.Name} - {QoAlbum?.Title} ({QoAlbum?.ReleaseDateOriginal ?? QoAlbum?.ReleaseDateStream}) [ID:{QoAlbum?.Id}] [UPC-{QoAlbum?.UPC}]";
+            string entryTitle = $"{QoAlbum?.Artist?.Name?.Trim()} - {QoAlbum?.Title?.Trim()} ({QoAlbum?.ReleaseDateOriginal ?? QoAlbum?.ReleaseDateStream}) [ID-{QoAlbum?.Id}] [UPC-{QoAlbum?.UPC}]";
 
             Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
         }
@@ -995,7 +995,7 @@ namespace QobuzDownloaderX.Helpers
         {
             // Artist - Album Title (Date) -> Track Number. Track Title [Track ID] [UPC]
             string entryTitle =
-                $"{QoItem?.Artist?.Name ?? QoItem?.Album?.Artist?.Name} - {QoItem?.Album?.Title} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title} [ID:{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
+                $"{QoItem?.Artist?.Name?.Trim() ?? QoItem?.Album?.Artist?.Name?.Trim()} - {QoItem?.Album?.Title?.Trim()} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title?.Trim()} [ID-{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
 
             Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
         }
@@ -1004,7 +1004,7 @@ namespace QobuzDownloaderX.Helpers
         {
             // Artist - Album Title (Date) -> Track Number. Track Title [Track ID] [UPC]
             string entryTitle =
-                $"{QoItem?.Artist?.Name ?? QoItem?.Album?.Artist?.Name} - {QoItem?.Album?.Title} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title} [ID:{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
+                $"{QoItem?.Artist?.Name?.Trim() ?? QoItem?.Album?.Artist?.Name?.Trim()} - {QoItem?.Album?.Title?.Trim()} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title?.Trim()} [ID-{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
 
             Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
         }
@@ -1013,7 +1013,7 @@ namespace QobuzDownloaderX.Helpers
         {
             // Artist - Album Title (Date) -> Track Number. Track Title [Track ID] [UPC]
             string entryTitle =
-                $"{QoItem?.Artist?.Name ?? QoItem?.Album?.Artist?.Name} - {QoItem?.Album?.Title} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title} [ID:{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
+                $"{QoItem?.Artist?.Name?.Trim() ?? QoItem?.Album?.Artist?.Name?.Trim()} - {QoItem?.Album?.Title?.Trim()} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title?.Trim()} [ID-{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
 
             Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
         }
@@ -1029,6 +1029,12 @@ namespace QobuzDownloaderX.Helpers
                         msg = msg.Substring(0, msg.IndexOf(':'));
                     }
                     msg = msg?.TrimEnd(' ', '.', '\r', '\n');
+
+                    // Fallback to root download directory.
+                    if (!Directory.Exists(downloadLocation))
+                    {
+                        downloadLocation = qbdlxForm._qbdlxForm.downloadLocation;
+                    }
 
                     using (StreamWriter sw = File.AppendText(Path.Combine(downloadLocation, qbdlxForm.failedDownloadsLogFilename)))
                     {

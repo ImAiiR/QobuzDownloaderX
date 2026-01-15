@@ -242,9 +242,6 @@ namespace QobuzDownloaderX
                 }
                 catch (Exception ex)
                 {
-                    string msg = "ZlpIOHelper.MoveFile failed: " + ex.Message;
-                    qbdlxForm._qbdlxForm.logger.Error(msg);
-                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                     throw;
                 }
 
