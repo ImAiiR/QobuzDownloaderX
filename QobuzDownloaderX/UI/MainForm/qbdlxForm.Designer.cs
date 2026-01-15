@@ -57,6 +57,7 @@ namespace QobuzDownloaderX
             this.batchDownloadButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -213,7 +214,6 @@ namespace QobuzDownloaderX
             this.tipEmojiLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tipLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTip = new System.Windows.Forms.Timer(this.components);
-            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -428,7 +428,7 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextBox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(187, 271);
+            this.downloaderPanel.Location = new System.Drawing.Point(196, 532);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 0;
@@ -590,6 +590,17 @@ namespace QobuzDownloaderX
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
             // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 6;
+            // 
             // progressLabel
             // 
             this.progressLabel.AutoSize = true;
@@ -743,7 +754,7 @@ namespace QobuzDownloaderX
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(459, 193);
+            this.settingsPanel.Location = new System.Drawing.Point(423, 477);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 0;
@@ -1233,7 +1244,7 @@ namespace QobuzDownloaderX
             this.aboutPanel.Controls.Add(this.aboutLabel);
             this.aboutPanel.Controls.Add(this.userInfoLabel);
             this.aboutPanel.Controls.Add(this.disclaimerLabel);
-            this.aboutPanel.Location = new System.Drawing.Point(791, 117);
+            this.aboutPanel.Location = new System.Drawing.Point(857, 414);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Size = new System.Drawing.Size(771, 577);
             this.aboutPanel.TabIndex = 0;
@@ -1279,7 +1290,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(567, 155);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(511, 444);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1434,7 +1445,8 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelRight.AutoScroll = true;
             this.advancedOptionsPanelRight.Controls.Add(this.mergeArtistNamesCheckBox);
             this.advancedOptionsPanelRight.Controls.Add(this.artistNamesSeparatorsPanel);
-            this.advancedOptionsPanelRight.Location = new System.Drawing.Point(3, 121);
+            this.advancedOptionsPanelRight.Location = new System.Drawing.Point(0, 118);
+            this.advancedOptionsPanelRight.Margin = new System.Windows.Forms.Padding(0);
             this.advancedOptionsPanelRight.Name = "advancedOptionsPanelRight";
             this.advancedOptionsPanelRight.Size = new System.Drawing.Size(355, 96);
             this.advancedOptionsPanelRight.TabIndex = 7;
@@ -1514,7 +1526,7 @@ namespace QobuzDownloaderX
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.skipDuplicatesRadioButton);
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.autoRenameDuplicatesRadioButton);
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.overwriteDuplicatesRadioButton);
-            this.duplicateFilesFlowLayoutPanel.Location = new System.Drawing.Point(3, 223);
+            this.duplicateFilesFlowLayoutPanel.Location = new System.Drawing.Point(3, 217);
             this.duplicateFilesFlowLayoutPanel.Name = "duplicateFilesFlowLayoutPanel";
             this.duplicateFilesFlowLayoutPanel.Size = new System.Drawing.Size(224, 90);
             this.duplicateFilesFlowLayoutPanel.TabIndex = 9;
@@ -2308,7 +2320,7 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(342, 231);
+            this.searchPanel.Location = new System.Drawing.Point(284, 507);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 0;
@@ -2700,7 +2712,7 @@ namespace QobuzDownloaderX
             this.nextTipButton.Name = "nextTipButton";
             this.nextTipButton.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.nextTipButton.ShowDropDownArrow = false;
-            this.nextTipButton.Size = new System.Drawing.Size(53, 19);
+            this.nextTipButton.Size = new System.Drawing.Size(52, 19);
             this.nextTipButton.Text = "Next tip";
             this.nextTipButton.Click += new System.EventHandler(this.nextTipButton_Click);
             // 
@@ -2710,7 +2722,7 @@ namespace QobuzDownloaderX
             this.tipEmojiLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.tipEmojiLabel.Name = "tipEmojiLabel";
             this.tipEmojiLabel.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.tipEmojiLabel.Size = new System.Drawing.Size(16, 15);
+            this.tipEmojiLabel.Size = new System.Drawing.Size(19, 15);
             this.tipEmojiLabel.Text = "💡";
             // 
             // tipLabel
@@ -2728,17 +2740,6 @@ namespace QobuzDownloaderX
             // 
             this.timerTip.Interval = 200;
             this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick);
-            // 
-            // progressBarDownload
-            // 
-            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
-            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
-            this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 6;
             // 
             // qbdlxForm
             // 

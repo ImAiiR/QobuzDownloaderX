@@ -5,7 +5,7 @@
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
     "additionalSettingsButton":     "Additional Settings",
-    "aboutButton":                  "ABOUT…",
+    "aboutButton":                  "ABOUT",
     "closeAdditionalButton":        "Back to Settings",
     "downloadButton":               "GET",
     "batchDownloadButton":          "GET BATCH",
@@ -17,7 +17,7 @@
     "qualitySelectButton":          "Quality Selector",
     "saveTemplatesButton":          "Save",
     "resetTemplatesButton":         "Reset",
-    "searchButton":                 "SEARCHER",
+    "searchButton":                 "SEARCH",
     "searchAlbumsButton":           "RELEASES",
     "searchTracksButton":           "TRACKS",
     "selectFolderButton":           "Select Folder",
@@ -25,9 +25,9 @@
     "selectAllRowsButton":          "Select all rows",
     "deselectAllRowsButton":        "Deselect all rows",
     "batchDownloadRowsButton":      "BATCH DOWNLOAD SELECTED ROWS",
-    "skipDuplicatesButton":         "Ignore / Skip download", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "Automatically rename", // ChatGPT translation
-    "overwriteDuplicatesButton":    "Overwrite existing files", // ChatGPT translation
+    "skipDuplicatesButton":         "Ignore / Skip download",
+    "autoRenameDuplicatesButton":   "Automatically rename",
+    "overwriteDuplicatesButton":    "Overwrite existing files",
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "ADVANCED OPTIONS",
