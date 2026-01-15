@@ -5,7 +5,7 @@
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
     "additionalSettingsButton":     "Additional Settings",
-    "aboutButton":                  "ABOUT…",
+    "aboutButton":                  "ABOUT",
     "closeAdditionalButton":        "Back to Settings",
     "downloadButton":               "GET",
     "batchDownloadButton":          "GET BATCH",
@@ -17,7 +17,7 @@
     "qualitySelectButton":          "Quality Selector",
     "saveTemplatesButton":          "Save",
     "resetTemplatesButton":         "Reset",
-    "searchButton":                 "SEARCHER",
+    "searchButton":                 "SEARCH",
     "searchAlbumsButton":           "RELEASES",
     "searchTracksButton":           "TRACKS",
     "selectFolderButton":           "Select Folder",
@@ -25,9 +25,9 @@
     "selectAllRowsButton":          "Select all rows",
     "deselectAllRowsButton":        "Deselect all rows",
     "batchDownloadRowsButton":      "BATCH DOWNLOAD SELECTED ROWS",
-    "skipDuplicatesButton":         "Ignore / skip download", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "Automatically rename incoming file", // ChatGPT translation
-    "overwriteDuplicatesButton":    "Overwrite existing file", // ChatGPT translation
+    "skipDuplicatesButton":         "Ignore / skip download",
+    "autoRenameDuplicatesButton":   "Automatically rename incoming file",
+    "overwriteDuplicatesButton":    "Overwrite existing file",
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "ADVANCED OPTIONS",
@@ -138,7 +138,7 @@
     "album":                        "Album",
     "albums":                       "albums",
     "tracks":                       "tracks",
-    "track":                        "track",
+    "singleTrack":                  "Single track",
     "playlist":                     "Playlist",
     "recordLabel":                  "Record label",
     "user":                         "User",
