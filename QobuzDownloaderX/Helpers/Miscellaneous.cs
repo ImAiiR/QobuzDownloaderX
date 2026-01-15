@@ -824,6 +824,22 @@ namespace QobuzDownloaderX.Helpers
             return genreName;
         }
 
+        internal static void EnforceTextBoxToSingleLine(TextBox tb)
+        {
+            if (!tb.Multiline) return;
+
+            if (tb.TextLength == 0) return;
+
+            string text = tb.Text;
+
+            int index = text.IndexOfAny(new char[] { '\r', '\n' });
+            if (index != -1)
+            {
+                tb.Text = text.Substring(0, index);
+                tb.SelectionStart = tb.Text.Length;
+            }
+        }
+
         internal static void ShowFloatingImageFromUrl(string imageUrl)
         {
             if (string.IsNullOrWhiteSpace(imageUrl))

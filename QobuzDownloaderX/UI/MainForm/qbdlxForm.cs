@@ -159,6 +159,8 @@ namespace QobuzDownloaderX
         internal static readonly Regex qobuzUrlRegEx = new Regex(
             @"^https?:\/\/(?!.*https?:\/\/)(?:[\w\-]+\.)?qobuz\.com\/[^\s]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
+        private readonly string[] urlSchemePrefixes = { "http://", "https://", "www." };
+
         // Allows to minimize/restore the form by clicking on the taskbar icon.
         protected override CreateParams CreateParams
         {
@@ -430,10 +432,28 @@ namespace QobuzDownloaderX
 
         private void inputTextBox_TextChanged(object sender, EventArgs e)
         {
-            string text = inputTextBox.Text.TrimStart();
-            downloadButton.Enabled = (text.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
-                                      text.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ||
-                                      text.StartsWith("www.", StringComparison.OrdinalIgnoreCase));
+            TextBox tb = (TextBox)sender;
+
+            // Prevent mul-line content.
+            Miscellaneous.EnforceTextBoxToSingleLine(tb);
+
+            string text = tb.Text?.Trim();
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                downloadButton.Enabled = false;
+                return;
+            }
+
+            downloadButton.Enabled = urlSchemePrefixes.Any(p => text.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+
+            // Prevent mul-line content.
+            Miscellaneous.EnforceTextBoxToSingleLine(tb);
         }
 
         private void abortButton_Click(object sender, EventArgs e)
@@ -1796,7 +1816,5 @@ namespace QobuzDownloaderX
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
-
 }

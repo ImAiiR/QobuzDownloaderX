@@ -2590,6 +2590,7 @@ namespace QobuzDownloaderX
             this.searchTextBox.Text = "Input your search…";
             this.searchTextBox.WordWrap = false;
             this.searchTextBox.Click += new System.EventHandler(this.searchTextBox_Click);
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
             this.searchTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyUp);
             this.searchTextBox.Leave += new System.EventHandler(this.searchTextBox_Leave);
