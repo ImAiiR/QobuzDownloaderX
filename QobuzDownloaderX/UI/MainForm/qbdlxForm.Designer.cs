@@ -2330,9 +2330,9 @@ namespace QobuzDownloaderX
             // 
             this.limitSearchResultsNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.limitSearchResultsNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.limitSearchResultsNumericUpDown.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.limitSearchResultsNumericUpDown.Font = new System.Drawing.Font("Nirmala UI", 15.6F);
             this.limitSearchResultsNumericUpDown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(523, 49);
+            this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(523, 46);
             this.limitSearchResultsNumericUpDown.Maximum = new decimal(new int[] {
             500,
             0,
@@ -2344,7 +2344,7 @@ namespace QobuzDownloaderX
             0,
             0});
             this.limitSearchResultsNumericUpDown.Name = "limitSearchResultsNumericUpDown";
-            this.limitSearchResultsNumericUpDown.Size = new System.Drawing.Size(50, 25);
+            this.limitSearchResultsNumericUpDown.Size = new System.Drawing.Size(50, 31);
             this.limitSearchResultsNumericUpDown.TabIndex = 8;
             this.limitSearchResultsNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.limitSearchResultsNumericUpDown.Value = new decimal(new int[] {
