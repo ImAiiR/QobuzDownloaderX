@@ -2719,7 +2719,7 @@ namespace QobuzDownloaderX
             this.nextTipButton.Name = "nextTipButton";
             this.nextTipButton.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.nextTipButton.ShowDropDownArrow = false;
-            this.nextTipButton.Size = new System.Drawing.Size(52, 19);
+            this.nextTipButton.Size = new System.Drawing.Size(53, 19);
             this.nextTipButton.Text = "Next tip";
             this.nextTipButton.Click += new System.EventHandler(this.nextTipButton_Click);
             // 
@@ -2729,7 +2729,7 @@ namespace QobuzDownloaderX
             this.tipEmojiLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.tipEmojiLabel.Name = "tipEmojiLabel";
             this.tipEmojiLabel.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.tipEmojiLabel.Size = new System.Drawing.Size(19, 15);
+            this.tipEmojiLabel.Size = new System.Drawing.Size(16, 15);
             this.tipEmojiLabel.Text = "💡";
             // 
             // tipLabel
