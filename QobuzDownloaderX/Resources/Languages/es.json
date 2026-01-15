@@ -25,9 +25,9 @@
     "selectAllRowsButton":          "Seleccionar todo",
     "deselectAllRowsButton":        "Deseleccionar todo",
     "batchDownloadRowsButton":      "DESCARGAR LAS FILAS SELECCIONADAS",
-    "skipDuplicatesButton":         "Ignorar / Omitir descarga", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "Renombrar automáticamente", // ChatGPT translation
-    "overwriteDuplicatesButton":    "Sobrescribir archivos existentes", // ChatGPT translation
+    "skipDuplicatesButton":         "Ignorar / omitir descarga", // ChatGPT translation
+    "autoRenameDuplicatesButton":   "Renombrar automáticamente el archivo entrante", // ChatGPT translation
+    "overwriteDuplicatesButton":    "Sobrescribir el archivo existente", // ChatGPT translation
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",
