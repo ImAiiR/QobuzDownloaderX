@@ -57,7 +57,6 @@ namespace QobuzDownloaderX
             this.batchDownloadButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
-            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -214,6 +213,7 @@ namespace QobuzDownloaderX
             this.tipEmojiLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tipLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTip = new System.Windows.Forms.Timer(this.components);
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -589,17 +589,6 @@ namespace QobuzDownloaderX
             this.abortButton.Text = "ABORT";
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
-            // 
-            // progressBarDownload
-            // 
-            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
-            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
-            this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 6;
             // 
             // progressLabel
             // 
@@ -1290,7 +1279,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(571, 152);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(571, 155);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1521,7 +1510,6 @@ namespace QobuzDownloaderX
             // 
             // duplicateFilesFlowLayoutPanel
             // 
-            this.duplicateFilesFlowLayoutPanel.AutoScroll = true;
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.duplicateFilesLabel);
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.skipDuplicatesRadioButton);
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.autoRenameDuplicatesRadioButton);
@@ -1529,7 +1517,7 @@ namespace QobuzDownloaderX
             this.duplicateFilesFlowLayoutPanel.Location = new System.Drawing.Point(0, 216);
             this.duplicateFilesFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.duplicateFilesFlowLayoutPanel.Name = "duplicateFilesFlowLayoutPanel";
-            this.duplicateFilesFlowLayoutPanel.Size = new System.Drawing.Size(224, 90);
+            this.duplicateFilesFlowLayoutPanel.Size = new System.Drawing.Size(356, 90);
             this.duplicateFilesFlowLayoutPanel.TabIndex = 9;
             // 
             // duplicateFilesLabel
@@ -1550,10 +1538,10 @@ namespace QobuzDownloaderX
             this.skipDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.skipDuplicatesRadioButton.Location = new System.Drawing.Point(3, 24);
             this.skipDuplicatesRadioButton.Name = "skipDuplicatesRadioButton";
-            this.skipDuplicatesRadioButton.Size = new System.Drawing.Size(214, 17);
+            this.skipDuplicatesRadioButton.Size = new System.Drawing.Size(343, 17);
             this.skipDuplicatesRadioButton.TabIndex = 0;
             this.skipDuplicatesRadioButton.TabStop = true;
-            this.skipDuplicatesRadioButton.Text = "Skip download";
+            this.skipDuplicatesRadioButton.Text = "Ignore / skip download";
             this.skipDuplicatesRadioButton.UseVisualStyleBackColor = true;
             this.skipDuplicatesRadioButton.CheckedChanged += new System.EventHandler(this.skipDuplicatesRadioButton_CheckedChanged);
             // 
@@ -1563,9 +1551,9 @@ namespace QobuzDownloaderX
             this.autoRenameDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.autoRenameDuplicatesRadioButton.Location = new System.Drawing.Point(3, 47);
             this.autoRenameDuplicatesRadioButton.Name = "autoRenameDuplicatesRadioButton";
-            this.autoRenameDuplicatesRadioButton.Size = new System.Drawing.Size(214, 17);
+            this.autoRenameDuplicatesRadioButton.Size = new System.Drawing.Size(343, 17);
             this.autoRenameDuplicatesRadioButton.TabIndex = 4;
-            this.autoRenameDuplicatesRadioButton.Text = "Auto-rename";
+            this.autoRenameDuplicatesRadioButton.Text = "Automatically rename incoming file";
             this.autoRenameDuplicatesRadioButton.UseVisualStyleBackColor = true;
             this.autoRenameDuplicatesRadioButton.CheckedChanged += new System.EventHandler(this.autoRenameDuplicatesRadioButton_CheckedChanged);
             // 
@@ -1575,9 +1563,9 @@ namespace QobuzDownloaderX
             this.overwriteDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.overwriteDuplicatesRadioButton.Location = new System.Drawing.Point(3, 70);
             this.overwriteDuplicatesRadioButton.Name = "overwriteDuplicatesRadioButton";
-            this.overwriteDuplicatesRadioButton.Size = new System.Drawing.Size(214, 17);
+            this.overwriteDuplicatesRadioButton.Size = new System.Drawing.Size(343, 17);
             this.overwriteDuplicatesRadioButton.TabIndex = 6;
-            this.overwriteDuplicatesRadioButton.Text = "Overwrite";
+            this.overwriteDuplicatesRadioButton.Text = "Overwrite existing file";
             this.overwriteDuplicatesRadioButton.UseVisualStyleBackColor = true;
             this.overwriteDuplicatesRadioButton.CheckedChanged += new System.EventHandler(this.overwriteDuplicatesRadioButton_CheckedChanged);
             // 
@@ -2741,6 +2729,17 @@ namespace QobuzDownloaderX
             // 
             this.timerTip.Interval = 200;
             this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick);
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 89);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 23);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 6;
             // 
             // qbdlxForm
             // 

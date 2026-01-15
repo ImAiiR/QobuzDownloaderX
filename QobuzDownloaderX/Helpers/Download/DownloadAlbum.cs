@@ -69,7 +69,7 @@ namespace QobuzDownloaderX
             }
         }
 
-        internal async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album, IProgress<int> progress, DownloadStats stats, CancellationToken abortToken)
+        internal async Task DownloadTracksAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album album, IProgress<int> progress, IProgress<(int current, int total)> trackCounter, DownloadStats stats, CancellationToken abortToken)
         {
             int totalTracks = album.Tracks.Items.Count;
             int trackIndex = 0;
@@ -84,33 +84,39 @@ namespace QobuzDownloaderX
                     break; }
 
                 trackIndex++;
-                var trackProgress = new Progress<int>(value =>
-                {
-                    double trackPortion = 100.0 / totalTracks;
-                    double scaledValue = (trackIndex - 1) * trackPortion + (value / 100.0) * trackPortion;
-                    progress?.Report((int)Math.Round(scaledValue));
-                });
+
+                // REPORT track counter (1/10, 2/10...) if caller provided a trackCounter
+                trackCounter?.Report((trackIndex, totalTracks));
 
                 try
                 {
+                    var trackProgress = new Progress<int>(value =>
+                    {
+                        double trackPortion = 100.0 / totalTracks;
+                        double scaledValue = (trackIndex - 1) * trackPortion + (value / 100.0) * trackPortion;
+                        progress?.Report((int)Math.Round(scaledValue));
+                    });
+
                     var trackInfo = QoService.TrackGetWithAuth(app_id, item.Id.ToString(), user_auth_token);
                     await downloadTrack.DownloadTrackAsync(
                         "album", app_id, album_id, format_id, audio_format, 
                         user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, 
-                        trackTemplate, album, trackInfo, trackProgress, stats, abortToken);
-                   
-                    qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.progressBarDownload.Refresh()));
+                        trackTemplate, album, trackInfo, trackProgress, stats, abortToken);       
                 }
                 catch (Exception ex)
                 {
                     qbdlxForm._qbdlxForm.logger.Error($"Track {item.Id} failed: {ex}");
                     getInfo.updateDownloadOutput($"\r\n{ex}");
                 }
+                finally
+                {
+                    qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.progressBarDownload.Refresh()));
+                }
             }
             qbdlxForm.skipCurrentAlbum = false;
         }
 
-        internal async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, IProgress<int> progress, DownloadStats stats, CancellationToken abortToken)
+        internal async Task DownloadAlbumAsync(string app_id, string album_id, string format_id, string audio_format, string user_auth_token, string app_secret, string downloadLocation, string artistTemplate, string albumTemplate, string trackTemplate, Album QoAlbum, IProgress<int> progress, IProgress<(int current, int total)> trackCounter, DownloadStats stats, CancellationToken abortToken)
         {
             qbdlxForm._qbdlxForm.logger.Debug("Starting album download (downloadAlbum)");
 
@@ -155,7 +161,7 @@ namespace QobuzDownloaderX
                 // Download tracks
                 await DownloadTracksAsync(
                     app_id, album_id, format_id, audio_format, user_auth_token, app_secret, downloadLocation, 
-                    artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress, stats, abortToken);
+                    artistTemplate, albumTemplate, trackTemplate, QoAlbum, progress, trackCounter, stats, abortToken);
 
                 if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
              
