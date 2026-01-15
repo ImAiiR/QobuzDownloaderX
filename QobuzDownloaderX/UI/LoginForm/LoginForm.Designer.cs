@@ -165,7 +165,7 @@
             this.passwordTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.passwordTextBox.Location = new System.Drawing.Point(55, 148);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(205, 20);
+            this.passwordTextBox.Size = new System.Drawing.Size(225, 20);
             this.passwordTextBox.TabIndex = 4;
             this.passwordTextBox.Text = "password";
             this.passwordTextBox.Click += new System.EventHandler(this.passwordTextBox_Click);
