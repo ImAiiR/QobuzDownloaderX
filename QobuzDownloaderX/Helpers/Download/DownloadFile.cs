@@ -234,7 +234,7 @@ namespace QobuzDownloaderX
                         string name = Path.GetFileNameWithoutExtension(filePath);
                         string safeNameTruncated = RenameTemplates.TruncateLongName(name, (Byte)" (999)".Length);
                         string ext = Path.GetExtension(filePath);
-                        string safeFullPathTruncated = Path.Combine(dir, name, ext);
+                        string safeFullPathTruncated = Path.Combine(dir, name + ext);
 
                         string duplicateFileName = Miscellaneous.GetDuplicateFileName(safeFullPathTruncated);
                         ZlpIOHelper.MoveFile(tempFile, duplicateFileName, overwriteExisting: true);
