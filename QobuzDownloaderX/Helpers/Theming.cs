@@ -4,6 +4,7 @@ using QobuzDownloaderX.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Windows.Forms;
 using ZetaLongPaths;
@@ -245,8 +246,41 @@ namespace QobuzDownloaderX.Helpers
                             }
                         }
 
-                        // no ApplyTheme recursion for RowPanels
+                        // Do not ApplyTheme recursion for RowPanels
                         continue;
+                    }
+                    else
+                    {
+                        foreach (Control child in panel.Controls)
+                        {
+                            if (child is FlowLayoutPanel innerPanel)
+                            {
+                                foreach (Control innerChild in innerPanel.Controls)
+                                {
+                                    if (innerChild is Label lbl)
+                                    {
+                                        lbl.ForeColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                                    }
+                                    else if (innerChild is Button btn)
+                                    {
+                                        btn.ForeColor = ColorTranslator.FromHtml(_currentTheme.ButtonText);
+                                        btn.BackColor = ColorTranslator.FromHtml(_currentTheme.ButtonBackground);
+
+                                        btn.FlatStyle = FlatStyle.Flat;
+                                        btn.FlatAppearance.BorderSize = 0;
+                                        btn.FlatAppearance.MouseOverBackColor =
+                                            ColorTranslator.FromHtml(_currentTheme.HighlightedButtonBackground);
+                                        btn.FlatAppearance.MouseDownBackColor =
+                                            ColorTranslator.FromHtml(_currentTheme.ClickedButtonBackground);
+                                    }
+                                    else if (innerChild is RadioButton rbtn)
+                                    {
+                                        rbtn.BackColor = ColorTranslator.FromHtml(_currentTheme.MainPanelBackground);
+                                        rbtn.ForeColor = ColorTranslator.FromHtml(_currentTheme.LabelText);
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     if (panel.Name == "emailPanel" || panel.Name == "passwordPanel") { continue; }
