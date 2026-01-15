@@ -4,7 +4,6 @@ using QobuzDownloaderX.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Windows.Forms;
 using ZetaLongPaths;
