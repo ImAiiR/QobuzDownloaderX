@@ -3,6 +3,7 @@ using QobuzDownloaderX.Properties;
 using QopenAPI;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -120,7 +121,20 @@ namespace QobuzDownloaderX
                     {
                         string msg = $"{qbdlxForm._qbdlxForm.downloadOutputAPIError}\r\n";
                         getInfo.updateDownloadOutput(msg);
-                        Miscellaneous.LogFailedDownloadEntry(downloadLocation, "", msg);
+
+                        string downloadPath = null;
+                        string directoryPath = null;
+                        try
+                        {
+                            downloadPath = await downloadFile.createPath(downloadLocation, artistTemplate, albumTemplate, trackTemplate, null, null, paddedTrackLength, paddedDiscLength, QoAlbum, QoItem, null);
+                            directoryPath = Path.GetDirectoryName(downloadPath);
+                        }
+                        catch
+                        {
+                            directoryPath = downloadLocation;
+                        }
+                        Miscellaneous.LogNotStreamableAlbumEntry(directoryPath, QoAlbum, msg);
+
                         progress?.Report(100);
                         return;
                     }
