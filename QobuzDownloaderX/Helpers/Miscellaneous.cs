@@ -565,7 +565,7 @@ namespace QobuzDownloaderX.Helpers
         internal static void updateAlbumInfoLabels(qbdlxForm f, Album QoAlbum)
         {
             // Use translated singular/plural strings instead of hardcoded English.
-            string trackLabelSingular = f.languageManager.GetTranslation("track");
+            string trackLabelSingular = f.languageManager.GetTranslation("singleTrack");
             string trackLabelPlural = f.languageManager.GetTranslation("tracks");
             string trackOrTracks = QoAlbum.TracksCount == 1 ? trackLabelSingular : trackLabelPlural;
             f.artistLabel.Text = f.renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
@@ -1294,7 +1294,7 @@ namespace QobuzDownloaderX.Helpers
                         break;
                     }
                     string albumTrackLabel = f.QoAlbum.TracksCount == 1
-                        ? f.languageManager.GetTranslation("track")
+                        ? f.languageManager.GetTranslation("singleTrack")
                         : f.languageManager.GetTranslation("tracks");
                     f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("album")} | {f.QoAlbum.TracksCount:N0} {albumTrackLabel}";
                     Miscellaneous.updateAlbumInfoLabels(f, f.QoAlbum);
@@ -1330,7 +1330,7 @@ namespace QobuzDownloaderX.Helpers
                     Miscellaneous.updatePlaylistInfoLabels(f, f.QoPlaylist);
                     int totalTracksPlaylist = f.QoPlaylist.Tracks.Items.Count;
                     string playlistTrackLabel = totalTracksPlaylist == 1
-                        ? f.languageManager.GetTranslation("track")
+                        ? f.languageManager.GetTranslation("singleTrack")
                         : f.languageManager.GetTranslation("tracks");
                     int trackIndexPlaylist = 0;
                     foreach (var item in f.QoPlaylist.Tracks.Items)
@@ -1534,7 +1534,7 @@ namespace QobuzDownloaderX.Helpers
                         f.QoFavorites = f.getInfo.QoFavorites;
                         int totalTracksUser = f.QoFavorites.Tracks.Items.Count;
                         string userTracksLabel = totalTracksUser == 1
-                            ? f.languageManager.GetTranslation("track")
+                            ? f.languageManager.GetTranslation("singleTrack")
                             : f.languageManager.GetTranslation("tracks");
                         int trackIndexUser = 0;
 
