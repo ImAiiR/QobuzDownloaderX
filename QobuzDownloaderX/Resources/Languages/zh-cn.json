@@ -138,6 +138,7 @@
     "album":                        "专辑", // ChatGPT translation.
     "albums":                       "专辑", // ChatGPT translation.
     "tracks":                       "曲目", // ChatGPT translation.
+    "track":                        "曲目", // AI Translation
     "singleTrack":                  "单曲", // ChatGPT translation.
     "playlist":                     "播放列表", // ChatGPT translation.
     "recordLabel":                  "唱片公司", // ChatGPT translation.

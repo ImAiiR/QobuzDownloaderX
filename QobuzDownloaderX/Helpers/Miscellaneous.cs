@@ -564,8 +564,10 @@ namespace QobuzDownloaderX.Helpers
 
         internal static void updateAlbumInfoLabels(qbdlxForm f, Album QoAlbum)
         {
-            string trackOrTracks = "tracks";
-            if (QoAlbum.TracksCount == 1) { trackOrTracks = "track"; }
+            // Use translated singular/plural strings instead of hardcoded English.
+            string trackLabelSingular = f.languageManager.GetTranslation("track");
+            string trackLabelPlural = f.languageManager.GetTranslation("tracks");
+            string trackOrTracks = QoAlbum.TracksCount == 1 ? trackLabelSingular : trackLabelPlural;
             f.artistLabel.Text = f.renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
             if (QoAlbum.Version == null) { f.albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&"); } else { f.albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&").TrimEnd() + " (" + QoAlbum.Version + ")"; }
             f.infoLabel.Text = $"{f.infoLabelPlaceholder} {QoAlbum.ReleaseDateOriginal} • {QoAlbum.TracksCount} {trackOrTracks} • {QoAlbum.UPC}";
@@ -1291,7 +1293,10 @@ namespace QobuzDownloaderX.Helpers
                         f.progressLabel.Invoke(new Action(() => f.progressLabel.Text = f.progressLabelInactive));
                         break;
                     }
-                    f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("album")} | {f.QoAlbum.TracksCount:N0} {f.languageManager.GetTranslation("tracks")}";
+                    string albumTrackLabel = f.QoAlbum.TracksCount == 1
+                        ? f.languageManager.GetTranslation("track")
+                        : f.languageManager.GetTranslation("tracks");
+                    f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("album")} | {f.QoAlbum.TracksCount:N0} {albumTrackLabel}";
                     Miscellaneous.updateAlbumInfoLabels(f, f.QoAlbum);
                     await Task.Run(() => f.downloadAlbum.DownloadAlbumAsync(f.app_id, f.qobuz_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret, f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum, progress, stats, abortToken));
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -1324,12 +1329,15 @@ namespace QobuzDownloaderX.Helpers
                     f.QoPlaylist = f.getInfo.QoPlaylist;
                     Miscellaneous.updatePlaylistInfoLabels(f, f.QoPlaylist);
                     int totalTracksPlaylist = f.QoPlaylist.Tracks.Items.Count;
+                    string playlistTrackLabel = totalTracksPlaylist == 1
+                        ? f.languageManager.GetTranslation("track")
+                        : f.languageManager.GetTranslation("tracks");
                     int trackIndexPlaylist = 0;
                     foreach (var item in f.QoPlaylist.Tracks.Items)
                     {
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexPlaylist, totalTracksPlaylist);
-                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {f.languageManager.GetTranslation("tracks")}";
+                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {playlistTrackLabel}";
 
                         if (Settings.Default.useItemPosInPlaylist)
                         {
@@ -1357,7 +1365,7 @@ namespace QobuzDownloaderX.Helpers
                             continue;
                         }
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexPlaylist, totalTracksPlaylist);
-                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {f.languageManager.GetTranslation("tracks")}";
+                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0} / {totalTracksPlaylist:N0} {playlistTrackLabel}";
 
                     }
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -1525,18 +1533,21 @@ namespace QobuzDownloaderX.Helpers
                         await Task.Run(() => f.getInfo.getFavoritesInfo(f.app_id, f.user_id, "tracks", f.user_auth_token));
                         f.QoFavorites = f.getInfo.QoFavorites;
                         int totalTracksUser = f.QoFavorites.Tracks.Items.Count;
+                        string userTracksLabel = totalTracksUser == 1
+                            ? f.languageManager.GetTranslation("track")
+                            : f.languageManager.GetTranslation("tracks");
                         int trackIndexUser = 0;
 
                         if (totalTracksUser == 0)
                         {
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | 0 {f.languageManager.GetTranslation("tracks")}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | 0 {userTracksLabel}";
                         }
 
                         foreach (var item in f.QoFavorites.Tracks.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                             if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexUser, totalTracksUser);
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {trackIndexUser:N0} / {totalTracksUser:N0} {f.languageManager.GetTranslation("tracks")}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {trackIndexUser:N0} / {totalTracksUser:N0} {userTracksLabel}";
 
                             trackIndexUser++;
                             try
@@ -1560,7 +1571,7 @@ namespace QobuzDownloaderX.Helpers
                                 continue;
                             }
                             if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexUser, totalTracksUser);
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {trackIndexUser:N0} / {totalTracksUser:N0} {f.languageManager.GetTranslation("tracks")}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {trackIndexUser:N0} / {totalTracksUser:N0} {userTracksLabel}";
                         }
                     }
                     else if (qobuzLinkId.Contains("artists"))

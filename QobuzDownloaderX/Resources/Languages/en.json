@@ -138,6 +138,7 @@
     "album":                        "Album",
     "albums":                       "albums",
     "tracks":                       "tracks",
+    "track":                        "track",
     "singleTrack":                  "Single track",
     "playlist":                     "Playlist",
     "recordLabel":                  "Record label",

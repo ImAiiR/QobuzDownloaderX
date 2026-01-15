@@ -138,6 +138,7 @@
     "album":                        "Альбом",
     "albums":                       "альбома(ов)",
     "tracks":                       "трека(ов)",
+    "track":                        "трек", // AI Translation
     "singleTrack":                  "Один трек",
     "playlist":                     "Плейлист",
     "recordLabel":                  "Лейбл",
