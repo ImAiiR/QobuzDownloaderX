@@ -240,7 +240,7 @@ namespace QobuzDownloaderX
                         ZlpIOHelper.MoveFile(tempFile, duplicateFileName, overwriteExisting: true);
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     throw;
                 }
