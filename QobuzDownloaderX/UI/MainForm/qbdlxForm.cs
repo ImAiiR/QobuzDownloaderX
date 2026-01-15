@@ -1737,6 +1737,7 @@ namespace QobuzDownloaderX
 
             if (!string.IsNullOrEmpty(albumPictureBox.ImageLocation))
             {
+                albumPictureBox.Focus();
                 if ((string)albumPictureBox.Tag == "playlist")
                 {
                     Miscellaneous.ShowFloatingImageFromUrl(QoPlaylist.ImageRectangle[0]);
@@ -1745,7 +1746,6 @@ namespace QobuzDownloaderX
                 {
                     Miscellaneous.ShowFloatingImageFromUrl(QoAlbum.Image?.Large);
                 }
-
                 this.BringToFront();
             }
         }

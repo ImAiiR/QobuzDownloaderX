@@ -141,6 +141,7 @@ namespace QobuzDownloaderX.Helpers
                         if (e.Button != MouseButtons.Left)
                             return;
 
+                        artwork.Focus();
                         Miscellaneous.ShowFloatingImageFromUrl(album.Image?.Large);
                         qbdlxForm._qbdlxForm.BringToFront();
                     };
@@ -356,6 +357,7 @@ namespace QobuzDownloaderX.Helpers
                         if (e.Button != MouseButtons.Left)
                             return;
 
+                        artwork.Focus();
                         Miscellaneous.ShowFloatingImageFromUrl(track.Album?.Image?.Large);
                         qbdlxForm._qbdlxForm.BringToFront();
                     };
