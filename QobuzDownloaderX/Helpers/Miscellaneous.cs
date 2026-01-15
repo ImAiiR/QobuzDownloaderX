@@ -468,7 +468,7 @@ namespace QobuzDownloaderX.Helpers
             f.playlistSectionLabel.Text = f.languageManager.GetTranslation("playlistSectionLabel");
             f.prevTipButton.Text = f.languageManager.GetTranslation("prevTipLabel");
             f.nextTipButton.Text = f.languageManager.GetTranslation("nextTipLabel");
-            f.duplicateFilesLabel.Text= f.languageManager.GetTranslation("duplicateFilesLabel");
+            f.duplicateFilesLabel.Text = f.languageManager.GetTranslation("duplicateFilesLabel");
 
             // CheckBoxes
             f.albumArtistCheckBox.Text = f.languageManager.GetTranslation("albumArtistCheckBox");
