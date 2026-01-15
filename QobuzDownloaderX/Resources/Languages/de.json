@@ -138,7 +138,6 @@
     "album":                        "Album", // ChatGPT translation.
     "albums":                       "Alben", // ChatGPT translation.
     "tracks":                       "Tracks", // ChatGPT translation.
-    "track":                        "Titel", // AI Translation
     "singleTrack":                  "Einzeltitel", // ChatGPT translation.
     "playlist":                     "Wiedergabeliste", // ChatGPT translation.
     "recordLabel":                  "Plattenlabel", // ChatGPT translation.

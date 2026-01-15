@@ -139,7 +139,6 @@
     "album":                        "Album",
     "albums":                       "Albums",
     "tracks":                       "Pistes",
-    "track":                        "Piste", // AI Translation
     "singleTrack":                  "Piste Unique",
     "playlist":                     "Playlist",
     "recordLabel":                  "Label Discographique",
