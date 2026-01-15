@@ -138,7 +138,7 @@
     "album":                        "Album",
     "albums":                       "albums",
     "tracks":                       "tracks",
-    "singleTrack":                  "Single track",
+    "track":                        "track",
     "playlist":                     "Playlist",
     "recordLabel":                  "Record label",
     "user":                         "User",
