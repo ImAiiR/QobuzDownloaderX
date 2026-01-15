@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -1038,6 +1039,48 @@ namespace QobuzDownloaderX.Helpers
             }
         }
 
+        internal static string GetDuplicateFileName(string fullPath)
+        {
+            string folder = Path.GetDirectoryName(fullPath) ?? throw new ArgumentException("Invalid path: " + fullPath);
+            string file = Path.GetFileName(fullPath);
+            string pszPathForApi = fullPath;
+
+            const int MAX_PATH = 260;
+            StringBuilder sb = new StringBuilder(MAX_PATH);
+
+            bool ok = NativeMethods.PathYetAnotherMakeUniqueName(
+                sb,
+                pszPathForApi, // full path + name
+                null,          // pszShort = null -> base on long name
+                null           // optional pszFileSpec, can be left null
+            );
+
+            if (!ok)
+            {
+                // The function can return FALSE in case of truncation or other failure.
+                throw new IOException("PathYetAnotherMakeUniqueName failed.");
+            }
+
+            string result = sb.ToString();
+
+            // Extra safety: if the API returns exactly the same name
+            // and the file already exists, use a manual fallback.
+            if (string.Equals(result, fullPath, StringComparison.OrdinalIgnoreCase) && ZlpIOHelper.FileExists(fullPath))
+            {
+                string baseName = Path.GetFileNameWithoutExtension(file);
+                string ext = Path.GetExtension(file);
+                int count = 1;
+                string candidate;
+                do
+                {
+                    candidate = Path.Combine(folder, string.Format("{0} ({1}){2}", baseName, count, ext));
+                    count++;
+                } while (ZlpIOHelper.FileExists(candidate));
+                return candidate;
+            }
+
+            return result;
+        }
         internal static async Task downloadButtonAsyncWork(qbdlxForm f, DownloadStats stats = null)
         {
             qbdlxForm.getLinkTypeIsBusy = true;

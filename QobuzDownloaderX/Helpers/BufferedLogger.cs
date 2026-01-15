@@ -109,7 +109,7 @@ namespace QobuzDownloaderX.Helpers
 
             _writer.Dispose();
 
-            string newName = this.GetUniqueFileName(_filePath);
+            string newName = Miscellaneous.GetDuplicateFileName(_filePath);
             System.Diagnostics.Debug.WriteLine($"Rotating to new log file: {newName}");
 
             _writer = new StreamWriter(new FileStream(newName, FileMode.Append, FileAccess.Write, FileShare.None), Encoding.UTF8)
@@ -118,49 +118,6 @@ namespace QobuzDownloaderX.Helpers
             };
 
             _filePath = newName;
-        }
-
-        private string GetUniqueFileName(string fullPath)
-        {
-            string folder = Path.GetDirectoryName(fullPath) ?? throw new ArgumentException("Invalid path: " + fullPath);
-            string file = Path.GetFileName(fullPath);
-            string pszPathForApi = fullPath;
-
-            const int MAX_PATH = 260;
-            StringBuilder sb = new StringBuilder(MAX_PATH);
-
-            bool ok = NativeMethods.PathYetAnotherMakeUniqueName(
-                sb,
-                pszPathForApi, // full path + name
-                null,          // pszShort = null -> base on long name
-                null           // optional pszFileSpec, can be left null
-            );
-
-            if (!ok)
-            {
-                // The function can return FALSE in case of truncation or other failure.
-                throw new IOException("PathYetAnotherMakeUniqueName failed.");
-            }
-
-            string result = sb.ToString();
-
-            // Extra safety: if the API returns exactly the same name
-            // and the file already exists, use a manual fallback.
-            if (string.Equals(result, fullPath, StringComparison.OrdinalIgnoreCase) && ZlpIOHelper.FileExists(fullPath))
-            {
-                string baseName = Path.GetFileNameWithoutExtension(file);
-                string ext = Path.GetExtension(file);
-                int count = 1;
-                string candidate;
-                do
-                {
-                    candidate = Path.Combine(folder, string.Format("{0} ({1}){2}", baseName, count, ext));
-                    count++;
-                } while (ZlpIOHelper.FileExists(candidate));
-                return candidate;
-            }
-
-            return result;
         }
 
         public void Dispose()

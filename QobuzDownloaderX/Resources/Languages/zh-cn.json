@@ -87,7 +87,7 @@
     "upcCheckBox":                  "UPC/条形码",
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckBox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "mergeArtistNamesCheckBox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // ChatGPT translation.
     "streamableCheckBox":           "歌曲流媒体可播性检查",
     "fixMD5sCheckBox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckBox":        "显示下载速度",

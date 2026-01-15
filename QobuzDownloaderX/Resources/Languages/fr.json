@@ -88,7 +88,7 @@
     "upcCheckBox":                  "UPC / Code Barre",
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL",
-    "mergeArtistNamesCheckBox":     "Fusionner les noms des artistes des pistes.\nExemple :\nArtist1 && Artist2 Feat. Artist3 - Title.mp3",
+    "mergeArtistNamesCheckBox":     "Fusionner les noms des artistes des pistes.\nExemple : Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3",
     "streamableCheckBox":           "Contrôle du flux",
     "fixMD5sCheckBox":              "Corriger les MD5 non définis (doit avoir FLAC dans la variable PATH)",
     "downloadSpeedCheckBox":        "Afficher la vitesse de téléchargement",

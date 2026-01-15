@@ -87,7 +87,7 @@
     "upcCheckBox":                  "UPC / Barcode",
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckBox":     "Track-Künstlernamen zusammenführen.\nBeispiel:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "mergeArtistNamesCheckBox":     "Track-Künstlernamen zusammenführen.\nBeispiel: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // ChatGPT translation.
     "streamableCheckBox":           "Ist Streamfähig Check",
     "fixMD5sCheckBox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
     "downloadSpeedCheckBox":        "Downloadgeschwindigkeit Anzeigen",

@@ -87,7 +87,7 @@
     "upcCheckBox":                  "UPC / Barkod",
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckBox":     "Parça sanatçı isimlerini birleştir.\nÖrnek:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3", // ChatGPT translation.
+    "mergeArtistNamesCheckBox":     "Parça sanatçı isimlerini birleştir.\nÖrnek: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // ChatGPT translation.
     "streamableCheckBox":           "Oynatılabilirlik Doğrulaması",
     "fixMD5sCheckBox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
     "downloadSpeedCheckBox":        "İndirme Hızını Göster",

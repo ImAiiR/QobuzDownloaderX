@@ -3,6 +3,7 @@ using QobuzDownloaderX.Properties;
 using QopenAPI;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -221,14 +222,40 @@ namespace QobuzDownloaderX
 
                 // Move the file to final destination
                 qbdlxForm._qbdlxForm.logger.Debug("Moving temp file to - " + filePath);
-                ZlpIOHelper.MoveFile(tempFile, filePath, overwriteExisting: qbdlxForm.duplicateFileMode == DuplicateFileMode.OverwriteExistingFiles);
+                try
+                {
+                    if (qbdlxForm.duplicateFileMode != DuplicateFileMode.AutoRename)
+                    {
+                        ZlpIOHelper.MoveFile(tempFile, filePath, overwriteExisting: qbdlxForm.duplicateFileMode == DuplicateFileMode.OverwriteExistingFiles);
+                    }
+                    else
+                    {
+                        string dir = Path.GetDirectoryName(filePath);
+                        string name = Path.GetFileNameWithoutExtension(filePath);
+                        string safeNameTruncated = RenameTemplates.TruncateLongName(name, (Byte)" (999)".Length);
+                        string ext = Path.GetExtension(filePath);
+                        string safeFullPathTruncated = Path.Combine(dir, name, ext);
+
+                        string duplicateFileName = Miscellaneous.GetDuplicateFileName(safeFullPathTruncated);
+                        ZlpIOHelper.MoveFile(tempFile, duplicateFileName, overwriteExisting: true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string msg = "ZlpIOHelper.MoveFile failed: " + ex.Message;
+                    qbdlxForm._qbdlxForm.logger.Error(msg);
+                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
+                    throw;
+                }
 
                 qbdlxForm._qbdlxForm.logger.Debug("DownloadStream complete.");
                 getInfo.updateDownloadOutput($" {qbdlxForm._qbdlxForm.downloadOutputDone}\r\n");
             }
             catch (TaskCanceledException ex)
             {
-                qbdlxForm._qbdlxForm.logger.Error("DownloadStream timed out (TaskCanceledException): " + ex.Message);
+                string msg = "DownloadStream timed out (TaskCanceledException): " + ex.Message;
+                qbdlxForm._qbdlxForm.logger.Error(msg);
+                Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                 throw;
 
             }
@@ -237,16 +264,16 @@ namespace QobuzDownloaderX
                 if (!abortToken.IsCancellationRequested)
                 {
                     string msg = "DownloadStream canceled (OperationCanceledException): " + ex.Message;
-                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                     qbdlxForm._qbdlxForm.logger.Error(msg);
+                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                     throw;
                 }
             }
             catch (WebException webEx)
             {
                 string msg = $"DownloadStream failed (WebException): {webEx.Message}\r\n";
-                Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                 qbdlxForm._qbdlxForm.logger.Error(msg);
+                Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                 getInfo.updateDownloadOutput(msg);
             }
             catch (Exception ex) when (
@@ -279,23 +306,23 @@ namespace QobuzDownloaderX
                     {
                         // If there is enough space, log the actual exception message
                         string msg = $"DownloadStream failed (IOException): {ex.Message}";
-                        Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                         qbdlxForm._qbdlxForm.logger.Error(msg);
+                        Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                     }
                 }
                 else
                 {
                     string msg = $"DownloadStream failed (IOException): {ex.Message}";
-                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                     qbdlxForm._qbdlxForm.logger.Error(msg);
+                    Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                 }
                 throw; // rethrow original exception
             }
             catch (Exception ex)
             {
                 string msg = "DownloadStream failed (Exception): " + ex.Message;
-                Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                 qbdlxForm._qbdlxForm.logger.Error(msg);
+                Miscellaneous.LogFailedDownloadStreamEntry(Path.GetDirectoryName(filePath), QoItem, msg);
                 throw;
             }
         }
