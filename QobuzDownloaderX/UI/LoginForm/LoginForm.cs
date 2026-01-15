@@ -119,23 +119,23 @@ namespace QobuzDownloaderX
                 try
                 {
                     byte[] encryptedEmailBytes = Convert.FromBase64String(savedEmail);
-                    string decryptedEmail = Encoding.UTF8.GetString(
-                        ProtectedData.Unprotect(encryptedEmailBytes, null, DataProtectionScope.CurrentUser));
+                    byte[] decryptedEmailBytes = ProtectedData.Unprotect(encryptedEmailBytes, null, DataProtectionScope.CurrentUser);
+                    string decryptedEmail = Encoding.UTF8.GetString(decryptedEmailBytes);
+                   
                     username = decryptedEmail;
                     emailTextBox.Text = decryptedEmail;
                 }
-                catch (FormatException)
+                catch (FormatException) // saved value is plain text or invalid Base64
                 {
-                    // Old plain text or invalid Base64
                     username = savedEmail;
                     emailTextBox.Text = username;
                 }
-                catch (CryptographicException)
+                catch (CryptographicException) // cannot decrypt (different machine/user)
                 {
-                    // Cannot decrypt (wrong user/PC)
-                    username = "";
-                    emailTextBox.Text = emailPlaceholder;
-                    emailTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
+                    username = savedEmail;
+                    emailTextBox.Text = username;
+                    // username = "";
+                    // emailTextBox.Text = emailPlaceholder;
                 }
             }
             else
@@ -146,7 +146,6 @@ namespace QobuzDownloaderX
 
             // Password
             string savedPassword = Settings.Default.savedPassword ?? "";
-
             if (!string.IsNullOrEmpty(savedPassword) &&
                 savedPassword != passwordPlaceholder &&
                 savedPassword != tokenPlaceholder)
@@ -154,27 +153,25 @@ namespace QobuzDownloaderX
                 try
                 {
                     byte[] encryptedPasswordBytes = Convert.FromBase64String(savedPassword);
-                    string decryptedPassword = Encoding.UTF8.GetString(
-                        ProtectedData.Unprotect(encryptedPasswordBytes, null, DataProtectionScope.CurrentUser));
+                    byte[] decryptedPasswordBytes = ProtectedData.Unprotect(encryptedPasswordBytes, null, DataProtectionScope.CurrentUser);
+                    string decryptedPassword = Encoding.UTF8.GetString(decryptedPasswordBytes);
 
                     password = decryptedPassword;
                     passwordTextBox.Text = decryptedPassword;
                     passwordTextBox.PasswordChar = '*';
                     passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.TextBoxText);
                 }
-                catch (FormatException)
+                catch (FormatException) // saved value is plain text or invalid Base64
                 {
-                    passwordTextBox.Text = passwordPlaceholder;
-                    passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
-                    passwordTextBox.PasswordChar = '\0';
+                    password = savedPassword;
+                    passwordTextBox.Text = savedPassword;
                 }
-                catch (CryptographicException)
+                catch (CryptographicException) // cannot decrypt (different machine/user)
                 {
-                    // Cannot decrypt (wrong user/PC)
-                    password = "";
-                    passwordTextBox.Text = passwordPlaceholder;
-                    passwordTextBox.ForeColor = ColorTranslator.FromHtml(themeManager._currentTheme.PlaceholderTextBoxText);
-                    passwordTextBox.PasswordChar = '\0';
+                    password = savedPassword;
+                    passwordTextBox.Text = savedPassword;
+                    // password = "";
+                    // passwordTextBox.Text = passwordPlaceholder;
                 }
             }
             else
@@ -185,43 +182,43 @@ namespace QobuzDownloaderX
             }
 
             // App ID
-            string savedAppID = Settings.Default.savedAppID ?? ""; // avoid null
-            try
+            string savedAppID = Settings.Default.savedAppID ?? "";
+            if (!string.IsNullOrEmpty(savedAppID))
             {
-                if (!string.IsNullOrEmpty(savedAppID))
+                try
                 {
                     byte[] encryptedAppIDBytes = Convert.FromBase64String(savedAppID);
-                    string decryptedAppID = Encoding.UTF8.GetString(
-                        ProtectedData.Unprotect(encryptedAppIDBytes, null, DataProtectionScope.CurrentUser));
+                    byte[] decryptedAppIDBytes = ProtectedData.Unprotect(encryptedAppIDBytes, null, DataProtectionScope.CurrentUser);
+                    string decryptedAppID = Encoding.UTF8.GetString(decryptedAppIDBytes);
 
                     app_id = decryptedAppID;
                     appidTextBox.Text = decryptedAppID;
                 }
-                else
+                catch (FormatException) // saved value is plain text or invalid Base64
                 {
-                    // fallback if empty
+                    
                     app_id = savedAppID;
                     appidTextBox.Text = app_id;
                 }
+                catch (CryptographicException) // cannot decrypt (different machine/user)
+                {
+                    app_id = savedAppID;
+                    appidTextBox.Text = app_id;
+                    // app_id = "";
+                    // appidTextBox.Text = "";
+                }
             }
-            catch (FormatException)
+            else
             {
-                // saved value is plain text or invalid Base64
                 app_id = savedAppID;
                 appidTextBox.Text = app_id;
             }
-            catch (CryptographicException)
-            {
-                // cannot decrypt (different machine/user)
-                app_id = "";
-                appidTextBox.Text = "";
-            }
 
             // App Secret
-            string savedAppSecret = Settings.Default.savedSecret ?? ""; // avoid null
-            try
+            string savedAppSecret = Settings.Default.savedSecret ?? "";
+            if (!string.IsNullOrEmpty(savedAppSecret))
             {
-                if (!string.IsNullOrEmpty(savedAppSecret))
+                try
                 {
                     byte[] encryptedAppSecretBytes = Convert.FromBase64String(savedAppSecret);
                     string decryptedAppSecret = Encoding.UTF8.GetString(
@@ -230,24 +227,23 @@ namespace QobuzDownloaderX
                     app_secret = decryptedAppSecret;
                     appSecretTextBox.Text = decryptedAppSecret;
                 }
-                else
+                catch (FormatException) // saved value is plain text or invalid Base64
                 {
-                    // fallback if empty
                     app_secret = savedAppSecret;
                     appSecretTextBox.Text = app_secret;
                 }
+                catch (CryptographicException) // cannot decrypt (different machine/user)
+                {
+                    app_secret = savedAppSecret;
+                    appSecretTextBox.Text = app_secret;
+                    // app_secret = "";
+                    // appSecretTextBox.Text = "";
+                }
             }
-            catch (FormatException)
+            else
             {
-                // saved value is plain text or invalid Base64
                 app_secret = savedAppSecret;
                 appSecretTextBox.Text = app_secret;
-            }
-            catch (CryptographicException)
-            {
-                // cannot decrypt (different machine/user)
-                app_secret = "";
-                appSecretTextBox.Text = "";
             }
 
             // Alt login handling
@@ -481,6 +477,8 @@ namespace QobuzDownloaderX
             {
                 // If there's no email typed in. Ignore if using token to login.
                 logger.Warning("emailTextBox does not contain proper values for logging in.");
+                Settings.Default.savedEmail = "";
+                Settings.Default.Save();
 
                 if (!altLoginLabel.Text.Contains(altLoginLabelEmail))
                 {
@@ -493,6 +491,8 @@ namespace QobuzDownloaderX
             {
                 // If there's no password typed in.
                 logger.Warning("passwordTextBox does not contain proper values for logging in.");
+                Settings.Default.savedPassword = "";
+                Settings.Default.Save();
                 loginText.Invoke(new Action(() => loginText.Text = loginTextNoPassword));
                 return;
             }
@@ -503,12 +503,34 @@ namespace QobuzDownloaderX
             password = passwordTextBox.Text;
 
             // Encrypt username
-            byte[] encryptedEmail = ProtectedData.Protect(Encoding.UTF8.GetBytes(username), null, DataProtectionScope.CurrentUser);
-            Settings.Default.savedEmail = Convert.ToBase64String(encryptedEmail);
+            try
+            {
+                byte[] emailBytes = Encoding.UTF8.GetBytes(username);
+                byte[] protectedBytes = ProtectedData.Protect(emailBytes, null, DataProtectionScope.CurrentUser);
+
+                Settings.Default.savedEmail = Convert.ToBase64String(protectedBytes);
+            }
+            catch
+            {
+                // Fallback: store plain text
+                Settings.Default.savedEmail = username;
+                logger.Warning("Email encryption failed, storing it as plain text.");
+            }
 
             // Encrypt password
-            byte[] encryptedPassword = ProtectedData.Protect(Encoding.UTF8.GetBytes(password), null, DataProtectionScope.CurrentUser);
-            Settings.Default.savedPassword = Convert.ToBase64String(encryptedPassword);
+            try
+            {
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                byte[] protectedBytes = ProtectedData.Protect(passwordBytes, null, DataProtectionScope.CurrentUser);
+
+                Settings.Default.savedPassword = Convert.ToBase64String(protectedBytes);
+            }
+            catch
+            {
+                // Fallback: store plain text
+                Settings.Default.savedPassword = password;
+                logger.Warning("Password encryption failed, storing it as plain text.");
+            }
 
             // Save to settings
             Settings.Default.Save();
@@ -577,18 +599,12 @@ namespace QobuzDownloaderX
                     qbdlx.user_auth_token = user_auth_token;
                     qbdlx.QoUser = QoUser;
 
-                    // Encrypt AppID
-                    byte[] encryptedAppID = ProtectedData.Protect(Encoding.UTF8.GetBytes(app_id), null, DataProtectionScope.CurrentUser);
-                    Settings.Default.savedAppID = Convert.ToBase64String(encryptedAppID);
+                    // Encrypt and save App ID and App Secret.
+                    SaveAppIdAndSecretCredentials(app_id, app_secret);
 
-                    // Encrypt AppSecret
-                    byte[] encryptedAppSecret = ProtectedData.Protect(Encoding.UTF8.GetBytes(app_secret), null, DataProtectionScope.CurrentUser);
-                    Settings.Default.savedSecret = Convert.ToBase64String(encryptedAppSecret);
-
-                    // Update textboxes
+                    // Update UI
                     appidTextBox.Invoke(new Action(() => appidTextBox.Text = app_id));
                     appSecretTextBox.Invoke(new Action(() => appSecretTextBox.Text = app_secret));
-                    Settings.Default.Save();
                 }
                 else
                 {
@@ -636,11 +652,12 @@ namespace QobuzDownloaderX
                     qbdlx.user_auth_token = user_auth_token;
                     qbdlx.QoUser = QoUser;
 
-                    // Save App ID and Secret to use later on
+                    // Encrypt and save App ID and App Secret.
+                    SaveAppIdAndSecretCredentials(app_id, app_secret);
+
+                    // Update UI
                     appidTextBox.Invoke(new Action(() => appidTextBox.Text = app_id));
                     appSecretTextBox.Invoke(new Action(() => appSecretTextBox.Text = app_secret));
-                    Settings.Default.savedAppID = app_id;
-                    Settings.Default.savedSecret = app_secret;
                 }
 
                 // Hide this window & open QBDLX
@@ -829,14 +846,8 @@ namespace QobuzDownloaderX
         {
             logger.Debug("Saving custom app ID and secret…");
 
-            // Encrypt custom AppID & Secret
-            byte[] encryptedAppID = ProtectedData.Protect(Encoding.UTF8.GetBytes(appidTextBox.Text), null, DataProtectionScope.CurrentUser);
-            Settings.Default.savedAppID = Convert.ToBase64String(encryptedAppID);
-
-            byte[] encryptedAppSecret = ProtectedData.Protect(Encoding.UTF8.GetBytes(appSecretTextBox.Text), null, DataProtectionScope.CurrentUser);
-            Settings.Default.savedSecret = Convert.ToBase64String(encryptedAppSecret);
-
-            Settings.Default.Save();
+            // Encrypt and save custom AppID & Secret
+            SaveAppIdAndSecretCredentials(appidTextBox.Text, appSecretTextBox.Text);
 
             logger.Debug("Custom app ID and secret saved! Hiding custom values panel");
             customPanel.Enabled = false;
@@ -901,5 +912,62 @@ namespace QobuzDownloaderX
             }
         }
 
+        private void SaveAppIdAndSecretCredentials(string appId, string appSecret)
+        {
+            try
+            {
+                // App ID
+                if (string.IsNullOrWhiteSpace(appId))
+                {
+                    Settings.Default.savedAppID = string.Empty;
+                }
+                else
+                {
+                    try
+                    {
+                        byte[] appIdBytes = Encoding.UTF8.GetBytes(appId);
+                        byte[] protectedBytes = ProtectedData.Protect(appIdBytes, null, DataProtectionScope.CurrentUser);
+
+                        Settings.Default.savedAppID = Convert.ToBase64String(protectedBytes);
+                    }
+                    catch
+                    {
+                        // Fallback: store plain text
+                        Settings.Default.savedAppID = appId;
+                        logger.Warning("App ID encryption failed, storing it as plain text.");
+                    }
+                }
+
+                // App Secret
+                if (string.IsNullOrWhiteSpace(appSecret))
+                {
+                    Settings.Default.savedSecret = string.Empty;
+                }
+                else
+                {
+                    try
+                    {
+                        byte[] appSecretBytes = Encoding.UTF8.GetBytes(appSecret);
+                        byte[] protectedBytes = ProtectedData.Protect(appSecretBytes, null, DataProtectionScope.CurrentUser);
+
+                        Settings.Default.savedSecret = Convert.ToBase64String(protectedBytes);
+                    }
+                    catch
+                    {
+                        // Fallback: store plain text
+                        Settings.Default.savedSecret = appSecret;
+                        logger.Warning("App secret encryption failed, storing it as plain text.");
+                    }
+                }
+
+                Settings.Default.Save();
+                logger.Info("AppId and AppSecret credentials saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                // This should *never* happen unless Settings.Save() explodes
+                logger.Error($"Failed to persist app credentials: {ex}");
+            }
+        }
     }
 }
