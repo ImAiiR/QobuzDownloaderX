@@ -823,6 +823,8 @@ namespace QobuzDownloaderX
                 emailTextBox_Leave(this, new EventArgs());
             }
 
+            customPanel.Visible = false;
+
             // Save choice locally to be used on next launch.
             Settings.Default.Save();
         }

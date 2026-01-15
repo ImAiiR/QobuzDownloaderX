@@ -1296,7 +1296,8 @@ namespace QobuzDownloaderX.Helpers
                     if (f.QoAlbum == null)
                     {
                         f.getInfo.updateDownloadOutput($"{f.downloadOutputAPIError}");
-                        //Miscellaneous.LogMissingTracksEntry(QoItem, $"{f.downloadOutputAPIError}");
+                        // Not useful at all to log this entry since we can't retrieve any album information.
+                        // Miscellaneous.LogFailedDownloadEntry(downloadLocation: null, entryTitle: null, $"{f.downloadOutputAPIError}");
                         f.progressLabel.Invoke(new Action(() => f.progressLabel.Text = f.progressLabelInactive));
                         break;
                     }
