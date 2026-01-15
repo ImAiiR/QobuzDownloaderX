@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 14, 2026, 09:22AM EST",
+    "TranslationUpdatedOn":         "January 15, 2026, 09:22AM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -138,7 +138,7 @@
     "album":                        "Album",
     "albums":                       "albums",
     "tracks":                       "tracks",
-    "singleTrack":                  "Single track",
+    "track":                        "track",
     "playlist":                     "Playlist",
     "recordLabel":                  "Record label",
     "user":                         "User",

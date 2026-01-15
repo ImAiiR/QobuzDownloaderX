@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 14, 2026, 11:06PM MSK",
+    "TranslationUpdatedOn":         "January 15, 2026, 11:06PM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -138,7 +138,7 @@
     "album":                        "Альбом",
     "albums":                       "альбома(ов)",
     "tracks":                       "трека(ов)",
-    "singleTrack":                  "Один трек",
+    "track":                        "Один трек",
     "playlist":                     "Плейлист",
     "recordLabel":                  "Лейбл",
     "user":                         "Пользователь",

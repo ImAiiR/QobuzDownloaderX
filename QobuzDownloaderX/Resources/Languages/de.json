@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 14, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 15, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -138,7 +138,7 @@
     "album":                        "Album", // ChatGPT translation.
     "albums":                       "Alben", // ChatGPT translation.
     "tracks":                       "Tracks", // ChatGPT translation.
-    "singleTrack":                  "Einzeltitel", // ChatGPT translation.
+    "track":                        "Einzeltitel", // ChatGPT translation.
     "playlist":                     "Wiedergabeliste", // ChatGPT translation.
     "recordLabel":                  "Plattenlabel", // ChatGPT translation.
     "user":                         "Benutzer", // ChatGPT translation.

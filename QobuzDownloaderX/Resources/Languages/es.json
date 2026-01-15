@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 14, 2026, 10:17AM UTC",
+    "TranslationUpdatedOn":         "January 15, 2026, 10:17AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -138,7 +138,7 @@
     "album":                        "Álbum",
     "albums":                       "álbumes",
     "tracks":                       "pistas",
-    "singleTrack":                  "Pista individual",
+    "track":                        "pista",
     "playlist":                     "Lista de reproducción",
     "recordLabel":                  "Sello discográfico",
     "user":                         "Usuario",

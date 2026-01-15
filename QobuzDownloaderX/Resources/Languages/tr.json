@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "January 14, 2026, 01:25PM UTC",
+    "TranslationUpdatedOn":         "January 15, 2026, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -138,7 +138,7 @@
     "album":                        "Albüm", // ChatGPT translation.
     "albums":                       "albümler", // ChatGPT translation.
     "tracks":                       "parçalar", // ChatGPT translation.
-    "singleTrack":                  "Tek parça", // ChatGPT translation.
+    "track":                        "parça", // ChatGPT translation.
     "playlist":                     "Çalma listesi", // ChatGPT translation.
     "recordLabel":                  "Plak şirketi", // ChatGPT translation.
     "user":                         "Kullanıcı", // ChatGPT translation.

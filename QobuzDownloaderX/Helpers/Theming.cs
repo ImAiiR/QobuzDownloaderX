@@ -330,8 +330,9 @@ namespace QobuzDownloaderX.Helpers
 
         // Default English translation if no files are avaialble
         public const string defaultLanguage = @"{
+{
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 12, 2026, 09:22AM EST"",
+    ""TranslationUpdatedOn"":         ""January 15, 2026, 09:22AM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -356,6 +357,9 @@ namespace QobuzDownloaderX.Helpers
     ""selectAllRowsButton"":          ""Select all rows"",
     ""deselectAllRowsButton"":        ""Deselect all rows"",
     ""batchDownloadRowsButton"":      ""BATCH DOWNLOAD SELECTED ROWS"",
+    ""skipDuplicatesButton"":         ""Ignore / skip download"", // ChatGPT translation
+    ""autoRenameDuplicatesButton"":   ""Automatically rename incoming file"", // ChatGPT translation
+    ""overwriteDuplicatesButton"":    ""Overwrite existing file"", // ChatGPT translation
 
     ""_SECTION2_"":                   ""=================== MAIN FORM LABELS ==================="",
     ""advancedOptionsLabel"":         ""ADVANCED OPTIONS"",
@@ -392,6 +396,7 @@ namespace QobuzDownloaderX.Helpers
     ""primaryListSeparatorLabel"":    ""Primary list separator"",
     ""listEndSeparatorLabel"":        ""List end separator"",
     ""playlistSectionLabel"":         ""PLAYLIST OPTIONS"",
+    ""duplicateFilesLabel"":          ""Duplicate files"",
     
     ""_SECTION3_"":                   ""=================== MAIN FORM CHECKBOXES ==================="",
     ""albumArtistCheckBox"":          ""Album Artist"",
@@ -414,7 +419,7 @@ namespace QobuzDownloaderX.Helpers
     ""upcCheckBox"":                  ""UPC / Barcode"",
     ""isrcCheckBox"":                 ""ISRC"",
     ""urlCheckBox"":                  ""URL"",
-    ""mergeArtistNamesCheckBox"":     ""Merge track artist names.\nExample:\nArtist1 && Artist2 Feat. Artist3 - Title.mp3"",
+    ""mergeArtistNamesCheckBox"":     ""Merge track artist names.\nExample: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3"",
     ""streamableCheckBox"":           ""Streamable Check"",
     ""fixMD5sCheckBox"":              ""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
     ""downloadSpeedCheckBox"":        ""Print Download Speed"",
@@ -428,6 +433,7 @@ namespace QobuzDownloaderX.Helpers
     ""downloadAllFromArtistCheckBox"":""Download all from artist (it may include more)"",
     ""useItemPosInPlaylistCheckBox"": ""Use item positions instead of album track numbers in file names"",
     ""showTipsCheckBox"":             ""Show tips"",
+    ""logFailedDownloadsCheckBox"":   ""Log failed downloads to 'error.txt' in the download folder"", 
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",
@@ -464,7 +470,7 @@ namespace QobuzDownloaderX.Helpers
     ""album"":                        ""Album"",
     ""albums"":                       ""albums"",
     ""tracks"":                       ""tracks"",
-    ""singleTrack"":                  ""Single track"",
+    ""track"":                        ""track"",
     ""playlist"":                     ""Playlist"",
     ""recordLabel"":                  ""Record label"",
     ""user"":                         ""User"",
@@ -540,11 +546,11 @@ namespace QobuzDownloaderX.Helpers
     ""tip11"":                        ""Tip #11: Did you know you can disable these tips in the program’s advanced settings?"",
     ""tip12"":                        ""Tip #12: Did you know that talking to the album cover for 5 seconds before downloading it can help you burn about 0.08 calories to feel a little more muscular? 💪"",
     ""tip13"":                        ""Tip #13: Did you know you should focus more on downloading your favorite music than reading these stupid tips? But then you’d miss out on the fun… 😏"",
-    ""tip14"":                        ""Curiosity #1: Did you know that Elvis Presley and Michael Jackson approve the use of this program? And if you don’t believe me, ask them! 😜"",
-    ""tip15"":                        ""Curiosity #2: Did you know that some people have died while using this program? 😱 … from boredom while waiting for a whole record label to fully download. 👻"",
-    ""tip16"":                        ""Curiosity #3: Did you know that staring at the “Download” button for 10 seconds could make downloads go faster… in your imagination? 👀"",
-    ""tip17"":                        ""Curiosity #4: Did you know that clapping after each successful download helps motivate the program for the next song? 👏"",
-    ""tip18"":                        ""Curiosity #5: Did you know that if you search for \""Terrorcore\"" in the searcher, the authors of this program are not responsible for any brain or hearing damage it may cause you? 😵💉""
+    ""tip14"":                        ""Fun fact #1: Did you know that Elvis Presley and Michael Jackson approve the use of this program? And if you don’t believe me, ask them! 😜"",
+    ""tip15"":                        ""Fun fact #2: Did you know that some people have died while using this program? 😱 … from boredom while waiting for a whole record label to fully download. 👻"",
+    ""tip16"":                        ""Fun fact #3: Did you know that staring at the “Download” button for 10 seconds could make downloads go faster… in your imagination? 👀"",
+    ""tip17"":                        ""Fun fact #4: Did you know that clapping after each successful download helps motivate the program for the next song? 👏"",
+    ""tip18"":                        ""Fun fact #5: Did you know that if you search for \""Terrorcore\"" in the searcher, the authors of this program are not responsible for any brain or hearing damage it may cause you? 😵💉""
 
 }
 ";

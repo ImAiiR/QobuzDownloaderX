@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 14, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 15, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -139,7 +139,7 @@
     "album":                        "Album",
     "albums":                       "Albums",
     "tracks":                       "Pistes",
-    "singleTrack":                  "Piste Unique",
+    "track":                        "Piste",
     "playlist":                     "Playlist",
     "recordLabel":                  "Label Discographique",
     "user":                         "Utilisateur",

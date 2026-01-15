@@ -565,7 +565,7 @@ namespace QobuzDownloaderX.Helpers
         internal static void updateAlbumInfoLabels(qbdlxForm f, Album QoAlbum)
         {
             // Use translated singular/plural strings instead of hardcoded English.
-            string trackLabelSingular = f.languageManager.GetTranslation("singleTrack");
+            string trackLabelSingular = f.languageManager.GetTranslation("track");
             string trackLabelPlural = f.languageManager.GetTranslation("tracks");
             string trackOrTracks = QoAlbum.TracksCount == 1 ? trackLabelSingular : trackLabelPlural;
             f.artistLabel.Text = f.renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
@@ -1295,7 +1295,7 @@ namespace QobuzDownloaderX.Helpers
                         break;
                     }
                     string albumTrackLabel = f.QoAlbum.TracksCount == 1
-                        ? f.languageManager.GetTranslation("singleTrack")
+                        ? f.languageManager.GetTranslation("track")
                         : f.languageManager.GetTranslation("tracks");
                     f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("album")} | {f.QoAlbum.TracksCount:N0} {albumTrackLabel}";
                     Miscellaneous.updateAlbumInfoLabels(f, f.QoAlbum);
@@ -1313,7 +1313,7 @@ namespace QobuzDownloaderX.Helpers
                     f.QoItem = f.getInfo.QoItem;
                     f.QoAlbum = f.getInfo.QoAlbum;
                     updateAlbumInfoLabels(f, f.QoAlbum);
-                    f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("singleTrack")}";
+                    f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("track")}";
                     await Task.Run(() => f.downloadTrack.DownloadTrackAsync("track", f.app_id, f.qobuz_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret, f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum, f.QoItem, progress, stats, abortToken));
                     // Say the downloading is finished when it's completed.
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(f.progressBarDownload.Maximum, f.progressBarDownload.Maximum);
@@ -1331,7 +1331,7 @@ namespace QobuzDownloaderX.Helpers
                     Miscellaneous.updatePlaylistInfoLabels(f, f.QoPlaylist);
                     int totalTracksPlaylist = f.QoPlaylist.Tracks.Items.Count;
                     string playlistTrackLabel = totalTracksPlaylist == 1
-                        ? f.languageManager.GetTranslation("singleTrack")
+                        ? f.languageManager.GetTranslation("track")
                         : f.languageManager.GetTranslation("tracks");
                     int trackIndexPlaylist = 0;
                     foreach (var item in f.QoPlaylist.Tracks.Items)
@@ -1535,7 +1535,7 @@ namespace QobuzDownloaderX.Helpers
                         f.QoFavorites = f.getInfo.QoFavorites;
                         int totalTracksUser = f.QoFavorites.Tracks.Items.Count;
                         string userTracksLabel = totalTracksUser == 1
-                            ? f.languageManager.GetTranslation("singleTrack")
+                            ? f.languageManager.GetTranslation("track")
                             : f.languageManager.GetTranslation("tracks");
                         int trackIndexUser = 0;
 
