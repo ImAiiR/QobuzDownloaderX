@@ -428,7 +428,7 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Controls.Add(this.albumPictureBox);
             this.downloaderPanel.Controls.Add(this.inputTextBox);
             this.downloaderPanel.Controls.Add(this.downloadLabel);
-            this.downloaderPanel.Location = new System.Drawing.Point(201, 74);
+            this.downloaderPanel.Location = new System.Drawing.Point(214, 536);
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 0;
