@@ -432,7 +432,6 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 0;
-            this.downloaderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.downloaderPanel_Paint);
             // 
             // batchDownloadProgressCountLabel
             // 
@@ -2322,16 +2321,17 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(356, 231);
+            this.searchPanel.Location = new System.Drawing.Point(182, 50);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 0;
             // 
             // limitSearchResultsNumericUpDown
             // 
-            this.limitSearchResultsNumericUpDown.BackColor = System.Drawing.SystemColors.Window;
+            this.limitSearchResultsNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.limitSearchResultsNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.limitSearchResultsNumericUpDown.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.limitSearchResultsNumericUpDown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(523, 49);
             this.limitSearchResultsNumericUpDown.Maximum = new decimal(new int[] {
             500,
@@ -2756,18 +2756,18 @@ namespace QobuzDownloaderX
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(951, 580);
-            this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.searchPanel);
+            this.Controls.Add(this.downloaderPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
             this.Controls.Add(this.qualitySelectPanel);
             this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.navigationPanel);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.aboutPanel);
+            this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "qbdlxForm";

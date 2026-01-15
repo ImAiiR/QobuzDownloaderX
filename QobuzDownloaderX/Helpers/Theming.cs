@@ -140,6 +140,11 @@ namespace QobuzDownloaderX.Helpers
                         ? ColorTranslator.FromHtml(_currentTheme.MainPanelBackground)
                         : ColorTranslator.FromHtml(_currentTheme.LabelText);
                 }
+                else if (control is NumericUpDown nupd)
+                {
+                    nupd.BackColor = ColorTranslator.FromHtml(_currentTheme.TextBoxBackground);
+                    nupd.ForeColor = ColorTranslator.FromHtml(_currentTheme.TextBoxText);
+                }
                 else if (control is CheckedListBox clb)
                 {
                     clb.BackColor = ColorTranslator.FromHtml(_currentTheme.MainPanelBackground);

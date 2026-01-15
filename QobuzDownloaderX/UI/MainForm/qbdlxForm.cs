@@ -1797,10 +1797,6 @@ namespace QobuzDownloaderX
             }
         }
 
-        private void downloaderPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 
 }
