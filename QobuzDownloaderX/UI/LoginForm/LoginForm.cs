@@ -833,6 +833,7 @@ namespace QobuzDownloaderX
             loginAboutPanel.Location = new Point(12, 82);
             loginAboutPanel.Enabled = true;
             loginAboutPanel.Visible = true;
+            loginAboutPanel.BringToFront();
         }
 
         private void closeAboutButton_Click(object sender, EventArgs e)
