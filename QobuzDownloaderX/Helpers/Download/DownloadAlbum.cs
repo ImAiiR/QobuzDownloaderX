@@ -9,6 +9,7 @@ using ZetaLongPaths;
 
 using QobuzDownloaderX.Helpers;
 using QobuzDownloaderX.Properties;
+using System.Windows.Forms;
 
 namespace QobuzDownloaderX
 {
@@ -84,12 +85,11 @@ namespace QobuzDownloaderX
                     break; }
 
                 trackIndex++;
-
-                // REPORT track counter (1/10, 2/10...) if caller provided a trackCounter
-                trackCounter?.Report((trackIndex, totalTracks));
-
                 try
                 {
+                    // REPORT track counter (1/10, 2/10...) if caller provided a trackCounter
+                    trackCounter?.Report((trackIndex, totalTracks));
+
                     var trackProgress = new Progress<int>(value =>
                     {
                         double trackPortion = 100.0 / totalTracks;

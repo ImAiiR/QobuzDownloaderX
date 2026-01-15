@@ -1309,8 +1309,7 @@ namespace QobuzDownloaderX.Helpers
 
                     var albumTrackCounter = new Progress<(int current, int total)>(t =>
                     {
-                        // Ensure UI update on UI thread explicitly (safe).
-                        f.progressItemsCountLabel.Invoke(new Action(() =>
+                        f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                         {
                             f.progressItemsCountLabel.Text =
                                 $"{f.languageManager.GetTranslation("album")} | {t.total:N0} {albumTrackLabel} ({t.current:N0}/{t.total:N0})";
@@ -1426,9 +1425,9 @@ namespace QobuzDownloaderX.Helpers
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(albumIndexArtist, totalAlbumsArtist);
                         f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("artist")} | {f.languageManager.GetTranslation("album")} {albumIndexArtist:N0}/{totalAlbumsArtist:N0}";
 
-                        var trackCounter = new Progress<(int current, int total)>(tuple =>
+                        var artistTrackCounter = new Progress<(int current, int total)>(tuple =>
                         {
-                            f.progressItemsCountLabel.Invoke(new Action(() =>
+                            f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                             {
                                 f.progressItemsCountLabel.Text =
                                     $"{f.languageManager.GetTranslation("artist")} | {f.languageManager.GetTranslation("album")} {albumIndexArtist:N0}/{totalAlbumsArtist:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
@@ -1449,7 +1448,7 @@ namespace QobuzDownloaderX.Helpers
                                {
                                    double scaledValue = ((albumIndexArtist - 1) + value / 100.0) / totalAlbumsArtist * 100.0;
                                    f.progressBarDownload.Invoke(new Action(() => f.progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
-                               }), trackCounter, stats, abortToken));
+                               }), artistTrackCounter, stats, abortToken));
                         }
                         catch
                         {
@@ -1484,9 +1483,9 @@ namespace QobuzDownloaderX.Helpers
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(albumIndexLabel, totalAlbumsLabel);
                         f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("recordLabel")} | {f.languageManager.GetTranslation("album")} {albumIndexLabel:N0}/{totalAlbumsLabel:N0}";
                        
-                        var trackCounter = new Progress<(int current, int total)>(tuple =>
+                        var labelTrackCounter = new Progress<(int current, int total)>(tuple =>
                         {
-                            f.progressItemsCountLabel.Invoke(new Action(() =>
+                            f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                             {
                                 f.progressItemsCountLabel.Text =
                                     $"{f.languageManager.GetTranslation("recordLabel")} | {f.languageManager.GetTranslation("album")} {albumIndexLabel:N0}/{totalAlbumsLabel:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
@@ -1507,7 +1506,7 @@ namespace QobuzDownloaderX.Helpers
                                 {
                                     double scaledValue = ((albumIndexLabel - 1) + value / 100.0) / totalAlbumsLabel * 100.0;
                                     f.progressBarDownload.Invoke(new Action(() => f.progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
-                                }), trackCounter, stats, abortToken));
+                                }), labelTrackCounter, stats, abortToken));
                         }
                         catch
                         {
@@ -1544,9 +1543,9 @@ namespace QobuzDownloaderX.Helpers
                             if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(albumIndexUser, totalAlbumsUser);
                             f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("album")} {albumIndexUser:N0}/{totalAlbumsUser:N0}";
 
-                            var trackCounter = new Progress<(int current, int total)>(tuple =>
+                            var userAlbumTrackCounter = new Progress<(int current, int total)>(tuple =>
                             {
-                                f.progressItemsCountLabel.Invoke(new Action(() =>
+                                f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                                 {
                                     f.progressItemsCountLabel.Text =
                                         $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("album")} {albumIndexUser:N0}/{totalAlbumsUser:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
@@ -1568,7 +1567,7 @@ namespace QobuzDownloaderX.Helpers
                                         double scaledValue = ((albumIndexUser - 1) + value / 100.0) / totalAlbumsUser * 100.0;
                                         f.progressBarDownload.Invoke(new Action(() => f.progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
                                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(f.progressBarDownload.Value, f.progressBarDownload.Maximum);
-                                    }), trackCounter, stats, abortToken));
+                                    }), userAlbumTrackCounter, stats, abortToken));
                             }
                             catch
                             {
@@ -1675,9 +1674,9 @@ namespace QobuzDownloaderX.Helpers
                                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                                     f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("artist")} {indexUserArtist:N0}/{totalArtists:N0} | {f.languageManager.GetTranslation("album")} {albumIndexUserArtist:N0}/{totalAlbumsUserArtists:N0}";
                                    
-                                    var trackCounter = new Progress<(int current, int total)>(tuple =>
+                                    var userArtistTrackCounter = new Progress<(int current, int total)>(tuple =>
                                     {
-                                        f.progressItemsCountLabel.Invoke(new Action(() =>
+                                        f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                                         {
                                             f.progressItemsCountLabel.Text =
                                                 $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("artist")} {indexUserArtist:N0}/{totalArtists:N0} | {f.languageManager.GetTranslation("album")} {albumIndexUserArtist:N0}/{totalAlbumsUserArtists:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
@@ -1700,7 +1699,7 @@ namespace QobuzDownloaderX.Helpers
                                                 double scaledValue = ((albumIndexUserArtist - 1) + value / 100.0) / totalAlbumsUserArtists * 100.0;
                                                 f.progressBarDownload.Invoke(new Action(() => f.progressBarDownload.Value = Math.Min(100, (int)Math.Round(scaledValue))));
                                                 if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(f.progressBarDownload.Value, f.progressBarDownload.Maximum);
-                                            }), trackCounter, stats, abortToken));
+                                            }), userArtistTrackCounter, stats, abortToken));
                                     }
                                     catch
                                     {
