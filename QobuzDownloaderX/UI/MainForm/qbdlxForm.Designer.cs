@@ -432,6 +432,7 @@ namespace QobuzDownloaderX
             this.downloaderPanel.Name = "downloaderPanel";
             this.downloaderPanel.Size = new System.Drawing.Size(771, 577);
             this.downloaderPanel.TabIndex = 0;
+            this.downloaderPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.downloaderPanel_Paint);
             // 
             // batchDownloadProgressCountLabel
             // 
@@ -595,9 +596,9 @@ namespace QobuzDownloaderX
             this.progressBarDownload.BackgroundColor = System.Drawing.SystemColors.Window;
             this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
             this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 81);
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 79);
             this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 26);
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 31);
             this.progressBarDownload.Step = 1;
             this.progressBarDownload.TabIndex = 6;
             // 
@@ -705,10 +706,11 @@ namespace QobuzDownloaderX
             this.inputTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.inputTextBox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.inputTextBox.Location = new System.Drawing.Point(18, 48);
+            this.inputTextBox.Location = new System.Drawing.Point(18, 46);
             this.inputTextBox.MaxLength = 1000;
+            this.inputTextBox.Multiline = true;
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(498, 26);
+            this.inputTextBox.Size = new System.Drawing.Size(498, 31);
             this.inputTextBox.TabIndex = 1;
             this.inputTextBox.Text = "Paste a Qobuz URL…";
             this.inputTextBox.WordWrap = false;
@@ -2320,7 +2322,7 @@ namespace QobuzDownloaderX
             this.searchPanel.Controls.Add(this.searchingLabel);
             this.searchPanel.Controls.Add(this.sortingSearchResultsLabel);
             this.searchPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchPanel.Location = new System.Drawing.Point(342, 231);
+            this.searchPanel.Location = new System.Drawing.Point(356, 231);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(771, 577);
             this.searchPanel.TabIndex = 0;
@@ -2330,7 +2332,7 @@ namespace QobuzDownloaderX
             this.limitSearchResultsNumericUpDown.BackColor = System.Drawing.SystemColors.Window;
             this.limitSearchResultsNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.limitSearchResultsNumericUpDown.Font = new System.Drawing.Font("Nirmala UI", 12F);
-            this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(525, 49);
+            this.limitSearchResultsNumericUpDown.Location = new System.Drawing.Point(523, 49);
             this.limitSearchResultsNumericUpDown.Maximum = new decimal(new int[] {
             500,
             0,
@@ -2590,11 +2592,11 @@ namespace QobuzDownloaderX
             this.searchTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.searchTextBox.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.searchTextBox.Location = new System.Drawing.Point(18, 48);
+            this.searchTextBox.Location = new System.Drawing.Point(18, 46);
             this.searchTextBox.MaxLength = 1000;
             this.searchTextBox.Multiline = true;
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(498, 26);
+            this.searchTextBox.Size = new System.Drawing.Size(498, 31);
             this.searchTextBox.TabIndex = 1;
             this.searchTextBox.Text = "Input your search…";
             this.searchTextBox.WordWrap = false;
@@ -2754,6 +2756,8 @@ namespace QobuzDownloaderX
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(951, 580);
+            this.Controls.Add(this.downloaderPanel);
+            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.qualitySelectButton);
@@ -2761,8 +2765,6 @@ namespace QobuzDownloaderX
             this.Controls.Add(this.movingLabel);
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.downloaderPanel);
-            this.Controls.Add(this.searchPanel);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.extraSettingsPanel);
             this.Controls.Add(this.aboutPanel);
