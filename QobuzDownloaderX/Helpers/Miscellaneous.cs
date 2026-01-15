@@ -575,7 +575,7 @@ namespace QobuzDownloaderX.Helpers
             try
             {
                 string newImageLocation = QoAlbum.Image?.Small;
-                if (!((string)f.albumPictureBox.Tag == "playlist") && 
+                if (!((string)f.albumPictureBox.Tag == "playlist") &&
                     !string.Equals(f.albumPictureBox.ImageLocation, newImageLocation, StringComparison.Ordinal))
                 {
                     f.albumPictureBox.ImageLocation = newImageLocation;
@@ -602,7 +602,8 @@ namespace QobuzDownloaderX.Helpers
                     f.albumPictureBox.ImageLocation = newImageLocation;
                     f.albumPictureBox.Cursor = Cursors.Hand;
                 }
-            } catch
+            }
+            catch
             {
                 f.albumPictureBox.Cursor = Cursors.Default;
             }
@@ -1011,7 +1012,7 @@ namespace QobuzDownloaderX.Helpers
         internal static void LogFailedDownloadStreamEntry(string downloadLocation, Item QoItem, string msg)
         {
             // Artist - Album Title (Date) -> Track Number. Track Title [Track ID] [UPC]
-            string entryTitle = 
+            string entryTitle =
                 $"{QoItem?.Artist?.Name ?? QoItem?.Album?.Artist?.Name} - {QoItem?.Album?.Title} ({QoItem?.ReleaseDateOriginal ?? QoItem?.ReleaseDateStream}) -> {QoItem?.TrackNumber}. {QoItem?.Title} [ID:{QoItem?.Id ?? QoItem?.Album?.Id}] [UPC-{QoItem?.UPC ?? QoItem?.Album?.UPC}]";
 
             Miscellaneous.LogFailedDownloadEntry(downloadLocation, entryTitle, msg);
