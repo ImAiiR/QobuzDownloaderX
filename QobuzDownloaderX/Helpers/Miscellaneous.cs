@@ -1355,7 +1355,8 @@ namespace QobuzDownloaderX.Helpers
                 case "album":
                     f.skipButton.Enabled = true;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
-                  
+
+                    // [FETCH INFO] case "album" -> getAlbumInfoLabels
                     var albumTask = Task.Run(() => f.getInfo.getAlbumInfoLabels(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
@@ -1387,8 +1388,10 @@ namespace QobuzDownloaderX.Helpers
                         }));
                     });
 
+                    // [DOWNLOAD] case "album" -> DownloadAlbumAsync
                     await Task.Run(() => f.downloadAlbum.DownloadAlbumAsync(f.app_id, f.qobuz_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret, f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum, progress, albumTrackCounter, stats, abortToken));
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                  
                     // Say the downloading is finished when it's completed.
                     f.getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     f.getInfo.updateDownloadOutput("\r\n" + f.downloadOutputCompleted);
@@ -1398,7 +1401,8 @@ namespace QobuzDownloaderX.Helpers
                 case "track":
                     f.skipButton.Enabled = false;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
-                   
+
+                    // [FETCH INFO] case "track" -> getTrackInfoLabels
                     var trackTask = Task.Run(() => f.getInfo.getTrackInfoLabels(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
@@ -1410,7 +1414,10 @@ namespace QobuzDownloaderX.Helpers
                     f.QoAlbum = f.getInfo.QoAlbum;
                     updateAlbumInfoLabels(f, f.QoAlbum);
                     f.progressItemsCountLabel.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(f.languageManager.GetTranslation("track"));
+
+                    // [DOWNLOAD] case "track" -> DownloadTrackAsync
                     await Task.Run(() => f.downloadTrack.DownloadTrackAsync("track", f.app_id, f.qobuz_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret, f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum, f.QoItem, progress, stats, abortToken));
+                   
                     // Say the downloading is finished when it's completed.
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(f.progressBarDownload.Maximum, f.progressBarDownload.Maximum);
                     f.getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
@@ -1423,7 +1430,8 @@ namespace QobuzDownloaderX.Helpers
                     f.albumPictureBox.Tag = "playlist";
                     f.skipButton.Enabled = false;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
-                 
+
+                    // [FETCH INFO] case "playlist" -> getPlaylistInfoLabels
                     var playlistTask = Task.Run(() => f.getInfo.getPlaylistInfoLabels(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
@@ -1453,10 +1461,13 @@ namespace QobuzDownloaderX.Helpers
                         try
                         {
                             string track_id = item.Id.ToString();
+                            // [SUB FETCH INFO] case "playlist" -> getTrackInfoLabels
                             var playlistTrackInfoTask = Task.Run(() => f.getInfo.getTrackInfoLabels(f.app_id, track_id, f.user_auth_token));
                             await RunTaskWithTimeoutAsync(f, playlistTrackInfoTask, getInfosTimeOut, "Q(Open)API 'getTrackInfoLabels' task has timed out.");
                             f.QoItem = item;
                             f.QoAlbum = f.getInfo.QoAlbum;
+
+                            // [DOWNLOAD] case "playlist" -> DownloadPlaylistTrackAsync
                             await Task.Run(() => f.downloadTrack.DownloadPlaylistTrackAsync(linkType,
                                 f.app_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret,
                                 f.downloadLocation, f.trackTemplate, f.playlistTemplate, f.QoAlbum, f.QoItem, f.QoPlaylist,
@@ -1484,7 +1495,8 @@ namespace QobuzDownloaderX.Helpers
                 case "artist":
                     f.skipButton.Enabled = true;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
-                  
+
+                    // [FETCH INFO] case "artist" -> getArtistInfo
                     var artistTask = Task.Run(() => f.getInfo.getArtistInfo(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
@@ -1531,10 +1543,13 @@ namespace QobuzDownloaderX.Helpers
                         try
                         {
                             string album_id = item.Id.ToString();
+                            // [SUB FETCH INFO] case "artist" -> getAlbumInfoLabels
                             var artistAlbumInfoTask = Task.Run(() => f.getInfo.getAlbumInfoLabels(f.app_id, album_id, f.user_auth_token));
                             await RunTaskWithTimeoutAsync(f, artistAlbumInfoTask, getInfosTimeOut, "Q(Open)API 'getAlbumInfoLabels' task has timed out.");
                             f.QoAlbum = f.getInfo.QoAlbum;
                             updateAlbumInfoLabels(f, f.QoAlbum);
+
+                            // [DOWNLOAD] case "artist" -> DownloadAlbumAsync
                             await Task.Run(() => f.downloadAlbum.DownloadAlbumAsync(
                                f.app_id, album_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret,
                                f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum,
@@ -1550,6 +1565,7 @@ namespace QobuzDownloaderX.Helpers
                         }
                     }
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                   
                     // Say the downloading is finished when it's completed.
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(albumIndexArtist, totalAlbumsArtist);
                     f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("artist")} | {f.languageManager.GetTranslation("album")} {albumIndexArtist:N0}/{totalAlbumsArtist:N0}";
@@ -1562,6 +1578,7 @@ namespace QobuzDownloaderX.Helpers
                     f.skipButton.Enabled = true;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
 
+                    // [FETCH INFO] case "label" -> getLabelInfo
                     var labelTask = Task.Run(() => f.getInfo.getLabelInfo(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
@@ -1597,10 +1614,13 @@ namespace QobuzDownloaderX.Helpers
                         try
                         {
                             string album_id = item.Id.ToString();
+                            // [SUB FETCH INFO] case "label" -> getAlbumInfoLabels
                             var labelAlbumInfoTask = Task.Run(() => f.getInfo.getAlbumInfoLabels(f.app_id, album_id, f.user_auth_token));
                             await RunTaskWithTimeoutAsync(f, labelAlbumInfoTask, getInfosTimeOut, "Q(Open)API 'getAlbumInfoLabels' task has timed out.");
                             f.QoAlbum = f.getInfo.QoAlbum;
                             updateAlbumInfoLabels(f, f.QoAlbum);
+
+                            // [DOWNLOAD] case "label" -> DownloadAlbumAsync
                             await Task.Run(() => f.downloadAlbum.DownloadAlbumAsync(
                                 f.app_id, album_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret,
                                 f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum,
@@ -1618,6 +1638,7 @@ namespace QobuzDownloaderX.Helpers
                         f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("recordLabel")} | {f.languageManager.GetTranslation("album")} {albumIndexLabel:N0}/{totalAlbumsLabel:N0}";
                     }
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+                   
                     // Say the downloading is finished when it's completed.
                     f.getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     f.getInfo.updateDownloadOutput("\r\n" + f.downloadOutputCompleted);
@@ -1630,6 +1651,7 @@ namespace QobuzDownloaderX.Helpers
                         f.skipButton.Enabled = true;
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
 
+                        // [FETCH INFO] case "user" ("albums") -> getFavoritesInfo
                         var userFavAlbumsTask = Task.Run(() => f.getInfo.getFavoritesInfo(f.app_id, f.user_id, "albums", f.user_auth_token));
                         try
                         {
@@ -1665,10 +1687,13 @@ namespace QobuzDownloaderX.Helpers
                             try
                             {
                                 string album_id = item.Id.ToString();
+                                // [SUB FETCH INFO] case "user" ("albums") -> getAlbumInfoLabels
                                 var userAlbumInfoTask = Task.Run(() => f.getInfo.getAlbumInfoLabels(f.app_id, album_id, f.user_auth_token));
                                 await RunTaskWithTimeoutAsync(f, userAlbumInfoTask, getInfosTimeOut, "Q(Open)API 'getAlbumInfoLabels' task has timed out.");
                                 f.QoAlbum = f.getInfo.QoAlbum;
                                 updateAlbumInfoLabels(f, f.QoAlbum);
+
+                                // [DOWNLOAD] case "user" ("albums") -> DownloadAlbumAsync
                                 await Task.Run(() => f.downloadAlbum.DownloadAlbumAsync(
                                     f.app_id, album_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret,
                                     f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum,
@@ -1691,6 +1716,7 @@ namespace QobuzDownloaderX.Helpers
                         f.skipButton.Enabled = false;
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
 
+                        // [FETCH INFO] case "user" ("tracks") -> getFavoritesInfo
                         var userFavTracksTask = Task.Run(() => f.getInfo.getFavoritesInfo(f.app_id, f.user_id, "tracks", f.user_auth_token));
                         try
                         {
@@ -1720,11 +1746,14 @@ namespace QobuzDownloaderX.Helpers
                             try
                             {
                                 string track_id = item.Id.ToString();
+                                // [SUB FETCH INFO] case "user" ("tracks") -> getAlbumInfoLabels
                                 var userAlbumInfoTask = Task.Run(() => f.getInfo.getTrackInfoLabels(f.app_id, track_id, f.user_auth_token));
                                 await RunTaskWithTimeoutAsync(f, userAlbumInfoTask, getInfosTimeOut, "Q(Open)API 'getTrackInfoLabels' task has timed out.");
                                 f.QoItem = f.getInfo.QoItem;
                                 f.QoAlbum = f.getInfo.QoAlbum;
                                 updateAlbumInfoLabels(f, f.QoAlbum);
+
+                                // [DOWNLOAD] case "user" ("tracks") -> DownloadTrackAsync
                                 await Task.Run(() => f.downloadTrack.DownloadTrackAsync(
                                     "track", f.app_id, track_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret,
                                     f.downloadLocation, f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum, f.QoItem,
@@ -1747,6 +1776,7 @@ namespace QobuzDownloaderX.Helpers
                         f.skipButton.Enabled = true;
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
 
+                        // [FETCH INFO] case "user" ("artists") -> getFavoritesInfo
                         var userFavArtistsTask = Task.Run(() => f.getInfo.getFavoritesInfo(f.app_id, f.user_id, "artists", f.user_auth_token));
                         try
                         {
@@ -1769,6 +1799,7 @@ namespace QobuzDownloaderX.Helpers
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                             try
                             {
+                                // [SUB FETCH INFO] case "user" ("artists") -> getAlbumInfoLabels
                                 var userArtistInfoTask = Task.Run(() => f.getInfo.getArtistInfo(f.app_id, artist.Id.ToString(), f.user_auth_token));
                                 await RunTaskWithTimeoutAsync(f, userArtistInfoTask, getInfosTimeOut, "Q(Open)API 'getArtistInfo' task has timed out.");
                                 f.QoArtist = f.getInfo.QoArtist;
@@ -1792,6 +1823,7 @@ namespace QobuzDownloaderX.Helpers
                             try
                             {
                                 string artist_id = artist.Id.ToString();
+                                // [SUB FETCH INFO] case "user" ("artists") -> getArtistInfo
                                 var userArtistInfoTask = Task.Run(() => f.getInfo.getArtistInfo(f.app_id, artist_id, f.user_auth_token));
                                 await RunTaskWithTimeoutAsync(f, userArtistInfoTask, getInfosTimeOut, "Q(Open)API 'getArtistInfo' task has timed out.");
                                 f.QoArtist = f.getInfo.QoArtist;
@@ -1814,10 +1846,13 @@ namespace QobuzDownloaderX.Helpers
                                     try
                                     {
                                         string album_id = artistItem.Id.ToString();
+                                        // [SUB FETCH INFO] case "user" ("artists") -> getAlbumInfoLabels
                                         var userArtistAlbumInfoTask = Task.Run(() => f.getInfo.getAlbumInfoLabels(f.app_id, album_id, f.user_auth_token));
                                         await RunTaskWithTimeoutAsync(f, userArtistAlbumInfoTask, getInfosTimeOut, "Q(Open)API 'getAlbumInfoLabels' task has timed out.");
                                         f.QoAlbum = f.getInfo.QoAlbum;
                                         updateAlbumInfoLabels(f, f.QoAlbum);
+
+                                        // [DOWNLOAD] case "user" ("artists") -> DownloadAlbumAsync
                                         await Task.Run(() => f.downloadAlbum.DownloadAlbumAsync(
                                             f.app_id, album_id, f.format_id, f.audio_format, f.user_auth_token, f.app_secret, f.downloadLocation,
                                             f.artistTemplate, f.albumTemplate, f.trackTemplate, f.QoAlbum,
