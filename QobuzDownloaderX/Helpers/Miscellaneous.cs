@@ -1108,11 +1108,7 @@ namespace QobuzDownloaderX.Helpers
             return result;
         }
 
-        private static async Task RunTaskWithTimeoutAsync(
-            qbdlxForm form,
-            Task workTask,
-            TimeSpan timeout,
-            string timeoutMessage = "Task has timed out.")
+        private static async Task RunTaskWithTimeoutAsync(qbdlxForm form, Task workTask, TimeSpan timeout, string timeoutMessage = "Task has timed out.")
         {
             if (form == null)
                 throw new ArgumentNullException(nameof(form));
@@ -1359,6 +1355,7 @@ namespace QobuzDownloaderX.Helpers
                 case "album":
                     f.skipButton.Enabled = true;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
+                  
                     var albumTask = Task.Run(() => f.getInfo.getAlbumInfoLabels(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
@@ -1401,12 +1398,14 @@ namespace QobuzDownloaderX.Helpers
                 case "track":
                     f.skipButton.Enabled = false;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
+                   
                     var trackTask = Task.Run(() => f.getInfo.getTrackInfoLabels(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
                         await RunTaskWithTimeoutAsync(f, trackTask, getInfosTimeOut, "Q(Open)API 'getTrackInfoLabels' task has timed out.");
                     }
                     catch { return; }
+                   
                     f.QoItem = f.getInfo.QoItem;
                     f.QoAlbum = f.getInfo.QoAlbum;
                     updateAlbumInfoLabels(f, f.QoAlbum);
@@ -1424,12 +1423,14 @@ namespace QobuzDownloaderX.Helpers
                     f.albumPictureBox.Tag = "playlist";
                     f.skipButton.Enabled = false;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
+                 
                     var playlistTask = Task.Run(() => f.getInfo.getPlaylistInfoLabels(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
                         await RunTaskWithTimeoutAsync(f, playlistTask, getInfosTimeOut, "Q(Open)API 'getPlaylistInfoLabels' task has timed out.");
                     }
                     catch { return; }
+                  
                     f.QoPlaylist = f.getInfo.QoPlaylist;
                     Miscellaneous.updatePlaylistInfoLabels(f, f.QoPlaylist);
                     int totalTracksPlaylist = f.QoPlaylist.Tracks.Items.Count;
@@ -1483,6 +1484,7 @@ namespace QobuzDownloaderX.Helpers
                 case "artist":
                     f.skipButton.Enabled = true;
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(0, f.progressBarDownload.Maximum);
+                  
                     var artistTask = Task.Run(() => f.getInfo.getArtistInfo(f.app_id, f.qobuz_id, f.user_auth_token));
                     try
                     {
