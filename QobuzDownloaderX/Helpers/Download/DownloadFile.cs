@@ -119,7 +119,7 @@ namespace QobuzDownloaderX
             {
                 qbdlxForm._qbdlxForm.logger.Debug("Stream URL: " + streamUrl);
 
-                TimeSpan selectedTimeout = audio_format == ".mp3"
+                TimeSpan selectedTimeout = audio_format?.ToLowerInvariant() == ".mp3"
                     ? mp3TrackDownloadCompletionTimeout
                     : flacTrackDownloadCompletionTimeout;
 
