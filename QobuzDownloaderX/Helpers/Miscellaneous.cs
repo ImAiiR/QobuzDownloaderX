@@ -1794,15 +1794,23 @@ namespace QobuzDownloaderX.Helpers
                             f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | 0 {f.languageManager.GetTranslation("artists")}";
                         }
 
+                        var artistInfoCache = new Dictionary<string, Artist>();
+
                         foreach (var artist in f.QoFavorites.Artists.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
+
                             try
                             {
+                                string artistId = artist.Id.ToString();
+
                                 // [SUB FETCH INFO] case "user" ("artists") -> getAlbumInfoLabels
                                 var userArtistInfoTask = Task.Run(() => f.getInfo.getArtistInfo(f.app_id, artist.Id.ToString(), f.user_auth_token));
                                 await RunTaskWithTimeoutAsync(f, userArtistInfoTask, getInfosTimeOut, "Q(Open)API 'getArtistInfo' task has timed out.");
+
                                 f.QoArtist = f.getInfo.QoArtist;
+                                artistInfoCache[artistId] = f.QoArtist;
+
                                 totalAlbumsUserArtists += f.QoArtist.Albums.Items.Count;
                             }
                             catch
@@ -1823,10 +1831,11 @@ namespace QobuzDownloaderX.Helpers
                             try
                             {
                                 string artist_id = artist.Id.ToString();
-                                // [SUB FETCH INFO] case "user" ("artists") -> getArtistInfo
-                                var userArtistInfoTask = Task.Run(() => f.getInfo.getArtistInfo(f.app_id, artist_id, f.user_auth_token));
-                                await RunTaskWithTimeoutAsync(f, userArtistInfoTask, getInfosTimeOut, "Q(Open)API 'getArtistInfo' task has timed out.");
-                                f.QoArtist = f.getInfo.QoArtist;
+
+                                if (!artistInfoCache.TryGetValue(artist_id, out var qoArtist))
+                                    continue;
+
+                                f.QoArtist = qoArtist;
 
                                 foreach (var artistItem in f.QoArtist.Albums.Items)
                                 {
