@@ -1804,14 +1804,17 @@ namespace QobuzDownloaderX.Helpers
                             {
                                 string artistId = artist.Id.ToString();
 
-                                // [SUB FETCH INFO] case "user" ("artists") -> getAlbumInfoLabels
+                                // [SUB FETCH INFO] case "user" ("artists") -> getArtistInfo
                                 var userArtistInfoTask = Task.Run(() => f.getInfo.getArtistInfo(f.app_id, artist.Id.ToString(), f.user_auth_token));
                                 await RunTaskWithTimeoutAsync(f, userArtistInfoTask, getInfosTimeOut, "Q(Open)API 'getArtistInfo' task has timed out.");
 
                                 f.QoArtist = f.getInfo.QoArtist;
                                 artistInfoCache[artistId] = f.QoArtist;
 
-                                totalAlbumsUserArtists += f.QoArtist.Albums.Items.Count;
+                                if (f.QoArtist.Albums != null )
+                                {
+                                    totalAlbumsUserArtists += f.QoArtist.Albums.Items.Count;
+                                }
                             }
                             catch
                             {
