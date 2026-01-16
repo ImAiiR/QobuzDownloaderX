@@ -1296,7 +1296,7 @@ namespace QobuzDownloaderX.Helpers
                 return;
             }
 
-            string albumLink = f.inputTextBox.Text.Trim();
+            string albumLink = f.inputTextBox.Text.Trim().TrimEnd('/');
             if (albumLink.EndsWith("/releases", StringComparison.OrdinalIgnoreCase))
             {
                 albumLink = albumLink.Substring(0, albumLink.Length - "/releases".Length);
