@@ -1,7 +1,8 @@
 @ECHO OFF
+COLOR 07
 
 :: Debug folder
-ECHO:[.] Cleaning Debug folder...
+ECHO:[·] Cleaning Debug folder...
 (
 	RD  /Q /S ".\QobuzDownloaderX\bin\Debug\logs"
 	RD  /Q /S ".\QobuzDownloaderX\bin\Debug\qbdlx-temp"
@@ -10,9 +11,10 @@ ECHO:[.] Cleaning Debug folder...
 )>NUL 2>&1
 CALL :ResetUserConfig ".\QobuzDownloaderX\bin\Debug\user.config"
 ECHO:[+] Debug folder has been cleaned.
+ECHO+
 
 :: Release folder
-ECHO:[.] Cleaning Release folder...
+ECHO:[·] Cleaning Release folder...
 (
 	RD  /Q /S ".\QobuzDownloaderX\bin\Release\logs"
 	RD  /Q /S ".\QobuzDownloaderX\bin\Release\qbdlx-temp"
@@ -23,25 +25,26 @@ ECHO:[.] Cleaning Release folder...
 )>NUL 2>&1
 CALL :ResetUserConfig ".\QobuzDownloaderX\bin\Release\user.config"
 ECHO:[+] Release folder has been cleaned.
-
 ECHO+
+
+COLOR 0A
 PAUSE
 EXIT
 
 :ResetUserConfig
-DEL /Q "%~1"
-IF EXIST "%~1" (
+DEL /Q "%~f1" 2>NUL
+IF EXIST "%~f1" (
 	COLOR 0C
-    ECHO: Error deleting "%~1"
+    ECHO:Error deleting file: "%~f1"
     PAUSE
     EXIT /B
 )
 
 (
-	echo ^<?xml version="1.0" encoding="utf-8"?^>
-	echo ^<settings^>
-	echo   ^<currentLanguage^>EN^</currentLanguage^>
-	echo   ^<currentTheme^>Titanium^</currentTheme^>
-	echo ^</settings^>
+	ECHO:^<?xml version="1.0" encoding="utf-8"?^>
+	ECHO:^<settings^>
+	ECHO:  ^<currentLanguage^>EN^</currentLanguage^>
+	ECHO:  ^<currentTheme^>Titanium^</currentTheme^>
+	ECHO:^</settings^>
 ) > "%~1"
 EXIT /B
