@@ -21,10 +21,11 @@ namespace QobuzDownloaderX
         private readonly PaddingNumbers paddingNumbers = new PaddingNumbers();
         private readonly FixMD5 fixMD5 = new FixMD5();
 
-        private readonly TimeSpan artworkDownloadCompletionTimeout = TimeSpan.FromMinutes(2);
-        private readonly TimeSpan trackDownloadCompletionTimeout = TimeSpan.FromMinutes(10);
-        private readonly TimeSpan goodyDownloadCompletionTimeout = TimeSpan.FromMinutes(5);
         private readonly TimeSpan dataReceiveTimeout = TimeSpan.FromMinutes(1);
+        private readonly TimeSpan artworkDownloadCompletionTimeout = TimeSpan.FromMinutes(2);
+        private readonly TimeSpan goodyDownloadCompletionTimeout = TimeSpan.FromMinutes(5);
+        private readonly TimeSpan mp3TrackDownloadCompletionTimeout = TimeSpan.FromMinutes(5);
+        private readonly TimeSpan flacTrackDownloadCompletionTimeout = TimeSpan.FromMinutes(10);
 
         // Static flag to ensure temp directory check runs only once per application run
         private static bool tempDirChecked = false;
@@ -117,7 +118,12 @@ namespace QobuzDownloaderX
             try
             {
                 qbdlxForm._qbdlxForm.logger.Debug("Stream URL: " + streamUrl);
-                using (var httpClient = new HttpClient { Timeout = trackDownloadCompletionTimeout })
+
+                TimeSpan selectedTimeout = audio_format == ".mp3"
+                    ? mp3TrackDownloadCompletionTimeout
+                    : flacTrackDownloadCompletionTimeout;
+
+                using (var httpClient = new HttpClient { Timeout = selectedTimeout })
                 using (var response = await httpClient.GetAsync(streamUrl, HttpCompletionOption.ResponseHeadersRead))
                 {
                     response.EnsureSuccessStatusCode();
@@ -138,7 +144,7 @@ namespace QobuzDownloaderX
                     // Open file stream for writing and get the HTTP response stream
                     using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read, bufferLength, useAsync: true))
                     using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var downloadTimeoutCts = new CancellationTokenSource(trackDownloadCompletionTimeout)) // Total download timeout
+                    using (var downloadTimeoutCts = new CancellationTokenSource(selectedTimeout)) // Total download timeout
                     {
                         if (stats?.SpeedWatch != null && !stats.SpeedWatch.IsRunning) stats.SpeedWatch.Start();
                        
