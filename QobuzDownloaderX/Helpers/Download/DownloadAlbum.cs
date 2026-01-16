@@ -83,12 +83,12 @@ namespace QobuzDownloaderX
                     getInfo.updateDownloadOutput(qbdlxForm._qbdlxForm.albumSkipped);
                     break; }
 
+                // REPORT completed track counter (1/10, 2/10...).
+                trackCounter?.Report((trackIndex, totalTracks));
+
                 trackIndex++;
                 try
                 {
-                    // REPORT track counter (1/10, 2/10...) if caller provided a trackCounter
-                    trackCounter?.Report((trackIndex, totalTracks));
-
                     var trackProgress = new Progress<int>(value =>
                     {
                         double trackPortion = 100.0 / totalTracks;
@@ -100,7 +100,8 @@ namespace QobuzDownloaderX
                     await downloadTrack.DownloadTrackAsync(
                         "album", app_id, album_id, format_id, audio_format, 
                         user_auth_token, app_secret, downloadLocation, artistTemplate, albumTemplate, 
-                        trackTemplate, album, trackInfo, trackProgress, stats, abortToken);       
+                        trackTemplate, album, trackInfo, trackProgress, stats, abortToken);
+
                 }
                 catch (Exception ex)
                 {
@@ -109,6 +110,12 @@ namespace QobuzDownloaderX
                 }
                 finally
                 {
+                    if (trackIndex == totalTracks)
+                    {
+                        // REPORT completed track counter.
+                        trackCounter?.Report((totalTracks, totalTracks));
+                    }
+
                     qbdlxForm._qbdlxForm.Invoke(new Action(() => qbdlxForm._qbdlxForm.progressBarDownload.Refresh()));
                 }
             }

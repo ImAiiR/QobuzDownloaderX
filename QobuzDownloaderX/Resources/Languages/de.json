@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 15, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 16, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -8,26 +8,26 @@
     "aboutButton":                  "ÜBER…",
     "closeAdditionalButton":        "Optionen",
     "downloadButton":               "HOLEN!",
-    "batchDownloadButton":          "PAKET HERUNTERLADEN", // ChatGPT translation.
-    "abortButton":                  "ABBRECHEN", // ChatGPT translation.
-    "skipButton":                   "ÜBERSPRINGEN", // ChatGPT translation.
+    "batchDownloadButton":          "PAKET HERUNTERLADEN", // AI translation
+    "abortButton":                  "ABBRECHEN", // AI translation
+    "skipButton":                   "ÜBERSPRINGEN", // AI translation
     "downloaderButton":             "DOWNLOADER",
     "logoutButton":                 "AUSLOGGEN",
     "openFolderButton":             "Ordner Öffnen",
     "qualitySelectButton":          "Qualität",
     "saveTemplatesButton":          "Speichern",
-    "resetTemplatesButton":         "Zurücksetzen", // ChatGPT translation.
+    "resetTemplatesButton":         "Zurücksetzen", // AI translation
     "searchButton":                 "SUCHE",
     "searchAlbumsButton":           "ALBUM",
     "searchTracksButton":           "TRACK",
     "selectFolderButton":           "Ordner Auswählen",
     "settingsButton":               "OPTIONEN",
-    "selectAllRowsButton":          "Alles auswählen", // ChatGPT translation.
-    "deselectAllRowsButton":        "Alles abwählen", // ChatGPT translation.
-    "batchDownloadRowsButton":      "AUSGEWÄHLTE ZEILEN STAPELWEISE HERUNTERLADEN", // ChatGPT translation.
-    "skipDuplicatesButton":         "Ignorieren / Download überspringen", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "Automatisch umbenennen", // ChatGPT translation
-    "overwriteDuplicatesButton":    "Vorhandene Dateien überschreiben", // ChatGPT translation
+    "selectAllRowsButton":          "Alles auswählen", // AI translation
+    "deselectAllRowsButton":        "Alles abwählen", // AI translation
+    "batchDownloadRowsButton":      "AUSGEWÄHLTE ZEILEN STAPELWEISE HERUNTERLADEN", // AI translation
+    "skipDuplicatesButton":         "Ignorieren / Download überspringen", // AI translation
+    "autoRenameDuplicatesButton":   "Automatisch umbenennen", // AI translation
+    "overwriteDuplicatesButton":    "Vorhandene Dateien überschreiben", // AI translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Weitere Optionen",
@@ -46,25 +46,25 @@
     "templatesLabel":               "VORLAGEN",
     "templatesListLabel":           "VORLAGEN LISTE",
     "themeLabel":                   "Aktuelles Theme",
-    "themeSectionLabel":            "VISUELLE OPTIONEN", // ChatGPT translation
-    "trackTemplateLabel":           "(STANDARD) TRACK-VORLAGE", // ChatGPT translation
-    "vaTrackTemplateLabel":         "(V/A) TRACK-VORLAGE", // ChatGPT translation
+    "themeSectionLabel":            "VISUELLE OPTIONEN", // AI translation
+    "trackTemplateLabel":           "(STANDARD) TRACK-VORLAGE", // AI translation
+    "vaTrackTemplateLabel":         "(V/A) TRACK-VORLAGE", // AI translation
     "userInfoLabel":                "BENUTZERINFO",
     "welcomeLabel":                 "Willkommen\r\n{username}",
-    "searchSortingLabel":           "Sortieren nach:", // ChatGPT translation.
-    "sortReleaseDateLabel":         "Veröffentlichungsdatum", // ChatGPT translation.
-    "sortGenreLabel":               "Genre", // ChatGPT translation.
-    "sortArtistNameLabel":          "Künstlername", // ChatGPT translation.
-    "sortAlbumTrackNameLabel":      "Album / Titelname", // ChatGPT translation.
-    "sortingSearchResultsLabel":    "Sortiere…", // ChatGPT translation.
-    "searchResultsCountLabel":      "Ergebnisse", // ChatGPT translation.
-    "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // ChatGPT translation.
-    "disclaimer":                   "Haftungsausschluss / Rechtlicher Hinweis\n\nDiese Anwendung verwendet die Qobuz-API, ist jedoch nicht von Qobuz zertifiziert.\n\nDie Software und ihre Autoren sind in keiner Weise mit Qobuz verbunden, werden von Qobuz nicht unterstützt und stehen nicht in offizieller Verbindung zu Qobuz. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko. Die Autoren übernehmen keine Garantie für die Genauigkeit, Zuverlässigkeit oder Verfügbarkeit des Dienstes und haften nicht für Schäden oder Datenverluste, die aus der Nutzung resultieren.\n\nDurch die Nutzung dieser Anwendung erkennen Sie an und akzeptieren, dass sie „wie besehen“ bereitgestellt wird, ohne ausdrückliche oder stillschweigende Garantien jeglicher Art, einschließlich, aber nicht beschränkt auf Garantien der Marktgängigkeit, Eignung für einen bestimmten Zweck oder Nichtverletzung von Rechten.\n\nDie Nutzer sind verantwortlich für die Einhaltung aller geltenden Gesetze, Nutzungsbedingungen und Einschränkungen beim Zugriff auf die Qobuz-API oder andere Drittanbieterdienste.\n\nFür offizielle Qobuz-Dienste und Support besuchen Sie bitte die offizielle Website von Qobuz: https://www.qobuz.com/", // ChatGPT translation.
-    "downloadFromArtistLabel":      "VOM KÜNSTLER HERUNTERLADEN", // ChatGPT translation.
-    "primaryListSeparatorLabel":    "Primärer Listentrenner", // ChatGPT translation.
-    "listEndSeparatorLabel":        "Listenendtrenner", // ChatGPT translation.
-    "playlistSectionLabel":         "PLAYLIST-OPTIONEN", // ChatGPT translation.
-    "duplicateFilesLabel":          "Doppelte Dateien", // ChatGPT translation
+    "searchSortingLabel":           "Sortieren nach:", // AI translation
+    "sortReleaseDateLabel":         "Veröffentlichungsdatum", // AI translation
+    "sortGenreLabel":               "Genre", // AI translation
+    "sortArtistNameLabel":          "Künstlername", // AI translation
+    "sortAlbumTrackNameLabel":      "Album / Titelname", // AI translation
+    "sortingSearchResultsLabel":    "Sortiere…", // AI translation
+    "searchResultsCountLabel":      "Ergebnisse", // AI translation
+    "selectedRowsCountLabel":       "{0} ausgewählte Zeilen", // AI translation
+    "disclaimer":                   "Haftungsausschluss / Rechtlicher Hinweis\n\nDiese Anwendung verwendet die Qobuz-API, ist jedoch nicht von Qobuz zertifiziert.\n\nDie Software und ihre Autoren sind in keiner Weise mit Qobuz verbunden, werden von Qobuz nicht unterstützt und stehen nicht in offizieller Verbindung zu Qobuz. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko. Die Autoren übernehmen keine Garantie für die Genauigkeit, Zuverlässigkeit oder Verfügbarkeit des Dienstes und haften nicht für Schäden oder Datenverluste, die aus der Nutzung resultieren.\n\nDurch die Nutzung dieser Anwendung erkennen Sie an und akzeptieren, dass sie „wie besehen“ bereitgestellt wird, ohne ausdrückliche oder stillschweigende Garantien jeglicher Art, einschließlich, aber nicht beschränkt auf Garantien der Marktgängigkeit, Eignung für einen bestimmten Zweck oder Nichtverletzung von Rechten.\n\nDie Nutzer sind verantwortlich für die Einhaltung aller geltenden Gesetze, Nutzungsbedingungen und Einschränkungen beim Zugriff auf die Qobuz-API oder andere Drittanbieterdienste.\n\nFür offizielle Qobuz-Dienste und Support besuchen Sie bitte die offizielle Website von Qobuz: https://www.qobuz.com/", // AI translation
+    "downloadFromArtistLabel":      "VOM KÜNSTLER HERUNTERLADEN", // AI translation
+    "primaryListSeparatorLabel":    "Primärer Listentrenner", // AI translation
+    "listEndSeparatorLabel":        "Listenendtrenner", // AI translation
+    "playlistSectionLabel":         "PLAYLIST-OPTIONEN", // AI translation
+    "duplicateFilesLabel":          "Doppelte Dateien", // AI translation
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckBox":          "Album Artist",
@@ -86,22 +86,22 @@
     "labelCheckBox":                "Label",
     "upcCheckBox":                  "UPC / Barcode",
     "isrcCheckBox":                 "ISRC",
-    "urlCheckBox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckBox":     "Track-Künstlernamen zusammenführen.\nBeispiel: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // ChatGPT translation.
+    "urlCheckBox":                  "URL", // AI translation
+    "mergeArtistNamesCheckBox":     "Track-Künstlernamen zusammenführen.\nBeispiel: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // AI translation
     "streamableCheckBox":           "Ist Streamfähig Check",
     "fixMD5sCheckBox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
     "downloadSpeedCheckBox":        "Downloadgeschwindigkeit Anzeigen",
-    "sortAscendantCheckBox":        "Aufsteigend", // ChatGPT translation.
-    "downloadGoodiesCheckBox":      "Goodies herunterladen", // ChatGPT translation.
-    "useTLS13CheckBox":             "TLS 1.3 verwenden", // ChatGPT translation.
-    "downloadArtistOtherCheckBox":  "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // ChatGPT translation.
-    "clearOldLogsCheckBox":         "Alte Protokolle beim Start löschen", // ChatGPT translation
-    "dontSaveArtworkToDiskCheckBox":"Kunstwerke nicht auf der Festplatte speichern", // ChatGPT translation
-    "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Download, Andere", // ChatGPT translation
-    "downloadAllFromArtistCheckBox":"Alles vom Künstler herunterladen (kann mehr enthalten)",  // ChatGPT translation
-    "useItemPosInPlaylistCheckBox": "Elementpositionen anstelle der Album-Tracknummern in Dateinamen verwenden", // ChatGPT translation
-    "showTipsCheckBox":             "Tipps anzeigen", // ChatGPT translation.
-    "logFailedDownloadsCheckBox":   "Fehlgeschlagene Downloads in 'error.txt' im Download-Ordner protokollieren", // ChatGPT translation
+    "sortAscendantCheckBox":        "Aufsteigend", // AI translation
+    "downloadGoodiesCheckBox":      "Goodies herunterladen", // AI translation
+    "useTLS13CheckBox":             "TLS 1.3 verwenden", // AI translation
+    "downloadArtistOtherCheckBox":  "Andere Künstler — Sonstiges / Cover-Versionen herunterladen", // AI translation
+    "clearOldLogsCheckBox":         "Alte Protokolle beim Start löschen", // AI translation
+    "dontSaveArtworkToDiskCheckBox":"Kunstwerke nicht auf der Festplatte speichern", // AI translation
+    "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Download, Andere", // AI translation
+    "downloadAllFromArtistCheckBox":"Alles vom Künstler herunterladen (kann mehr enthalten)",  // AI translation
+    "useItemPosInPlaylistCheckBox": "Elementpositionen anstelle der Album-Tracknummern in Dateinamen verwenden", // AI translation
+    "showTipsCheckBox":             "Tipps anzeigen", // AI translation
+    "logFailedDownloadsCheckBox":   "Fehlgeschlagene Downloads in 'error.txt' im Download-Ordner protokollieren", // AI translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",
@@ -115,7 +115,7 @@
     "downloadOutputExpired":        "DEIN ABONNEMENT IST ABGELAUFEN!, ES WERDEN NUR 30-SEKUNDEN AUSSCHNITTE HERUNTERGELADEN!",
     "downloadOutputPath":           "Download Pfad:",
     "downloadOutputNoPath":         "Es wurde kein Pfad gesetzt! Denke daran einen Ordner auszuwählen!",
-    "downloadOutputNoUrl":          "Titel {TrackNumber} steht zum Herunterladen nicht zur Verfügung. Wird übersprungen.", // ChatGPT translation.
+    "downloadOutputNoUrl":          "Titel {TrackNumber} steht zum Herunterladen nicht zur Verfügung. Wird übersprungen.", // AI translation
     "downloadOutputAPIError":       "Qobuz-API Fehler, ist dieses Album in deiner Region verfügbar?",
     "downloadOutputNotImplemented": "Noch nicht Implementiert oder nicht verstanden, hast du dich vielleicht vertippt?",
     "downloadOutputCheckLink":      "Überprüfe Link…",
@@ -128,26 +128,27 @@
     "downloadOutputDownloading":    "Lädt Herunter",
     "downloadOutputDone":           "FERTIG",
     "downloadOutputCompleted":      "DOWNLOAD FERTIG!",
-    "downloadAborted":              "DOWNLOAD VOM BENUTZER ABGEBROCHEN.", // ChatGPT translation.
-    "albumSkipped":                 "ALBUM VOM BENUTZER ÜBERSPRUNGEN.", // ChatGPT translation.
+    "downloadAborted":              "DOWNLOAD VOM BENUTZER ABGEBROCHEN.", // AI translation
+    "albumSkipped":                 "ALBUM VOM BENUTZER ÜBERSPRUNGEN.", // AI translation
     "progressLabelInactive":        "Kein Download aktiv",
     "progressLabelActive":          "Download Fortschritt",
-    "formClosingWarning":           "Ein Download läuft, möchten Sie wirklich beenden?", // ChatGPT translation.
-    "artist":                       "Künstler", // ChatGPT translation.
-    "artists":                      "Künstler", // ChatGPT translation.
-    "album":                        "Album", // ChatGPT translation.
-    "albums":                       "Alben", // ChatGPT translation.
-    "tracks":                       "Tracks", // ChatGPT translation.
-    "track":                        "Einzeltitel", // ChatGPT translation.
-    "playlist":                     "Wiedergabeliste", // ChatGPT translation.
-    "recordLabel":                  "Plattenlabel", // ChatGPT translation.
-    "user":                         "Benutzer", // ChatGPT translation.
-    "invalidUrl":                   "Ungültige URL: {0}", // ChatGPT translation.
-    "copyToClipboard":              "In die Zwischenablage kopieren", // ChatGPT translation.
-    "copyThisRowToClipboard":       "Diese Zeile in die Zwischenablage kopieren", // ChatGPT translation.
-    "copySelectedRowsToClipboard":  "Ausgewählte Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
-    "copyAllRowsToClipboard":       "Alle Zeilen in die Zwischenablage kopieren", // ChatGPT translation.
-    "downloadFromArtistWarning":    "Bitte wählen Sie mindestens einen Download-Typ für Künstler aus", // ChatGPT translation.
+    "formClosingWarning":           "Ein Download läuft, möchten Sie wirklich beenden?", // AI translation
+    "artist":                       "Künstler", // AI translation
+    "artists":                      "Künstler", // AI translation
+    "album":                        "Album", // AI translation
+    "albums":                       "Alben", // AI translation
+    "tracks":                       "Tracks", // AI translation
+    "track":                        "Einzeltitel", // AI translation
+    "playlist":                     "Wiedergabeliste", // AI translation
+    "recordLabel":                  "Plattenlabel", // AI translation
+    "user":                         "Benutzer", // AI translation
+    "completed":                    "abgeschlossen", // AI translation
+    "invalidUrl":                   "Ungültige URL: {0}", // AI translation
+    "copyToClipboard":              "In die Zwischenablage kopieren", // AI translation
+    "copyThisRowToClipboard":       "Diese Zeile in die Zwischenablage kopieren", // AI translation
+    "copySelectedRowsToClipboard":  "Ausgewählte Zeilen in die Zwischenablage kopieren", // AI translation
+    "copyAllRowsToClipboard":       "Alle Zeilen in die Zwischenablage kopieren", // AI translation
+    "downloadFromArtistWarning":    "Bitte wählen Sie mindestens einen Download-Typ für Künstler aus", // AI translation
 
     "_SECTION5_":                   "=================== LOGIN FORM BUTTONS ===================",
     "closeAboutButton":             "SCHLIEßEN",
@@ -178,46 +179,46 @@
     "updateNotification":           "Eine neue Version von QBDLX ist verfügbar!\r\n\r\nInstallierte Version - {currentVersion}\r\nNeueste Version - {newVersion}\r\n\r\nÄnderungsliste\r\n==============\r\n{changelog}\r\n==============\r\n\r\nMöchtest du aktualisieren?",
     "updateNotificationTitle":      "QBDLX | Update Verfügbar",
 
-    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
-    "batchDownloadDlgText":         "Stapel-Download", // ChatGPT translation.
-    "batchDownloadLabel":           "Fügen Sie eine oder mehrere Qobuz-URLs ein…", // ChatGPT translation.
-    "closeBatchDownloadbutton":     "SCHLIESSEN / ABBRECHEN", // ChatGPT translation.
-    "getAllBatchDownloadButton":    "ALLES HERUNTERLADEN", // ChatGPT translation.
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // AI translation
+    "batchDownloadDlgText":         "Stapel-Download", // AI translation
+    "batchDownloadLabel":           "Fügen Sie eine oder mehrere Qobuz-URLs ein…", // AI translation
+    "closeBatchDownloadbutton":     "SCHLIESSEN / ABBRECHEN", // AI translation
+    "getAllBatchDownloadButton":    "ALLES HERUNTERLADEN", // AI translation
 
-    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
-    "showWindowCmItem":             "Fenster anzeigen", // ChatGPT translation.
-    "hideWindowCmItem":             "Fenster ausblenden", // ChatGPT translation.
-    "closeProgramCmItem":           "Programm schließen", // ChatGPT translation.
-    "batchDownloadFinished":        "Stapel-Download abgeschlossen!", // ChatGPT translation.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // AI translation
+    "showWindowCmItem":             "Fenster anzeigen", // AI translation
+    "hideWindowCmItem":             "Fenster ausblenden", // AI translation
+    "closeProgramCmItem":           "Programm schließen", // AI translation
+    "batchDownloadFinished":        "Stapel-Download abgeschlossen!", // AI translation
 
-    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
-    "tagLibSharpMissingMsg":        "taglib-sharp.dll fehlt im Ordner!\r\nBitte stellen Sie sicher, // ChatGPT translation.dass die DLL sich im gleichen Ordner wie {exeName} befindet!",
-    "themeFileNotFoundMsg":         "Design-Datei nicht gefunden.", // ChatGPT translation.
-    "themeNameNotFoundMsg":         "Design '{themeName}' nicht gefunden.", // ChatGPT translation.
-    "selectedLangFileNotfoundMsg":  "Ausgewählte Sprachdatei nicht gefunden.", // ChatGPT translation.
-    "downloadOutputDontExistMsg":   "Der angegebene Pfad existiert nicht.", // ChatGPT translation.
-    "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'", // ChatGPT translation.
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // AI translation
+    "tagLibSharpMissingMsg":        "taglib-sharp.dll fehlt im Ordner!\r\nBitte stellen Sie sicher, // AI translationdass die DLL sich im gleichen Ordner wie {exeName} befindet!",
+    "themeFileNotFoundMsg":         "Design-Datei nicht gefunden.", // AI translation
+    "themeNameNotFoundMsg":         "Design '{themeName}' nicht gefunden.", // AI translation
+    "selectedLangFileNotfoundMsg":  "Ausgewählte Sprachdatei nicht gefunden.", // AI translation
+    "downloadOutputDontExistMsg":   "Der angegebene Pfad existiert nicht.", // AI translation
+    "notEnoughFreeSpaceMsg":        "Nicht genug freier Speicherplatz auf dem Laufwerk: '{pathRoot}'", // AI translation
 
     "_SECTION12_":                  "=================== TIPS ===================",
-    "nextTipLabel":                 "Nächster Tipp ⭢", // ChatGPT translation
-    "prevTipLabel":                 "⭠ Vorheriger Tipp", // ChatGPT translation
-    "tip1":                         "Tipp Nr. 1: Wusstest du, dass du mit der rechten Maustaste auf die Zeilen der Suchergebnisse klicken kannst, um die Links der ausgewählten Elemente zu kopieren?", // ChatGPT translation
-    "tip2":                         "Tipp Nr. 2: Wusstest du, dass das Programm beim Verwenden eines Links eines Plattenlabels bis zu 10.000 Alben dieses Labels abrufen kann? Dieses Limit haben nicht wir festgelegt! Aber das ist doch mehr als genug, oder? 👍", // ChatGPT translation
-    "tip3":                         "Tipp Nr. 3: Wusstest du, dass du dein bevorzugtes visuelles Design anpassen kannst, indem du die Datei themes.json mit dem Editor bearbeitest? Worauf wartest du noch?!", // ChatGPT translation
-    "tip4":                         "Tipp Nr. 4: Wusstest du, dass alle Dateien in einen einzigen Ordner heruntergeladen werden, wenn du den Text der Künstler- und Albumvorlage leer lässt? Aber Vorsicht mit der Datei cover.jpg!", // ChatGPT translation
-    "tip5":                         "Tipp Nr. 5: Wusstest du, dass du im Downloader oder im Sucher auf ein Cover klicken kannst, um es in voller Größe anzuzeigen?", // ChatGPT translation
-    "tip6":                         "Tipp Nr. 6: Wusstest du, dass du im Sucher die Kennung eines Songs oder eines Albums verwenden kannst, um genau ein exaktes Ergebnis zu erhalten?", // ChatGPT translation
-    "tip7":                         "Tipp Nr. 7: Wusstest du, dass du mehrere Instanzen des Programms öffnen kannst, um Inhalte parallel und gleichzeitig an verschiedenen Speicherorten herunterzuladen?", // ChatGPT translation
-    "tip8":                         "Tipp Nr. 8: Wusstest du, dass ein Album Songs mit identischen Namen enthalten kann? Um Konflikte zu vermeiden, vergiss nicht, die Platzhalter %TrackNumber% oder %TrackId% zu verwenden.", // ChatGPT translation
-    "tip9":                         "Tipp Nr. 9: Wusstest du, dass du mithilfe der Download-Pfadvorlagen unterschiedliche Ordner nach Künstler, Jahr oder Plattenlabel erstellen kannst? So bleibt deine Bibliothek automatisch immer ordentlich.", // ChatGPT translation
-    "tip10":                        "Tipp Nr. 10: Wusstest du, dass du im Sucher deine Suchbegriffe in doppelte Anführungszeichen setzen kannst, um Ergebnisse zu finden, die exakt mit der Phrase übereinstimmen?", // ChatGPT translation
-    "tip11":                        "Tipp Nr. 11: Wusstest du, dass du diese Tipps in den erweiterten Einstellungen des Programms deaktivieren kannst?", // ChatGPT translation
-    "tip12":                        "Tipp Nr. 12: Wusstest du, dass es dir hilft, etwa 0,08 Kalorien zu verbrennen, wenn du vor dem Download 5 Sekunden lang mit dem Albumcover sprichst, um dich ein wenig muskulöser zu fühlen? 💪", // ChatGPT translation
-    "tip13":                        "Tipp Nr. 13: Wusstest du, dass du dich lieber darauf konzentrieren solltest, deine Lieblingsmusik herunterzuladen, anstatt diese dummen Tipps zu lesen? Aber dann würdest du den Spaß verpassen … 😏", // ChatGPT translation
-    "tip14":                        "Kuriosität Nr. 1: Wusstest du, dass Elvis Presley und Michael Jackson die Nutzung dieses Programms gutheißen? Und wenn du mir nicht glaubst, frag sie selbst! 😜", // ChatGPT translation
-    "tip15":                        "Kuriosität Nr. 2: Wusstest du, dass es Menschen gibt, die während der Nutzung dieses Programms gestorben sind? 😱 … vor Langeweile, während sie darauf warteten, dass ein komplettes Plattenlabel vollständig heruntergeladen wird. 👻", // ChatGPT translation
-    "tip16":                        "Kuriosität Nr. 3: Wusstest du, dass es helfen könnte, wenn du 10 Sekunden lang den Button „Herunterladen“ anstarrst, damit die Downloads schneller werden … zumindest in deiner Vorstellung? 👀", // ChatGPT translation
-    "tip17":                        "Kuriosität Nr. 4: Wusstest du, dass Applaus nach jedem erfolgreichen Download dabei hilft, das Programm für den nächsten Song zu motivieren? 👏", // ChatGPT translation
-    "tip18":                        "Kuriosität Nr. 5: Wusstest du, dass die Autoren dieses Programms keine Verantwortung für mögliche Gehirn- und Hörschäden übernehmen, wenn du im Sucher nach \"Terrorcore\" suchst? 😵💉" // ChatGPT translation
+    "nextTipLabel":                 "Nächster Tipp ⭢", // AI translation
+    "prevTipLabel":                 "⭠ Vorheriger Tipp", // AI translation
+    "tip1":                         "Tipp Nr. 1: Wusstest du, dass du mit der rechten Maustaste auf die Zeilen der Suchergebnisse klicken kannst, um die Links der ausgewählten Elemente zu kopieren?", // AI translation
+    "tip2":                         "Tipp Nr. 2: Wusstest du, dass das Programm beim Verwenden eines Links eines Plattenlabels bis zu 10.000 Alben dieses Labels abrufen kann? Dieses Limit haben nicht wir festgelegt! Aber das ist doch mehr als genug, oder? 👍", // AI translation
+    "tip3":                         "Tipp Nr. 3: Wusstest du, dass du dein bevorzugtes visuelles Design anpassen kannst, indem du die Datei themes.json mit dem Editor bearbeitest? Worauf wartest du noch?!", // AI translation
+    "tip4":                         "Tipp Nr. 4: Wusstest du, dass alle Dateien in einen einzigen Ordner heruntergeladen werden, wenn du den Text der Künstler- und Albumvorlage leer lässt? Aber Vorsicht mit der Datei cover.jpg!", // AI translation
+    "tip5":                         "Tipp Nr. 5: Wusstest du, dass du im Downloader oder im Sucher auf ein Cover klicken kannst, um es in voller Größe anzuzeigen?", // AI translation
+    "tip6":                         "Tipp Nr. 6: Wusstest du, dass du im Sucher die Kennung eines Songs oder eines Albums verwenden kannst, um genau ein exaktes Ergebnis zu erhalten?", // AI translation
+    "tip7":                         "Tipp Nr. 7: Wusstest du, dass du mehrere Instanzen des Programms öffnen kannst, um Inhalte parallel und gleichzeitig an verschiedenen Speicherorten herunterzuladen?", // AI translation
+    "tip8":                         "Tipp Nr. 8: Wusstest du, dass ein Album Songs mit identischen Namen enthalten kann? Um Konflikte zu vermeiden, vergiss nicht, die Platzhalter %TrackNumber% oder %TrackId% zu verwenden.", // AI translation
+    "tip9":                         "Tipp Nr. 9: Wusstest du, dass du mithilfe der Download-Pfadvorlagen unterschiedliche Ordner nach Künstler, Jahr oder Plattenlabel erstellen kannst? So bleibt deine Bibliothek automatisch immer ordentlich.", // AI translation
+    "tip10":                        "Tipp Nr. 10: Wusstest du, dass du im Sucher deine Suchbegriffe in doppelte Anführungszeichen setzen kannst, um Ergebnisse zu finden, die exakt mit der Phrase übereinstimmen?", // AI translation
+    "tip11":                        "Tipp Nr. 11: Wusstest du, dass du diese Tipps in den erweiterten Einstellungen des Programms deaktivieren kannst?", // AI translation
+    "tip12":                        "Tipp Nr. 12: Wusstest du, dass es dir hilft, etwa 0,08 Kalorien zu verbrennen, wenn du vor dem Download 5 Sekunden lang mit dem Albumcover sprichst, um dich ein wenig muskulöser zu fühlen? 💪", // AI translation
+    "tip13":                        "Tipp Nr. 13: Wusstest du, dass du dich lieber darauf konzentrieren solltest, deine Lieblingsmusik herunterzuladen, anstatt diese dummen Tipps zu lesen? Aber dann würdest du den Spaß verpassen … 😏", // AI translation
+    "tip14":                        "Kuriosität Nr. 1: Wusstest du, dass Elvis Presley und Michael Jackson die Nutzung dieses Programms gutheißen? Und wenn du mir nicht glaubst, frag sie selbst! 😜", // AI translation
+    "tip15":                        "Kuriosität Nr. 2: Wusstest du, dass es Menschen gibt, die während der Nutzung dieses Programms gestorben sind? 😱 … vor Langeweile, während sie darauf warteten, dass ein komplettes Plattenlabel vollständig heruntergeladen wird. 👻", // AI translation
+    "tip16":                        "Kuriosität Nr. 3: Wusstest du, dass es helfen könnte, wenn du 10 Sekunden lang den Button „Herunterladen“ anstarrst, damit die Downloads schneller werden … zumindest in deiner Vorstellung? 👀", // AI translation
+    "tip17":                        "Kuriosität Nr. 4: Wusstest du, dass Applaus nach jedem erfolgreichen Download dabei hilft, das Programm für den nächsten Song zu motivieren? 👏", // AI translation
+    "tip18":                        "Kuriosität Nr. 5: Wusstest du, dass die Autoren dieses Programms keine Verantwortung für mögliche Gehirn- und Hörschäden übernehmen, wenn du im Sucher nach \"Terrorcore\" suchst? 😵💉" // AI translation
 
 }

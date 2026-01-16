@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 15, 2026, 11:06PM MSK",
+    "TranslationUpdatedOn":         "January 16, 2026, 11:06PM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -25,9 +25,9 @@
     "selectAllRowsButton":          "Выбрать все строки",
     "deselectAllRowsButton":        "Отменить выбор",
     "batchDownloadRowsButton":      "ПАКЕТНАЯ ЗАГРУЗКА ВЫБРАННЫХ СТРОК",
-    "skipDuplicatesButton":         "Игнорировать / Пропустить загрузку", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "Автоматически переименовывать", // ChatGPT translation
-    "overwriteDuplicatesButton":    "Перезаписать существующие файлы", // ChatGPT translation
+    "skipDuplicatesButton":         "Игнорировать / Пропустить загрузку", // AI translation
+    "autoRenameDuplicatesButton":   "Автоматически переименовывать", // AI translation
+    "overwriteDuplicatesButton":    "Перезаписать существующие файлы", // AI translation
 
     "_SECTION2_":                   "=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",
     "advancedOptionsLabel":         "РАСШИРЕННЫЕ НАСТРОЙКИ",
@@ -64,7 +64,7 @@
     "primaryListSeparatorLabel":    "Основной разделит. списка",
     "listEndSeparatorLabel":        "Разделитель в конце списка",
     "playlistSectionLabel":         "ПАРАМЕТРЫ ПЛЕЙЛИСТА",
-    "duplicateFilesLabel":          "Дубликаты файлов", // ChatGPT translation
+    "duplicateFilesLabel":          "Дубликаты файлов", // AI translation
 
     "_SECTION3_":                   "=================== ЧЕКБОКСЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumArtistCheckBox":          "Исполнитель альбома",
@@ -101,7 +101,7 @@
     "downloadAllFromArtistCheckBox":"Загрузить всё у исполнителя (может включать доп. контент)",
     "useItemPosInPlaylistCheckBox": "В именах файлов использовать нумерацию из плейлиста (вместо нумерации из альбома)",
     "showTipsCheckBox":             "Показать советы",
-    "logFailedDownloadsCheckBox":   "Записывать неудачные загрузки в 'error.txt' в папке загрузки", // ChatGPT translation
+    "logFailedDownloadsCheckBox":   "Записывать неудачные загрузки в 'error.txt' в папке загрузки", // AI translation
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",
@@ -142,6 +142,7 @@
     "playlist":                     "Плейлист",
     "recordLabel":                  "Лейбл",
     "user":                         "Пользователь",
+    "completed":                    "завершено",
     "invalidUrl":                   "Неверный URL: {0}",
     "copyToClipboard":              "Копировать в буфер обмена",
     "copyThisRowToClipboard":       "Копировать эту строку в буфер обмена",

@@ -375,12 +375,12 @@ namespace QobuzDownloaderX.Helpers
         public const string defaultLanguage = @"{
 {
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 15, 2026, 09:22AM EST"",
+    ""TranslationUpdatedOn"":         ""January 16, 2026, 09:22AM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
     ""additionalSettingsButton"":     ""Additional Settings"",
-    ""aboutButton"":                  ""ABOUT…"",
+    ""aboutButton"":                  ""ABOUT"",
     ""closeAdditionalButton"":        ""Back to Settings"",
     ""downloadButton"":               ""GET"",
     ""batchDownloadButton"":          ""GET BATCH"",
@@ -400,9 +400,9 @@ namespace QobuzDownloaderX.Helpers
     ""selectAllRowsButton"":          ""Select all rows"",
     ""deselectAllRowsButton"":        ""Deselect all rows"",
     ""batchDownloadRowsButton"":      ""BATCH DOWNLOAD SELECTED ROWS"",
-    ""skipDuplicatesButton"":         ""Ignore / skip download"", // ChatGPT translation
-    ""autoRenameDuplicatesButton"":   ""Automatically rename incoming file"", // ChatGPT translation
-    ""overwriteDuplicatesButton"":    ""Overwrite existing file"", // ChatGPT translation
+    ""skipDuplicatesButton"":         ""Ignore / skip download"",
+    ""autoRenameDuplicatesButton"":   ""Automatically rename incoming file"",
+    ""overwriteDuplicatesButton"":    ""Overwrite existing file"",
 
     ""_SECTION2_"":                   ""=================== MAIN FORM LABELS ==================="",
     ""advancedOptionsLabel"":         ""ADVANCED OPTIONS"",
@@ -517,6 +517,7 @@ namespace QobuzDownloaderX.Helpers
     ""playlist"":                     ""Playlist"",
     ""recordLabel"":                  ""Record label"",
     ""user"":                         ""User"",
+    ""completed"":                    ""completed"",
     ""invalidUrl"":                   ""Invalid URL: {0}"",
     ""copyToClipboard"":              ""Copy to clipboard"",
     ""copyThisRowToClipboard"":       ""Copy this row to clipboard"",

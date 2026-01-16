@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 15, 2026, 09:22AM EST",
+    "TranslationUpdatedOn":         "January 16, 2026, 09:22AM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -142,6 +142,7 @@
     "playlist":                     "Playlist",
     "recordLabel":                  "Record label",
     "user":                         "User",
+    "completed":                    "completed",
     "invalidUrl":                   "Invalid URL: {0}",
     "copyToClipboard":              "Copy to clipboard",
     "copyThisRowToClipboard":       "Copy this row to clipboard",

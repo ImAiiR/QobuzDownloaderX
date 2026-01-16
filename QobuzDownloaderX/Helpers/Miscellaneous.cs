@@ -1221,8 +1221,8 @@ namespace QobuzDownloaderX.Helpers
             f.batchDownloadProgressCountLabel.Visible = true;
             TaskbarHelper.SetProgressState(TaskbarProgressState.Normal);
             TaskbarHelper.SetProgressValue(0, batchUrlsCount);
-            f.batchDownloadProgressCountLabel.Text = $"{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
-            f.notifyIcon1.Text = $"QobuzDLX\r\n\r\n{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+            f.batchDownloadProgressCountLabel.Text = $"{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount} {f.languageManager.GetTranslation("completed")}";
+            f.notifyIcon1.Text = $"QobuzDLX\r\n\r\n{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount} {f.languageManager.GetTranslation("completed")}";
             qbdlxForm.isBatchDownloadRunning = true;
 
             var stats = new DownloadStats
@@ -1252,8 +1252,8 @@ namespace QobuzDownloaderX.Helpers
                 {
                     break;
                 }
-                f.batchDownloadProgressCountLabel.Text = $"{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
-                f.notifyIcon1.Text = $"QobuzDLX\r\n\r\n{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount}";
+                f.batchDownloadProgressCountLabel.Text = $"{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount} {f.languageManager.GetTranslation("completed")}";
+                f.notifyIcon1.Text = $"QobuzDLX\r\n\r\n{f.languageManager.GetTranslation("batchDownloadDlgText")} | {batchUrlsCurrentIndex} / {batchUrlsCount} {f.languageManager.GetTranslation("completed")}";
                 TaskbarHelper.SetProgressValue(batchUrlsCurrentIndex, batchUrlsCount);
             }
             if (!f.Visible) f.notifyIcon1.ShowBalloonTip(5000, "QobuzDLX", f.languageManager.GetTranslation("batchDownloadFinished"), ToolTipIcon.Info);
@@ -1384,7 +1384,7 @@ namespace QobuzDownloaderX.Helpers
                         f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                         {
                             f.progressItemsCountLabel.Text =
-                                $"{f.languageManager.GetTranslation("album")} | {t.total:N0} {albumTrackLabel} ({t.current:N0}/{t.total:N0})";
+                                $"{f.languageManager.GetTranslation("album")} | {t.total:N0} {albumTrackLabel} ({t.current:N0}/{t.total:N0} {f.languageManager.GetTranslation("completed")})";
                         }));
                     });
 
@@ -1442,15 +1442,12 @@ namespace QobuzDownloaderX.Helpers
                     f.QoPlaylist = f.getInfo.QoPlaylist;
                     Miscellaneous.updatePlaylistInfoLabels(f, f.QoPlaylist);
                     int totalTracksPlaylist = f.QoPlaylist.Tracks.Items.Count;
-                    string playlistTrackLabel = totalTracksPlaylist == 1
-                        ? f.languageManager.GetTranslation("track")
-                        : f.languageManager.GetTranslation("tracks");
                     int trackIndexPlaylist = 0;
                     foreach (var item in f.QoPlaylist.Tracks.Items)
                     {
                         if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexPlaylist, totalTracksPlaylist);
-                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0}/{totalTracksPlaylist:N0} {playlistTrackLabel}";
+                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(f.languageManager.GetTranslation("track"))} {trackIndexPlaylist:N0}/{totalTracksPlaylist:N0} {f.languageManager.GetTranslation("completed")}";
 
                         if (Settings.Default.useItemPosInPlaylist)
                         {
@@ -1483,7 +1480,7 @@ namespace QobuzDownloaderX.Helpers
                             continue;
                         }
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexPlaylist, totalTracksPlaylist);
-                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {trackIndexPlaylist:N0}/{totalTracksPlaylist:N0} {playlistTrackLabel}";
+                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("playlist")} | {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(f.languageManager.GetTranslation("track"))} {trackIndexPlaylist:N0}/{totalTracksPlaylist:N0} {f.languageManager.GetTranslation("completed")}";
 
                     }
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
@@ -1537,7 +1534,7 @@ namespace QobuzDownloaderX.Helpers
                             f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                             {
                                 f.progressItemsCountLabel.Text =
-                                    $"{f.languageManager.GetTranslation("artist")} | {f.languageManager.GetTranslation("album")} {albumIndexArtist:N0}/{totalAlbumsArtist:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
+                                    $"{f.languageManager.GetTranslation("artist")} | {f.languageManager.GetTranslation("album")} {albumIndexArtist:N0}/{totalAlbumsArtist:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0} {f.languageManager.GetTranslation("completed")})";
                             }));
                         });
 
@@ -1571,7 +1568,7 @@ namespace QobuzDownloaderX.Helpers
                    
                     // Say the downloading is finished when it's completed.
                     if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(albumIndexArtist, totalAlbumsArtist);
-                    f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("artist")} | {f.languageManager.GetTranslation("album")} {albumIndexArtist:N0}/{totalAlbumsArtist:N0}";
+                    f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("artist")} | {f.languageManager.GetTranslation("album")} {albumIndexArtist:N0}/{totalAlbumsArtist:N0} {f.languageManager.GetTranslation("completed")}";
                     f.getInfo.outputText = qbdlxForm._qbdlxForm.downloadOutput.Text;
                     f.getInfo.updateDownloadOutput("\r\n" + f.downloadOutputCompleted);
                     f.progressLabel.Invoke(new Action(() => f.progressLabel.Text = f.progressLabelInactive));
@@ -1609,7 +1606,7 @@ namespace QobuzDownloaderX.Helpers
                             f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                             {
                                 f.progressItemsCountLabel.Text =
-                                    $"{f.languageManager.GetTranslation("recordLabel")} | {f.languageManager.GetTranslation("album")} {albumIndexLabel:N0}/{totalAlbumsLabel:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
+                                    $"{f.languageManager.GetTranslation("recordLabel")} | {f.languageManager.GetTranslation("album")} {albumIndexLabel:N0}/{totalAlbumsLabel:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0} {f.languageManager.GetTranslation("completed")})";
                             }));
                         });
 
@@ -1639,7 +1636,7 @@ namespace QobuzDownloaderX.Helpers
                             continue;
                         }
                         if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(albumIndexLabel, totalAlbumsLabel);
-                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("recordLabel")} | {f.languageManager.GetTranslation("album")} {albumIndexLabel:N0}/{totalAlbumsLabel:N0}";
+                        f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("recordLabel")} | {f.languageManager.GetTranslation("album")} {albumIndexLabel:N0}/{totalAlbumsLabel:N0} {f.languageManager.GetTranslation("completed")}";
                     }
                     if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                    
@@ -1683,7 +1680,7 @@ namespace QobuzDownloaderX.Helpers
                                 f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                                 {
                                     f.progressItemsCountLabel.Text =
-                                        $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("album")} {albumIndexUser:N0}/{totalAlbumsUser:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
+                                        $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("album")} {albumIndexUser:N0}/{totalAlbumsUser:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0} {f.languageManager.GetTranslation("completed")})";
                                 }));
                             });
 
@@ -1713,7 +1710,7 @@ namespace QobuzDownloaderX.Helpers
                             {
                                 continue;
                             }
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("album")} {albumIndexUser:N0}/{totalAlbumsUser:N0}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("album")} {albumIndexUser:N0}/{totalAlbumsUser:N0} {f.languageManager.GetTranslation("completed")}";
                         }
                     }
                     else if (qobuzLinkId.Contains("tracks"))
@@ -1731,21 +1728,18 @@ namespace QobuzDownloaderX.Helpers
 
                         f.QoFavorites = f.getInfo.QoFavorites;
                         int totalTracksUser = f.QoFavorites.Tracks.Items.Count;
-                        string userTracksLabel = totalTracksUser == 1
-                            ? f.languageManager.GetTranslation("track")
-                            : f.languageManager.GetTranslation("tracks");
                         int trackIndexUser = 0;
 
                         if (totalTracksUser == 0)
                         {
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | 0 {userTracksLabel}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | 0 {f.languageManager.GetTranslation("tracks")}";
                         }
 
                         foreach (var item in f.QoFavorites.Tracks.Items)
                         {
                             if (abortToken.IsCancellationRequested) { abortToken.ThrowIfCancellationRequested(); }
                             if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexUser, totalTracksUser);
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {trackIndexUser:N0}/{totalTracksUser:N0} {userTracksLabel}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(f.languageManager.GetTranslation("track"))} {trackIndexUser:N0}/{totalTracksUser:N0} {f.languageManager.GetTranslation("completed")}";
 
                             trackIndexUser++;
                             try
@@ -1774,7 +1768,7 @@ namespace QobuzDownloaderX.Helpers
                                 continue;
                             }
                             if (!qbdlxForm.isBatchDownloadRunning) TaskbarHelper.SetProgressValue(trackIndexUser, totalTracksUser);
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {trackIndexUser:N0}/{totalTracksUser:N0} {userTracksLabel}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {CultureInfo.CurrentCulture.TextInfo.ToTitleCase(f.languageManager.GetTranslation("track"))} {trackIndexUser:N0}/{totalTracksUser:N0} {f.languageManager.GetTranslation("completed")}";
                         }
                     }
                     else if (qobuzLinkId.Contains("artists"))
@@ -1797,7 +1791,7 @@ namespace QobuzDownloaderX.Helpers
 
                         if (totalAlbumsUserArtists == 0)
                         {
-                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | 0 {f.languageManager.GetTranslation("artists")}";
+                            f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | 0 {f.languageManager.GetTranslation("albums")}";
                         }
 
                         var artistInfoCache = new Dictionary<string, Artist>();
@@ -1856,7 +1850,7 @@ namespace QobuzDownloaderX.Helpers
                                         f.progressItemsCountLabel.BeginInvoke(new Action(() =>
                                         {
                                             f.progressItemsCountLabel.Text =
-                                                $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("artist")} {indexUserArtist:N0}/{totalArtists:N0} | {f.languageManager.GetTranslation("album")} {albumIndexUserArtist:N0}/{totalAlbumsUserArtists:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0})";
+                                                $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("artist")} {indexUserArtist:N0}/{totalArtists:N0} | {f.languageManager.GetTranslation("album")} {albumIndexUserArtist:N0}/{totalAlbumsUserArtists:N0} ({f.languageManager.GetTranslation("track")} {tuple.current:N0}/{tuple.total:N0} {f.languageManager.GetTranslation("completed")})";
                                         }));
                                     });
 
@@ -1887,7 +1881,7 @@ namespace QobuzDownloaderX.Helpers
                                         continue;
                                     }
                                 }
-                                f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("artist")} {indexUserArtist:N0}/{totalArtists:N0} | {f.languageManager.GetTranslation("album")} {albumIndexUserArtist:N0}/{totalAlbumsUserArtists:N0}";
+                                f.progressItemsCountLabel.Text = $"{f.languageManager.GetTranslation("user")} | {f.languageManager.GetTranslation("artist")} {indexUserArtist:N0}/{totalArtists:N0} | {f.languageManager.GetTranslation("album")} {albumIndexUserArtist:N0}/{totalAlbumsUserArtists:N0} {f.languageManager.GetTranslation("completed")}";
                             }
                             catch
                             {

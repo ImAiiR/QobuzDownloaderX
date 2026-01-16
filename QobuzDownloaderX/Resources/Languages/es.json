@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 15, 2026, 10:17AM UTC",
+    "TranslationUpdatedOn":         "January 16, 2026, 10:17AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -25,9 +25,9 @@
     "selectAllRowsButton":          "Seleccionar todo",
     "deselectAllRowsButton":        "Deseleccionar todo",
     "batchDownloadRowsButton":      "DESCARGAR LAS FILAS SELECCIONADAS",
-    "skipDuplicatesButton":         "Ignorar / omitir descarga", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "Renombrar automáticamente el archivo entrante", // ChatGPT translation
-    "overwriteDuplicatesButton":    "Sobrescribir el archivo existente", // ChatGPT translation
+    "skipDuplicatesButton":         "Ignorar / omitir descarga",
+    "autoRenameDuplicatesButton":   "Renombrar automáticamente el archivo entrante",
+    "overwriteDuplicatesButton":    "Sobrescribir el archivo existente",
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",
@@ -64,7 +64,7 @@
     "primaryListSeparatorLabel":    "Separador principal de lista",
     "listEndSeparatorLabel":        "Separador final de lista",
     "playlistSectionLabel":         "OPCIONES DE LISTA DE REPRODUCCIÓN",
-    "duplicateFilesLabel":          "Archivos duplicados", // ChatGPT translation
+    "duplicateFilesLabel":          "Archivos duplicados",
 
     "_SECTION3_":                   "=================== CASILLAS (CHECKBOX) DEL FORM PRINCIPAL ===================",
     "albumArtistCheckBox":          "Artista de álbum",
@@ -142,6 +142,7 @@
     "playlist":                     "Lista de reproducción",
     "recordLabel":                  "Sello discográfico",
     "user":                         "Usuario",
+    "completed":                    "completado",
     "invalidUrl":                   "URL inválida: {0}",
     "copyToClipboard":              "Copiar al portapapeles",
     "copyThisRowToClipboard":       "Copiar esta fila al portapapeles",

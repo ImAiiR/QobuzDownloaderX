@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 15, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 16, 2026, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -8,26 +8,26 @@
     "aboutButton":                  "关于…",
     "closeAdditionalButton":        "返回设置",
     "downloadButton":               "获取",
-    "batchDownloadButton":          "批量获取", // ChatGPT translation.
-    "abortButton":                  "中止", // ChatGPT translation.
-    "skipButton":                   "跳过", // ChatGPT translation.
+    "batchDownloadButton":          "批量获取", // AI translation
+    "abortButton":                  "中止", // AI translation
+    "skipButton":                   "跳过", // AI translation
     "downloaderButton":             "下载器",
     "logoutButton":                 "退出登录",
     "openFolderButton":             "打开文件夹",
     "qualitySelectButton":          "音质选择器",
     "saveTemplatesButton":          "保存",
-    "resetTemplatesButton":         "重置", // ChatGPT translation.
+    "resetTemplatesButton":         "重置", // AI translation
     "searchButton":                 "搜索",
     "searchAlbumsButton":           "搜专辑",
     "searchTracksButton":           "搜曲目",
     "selectFolderButton":           "选择文件夹",
     "settingsButton":               "设置",
-    "selectAllRowsButton":          "全选行", // ChatGPT translation.
-    "deselectAllRowsButton":        "取消选择所有行", // ChatGPT translation.
-    "batchDownloadRowsButton":      "批量下载选中的行", // ChatGPT translation.
-    "skipDuplicatesButton":         "忽略 / 跳过下载", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "自动重命名", // ChatGPT translation
-    "overwriteDuplicatesButton":    "覆盖现有文件", // ChatGPT translation
+    "selectAllRowsButton":          "全选行", // AI translation
+    "deselectAllRowsButton":        "取消选择所有行", // AI translation
+    "batchDownloadRowsButton":      "批量下载选中的行", // AI translation
+    "skipDuplicatesButton":         "忽略 / 跳过下载", // AI translation
+    "autoRenameDuplicatesButton":   "自动重命名", // AI translation
+    "overwriteDuplicatesButton":    "覆盖现有文件", // AI translation
 
     "_SECTION2_":                   "=================== 主表单标签 ===================",
     "advancedOptionsLabel":         "高级选项",
@@ -46,25 +46,25 @@
     "templatesLabel":               "模板",
     "templatesListLabel":           "模板列表",
     "themeLabel":                   "当前主题",
-    "themeSectionLabel":            "视觉选项", // ChatGPT translation
-    "trackTemplateLabel":           "(默认) 曲目模板", // ChatGPT translation
-    "vaTrackTemplateLabel":         "(V/A) 曲目模板", // ChatGPT translation
+    "themeSectionLabel":            "视觉选项", // AI translation
+    "trackTemplateLabel":           "(默认) 曲目模板", // AI translation
+    "vaTrackTemplateLabel":         "(V/A) 曲目模板", // AI translation
     "userInfoLabel":                "用户信息",
     "welcomeLabel":                 "欢迎\r\n{username}",
-    "searchSortingLabel":           "排序方式：", // ChatGPT translation.
-    "sortReleaseDateLabel":         "发行日期", // ChatGPT translation.
-    "sortGenreLabel":               "类型", // ChatGPT translation.
-    "sortArtistNameLabel":          "艺术家名称", // ChatGPT translation.
-    "sortAlbumTrackNameLabel":      "专辑 / 曲目名称", // ChatGPT translation.
-    "sortingSearchResultsLabel":    "正在排序…", // ChatGPT translation.
-    "searchResultsCountLabel":      "结果", // ChatGPT translation.
-    "selectedRowsCountLabel":       "已选择 {0} 行", // ChatGPT translation.
-    "disclaimer":                   "免责声明 / 法律声明\n\n此应用程序使用 Qobuz API，但未经过 Qobuz 认证。\n\n本软件及其作者与 Qobuz 没有任何关联、认可或官方关系。使用本应用程序的风险由您自行承担。作者不对服务的准确性、可靠性或可用性提供任何保证，并且不对因使用本应用程序而造成的任何损失或数据丢失承担责任。\n\n使用本应用程序即表示您承认并接受该应用程序按“原样”提供，不附带任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。\n\n用户在访问 Qobuz API 或任何其他第三方服务时，有责任遵守所有适用法律、服务条款和使用限制。\n\n有关官方 Qobuz 服务和支持，请参阅 Qobuz 官方网站: https://www.qobuz.com/", // ChatGPT translation.
-    "downloadFromArtistLabel":      "从艺术家下载", // ChatGPT translation.
-    "primaryListSeparatorLabel":    "主列表分隔符", // ChatGPT translation.
-    "listEndSeparatorLabel":        "列表结束分隔符", // ChatGPT translation.
-    "playlistSectionLabel":         "播放列表选项", // ChatGPT translation.
-    "duplicateFilesLabel":          "重复文件", // ChatGPT translation
+    "searchSortingLabel":           "排序方式：", // AI translation
+    "sortReleaseDateLabel":         "发行日期", // AI translation
+    "sortGenreLabel":               "类型", // AI translation
+    "sortArtistNameLabel":          "艺术家名称", // AI translation
+    "sortAlbumTrackNameLabel":      "专辑 / 曲目名称", // AI translation
+    "sortingSearchResultsLabel":    "正在排序…", // AI translation
+    "searchResultsCountLabel":      "结果", // AI translation
+    "selectedRowsCountLabel":       "已选择 {0} 行", // AI translation
+    "disclaimer":                   "免责声明 / 法律声明\n\n此应用程序使用 Qobuz API，但未经过 Qobuz 认证。\n\n本软件及其作者与 Qobuz 没有任何关联、认可或官方关系。使用本应用程序的风险由您自行承担。作者不对服务的准确性、可靠性或可用性提供任何保证，并且不对因使用本应用程序而造成的任何损失或数据丢失承担责任。\n\n使用本应用程序即表示您承认并接受该应用程序按“原样”提供，不附带任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。\n\n用户在访问 Qobuz API 或任何其他第三方服务时，有责任遵守所有适用法律、服务条款和使用限制。\n\n有关官方 Qobuz 服务和支持，请参阅 Qobuz 官方网站: https://www.qobuz.com/", // AI translation
+    "downloadFromArtistLabel":      "从艺术家下载", // AI translation
+    "primaryListSeparatorLabel":    "主列表分隔符", // AI translation
+    "listEndSeparatorLabel":        "列表结束分隔符", // AI translation
+    "playlistSectionLabel":         "播放列表选项", // AI translation
+    "duplicateFilesLabel":          "重复文件", // AI translation
 
     "_SECTION3_":                   "=================== 主表单复选框 ===================",
     "albumArtistCheckBox":          "专辑艺术家",
@@ -86,22 +86,22 @@
     "labelCheckBox":                "唱片公司",
     "upcCheckBox":                  "UPC/条形码",
     "isrcCheckBox":                 "ISRC",
-    "urlCheckBox":                  "URL", // ChatGPT translation.
-    "mergeArtistNamesCheckBox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // ChatGPT translation.
+    "urlCheckBox":                  "URL", // AI translation
+    "mergeArtistNamesCheckBox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // AI translation
     "streamableCheckBox":           "歌曲流媒体可播性检查",
     "fixMD5sCheckBox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckBox":        "显示下载速度",
-    "sortAscendantCheckBox":        "升序", // ChatGPT translation.
-    "downloadGoodiesCheckBox":      "下载好礼", // ChatGPT translation.
-    "useTLS13CheckBox":             "使用 TLS 1.3", // ChatGPT translation.
-    "downloadArtistOther":          "下载艺术家 — 其他 / 翻唱歌曲", // ChatGPT translation.
-    "clearOldLogsCheckBox":         "启动时清除旧日志", // ChatGPT translation
-    "dontSaveArtworkToDiskCheckBox":"不要将艺术作品保存到磁盘", // ChatGPT translation
-    "downloadFromArtistListBox":    "专辑, EP/单曲, 现场, 合辑, 下载, 其他", // ChatGPT translation
-    "downloadAllFromArtistCheckBox":"从艺术家下载全部（可能包含更多）", // ChatGPT translation
-    "useItemPosInPlaylistCheckBox": "在文件名中使用项目位置而不是专辑曲目编号", // ChatGPT translation
-    "showTipsCheckBox":             "显示提示", // ChatGPT translation.
-    "logFailedDownloadsCheckBox":   "将失败的下载记录到下载文件夹中的 'error.txt'", // ChatGPT translation
+    "sortAscendantCheckBox":        "升序", // AI translation
+    "downloadGoodiesCheckBox":      "下载好礼", // AI translation
+    "useTLS13CheckBox":             "使用 TLS 1.3", // AI translation
+    "downloadArtistOther":          "下载艺术家 — 其他 / 翻唱歌曲", // AI translation
+    "clearOldLogsCheckBox":         "启动时清除旧日志", // AI translation
+    "dontSaveArtworkToDiskCheckBox":"不要将艺术作品保存到磁盘", // AI translation
+    "downloadFromArtistListBox":    "专辑, EP/单曲, 现场, 合辑, 下载, 其他", // AI translation
+    "downloadAllFromArtistCheckBox":"从艺术家下载全部（可能包含更多）", // AI translation
+    "useItemPosInPlaylistCheckBox": "在文件名中使用项目位置而不是专辑曲目编号", // AI translation
+    "showTipsCheckBox":             "显示提示", // AI translation
+    "logFailedDownloadsCheckBox":   "将失败的下载记录到下载文件夹中的 'error.txt'", // AI translation
 
     "_SECTION4_":                   "=================== 主表单占位符 ===================",
     "albumLabelPlaceholder":        "欢迎使用 QBDLX!",
@@ -115,7 +115,7 @@
     "downloadOutputExpired":        "你的订阅已过期，下载将仅限于 30 秒的片段!",
     "downloadOutputPath":           "下载路径:",
     "downloadOutputNoPath":         "未设置路径! 记得选择一个文件夹!",
-    "downloadOutputNoUrl":          "曲目 {TrackNumber} 无法下载。正在跳过。", // ChatGPT translation.
+    "downloadOutputNoUrl":          "曲目 {TrackNumber} 无法下载。正在跳过。", // AI translation
     "downloadOutputAPIError":       "Qobuz API 错误。可能是该发行版在当前账户地区不可用?",
     "downloadOutputNotImplemented": "尚未实现或 URL 无法理解。是否有拼写错误?",
     "downloadOutputCheckLink":      "正在检查链接…",
@@ -128,26 +128,27 @@
     "downloadOutputDownloading":    "正在下载",
     "downloadOutputDone":           "完成",
     "downloadOutputCompleted":      "下载完成",
-    "downloadAborted":              "用户已中止下载。", // ChatGPT translation.
-    "albumSkipped":                 "用户已跳过专辑。", // ChatGPT translation.
+    "downloadAborted":              "用户已中止下载。", // AI translation
+    "albumSkipped":                 "用户已跳过专辑。", // AI translation
     "progressLabelInactive":        "无下载任务",
     "progressLabelActive":          "下载进度",
-    "formClosingWarning":           "正在下载，确定要退出吗？", // ChatGPT translation.
-    "artist":                       "艺术家", // ChatGPT translation.
-    "artists":                      "艺术家", // ChatGPT translation.
-    "album":                        "专辑", // ChatGPT translation.
-    "albums":                       "专辑", // ChatGPT translation.
-    "tracks":                       "曲目", // ChatGPT translation.
-    "track":                        "单曲", // ChatGPT translation.
-    "playlist":                     "播放列表", // ChatGPT translation.
-    "recordLabel":                  "唱片公司", // ChatGPT translation.
-    "user":                         "用户", // ChatGPT translation.
-    "invalidUrl":                   "无效的 URL: {0}", // ChatGPT translation.
-    "copyToClipboard":              "复制到剪贴板", // ChatGPT translation.
-    "copyThisRowToClipboard":       "复制此行到剪贴板", // ChatGPT translation.
-    "copySelectedRowsToClipboard":  "复制选中的行到剪贴板", // ChatGPT translation.
-    "copyAllRowsToClipboard":       "复制所有行到剪贴板", // ChatGPT translation.
-    "downloadFromArtistWarning":    "请选择至少一个艺术家的下载类型", // ChatGPT translation.
+    "formClosingWarning":           "正在下载，确定要退出吗？", // AI translation
+    "artist":                       "艺术家", // AI translation
+    "artists":                      "艺术家", // AI translation
+    "album":                        "专辑", // AI translation
+    "albums":                       "专辑", // AI translation
+    "tracks":                       "曲目", // AI translation
+    "track":                        "单曲", // AI translation
+    "playlist":                     "播放列表", // AI translation
+    "recordLabel":                  "唱片公司", // AI translation
+    "user":                         "用户", // AI translation
+    "completed":                    "已完成", // AI translation
+    "invalidUrl":                   "无效的 URL: {0}", // AI translation
+    "copyToClipboard":              "复制到剪贴板", // AI translation
+    "copyThisRowToClipboard":       "复制此行到剪贴板", // AI translation
+    "copySelectedRowsToClipboard":  "复制选中的行到剪贴板", // AI translation
+    "copyAllRowsToClipboard":       "复制所有行到剪贴板", // AI translation
+    "downloadFromArtistWarning":    "请选择至少一个艺术家的下载类型", // AI translation
 
     "_SECTION5_":                   "=================== 登录表单按钮 ===================",
     "closeAboutButton":             "关闭",
@@ -178,46 +179,46 @@
     "updateNotification":           "QBDLX 的新版本可用!\r\n\r\n已安装版本 - {currentVersion}\r\n最新版本 - {newVersion}\r\n\r\n更新日志如下\r\n==============\r\n{changelog}\r\n==============\r\n\r\n你是否要更新?",
     "updateNotificationTitle":      "QBDLX | 有可用更新",
 
-    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // ChatGPT translation.
-    "batchDownloadDlgText":         "批量下载", // ChatGPT translation.
-    "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接…", // ChatGPT translation.
-    "closeBatchDownloadbutton":     "关闭 / 取消", // ChatGPT translation.
-    "getAllBatchDownloadButton":    "全部获取", // ChatGPT translation.
+    "_SECTION9_":                   "=================== BATCH DOWNLOAD DIALOG CONTROLS ===================", // AI translation
+    "batchDownloadDlgText":         "批量下载", // AI translation
+    "batchDownloadLabel":           "粘贴一个或多个 Qobuz 链接…", // AI translation
+    "closeBatchDownloadbutton":     "关闭 / 取消", // AI translation
+    "getAllBatchDownloadButton":    "全部获取", // AI translation
 
-    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // ChatGPT translation.
-    "showWindowCmItem":             "显示窗口", // ChatGPT translation.
-    "hideWindowCmItem":             "隐藏窗口", // ChatGPT translation.
-    "closeProgramCmItem":           "关闭程序", // ChatGPT translation.
-    "batchDownloadFinished":        "批量下载完成！", // ChatGPT translation.
+    "_SECTION10_":                  "=================== SYSTRAY ICON ===================", // AI translation
+    "showWindowCmItem":             "显示窗口", // AI translation
+    "hideWindowCmItem":             "隐藏窗口", // AI translation
+    "closeProgramCmItem":           "关闭程序", // AI translation
+    "batchDownloadFinished":        "批量下载完成！", // AI translation
 
-    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // ChatGPT translation.
-    "tagLibSharpMissingMsg":        "文件夹中缺少 taglib-sharp.dll！\r\n请确保该 DLL 与 {exeName} 位于同一文件夹中！", // ChatGPT translation.
-    "themeFileNotFoundMsg":         "未找到主题文件。", // ChatGPT translation.
-    "themeNameNotFoundMsg":         "未找到主题 '{themeName}'。", // ChatGPT translation.
-    "selectedLangFileNotfoundMsg":  "未找到所选语言文件。", // ChatGPT translation.
-    "downloadOutputDontExistMsg":   "指定的路径不存在。", // ChatGPT translation.
-    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'", // ChatGPT translation.
+    "_SECTION11_":                  "=================== MESSAGE BOXES ===================", // AI translation
+    "tagLibSharpMissingMsg":        "文件夹中缺少 taglib-sharp.dll！\r\n请确保该 DLL 与 {exeName} 位于同一文件夹中！", // AI translation
+    "themeFileNotFoundMsg":         "未找到主题文件。", // AI translation
+    "themeNameNotFoundMsg":         "未找到主题 '{themeName}'。", // AI translation
+    "selectedLangFileNotfoundMsg":  "未找到所选语言文件。", // AI translation
+    "downloadOutputDontExistMsg":   "指定的路径不存在。", // AI translation
+    "notEnoughFreeSpaceMsg":        "磁盘空间不足：'{pathRoot}'", // AI translation
 
     "_SECTION12_":                  "=================== 提示 ===================",
-    "nextTipLabel":                 "下一个提示 ⭢", // ChatGPT translation
-    "prevTipLabel":                 "⭠ 上一个提示", // ChatGPT translation
-    "tip1":                         "提示 #1：您知道可以右键点击搜索结果的行来复制所选项目的链接吗？", // ChatGPT translation
-    "tip2":                         "提示 #2：您知道当您使用唱片公司链接时，程序最多可以获取该公司 10,000 张专辑吗？我们没有设置这个限制！但这已经绰绰有余，对吧？ 👍", // ChatGPT translation
-    "tip3":                         "提示 #3：您知道可以通过编辑 Notepad 中的 themes.json 文件来自定义您最喜欢的视觉主题吗？还等什么？！", // ChatGPT translation
-    "tip4":                         "提示 #4：您知道如果将艺术家模板和专辑模板的文本留空，所有文件都会下载到同一个文件夹吗？但要注意 cover.jpg 文件！", // ChatGPT translation
-    "tip5":                         "提示 #5：您知道可以点击下载器或搜索器中的专辑封面来查看完整大小吗？", // ChatGPT translation
-    "tip6":                         "提示 #6：您知道可以在搜索器中使用歌曲或专辑的 ID 来获得唯一精确的结果吗？", // ChatGPT translation
-    "tip7":                         "提示 #7：您知道可以打开程序的多个实例，同时在不同位置并行下载内容吗？", // ChatGPT translation
-    "tip8":                         "提示 #8：您知道一个专辑中可能包含名称相同的歌曲吗？为避免冲突，请使用 %TrackNumber% 或 %TrackId% 标签。", // ChatGPT translation
-    "tip9":                         "提示 #9：您知道可以使用下载路径模板按艺术家、年份或唱片公司创建不同的文件夹吗？这样您的音乐库会自动保持有序。", // ChatGPT translation
-    "tip10":                        "提示 #10：您知道在搜索器中将搜索词用双引号括起来可以找到与短语完全匹配的结果吗？", // ChatGPT translation
-    "tip11":                        "提示 #11：您知道可以在程序的高级设置中关闭这些提示吗？", // ChatGPT translation
-    "tip12":                        "提示 #12：您知道在下载专辑前与封面交谈 5 秒钟可以燃烧约 0.08 卡路里，让自己感觉更结实吗？ 💪", // ChatGPT translation
-    "tip13":                        "提示 #13：您知道应该更多地专注于下载您喜欢的音乐，而不是阅读这些愚蠢的提示吗？否则您会错过乐趣… 😏", // ChatGPT translation
-    "tip14":                        "趣闻 #1：您知道 Elvis Presley 和 Michael Jackson 认可使用此程序吗？如果不信，可以问问他们！ 😜", // ChatGPT translation
-    "tip15":                        "趣闻 #2：您知道有人在使用此程序时死掉了吗？😱…因为等待整个唱片公司完全下载太无聊。 👻", // ChatGPT translation
-    "tip16":                        "趣闻 #3：您知道盯着“下载”按钮 10 秒钟，下载速度可能会在您的想象中加快吗？ 👀", // ChatGPT translation
-    "tip17":                        "趣闻 #4：您知道每次成功下载后鼓掌可以激励程序下载下一首歌吗？ 👏", // ChatGPT translation
-    "tip18":                        "趣闻 #5：您知道如果在搜索器中搜索 \"Terrorcore\"，本程序作者不对可能造成的大脑或听力损伤负责吗？ 😵💉" // ChatGPT translation
+    "nextTipLabel":                 "下一个提示 ⭢", // AI translation
+    "prevTipLabel":                 "⭠ 上一个提示", // AI translation
+    "tip1":                         "提示 #1：您知道可以右键点击搜索结果的行来复制所选项目的链接吗？", // AI translation
+    "tip2":                         "提示 #2：您知道当您使用唱片公司链接时，程序最多可以获取该公司 10,000 张专辑吗？我们没有设置这个限制！但这已经绰绰有余，对吧？ 👍", // AI translation
+    "tip3":                         "提示 #3：您知道可以通过编辑 Notepad 中的 themes.json 文件来自定义您最喜欢的视觉主题吗？还等什么？！", // AI translation
+    "tip4":                         "提示 #4：您知道如果将艺术家模板和专辑模板的文本留空，所有文件都会下载到同一个文件夹吗？但要注意 cover.jpg 文件！", // AI translation
+    "tip5":                         "提示 #5：您知道可以点击下载器或搜索器中的专辑封面来查看完整大小吗？", // AI translation
+    "tip6":                         "提示 #6：您知道可以在搜索器中使用歌曲或专辑的 ID 来获得唯一精确的结果吗？", // AI translation
+    "tip7":                         "提示 #7：您知道可以打开程序的多个实例，同时在不同位置并行下载内容吗？", // AI translation
+    "tip8":                         "提示 #8：您知道一个专辑中可能包含名称相同的歌曲吗？为避免冲突，请使用 %TrackNumber% 或 %TrackId% 标签。", // AI translation
+    "tip9":                         "提示 #9：您知道可以使用下载路径模板按艺术家、年份或唱片公司创建不同的文件夹吗？这样您的音乐库会自动保持有序。", // AI translation
+    "tip10":                        "提示 #10：您知道在搜索器中将搜索词用双引号括起来可以找到与短语完全匹配的结果吗？", // AI translation
+    "tip11":                        "提示 #11：您知道可以在程序的高级设置中关闭这些提示吗？", // AI translation
+    "tip12":                        "提示 #12：您知道在下载专辑前与封面交谈 5 秒钟可以燃烧约 0.08 卡路里，让自己感觉更结实吗？ 💪", // AI translation
+    "tip13":                        "提示 #13：您知道应该更多地专注于下载您喜欢的音乐，而不是阅读这些愚蠢的提示吗？否则您会错过乐趣… 😏", // AI translation
+    "tip14":                        "趣闻 #1：您知道 Elvis Presley 和 Michael Jackson 认可使用此程序吗？如果不信，可以问问他们！ 😜", // AI translation
+    "tip15":                        "趣闻 #2：您知道有人在使用此程序时死掉了吗？😱…因为等待整个唱片公司完全下载太无聊。 👻", // AI translation
+    "tip16":                        "趣闻 #3：您知道盯着“下载”按钮 10 秒钟，下载速度可能会在您的想象中加快吗？ 👀", // AI translation
+    "tip17":                        "趣闻 #4：您知道每次成功下载后鼓掌可以激励程序下载下一首歌吗？ 👏", // AI translation
+    "tip18":                        "趣闻 #5：您知道如果在搜索器中搜索 \"Terrorcore\"，本程序作者不对可能造成的大脑或听力损伤负责吗？ 😵💉" // AI translation
 
 }

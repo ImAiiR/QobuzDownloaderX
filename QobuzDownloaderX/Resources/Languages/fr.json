@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 15, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 16, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -25,9 +25,9 @@
     "selectAllRowsButton":          "Tout Sélectionner",
     "deselectAllRowsButton":        "Tout Désélectionner",
     "batchDownloadRowsButton":      "Télécharger Les Lignes Sélectionnées En Lot",   
-    "skipDuplicatesButton":         "Ignorer / Ne pas télécharger", // ChatGPT translation
-    "autoRenameDuplicatesButton":   "Renommer automatiquement", // ChatGPT translation
-    "overwriteDuplicatesButton":    "Écraser les fichiers existants", // ChatGPT translation
+    "skipDuplicatesButton":         "Ignorer / Ne pas télécharger", // AI translation
+    "autoRenameDuplicatesButton":   "Renommer automatiquement", // AI translation
+    "overwriteDuplicatesButton":    "Écraser les fichiers existants", // AI translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Paramètres Avancés",
@@ -46,9 +46,9 @@
     "templatesLabel":               "Modèles",
     "templatesListLabel":           "Liste des modèles",
     "themeLabel":                   "Thème",
-    "themeSectionLabel":            "OPTIONS VISUELLES", // ChatGPT translation
-    "trackTemplateLabel":           "(PAR DÉFAUT) Modèle de piste", // ChatGPT translation
-    "vaTrackTemplateLabel":         "(V/A) Modèle de piste", // ChatGPT translation
+    "themeSectionLabel":            "OPTIONS VISUELLES", // AI translation
+    "trackTemplateLabel":           "(PAR DÉFAUT) Modèle de piste", // AI translation
+    "vaTrackTemplateLabel":         "(V/A) Modèle de piste", // AI translation
     "userInfoLabel":                "Informations Utilisateur",
     "welcomeLabel":                 "Bienvenue\r\n{username}",
     "searchSortingLabel":           "Trier par :",
@@ -61,10 +61,10 @@
     "selectedRowsCountLabel":       "{0} Lignes Sélectionnées",
     "disclaimer":                   "AVIS DE NON-RESPONSABILITÉ / MENTIONS LÉGALES\n\nCette application utilise l'API Qobuz mais n'est pas certifiée par Qobuz.\n\nLe logiciel et ses auteurs ne sont affiliés, approuvés ou officiellement liés à Qobuz d'aucune manière. L'utilisation de cette application se fait à vos propres risques. Les auteurs ne garantissent pas l'exactitude, la fiabilité ou la disponibilité du service et ne peuvent être tenus responsables de tout dommage ou perte de données résultant de son utilisation.\n\nEn utilisant cette application, vous reconnaissez et acceptez qu'elle est fournie \"telle quelle\", sans aucune garantie expresse ou implicite, y compris, mais sans s'y limiter, les garanties de qualité marchande, d'adéquation à un usage particulier ou de non-contrefaçon.\n\nLes utilisateurs sont responsables de se conformer à toutes les lois applicables, aux conditions de service et aux restrictions d'utilisation lors de l'accès à l'API Qobuz ou à tout autre service tiers.\n\nPour les services officiels et le support Qobuz, veuillez consulter le site officiel de Qobuz : https://www.qobuz.com/",
     "downloadFromArtistLabel":      "Télécharger De L'Artiste",
-    "primaryListSeparatorLabel":    "Séparateur de liste principal", // ChatGPT translation.
-    "listEndSeparatorLabel":        "Séparateur de fin de liste", // ChatGPT translation.
-    "playlistSectionLabel":         "Options de playlist", // ChatGPT translation.   
-    "duplicateFilesLabel":          "Fichiers en double", // ChatGPT translation
+    "primaryListSeparatorLabel":    "Séparateur de liste principal", // AI translation
+    "listEndSeparatorLabel":        "Séparateur de fin de liste", // AI translation
+    "playlistSectionLabel":         "Options de playlist", // AI translation   
+    "duplicateFilesLabel":          "Fichiers en double", // AI translation
 
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
@@ -100,9 +100,9 @@
     "dontSaveArtworkToDiskCheckBox":"Ne pas enregistrer les illustrations sur le disque",
     "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Téléchargement, Autre",
     "downloadAllFromArtistCheckBox":"Tout télécharger de l'artiste (peut en inclure plus)",
-    "useItemPosInPlaylistCheckBox": "Utiliser les positions des éléments au lieu des numéros de piste de l'album dans les noms de fichiers", // ChatGPT translation
-    "showTipsCheckBox":             "Afficher les conseils", // ChatGPT translation.
-    "logFailedDownloadsCheckBox":   "Enregistrer les téléchargements échoués dans 'error.txt' dans le dossier de téléchargement", // ChatGPT translation
+    "useItemPosInPlaylistCheckBox": "Utiliser les positions des éléments au lieu des numéros de piste de l'album dans les noms de fichiers", // AI translation
+    "showTipsCheckBox":             "Afficher les conseils", // AI translation
+    "logFailedDownloadsCheckBox":   "Enregistrer les téléchargements échoués dans 'error.txt' dans le dossier de téléchargement", // AI translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",
@@ -143,6 +143,7 @@
     "playlist":                     "Playlist",
     "recordLabel":                  "Label Discographique",
     "user":                         "Utilisateur",
+    "completed":                    "terminé", // AI translation
     "invalidUrl":                   "URL invalide : {0}",
     "copyToClipboard":              "Copier dans le Presse-papiers",
     "copyThisRowToClipboard":       "Copier cette ligne dans le Presse-papiers",
@@ -200,25 +201,25 @@
     "notEnoughFreeSpaceMsg":        "Pas assez d'espace libre sur le lecteur : '{pathRoot}' !",
 
     "_SECTION12_":                  "=================== TIPS ===================",
-    "nextTipLabel":                 "Astuce suivante ⭢", // ChatGPT translation
-    "prevTipLabel":                 "⭠ Astuce précédente", // ChatGPT translation
-    "tip1":                         "Astuce n°1: Saviez-vous que vous pouvez cliquer avec le bouton droit de la souris sur les lignes des résultats de recherche pour copier les liens des éléments sélectionnés ?", // ChatGPT translation
-    "tip2":                         "Astuce n°2: Saviez-vous que lorsque vous utilisez un lien d’un label, le programme peut récupérer jusqu’à 10 000 albums de ce label ? Nous n’avons pas fixé cette limite ! Mais c’est largement suffisant, non ? 👍", // ChatGPT translation
-    "tip3":                         "Astuce n°3: Saviez-vous que vous pouvez personnaliser votre thème visuel préféré en modifiant le fichier themes.json dans le Bloc-notes ? Qu’attendez-vous ?!", // ChatGPT translation
-    "tip4":                         "Astuce n°4: Saviez-vous que si vous laissez le texte du modèle d’artiste et du modèle d’album vide, tous les fichiers seront téléchargés dans un seul dossier ? Mais faites attention au fichier cover.jpg !", // ChatGPT translation
-    "tip5":                         "Astuce n°5: Saviez-vous que vous pouvez cliquer sur une pochette dans le téléchargeur ou le moteur de recherche pour la voir en taille réelle ?", // ChatGPT translation
-    "tip6":                         "Astuce n°6: Saviez-vous que vous pouvez utiliser l’identifiant d’un morceau ou d’un album dans le moteur de recherche pour obtenir un résultat exact unique ?", // ChatGPT translation
-    "tip7":                         "Astuce n°7: Saviez-vous que vous pouvez ouvrir plusieurs instances du programme pour télécharger du contenu en parallèle et à différents emplacements en même temps ?", // ChatGPT translation
-    "tip8":                         "Astuce n°8: Saviez-vous qu’un album peut contenir des chansons portant des noms identiques ? Pour éviter les conflits, n’oubliez pas d’utiliser les balises %TrackNumber% ou %TrackId%.", // ChatGPT translation
-    "tip9":                         "Astuce n°9: Saviez-vous que vous pouvez créer des dossiers distincts par artiste, année ou label en utilisant les modèles de chemin de téléchargement ? Ainsi, votre bibliothèque restera toujours automatiquement organisée.", // ChatGPT translation
-    "tip10":                        "Astuce n°10: Saviez-vous que vous pouvez mettre vos mots-clés entre guillemets dans le moteur de recherche pour trouver des résultats correspondant exactement à la phrase ?", // ChatGPT translation
-    "tip11":                        "Astuce n°11: Saviez-vous que vous pouvez désactiver ces astuces dans les paramètres avancés du programme ?", // ChatGPT translation
-    "tip12":                        "Astuce n°12: Saviez-vous que parler pendant 5 secondes à la pochette d’un album avant de le télécharger peut vous aider à brûler environ 0,08 calories pour vous sentir un peu plus musclé ? 💪", // ChatGPT translation
-    "tip13":                        "Astuce n°13: Saviez-vous que vous devriez vous concentrer davantage sur le téléchargement de votre musique préférée que sur la lecture de ces stupides astuces ? Mais sinon, vous manqueriez tout le plaisir… 😏", // ChatGPT translation
-    "tip14":                        "Curiosité n°1: Saviez-vous qu’Elvis Presley et Michael Jackson approuvent l’utilisation de ce programme ? Et si vous ne me croyez pas, demandez-leur ! 😜", // ChatGPT translation
-    "tip15":                        "Curiosité n°2: Saviez-vous que certaines personnes sont mortes en utilisant ce programme ? 😱 … d’ennui en attendant que tout un label soit complètement téléchargé. 👻", // ChatGPT translation
-    "tip16":                        "Curiosité n°3: Saviez-vous que fixer le bouton “Télécharger” pendant 10 secondes pourrait faire que les téléchargements aillent plus vite… dans votre imagination ? 👀", // ChatGPT translation
-    "tip17":                        "Curiosité n°4: Saviez-vous qu’applaudir après chaque téléchargement réussi aide à motiver le programme pour la chanson suivante ? 👏", // ChatGPT translation
-    "tip18":                        "Curiosité n°5: Saviez-vous que si vous recherchez \"Terrorcore\" dans le moteur de recherche, les auteurs de ce programme ne sont pas responsables des dommages cérébraux et auditifs que cela pourrait vous causer ? 😵💉" // ChatGPT translation
+    "nextTipLabel":                 "Astuce suivante ⭢", // AI translation
+    "prevTipLabel":                 "⭠ Astuce précédente", // AI translation
+    "tip1":                         "Astuce n°1: Saviez-vous que vous pouvez cliquer avec le bouton droit de la souris sur les lignes des résultats de recherche pour copier les liens des éléments sélectionnés ?", // AI translation
+    "tip2":                         "Astuce n°2: Saviez-vous que lorsque vous utilisez un lien d’un label, le programme peut récupérer jusqu’à 10 000 albums de ce label ? Nous n’avons pas fixé cette limite ! Mais c’est largement suffisant, non ? 👍", // AI translation
+    "tip3":                         "Astuce n°3: Saviez-vous que vous pouvez personnaliser votre thème visuel préféré en modifiant le fichier themes.json dans le Bloc-notes ? Qu’attendez-vous ?!", // AI translation
+    "tip4":                         "Astuce n°4: Saviez-vous que si vous laissez le texte du modèle d’artiste et du modèle d’album vide, tous les fichiers seront téléchargés dans un seul dossier ? Mais faites attention au fichier cover.jpg !", // AI translation
+    "tip5":                         "Astuce n°5: Saviez-vous que vous pouvez cliquer sur une pochette dans le téléchargeur ou le moteur de recherche pour la voir en taille réelle ?", // AI translation
+    "tip6":                         "Astuce n°6: Saviez-vous que vous pouvez utiliser l’identifiant d’un morceau ou d’un album dans le moteur de recherche pour obtenir un résultat exact unique ?", // AI translation
+    "tip7":                         "Astuce n°7: Saviez-vous que vous pouvez ouvrir plusieurs instances du programme pour télécharger du contenu en parallèle et à différents emplacements en même temps ?", // AI translation
+    "tip8":                         "Astuce n°8: Saviez-vous qu’un album peut contenir des chansons portant des noms identiques ? Pour éviter les conflits, n’oubliez pas d’utiliser les balises %TrackNumber% ou %TrackId%.", // AI translation
+    "tip9":                         "Astuce n°9: Saviez-vous que vous pouvez créer des dossiers distincts par artiste, année ou label en utilisant les modèles de chemin de téléchargement ? Ainsi, votre bibliothèque restera toujours automatiquement organisée.", // AI translation
+    "tip10":                        "Astuce n°10: Saviez-vous que vous pouvez mettre vos mots-clés entre guillemets dans le moteur de recherche pour trouver des résultats correspondant exactement à la phrase ?", // AI translation
+    "tip11":                        "Astuce n°11: Saviez-vous que vous pouvez désactiver ces astuces dans les paramètres avancés du programme ?", // AI translation
+    "tip12":                        "Astuce n°12: Saviez-vous que parler pendant 5 secondes à la pochette d’un album avant de le télécharger peut vous aider à brûler environ 0,08 calories pour vous sentir un peu plus musclé ? 💪", // AI translation
+    "tip13":                        "Astuce n°13: Saviez-vous que vous devriez vous concentrer davantage sur le téléchargement de votre musique préférée que sur la lecture de ces stupides astuces ? Mais sinon, vous manqueriez tout le plaisir… 😏", // AI translation
+    "tip14":                        "Curiosité n°1: Saviez-vous qu’Elvis Presley et Michael Jackson approuvent l’utilisation de ce programme ? Et si vous ne me croyez pas, demandez-leur ! 😜", // AI translation
+    "tip15":                        "Curiosité n°2: Saviez-vous que certaines personnes sont mortes en utilisant ce programme ? 😱 … d’ennui en attendant que tout un label soit complètement téléchargé. 👻", // AI translation
+    "tip16":                        "Curiosité n°3: Saviez-vous que fixer le bouton “Télécharger” pendant 10 secondes pourrait faire que les téléchargements aillent plus vite… dans votre imagination ? 👀", // AI translation
+    "tip17":                        "Curiosité n°4: Saviez-vous qu’applaudir après chaque téléchargement réussi aide à motiver le programme pour la chanson suivante ? 👏", // AI translation
+    "tip18":                        "Curiosité n°5: Saviez-vous que si vous recherchez \"Terrorcore\" dans le moteur de recherche, les auteurs de ce programme ne sont pas responsables des dommages cérébraux et auditifs que cela pourrait vous causer ? 😵💉" // AI translation
 
 }
