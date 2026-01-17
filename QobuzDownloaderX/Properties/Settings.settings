@@ -207,13 +207,13 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="cleanLongTitleTag" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="cleanShortTitleTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="explicitLongTitleTag" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="explicitShortTitleTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
