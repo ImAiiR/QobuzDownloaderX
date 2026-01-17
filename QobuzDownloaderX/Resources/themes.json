@@ -1,5 +1,6 @@
 {
 	"themes": {
+
 		"Amber Glow": {
 			"FormBackground": "#261c02",
 			"MainPanelBackground": "#261c02",
@@ -19,6 +20,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Amethyst": {
 			"FormBackground": "#4b0082",
 			"MainPanelBackground": "#4b0082",
@@ -38,6 +40,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Arctic Dusk": {
 			"FormBackground": "#1a2a3a",
 			"MainPanelBackground": "#1a2a3a",
@@ -57,6 +60,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Blood Moon": {
 			"FormBackground": "#1a0000",
 			"MainPanelBackground": "#1a0000",
@@ -76,6 +80,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Candy Pop": {
 			"FormBackground": "#ffb3d9",
 			"MainPanelBackground": "#ffb3d9",
@@ -95,6 +100,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Charcoal Gold": {
 			"FormBackground": "#1c1c1c",
 			"MainPanelBackground": "#1c1c1c",
@@ -114,6 +120,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Chocolate": {
 			"FormBackground": "#3B2F2F",
 			"MainPanelBackground": "#3B2F2F",
@@ -133,6 +140,47 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
+		"Cinderstone": {
+			"FormBackground": "#2a2e33",
+			"MainPanelBackground": "#2a2e33",
+			"HighlightedButtonBackground": "#3a4048",
+			"ClickedButtonBackground": "#1a1d21",
+			"ProgressBarFillColor": "#3a4048",
+			"SelectedRowBackground": "#3a4048",
+			"SidePanelBackground": "#1a1d21",
+			"ButtonBackground": "#1a1d21",
+			"TextBoxBackground": "#20242a",
+			"PlaceholderTextBoxText": "#4a5058",
+			"TextBoxText": "#9aa0a6",
+			"LabelText": "#9aa0a6",
+			"ButtonText": "#ffffff",
+			"NavBarIconColor": "#ffffff",
+			"HiResLabelText": "#c89b6a",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
+		"Claymore": {
+			"FormBackground": "#1F2426",
+			"MainPanelBackground": "#1F2426",
+			"HighlightedButtonBackground": "#3A4A4C",
+			"ClickedButtonBackground": "#0F1516",
+			"ProgressBarFillColor": "#D98E3C",
+			"SelectedRowBackground": "#D98E3C",
+			"SidePanelBackground": "#111416",
+			"ButtonBackground": "#111416",
+			"TextBoxBackground": "#232829",
+			"PlaceholderTextBoxText": "#6B6F70",
+			"TextBoxText": "#E6E6E6",
+			"LabelText": "#D0D6D8",
+			"ButtonText": "#FFFFFF",
+			"NavBarIconColor": "#D98E3C",
+			"HiResLabelText": "#F0F0F0",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
 		"Coffee Cream": {
 			"FormBackground": "#efebe9",
 			"MainPanelBackground": "#efebe9",
@@ -152,6 +200,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Cold Metal": {
 			"FormBackground": "#24292e",
 			"MainPanelBackground": "#24292e",
@@ -171,6 +220,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Cold Space": {
 			"FormBackground": "#0b0e14",
 			"MainPanelBackground": "#0b0e14",
@@ -190,6 +240,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Copper Glow": {
 			"FormBackground": "#3d2b1f",
 			"MainPanelBackground": "#3d2b1f",
@@ -209,6 +260,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Cyber Neon Blue": {
 			"FormBackground": "#0a0a0a",
 			"MainPanelBackground": "#121212",
@@ -228,6 +280,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Cyber Neon Pink": {
 			"FormBackground": "#0a0a0a",
 			"MainPanelBackground": "#121212",
@@ -247,6 +300,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Dark": {
 			"FormBackground": "#121212",
 			"MainPanelBackground": "#121212",
@@ -266,6 +320,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Dark Emerald": {
 			"FormBackground": "#062c20",
 			"MainPanelBackground": "#062c20",
@@ -285,6 +340,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Dark Gray": {
 			"FormBackground": "#252526",
 			"MainPanelBackground": "#252526",
@@ -304,6 +360,27 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
+		"Dark Olive": {
+			"FormBackground": "#262a24",
+			"MainPanelBackground": "#262a24",
+			"HighlightedButtonBackground": "#3d4436",
+			"ClickedButtonBackground": "#1b1e18",
+			"ProgressBarFillColor": "#3d4436",
+			"SelectedRowBackground": "#3d4436",
+			"SidePanelBackground": "#1b1e18",
+			"ButtonBackground": "#1b1e18",
+			"TextBoxBackground": "#1e211d",
+			"PlaceholderTextBoxText": "#4a4f46",
+			"TextBoxText": "#9fa69a",
+			"LabelText": "#9fa69a",
+			"ButtonText": "#ffffff",
+			"NavBarIconColor": "#ffffff",
+			"HiResLabelText": "#b6c48a",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
 		"Dark Sand": {
 			"FormBackground": "#2c2621",
 			"MainPanelBackground": "#2c2621",
@@ -323,6 +400,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Dark Slate": {
 			"FormBackground": "#2f4f4f",
 			"MainPanelBackground": "#2f4f4f",
@@ -342,6 +420,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Deep Forest": {
 			"FormBackground": "#0a1f0a",
 			"MainPanelBackground": "#0a1f0a",
@@ -361,6 +440,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Deep Lavender": {
 			"FormBackground": "#231932",
 			"MainPanelBackground": "#231932",
@@ -380,6 +460,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Deep Maroon": {
 			"FormBackground": "#800000",
 			"MainPanelBackground": "#800000",
@@ -399,6 +480,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Deep Raspberry": {
 			"FormBackground": "#4a0e2e",
 			"MainPanelBackground": "#4a0e2e",
@@ -418,6 +500,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Deep Sea": {
 			"FormBackground": "#0B1A27",
 			"MainPanelBackground": "#0B1A27",
@@ -437,6 +520,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Deep Sea Abyssal": {
 			"FormBackground": "#000b14",
 			"MainPanelBackground": "#000b14",
@@ -456,6 +540,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Deep Teal": {
 			"FormBackground": "#004d4d",
 			"MainPanelBackground": "#004d4d",
@@ -475,6 +560,27 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
+		"Dried Plum": {
+			"FormBackground": "#2A232B",
+			"MainPanelBackground": "#2A232B",
+			"HighlightedButtonBackground": "#4A3750",
+			"ClickedButtonBackground": "#221B21",
+			"ProgressBarFillColor": "#9C6AA6",
+			"SelectedRowBackground": "#5B4761",
+			"SidePanelBackground": "#21171B",
+			"ButtonBackground": "#21171B",
+			"TextBoxBackground": "#362933",
+			"PlaceholderTextBoxText": "#6F5B6B",
+			"TextBoxText": "#E9E1E7",
+			"LabelText": "#D6C6D6",
+			"ButtonText": "#FFFFFF",
+			"NavBarIconColor": "#FFFFFF",
+			"HiResLabelText": "#B08AC2",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
 		"Electric Blue": {
 			"FormBackground": "#000033",
 			"MainPanelBackground": "#000033",
@@ -494,6 +600,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Forest Twilight": {
 			"FormBackground": "#1e3b2f",
 			"MainPanelBackground": "#1e3b2f",
@@ -513,6 +620,27 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
+		"Galaxy": {
+			"FormBackground": "#000012",
+			"MainPanelBackground": "#000003",
+			"HighlightedButtonBackground": "#0B2540",
+			"ClickedButtonBackground": "#041018",
+			"ProgressBarFillColor": "#16aF83",
+			"SelectedRowBackground": "#16aF83",
+			"SidePanelBackground": "#071018",
+			"ButtonBackground": "#071018",
+			"TextBoxBackground": "#091621",
+			"PlaceholderTextBoxText": "#2A5B4A",
+			"TextBoxText": "#DFFFEF",
+			"LabelText": "#8EF3C7",
+			"ButtonText": "#FFFFFF",
+			"NavBarIconColor": "#66FFB3",
+			"HiResLabelText": "#B3FFF0",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
 		"Graphite": {
 			"FormBackground": "#3c3c3c",
 			"MainPanelBackground": "#3c3c3c",
@@ -532,25 +660,47 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
+		"Grape Must": {
+			"FormBackground": "#2B2728",
+			"MainPanelBackground": "#2B2728",
+			"HighlightedButtonBackground": "#6D3945",
+			"ClickedButtonBackground": "#27181A",
+			"ProgressBarFillColor": "#A64E63",
+			"SelectedRowBackground": "#7F4B56",
+			"SidePanelBackground": "#211214",
+			"ButtonBackground": "#211214",
+			"TextBoxBackground": "#3B2E33",
+			"PlaceholderTextBoxText": "#6F5156",
+			"TextBoxText": "#F3E9EA",
+			"LabelText": "#E0C9CC",
+			"ButtonText": "#FFFFFF",
+			"NavBarIconColor": "#F3E9EA",
+			"HiResLabelText": "#C77B8A",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
 		"Iceberg": {
-			"FormBackground": "#e1f5fe",
-			"MainPanelBackground": "#e1f5fe",
-			"HighlightedButtonBackground": "#b3e5fc",
-			"ClickedButtonBackground": "#81d4fa",
-			"ProgressBarFillColor": "#81d4fa",
-			"SelectedRowBackground": "#81d4fa",
-			"SidePanelBackground": "#ffffff",
-			"ButtonBackground": "#ffffff",
-			"TextBoxBackground": "#f0faff",
-			"PlaceholderTextBoxText": "#b3e5fc",
-			"TextBoxText": "#01579b",
-			"LabelText": "#0277bd",
-			"ButtonText": "#01579b",
-			"NavBarIconColor": "#01579b",
-			"HiResLabelText": "#03a9f4",
+			"FormBackground": "#EAF6FF",
+			"MainPanelBackground": "#EAF6FF",
+			"HighlightedButtonBackground": "#CFEFFF",
+			"ClickedButtonBackground": "#B9E6FF",
+			"ProgressBarFillColor": "#00B8D4",
+			"SelectedRowBackground": "#A3E7FF",
+			"SidePanelBackground": "#DFF6FF",
+			"ButtonBackground": "#DFF6FF",
+			"TextBoxBackground": "#FFFFFF",
+			"PlaceholderTextBoxText": "#BFE8F7",
+			"TextBoxText": "#01303A",
+			"LabelText": "#016B7A",
+			"ButtonText": "#01303A",
+			"NavBarIconColor": "#007EA7",
+			"HiResLabelText": "#33C6FF",
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"JAM.S": {
 			"FormBackground": "#2b2f34",
 			"MainPanelBackground": "#2b2f34",
@@ -570,6 +720,7 @@
 			"LogoReplaceURL": "https://justanothermusic.site/styles/pach/logo.png",
 			"InvertLogo": false
 		},
+
 		"Jungle": {
 			"FormBackground": "#454B1B",
 			"MainPanelBackground": "#454B1B",
@@ -589,6 +740,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Lavender Gray": {
 			"FormBackground": "#c4c3d0",
 			"MainPanelBackground": "#c4c3d0",
@@ -608,6 +760,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Light": {
 			"FormBackground": "#ededed",
 			"MainPanelBackground": "#ededed",
@@ -627,15 +780,16 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Light Gray": {
-			"FormBackground": "darkgray",
-			"MainPanelBackground": "darkgray",
+			"FormBackground": "#BEBEBE",
+			"MainPanelBackground": "#BEBEBE",
 			"HighlightedButtonBackground": "#c8c8c8",
 			"ClickedButtonBackground": "#bfbfbf",
 			"ProgressBarFillColor": "#9fb3c8",
 			"SelectedRowBackground": "#add8e6",
-			"SidePanelBackground": "gray",
-			"ButtonBackground": "gray",
+			"SidePanelBackground": "#C2C2C2",
+			"ButtonBackground": "#C2C2C2",
 			"TextBoxBackground": "lightgray",
 			"PlaceholderTextBoxText": "#9a9a9a",
 			"TextBoxText": "#1E1E1E",
@@ -646,6 +800,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Mars Rover": {
 			"FormBackground": "#4a2c2a",
 			"MainPanelBackground": "#4a2c2a",
@@ -665,6 +820,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Matcha Green": {
 			"FormBackground": "#e9edc9",
 			"MainPanelBackground": "#e9edc9",
@@ -684,6 +840,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Matcha Tea": {
 			"FormBackground": "#f0f4ef",
 			"MainPanelBackground": "#f0f4ef",
@@ -703,6 +860,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Midnight Blue": {
 			"FormBackground": "#101820",
 			"MainPanelBackground": "#101820",
@@ -722,6 +880,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Midnight Green": {
 			"FormBackground": "#004953",
 			"MainPanelBackground": "#004953",
@@ -741,6 +900,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Midnight Moss": {
 			"FormBackground": "#002b11",
 			"MainPanelBackground": "#002b11",
@@ -760,6 +920,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Midnight Orchid": {
 			"FormBackground": "#1a0f2b",
 			"MainPanelBackground": "#1a0f2b",
@@ -779,6 +940,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Minty Fresh": {
 			"FormBackground": "#e0f2f1",
 			"MainPanelBackground": "#e0f2f1",
@@ -798,6 +960,27 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
+		"Moon Night": {
+			"FormBackground": "#0b0d12",
+			"MainPanelBackground": "#121419",
+			"HighlightedButtonBackground": "#26313b",
+			"ClickedButtonBackground": "#0a0c0f",
+			"ProgressBarFillColor": "#2b3b46",
+			"SelectedRowBackground": "#2b3b46",
+			"SidePanelBackground": "#090b0f",
+			"ButtonBackground": "#0f1114",
+			"TextBoxBackground": "#1b2328",
+			"PlaceholderTextBoxText": "#51626a",
+			"TextBoxText": "#e6f7ff",
+			"LabelText": "#cdefff",
+			"ButtonText": "#ffffff",
+			"NavBarIconColor": "#99d6ff",
+			"HiResLabelText": "#aee7ff",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
 		"Neon Jungle": {
 			"FormBackground": "#011a0b",
 			"MainPanelBackground": "#011a0b",
@@ -817,6 +1000,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Night Owl": {
 			"FormBackground": "#011627",
 			"MainPanelBackground": "#011627",
@@ -836,6 +1020,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Nordic Snow": {
 			"FormBackground": "#f8f9fb",
 			"MainPanelBackground": "#f8f9fb",
@@ -855,6 +1040,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Oceanic Depth": {
 			"FormBackground": "#001b2e",
 			"MainPanelBackground": "#001b2e",
@@ -874,6 +1060,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Pale Gold": {
 			"FormBackground": "#eee8aa",
 			"MainPanelBackground": "#eee8aa",
@@ -893,6 +1080,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Paper": {
 			"FormBackground": "#fcfaf2",
 			"MainPanelBackground": "#fcfaf2",
@@ -912,6 +1100,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Peachy": {
 			"FormBackground": "#ffab91",
 			"MainPanelBackground": "#ffab91",
@@ -931,6 +1120,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Plum": {
 			"FormBackground": "#35233d",
 			"MainPanelBackground": "#35233d",
@@ -950,6 +1140,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Qotify": {
 			"FormBackground": "#121212",
 			"MainPanelBackground": "#121212",
@@ -969,6 +1160,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Rose Quartz": {
 			"FormBackground": "#f7d1d1",
 			"MainPanelBackground": "#f7d1d1",
@@ -988,6 +1180,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Royal Purple": {
 			"FormBackground": "#663399",
 			"MainPanelBackground": "#663399",
@@ -1007,6 +1200,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Sienna": {
 			"FormBackground": "#a0522d",
 			"MainPanelBackground": "#a0522d",
@@ -1026,6 +1220,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Slate \u0026 Steel": {
 			"FormBackground": "#2c3e50",
 			"MainPanelBackground": "#2c3e50",
@@ -1045,6 +1240,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Soft Lavender": {
 			"FormBackground": "#f3e5f5",
 			"MainPanelBackground": "#f3e5f5",
@@ -1064,6 +1260,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": true
 		},
+
 		"Space Grey": {
 			"FormBackground": "#1e1e1e",
 			"MainPanelBackground": "#1e1e1e",
@@ -1080,6 +1277,26 @@
 			"ButtonText": "#ffffff",
 			"NavBarIconColor": "#ffffff",
 			"HiResLabelText": "#aaaaaa",
+			"LogoReplaceURL": null,
+			"InvertLogo": false
+		},
+
+		"Space Void": {
+			"FormBackground": "#000006",
+			"MainPanelBackground": "#000006",
+			"HighlightedButtonBackground": "#0B0820",
+			"ClickedButtonBackground": "#000000",
+			"ProgressBarFillColor": "#6A00FF",
+			"SelectedRowBackground": "#2E1C4D",
+			"SidePanelBackground": "#000002",
+			"ButtonBackground": "#000002",
+			"TextBoxBackground": "#080816",
+			"PlaceholderTextBoxText": "#2A1B3F",
+			"TextBoxText": "#DCD6FF",
+			"LabelText": "#C9B3FF",
+			"ButtonText": "#FFFFFF",
+			"NavBarIconColor": "#9B59FF",
+			"HiResLabelText": "#5D3CFF",
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
@@ -1102,6 +1319,27 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
+		"Terminal": {
+		  "FormBackground": "#0b0e0b",
+		  "MainPanelBackground": "#0D0B0D",
+		  "SidePanelBackground": "#000000",
+		  "ButtonBackground": "#000000",
+		  "HighlightedButtonBackground": "#001f00",
+		  "ClickedButtonBackground": "#0a3d00",
+		  "SelectedRowBackground": "#001f00",
+		  "ProgressBarFillColor": "#1aff00",
+		  "TextBoxBackground": "#000000",
+		  "PlaceholderTextBoxText": "#1a661a",
+		  "TextBoxText": "#b6ffb6",
+		  "LabelText": "#6bff6b",
+		  "ButtonText": "#1aff00",
+		  "NavBarIconColor": "#1aff00",
+		  "HiResLabelText": "#ffffff",
+		  "LogoReplaceURL": null,
+		  "InvertLogo": false
+		},
+
 		"Titanium": {
 			"FormBackground": "#2e2e2e",
 			"MainPanelBackground": "#2e2e2e",
@@ -1121,6 +1359,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Vampire": {
 			"FormBackground": "#0d0c0f",
 			"MainPanelBackground": "#120e14",
@@ -1140,6 +1379,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Vaporwave Dream": {
 			"FormBackground": "#2e1a47",
 			"MainPanelBackground": "#2e1a47",
@@ -1159,6 +1399,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Violet Dusk": {
 			"FormBackground": "#3b1f4b",
 			"MainPanelBackground": "#3b1f4b",
@@ -1178,6 +1419,7 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		},
+
 		"Volcanic Ash": {
 			"FormBackground": "#212121",
 			"MainPanelBackground": "#212121",
@@ -1197,5 +1439,6 @@
 			"LogoReplaceURL": null,
 			"InvertLogo": false
 		}
+
 	}
 }
