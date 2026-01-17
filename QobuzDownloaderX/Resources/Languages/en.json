@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 16, 2026, 09:22AM EST",
+    "TranslationUpdatedOn":         "January 16, 2026, 03:15PM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -64,7 +64,7 @@
     "primaryListSeparatorLabel":    "Primary list separator",
     "listEndSeparatorLabel":        "List end separator",
     "playlistSectionLabel":         "PLAYLIST OPTIONS",
-    "duplicateFilesLabel":          "Duplicate files",
+    "duplicateFilesLabel":          "DUPLICATE FILES",
     
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckBox":          "Album Artist",
