@@ -28,6 +28,10 @@
     "skipDuplicatesButton":         "Ignore / skip download",
     "autoRenameDuplicatesButton":   "Automatically rename incoming file",
     "overwriteDuplicatesButton":    "Overwrite existing file",
+    "explicitLongTitleRadioButton": "Add (Explicit) suffix",
+    "explicitShortTitleRadioButton":"Add [E] suffix",
+    "cleanLongTitleRadioButton":    "Add (Clean) suffix",
+    "cleanShortTitleRadioButton":   "Add [C] suffix",
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "ADVANCED OPTIONS",
@@ -102,7 +106,9 @@
     "downloadAllFromArtistCheckBox":"Download all from artist (it may include more)",
     "useItemPosInPlaylistCheckBox": "Use item positions instead of album track numbers in file names",
     "showTipsCheckBox":             "Show tips",
-    "logFailedDownloadsCheckBox":   "Log failed downloads to 'error.txt' in the download folder", 
+    "logFailedDownloadsCheckBox":   "Log failed downloads to 'error.txt' in the download folder",
+    "explicitTagInTitleCheckBox":   "'Explicit' tag in title",
+    "cleanTagInTitleCheckBox":      "'Clean' tag in title",
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Welcome to QBDLX!",

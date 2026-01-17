@@ -28,6 +28,10 @@
     "skipDuplicatesButton":         "Ignorar / omitir descarga",
     "autoRenameDuplicatesButton":   "Renombrar automáticamente el archivo entrante",
     "overwriteDuplicatesButton":    "Sobrescribir el archivo existente",
+    "explicitLongTitleRadioButton": "Añadir sufijo (Explícit)",
+    "explicitShortTitleRadioButton":"Añadir sufijo [E]",
+    "cleanLongTitleRadioButton":    "Añadir sufijo (Clean)",
+    "cleanShortTitleRadioButton":   "Añadir sufijo [C]",
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",
@@ -64,7 +68,7 @@
     "primaryListSeparatorLabel":    "Separador principal de lista",
     "listEndSeparatorLabel":        "Separador final de lista",
     "playlistSectionLabel":         "OPCIONES DE LISTA DE REPRODUCCIÓN",
-    "duplicateFilesLabel":          "Archivos duplicados",
+    "duplicateFilesLabel":          "ARCHIVOS DUPLICADOS",
 
     "_SECTION3_":                   "=================== CASILLAS (CHECKBOX) DEL FORM PRINCIPAL ===================",
     "albumArtistCheckBox":          "Artista de álbum",
@@ -103,6 +107,8 @@
     "useItemPosInPlaylistCheckBox": "Usar posiciones en la lista en lugar de los números de pista del álbum en los nombres de archivo",
     "showTipsCheckBox":             "Mostrar consejos",
     "logFailedDownloadsCheckBox":   "Registrar descargas fallidas en 'error.txt' en la carpeta de descargas",
+    "explicitTagInTitleCheckBox":   "Etiqueta 'Explicit' en el título",
+    "cleanTagInTitleCheckBox":      "Etiqueta 'Clean' en el título",
 
     "_SECTION4_":                   "=================== CAMPOS DEL FORM PRINCIPAL ===================",
     "albumLabelPlaceholder":        "¡Bienvenido a QBDLX!",

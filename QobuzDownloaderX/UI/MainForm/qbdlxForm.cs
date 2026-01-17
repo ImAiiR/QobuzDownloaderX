@@ -868,6 +868,60 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void explicitTagInTitleCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+
+            explicitLongTitleRadioButton.Enabled = cb.Checked;
+            explicitShortTitleRadioButton.Enabled = cb.Checked;
+
+            Settings.Default.explicitTagInTitle = cb.Checked;
+            Settings.Default.Save();
+        }
+
+        private void explicitLongTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+
+            Settings.Default.explicitLongTitleTag = rb.Checked;
+            Settings.Default.Save();
+        }
+
+        private void explicitShortTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+
+            Settings.Default.explicitShortTitleTag = rb.Checked;
+            Settings.Default.Save();
+        }
+
+        private void cleanTagInTitleCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+
+            cleanLongTitleRadioButton.Enabled = cb.Checked;
+            cleanShortTitleRadioButton.Enabled = cb.Checked;
+
+            Settings.Default.cleanTagInTitle = cb.Checked;
+            Settings.Default.Save();
+        }
+
+        private void cleanLongTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+
+            Settings.Default.cleanLongTitleTag = rb.Checked;
+            Settings.Default.Save();
+        }
+
+        private void cleanShortTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+
+            Settings.Default.cleanShortTitleTag = rb.Checked;
+            Settings.Default.Save();
+        }
+
         private void coverArtCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.imageTag = coverArtCheckBox.Checked;

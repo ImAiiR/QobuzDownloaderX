@@ -375,7 +375,7 @@ namespace QobuzDownloaderX.Helpers
         public const string defaultLanguage = @"{
 {
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 16, 2026, 09:22AM EST"",
+    ""TranslationUpdatedOn"":         ""January 17, 2026, 03:15PM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -403,6 +403,10 @@ namespace QobuzDownloaderX.Helpers
     ""skipDuplicatesButton"":         ""Ignore / skip download"",
     ""autoRenameDuplicatesButton"":   ""Automatically rename incoming file"",
     ""overwriteDuplicatesButton"":    ""Overwrite existing file"",
+    ""explicitLongTitleRadioButton"": ""Add (Explicit) suffix"",
+    ""explicitShortTitleRadioButton"":""Add [E] suffix"",
+    ""cleanLongTitleRadioButton"":    ""Add (Clean) suffix"",
+    ""cleanShortTitleRadioButton"":   ""Add [C] suffix"",
 
     ""_SECTION2_"":                   ""=================== MAIN FORM LABELS ==================="",
     ""advancedOptionsLabel"":         ""ADVANCED OPTIONS"",
@@ -439,7 +443,7 @@ namespace QobuzDownloaderX.Helpers
     ""primaryListSeparatorLabel"":    ""Primary list separator"",
     ""listEndSeparatorLabel"":        ""List end separator"",
     ""playlistSectionLabel"":         ""PLAYLIST OPTIONS"",
-    ""duplicateFilesLabel"":          ""Duplicate files"",
+    ""duplicateFilesLabel"":          ""DUPLICATE FILES"",
     
     ""_SECTION3_"":                   ""=================== MAIN FORM CHECKBOXES ==================="",
     ""albumArtistCheckBox"":          ""Album Artist"",
@@ -447,6 +451,7 @@ namespace QobuzDownloaderX.Helpers
     ""commentCheckBox"":              ""Custom Comment"",
     ""trackArtistCheckBox"":          ""Track Artist"",
     ""trackTitleCheckBox"":           ""Track Title"",
+    ""yearCheckBox"":                 ""Year"",
     ""releaseDateCheckBox"":          ""Release Date"",
     ""releaseTypeCheckBox"":          ""Release Type"",
     ""genreCheckBox"":                ""Genre"",
@@ -476,7 +481,9 @@ namespace QobuzDownloaderX.Helpers
     ""downloadAllFromArtistCheckBox"":""Download all from artist (it may include more)"",
     ""useItemPosInPlaylistCheckBox"": ""Use item positions instead of album track numbers in file names"",
     ""showTipsCheckBox"":             ""Show tips"",
-    ""logFailedDownloadsCheckBox"":   ""Log failed downloads to 'error.txt' in the download folder"", 
+    ""logFailedDownloadsCheckBox"":   ""Log failed downloads to 'error.txt' in the download folder"",
+    ""explicitTagInTitleCheckBox"":   ""'Explicit' tag in title"",
+    ""cleanTagInTitleCheckBox"":      ""'Clean' tag in title"",
 
     ""_SECTION4_"":                   ""=================== MAIN FORM PLACEHOLDERS ==================="",
     ""albumLabelPlaceholder"":        ""Welcome to QBDLX!"",

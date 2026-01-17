@@ -255,10 +255,14 @@ namespace QobuzDownloaderX.Helpers
             f.savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
             f.dontSaveArtworkToDiskCheckBox.Checked = Settings.Default.dontSaveArtworkToDisk;
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
-            f.primaryListSeparatorTextBox.Text = Settings.Default.primaryListSeparator;
-            f.listEndSeparatorTextBox.Text = Settings.Default.listEndSeparator;
-            ParsingHelper.primaryListSeparator = Settings.Default.primaryListSeparator;
-            ParsingHelper.listEndSeparator = Settings.Default.listEndSeparator;
+
+            f.explicitTagInTitleCheckBox.Checked = Settings.Default.explicitTagInTitle;
+            f.explicitLongTitleRadioButton.Checked = Settings.Default.explicitLongTitleTag;
+            f.explicitShortTitleRadioButton.Checked = Settings.Default.explicitShortTitleTag;
+            f.cleanTagInTitleCheckBox.Checked = Settings.Default.cleanTagInTitle;
+            f.cleanLongTitleRadioButton.Checked = Settings.Default.cleanLongTitleTag;
+            f.cleanShortTitleRadioButton.Checked = Settings.Default.cleanShortTitleTag;
+
         }
 
         internal static void LoadOtherSettings(qbdlxForm f)
@@ -275,6 +279,12 @@ namespace QobuzDownloaderX.Helpers
             f.useItemPosInPlaylistCheckBox.Checked = Settings.Default.useItemPosInPlaylist;
             f.showTipsCheckBox.Checked = Settings.Default.showTips;
             f.logFailedDownloadsCheckBox.Checked = Settings.Default.logFailedDownloadsToErrorTxt;
+
+            f.primaryListSeparatorTextBox.Text = Settings.Default.primaryListSeparator;
+            ParsingHelper.primaryListSeparator = Settings.Default.primaryListSeparator;
+
+            f.listEndSeparatorTextBox.Text = Settings.Default.listEndSeparator;
+            ParsingHelper.listEndSeparator = Settings.Default.listEndSeparator;
 
             int duplicateFileMode = Settings.Default.duplicateFileMode;
             switch (duplicateFileMode)
@@ -422,6 +432,10 @@ namespace QobuzDownloaderX.Helpers
             f.skipDuplicatesRadioButton.Text = f.languageManager.GetTranslation("skipDuplicatesButton");
             f.autoRenameDuplicatesRadioButton.Text = f.languageManager.GetTranslation("autoRenameDuplicatesButton");
             f.overwriteDuplicatesRadioButton.Text = f.languageManager.GetTranslation("overwriteDuplicatesButton");
+            f.explicitLongTitleRadioButton.Text = f.languageManager.GetTranslation("explicitLongTitleRadioButton");
+            f.explicitShortTitleRadioButton.Text = f.languageManager.GetTranslation("explicitShortTitleRadioButton");
+            f.cleanLongTitleRadioButton.Text = f.languageManager.GetTranslation("cleanLongTitleRadioButton");
+            f.cleanShortTitleRadioButton.Text = f.languageManager.GetTranslation("cleanShortTitleRadioButton");
 
             /* Center additional settings button to center of panel */
             //f.additionalSettingsButton.Location = new Point((f.settingsPanel.Width - f.additionalSettingsButton.Width) / 2, f.additionalSettingsButton.Location.Y);
@@ -507,6 +521,8 @@ namespace QobuzDownloaderX.Helpers
             f.logFailedDownloadsCheckBox.Text = f.languageManager.GetTranslation("logFailedDownloadsCheckBox");
             f.useItemPosInPlaylistCheckBox.Text = f.languageManager.GetTranslation("useItemPosInPlaylistCheckBox");
             f.showTipsCheckBox.Text = f.languageManager.GetTranslation("showTipsCheckBox");
+            f.explicitTagInTitleCheckBox.Text = f.languageManager.GetTranslation("explicitTagInTitleCheckBox");
+            f.cleanTagInTitleCheckBox.Text = f.languageManager.GetTranslation("cleanTagInTitleCheckBox");
 
             // downloadFromArtistListBox
             string translatedNames = f.languageManager.GetTranslation("downloadFromArtistListBox");

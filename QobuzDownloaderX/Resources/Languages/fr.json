@@ -28,6 +28,10 @@
     "skipDuplicatesButton":         "Ignorer / Ne pas télécharger", // AI translation
     "autoRenameDuplicatesButton":   "Renommer automatiquement", // AI translation
     "overwriteDuplicatesButton":    "Écraser les fichiers existants", // AI translation
+    "explicitLongTitleRadioButton": "Ajouter le suffixe (Explícit)", // AI translation
+    "explicitShortTitleRadioButton":"Ajouter le suffixe [E]", // AI translation
+    "cleanLongTitleRadioButton":    "Ajouter le suffixe (Clean)", // AI translation
+    "cleanShortTitleRadioButton":   "Ajouter le suffixe [C]", // AI translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Paramètres Avancés",
@@ -104,6 +108,8 @@
     "useItemPosInPlaylistCheckBox": "Utiliser les positions des éléments au lieu des numéros de piste de l'album dans les noms de fichiers", // AI translation
     "showTipsCheckBox":             "Afficher les conseils", // AI translation
     "logFailedDownloadsCheckBox":   "Enregistrer les téléchargements échoués dans 'error.txt' dans le dossier de téléchargement", // AI translation
+    "explicitTagInTitleCheckBox":   "Tag explicite dans le titre", // AI translation
+    "cleanTagInTitleCheckBox":      "Tag propre dans le titre", // AI translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",

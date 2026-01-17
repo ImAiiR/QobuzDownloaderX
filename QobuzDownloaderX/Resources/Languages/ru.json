@@ -28,6 +28,10 @@
     "skipDuplicatesButton":         "Игнорировать / пропустить загрузку",
     "autoRenameDuplicatesButton":   "Переименовать загружаемые",
     "overwriteDuplicatesButton":    "Перезаписывать существующие",
+    "explicitLongTitleRadioButton": "Добавить суффикс (Explicit)", // AI translation
+    "explicitShortTitleRadioButton":"Добавить суффикс [E]", // AI translation
+    "cleanLongTitleRadioButton":    "Добавить суффикс (Clean)", // AI translation
+    "cleanShortTitleRadioButton":   "Добавить суффикс [C]", // AI translation
 
     "_SECTION2_":                   "=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",
     "advancedOptionsLabel":         "РАСШИРЕННЫЕ НАСТРОЙКИ",
@@ -102,7 +106,9 @@
     "downloadAllFromArtistCheckBox":"Загрузить всё у исполнителя (может включать доп. контент)",
     "useItemPosInPlaylistCheckBox": "В именах файлов использовать нумерацию из плейлиста (вместо нумерации из альбома)",
     "showTipsCheckBox":             "Показать советы",
-    "logFailedDownloadsCheckBox":   "Журналировать ошибки в файл 'error.txt' в папке загрузки", 
+    "logFailedDownloadsCheckBox":   "Журналировать ошибки в файл 'error.txt' в папке загрузки",
+    "explicitTagInTitleCheckBox":   "Явный тег в названии", // AI translation
+    "cleanTagInTitleCheckBox":      "Чистый тег в названии", // AI translation
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",

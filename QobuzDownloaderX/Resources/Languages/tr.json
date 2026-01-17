@@ -28,6 +28,10 @@
     "skipDuplicatesButton":         "Yoksay / İndirmeyi atla", // AI translation
     "autoRenameDuplicatesButton":   "Otomatik olarak yeniden adlandır", // AI translation
     "overwriteDuplicatesButton":    "Mevcut dosyaların üzerine yaz", // AI translation
+    "explicitLongTitleRadioButton": "Son ek (Explicit) ekle", // AI translation
+    "explicitShortTitleRadioButton":"Son ek [E] ekle", // AI translation
+    "cleanLongTitleRadioButton":    "Son ek (Clean) ekle", // AI translation
+    "cleanShortTitleRadioButton":   "Son ek [C] ekle", // AI translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "GELİŞMİŞ AYARLAR",
@@ -103,6 +107,8 @@
     "useItemPosInPlaylistCheckBox": "Dosya adlarında albüm parça numaraları yerine öğe konumlarını kullan", // AI translation
     "showTipsCheckBox":             "İpuçlarını göster", // AI translation
     "logFailedDownloadsCheckBox":   "Başarısız indirmeleri indirme klasöründeki 'error.txt' dosyasına kaydet", // AI translation
+    "explicitTagInTitleCheckBox":   "Başlıkta açık etiket", // AI translation
+    "cleanTagInTitleCheckBox":      "Başlıkta temiz etiket", // AI translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "QBDLX'e Hoşgeldiniz!",

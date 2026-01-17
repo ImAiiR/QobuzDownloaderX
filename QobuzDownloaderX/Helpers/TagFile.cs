@@ -5,7 +5,6 @@ using QopenAPI;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Windows.Forms;
 using TagLib;
 using TagLib.Id3v2;
 using File = TagLib.File;
@@ -182,6 +181,43 @@ namespace QobuzDownloaderX
                                         ? QoItem.Title
                                         : $"{QoItem.Title.TrimEnd()} ({QoItem.Version})";
                 titleFormatted = RenameTemplates.repeatedParenthesesRegex.Replace(titleFormatted, "($1)");
+
+                bool isExplicit = QoItem.ParentalWarning;
+
+                if (isExplicit && Settings.Default.explicitTagInTitle)
+                {
+                    if (Settings.Default.explicitLongTitleTag)
+                    {
+                        if (!titleFormatted.ToLowerInvariant().Replace('[', '(').Replace(']', ')').EndsWith("(Explicit)")){
+                            titleFormatted += " (Explicit)";
+                        }
+                    }
+                    else
+                    {
+                        if (!titleFormatted.ToLowerInvariant().Replace('(', '[').Replace(')', ']').EndsWith("[E]"))
+                        {
+                            titleFormatted += " [E]";
+                        }
+                    }
+                }
+                else if (!isExplicit && Settings.Default.cleanTagInTitle)
+                {
+                    if (Settings.Default.cleanLongTitleTag)
+                    {
+                        if (!titleFormatted.ToLowerInvariant().Replace('[', '(').Replace(']', ')').EndsWith("(Clean)"))
+                        {
+                            titleFormatted += " (Clean)";
+                        }
+                    }
+                    else
+                    {
+                        if (!titleFormatted.ToLowerInvariant().Replace('(', '[').Replace(')', ']').EndsWith("[C]"))
+                        {
+                            titleFormatted += " [C]";
+                        }
+                    }
+                }
+
                 file.Tag.Title = titleFormatted;
             }
 

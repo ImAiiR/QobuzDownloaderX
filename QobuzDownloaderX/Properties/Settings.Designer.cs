@@ -838,5 +838,77 @@ namespace QobuzDownloaderX.Properties {
                 this["releaseDateTag"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cleanLongTitleTag {
+            get {
+                return ((bool)(this["cleanLongTitleTag"]));
+            }
+            set {
+                this["cleanLongTitleTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cleanShortTitleTag {
+            get {
+                return ((bool)(this["cleanShortTitleTag"]));
+            }
+            set {
+                this["cleanShortTitleTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool explicitLongTitleTag {
+            get {
+                return ((bool)(this["explicitLongTitleTag"]));
+            }
+            set {
+                this["explicitLongTitleTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool explicitShortTitleTag {
+            get {
+                return ((bool)(this["explicitShortTitleTag"]));
+            }
+            set {
+                this["explicitShortTitleTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool explicitTagInTitle {
+            get {
+                return ((bool)(this["explicitTagInTitle"]));
+            }
+            set {
+                this["explicitTagInTitle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cleanTagInTitle {
+            get {
+                return ((bool)(this["cleanTagInTitle"]));
+            }
+            set {
+                this["cleanTagInTitle"] = value;
+            }
+        }
     }
 }

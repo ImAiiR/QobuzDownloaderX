@@ -4,7 +4,7 @@
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
-    "additionalSettingsButton":     "Weitere Optionen",
+    "additionalSettingsButton":     "WEITERE OPTIONEN",
     "aboutButton":                  "ÜBER…",
     "closeAdditionalButton":        "Optionen",
     "downloadButton":               "HOLEN!",
@@ -28,6 +28,10 @@
     "skipDuplicatesButton":         "Ignorieren / Download überspringen", // AI translation
     "autoRenameDuplicatesButton":   "Automatisch umbenennen", // AI translation
     "overwriteDuplicatesButton":    "Vorhandene Dateien überschreiben", // AI translation
+    "explicitLongTitleRadioButton": "Suffix (Explícit) hinzufügen", // AI translation
+    "explicitShortTitleRadioButton":"Suffix [E] hinzufügen", // AI translation
+    "cleanLongTitleRadioButton":    "Suffix (Clean) hinzufügen", // AI translation
+    "cleanShortTitleRadioButton":   "Suffix [C] hinzufügen", // AI translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Weitere Optionen",
@@ -64,7 +68,7 @@
     "primaryListSeparatorLabel":    "Primärer Listentrenner", // AI translation
     "listEndSeparatorLabel":        "Listenendtrenner", // AI translation
     "playlistSectionLabel":         "PLAYLIST-OPTIONEN", // AI translation
-    "duplicateFilesLabel":          "Doppelte Dateien", // AI translation
+    "duplicateFilesLabel":          "DOPPELTE DATEIEN", // AI translation
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckBox":          "Album Artist",
@@ -103,6 +107,8 @@
     "useItemPosInPlaylistCheckBox": "Elementpositionen anstelle der Album-Tracknummern in Dateinamen verwenden", // AI translation
     "showTipsCheckBox":             "Tipps anzeigen", // AI translation
     "logFailedDownloadsCheckBox":   "Fehlgeschlagene Downloads in 'error.txt' im Download-Ordner protokollieren", // AI translation
+    "explicitTagInTitleCheckBox":   "Explizites Tag im Titel", // AI translation
+    "cleanTagInTitleCheckBox":      "Sauberes Tag im Titel", // AI translation
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Willkommen in QBDLX!",
