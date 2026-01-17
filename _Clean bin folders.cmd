@@ -42,7 +42,7 @@ IF EXIST "%~f1" (
 
 IF EXIST "%~dp1" (
 	powershell -noprofile -command ^
-	    "$xml = '<?xml version=""1.0"" encoding=""utf-8""?>' + \"`r`n\" + " ^
+	    "$xml = '<?xml version=\"1.0\" encoding=\"utf-8\"?>' + \"`r`n\" + " ^
 	    "'<settings>' + \"`r`n\" + " ^
 	    "'  <currentLanguage>EN</currentLanguage>' + \"`r`n\" + " ^
 	    "'  <currentTheme>Titanium</currentTheme>' + \"`r`n\" + " ^
