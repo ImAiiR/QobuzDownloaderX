@@ -37,7 +37,7 @@ IF EXIST "%~f1" (
 	COLOR 0C
     ECHO:Error deleting file: "%~f1"
     PAUSE
-    EXIT /B
+    EXIT 1
 )
 
 (
