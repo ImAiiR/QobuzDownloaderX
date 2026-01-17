@@ -793,9 +793,15 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void yearCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.yearTag = yearCheckBox.Checked;
+            Settings.Default.Save();
+        }
+
         private void releaseDateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.yearTag = releaseDateCheckBox.Checked;
+            Settings.Default.releaseDateTag = releaseDateCheckBox.Checked;
             Settings.Default.Save();
         }
 
@@ -1816,5 +1822,6 @@ namespace QobuzDownloaderX
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

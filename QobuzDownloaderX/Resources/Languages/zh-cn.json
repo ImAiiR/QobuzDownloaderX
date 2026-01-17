@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 16, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 17, 2026, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -72,6 +72,7 @@
     "commentCheckBox":              "自定义备注",
     "trackArtistCheckBox":          "曲目艺术家",
     "trackTitleCheckBox":           "曲目标题",
+    "yearCheckBox":                 "年份", // AI translation
     "releaseDateCheckBox":          "发行日期",
     "releaseTypeCheckBox":          "发行类型",
     "genreCheckBox":                "流派",

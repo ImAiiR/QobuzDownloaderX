@@ -246,7 +246,8 @@ namespace QobuzDownloaderX.Helpers
             f.trackNumberCheckBox.Checked = Settings.Default.trackTag;
             f.trackTotalCheckBox.Checked = Settings.Default.totalTracksTag;
             f.upcCheckBox.Checked = Settings.Default.upcTag;
-            f.releaseDateCheckBox.Checked = Settings.Default.yearTag;
+            f.releaseDateCheckBox.Checked = Settings.Default.releaseDateTag;
+            f.yearCheckBox.Checked = Settings.Default.yearTag;
             f.coverArtCheckBox.Checked = Settings.Default.imageTag;
             f.commentCheckBox.Checked = Settings.Default.commentTag;
             f.commentTextBox.Text = Settings.Default.commentText;
@@ -477,6 +478,7 @@ namespace QobuzDownloaderX.Helpers
             f.commentCheckBox.Text = f.languageManager.GetTranslation("commentCheckBox");
             f.trackArtistCheckBox.Text = f.languageManager.GetTranslation("trackArtistCheckBox");
             f.trackTitleCheckBox.Text = f.languageManager.GetTranslation("trackTitleCheckBox");
+            f.yearCheckBox.Text = f.languageManager.GetTranslation("yearCheckBox");
             f.releaseDateCheckBox.Text = f.languageManager.GetTranslation("releaseDateCheckBox");
             f.releaseTypeCheckBox.Text = f.languageManager.GetTranslation("releaseTypeCheckBox");
             f.genreCheckBox.Text = f.languageManager.GetTranslation("genreCheckBox");

@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 16, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 17, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -72,6 +72,7 @@
     "commentCheckBox":              "Eigener Kommentar",
     "trackArtistCheckBox":          "Track Artist",
     "trackTitleCheckBox":           "Track Titel",
+    "yearCheckBox":                 "Jahr", // AI translation
     "releaseDateCheckBox":          "Veröffentlichungsdatum",
     "releaseTypeCheckBox":          "Veröffentlichungstyp",
     "genreCheckBox":                "Genre",

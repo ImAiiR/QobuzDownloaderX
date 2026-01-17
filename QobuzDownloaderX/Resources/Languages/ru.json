@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 16, 2026, 10:19PM MSK",
+    "TranslationUpdatedOn":         "January 17, 2026, 10:19PM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -72,6 +72,7 @@
     "commentCheckBox":              "Комментарий пользователя",
     "trackArtistCheckBox":          "Исполнитель трека",
     "trackTitleCheckBox":           "Название трека",
+    "yearCheckBox":                 "Год", // AI translation
     "releaseDateCheckBox":          "Дата релиза",
     "releaseTypeCheckBox":          "Тип релиза",
     "genreCheckBox":                "Жанр",

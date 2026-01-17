@@ -5,6 +5,7 @@ using QopenAPI;
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Windows.Forms;
 using TagLib;
 using TagLib.Id3v2;
 using File = TagLib.File;
@@ -78,15 +79,23 @@ namespace QobuzDownloaderX
                 }
             }
 
-            if (Settings.Default.yearTag)
+            if (Settings.Default.releaseDateTag || Settings.Default.yearTag)
             {
                 string releaseDate = !string.IsNullOrWhiteSpace(QoItem?.ReleaseDateOriginal) ? QoItem.ReleaseDateOriginal : QoAlbum?.ReleaseDateOriginal;
-                customTags.SetField("DATE", releaseDate);
+                releaseDate = releaseDate.Trim();
 
-                if (!string.IsNullOrEmpty(releaseDate) && releaseDate.Length >= 4)
+                if (!string.IsNullOrEmpty(releaseDate))
                 {
-                    string yearOnly = releaseDate.Substring(0, 4);
-                    customTags.SetField("YEAR", yearOnly);
+                    if (Settings.Default.releaseDateTag)
+                    {
+                        customTags.SetField("DATE", releaseDate);
+                    }
+
+                    if (Settings.Default.yearTag && (releaseDate.Length >= 4))
+                    {
+                        string yearOnly = releaseDate.Substring(0, 4);
+                        customTags.SetField("YEAR", yearOnly);
+                    }
                 }
             }
         }
@@ -135,16 +144,24 @@ namespace QobuzDownloaderX
                 }
             }
 
-            if (Settings.Default.yearTag)
+            if (Settings.Default.releaseDateTag || Settings.Default.yearTag)
             {
                 string releaseDate = !string.IsNullOrWhiteSpace(QoItem?.ReleaseDateOriginal) ? QoItem.ReleaseDateOriginal : QoAlbum?.ReleaseDateOriginal;
-                if (!string.IsNullOrEmpty(releaseDate) && releaseDate.Length >= 4)
-                {
-                    // Release Year tag (writes to "TDRC" (recording date) Frame)
-                    mp3Tag.Year = uint.Parse(QoItem.ReleaseDateOriginal.Substring(0, 4));
+                releaseDate = releaseDate.Trim();
 
-                    // Release Date tag (use "TDRL" (release date) Frame for full date)
-                    mp3Tag.SetTextFrame("TDRL", QoItem.ReleaseDateOriginal);
+                if (!string.IsNullOrEmpty(releaseDate))
+                {
+                    if (Settings.Default.yearTag && (releaseDate.Length >= 4))
+                    {
+                        uint yearOnly = uint.Parse(releaseDate.Substring(0, 4));
+                        mp3Tag.Year = yearOnly;
+                    }
+
+                    if (Settings.Default.releaseDateTag)
+                    {
+                        // "TDRL" (release date) frame.
+                        mp3Tag.SetTextFrame("TDRL", releaseDate);
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 16, 2026, 03:15PM EST",
+    "TranslationUpdatedOn":         "January 17, 2026, 03:15PM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -72,6 +72,7 @@
     "commentCheckBox":              "Custom Comment",
     "trackArtistCheckBox":          "Track Artist",
     "trackTitleCheckBox":           "Track Title",
+    "yearCheckBox":                 "Year",
     "releaseDateCheckBox":          "Release Date",
     "releaseTypeCheckBox":          "Release Type",
     "genreCheckBox":                "Genre",

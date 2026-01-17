@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "January 16, 2026, 01:25PM UTC",
+    "TranslationUpdatedOn":         "January 17, 2026, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -72,6 +72,7 @@
     "commentCheckBox":              "Özel Yorum",
     "trackArtistCheckBox":          "Parça Sanatçısı",
     "trackTitleCheckBox":           "Parça İsmi",
+    "yearCheckBox":                 "Yıl", // AI translation
     "releaseDateCheckBox":          "Çıkış Tarihi",
     "releaseTypeCheckBox":          "Çıkış Türü",
     "genreCheckBox":                "Tür",

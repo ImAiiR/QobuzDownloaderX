@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 16, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 17, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -73,6 +73,7 @@
     "commentCheckBox":              "Commentaire Personnalisé",
     "trackArtistCheckBox":          "Piste de l'artiste",
     "trackTitleCheckBox":           "Titre de la piste",
+    "yearCheckBox":                 "Année", // AI translation
     "releaseDateCheckBox":          "Date de sortie",
     "releaseTypeCheckBox":          "Type de sortie",
     "genreCheckBox":                "Genre",

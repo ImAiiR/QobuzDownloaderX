@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 16, 2026, 10:17AM UTC",
+    "TranslationUpdatedOn":         "January 17, 2026, 10:17AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -72,6 +72,7 @@
     "commentCheckBox":              "Comentario personalizado",
     "trackArtistCheckBox":          "Artista de pista",
     "trackTitleCheckBox":           "Título de pista",
+    "yearCheckBox":                 "Año",
     "releaseDateCheckBox":          "Fecha de lanzamiento",
     "releaseTypeCheckBox":          "Tipo de lanzamiento",
     "genreCheckBox":                "Género",
