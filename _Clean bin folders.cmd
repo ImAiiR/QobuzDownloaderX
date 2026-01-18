@@ -29,7 +29,7 @@ ECHO+
 
 COLOR 0A
 PAUSE
-EXIT
+EXIT 0
 
 :ResetUserConfig
 DEL /Q "%~f1" 2>NUL
@@ -49,4 +49,4 @@ IF EXIST "%~dp1" (
 	    "'</settings>'; " ^
 	    "Set-Content -LiteralPath '%~1' -Value $xml -Encoding UTF8"
 )
-EXIT /B
+EXIT /B 0
