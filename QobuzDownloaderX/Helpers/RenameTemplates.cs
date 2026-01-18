@@ -361,64 +361,6 @@ namespace QobuzDownloaderX.Helpers
             return sb.ToString();
         }
 
-        // UNUSED
-        // ======
-        //
-        //public static string MakeValidWindowsDirectoryName(
-        //    string dirPath,
-        //    char asteriskChar = '✲',
-        //    char colonChar = '∶',
-        //    char questionMarkChar = 'ʔ',
-        //    char verticalBarChar = 'ǀ',
-        //    char quoteChar = '″'',
-        //    char lessThanChar = '˂',
-        //    char greaterThanChar = '˃')
-        //{
-        //    if (string.IsNullOrWhiteSpace(dirPath))
-        //        throw new ArgumentNullException(nameof(dirPath));
-        //
-        //    char[] invalidPathChars = Path.GetInvalidPathChars();
-        //
-        //    if (invalidPathChars.Contains(asteriskChar))
-        //        throw new ArgumentException($"Invalid replacement character for {nameof(asteriskChar)}.", nameof(asteriskChar));
-        //    if (invalidPathChars.Contains(colonChar))
-        //        throw new ArgumentException($"Invalid replacement character for {nameof(colonChar)}.", nameof(colonChar));
-        //    if (invalidPathChars.Contains(questionMarkChar))
-        //        throw new ArgumentException($"Invalid replacement character for {nameof(questionMarkChar)}.", nameof(questionMarkChar));
-        //    if (invalidPathChars.Contains(verticalBarChar))
-        //        throw new ArgumentException($"Invalid replacement character for {nameof(verticalBarChar)}.", nameof(verticalBarChar));
-        //    if (invalidPathChars.Contains(quoteChar))
-        //        throw new ArgumentException($"Invalid replacement character for {nameof(quoteChar)}.", nameof(quoteChar));
-        //    if (invalidPathChars.Contains(lessThanChar))
-        //        throw new ArgumentException($"Invalid replacement character for {nameof(lessThanChar)}.", nameof(lessThanChar));
-        //    if (invalidPathChars.Contains(greaterThanChar))
-        //        throw new ArgumentException($"Invalid replacement character for {nameof(greaterThanChar)}.", nameof(greaterThanChar));
-        //
-        //    var replacements = new Dictionary<char, char>
-        //    {
-        //        { '*', asteriskChar },
-        //        { ':', colonChar },
-        //        { '?', questionMarkChar },
-        //        { '|', verticalBarChar },
-        //        { '"', quoteChar },
-        //        { '<', lessThanChar },
-        //        { '>', greaterThanChar }
-        //    };
-        //
-        //    dirPath = dirPath.Trim();
-        //
-        //    var sb = new StringBuilder(dirPath.Length);
-        //    foreach (char c in dirPath)
-        //    {
-        //        if (replacements.ContainsKey(c))
-        //            sb.Append(replacements[c]);
-        //        else
-        //            sb.Append(c);
-        //    }
-        //
-        //    return sb.ToString();
-        //}
-
         public static string TruncateLongName(string name, byte extLen, byte maxFileNameLength = 255)
         {
 

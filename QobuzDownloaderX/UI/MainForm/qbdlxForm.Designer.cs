@@ -67,11 +67,13 @@ namespace QobuzDownloaderX
             this.inputTextBox = new System.Windows.Forms.TextBox();
             this.downloadLabel = new System.Windows.Forms.Label();
             this.settingsPanel = new System.Windows.Forms.Panel();
-            this.vaTrackTemplateTextBox = new System.Windows.Forms.TextBox();
-            this.vaTrackTemplateLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.resetTemplatesButton = new System.Windows.Forms.Button();
             this.saveTemplatesButton = new System.Windows.Forms.Button();
+            this.cdTemplateTextBox = new System.Windows.Forms.TextBox();
+            this.cdTemplateLabel = new System.Windows.Forms.Label();
+            this.vaTrackTemplateTextBox = new System.Windows.Forms.TextBox();
+            this.vaTrackTemplateLabel = new System.Windows.Forms.Label();
             this.folderButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.selectFolderButton = new System.Windows.Forms.Button();
             this.openFolderButton = new System.Windows.Forms.Button();
@@ -733,9 +735,11 @@ namespace QobuzDownloaderX
             // settingsPanel
             // 
             this.settingsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(47)))), ((int)(((byte)(52)))));
+            this.settingsPanel.Controls.Add(this.flowLayoutPanel1);
+            this.settingsPanel.Controls.Add(this.cdTemplateTextBox);
+            this.settingsPanel.Controls.Add(this.cdTemplateLabel);
             this.settingsPanel.Controls.Add(this.vaTrackTemplateTextBox);
             this.settingsPanel.Controls.Add(this.vaTrackTemplateLabel);
-            this.settingsPanel.Controls.Add(this.flowLayoutPanel1);
             this.settingsPanel.Controls.Add(this.folderButtonsPanel);
             this.settingsPanel.Controls.Add(this.templatesListLabel);
             this.settingsPanel.Controls.Add(this.templatesListTextBox);
@@ -755,42 +759,17 @@ namespace QobuzDownloaderX
             this.settingsPanel.Controls.Add(this.downloadOptionsLabel);
             this.settingsPanel.Controls.Add(this.templatesLabel);
             this.settingsPanel.Controls.Add(this.settingsLabel);
-            this.settingsPanel.Location = new System.Drawing.Point(459, 193);
+            this.settingsPanel.Location = new System.Drawing.Point(451, 195);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(771, 577);
             this.settingsPanel.TabIndex = 0;
-            // 
-            // vaTrackTemplateTextBox
-            // 
-            this.vaTrackTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.vaTrackTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.vaTrackTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vaTrackTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.vaTrackTemplateTextBox.Location = new System.Drawing.Point(261, 282);
-            this.vaTrackTemplateTextBox.Multiline = true;
-            this.vaTrackTemplateTextBox.Name = "vaTrackTemplateTextBox";
-            this.vaTrackTemplateTextBox.Size = new System.Drawing.Size(430, 21);
-            this.vaTrackTemplateTextBox.TabIndex = 13;
-            this.vaTrackTemplateTextBox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
-            this.vaTrackTemplateTextBox.WordWrap = false;
-            // 
-            // vaTrackTemplateLabel
-            // 
-            this.vaTrackTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vaTrackTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.vaTrackTemplateLabel.Location = new System.Drawing.Point(4, 279);
-            this.vaTrackTemplateLabel.Name = "vaTrackTemplateLabel";
-            this.vaTrackTemplateLabel.Size = new System.Drawing.Size(251, 25);
-            this.vaTrackTemplateLabel.TabIndex = 12;
-            this.vaTrackTemplateLabel.Text = "(V/A) TRACK TEMPLATE";
-            this.vaTrackTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.resetTemplatesButton);
             this.flowLayoutPanel1.Controls.Add(this.saveTemplatesButton);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(261, 374);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(261, 381);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(430, 37);
             this.flowLayoutPanel1.TabIndex = 18;
@@ -833,12 +812,62 @@ namespace QobuzDownloaderX
             this.saveTemplatesButton.UseVisualStyleBackColor = false;
             this.saveTemplatesButton.Click += new System.EventHandler(this.saveTemplatesButton_Click);
             // 
+            // cdTemplateTextBox
+            // 
+            this.cdTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cdTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cdTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cdTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.cdTemplateTextBox.Location = new System.Drawing.Point(261, 354);
+            this.cdTemplateTextBox.Multiline = true;
+            this.cdTemplateTextBox.Name = "cdTemplateTextBox";
+            this.cdTemplateTextBox.Size = new System.Drawing.Size(430, 21);
+            this.cdTemplateTextBox.TabIndex = 23;
+            this.cdTemplateTextBox.Text = "CD 0%DiscNumber%";
+            this.cdTemplateTextBox.WordWrap = false;
+            // 
+            // cdTemplateLabel
+            // 
+            this.cdTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cdTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.cdTemplateLabel.Location = new System.Drawing.Point(4, 354);
+            this.cdTemplateLabel.Name = "cdTemplateLabel";
+            this.cdTemplateLabel.Size = new System.Drawing.Size(251, 21);
+            this.cdTemplateLabel.TabIndex = 22;
+            this.cdTemplateLabel.Text = "CD TEMPLATE";
+            this.cdTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // vaTrackTemplateTextBox
+            // 
+            this.vaTrackTemplateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.vaTrackTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.vaTrackTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vaTrackTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.vaTrackTemplateTextBox.Location = new System.Drawing.Point(261, 261);
+            this.vaTrackTemplateTextBox.Multiline = true;
+            this.vaTrackTemplateTextBox.Name = "vaTrackTemplateTextBox";
+            this.vaTrackTemplateTextBox.Size = new System.Drawing.Size(430, 21);
+            this.vaTrackTemplateTextBox.TabIndex = 13;
+            this.vaTrackTemplateTextBox.Text = "%TrackNumber%. %ArtistName% - %TrackTitle%";
+            this.vaTrackTemplateTextBox.WordWrap = false;
+            // 
+            // vaTrackTemplateLabel
+            // 
+            this.vaTrackTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vaTrackTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.vaTrackTemplateLabel.Location = new System.Drawing.Point(4, 260);
+            this.vaTrackTemplateLabel.Name = "vaTrackTemplateLabel";
+            this.vaTrackTemplateLabel.Size = new System.Drawing.Size(251, 21);
+            this.vaTrackTemplateLabel.TabIndex = 12;
+            this.vaTrackTemplateLabel.Text = "(V/A) TRACK TEMPLATE";
+            this.vaTrackTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // folderButtonsPanel
             // 
             this.folderButtonsPanel.Controls.Add(this.selectFolderButton);
             this.folderButtonsPanel.Controls.Add(this.openFolderButton);
             this.folderButtonsPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.folderButtonsPanel.Location = new System.Drawing.Point(261, 101);
+            this.folderButtonsPanel.Location = new System.Drawing.Point(261, 95);
             this.folderButtonsPanel.Name = "folderButtonsPanel";
             this.folderButtonsPanel.Size = new System.Drawing.Size(430, 37);
             this.folderButtonsPanel.TabIndex = 4;
@@ -887,7 +916,7 @@ namespace QobuzDownloaderX
             // 
             this.templatesListLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.templatesListLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.templatesListLabel.Location = new System.Drawing.Point(0, 413);
+            this.templatesListLabel.Location = new System.Drawing.Point(0, 417);
             this.templatesListLabel.Name = "templatesListLabel";
             this.templatesListLabel.Size = new System.Drawing.Size(771, 25);
             this.templatesListLabel.TabIndex = 19;
@@ -901,13 +930,13 @@ namespace QobuzDownloaderX
             this.templatesListTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.templatesListTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.templatesListTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.templatesListTextBox.Location = new System.Drawing.Point(96, 440);
+            this.templatesListTextBox.Location = new System.Drawing.Point(95, 449);
             this.templatesListTextBox.Multiline = true;
             this.templatesListTextBox.Name = "templatesListTextBox";
             this.templatesListTextBox.ReadOnly = true;
             this.templatesListTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.templatesListTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.templatesListTextBox.Size = new System.Drawing.Size(595, 77);
+            this.templatesListTextBox.Size = new System.Drawing.Size(596, 77);
             this.templatesListTextBox.TabIndex = 20;
             this.templatesListTextBox.Text = resources.GetString("templatesListTextBox.Text");
             this.templatesListTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -935,7 +964,7 @@ namespace QobuzDownloaderX
             this.trackTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.trackTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trackTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.trackTemplateTextBox.Location = new System.Drawing.Point(261, 249);
+            this.trackTemplateTextBox.Location = new System.Drawing.Point(261, 230);
             this.trackTemplateTextBox.Multiline = true;
             this.trackTemplateTextBox.Name = "trackTemplateTextBox";
             this.trackTemplateTextBox.Size = new System.Drawing.Size(430, 21);
@@ -947,9 +976,9 @@ namespace QobuzDownloaderX
             // 
             this.trackTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trackTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.trackTemplateLabel.Location = new System.Drawing.Point(4, 246);
+            this.trackTemplateLabel.Location = new System.Drawing.Point(4, 228);
             this.trackTemplateLabel.Name = "trackTemplateLabel";
-            this.trackTemplateLabel.Size = new System.Drawing.Size(251, 25);
+            this.trackTemplateLabel.Size = new System.Drawing.Size(251, 21);
             this.trackTemplateLabel.TabIndex = 10;
             this.trackTemplateLabel.Text = "(DEFAULT) TRACK TEMPLATE";
             this.trackTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -960,7 +989,7 @@ namespace QobuzDownloaderX
             this.playlistTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.playlistTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playlistTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.playlistTemplateTextBox.Location = new System.Drawing.Point(261, 312);
+            this.playlistTemplateTextBox.Location = new System.Drawing.Point(261, 292);
             this.playlistTemplateTextBox.Multiline = true;
             this.playlistTemplateTextBox.Name = "playlistTemplateTextBox";
             this.playlistTemplateTextBox.Size = new System.Drawing.Size(430, 21);
@@ -972,9 +1001,9 @@ namespace QobuzDownloaderX
             // 
             this.playlistTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playlistTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.playlistTemplateLabel.Location = new System.Drawing.Point(4, 309);
+            this.playlistTemplateLabel.Location = new System.Drawing.Point(4, 291);
             this.playlistTemplateLabel.Name = "playlistTemplateLabel";
-            this.playlistTemplateLabel.Size = new System.Drawing.Size(251, 25);
+            this.playlistTemplateLabel.Size = new System.Drawing.Size(251, 21);
             this.playlistTemplateLabel.TabIndex = 14;
             this.playlistTemplateLabel.Text = "PLAYLIST TEMPLATE";
             this.playlistTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -985,7 +1014,7 @@ namespace QobuzDownloaderX
             this.artistTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.artistTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.artistTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.artistTemplateTextBox.Location = new System.Drawing.Point(261, 180);
+            this.artistTemplateTextBox.Location = new System.Drawing.Point(261, 168);
             this.artistTemplateTextBox.Multiline = true;
             this.artistTemplateTextBox.Name = "artistTemplateTextBox";
             this.artistTemplateTextBox.Size = new System.Drawing.Size(430, 21);
@@ -999,7 +1028,7 @@ namespace QobuzDownloaderX
             this.favoritesTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.favoritesTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.favoritesTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.favoritesTemplateTextBox.Location = new System.Drawing.Point(261, 347);
+            this.favoritesTemplateTextBox.Location = new System.Drawing.Point(261, 323);
             this.favoritesTemplateTextBox.Multiline = true;
             this.favoritesTemplateTextBox.Name = "favoritesTemplateTextBox";
             this.favoritesTemplateTextBox.Size = new System.Drawing.Size(430, 21);
@@ -1013,7 +1042,7 @@ namespace QobuzDownloaderX
             this.albumTemplateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.albumTemplateTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.albumTemplateTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.albumTemplateTextBox.Location = new System.Drawing.Point(261, 214);
+            this.albumTemplateTextBox.Location = new System.Drawing.Point(261, 199);
             this.albumTemplateTextBox.Multiline = true;
             this.albumTemplateTextBox.Name = "albumTemplateTextBox";
             this.albumTemplateTextBox.Size = new System.Drawing.Size(430, 21);
@@ -1027,7 +1056,7 @@ namespace QobuzDownloaderX
             this.downloadFolderTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.downloadFolderTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadFolderTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadFolderTextBox.Location = new System.Drawing.Point(261, 74);
+            this.downloadFolderTextBox.Location = new System.Drawing.Point(261, 68);
             this.downloadFolderTextBox.Multiline = true;
             this.downloadFolderTextBox.Name = "downloadFolderTextBox";
             this.downloadFolderTextBox.Size = new System.Drawing.Size(430, 21);
@@ -1040,9 +1069,9 @@ namespace QobuzDownloaderX
             // 
             this.artistTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.artistTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.artistTemplateLabel.Location = new System.Drawing.Point(4, 176);
+            this.artistTemplateLabel.Location = new System.Drawing.Point(4, 168);
             this.artistTemplateLabel.Name = "artistTemplateLabel";
-            this.artistTemplateLabel.Size = new System.Drawing.Size(251, 25);
+            this.artistTemplateLabel.Size = new System.Drawing.Size(251, 21);
             this.artistTemplateLabel.TabIndex = 6;
             this.artistTemplateLabel.Text = "ARTIST TEMPLATE";
             this.artistTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1051,9 +1080,9 @@ namespace QobuzDownloaderX
             // 
             this.favoritesTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.favoritesTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.favoritesTemplateLabel.Location = new System.Drawing.Point(4, 344);
+            this.favoritesTemplateLabel.Location = new System.Drawing.Point(4, 323);
             this.favoritesTemplateLabel.Name = "favoritesTemplateLabel";
-            this.favoritesTemplateLabel.Size = new System.Drawing.Size(251, 25);
+            this.favoritesTemplateLabel.Size = new System.Drawing.Size(251, 21);
             this.favoritesTemplateLabel.TabIndex = 16;
             this.favoritesTemplateLabel.Text = "FAVORITES TEMPLATE";
             this.favoritesTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1062,9 +1091,9 @@ namespace QobuzDownloaderX
             // 
             this.albumTemplateLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.albumTemplateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.albumTemplateLabel.Location = new System.Drawing.Point(4, 211);
+            this.albumTemplateLabel.Location = new System.Drawing.Point(4, 199);
             this.albumTemplateLabel.Name = "albumTemplateLabel";
-            this.albumTemplateLabel.Size = new System.Drawing.Size(251, 25);
+            this.albumTemplateLabel.Size = new System.Drawing.Size(251, 21);
             this.albumTemplateLabel.TabIndex = 8;
             this.albumTemplateLabel.Text = "ALBUM TEMPLATE";
             this.albumTemplateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1073,7 +1102,7 @@ namespace QobuzDownloaderX
             // 
             this.downloadFolderLabel.Font = new System.Drawing.Font("Nirmala UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadFolderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.downloadFolderLabel.Location = new System.Drawing.Point(4, 71);
+            this.downloadFolderLabel.Location = new System.Drawing.Point(4, 65);
             this.downloadFolderLabel.Name = "downloadFolderLabel";
             this.downloadFolderLabel.Size = new System.Drawing.Size(251, 25);
             this.downloadFolderLabel.TabIndex = 2;
@@ -1095,7 +1124,7 @@ namespace QobuzDownloaderX
             // 
             this.templatesLabel.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.templatesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.templatesLabel.Location = new System.Drawing.Point(0, 141);
+            this.templatesLabel.Location = new System.Drawing.Point(0, 138);
             this.templatesLabel.Name = "templatesLabel";
             this.templatesLabel.Size = new System.Drawing.Size(771, 25);
             this.templatesLabel.TabIndex = 5;
@@ -1293,7 +1322,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(571, 155);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(563, 157);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1599,11 +1628,12 @@ namespace QobuzDownloaderX
             // 
             // cleanTagInTitleCheckBox
             // 
+            this.cleanTagInTitleCheckBox.AutoSize = true;
             this.cleanTagInTitleCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cleanTagInTitleCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.cleanTagInTitleCheckBox.Location = new System.Drawing.Point(3, 3);
             this.cleanTagInTitleCheckBox.Name = "cleanTagInTitleCheckBox";
-            this.cleanTagInTitleCheckBox.Size = new System.Drawing.Size(172, 17);
+            this.cleanTagInTitleCheckBox.Size = new System.Drawing.Size(111, 17);
             this.cleanTagInTitleCheckBox.TabIndex = 6;
             this.cleanTagInTitleCheckBox.Text = "Clean tag in title";
             this.cleanTagInTitleCheckBox.UseVisualStyleBackColor = true;
@@ -1611,13 +1641,14 @@ namespace QobuzDownloaderX
             // 
             // cleanLongTitleRadioButton
             // 
+            this.cleanLongTitleRadioButton.AutoSize = true;
             this.cleanLongTitleRadioButton.Checked = true;
             this.cleanLongTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.cleanLongTitleRadioButton.Enabled = false;
             this.cleanLongTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.cleanLongTitleRadioButton.Location = new System.Drawing.Point(3, 26);
             this.cleanLongTitleRadioButton.Name = "cleanLongTitleRadioButton";
-            this.cleanLongTitleRadioButton.Size = new System.Drawing.Size(172, 17);
+            this.cleanLongTitleRadioButton.Size = new System.Drawing.Size(115, 17);
             this.cleanLongTitleRadioButton.TabIndex = 0;
             this.cleanLongTitleRadioButton.TabStop = true;
             this.cleanLongTitleRadioButton.Text = "Add (Clean) suffix";
@@ -1626,12 +1657,13 @@ namespace QobuzDownloaderX
             // 
             // cleanShortTitleRadioButton
             // 
+            this.cleanShortTitleRadioButton.AutoSize = true;
             this.cleanShortTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.cleanShortTitleRadioButton.Enabled = false;
             this.cleanShortTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.cleanShortTitleRadioButton.Location = new System.Drawing.Point(3, 49);
             this.cleanShortTitleRadioButton.Name = "cleanShortTitleRadioButton";
-            this.cleanShortTitleRadioButton.Size = new System.Drawing.Size(172, 17);
+            this.cleanShortTitleRadioButton.Size = new System.Drawing.Size(93, 17);
             this.cleanShortTitleRadioButton.TabIndex = 4;
             this.cleanShortTitleRadioButton.Text = "Add [C] suffix";
             this.cleanShortTitleRadioButton.UseVisualStyleBackColor = true;
@@ -1666,11 +1698,12 @@ namespace QobuzDownloaderX
             // 
             // explicitTagInTitleCheckBox
             // 
+            this.explicitTagInTitleCheckBox.AutoSize = true;
             this.explicitTagInTitleCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.explicitTagInTitleCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.explicitTagInTitleCheckBox.Location = new System.Drawing.Point(3, 3);
             this.explicitTagInTitleCheckBox.Name = "explicitTagInTitleCheckBox";
-            this.explicitTagInTitleCheckBox.Size = new System.Drawing.Size(172, 17);
+            this.explicitTagInTitleCheckBox.Size = new System.Drawing.Size(118, 17);
             this.explicitTagInTitleCheckBox.TabIndex = 5;
             this.explicitTagInTitleCheckBox.Text = "Explicit tag in title";
             this.explicitTagInTitleCheckBox.UseVisualStyleBackColor = true;
@@ -1678,13 +1711,14 @@ namespace QobuzDownloaderX
             // 
             // explicitLongTitleRadioButton
             // 
+            this.explicitLongTitleRadioButton.AutoSize = true;
             this.explicitLongTitleRadioButton.Checked = true;
             this.explicitLongTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.explicitLongTitleRadioButton.Enabled = false;
             this.explicitLongTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.explicitLongTitleRadioButton.Location = new System.Drawing.Point(3, 26);
             this.explicitLongTitleRadioButton.Name = "explicitLongTitleRadioButton";
-            this.explicitLongTitleRadioButton.Size = new System.Drawing.Size(172, 17);
+            this.explicitLongTitleRadioButton.Size = new System.Drawing.Size(122, 17);
             this.explicitLongTitleRadioButton.TabIndex = 0;
             this.explicitLongTitleRadioButton.TabStop = true;
             this.explicitLongTitleRadioButton.Text = "Add (Explicit) suffix";
@@ -1693,12 +1727,13 @@ namespace QobuzDownloaderX
             // 
             // explicitShortTitleRadioButton
             // 
+            this.explicitShortTitleRadioButton.AutoSize = true;
             this.explicitShortTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.explicitShortTitleRadioButton.Enabled = false;
             this.explicitShortTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.explicitShortTitleRadioButton.Location = new System.Drawing.Point(3, 49);
             this.explicitShortTitleRadioButton.Name = "explicitShortTitleRadioButton";
-            this.explicitShortTitleRadioButton.Size = new System.Drawing.Size(172, 17);
+            this.explicitShortTitleRadioButton.Size = new System.Drawing.Size(92, 17);
             this.explicitShortTitleRadioButton.TabIndex = 4;
             this.explicitShortTitleRadioButton.Text = "Add [E] suffix";
             this.explicitShortTitleRadioButton.UseVisualStyleBackColor = true;
@@ -2940,7 +2975,9 @@ namespace QobuzDownloaderX
             this.artistNamesSeparatorsPanel.PerformLayout();
             this.duplicateFilesFlowLayoutPanel.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.taggingOptionsPanel.ResumeLayout(false);
             this.taggingOptionsPanel.PerformLayout();
             this.qualitySelectPanel.ResumeLayout(false);
@@ -3149,5 +3186,7 @@ namespace QobuzDownloaderX
         internal RadioButton cleanShortTitleRadioButton;
         internal CheckBox cleanTagInTitleCheckBox;
         internal CheckBox explicitTagInTitleCheckBox;
+        internal TextBox cdTemplateTextBox;
+        internal Label cdTemplateLabel;
     }
 }

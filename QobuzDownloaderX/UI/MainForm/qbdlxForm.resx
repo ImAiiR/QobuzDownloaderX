@@ -229,12 +229,6 @@
   <metadata name="settingsPanel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="vaTrackTemplateTextBox.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="vaTrackTemplateLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="flowLayoutPanel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -242,6 +236,18 @@
     <value>True</value>
   </metadata>
   <metadata name="saveTemplatesButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cdTemplateTextBox.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="cdTemplateLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="vaTrackTemplateTextBox.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="vaTrackTemplateLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="folderButtonsPanel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -260,18 +266,25 @@
     <value>True</value>
   </metadata>
   <data name="templatesListTextBox.Text" xml:space="preserve">
-    <value>=== RELEASE SPECIFIC ===
-%AlbumID%, %AlbumURL%, %AlbumGenre%, %AlbumComposer%, %AlbumTitle%, %Label%, %Copyright%, %UPC%, %ReleaseDate%, %Year%, %ReleaseType%, %ArtistName%, %Format%, %FormatWithQuality%, %FormatWithHiResQuality%, %BitDepth%, %SampleRate%
-// Parental warning templates //
-%AlbumPA%, %AlbumPAShort%, %AlbumPAifEx%, %AlbumPAifExShort%, %AlbumPAifCl%, %AlbumPAifClShort%, %AlbumPAEnclosed%, %AlbumPAEnclosed[]%, %AlbumPAEnclosedShort%, %AlbumPAEnclosedShort[]%, %AlbumPAifExEnclosed%, %AlbumPAifExEnclosed[]%, %AlbumPAifExEnclosedShort%, %AlbumPAifExEnclosedShort[]%, %AlbumPAifClEnclosed%, %AlbumPAifClEnclosed[]%, %AlbumPAifClEnclosedShort%, %AlbumPAifClEnclosedShort[]%
+    <value>— RELEASE SPECIFIC —
 
-=== TRACK SPECIFIC ===
-%TrackArtist%, %TrackComposer%, %TrackID%, %TrackNumber%, %TrackTitle%, %ISRC%, %TrackFormat%, %TrackFormatWithHiResQuality%, %TrackFormatWithQuality%,%TrackBitDepth%, %TrackSampleRate%
+%AlbumID% | %AlbumURL% | %AlbumGenre% | %AlbumComposer% | %AlbumTitle% | %Label% | %Copyright% | %UPC% | %ReleaseDate% | %Year% | %ReleaseType% | %ArtistName% | %Format% | %FormatWithQuality% | %FormatWithHiResQuality% | %BitDepth% | %SampleRate%
 // Parental warning templates //
-%TrackPA%, %TrackPAShort%, %TrackPAifEx%, %TrackPAifExShort%, %TrackPAifCl%, %TrackPAifClShort%, %TrackPAEnclosed%, %TrackPAEnclosed[]%, %TrackPAEnclosedShort%, %TrackPAEnclosedShort[]%, %TrackPAifExEnclosed%, %TrackPAifExEnclosed[]%, %TrackPAifExEnclosedShort%, %TrackPAifExEnclosedShort[]%, %TrackPAifClEnclosed%, %TrackPAifClEnclosed[]%, %TrackPAifClEnclosedShort%, %TrackPAifClEnclosedShort[]%
+%AlbumPA% | %AlbumPAShort% | %AlbumPAifEx% | %AlbumPAifExShort% | %AlbumPAifCl% | %AlbumPAifClShort% | %AlbumPAEnclosed% | %AlbumPAEnclosed[]% | %AlbumPAEnclosedShort% | %AlbumPAEnclosedShort[]% | %AlbumPAifExEnclosed% | %AlbumPAifExEnclosed[]% | %AlbumPAifExEnclosedShort% | %AlbumPAifExEnclosedShort[]% | %AlbumPAifClEnclosed% | %AlbumPAifClEnclosed[]% | %AlbumPAifClEnclosedShort% | %AlbumPAifClEnclosedShort[]%
 
-=== PLAYLIST SPECIFIC ===
-%PlaylistID%, %PlaylistTitle%, %Format%, %FormatWithHiResQuality%, %FormatWithQuality%</value>
+— TRACK SPECIFIC —
+
+%TrackArtist% | %TrackComposer% | %TrackID% | %TrackNumber% | %TrackTitle% | %ISRC% | %TrackFormat% | %TrackFormatWithHiResQuality% | %TrackFormatWithQuality% |%TrackBitDepth% | %TrackSampleRate%
+// Parental warning templates //
+%TrackPA% | %TrackPAShort% | %TrackPAifEx% | %TrackPAifExShort% | %TrackPAifCl% | %TrackPAifClShort% | %TrackPAEnclosed% | %TrackPAEnclosed[]% | %TrackPAEnclosedShort% | %TrackPAEnclosedShort[]% | %TrackPAifExEnclosed% | %TrackPAifExEnclosed[]% | %TrackPAifExEnclosedShort% | %TrackPAifExEnclosedShort[]% | %TrackPAifClEnclosed% | %TrackPAifClEnclosed[]% | %TrackPAifClEnclosedShort% | %TrackPAifClEnclosedShort[]%
+
+— PLAYLIST SPECIFIC —
+
+%PlaylistID% | %PlaylistTitle% | %Format% | %FormatWithHiResQuality% | %FormatWithQuality%
+
+— CD SPECIFIC —
+
+%DiscNumber%</value>
   </data>
   <metadata name="additionalSettingsButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

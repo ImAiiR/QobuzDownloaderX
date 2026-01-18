@@ -54,24 +54,5 @@ namespace QobuzDownloaderX.Helpers
                     break;
             }
         }
-
-        // UNUSED
-        // ======
-        //
-        //[DebuggerStepThrough]
-        //public static void SetProgressValue(int currentValue, int maximumValue, IntPtr windowHandle)
-        //{
-        //    if (isRunningOnWin8OrLater) TaskbarList.Instance.SetProgressValue(windowHandle, Convert.ToUInt32(currentValue), Convert.ToUInt32(maximumValue));
-        //    qbdlxForm.lastTaskBarProgressCurrentValue = currentValue;
-        //    qbdlxForm.lastTaskBarProgressMaxValue = maximumValue;
-        //
-        //}
-        
-        //[DebuggerStepThrough]
-        //public static void SetProgressState(TaskbarProgressState state, IntPtr windowHandle)
-        //{
-        //    if (isRunningOnWin8OrLater) TaskbarList.Instance.SetProgressState(windowHandle, state);
-        //    qbdlxForm.lastTaskBarProgressState = state;
-        //}
     }
 }

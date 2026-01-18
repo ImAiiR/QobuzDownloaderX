@@ -156,9 +156,12 @@ namespace QobuzDownloaderX
                     }
 
                     // Create subfolders for multi-volume releases
-                    if (!(downloadType == "track") && QoAlbum.MediaCount > 1)
+                    if (!(downloadType == "track") && QoAlbum.MediaCount > 1 && (!string.IsNullOrWhiteSpace(Settings.Default.savedCdTemplate)))
                     {
-                        filePath = downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddedDiscLength, '0') + ZlpPathHelper.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
+                        string cdDirectoryName = qbdlxForm.discNumberRegex.Replace(Settings.Default.savedCdTemplate, QoItem.MediaNumber.ToString());
+                        filePath = downloadPath + cdDirectoryName + ZlpPathHelper.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
+                        // Previous, original logic:
+                        // filePath = downloadPath + "CD " + QoItem.MediaNumber.ToString().PadLeft(paddedDiscLength, '0') + ZlpPathHelper.DirectorySeparatorChar + trackTemplateConverted.TrimEnd() + audio_format;
                     }
                     else
                     {

@@ -159,6 +159,8 @@ namespace QobuzDownloaderX
         internal static readonly Regex qobuzUrlRegEx = new Regex(
             @"^https?:\/\/(?!.*https?:\/\/)(?:[\w\-]+\.)?qobuz\.com\/[^\s]+$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
+        internal static readonly Regex discNumberRegex = new Regex("%DiscNumber%", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
         private readonly string[] urlSchemePrefixes = { "http://", "https://", "www." };
 
         // Allows to minimize/restore the form by clicking on the taskbar icon.
@@ -612,6 +614,7 @@ namespace QobuzDownloaderX
             vaTrackTemplateTextBox.Text = Settings.Default.Properties["savedVaTrackTemplate"].DefaultValue.ToString();
             playlistTemplateTextBox.Text = Settings.Default.Properties["savedPlaylistTemplate"].DefaultValue.ToString();
             favoritesTemplateTextBox.Text = Settings.Default.Properties["savedFavoritesTemplate"].DefaultValue.ToString();
+            cdTemplateTextBox.Text = Settings.Default.Properties["savedCdTemplate"].DefaultValue.ToString();
         }
 
         private void saveTemplatesButton_Click(object sender, EventArgs e)
@@ -622,6 +625,7 @@ namespace QobuzDownloaderX
             Settings.Default.savedVaTrackTemplate = vaTrackTemplateTextBox.Text;
             Settings.Default.savedPlaylistTemplate = playlistTemplateTextBox.Text;
             Settings.Default.savedFavoritesTemplate = favoritesTemplateTextBox.Text;
+            Settings.Default.savedCdTemplate = cdTemplateTextBox.Text;
             Settings.Default.Save();
             Miscellaneous.updateTemplates(this);
         }

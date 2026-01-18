@@ -910,5 +910,17 @@ namespace QobuzDownloaderX.Properties {
                 this["cleanTagInTitle"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CD 0%DiscNumber%")]
+        public string savedCdTemplate {
+            get {
+                return ((string)(this["savedCdTemplate"]));
+            }
+            set {
+                this["savedCdTemplate"] = value;
+            }
+        }
     }
 }

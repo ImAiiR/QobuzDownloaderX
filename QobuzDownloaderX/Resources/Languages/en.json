@@ -44,6 +44,7 @@
     "languageLabel":                "Current Language",
     "playlistTemplateLabel":        "PLAYLIST TEMPLATE",
     "favoritesTemplateLabel":       "FAVORITES TEMPLATE",
+    "cdTemplateLabel":              "CD TEMPLATE",
     "savedArtLabel":                "Saved Artwork Size",
     "searchingLabel":               "Searching…",
     "taggingOptionsLabel":          "TAGGING OPTIONS",

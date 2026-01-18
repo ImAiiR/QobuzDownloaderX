@@ -44,6 +44,7 @@
     "languageLabel":                "Aktuelle Sprache",
     "playlistTemplateLabel":        "PLAYLIST VORLAGE",
     "favoritesTemplateLabel":       "FAVORITEN VORLAGE",
+    "cdTemplateLabel":              "CD-VORLAGE", // AI translation
     "savedArtLabel":                "Gespeicherte Artwork Größe",
     "searchingLabel":               "Suche…",
     "taggingOptionsLabel":          "TAG OPTIONEN",

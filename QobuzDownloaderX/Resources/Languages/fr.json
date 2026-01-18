@@ -44,6 +44,7 @@
     "languageLabel":                "Langage",
     "playlistTemplateLabel":        "Modèle de playlist",
     "favoritesTemplateLabel":       "Modèle des favoris",
+    "cdTemplateLabel":              "MODÈLE DE CD", // AI translation
     "savedArtLabel":                "Taille de la pochette enregistrée",
     "searchingLabel":               "Recherche...",
     "taggingOptionsLabel":          "Options de marquage",

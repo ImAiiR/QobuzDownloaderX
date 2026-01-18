@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -106,9 +107,17 @@ namespace QobuzDownloaderX
             string finalDownloadPath = downloadPath;
             if (QoItem.PlaylistTrackId is null && !(downloadType=="track") && QoAlbum.MediaCount > 1)
             {
-                qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
-                finalDownloadPath = ZlpPathHelper.Combine(downloadPath, "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0'));
-                ZlpIOHelper.CreateDirectory(finalDownloadPath);
+                if (!string.IsNullOrWhiteSpace(Settings.Default.savedCdTemplate))
+                {
+                    qbdlxForm._qbdlxForm.logger.Debug("More than 1 volume, using subfolders for each volume");
+                    
+                    string cdDirectoryName = qbdlxForm.discNumberRegex.Replace(Settings.Default.savedCdTemplate, QoItem.MediaNumber.ToString());
+                    finalDownloadPath = ZlpPathHelper.Combine(downloadPath, cdDirectoryName);
+                    // Previous, original logic:
+                    // finalDownloadPath = ZlpPathHelper.Combine(downloadPath, "CD " + QoItem.MediaNumber.ToString().PadLeft(paddingNumbers.padDiscs(QoAlbum), '0'));
+
+                    ZlpIOHelper.CreateDirectory(finalDownloadPath);
+                }
             }
             else
             {

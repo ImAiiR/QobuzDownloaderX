@@ -44,6 +44,7 @@
     "languageLabel":                "当前语言",
     "playlistTemplateLabel":        "播放列表模板",
     "favoritesTemplateLabel":       "收藏模板",
+    "cdTemplateLabel":              "CD 模板", // AI translation
     "savedArtLabel":                "保存的封面尺寸",
     "searchingLabel":               "搜索中…",
     "taggingOptionsLabel":          "标签选项",

@@ -183,6 +183,7 @@ namespace QobuzDownloaderX.Helpers
             f.vaTrackTemplateTextBox.Text = Settings.Default.savedVaTrackTemplate;
             f.playlistTemplateTextBox.Text = Settings.Default.savedPlaylistTemplate;
             f.favoritesTemplateTextBox.Text = Settings.Default.savedFavoritesTemplate;
+            f.cdTemplateTextBox.Text = Settings.Default.savedCdTemplate;
             updateTemplates(f);
         }
 
@@ -456,6 +457,7 @@ namespace QobuzDownloaderX.Helpers
             f.languageLabel.Text = f.languageManager.GetTranslation("languageLabel");
             f.playlistTemplateLabel.Text = f.languageManager.GetTranslation("playlistTemplateLabel");
             f.favoritesTemplateLabel.Text = f.languageManager.GetTranslation("favoritesTemplateLabel");
+            f.cdTemplateLabel.Text = f.languageManager.GetTranslation("cdTemplateLabel");
             f.savedArtLabel.Text = f.languageManager.GetTranslation("savedArtLabel");
             f.searchLabel.Text = f.languageManager.GetTranslation("searchButton") + "                                                                                               ";
             f.searchingLabel.Text = f.languageManager.GetTranslation("searchingLabel");

@@ -44,6 +44,7 @@
     "languageLabel":                "Язык интерфейса",
     "playlistTemplateLabel":        "ШАБЛОН ПЛЕЙЛИСТА",
     "favoritesTemplateLabel":       "ШАБЛОН ИЗБРАННОГО",
+    "cdTemplateLabel":              "ШАБЛОН CD", // AI translation
     "savedArtLabel":                "Размер сохраняемого изображения",
     "searchingLabel":               "Поиск...",
     "taggingOptionsLabel":          "ПАРАМЕТРЫ ТЕГОВ",

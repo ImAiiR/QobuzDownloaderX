@@ -224,5 +224,8 @@
     <Setting Name="cleanTagInTitle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="savedCdTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CD 0%DiscNumber%</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

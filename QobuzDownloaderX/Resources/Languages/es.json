@@ -44,6 +44,7 @@
     "languageLabel":                "Idioma actual",
     "playlistTemplateLabel":        "PLANTILLA DE PLAYLIST",
     "favoritesTemplateLabel":       "PLANTILLA DE FAVORITOS",
+    "cdTemplateLabel":              "PLANTILLA DE CD",
     "savedArtLabel":                "Tamaño de portada guardada en disco",
     "searchingLabel":               "Buscando…",
     "taggingOptionsLabel":          "OPCIONES DE METADATOS",
