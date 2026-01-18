@@ -126,6 +126,7 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
             // Safety checks for time-like patterns:
             bool mainPerfIsTimeLikePattern = !string.IsNullOrWhiteSpace(mainPerf) && timePattern.IsMatch(mainPerf);
             if (mainPerfIsTimeLikePattern) mainPerf = null;
+
             // Remove any entries in featuredArtists that match time-like patterns like "nn:nn" (e.g., "06:38")
             featuredArtists.RemoveAll(f => timePattern.IsMatch(f.Trim()));
 
@@ -145,10 +146,17 @@ namespace QobuzDownloaderX.Helpers.QobuzDownloaderXMOD
                     //       so we simply use the single entry name, as the difference is not significant.
                     if (AreEquivalentNames(singlePerf, mainPerf, onlyExactMatch: true))
                     {
+                        // But if non-normalized string lengths are equal, preffer the QoItem.Performer.Name,
+                        // because single entry name will never contain accented vowels or other special characters.
+                        // Note: the QoItem.Performer.Name can be UPPER-case sometimes. :-/
+                        if (mainPerf.Length == singlePerf.Length)
+                        {
+                            mainArtists[0] = mainPerf;
+                        }
                         return;
                     }
-                    // Case: the main performer name contains part of the single entry name
-                    //       but is not exactly equal, as the main performer name also includes
+                    // Case: the QoItem.Performer.Name contains part of the single entry name
+                    //       but is not exactly equal, as the QoItem.Performer.Name also includes
                     //       additional artist names separated by commas.
                     else if (mainPerfNorm.Contains(singlePerfNorm) &&
                              !string.Equals(mainPerfNorm, singlePerfNorm, StringComparison.OrdinalIgnoreCase) &&
