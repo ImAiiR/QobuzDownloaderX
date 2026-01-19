@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 19, 2026, 10:17AM UTC",
+    "TranslationUpdatedOn":         "January 19, 2026, 10:18AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -28,10 +28,8 @@
     "skipDuplicatesButton":         "Ignorar / omitir descarga",
     "autoRenameDuplicatesButton":   "Renombrar automáticamente el archivo entrante",
     "overwriteDuplicatesButton":    "Sobrescribir el archivo existente",
-    "explicitLongTitleRadioButton": "Añadir sufijo (Explícit)",
-    "explicitShortTitleRadioButton":"Añadir sufijo [E]",
-    "cleanLongTitleRadioButton":    "Añadir sufijo (Clean)",
-    "cleanShortTitleRadioButton":   "Añadir sufijo [C]",
+    "suffixRadioButton":            "Sufijo",
+    "prefixRadioButton":            "Prefijo",
 
     "_SECTION2_":                   "=================== ETIQUETAS (LABEL) DEL FORM PRINCIPAL ===================",
     "advancedOptionsLabel":         "AJUSTES AVANZADOS",

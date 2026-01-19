@@ -882,26 +882,29 @@ namespace QobuzDownloaderX
         {
             CheckBox cb = (CheckBox)sender;
 
-            explicitLongTitleRadioButton.Enabled = cb.Checked;
-            explicitShortTitleRadioButton.Enabled = cb.Checked;
+            explicitTitleTagPrefixButton.Enabled = cb.Checked;
+            explicitTitleTagSuffixButton.Enabled = cb.Checked;
+            explicitTitleTagTextBox.Enabled = cb.Checked;
 
             Settings.Default.explicitTagInTitle = cb.Checked;
             Settings.Default.Save();
         }
 
-        private void explicitLongTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void explicitTitleTagPrefixButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton rb = (RadioButton)sender;
-
-            Settings.Default.explicitLongTitleTag = rb.Checked;
+            Settings.Default.explicitTitleTagPrefixOrSuffix = explicitTitleTagPrefixButton.Checked ? 0 : 1;
             Settings.Default.Save();
         }
 
-        private void explicitShortTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void explicitTitleTagSuffixButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton rb = (RadioButton)sender;
+            Settings.Default.explicitTitleTagPrefixOrSuffix = explicitTitleTagSuffixButton.Checked ? 1 : 0;
+            Settings.Default.Save();
+        }
 
-            Settings.Default.explicitShortTitleTag = rb.Checked;
+        private void explicitTitleTagTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.explicitTitleTagText = explicitTitleTagTextBox.Text;
             Settings.Default.Save();
         }
 
@@ -909,26 +912,29 @@ namespace QobuzDownloaderX
         {
             CheckBox cb = (CheckBox)sender;
 
-            cleanLongTitleRadioButton.Enabled = cb.Checked;
-            cleanShortTitleRadioButton.Enabled = cb.Checked;
+            cleanTitleTagPrefixButton.Enabled = cb.Checked;
+            cleanTitleTagSuffixButton.Enabled = cb.Checked;
+            cleanTitleTagTextBox.Enabled = cb.Checked;
 
             Settings.Default.cleanTagInTitle = cb.Checked;
             Settings.Default.Save();
         }
 
-        private void cleanLongTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void cleanTitleTagPrefixButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton rb = (RadioButton)sender;
-
-            Settings.Default.cleanLongTitleTag = rb.Checked;
+            Settings.Default.cleanTitleTagPrefixOrSuffix = cleanTitleTagPrefixButton.Checked ? 0 : 1;
             Settings.Default.Save();
         }
 
-        private void cleanShortTitleRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void cleanTitleTagSuffixButton_CheckedChanged(object sender, EventArgs e)
         {
-            RadioButton rb = (RadioButton)sender;
+            Settings.Default.cleanTitleTagPrefixOrSuffix = cleanTitleTagSuffixButton.Checked ? 1 : 0;
+            Settings.Default.Save();
+        }
 
-            Settings.Default.cleanShortTitleTag = rb.Checked;
+        private void cleanTitleTagTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.cleanTitleTagText = cleanTitleTagTextBox.Text;
             Settings.Default.Save();
         }
 

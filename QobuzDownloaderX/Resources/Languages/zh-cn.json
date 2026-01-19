@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 19, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 19, 2026, 01:16AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -28,10 +28,8 @@
     "skipDuplicatesButton":         "忽略 / 跳过下载", // AI translation
     "autoRenameDuplicatesButton":   "自动重命名", // AI translation
     "overwriteDuplicatesButton":    "覆盖现有文件", // AI translation
-    "explicitLongTitleRadioButton": "添加（Explicit）后缀", // AI translation
-    "explicitShortTitleRadioButton":"添加 [E] 后缀", // AI translation
-    "cleanLongTitleRadioButton":    "添加（Clean）后缀", // AI translation
-    "cleanShortTitleRadioButton":   "添加 [C] 后缀", // AI translation
+    "suffixRadioButton":            "后缀", // AI translation
+    "prefixRadioButton":            "前缀", // AI translation
 
     "_SECTION2_":                   "=================== 主表单标签 ===================",
     "advancedOptionsLabel":         "高级选项",

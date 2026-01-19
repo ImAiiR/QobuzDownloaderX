@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 19, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 19, 2026, 09:38AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -28,10 +28,8 @@
     "skipDuplicatesButton":         "Ignorieren / Download überspringen", // AI translation
     "autoRenameDuplicatesButton":   "Automatisch umbenennen", // AI translation
     "overwriteDuplicatesButton":    "Vorhandene Dateien überschreiben", // AI translation
-    "explicitLongTitleRadioButton": "Suffix (Explícit) hinzufügen", // AI translation
-    "explicitShortTitleRadioButton":"Suffix [E] hinzufügen", // AI translation
-    "cleanLongTitleRadioButton":    "Suffix (Clean) hinzufügen", // AI translation
-    "cleanShortTitleRadioButton":   "Suffix [C] hinzufügen", // AI translation
+    "suffixRadioButton":            "Suffix", // AI translation
+    "prefixRadioButton":            "Präfix", // AI translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Weitere Optionen",

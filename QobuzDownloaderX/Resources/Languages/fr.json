@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 19, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 19, 2026, 10:01AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -28,10 +28,8 @@
     "skipDuplicatesButton":         "Ignorer / Ne pas télécharger", // AI translation
     "autoRenameDuplicatesButton":   "Renommer automatiquement", // AI translation
     "overwriteDuplicatesButton":    "Écraser les fichiers existants", // AI translation
-    "explicitLongTitleRadioButton": "Ajouter le suffixe (Explícit)", // AI translation
-    "explicitShortTitleRadioButton":"Ajouter le suffixe [E]", // AI translation
-    "cleanLongTitleRadioButton":    "Ajouter le suffixe (Clean)", // AI translation
-    "cleanShortTitleRadioButton":   "Ajouter le suffixe [C]", // AI translation
+    "suffixRadioButton":            "Suffixe", // AI translation
+    "prefixRadioButton":            "Préfixe", // AI translation
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
     "advancedOptionsLabel":         "Paramètres Avancés",

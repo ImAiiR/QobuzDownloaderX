@@ -841,54 +841,6 @@ namespace QobuzDownloaderX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool cleanLongTitleTag {
-            get {
-                return ((bool)(this["cleanLongTitleTag"]));
-            }
-            set {
-                this["cleanLongTitleTag"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool cleanShortTitleTag {
-            get {
-                return ((bool)(this["cleanShortTitleTag"]));
-            }
-            set {
-                this["cleanShortTitleTag"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool explicitLongTitleTag {
-            get {
-                return ((bool)(this["explicitLongTitleTag"]));
-            }
-            set {
-                this["explicitLongTitleTag"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool explicitShortTitleTag {
-            get {
-                return ((bool)(this["explicitShortTitleTag"]));
-            }
-            set {
-                this["explicitShortTitleTag"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool explicitTagInTitle {
             get {
@@ -932,6 +884,54 @@ namespace QobuzDownloaderX.Properties {
             }
             set {
                 this["mergeArtistNamesInDirectoryNamesToo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int explicitTitleTagPrefixOrSuffix {
+            get {
+                return ((int)(this["explicitTitleTagPrefixOrSuffix"]));
+            }
+            set {
+                this["explicitTitleTagPrefixOrSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int cleanTitleTagPrefixOrSuffix {
+            get {
+                return ((int)(this["cleanTitleTagPrefixOrSuffix"]));
+            }
+            set {
+                this["cleanTitleTagPrefixOrSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" (Explicit)")]
+        public string explicitTitleTagText {
+            get {
+                return ((string)(this["explicitTitleTagText"]));
+            }
+            set {
+                this["explicitTitleTagText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" (Clean)")]
+        public string cleanTitleTagText {
+            get {
+                return ((string)(this["cleanTitleTagText"]));
+            }
+            set {
+                this["cleanTitleTagText"] = value;
             }
         }
     }

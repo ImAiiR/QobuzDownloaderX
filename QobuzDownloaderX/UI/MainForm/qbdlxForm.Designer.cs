@@ -57,6 +57,7 @@ namespace QobuzDownloaderX
             this.batchDownloadButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -124,6 +125,7 @@ namespace QobuzDownloaderX
             this.artistNamesSeparatorsPanel = new System.Windows.Forms.Panel();
             this.primaryListSeparatorLabel = new System.Windows.Forms.Label();
             this.primaryListSeparatorTextBox = new System.Windows.Forms.TextBox();
+            this.mergeArtistInDirNameCheckBox = new System.Windows.Forms.CheckBox();
             this.listEndSeparatorLabel = new System.Windows.Forms.Label();
             this.listEndSeparatorTextBox = new System.Windows.Forms.TextBox();
             this.duplicateFilesFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -133,13 +135,9 @@ namespace QobuzDownloaderX
             this.overwriteDuplicatesRadioButton = new System.Windows.Forms.RadioButton();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.cleanTagInTitleCheckBox = new System.Windows.Forms.CheckBox();
-            this.cleanLongTitleRadioButton = new System.Windows.Forms.RadioButton();
-            this.cleanShortTitleRadioButton = new System.Windows.Forms.RadioButton();
             this.showTipsCheckBox = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.explicitTagInTitleCheckBox = new System.Windows.Forms.CheckBox();
-            this.explicitLongTitleRadioButton = new System.Windows.Forms.RadioButton();
-            this.explicitShortTitleRadioButton = new System.Windows.Forms.RadioButton();
             this.dontSaveArtworkToDiskCheckBox = new System.Windows.Forms.CheckBox();
             this.useItemPosInPlaylistCheckBox = new System.Windows.Forms.CheckBox();
             this.taggingOptionsPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -224,8 +222,12 @@ namespace QobuzDownloaderX
             this.tipEmojiLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tipLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTip = new System.Windows.Forms.Timer(this.components);
-            this.mergeArtistInDirNameCheckBox = new System.Windows.Forms.CheckBox();
-            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
+            this.explicitTitleTagTextBox = new System.Windows.Forms.TextBox();
+            this.explicitTitleTagSuffixButton = new System.Windows.Forms.RadioButton();
+            this.explicitTitleTagPrefixButton = new System.Windows.Forms.RadioButton();
+            this.cleanTitleTagPrefixButton = new System.Windows.Forms.RadioButton();
+            this.cleanTitleTagSuffixButton = new System.Windows.Forms.RadioButton();
+            this.cleanTitleTagTextBox = new System.Windows.Forms.TextBox();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -603,6 +605,17 @@ namespace QobuzDownloaderX
             this.abortButton.Text = "ABORT";
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 79);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 31);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 6;
             // 
             // progressLabel
             // 
@@ -1323,7 +1336,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(569, 155);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(563, 155);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1534,6 +1547,19 @@ namespace QobuzDownloaderX
             this.primaryListSeparatorTextBox.Text = " & ";
             this.primaryListSeparatorTextBox.Leave += new System.EventHandler(this.primaryListSeparatorTextBox_Leave);
             // 
+            // mergeArtistInDirNameCheckBox
+            // 
+            this.mergeArtistInDirNameCheckBox.AutoSize = true;
+            this.mergeArtistInDirNameCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeArtistInDirNameCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.mergeArtistInDirNameCheckBox.Location = new System.Drawing.Point(0, 3);
+            this.mergeArtistInDirNameCheckBox.Name = "mergeArtistInDirNameCheckBox";
+            this.mergeArtistInDirNameCheckBox.Size = new System.Drawing.Size(177, 17);
+            this.mergeArtistInDirNameCheckBox.TabIndex = 2;
+            this.mergeArtistInDirNameCheckBox.Text = "Merge in directory names too";
+            this.mergeArtistInDirNameCheckBox.UseVisualStyleBackColor = true;
+            this.mergeArtistInDirNameCheckBox.CheckedChanged += new System.EventHandler(this.mergeArtistInDirNameCheckBox_CheckedChanged);
+            // 
             // listEndSeparatorLabel
             // 
             this.listEndSeparatorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
@@ -1572,6 +1598,7 @@ namespace QobuzDownloaderX
             this.duplicateFilesLabel.Font = new System.Drawing.Font("Nirmala UI", 12F);
             this.duplicateFilesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.duplicateFilesLabel.Location = new System.Drawing.Point(3, 0);
+            this.duplicateFilesLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 1);
             this.duplicateFilesLabel.Name = "duplicateFilesLabel";
             this.duplicateFilesLabel.Size = new System.Drawing.Size(350, 21);
             this.duplicateFilesLabel.TabIndex = 4;
@@ -1583,7 +1610,7 @@ namespace QobuzDownloaderX
             this.skipDuplicatesRadioButton.Checked = true;
             this.skipDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.skipDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.skipDuplicatesRadioButton.Location = new System.Drawing.Point(3, 21);
+            this.skipDuplicatesRadioButton.Location = new System.Drawing.Point(3, 22);
             this.skipDuplicatesRadioButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.skipDuplicatesRadioButton.Name = "skipDuplicatesRadioButton";
             this.skipDuplicatesRadioButton.Size = new System.Drawing.Size(340, 17);
@@ -1597,7 +1624,7 @@ namespace QobuzDownloaderX
             // 
             this.autoRenameDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.autoRenameDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.autoRenameDuplicatesRadioButton.Location = new System.Drawing.Point(3, 40);
+            this.autoRenameDuplicatesRadioButton.Location = new System.Drawing.Point(3, 41);
             this.autoRenameDuplicatesRadioButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.autoRenameDuplicatesRadioButton.Name = "autoRenameDuplicatesRadioButton";
             this.autoRenameDuplicatesRadioButton.Size = new System.Drawing.Size(340, 17);
@@ -1610,7 +1637,7 @@ namespace QobuzDownloaderX
             // 
             this.overwriteDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.overwriteDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.overwriteDuplicatesRadioButton.Location = new System.Drawing.Point(3, 59);
+            this.overwriteDuplicatesRadioButton.Location = new System.Drawing.Point(3, 60);
             this.overwriteDuplicatesRadioButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.overwriteDuplicatesRadioButton.Name = "overwriteDuplicatesRadioButton";
             this.overwriteDuplicatesRadioButton.Size = new System.Drawing.Size(340, 17);
@@ -1622,57 +1649,27 @@ namespace QobuzDownloaderX
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.cleanTagInTitleCheckBox);
-            this.flowLayoutPanel3.Controls.Add(this.cleanLongTitleRadioButton);
-            this.flowLayoutPanel3.Controls.Add(this.cleanShortTitleRadioButton);
-            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(577, 63);
+            this.flowLayoutPanel3.Controls.Add(this.cleanTitleTagPrefixButton);
+            this.flowLayoutPanel3.Controls.Add(this.cleanTitleTagSuffixButton);
+            this.flowLayoutPanel3.Controls.Add(this.cleanTitleTagTextBox);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(575, 63);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(175, 72);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(177, 72);
             this.flowLayoutPanel3.TabIndex = 11;
             // 
             // cleanTagInTitleCheckBox
             // 
-            this.cleanTagInTitleCheckBox.AutoSize = true;
             this.cleanTagInTitleCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cleanTagInTitleCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.cleanTagInTitleCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.cleanTagInTitleCheckBox.Location = new System.Drawing.Point(3, 0);
+            this.cleanTagInTitleCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.cleanTagInTitleCheckBox.Name = "cleanTagInTitleCheckBox";
-            this.cleanTagInTitleCheckBox.Size = new System.Drawing.Size(111, 17);
+            this.cleanTagInTitleCheckBox.Size = new System.Drawing.Size(175, 17);
             this.cleanTagInTitleCheckBox.TabIndex = 6;
-            this.cleanTagInTitleCheckBox.Text = "Clean tag in title";
+            this.cleanTagInTitleCheckBox.Text = "\'Clean\' tag in title";
             this.cleanTagInTitleCheckBox.UseVisualStyleBackColor = true;
             this.cleanTagInTitleCheckBox.CheckedChanged += new System.EventHandler(this.cleanTagInTitleCheckBox_CheckedChanged);
-            // 
-            // cleanLongTitleRadioButton
-            // 
-            this.cleanLongTitleRadioButton.AutoSize = true;
-            this.cleanLongTitleRadioButton.Checked = true;
-            this.cleanLongTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cleanLongTitleRadioButton.Enabled = false;
-            this.cleanLongTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.cleanLongTitleRadioButton.Location = new System.Drawing.Point(3, 26);
-            this.cleanLongTitleRadioButton.Name = "cleanLongTitleRadioButton";
-            this.cleanLongTitleRadioButton.Size = new System.Drawing.Size(115, 17);
-            this.cleanLongTitleRadioButton.TabIndex = 0;
-            this.cleanLongTitleRadioButton.TabStop = true;
-            this.cleanLongTitleRadioButton.Text = "Add (Clean) suffix";
-            this.cleanLongTitleRadioButton.UseVisualStyleBackColor = true;
-            this.cleanLongTitleRadioButton.CheckedChanged += new System.EventHandler(this.cleanLongTitleRadioButton_CheckedChanged);
-            // 
-            // cleanShortTitleRadioButton
-            // 
-            this.cleanShortTitleRadioButton.AutoSize = true;
-            this.cleanShortTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cleanShortTitleRadioButton.Enabled = false;
-            this.cleanShortTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.cleanShortTitleRadioButton.Location = new System.Drawing.Point(3, 49);
-            this.cleanShortTitleRadioButton.Name = "cleanShortTitleRadioButton";
-            this.cleanShortTitleRadioButton.Size = new System.Drawing.Size(93, 17);
-            this.cleanShortTitleRadioButton.TabIndex = 4;
-            this.cleanShortTitleRadioButton.Text = "Add [C] suffix";
-            this.cleanShortTitleRadioButton.UseVisualStyleBackColor = true;
-            this.cleanShortTitleRadioButton.CheckedChanged += new System.EventHandler(this.cleanShortTitleRadioButton_CheckedChanged);
             // 
             // showTipsCheckBox
             // 
@@ -1692,57 +1689,27 @@ namespace QobuzDownloaderX
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.explicitTagInTitleCheckBox);
-            this.flowLayoutPanel2.Controls.Add(this.explicitLongTitleRadioButton);
-            this.flowLayoutPanel2.Controls.Add(this.explicitShortTitleRadioButton);
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Controls.Add(this.explicitTitleTagPrefixButton);
+            this.flowLayoutPanel2.Controls.Add(this.explicitTitleTagSuffixButton);
+            this.flowLayoutPanel2.Controls.Add(this.explicitTitleTagTextBox);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(390, 63);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(175, 72);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(177, 72);
             this.flowLayoutPanel2.TabIndex = 10;
             // 
             // explicitTagInTitleCheckBox
             // 
-            this.explicitTagInTitleCheckBox.AutoSize = true;
             this.explicitTagInTitleCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.explicitTagInTitleCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.explicitTagInTitleCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.explicitTagInTitleCheckBox.Location = new System.Drawing.Point(3, 0);
+            this.explicitTagInTitleCheckBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.explicitTagInTitleCheckBox.Name = "explicitTagInTitleCheckBox";
-            this.explicitTagInTitleCheckBox.Size = new System.Drawing.Size(118, 17);
+            this.explicitTagInTitleCheckBox.Size = new System.Drawing.Size(175, 17);
             this.explicitTagInTitleCheckBox.TabIndex = 5;
-            this.explicitTagInTitleCheckBox.Text = "Explicit tag in title";
+            this.explicitTagInTitleCheckBox.Text = "\'Explicit\' tag in title";
             this.explicitTagInTitleCheckBox.UseVisualStyleBackColor = true;
             this.explicitTagInTitleCheckBox.CheckedChanged += new System.EventHandler(this.explicitTagInTitleCheckBox_CheckedChanged);
-            // 
-            // explicitLongTitleRadioButton
-            // 
-            this.explicitLongTitleRadioButton.AutoSize = true;
-            this.explicitLongTitleRadioButton.Checked = true;
-            this.explicitLongTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.explicitLongTitleRadioButton.Enabled = false;
-            this.explicitLongTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.explicitLongTitleRadioButton.Location = new System.Drawing.Point(3, 26);
-            this.explicitLongTitleRadioButton.Name = "explicitLongTitleRadioButton";
-            this.explicitLongTitleRadioButton.Size = new System.Drawing.Size(122, 17);
-            this.explicitLongTitleRadioButton.TabIndex = 0;
-            this.explicitLongTitleRadioButton.TabStop = true;
-            this.explicitLongTitleRadioButton.Text = "Add (Explicit) suffix";
-            this.explicitLongTitleRadioButton.UseVisualStyleBackColor = true;
-            this.explicitLongTitleRadioButton.CheckedChanged += new System.EventHandler(this.explicitLongTitleRadioButton_CheckedChanged);
-            // 
-            // explicitShortTitleRadioButton
-            // 
-            this.explicitShortTitleRadioButton.AutoSize = true;
-            this.explicitShortTitleRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.explicitShortTitleRadioButton.Enabled = false;
-            this.explicitShortTitleRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.explicitShortTitleRadioButton.Location = new System.Drawing.Point(3, 49);
-            this.explicitShortTitleRadioButton.Name = "explicitShortTitleRadioButton";
-            this.explicitShortTitleRadioButton.Size = new System.Drawing.Size(92, 17);
-            this.explicitShortTitleRadioButton.TabIndex = 4;
-            this.explicitShortTitleRadioButton.Text = "Add [E] suffix";
-            this.explicitShortTitleRadioButton.UseVisualStyleBackColor = true;
-            this.explicitShortTitleRadioButton.CheckedChanged += new System.EventHandler(this.explicitShortTitleRadioButton_CheckedChanged);
             // 
             // dontSaveArtworkToDiskCheckBox
             // 
@@ -2915,29 +2882,101 @@ namespace QobuzDownloaderX
             this.timerTip.Interval = 200;
             this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick);
             // 
-            // mergeArtistInDirNameCheckBox
+            // explicitTitleTagTextBox
             // 
-            this.mergeArtistInDirNameCheckBox.AutoSize = true;
-            this.mergeArtistInDirNameCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mergeArtistInDirNameCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.mergeArtistInDirNameCheckBox.Location = new System.Drawing.Point(0, 3);
-            this.mergeArtistInDirNameCheckBox.Name = "mergeArtistInDirNameCheckBox";
-            this.mergeArtistInDirNameCheckBox.Size = new System.Drawing.Size(177, 17);
-            this.mergeArtistInDirNameCheckBox.TabIndex = 2;
-            this.mergeArtistInDirNameCheckBox.Text = "Merge in directory names too";
-            this.mergeArtistInDirNameCheckBox.UseVisualStyleBackColor = true;
-            this.mergeArtistInDirNameCheckBox.CheckedChanged += new System.EventHandler(this.mergeArtistInDirNameCheckBox_CheckedChanged);
+            this.explicitTitleTagTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.explicitTitleTagTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.explicitTitleTagTextBox.Enabled = false;
+            this.explicitTitleTagTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.explicitTitleTagTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.explicitTitleTagTextBox.Location = new System.Drawing.Point(3, 41);
+            this.explicitTitleTagTextBox.MaxLength = 32;
+            this.explicitTitleTagTextBox.Multiline = true;
+            this.explicitTitleTagTextBox.Name = "explicitTitleTagTextBox";
+            this.explicitTitleTagTextBox.Size = new System.Drawing.Size(172, 26);
+            this.explicitTitleTagTextBox.TabIndex = 24;
+            this.explicitTitleTagTextBox.Text = " (Explicit)";
+            this.explicitTitleTagTextBox.WordWrap = false;
+            this.explicitTitleTagTextBox.TextChanged += new System.EventHandler(this.explicitTitleTagTextBox_TextChanged);
             // 
-            // progressBarDownload
+            // explicitTitleTagSuffixButton
             // 
-            this.progressBarDownload.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
-            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 79);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 31);
-            this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 6;
+            this.explicitTitleTagSuffixButton.AutoSize = true;
+            this.explicitTitleTagSuffixButton.Checked = true;
+            this.explicitTitleTagSuffixButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.explicitTitleTagSuffixButton.Enabled = false;
+            this.explicitTitleTagSuffixButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.explicitTitleTagSuffixButton.Location = new System.Drawing.Point(61, 19);
+            this.explicitTitleTagSuffixButton.Margin = new System.Windows.Forms.Padding(3, 0, 2, 2);
+            this.explicitTitleTagSuffixButton.Name = "explicitTitleTagSuffixButton";
+            this.explicitTitleTagSuffixButton.Size = new System.Drawing.Size(54, 17);
+            this.explicitTitleTagSuffixButton.TabIndex = 7;
+            this.explicitTitleTagSuffixButton.Text = "Suffix";
+            this.explicitTitleTagSuffixButton.UseVisualStyleBackColor = true;
+            this.explicitTitleTagSuffixButton.CheckedChanged += new System.EventHandler(this.explicitTitleTagSuffixButton_CheckedChanged);
+            // 
+            // explicitTitleTagPrefixButton
+            // 
+            this.explicitTitleTagPrefixButton.AutoSize = true;
+            this.explicitTitleTagPrefixButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.explicitTitleTagPrefixButton.Enabled = false;
+            this.explicitTitleTagPrefixButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.explicitTitleTagPrefixButton.Location = new System.Drawing.Point(3, 19);
+            this.explicitTitleTagPrefixButton.Margin = new System.Windows.Forms.Padding(3, 0, 2, 2);
+            this.explicitTitleTagPrefixButton.Name = "explicitTitleTagPrefixButton";
+            this.explicitTitleTagPrefixButton.Size = new System.Drawing.Size(53, 17);
+            this.explicitTitleTagPrefixButton.TabIndex = 25;
+            this.explicitTitleTagPrefixButton.Text = "Prefix";
+            this.explicitTitleTagPrefixButton.UseVisualStyleBackColor = true;
+            this.explicitTitleTagPrefixButton.CheckedChanged += new System.EventHandler(this.explicitTitleTagPrefixButton_CheckedChanged);
+            // 
+            // cleanTitleTagPrefixButton
+            // 
+            this.cleanTitleTagPrefixButton.AutoSize = true;
+            this.cleanTitleTagPrefixButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cleanTitleTagPrefixButton.Enabled = false;
+            this.cleanTitleTagPrefixButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.cleanTitleTagPrefixButton.Location = new System.Drawing.Point(3, 19);
+            this.cleanTitleTagPrefixButton.Margin = new System.Windows.Forms.Padding(3, 0, 2, 2);
+            this.cleanTitleTagPrefixButton.Name = "cleanTitleTagPrefixButton";
+            this.cleanTitleTagPrefixButton.Size = new System.Drawing.Size(53, 17);
+            this.cleanTitleTagPrefixButton.TabIndex = 28;
+            this.cleanTitleTagPrefixButton.Text = "Prefix";
+            this.cleanTitleTagPrefixButton.UseVisualStyleBackColor = true;
+            this.cleanTitleTagPrefixButton.CheckedChanged += new System.EventHandler(this.cleanTitleTagPrefixButton_CheckedChanged);
+            // 
+            // cleanTitleTagSuffixButton
+            // 
+            this.cleanTitleTagSuffixButton.AutoSize = true;
+            this.cleanTitleTagSuffixButton.Checked = true;
+            this.cleanTitleTagSuffixButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cleanTitleTagSuffixButton.Enabled = false;
+            this.cleanTitleTagSuffixButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.cleanTitleTagSuffixButton.Location = new System.Drawing.Point(61, 19);
+            this.cleanTitleTagSuffixButton.Margin = new System.Windows.Forms.Padding(3, 0, 2, 2);
+            this.cleanTitleTagSuffixButton.Name = "cleanTitleTagSuffixButton";
+            this.cleanTitleTagSuffixButton.Size = new System.Drawing.Size(54, 17);
+            this.cleanTitleTagSuffixButton.TabIndex = 26;
+            this.cleanTitleTagSuffixButton.Text = "Suffix";
+            this.cleanTitleTagSuffixButton.UseVisualStyleBackColor = true;
+            this.cleanTitleTagSuffixButton.CheckedChanged += new System.EventHandler(this.cleanTitleTagSuffixButton_CheckedChanged);
+            // 
+            // cleanTitleTagTextBox
+            // 
+            this.cleanTitleTagTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cleanTitleTagTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cleanTitleTagTextBox.Enabled = false;
+            this.cleanTitleTagTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cleanTitleTagTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.cleanTitleTagTextBox.Location = new System.Drawing.Point(3, 41);
+            this.cleanTitleTagTextBox.MaxLength = 32;
+            this.cleanTitleTagTextBox.Multiline = true;
+            this.cleanTitleTagTextBox.Name = "cleanTitleTagTextBox";
+            this.cleanTitleTagTextBox.Size = new System.Drawing.Size(172, 26);
+            this.cleanTitleTagTextBox.TabIndex = 27;
+            this.cleanTitleTagTextBox.Text = " (Clean)";
+            this.cleanTitleTagTextBox.WordWrap = false;
+            this.cleanTitleTagTextBox.TextChanged += new System.EventHandler(this.cleanTitleTagTextBox_TextChanged);
             // 
             // qbdlxForm
             // 
@@ -3197,15 +3236,17 @@ namespace QobuzDownloaderX
         internal RadioButton overwriteDuplicatesRadioButton;
         internal CheckBox yearCheckBox;
         internal FlowLayoutPanel flowLayoutPanel2;
-        internal RadioButton explicitLongTitleRadioButton;
-        internal RadioButton explicitShortTitleRadioButton;
         internal FlowLayoutPanel flowLayoutPanel3;
-        internal RadioButton cleanLongTitleRadioButton;
-        internal RadioButton cleanShortTitleRadioButton;
         internal CheckBox cleanTagInTitleCheckBox;
         internal CheckBox explicitTagInTitleCheckBox;
         internal TextBox cdTemplateTextBox;
         internal Label cdTemplateLabel;
         internal CheckBox mergeArtistInDirNameCheckBox;
+        internal RadioButton explicitTitleTagPrefixButton;
+        internal TextBox explicitTitleTagTextBox;
+        internal RadioButton explicitTitleTagSuffixButton;
+        internal RadioButton cleanTitleTagPrefixButton;
+        internal RadioButton cleanTitleTagSuffixButton;
+        internal TextBox cleanTitleTagTextBox;
     }
 }

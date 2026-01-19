@@ -256,14 +256,14 @@ namespace QobuzDownloaderX.Helpers
             f.savedArtSizeSelect.SelectedIndex = Settings.Default.savedSavedArtSize;
             f.dontSaveArtworkToDiskCheckBox.Checked = Settings.Default.dontSaveArtworkToDisk;
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
-
-            f.explicitTagInTitleCheckBox.Checked = Settings.Default.explicitTagInTitle;
-            f.explicitLongTitleRadioButton.Checked = Settings.Default.explicitLongTitleTag;
-            f.explicitShortTitleRadioButton.Checked = Settings.Default.explicitShortTitleTag;
+            f.explicitTagInTitleCheckBox.Checked = Settings.Default.explicitTagInTitle; 
+            f.explicitTitleTagPrefixButton.Checked = Settings.Default.explicitTitleTagPrefixOrSuffix == 0;
+            f.explicitTitleTagSuffixButton.Checked = Settings.Default.explicitTitleTagPrefixOrSuffix == 1;
+            f.explicitTitleTagTextBox.Text = Settings.Default.explicitTitleTagText;
             f.cleanTagInTitleCheckBox.Checked = Settings.Default.cleanTagInTitle;
-            f.cleanLongTitleRadioButton.Checked = Settings.Default.cleanLongTitleTag;
-            f.cleanShortTitleRadioButton.Checked = Settings.Default.cleanShortTitleTag;
-
+            f.cleanTitleTagPrefixButton.Checked = Settings.Default.cleanTitleTagPrefixOrSuffix == 0;
+            f.cleanTitleTagSuffixButton.Checked = Settings.Default.cleanTitleTagPrefixOrSuffix == 1;
+            f.cleanTitleTagTextBox.Text = Settings.Default.cleanTitleTagText;
         }
 
         internal static void LoadOtherSettings(qbdlxForm f)
@@ -434,10 +434,10 @@ namespace QobuzDownloaderX.Helpers
             f.skipDuplicatesRadioButton.Text = f.languageManager.GetTranslation("skipDuplicatesButton");
             f.autoRenameDuplicatesRadioButton.Text = f.languageManager.GetTranslation("autoRenameDuplicatesButton");
             f.overwriteDuplicatesRadioButton.Text = f.languageManager.GetTranslation("overwriteDuplicatesButton");
-            f.explicitLongTitleRadioButton.Text = f.languageManager.GetTranslation("explicitLongTitleRadioButton");
-            f.explicitShortTitleRadioButton.Text = f.languageManager.GetTranslation("explicitShortTitleRadioButton");
-            f.cleanLongTitleRadioButton.Text = f.languageManager.GetTranslation("cleanLongTitleRadioButton");
-            f.cleanShortTitleRadioButton.Text = f.languageManager.GetTranslation("cleanShortTitleRadioButton");
+            f.explicitTitleTagPrefixButton.Text = f.languageManager.GetTranslation("prefixRadioButton");
+            f.explicitTitleTagSuffixButton.Text = f.languageManager.GetTranslation("suffixRadioButton");
+            f.cleanTitleTagPrefixButton.Text = f.languageManager.GetTranslation("prefixRadioButton");
+            f.cleanTitleTagSuffixButton.Text = f.languageManager.GetTranslation("suffixRadioButton");
 
             /* Center additional settings button to center of panel */
             //f.additionalSettingsButton.Location = new Point((f.settingsPanel.Width - f.additionalSettingsButton.Width) / 2, f.additionalSettingsButton.Location.Y);

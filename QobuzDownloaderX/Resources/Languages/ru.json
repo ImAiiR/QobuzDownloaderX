@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 19, 2026, 10:19PM MSK",
+    "TranslationUpdatedOn":         "January 19, 2026, 10:20PM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -28,10 +28,8 @@
     "skipDuplicatesButton":         "Игнорировать / пропустить загрузку",
     "autoRenameDuplicatesButton":   "Переименовать загружаемые",
     "overwriteDuplicatesButton":    "Перезаписывать существующие",
-    "explicitLongTitleRadioButton": "Добавить суффикс (Explicit)", // AI translation
-    "explicitShortTitleRadioButton":"Добавить суффикс [E]", // AI translation
-    "cleanLongTitleRadioButton":    "Добавить суффикс (Clean)", // AI translation
-    "cleanShortTitleRadioButton":   "Добавить суффикс [C]", // AI translation
+    "suffixRadioButton":            "Суффикс", // AI translation
+    "prefixRadioButton":            "Префикс", // AI translation
 
     "_SECTION2_":                   "=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",
     "advancedOptionsLabel":         "РАСШИРЕННЫЕ НАСТРОЙКИ",

@@ -186,34 +186,53 @@ namespace QobuzDownloaderX
 
                 if (isExplicit && Settings.Default.explicitTagInTitle)
                 {
-                    if (Settings.Default.explicitLongTitleTag)
+                    string explicitText = Settings.Default.explicitTitleTagText;
+                    if (!string.IsNullOrWhiteSpace(explicitText))
                     {
-                        if (!titleFormatted.ToLowerInvariant().Replace('[', '(').Replace(']', ')').EndsWith("(Explicit)")){
-                            titleFormatted += " (Explicit)";
-                        }
-                    }
-                    else
-                    {
-                        if (!titleFormatted.ToLowerInvariant().Replace('(', '[').Replace(')', ']').EndsWith("[E]"))
+                        string explicitTextNormalized = explicitText.ToLowerInvariant().Replace('[', '(').Replace(']', ')').Trim();
+                        string titleFormattedNormalized = titleFormatted.ToLowerInvariant().Replace('(', '[').Replace(')', ']').Trim();
+
+                        // Prefix
+                        if (Settings.Default.explicitTitleTagPrefixOrSuffix == 0)
                         {
-                            titleFormatted += " [E]";
+                            if (!titleFormattedNormalized.StartsWith(explicitTextNormalized))
+                            {
+                                titleFormatted = explicitText + titleFormatted;
+                            }
+                        } 
+                        // Suffix
+                        else
+                        {
+                            if (!titleFormattedNormalized.EndsWith(explicitTextNormalized))
+                            {
+                                titleFormatted += explicitText;
+                            }
                         }
-                    }
+                    } 
                 }
                 else if (!isExplicit && Settings.Default.cleanTagInTitle)
                 {
-                    if (Settings.Default.cleanLongTitleTag)
+                    string cleanText = Settings.Default.cleanTitleTagText;
+                    if (!string.IsNullOrWhiteSpace(cleanText))
                     {
-                        if (!titleFormatted.ToLowerInvariant().Replace('[', '(').Replace(']', ')').EndsWith("(Clean)"))
+                        string cleanTextNormalized = cleanText.ToLowerInvariant().Replace('[', '(').Replace(']', ')').Trim();
+                        string titleFormattedNormalized = titleFormatted.ToLowerInvariant().Replace('(', '[').Replace(')', ']').Trim();
+
+                        // Prefix
+                        if (Settings.Default.cleanTitleTagPrefixOrSuffix == 0)
                         {
-                            titleFormatted += " (Clean)";
+                            if (!titleFormattedNormalized.StartsWith(cleanTextNormalized))
+                            {
+                                titleFormatted = cleanText + titleFormatted;
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (!titleFormatted.ToLowerInvariant().Replace('(', '[').Replace(')', ']').EndsWith("[C]"))
+                        // Suffix
+                        else
                         {
-                            titleFormatted += " [C]";
+                            if (!titleFormattedNormalized.EndsWith(cleanTextNormalized))
+                            {
+                                titleFormatted += cleanText;
+                            }
                         }
                     }
                 }

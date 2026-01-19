@@ -375,7 +375,7 @@ namespace QobuzDownloaderX.Helpers
         public const string defaultLanguage = @"{
 {
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 19, 2026, 03:15PM EST"",
+    ""TranslationUpdatedOn"":         ""January 19, 2026, 03:16PM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -403,10 +403,8 @@ namespace QobuzDownloaderX.Helpers
     ""skipDuplicatesButton"":         ""Ignore / skip download"",
     ""autoRenameDuplicatesButton"":   ""Automatically rename incoming file"",
     ""overwriteDuplicatesButton"":    ""Overwrite existing file"",
-    ""explicitLongTitleRadioButton"": ""Add (Explicit) suffix"",
-    ""explicitShortTitleRadioButton"":""Add [E] suffix"",
-    ""cleanLongTitleRadioButton"":    ""Add (Clean) suffix"",
-    ""cleanShortTitleRadioButton"":   ""Add [C] suffix"",
+    ""suffixRadioButton"":            ""Suffix"",
+    ""prefixRadioButton"":            ""Prefix"",
 
     ""_SECTION2_"":                   ""=================== MAIN FORM LABELS ==================="",
     ""advancedOptionsLabel"":         ""ADVANCED OPTIONS"",

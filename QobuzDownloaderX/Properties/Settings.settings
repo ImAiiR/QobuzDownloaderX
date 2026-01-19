@@ -206,18 +206,6 @@
     <Setting Name="releaseDateTag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="cleanLongTitleTag" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="cleanShortTitleTag" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="explicitLongTitleTag" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="explicitShortTitleTag" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="explicitTagInTitle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -229,6 +217,18 @@
     </Setting>
     <Setting Name="mergeArtistNamesInDirectoryNamesToo" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="explicitTitleTagPrefixOrSuffix" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="cleanTitleTagPrefixOrSuffix" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="explicitTitleTagText" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> (Explicit)</Value>
+    </Setting>
+    <Setting Name="cleanTitleTagText" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> (Clean)</Value>
     </Setting>
   </Settings>
 </SettingsFile>
