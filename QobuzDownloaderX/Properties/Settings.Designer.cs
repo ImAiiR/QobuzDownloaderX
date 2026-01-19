@@ -922,5 +922,17 @@ namespace QobuzDownloaderX.Properties {
                 this["savedCdTemplate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool mergeArtistNamesInDirectoryNamesToo {
+            get {
+                return ((bool)(this["mergeArtistNamesInDirectoryNamesToo"]));
+            }
+            set {
+                this["mergeArtistNamesInDirectoryNamesToo"] = value;
+            }
+        }
     }
 }

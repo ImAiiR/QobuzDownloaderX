@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 18, 2026, 10:00AM UTC",
+    "TranslationUpdatedOn":         "January 19, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -95,6 +95,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL",
     "mergeArtistNamesCheckBox":     "Fusionner les noms des artistes des pistes.\nExemple : Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3",
+    "mergeArtistInDirNameCheckBox": "Fusionner aussi dans les noms de répertoires", // AI translation
     "streamableCheckBox":           "Contrôle du flux",
     "fixMD5sCheckBox":              "Corriger les MD5 non définis (doit avoir FLAC dans la variable PATH)",
     "downloadSpeedCheckBox":        "Afficher la vitesse de téléchargement",

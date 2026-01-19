@@ -39,9 +39,9 @@ namespace QobuzDownloaderX.Helpers
             return safeTruncated;
         }
 
-        public string GetReleaseArtists(Album QoAlbum)
+        public string GetReleaseArtists(Album QoAlbum, bool updateAlbumInfoLabels)
         {
-            if (Settings.Default.mergeArtistNames)
+            if (updateAlbumInfoLabels || (Settings.Default.mergeArtistNames && Settings.Default.mergeArtistNamesInDirectoryNamesToo))
             {
                 var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
                 if (mainArtists.Count > 1)
@@ -183,7 +183,7 @@ namespace QobuzDownloaderX.Helpers
             {
                 if (QoAlbum != null)
                 {
-                    string artistsNames = GetReleaseArtists(QoAlbum) ?? "";
+                    string artistsNames = GetReleaseArtists(QoAlbum, updateAlbumInfoLabels: false) ?? "";
                     if (variousArtistsNames.Any(name => artistsNames.Equals(name, StringComparison.OrdinalIgnoreCase)))
                     {
                         // Convert all text between % symbols to lowercase
@@ -231,7 +231,7 @@ namespace QobuzDownloaderX.Helpers
                 template = template
                     .Replace("%albumid%", QoAlbum.Id?.ToString() ?? "")
                     .Replace("%albumurl%", QoAlbum.Url?.ToString() ?? "")
-                    .Replace("%artistname%", GetReleaseArtists(QoAlbum) ?? "")
+                    .Replace("%artistname%", GetReleaseArtists(QoAlbum, updateAlbumInfoLabels: false) ?? "")
                     .Replace("%albumgenre%", QoAlbum?.Genre?.Name ?? "")
                     .Replace("%albumcomposer%", QoAlbum?.Composer?.Name?.ToString() ?? "")
                     .Replace("%label%", spacesRegex.Replace(QoAlbum.Label?.Name ?? "", " "))
@@ -263,13 +263,11 @@ namespace QobuzDownloaderX.Helpers
 
                 if (QoItem != null)
                 {
-
-
                     // Album Template for playlist path
                     template = template
                         .Replace("%albumid%", QoAlbum.Id?.ToString() ?? "")
                         .Replace("%albumurl%", QoAlbum.Url?.ToString() ?? "")
-                        .Replace("%artistname%", GetReleaseArtists(QoAlbum) ?? "")
+                        .Replace("%artistname%", GetReleaseArtists(QoAlbum, updateAlbumInfoLabels: false) ?? "")
                         .Replace("%albumgenre%", QoAlbum?.Genre?.Name ?? "")
                         .Replace("%albumcomposer%", QoAlbum?.Composer?.Name?.ToString() ?? "")
                         .Replace("%label%", spacesRegex.Replace(QoAlbum.Label?.Name ?? "", " ")) // Qobuz sometimes has multiple spaces where a single one should be

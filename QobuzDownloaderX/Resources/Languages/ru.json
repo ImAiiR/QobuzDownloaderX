@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 18, 2026, 10:19PM MSK",
+    "TranslationUpdatedOn":         "January 19, 2026, 10:19PM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -94,6 +94,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL",
     "mergeArtistNamesCheckBox":     "Объединять имена исполнителей трека\n(Пример: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3)",
+    "mergeArtistInDirNameCheckBox": "Объединять также в названиях каталогов", // AI translation
     "streamableCheckBox":           "Проверять доступность стриминга",
     "fixMD5sCheckBox":              "Автоматически исправлять отсутствующие MD5\n(FLAC должен быть в переменной PATH)",
     "downloadSpeedCheckBox":        "Показывать скорость загрузки",

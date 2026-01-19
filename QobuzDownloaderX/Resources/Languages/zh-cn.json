@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Mxqing",
-    "TranslationUpdatedOn":         "January 18, 2026, 01:15AM GMT+8",
+    "TranslationUpdatedOn":         "January 19, 2026, 01:15AM GMT+8",
     "TranslationFont":              "Microsoft YaHei UI",
     
     "_SECTION1_":                   "=================== 主表单按钮 ===================",
@@ -94,6 +94,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL", // AI translation
     "mergeArtistNamesCheckBox":     "将主艺术家和客串艺术家合并为一个字符串。\n示例：Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // AI translation
+    "mergeArtistInDirNameCheckBox": "同时合并到目录名称中", // AI translation
     "streamableCheckBox":           "歌曲流媒体可播性检查",
     "fixMD5sCheckBox":              "自动修复生成 MD5 校验和(必须在 PATH 变量中包含 FLAC)",
     "downloadSpeedCheckBox":        "显示下载速度",

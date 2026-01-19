@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "TheParaTiger",
-    "TranslationUpdatedOn":         "January 18, 2026, 09:37AM MET",
+    "TranslationUpdatedOn":         "January 19, 2026, 09:37AM MET",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -94,6 +94,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL", // AI translation
     "mergeArtistNamesCheckBox":     "Track-Künstlernamen zusammenführen.\nBeispiel: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // AI translation
+    "mergeArtistInDirNameCheckBox": "Auch in Verzeichnisnamen zusammenführen", // AI translation
     "streamableCheckBox":           "Ist Streamfähig Check",
     "fixMD5sCheckBox":              "Nicht gesetzte MD5s setzen (muss FLAC in der PATH Variable haben)",
     "downloadSpeedCheckBox":        "Downloadgeschwindigkeit Anzeigen",

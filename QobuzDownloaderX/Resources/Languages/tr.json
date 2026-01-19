@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "bleedfed",
-    "TranslationUpdatedOn":         "January 18, 2026, 01:25PM UTC",
+    "TranslationUpdatedOn":         "January 19, 2026, 01:25PM UTC",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -94,6 +94,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL", // AI translation
     "mergeArtistNamesCheckBox":     "Parça sanatçı isimlerini birleştir.\nÖrnek: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3", // AI translation
+    "mergeArtistInDirNameCheckBox": "Dizin adlarında da birleştir", // AI translation
     "streamableCheckBox":           "Oynatılabilirlik Doğrulaması",
     "fixMD5sCheckBox":              "Eklenmemiş MD5 Hash'lerini Otomatik Olarak Ekle (Ortam değişkenlerinde (PATH) FLAC olması gerekli)",
     "downloadSpeedCheckBox":        "İndirme Hızını Göster",

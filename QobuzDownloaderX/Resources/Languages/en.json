@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "AiiR",
-    "TranslationUpdatedOn":         "January 18, 2026, 03:15PM EST",
+    "TranslationUpdatedOn":         "January 19, 2026, 03:15PM EST",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -94,6 +94,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL",
     "mergeArtistNamesCheckBox":     "Merge track artist names.\nExample: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3",
+    "mergeArtistInDirNameCheckBox": "Merge in directory names too",
     "streamableCheckBox":           "Streamable Check",
     "fixMD5sCheckBox":              "Auto-Fix Unset MD5s (must have FLAC in PATH variables)",
     "downloadSpeedCheckBox":        "Print Download Speed",

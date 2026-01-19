@@ -276,6 +276,7 @@ namespace QobuzDownloaderX.Helpers
             f.clearOldLogsCheckBox.Checked = Settings.Default.clearOldLogs;
             f.downloadAllFromArtistCheckBox.Checked = Settings.Default.downloadAllFromArtist;
             f.mergeArtistNamesCheckBox.Checked = Settings.Default.mergeArtistNames;
+            f.mergeArtistInDirNameCheckBox.Checked = Settings.Default.mergeArtistNamesInDirectoryNamesToo;
             f.artistNamesSeparatorsPanel.Enabled = f.mergeArtistNamesCheckBox.Checked;
             f.useItemPosInPlaylistCheckBox.Checked = Settings.Default.useItemPosInPlaylist;
             f.showTipsCheckBox.Checked = Settings.Default.showTips;
@@ -511,6 +512,7 @@ namespace QobuzDownloaderX.Helpers
             f.isrcCheckBox.Text = f.languageManager.GetTranslation("isrcCheckBox");
             f.urlCheckBox.Text = f.languageManager.GetTranslation("urlCheckBox");
             f.mergeArtistNamesCheckBox.Text = f.languageManager.GetTranslation("mergeArtistNamesCheckBox");
+            f.mergeArtistInDirNameCheckBox.Text = f.languageManager.GetTranslation("mergeArtistInDirNameCheckBox");
             f.streamableCheckBox.Text = f.languageManager.GetTranslation("streamableCheckBox");
             f.fixMD5sCheckBox.Text = f.languageManager.GetTranslation("fixMD5sCheckBox");
             f.downloadSpeedCheckBox.Text = f.languageManager.GetTranslation("downloadSpeedCheckBox");
@@ -589,7 +591,7 @@ namespace QobuzDownloaderX.Helpers
             string trackLabelSingular = f.languageManager.GetTranslation("track");
             string trackLabelPlural = f.languageManager.GetTranslation("tracks");
             string trackOrTracks = QoAlbum.TracksCount == 1 ? trackLabelSingular : trackLabelPlural;
-            f.artistLabel.Text = f.renameTemplates.GetReleaseArtists(QoAlbum).Replace("&", "&&");
+            f.artistLabel.Text = f.renameTemplates.GetReleaseArtists(QoAlbum, updateAlbumInfoLabels: true).Replace("&", "&&");
             if (QoAlbum.Version == null) { f.albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&"); } else { f.albumLabel.Text = QoAlbum.Title.Replace(@"&", @"&&").TrimEnd() + " (" + QoAlbum.Version + ")"; }
             f.infoLabel.Text = $"{f.infoLabelPlaceholder} {QoAlbum.ReleaseDateOriginal} • {QoAlbum.TracksCount} {trackOrTracks} • {QoAlbum.UPC}";
 

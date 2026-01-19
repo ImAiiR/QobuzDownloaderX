@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "ElektroStudios (https://github.com/ElektroStudios)",
-    "TranslationUpdatedOn":         "January 18, 2026, 10:17AM UTC",
+    "TranslationUpdatedOn":         "January 19, 2026, 10:17AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== BOTONES (BUTTON) DEL FORM PRINCIPAL ===================",
@@ -94,6 +94,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL",
     "mergeArtistNamesCheckBox":     "Combinar los nombres de artistas.\nEjemplo: Artista1, Artista2 && Artista3 Feat. Artista4 - Título.mp3",
+    "mergeArtistInDirNameCheckBox": "Combinar también en los nombres de directorio",
     "streamableCheckBox":           "Verificación de stream",
     "fixMD5sCheckBox":              "Auto-corregir MD5 sin definir (requiere FLAC en la variable PATH)",
     "downloadSpeedCheckBox":        "Mostrar velocidad de descarga",

@@ -854,6 +854,12 @@ namespace QobuzDownloaderX
             Settings.Default.Save();
         }
 
+        private void mergeArtistInDirNameCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.mergeArtistNamesInDirectoryNamesToo = mergeArtistInDirNameCheckBox.Checked;
+            Settings.Default.Save();
+        }
+
         private void releaseTypeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.typeTag = releaseTypeCheckBox.Checked;

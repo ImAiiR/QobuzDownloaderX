@@ -375,7 +375,7 @@ namespace QobuzDownloaderX.Helpers
         public const string defaultLanguage = @"{
 {
     ""TranslationCredit"":            ""AiiR"",
-    ""TranslationUpdatedOn"":         ""January 17, 2026, 03:15PM EST"",
+    ""TranslationUpdatedOn"":         ""January 19, 2026, 03:15PM EST"",
     ""TranslationFont"":              ""Nirmala UI"",
 
     ""_SECTION1_"":                   ""=================== MAIN FORM BUTTONS ==================="",
@@ -419,6 +419,7 @@ namespace QobuzDownloaderX.Helpers
     ""languageLabel"":                ""Current Language"",
     ""playlistTemplateLabel"":        ""PLAYLIST TEMPLATE"",
     ""favoritesTemplateLabel"":       ""FAVORITES TEMPLATE"",
+    ""cdTemplateLabel"":              ""CD TEMPLATE"",
     ""savedArtLabel"":                ""Saved Artwork Size"",
     ""searchingLabel"":               ""Searching…"",
     ""taggingOptionsLabel"":          ""TAGGING OPTIONS"",
@@ -468,6 +469,7 @@ namespace QobuzDownloaderX.Helpers
     ""isrcCheckBox"":                 ""ISRC"",
     ""urlCheckBox"":                  ""URL"",
     ""mergeArtistNamesCheckBox"":     ""Merge track artist names.\nExample: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3"",
+    ""mergeArtistInDirNameCheckBox"": ""Merge in directory names too"",
     ""streamableCheckBox"":           ""Streamable Check"",
     ""fixMD5sCheckBox"":              ""Auto-Fix Unset MD5s (must have FLAC in PATH variables)"",
     ""downloadSpeedCheckBox"":        ""Print Download Speed"",

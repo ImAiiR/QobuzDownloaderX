@@ -57,7 +57,6 @@ namespace QobuzDownloaderX
             this.batchDownloadButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
             this.abortButton = new System.Windows.Forms.Button();
-            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.downloadButton = new System.Windows.Forms.Button();
             this.infoLabel = new System.Windows.Forms.Label();
@@ -225,6 +224,8 @@ namespace QobuzDownloaderX
             this.tipEmojiLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tipLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTip = new System.Windows.Forms.Timer(this.components);
+            this.mergeArtistInDirNameCheckBox = new System.Windows.Forms.CheckBox();
+            this.progressBarDownload = new QobuzDownloaderX.UserControls.CustomProgressBar();
             this.navigationPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -602,17 +603,6 @@ namespace QobuzDownloaderX
             this.abortButton.Text = "ABORT";
             this.abortButton.UseVisualStyleBackColor = false;
             this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
-            // 
-            // progressBarDownload
-            // 
-            this.progressBarDownload.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
-            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
-            this.progressBarDownload.Location = new System.Drawing.Point(184, 79);
-            this.progressBarDownload.Name = "progressBarDownload";
-            this.progressBarDownload.Size = new System.Drawing.Size(332, 31);
-            this.progressBarDownload.Step = 1;
-            this.progressBarDownload.TabIndex = 6;
             // 
             // progressLabel
             // 
@@ -1333,7 +1323,7 @@ namespace QobuzDownloaderX
             this.extraSettingsPanel.Controls.Add(this.embeddedArtSizeSelect);
             this.extraSettingsPanel.Controls.Add(this.extraSettingsLabel);
             this.extraSettingsPanel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.extraSettingsPanel.Location = new System.Drawing.Point(563, 157);
+            this.extraSettingsPanel.Location = new System.Drawing.Point(569, 155);
             this.extraSettingsPanel.Name = "extraSettingsPanel";
             this.extraSettingsPanel.Size = new System.Drawing.Size(771, 577);
             this.extraSettingsPanel.TabIndex = 0;
@@ -1492,7 +1482,7 @@ namespace QobuzDownloaderX
             this.advancedOptionsPanelRight.Location = new System.Drawing.Point(0, 118);
             this.advancedOptionsPanelRight.Margin = new System.Windows.Forms.Padding(0);
             this.advancedOptionsPanelRight.Name = "advancedOptionsPanelRight";
-            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(356, 96);
+            this.advancedOptionsPanelRight.Size = new System.Drawing.Size(356, 112);
             this.advancedOptionsPanelRight.TabIndex = 7;
             // 
             // mergeArtistNamesCheckBox
@@ -1515,28 +1505,29 @@ namespace QobuzDownloaderX
             this.artistNamesSeparatorsPanel.AutoScroll = true;
             this.artistNamesSeparatorsPanel.Controls.Add(this.primaryListSeparatorLabel);
             this.artistNamesSeparatorsPanel.Controls.Add(this.primaryListSeparatorTextBox);
+            this.artistNamesSeparatorsPanel.Controls.Add(this.mergeArtistInDirNameCheckBox);
             this.artistNamesSeparatorsPanel.Controls.Add(this.listEndSeparatorLabel);
             this.artistNamesSeparatorsPanel.Controls.Add(this.listEndSeparatorTextBox);
             this.artistNamesSeparatorsPanel.Enabled = false;
             this.artistNamesSeparatorsPanel.Location = new System.Drawing.Point(3, 26);
             this.artistNamesSeparatorsPanel.Name = "artistNamesSeparatorsPanel";
-            this.artistNamesSeparatorsPanel.Size = new System.Drawing.Size(218, 54);
+            this.artistNamesSeparatorsPanel.Size = new System.Drawing.Size(350, 70);
             this.artistNamesSeparatorsPanel.TabIndex = 1;
             // 
             // primaryListSeparatorLabel
             // 
             this.primaryListSeparatorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.primaryListSeparatorLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.primaryListSeparatorLabel.Location = new System.Drawing.Point(3, 9);
+            this.primaryListSeparatorLabel.Location = new System.Drawing.Point(4, 29);
             this.primaryListSeparatorLabel.Name = "primaryListSeparatorLabel";
-            this.primaryListSeparatorLabel.Size = new System.Drawing.Size(166, 13);
+            this.primaryListSeparatorLabel.Size = new System.Drawing.Size(175, 13);
             this.primaryListSeparatorLabel.TabIndex = 0;
             this.primaryListSeparatorLabel.Text = "Primary list separator";
             this.primaryListSeparatorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // primaryListSeparatorTextBox
             // 
-            this.primaryListSeparatorTextBox.Location = new System.Drawing.Point(169, 3);
+            this.primaryListSeparatorTextBox.Location = new System.Drawing.Point(185, 23);
             this.primaryListSeparatorTextBox.Name = "primaryListSeparatorTextBox";
             this.primaryListSeparatorTextBox.Size = new System.Drawing.Size(45, 22);
             this.primaryListSeparatorTextBox.TabIndex = 1;
@@ -1547,16 +1538,16 @@ namespace QobuzDownloaderX
             // 
             this.listEndSeparatorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
             this.listEndSeparatorLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.listEndSeparatorLabel.Location = new System.Drawing.Point(3, 36);
+            this.listEndSeparatorLabel.Location = new System.Drawing.Point(4, 53);
             this.listEndSeparatorLabel.Name = "listEndSeparatorLabel";
-            this.listEndSeparatorLabel.Size = new System.Drawing.Size(166, 13);
+            this.listEndSeparatorLabel.Size = new System.Drawing.Size(175, 13);
             this.listEndSeparatorLabel.TabIndex = 2;
             this.listEndSeparatorLabel.Text = "List end separator";
             this.listEndSeparatorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // listEndSeparatorTextBox
             // 
-            this.listEndSeparatorTextBox.Location = new System.Drawing.Point(169, 29);
+            this.listEndSeparatorTextBox.Location = new System.Drawing.Point(185, 47);
             this.listEndSeparatorTextBox.Name = "listEndSeparatorTextBox";
             this.listEndSeparatorTextBox.Size = new System.Drawing.Size(45, 22);
             this.listEndSeparatorTextBox.TabIndex = 3;
@@ -1570,10 +1561,10 @@ namespace QobuzDownloaderX
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.autoRenameDuplicatesRadioButton);
             this.duplicateFilesFlowLayoutPanel.Controls.Add(this.overwriteDuplicatesRadioButton);
             this.duplicateFilesFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.duplicateFilesFlowLayoutPanel.Location = new System.Drawing.Point(0, 216);
+            this.duplicateFilesFlowLayoutPanel.Location = new System.Drawing.Point(0, 232);
             this.duplicateFilesFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.duplicateFilesFlowLayoutPanel.Name = "duplicateFilesFlowLayoutPanel";
-            this.duplicateFilesFlowLayoutPanel.Size = new System.Drawing.Size(356, 90);
+            this.duplicateFilesFlowLayoutPanel.Size = new System.Drawing.Size(356, 81);
             this.duplicateFilesFlowLayoutPanel.TabIndex = 9;
             // 
             // duplicateFilesLabel
@@ -1592,7 +1583,8 @@ namespace QobuzDownloaderX
             this.skipDuplicatesRadioButton.Checked = true;
             this.skipDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.skipDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.skipDuplicatesRadioButton.Location = new System.Drawing.Point(3, 24);
+            this.skipDuplicatesRadioButton.Location = new System.Drawing.Point(3, 21);
+            this.skipDuplicatesRadioButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.skipDuplicatesRadioButton.Name = "skipDuplicatesRadioButton";
             this.skipDuplicatesRadioButton.Size = new System.Drawing.Size(340, 17);
             this.skipDuplicatesRadioButton.TabIndex = 0;
@@ -1605,7 +1597,8 @@ namespace QobuzDownloaderX
             // 
             this.autoRenameDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.autoRenameDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.autoRenameDuplicatesRadioButton.Location = new System.Drawing.Point(3, 47);
+            this.autoRenameDuplicatesRadioButton.Location = new System.Drawing.Point(3, 40);
+            this.autoRenameDuplicatesRadioButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.autoRenameDuplicatesRadioButton.Name = "autoRenameDuplicatesRadioButton";
             this.autoRenameDuplicatesRadioButton.Size = new System.Drawing.Size(340, 17);
             this.autoRenameDuplicatesRadioButton.TabIndex = 4;
@@ -1617,7 +1610,8 @@ namespace QobuzDownloaderX
             // 
             this.overwriteDuplicatesRadioButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.overwriteDuplicatesRadioButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
-            this.overwriteDuplicatesRadioButton.Location = new System.Drawing.Point(3, 70);
+            this.overwriteDuplicatesRadioButton.Location = new System.Drawing.Point(3, 59);
+            this.overwriteDuplicatesRadioButton.Margin = new System.Windows.Forms.Padding(3, 0, 0, 2);
             this.overwriteDuplicatesRadioButton.Name = "overwriteDuplicatesRadioButton";
             this.overwriteDuplicatesRadioButton.Size = new System.Drawing.Size(340, 17);
             this.overwriteDuplicatesRadioButton.TabIndex = 6;
@@ -2921,6 +2915,30 @@ namespace QobuzDownloaderX
             this.timerTip.Interval = 200;
             this.timerTip.Tick += new System.EventHandler(this.timerTip_Tick);
             // 
+            // mergeArtistInDirNameCheckBox
+            // 
+            this.mergeArtistInDirNameCheckBox.AutoSize = true;
+            this.mergeArtistInDirNameCheckBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeArtistInDirNameCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(147)))), ((int)(((byte)(147)))));
+            this.mergeArtistInDirNameCheckBox.Location = new System.Drawing.Point(0, 3);
+            this.mergeArtistInDirNameCheckBox.Name = "mergeArtistInDirNameCheckBox";
+            this.mergeArtistInDirNameCheckBox.Size = new System.Drawing.Size(177, 17);
+            this.mergeArtistInDirNameCheckBox.TabIndex = 2;
+            this.mergeArtistInDirNameCheckBox.Text = "Merge in directory names too";
+            this.mergeArtistInDirNameCheckBox.UseVisualStyleBackColor = true;
+            this.mergeArtistInDirNameCheckBox.CheckedChanged += new System.EventHandler(this.mergeArtistInDirNameCheckBox_CheckedChanged);
+            // 
+            // progressBarDownload
+            // 
+            this.progressBarDownload.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.progressBarDownload.BorderColor = System.Drawing.Color.Black;
+            this.progressBarDownload.FillColor = System.Drawing.Color.RoyalBlue;
+            this.progressBarDownload.Location = new System.Drawing.Point(184, 79);
+            this.progressBarDownload.Name = "progressBarDownload";
+            this.progressBarDownload.Size = new System.Drawing.Size(332, 31);
+            this.progressBarDownload.Step = 1;
+            this.progressBarDownload.TabIndex = 6;
+            // 
             // qbdlxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3188,5 +3206,6 @@ namespace QobuzDownloaderX
         internal CheckBox explicitTagInTitleCheckBox;
         internal TextBox cdTemplateTextBox;
         internal Label cdTemplateLabel;
+        internal CheckBox mergeArtistInDirNameCheckBox;
     }
 }
