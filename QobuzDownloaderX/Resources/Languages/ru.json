@@ -1,6 +1,6 @@
 ﻿{
     "TranslationCredit":            "Kuzmich55 (https://github.com/Kuzmich55)",
-    "TranslationUpdatedOn":         "January 19, 2026, 10:20PM MSK",
+    "TranslationUpdatedOn":         "January 19, 2026, 04:14PM MSK",
     "TranslationFont":              "Segoe UI",
 
     "_SECTION1_":                   "=================== КНОПКИ ГЛАВНОГО ОКНА ===================",
@@ -28,8 +28,8 @@
     "skipDuplicatesButton":         "Игнорировать / пропустить загрузку",
     "autoRenameDuplicatesButton":   "Переименовать загружаемые",
     "overwriteDuplicatesButton":    "Перезаписывать существующие",
-    "suffixRadioButton":            "Суффикс", // AI translation
-    "prefixRadioButton":            "Префикс", // AI translation
+    "suffixRadioButton":            "Суффикс",
+    "prefixRadioButton":            "Префикс",
 
     "_SECTION2_":                   "=================== ПОДПИСИ ГЛАВНОГО ОКНА ===================",
     "advancedOptionsLabel":         "РАСШИРЕННЫЕ НАСТРОЙКИ",
@@ -42,14 +42,14 @@
     "languageLabel":                "Язык интерфейса",
     "playlistTemplateLabel":        "ШАБЛОН ПЛЕЙЛИСТА",
     "favoritesTemplateLabel":       "ШАБЛОН ИЗБРАННОГО",
-    "cdTemplateLabel":              "ШАБЛОН CD", // AI translation
+    "cdTemplateLabel":              "ШАБЛОН CD",
     "savedArtLabel":                "Размер сохраняемого изображения",
     "searchingLabel":               "Поиск...",
     "taggingOptionsLabel":          "ПАРАМЕТРЫ ТЕГОВ",
     "templatesLabel":               "ШАБЛОНЫ",
     "templatesListLabel":           "СПИСОК ШАБЛОНОВ",
     "themeLabel":                   "Тема оформления",
-    "themeSectionLabel":            "ВИЗУАЛЬНЫЕ НАСТРОЙКИ",
+    "themeSectionLabel":            "НАСТРОЙКИ ОФОРМЛЕНИЯ",
     "trackTemplateLabel":           "(ПО УМОЛЧ.) ШАБЛОН ТРЕКА",
     "vaTrackTemplateLabel":         "(V/A) ШАБЛОН ТРЕКА",
     "userInfoLabel":                "ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ",
@@ -75,7 +75,7 @@
     "commentCheckBox":              "Комментарий пользователя",
     "trackArtistCheckBox":          "Исполнитель трека",
     "trackTitleCheckBox":           "Название трека",
-    "yearCheckBox":                 "Год", // AI translation
+    "yearCheckBox":                 "Год",
     "releaseDateCheckBox":          "Дата релиза",
     "releaseTypeCheckBox":          "Тип релиза",
     "genreCheckBox":                "Жанр",
@@ -92,7 +92,7 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL",
     "mergeArtistNamesCheckBox":     "Объединять имена исполнителей трека\n(Пример: Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3)",
-    "mergeArtistInDirNameCheckBox": "Объединять также в названиях каталогов", // AI translation
+    "mergeArtistInDirNameCheckBox": "Объединять также в названиях папок",
     "streamableCheckBox":           "Проверять доступность стриминга",
     "fixMD5sCheckBox":              "Автоматически исправлять отсутствующие MD5\n(FLAC должен быть в переменной PATH)",
     "downloadSpeedCheckBox":        "Показывать скорость загрузки",
@@ -107,8 +107,8 @@
     "useItemPosInPlaylistCheckBox": "В именах файлов использовать нумерацию из плейлиста (вместо нумерации из альбома)",
     "showTipsCheckBox":             "Показать советы",
     "logFailedDownloadsCheckBox":   "Журналировать ошибки в файл 'error.txt' в папке загрузки",
-    "explicitTagInTitleCheckBox":   "Явный тег в названии", // AI translation
-    "cleanTagInTitleCheckBox":      "Чистый тег в названии", // AI translation
+    "explicitTagInTitleCheckBox":   "Тег 'Explicit' в названии",
+    "cleanTagInTitleCheckBox":      "Тег 'Clean' в названии",
 
     "_SECTION4_":                   "=================== ПЛЕЙСХОЛДЕРЫ ОСНОВНОЙ ФОРМЫ ===================",
     "albumLabelPlaceholder":        "Добро пожаловать в QBDLX!",
