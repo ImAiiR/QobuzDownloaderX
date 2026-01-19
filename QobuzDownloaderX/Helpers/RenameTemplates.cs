@@ -25,7 +25,7 @@ namespace QobuzDownloaderX.Helpers
         {
             "Various Artists, Array",
             "Various Artists",
-            "Various Aritsts",
+            "Various Aritsts", // not our typo.
             "Various Artist",
             "Various Interpreters",
             "Various Interpreter",
@@ -41,13 +41,17 @@ namespace QobuzDownloaderX.Helpers
 
         public string GetReleaseArtists(Album QoAlbum)
         {
-            var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
-            if (mainArtists.Count > 1)
+            if (Settings.Default.mergeArtistNames)
             {
-                var allButLastArtist = string.Join(", ", mainArtists.Take(mainArtists.Count - 1).Select(a => a.Name));
-                var lastArtist = mainArtists.Last().Name;
-                return $"{allButLastArtist} & {lastArtist}";
+                var mainArtists = QoAlbum.Artists.Where(a => a.Roles.Contains("main-artist")).ToList();
+                if (mainArtists.Count > 1)
+                {
+                    var allButLastArtist = string.Join(", ", mainArtists.Take(mainArtists.Count - 1).Select(a => a.Name));
+                    var lastArtist = mainArtists.Last().Name;
+                    return $"{allButLastArtist} & {lastArtist}";
+                }
             }
+
             return QoAlbum.Artist.Name;
         }
 
