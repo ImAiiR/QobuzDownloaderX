@@ -1,6 +1,6 @@
 {
     "TranslationCredit":            "Greenwild",
-    "TranslationUpdatedOn":         "January 19, 2026, 10:01AM UTC",
+    "TranslationUpdatedOn":         "January 25, 2026, 10:00AM UTC",
     "TranslationFont":              "Nirmala UI",
 
     "_SECTION1_":                   "=================== MAIN FORM BUTTONS ===================",
@@ -11,7 +11,7 @@
     "batchDownloadButton":          "Multiple",
     "abortButton":                  "Interrompre",
     "skipButton":                   "Ignorer",
-    "downloaderButton":             "Downloader",
+    "downloaderButton":             "Téléchargeur",
     "logoutButton":                 "Se Déconnecter",
     "openFolderButton":             "Ouvrir Le Dossier",
     "qualitySelectButton":          "Qualité",
@@ -24,15 +24,15 @@
     "settingsButton":               "Paramètres",
     "selectAllRowsButton":          "Tout Sélectionner",
     "deselectAllRowsButton":        "Tout Désélectionner",
-    "batchDownloadRowsButton":      "Télécharger Les Lignes Sélectionnées En Lot",   
-    "skipDuplicatesButton":         "Ignorer / Ne pas télécharger", // AI translation
-    "autoRenameDuplicatesButton":   "Renommer automatiquement", // AI translation
-    "overwriteDuplicatesButton":    "Écraser les fichiers existants", // AI translation
-    "suffixRadioButton":            "Suffixe", // AI translation
-    "prefixRadioButton":            "Préfixe", // AI translation
+    "batchDownloadRowsButton":      "Télécharger Les Lignes Sélectionnées En Lot",
+    "skipDuplicatesButton":         "Ignorer / Ne pas télécharger",
+    "autoRenameDuplicatesButton":   "Renommer automatiquement",
+    "overwriteDuplicatesButton":    "Écraser les fichiers existants",
+    "suffixRadioButton":            "Suffixe",
+    "prefixRadioButton":            "Préfixe",
 
     "_SECTION2_":                   "=================== MAIN FORM LABELS ===================",
-    "advancedOptionsLabel":         "Paramètres Avancés",
+    "advancedOptionsLabel":         "PARAMÈTRES AVANCÉS",
     "albumTemplateLabel":           "Modèle d'album",
     "artistTemplateLabel":          "Modèle d'artiste",
     "downloadFolderLabel":          "Dossier de téléchargement",
@@ -42,17 +42,17 @@
     "languageLabel":                "Langage",
     "playlistTemplateLabel":        "Modèle de playlist",
     "favoritesTemplateLabel":       "Modèle des favoris",
-    "cdTemplateLabel":              "MODÈLE DE CD", // AI translation
+    "cdTemplateLabel":              "Modèle de CD",
     "savedArtLabel":                "Taille de la pochette enregistrée",
     "searchingLabel":               "Recherche...",
-    "taggingOptionsLabel":          "Options de marquage",
+    "taggingOptionsLabel":          "OPTIONS DE MARQUAGE",
     "templatesLabel":               "Modèles",
     "templatesListLabel":           "Liste des modèles",
     "themeLabel":                   "Thème",
-    "themeSectionLabel":            "OPTIONS VISUELLES", // AI translation
-    "trackTemplateLabel":           "(PAR DÉFAUT) Modèle de piste", // AI translation
-    "vaTrackTemplateLabel":         "(V/A) Modèle de piste", // AI translation
-    "userInfoLabel":                "Informations Utilisateur",
+    "themeSectionLabel":            "OPTIONS VISUELLES",
+    "trackTemplateLabel":           "(Par Défaut) Modèle de piste",
+    "vaTrackTemplateLabel":         "(V/A) Modèle de piste",
+    "userInfoLabel":                "INFORMATIONS UTILISATEUR",
     "welcomeLabel":                 "Bienvenue\r\n{username}",
     "searchSortingLabel":           "Trier par :",
     "sortReleaseDateLabel":         "Date de sortie",
@@ -63,12 +63,11 @@
     "searchResultsCountLabel":      "Résultats",
     "selectedRowsCountLabel":       "{0} Lignes Sélectionnées",
     "disclaimer":                   "AVIS DE NON-RESPONSABILITÉ / MENTIONS LÉGALES\n\nCette application utilise l'API Qobuz mais n'est pas certifiée par Qobuz.\n\nLe logiciel et ses auteurs ne sont affiliés, approuvés ou officiellement liés à Qobuz d'aucune manière. L'utilisation de cette application se fait à vos propres risques. Les auteurs ne garantissent pas l'exactitude, la fiabilité ou la disponibilité du service et ne peuvent être tenus responsables de tout dommage ou perte de données résultant de son utilisation.\n\nEn utilisant cette application, vous reconnaissez et acceptez qu'elle est fournie \"telle quelle\", sans aucune garantie expresse ou implicite, y compris, mais sans s'y limiter, les garanties de qualité marchande, d'adéquation à un usage particulier ou de non-contrefaçon.\n\nLes utilisateurs sont responsables de se conformer à toutes les lois applicables, aux conditions de service et aux restrictions d'utilisation lors de l'accès à l'API Qobuz ou à tout autre service tiers.\n\nPour les services officiels et le support Qobuz, veuillez consulter le site officiel de Qobuz : https://www.qobuz.com/",
-    "downloadFromArtistLabel":      "Télécharger De L'Artiste",
-    "primaryListSeparatorLabel":    "Séparateur de liste principal", // AI translation
-    "listEndSeparatorLabel":        "Séparateur de fin de liste", // AI translation
-    "playlistSectionLabel":         "Options de playlist", // AI translation   
-    "duplicateFilesLabel":          "Fichiers en double", // AI translation
-
+    "downloadFromArtistLabel":      "TÉLÉCHARGER DE L'ARTISTE",
+    "primaryListSeparatorLabel":    "Séparateur de liste principal",
+    "listEndSeparatorLabel":        "Séparateur de fin de liste",
+    "playlistSectionLabel":         "OPTIONS DE LA LISTE DE LECTURE",
+    "duplicateFilesLabel":          "FICHIERS EN DOUBLE",
 
     "_SECTION3_":                   "=================== MAIN FORM CHECKBOXES ===================",
     "albumArtistCheckBox":          "Artiste de l'album",
@@ -76,7 +75,7 @@
     "commentCheckBox":              "Commentaire Personnalisé",
     "trackArtistCheckBox":          "Piste de l'artiste",
     "trackTitleCheckBox":           "Titre de la piste",
-    "yearCheckBox":                 "Année", // AI translation
+    "yearCheckBox":                 "Année",
     "releaseDateCheckBox":          "Date de sortie",
     "releaseTypeCheckBox":          "Type de sortie",
     "genreCheckBox":                "Genre",
@@ -93,9 +92,9 @@
     "isrcCheckBox":                 "ISRC",
     "urlCheckBox":                  "URL",
     "mergeArtistNamesCheckBox":     "Fusionner les noms des artistes des pistes.\nExemple : Artist1, Artist2 && Artist3 Feat. Artist4 - Title.mp3",
-    "mergeArtistInDirNameCheckBox": "Fusionner aussi dans les noms de répertoires", // AI translation
+    "mergeArtistInDirNameCheckBox": "Fusionner aussi dans les noms des répertoires",
     "streamableCheckBox":           "Contrôle du flux",
-    "fixMD5sCheckBox":              "Corriger les MD5 non définis (doit avoir FLAC dans la variable PATH)",
+    "fixMD5sCheckBox":              "Corriger les MD5 non définis (Doit avoir FLAC dans la variable PATH)",
     "downloadSpeedCheckBox":        "Afficher la vitesse de téléchargement",
     "sortAscendantCheckBox":        "Croissant",
     "downloadGoodiesCheckBox":      "Télécharger les bonus",
@@ -104,12 +103,12 @@
     "clearOldLogsCheckBox":         "Effacer les anciens journaux au démarrage",
     "dontSaveArtworkToDiskCheckBox":"Ne pas enregistrer les illustrations sur le disque",
     "downloadFromArtistListBox":    "Album, EP/Single, Live, Compilation, Téléchargement, Autre",
-    "downloadAllFromArtistCheckBox":"Tout télécharger de l'artiste (peut en inclure plus)",
-    "useItemPosInPlaylistCheckBox": "Utiliser les positions des éléments au lieu des numéros de piste de l'album dans les noms de fichiers", // AI translation
-    "showTipsCheckBox":             "Afficher les conseils", // AI translation
-    "logFailedDownloadsCheckBox":   "Enregistrer les téléchargements échoués dans 'error.txt' dans le dossier de téléchargement", // AI translation
-    "explicitTagInTitleCheckBox":   "Tag explicite dans le titre", // AI translation
-    "cleanTagInTitleCheckBox":      "Tag propre dans le titre", // AI translation
+    "downloadAllFromArtistCheckBox":"Tout télécharger de l'artiste (Peut en inclure plus)",
+    "useItemPosInPlaylistCheckBox": "Utiliser les positions des éléments au lieu des numéros de piste de l'album dans les noms de fichiers",
+    "showTipsCheckBox":             "Afficher les conseils",
+    "logFailedDownloadsCheckBox":   "Enregistrer les téléchargements échoués dans 'error.txt' dans le dossier de téléchargement",
+    "explicitTagInTitleCheckBox":   "Tag 'Explicit' dans le titre",
+    "cleanTagInTitleCheckBox":      "Tag 'Clean' dans le titre",
 
     "_SECTION4_":                   "=================== MAIN FORM PLACEHOLDERS ===================",
     "albumLabelPlaceholder":        "Bienvenue dans QBDLX !",
@@ -150,7 +149,7 @@
     "playlist":                     "Playlist",
     "recordLabel":                  "Label Discographique",
     "user":                         "Utilisateur",
-    "completed":                    "terminé", // AI translation
+    "completed":                    "Terminé",
     "invalidUrl":                   "URL invalide : {0}",
     "copyToClipboard":              "Copier dans le Presse-papiers",
     "copyThisRowToClipboard":       "Copier cette ligne dans le Presse-papiers",
@@ -208,25 +207,25 @@
     "notEnoughFreeSpaceMsg":        "Pas assez d'espace libre sur le lecteur : '{pathRoot}' !",
 
     "_SECTION12_":                  "=================== TIPS ===================",
-    "nextTipLabel":                 "Astuce suivante ⭢", // AI translation
-    "prevTipLabel":                 "⭠ Astuce précédente", // AI translation
-    "tip1":                         "Astuce n°1: Saviez-vous que vous pouvez cliquer avec le bouton droit de la souris sur les lignes des résultats de recherche pour copier les liens des éléments sélectionnés ?", // AI translation
-    "tip2":                         "Astuce n°2: Saviez-vous que lorsque vous utilisez un lien d’un label, le programme peut récupérer jusqu’à 10 000 albums de ce label ? Nous n’avons pas fixé cette limite ! Mais c’est largement suffisant, non ? 👍", // AI translation
-    "tip3":                         "Astuce n°3: Saviez-vous que vous pouvez personnaliser votre thème visuel préféré en modifiant le fichier themes.json dans le Bloc-notes ? Qu’attendez-vous ?!", // AI translation
-    "tip4":                         "Astuce n°4: Saviez-vous que si vous laissez le texte du modèle d’artiste et du modèle d’album vide, tous les fichiers seront téléchargés dans un seul dossier ? Mais faites attention au fichier cover.jpg !", // AI translation
-    "tip5":                         "Astuce n°5: Saviez-vous que vous pouvez cliquer sur une pochette dans le téléchargeur ou le moteur de recherche pour la voir en taille réelle ?", // AI translation
-    "tip6":                         "Astuce n°6: Saviez-vous que vous pouvez utiliser l’identifiant d’un morceau ou d’un album dans le moteur de recherche pour obtenir un résultat exact unique ?", // AI translation
-    "tip7":                         "Astuce n°7: Saviez-vous que vous pouvez ouvrir plusieurs instances du programme pour télécharger du contenu en parallèle et à différents emplacements en même temps ?", // AI translation
-    "tip8":                         "Astuce n°8: Saviez-vous qu’un album peut contenir des chansons portant des noms identiques ? Pour éviter les conflits, n’oubliez pas d’utiliser les balises %TrackNumber% ou %TrackId%.", // AI translation
-    "tip9":                         "Astuce n°9: Saviez-vous que vous pouvez créer des dossiers distincts par artiste, année ou label en utilisant les modèles de chemin de téléchargement ? Ainsi, votre bibliothèque restera toujours automatiquement organisée.", // AI translation
-    "tip10":                        "Astuce n°10: Saviez-vous que vous pouvez mettre vos mots-clés entre guillemets dans le moteur de recherche pour trouver des résultats correspondant exactement à la phrase ?", // AI translation
-    "tip11":                        "Astuce n°11: Saviez-vous que vous pouvez désactiver ces astuces dans les paramètres avancés du programme ?", // AI translation
-    "tip12":                        "Astuce n°12: Saviez-vous que parler pendant 5 secondes à la pochette d’un album avant de le télécharger peut vous aider à brûler environ 0,08 calories pour vous sentir un peu plus musclé ? 💪", // AI translation
-    "tip13":                        "Astuce n°13: Saviez-vous que vous devriez vous concentrer davantage sur le téléchargement de votre musique préférée que sur la lecture de ces stupides astuces ? Mais sinon, vous manqueriez tout le plaisir… 😏", // AI translation
-    "tip14":                        "Curiosité n°1: Saviez-vous qu’Elvis Presley et Michael Jackson approuvent l’utilisation de ce programme ? Et si vous ne me croyez pas, demandez-leur ! 😜", // AI translation
-    "tip15":                        "Curiosité n°2: Saviez-vous que certaines personnes sont mortes en utilisant ce programme ? 😱 … d’ennui en attendant que tout un label soit complètement téléchargé. 👻", // AI translation
-    "tip16":                        "Curiosité n°3: Saviez-vous que fixer le bouton “Télécharger” pendant 10 secondes pourrait faire que les téléchargements aillent plus vite… dans votre imagination ? 👀", // AI translation
-    "tip17":                        "Curiosité n°4: Saviez-vous qu’applaudir après chaque téléchargement réussi aide à motiver le programme pour la chanson suivante ? 👏", // AI translation
-    "tip18":                        "Curiosité n°5: Saviez-vous que si vous recherchez \"Terrorcore\" dans le moteur de recherche, les auteurs de ce programme ne sont pas responsables des dommages cérébraux et auditifs que cela pourrait vous causer ? 😵💉" // AI translation
+    "nextTipLabel":                 "Astuce suivante ⭢",
+    "prevTipLabel":                 "⭠ Astuce précédente",
+    "tip1":                         "Astuce n°1: Saviez-vous que vous pouvez cliquer avec le bouton droit de la souris sur les lignes des résultats de recherche pour copier les liens des éléments sélectionnés ?",
+    "tip2":                         "Astuce n°2: Saviez-vous que lorsque vous utilisez un lien d’un label, le programme peut récupérer jusqu’à 10 000 albums de ce label ? Nous n’avons pas fixé cette limite ! Mais c’est largement suffisant, non ? 👍",
+    "tip3":                         "Astuce n°3: Saviez-vous que vous pouvez personnaliser votre thème visuel préféré en modifiant le fichier themes.json dans le Bloc-notes ? Qu’attendez-vous ?!",
+    "tip4":                         "Astuce n°4: Saviez-vous que si vous laissez le texte du modèle d’artiste et du modèle d’album vide, tous les fichiers seront téléchargés dans un seul dossier ? Mais faites attention au fichier cover.jpg !",
+    "tip5":                         "Astuce n°5: Saviez-vous que vous pouvez cliquer sur une pochette dans le téléchargeur ou le moteur de recherche pour la voir en taille réelle ?",
+    "tip6":                         "Astuce n°6: Saviez-vous que vous pouvez utiliser l’identifiant d’un morceau ou d’un album dans le moteur de recherche pour obtenir un résultat exact unique ?",
+    "tip7":                         "Astuce n°7: Saviez-vous que vous pouvez ouvrir plusieurs instances du programme pour télécharger du contenu en parallèle et à différents emplacements en même temps ?",
+    "tip8":                         "Astuce n°8: Saviez-vous qu’un album peut contenir des chansons portant des noms identiques ? Pour éviter les conflits, n’oubliez pas d’utiliser les balises %TrackNumber% ou %TrackId%.",
+    "tip9":                         "Astuce n°9: Saviez-vous que vous pouvez créer des dossiers distincts par artiste, année ou label en utilisant les modèles de chemin de téléchargement ? Ainsi, votre bibliothèque restera toujours automatiquement organisée.",
+    "tip10":                        "Astuce n°10: Saviez-vous que vous pouvez mettre vos mots-clés entre guillemets dans le moteur de recherche pour trouver des résultats correspondant exactement à la phrase ?",
+    "tip11":                        "Astuce n°11: Saviez-vous que vous pouvez désactiver ces astuces dans les paramètres avancés du programme ?",
+    "tip12":                        "Astuce n°12: Saviez-vous que parler pendant 5 secondes à la pochette d’un album avant de le télécharger peut vous aider à brûler environ 0,08 calories pour vous sentir un peu plus musclé ? 💪",
+    "tip13":                        "Astuce n°13: Saviez-vous que vous devriez vous concentrer davantage sur le téléchargement de votre musique préférée que sur la lecture de ces stupides astuces ? Mais sinon, vous manqueriez tout le plaisir… 😏",
+    "tip14":                        "Curiosité n°1: Saviez-vous qu’Elvis Presley et Michael Jackson approuvent l’utilisation de ce programme ? Et si vous ne me croyez pas, demandez-leur ! 😜",
+    "tip15":                        "Curiosité n°2: Saviez-vous que certaines personnes sont mortes en utilisant ce programme ? 😱 … d’ennui en attendant que tout un label soit complètement téléchargé. 👻",
+    "tip16":                        "Curiosité n°3: Saviez-vous que fixer le bouton “Télécharger” pendant 10 secondes pourrait faire que les téléchargements aillent plus vite… dans votre imagination ? 👀",
+    "tip17":                        "Curiosité n°4: Saviez-vous qu’applaudir après chaque téléchargement réussi aide à motiver le programme pour la chanson suivante ? 👏",
+    "tip18":                        "Curiosité n°5: Saviez-vous que si vous recherchez \"Terrorcore\" dans le moteur de recherche, les auteurs de ce programme ne sont pas responsables des dommages cérébraux et auditifs que cela pourrait vous causer ? 😵💉"
 
 }
