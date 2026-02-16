@@ -35,25 +35,30 @@ def api_login():
     app_secret = data.get("app_secret")
 
     try:
-        if not app_id:
-            qobuz.get_app_id()
-        else:
+        # Set custom app_id/secret if provided
+        if app_id:
             qobuz.app_id = app_id
-            if app_secret:
-                qobuz.app_secret = app_secret
+        if app_secret:
+            qobuz.app_secret = app_secret
 
         if token:
-            result = qobuz.login(token=token)
+            result = qobuz.login(token=token, app_id=app_id or None)
         elif email and password:
-            result = qobuz.login(email=email, password=password)
+            result = qobuz.login(email=email, password=password, app_id=app_id or None)
         else:
             return jsonify({"error": "Email/password or token required"}), 400
 
+        # Ensure we have app_secret (critical for downloads)
         if not qobuz.app_secret:
             try:
                 qobuz.get_app_secret()
             except Exception as e:
                 logger.warning(f"Could not get app_secret: {e}")
+
+        logger.info(
+            f"Login successful: user={qobuz.user_display_name}, "
+            f"app_id={qobuz.app_id}, has_secret={bool(qobuz.app_secret)}"
+        )
 
         return jsonify({"success": True, "user": result})
 
@@ -178,6 +183,30 @@ def api_download_playlist():
 def api_downloads():
     status = download_manager.get_status()
     return jsonify(status)
+
+
+@app.route("/api/test-secret")
+def api_test_secret():
+    """Test if the current app_secret works for stream URLs."""
+    if not qobuz.is_logged_in():
+        return jsonify({"error": "Not logged in"}), 401
+
+    has_secret = bool(qobuz.app_secret)
+    secret_length = len(qobuz.app_secret) if qobuz.app_secret else 0
+
+    result = {
+        "has_secret": has_secret,
+        "secret_length": secret_length,
+        "app_id": qobuz.app_id,
+    }
+
+    if has_secret:
+        works = qobuz.test_secret()
+        result["secret_works"] = works
+    else:
+        result["secret_works"] = False
+
+    return jsonify(result)
 
 
 @app.route("/api/config", methods=["GET"])
