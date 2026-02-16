@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  qbdlx:
+    build: .
+    container_name: qobuz-downloader
+    image: qobuzdownloaderx:latest
+    ports:
+      - "6595:6595"
+    volumes:
+      - ./config:/config
+      - ./downloads:/downloads
+    environment:
+      - QBDLX_PORT=6595
+      - QBDLX_CONFIG_DIR=/config
+      - QBDLX_DOWNLOAD_DIR=/downloads
+    restart: unless-stopped

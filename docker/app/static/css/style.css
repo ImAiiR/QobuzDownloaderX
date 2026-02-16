@@ -1,0 +1,703 @@
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f3460;
+    --bg-input: #1a1a3e;
+    --accent: #e94560;
+    --accent-hover: #ff6b81;
+    --text-primary: #eee;
+    --text-secondary: #aaa;
+    --text-muted: #666;
+    --border: #2a2a4e;
+    --success: #2ecc71;
+    --error: #e74c3c;
+    --warning: #f39c12;
+    --radius: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+/* Screens */
+.screen { display: none; }
+.screen.active { display: flex; }
+
+/* Login */
+#login-screen {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.login-container {
+    background: var(--bg-secondary);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid var(--border);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h1 {
+    font-size: 1.8rem;
+    color: var(--accent);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+/* Tabs */
+.tab-group {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.tab {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.tab.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.advanced-login {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.advanced-login summary {
+    cursor: pointer;
+    padding: 0.5rem 0;
+}
+
+.advanced-login .form-group {
+    margin-top: 0.8rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.btn-sm:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-download {
+    background: var(--accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.btn-download:hover {
+    background: var(--accent-hover);
+}
+
+/* Messages */
+.error-msg {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+    text-align: center;
+}
+
+.success-msg {
+    color: var(--success);
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
+    text-align: center;
+}
+
+/* Main Screen */
+#main-screen {
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    gap: 1.5rem;
+}
+
+.nav-brand h2 {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.nav-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.05);
+}
+
+.nav-btn.active {
+    color: var(--accent);
+    background: rgba(233, 69, 96, 0.1);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+#user-name {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Pages */
+.page {
+    display: none;
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.page.active { display: block; }
+
+/* Search */
+.search-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+    flex: 1;
+}
+
+.search-bar select {
+    width: 140px;
+}
+
+.search-bar .btn {
+    width: auto;
+    padding: 0.7rem 1.5rem;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.2rem;
+}
+
+.result-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.result-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: var(--bg-card);
+}
+
+.result-card .card-info {
+    padding: 0.8rem;
+}
+
+.result-card .card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.result-card .card-artist {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.result-card .card-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+}
+
+.result-card .card-actions {
+    padding: 0 0.8rem 0.8rem;
+}
+
+/* Artist Cards */
+.artist-card {
+    text-align: center;
+}
+
+.artist-card img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: 1rem auto 0;
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Downloads */
+.downloads-list {
+    margin-bottom: 2rem;
+}
+
+.download-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 0.5rem;
+}
+
+.download-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    object-fit: cover;
+    background: var(--bg-card);
+}
+
+.download-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.download-info .dl-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.download-info .dl-artist {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.download-info .dl-track {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 0.4rem;
+    overflow: hidden;
+}
+
+.progress-bar .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.3s;
+}
+
+.download-status {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.status-downloading {
+    color: var(--accent);
+    background: rgba(233, 69, 96, 0.1);
+}
+
+.status-completed {
+    color: var(--success);
+    background: rgba(46, 204, 113, 0.1);
+}
+
+.status-error {
+    color: var(--error);
+    background: rgba(231, 76, 60, 0.1);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    max-width: 700px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 2rem;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.modal-close:hover {
+    color: var(--accent);
+}
+
+/* Album Detail */
+.album-header {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.album-header img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    background: var(--bg-card);
+}
+
+.album-meta {
+    flex: 1;
+}
+
+.album-meta h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.album-meta .album-artist {
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+.album-meta .album-info {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.album-meta .album-quality {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.track-list {
+    list-style: none;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+    gap: 0.8rem;
+}
+
+.track-item:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.track-num {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    width: 2rem;
+    text-align: right;
+}
+
+.track-title {
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.track-duration {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.track-dl-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s;
+}
+
+.track-dl-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Settings */
+.settings-container {
+    max-width: 800px;
+}
+
+.settings-container h3 {
+    margin: 1.5rem 0 1rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.settings-container h3:first-child {
+    margin-top: 0;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.settings-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5rem;
+}
+
+.settings-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.settings-checkboxes input[type="checkbox"] {
+    accent-color: var(--accent);
+}
+
+#save-settings-btn {
+    margin-top: 1.5rem;
+    width: auto;
+    padding: 0.7rem 2rem;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 0.6rem 1rem;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search-bar {
+        flex-wrap: wrap;
+    }
+
+    .search-bar select {
+        width: 100%;
+    }
+
+    .results-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .album-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .album-header img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+}

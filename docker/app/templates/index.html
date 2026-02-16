@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QobuzDownloaderX</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen active">
+            <div class="login-container">
+                <div class="login-header">
+                    <h1>QobuzDownloaderX</h1>
+                    <p class="subtitle">Docker Web Edition</p>
+                </div>
+                <form id="login-form">
+                    <div class="tab-group">
+                        <button type="button" class="tab active" data-tab="email">Email</button>
+                        <button type="button" class="tab" data-tab="token">Token</button>
+                    </div>
+                    <div id="email-fields">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="your@email.com" autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+                        </div>
+                    </div>
+                    <div id="token-fields" style="display:none">
+                        <div class="form-group">
+                            <label for="token">Auth Token</label>
+                            <input type="text" id="token" placeholder="User auth token">
+                        </div>
+                    </div>
+                    <details class="advanced-login">
+                        <summary>Advanced</summary>
+                        <div class="form-group">
+                            <label for="app-id">App ID (optional)</label>
+                            <input type="text" id="app-id" placeholder="Leave empty to auto-detect">
+                        </div>
+                        <div class="form-group">
+                            <label for="app-secret">App Secret (optional)</label>
+                            <input type="text" id="app-secret" placeholder="Leave empty to auto-detect">
+                        </div>
+                    </details>
+                    <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
+                    <div id="login-error" class="error-msg" style="display:none"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Screen -->
+        <div id="main-screen" class="screen">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <h2>QBDLX</h2>
+                </div>
+                <div class="nav-links">
+                    <button class="nav-btn active" data-page="search">Search</button>
+                    <button class="nav-btn" data-page="downloads">Downloads</button>
+                    <button class="nav-btn" data-page="settings">Settings</button>
+                </div>
+                <div class="nav-user">
+                    <span id="user-name"></span>
+                    <button class="btn btn-sm" id="logout-btn">Logout</button>
+                </div>
+            </nav>
+
+            <!-- Search Page -->
+            <div id="page-search" class="page active">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search albums, tracks, artists...">
+                    <select id="search-type">
+                        <option value="albums">Albums</option>
+                        <option value="tracks">Tracks</option>
+                        <option value="artists">Artists</option>
+                    </select>
+                    <button class="btn btn-primary" id="search-btn">Search</button>
+                </div>
+                <div id="search-results" class="results-grid"></div>
+                <div id="search-loading" class="loading" style="display:none">
+                    <div class="spinner"></div>
+                    <span>Searching...</span>
+                </div>
+            </div>
+
+            <!-- Downloads Page -->
+            <div id="page-downloads" class="page">
+                <h3>Active Downloads</h3>
+                <div id="active-downloads" class="downloads-list"></div>
+                <h3>History</h3>
+                <div id="download-history" class="downloads-list"></div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="page-settings" class="page">
+                <div class="settings-container">
+                    <h3>Download Settings</h3>
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label for="cfg-quality">Quality</label>
+                            <select id="cfg-quality">
+                                <option value="5">MP3 320kbps</option>
+                                <option value="6">FLAC 16bit/44.1kHz</option>
+                                <option value="7">FLAC 24bit (up to 96kHz)</option>
+                                <option value="27" selected>FLAC 24bit (up to 192kHz)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-format">Audio Format</label>
+                            <select id="cfg-format">
+                                <option value=".flac">.flac</option>
+                                <option value=".mp3">.mp3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-art-size">Artwork Size</label>
+                            <select id="cfg-art-size">
+                                <option value="300">300px</option>
+                                <option value="600" selected>600px</option>
+                                <option value="org">Original</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-embed-art-size">Embedded Art Size</label>
+                            <select id="cfg-embed-art-size">
+                                <option value="300">300px</option>
+                                <option value="600" selected>600px</option>
+                                <option value="org">Original</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3>Templates</h3>
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label for="cfg-artist-tpl">Artist Template</label>
+                            <input type="text" id="cfg-artist-tpl" value="%artistname%">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-album-tpl">Album Template</label>
+                            <input type="text" id="cfg-album-tpl" value="%albumtitle% [%format%]">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-track-tpl">Track Template</label>
+                            <input type="text" id="cfg-track-tpl" value="%tracknumber%. %tracktitle%">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-playlist-tpl">Playlist Template</label>
+                            <input type="text" id="cfg-playlist-tpl" value="%playlisttitle%">
+                        </div>
+                    </div>
+
+                    <h3>Tags</h3>
+                    <div class="settings-checkboxes">
+                        <label><input type="checkbox" id="cfg-tag-album" checked> Album</label>
+                        <label><input type="checkbox" id="cfg-tag-artist" checked> Artist</label>
+                        <label><input type="checkbox" id="cfg-tag-album-artist" checked> Album Artist</label>
+                        <label><input type="checkbox" id="cfg-tag-title" checked> Track Title</label>
+                        <label><input type="checkbox" id="cfg-tag-track" checked> Track Number</label>
+                        <label><input type="checkbox" id="cfg-tag-disc" checked> Disc Number</label>
+                        <label><input type="checkbox" id="cfg-tag-genre" checked> Genre</label>
+                        <label><input type="checkbox" id="cfg-tag-year" checked> Year</label>
+                        <label><input type="checkbox" id="cfg-tag-date" checked> Release Date</label>
+                        <label><input type="checkbox" id="cfg-tag-composer" checked> Composer</label>
+                        <label><input type="checkbox" id="cfg-tag-copyright" checked> Copyright</label>
+                        <label><input type="checkbox" id="cfg-tag-isrc" checked> ISRC</label>
+                        <label><input type="checkbox" id="cfg-tag-upc" checked> UPC</label>
+                        <label><input type="checkbox" id="cfg-tag-label" checked> Label</label>
+                        <label><input type="checkbox" id="cfg-tag-image" checked> Embedded Artwork</label>
+                        <label><input type="checkbox" id="cfg-tag-total-tracks" checked> Total Tracks</label>
+                        <label><input type="checkbox" id="cfg-tag-total-discs" checked> Total Discs</label>
+                        <label><input type="checkbox" id="cfg-tag-explicit" checked> Explicit</label>
+                    </div>
+
+                    <h3>Options</h3>
+                    <div class="settings-checkboxes">
+                        <label><input type="checkbox" id="cfg-save-artwork" checked> Save Artwork to Disk</label>
+                        <label><input type="checkbox" id="cfg-embed-artwork" checked> Embed Artwork</label>
+                        <label><input type="checkbox" id="cfg-fix-md5" checked> Fix MD5</label>
+                        <label><input type="checkbox" id="cfg-streamable-check" checked> Streamable Check</label>
+                        <label><input type="checkbox" id="cfg-download-goodies"> Download Goodies</label>
+                    </div>
+
+                    <button class="btn btn-primary" id="save-settings-btn">Save Settings</button>
+                    <div id="settings-saved" class="success-msg" style="display:none">Settings saved!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Album Detail Modal -->
+        <div id="album-modal" class="modal" style="display:none">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div id="album-detail"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
